@@ -47,10 +47,9 @@ assignees: Arman17Babaei
 </details>
 
 ## تسک‌های نفر اول
-
-  **نام و نام خانوادگی:**
+  **نام و نام خانوادگی:** سهند اسماعیل‌زاده
 <details>
-  <summary>تسک مربوطه</summary>
+  <summary>مدل‌سازی سربازان</summary>
 
   <div dir="ltr" align='right'>
 
@@ -60,11 +59,35 @@ assignees: Arman17Babaei
   </div>
 </details>
 
+<details>
+  <summary>مدل‌سازی مپ</summary>
+
+  <div dir="ltr" align='right'>
+
+  1. [ ] شروع نشده
+  2. [ ] در حال انجام
+  3. [ ] تمام شده
+  </div>
+</details>
+  
+  
+
 ## تسک‌های نفر دوم
 
-  **نام و نام خانوادگی:**
+  **نام و نام خانوادگی:** سید یوسف میریوسفی
 <details>
-  <summary>تسک مربوطه</summary>
+  <summary>مدل‌سازی ساختمان‌ها</summary>
+
+  <div dir="ltr" align='right'>
+
+  1. [ ] شروع نشده
+  2. [ ] در حال انجام
+  3. [ ] تمام شده
+  </div>
+</details>
+  
+<details>
+  <summary>مدل‌سازی مملکت</summary>
 
   <div dir="ltr" align='right'>
 
@@ -76,9 +99,9 @@ assignees: Arman17Babaei
 
 ## تسک‌های نفر سوم
 
-  **نام و نام خانوادگی:**
+  **نام و نام خانوادگی:** آرمین گرامی‌راد
 <details>
-  <summary>تسک مربوطه</summary>
+  <summary>مدل‌سازی منوها</summary>
 
   <div dir="ltr" align='right'>
 
@@ -87,4 +110,30 @@ assignees: Arman17Babaei
   3. [ ] تمام شده
   </div>
 </details>
+  
+<details>
+  <summary>مدل‌سازی روابط</summary>
+
+  <div dir="ltr" align='right'>
+
+  1. [ ] شروع نشده
+  2. [ ] در حال انجام
+  3. [ ] تمام شده
+  </div>
+</details>
+  
+ ## تسک‌های گروهی
+<details>
+  
+  <summary>هم‌فکری و ساخت یوام‌ال</summary>
+
+  <div dir="ltr" align='right'>
+
+  1. [ ] شروع نشده
+  2. [ ] در حال انجام
+  3. [ ] تمام شده
+  </div>
+</details>
+  
+  
 </div>
