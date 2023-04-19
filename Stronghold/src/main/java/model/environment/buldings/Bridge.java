@@ -7,13 +7,13 @@ import model.society.Government;
 
 import java.util.ArrayList;
 
-public class Bridg extends Building{
+public class Bridge extends Building{
 
     Direction direction;
 
     boolean isOpen;
 
-    public Bridg(String name, int size, BuildingCategory category, int hp, Government owner, ArrayList<Resource> price, Direction direction, boolean isOpen) {
+    public Bridge(String name, int size, BuildingCategory category, int hp, Government owner, ArrayList<Resource> price, Direction direction, boolean isOpen) {
         super(name, size, category, hp, owner, price);
         this.direction = direction;
         this.isOpen = isOpen;
