@@ -1,6 +1,9 @@
 package model;
 
+import utility.SHA;
 import view.enums.others.SecurityQuestions;
+
+import java.security.NoSuchAlgorithmException;
 
 public class User
 {
@@ -15,14 +18,13 @@ public class User
     private int highScore;
     private String securityAnswer;
 
-    public User(String username, String password, String nickname, String email, SecurityQuestions securityQuestion, String securityAnswer)
-    {
+    public User(String username, String password, String nickname, String email, SecurityQuestions securityQuestion, String securityAnswer) throws NoSuchAlgorithmException {
         this.username = username;
-        this.password = password;
         this.nickname = nickname;
         this.email = email;
         this.securityQuestion = securityQuestion;
         this.securityAnswer = securityAnswer;
+        setPassword(password);
 
         Application.addUser(this);
     }
@@ -62,9 +64,8 @@ public class User
         this.username = username;
     }
 
-    public void setPassword(String password)
-    {
-        this.password = password;
+    public void setPassword(String password) throws NoSuchAlgorithmException {
+        this.password = SHA.shaString(password);
     }
 
     public void setNickname(String nickname)
@@ -87,9 +88,8 @@ public class User
         this.highScore = highScore;
     }
 
-    public boolean checkPassword(String password)
-    {
-        return true;
+    public boolean checkPassword(String passwordToCheck) throws NoSuchAlgorithmException {
+        return SHA.shaString(passwordToCheck).equals(password);
     }
 
     public boolean checkAnswer(String answer)

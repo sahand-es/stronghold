@@ -20,5 +20,10 @@ public class SHA {
         }
         return hexString.toString();
     }
-    
+
+    public static String shaString(String input) throws NoSuchAlgorithmException {
+        return toHexString(getSHA(input));
+    }
+
+
 }
