@@ -7,8 +7,13 @@ import java.security.NoSuchAlgorithmException;
 
 public class SHA {
 
-    public static byte[] getSHA(String input) throws NoSuchAlgorithmException {
-        MessageDigest md = MessageDigest.getInstance("SHA-256");
+    public static byte[] getSHA(String input) {
+        MessageDigest md = null;
+        try {
+            md = MessageDigest.getInstance("SHA-256");
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
         return md.digest(input.getBytes(StandardCharsets.UTF_8));
     }
 
@@ -21,7 +26,7 @@ public class SHA {
         return hexString.toString();
     }
 
-    public static String shaString(String input) throws NoSuchAlgorithmException {
+    public static String shaString(String input) {
         return toHexString(getSHA(input));
     }
 
