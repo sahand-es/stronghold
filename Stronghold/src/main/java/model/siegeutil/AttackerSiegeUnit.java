@@ -1,4 +1,4 @@
-package model.SiegeUtil;
+package model.siegeutil;
 
 import model.map.Block;
 
