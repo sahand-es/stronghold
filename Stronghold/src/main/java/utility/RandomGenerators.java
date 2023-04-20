@@ -19,12 +19,28 @@ public class RandomGenerators
     }
 
     public static void main(String[] args) {
-        System.out.println(randomPassword());
+        System.out.println(randomSlogan());
     }
 
     public static String randomSlogan()
     {
-        return null;
+        String[] slogans =
+                {
+                        "Mustache Magic with Mammad - Let the Fun Begin!",
+                        "Build a Big Funny Castle with MammaD's Mustache!",
+                        "Embrace Fun with Yousef: Mustachioed Castles Make the Difference!",
+                        "Experience the Mustache Magic at Yousef's Big Funny Castles!",
+                        "Experience the Magic of Armin: Big Fun Mustache Castles at Sharif University!",
+                        "Get your Mustache on with Armin at Sharif University - Nothing's Funnier!",
+                        "Armin: Let Your Mustache Castles in Sharif University Roar with Sahand!",
+                        "Bring the Big FunCastle to Sharif University: Mustache with Sahand, Armin and Youssef!",
+                        "Mustache and the Sharif University Gang: Join the Fun Castle!",
+                        "Mustache: Boost Your AP Project with Sad Sahand, Armin and Yousef!",
+                        "Live the Castle Life with Sahand, Armin and Yousef: Make Your AP Project Memorable!",
+                        "Escape the AP Stress with Castle! A Big, Fun Mustached Adventure at Sharif University with Sahand, Armin, and Yousef!",
+                };
+
+        return slogans[randomNumber(0, slogans.length - 1)];
     }
 
     public static String randomCaptcha()
@@ -32,9 +48,9 @@ public class RandomGenerators
         return null;
     }
 
-    private int randomNumber()
+    public static int randomNumber(int min, int max)
     {
-        return 0;
+        return (int)(Math.random()*(max-min+1)+min);
     }
 }
 
