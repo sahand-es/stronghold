@@ -1,23 +1,33 @@
 package model;
 
+import utility.DataManager;
+
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 
-public class Application
-{
-    private static ArrayList<User> users;
 
-    static
-    {
-        users = new ArrayList<>();
+public class Application {
+
+    private static final ArrayList<User> users;
+
+    static {
+        users = DataManager.loadUsers();
     }
 
-    public static void addUser(User user)
-    {
+    public static ArrayList<User> getUsers() {
+        return users;
+    }
+
+    public static void addUser(User user) {
         users.add(user);
     }
 
-    public static User getUserByUsername(String username)
-    {
+    public static User getUserByUsername(String username) {
+        for (User user : users) {
+            if (user.getUsername().equals(username))
+                return user;
+        }
         return null;
     }
 }
