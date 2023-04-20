@@ -1,5 +1,6 @@
 package controller;
 
+import utility.CheckFunctions;
 import view.enums.messages.SignUpMessages;
 
 public class SignUpControl

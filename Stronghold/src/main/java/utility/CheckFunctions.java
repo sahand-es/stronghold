@@ -1,4 +1,4 @@
-package controller;
+package utility;
 
 import model.Application;
 
@@ -11,17 +11,11 @@ public class CheckFunctions
     }
 
     public static boolean checkUsernameFormat(String username) {
-        if (username.matches(".*[^A-Za-z0-9_].*"))
-            return true;
-        else
-            return false;
+        return username.matches(".*[^A-Za-z0-9_].*");
     }
 
     public static boolean checkUsernameExits(String username) {
-        if (Application.getUserByUsername(username) != null)
-            return true;
-        else
-            return false;
+        return Application.getUserByUsername(username) != null;
     }
 
     public static boolean checkPasswordFormat(String password) {
@@ -31,10 +25,7 @@ public class CheckFunctions
         if (!password.matches(".*[a-z].*")) {
             return true;
         }
-        if (!password.matches(".*[^A-Za-z0-9].*")){
-            return true;
-        }
-        return false;
+        return !password.matches(".*[^A-Za-z0-9].*");
     }
 
     public static boolean checkReEnteredPassword(String password, String reEnteredPassword)
