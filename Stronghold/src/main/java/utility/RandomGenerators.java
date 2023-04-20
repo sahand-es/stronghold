@@ -46,6 +46,18 @@ public class RandomGenerators
         return new PasswordGenerator().generatePassword(randomNumber(4,8), DCR);
     }
 
+    public static char randomSpecialCharacter()
+    {
+        String specialCharacters = SpecialCharacterData.NonWord.getCharacters();
+        return specialCharacters.charAt(randomNumber(0, specialCharacters.length() - 1));
+    }
+
+    public static boolean randomTrue(int percentage)
+    {
+        int rand = randomNumber(0, 100);
+        return rand <= percentage;
+    }
+
     public static int randomNumber(int min, int max)
     {
         return (int)(Math.random()*(max-min+1)+min);

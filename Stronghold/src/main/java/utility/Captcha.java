@@ -11,23 +11,51 @@ private final String captchaString;
     }
 
 
-    private void makeAsciiArt(int width, int height)
+    public String getCaptcha()
     {
+        return makeAsciiArt();
+    }
+
+    public String addNoise(String asciiArt, int noisePercentage)
+    {
+        StringBuilder str = new StringBuilder(asciiArt);
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) == ' ')
+                if (RandomGenerators.randomTrue(noisePercentage))
+                    str.setCharAt(i, RandomGenerators.randomSpecialCharacter());
+        }
+
+        return str.toString();
+    }
+
+    private String makeAsciiArt()
+    {
+        int width = captchaString.length()* 11;
+        int height = 11;
         BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
         Graphics graphics1 = image.getGraphics();
-        graphics1.setFont(new Font(Font.MONOSPACED, Font.ITALIC, 15));
+        graphics1.setFont(new Font(Font.MONOSPACED, Font.ITALIC, 18));
         Graphics2D graphics = (Graphics2D) graphics1;
         graphics.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,
                 RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-        graphics.drawString(captchaString, 0, 24);
+        graphics.drawString(captchaString, 0, 11);
+
+        StringBuilder sb = new StringBuilder();
 
         for (int y = 0; y < height; y++) {
-            StringBuilder sb = new StringBuilder();
             for (int x = 0; x < width; x++)
-                sb.append(image.getRGB(x, y) == -16777216 ? " " : "*");
+                sb.append(image.getRGB(x, y) == -16777216 ? " " : "$");
             if (sb.toString().trim().isEmpty()) continue;
-            System.out.println(sb);
+            sb.append("\n");
         }
+       return addNoise(sb.toString(), 25);
+    }
+
+    public static void main(String[] args) {
+        Captcha captcha = new Captcha();
+        System.out.println(captcha.getCaptcha());
+        System.out.println(captcha.captchaString);
+//        System.out.println(RandomGenerators.randomSpecialCharacter());
     }
 
 
