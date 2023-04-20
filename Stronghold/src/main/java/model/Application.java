@@ -9,7 +9,7 @@ import java.util.Date;
 
 public class Application {
 
-    private static ArrayList<User> users;
+    private static final ArrayList<User> users;
 
     static {
         users = DataManager.loadUsers();

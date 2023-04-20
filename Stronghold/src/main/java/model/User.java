@@ -15,7 +15,7 @@ public class User {
 
     private int score;
     private int highScore;
-    private String securityAnswer;
+    private final String securityAnswer;
 
     public User(String username, String password, String nickname, String email, SecurityQuestions securityQuestion, String securityAnswer) {
         this.username = username;
