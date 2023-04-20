@@ -2,8 +2,10 @@ package utility;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.util.Scanner;
 
+/**
+ * @author Sahand
+ */
 public class Captcha {
     private String captchaString;
 
@@ -11,24 +13,37 @@ public class Captcha {
         captchaString = RandomGenerators.randomCaptcha();
     }
 
+    /**
+     *
+     * @param input string to check if it is identical to captcha
+     * @return true when input is identical to captcha
+     */
     public boolean checkCaptcha(String input) {
         return input.equals(captchaString);
     }
 
+    /**
+     *
+     * @return an ascii art of captcha in a string
+     */
     public String getCaptcha() {
         return makeAsciiArt();
     }
 
+    /**
+     *
+     * @return resets initial captcha and Returns an ascii art of new captcha in a String
+     */
     public String resetAndGetCaptcha() {
         captchaString = RandomGenerators.randomCaptcha();
         return getCaptcha();
     }
 
-    public String addNoise(String asciiArt, int noisePercentage) {
+    private String addNoise(String asciiArt) {
         StringBuilder str = new StringBuilder(asciiArt);
         for (int i = 0; i < str.length(); i++) {
             if (str.charAt(i) == ' ')
-                if (RandomGenerators.randomTrue(noisePercentage))
+                if (RandomGenerators.randomTrue(25))
                     str.setCharAt(i, RandomGenerators.randomSpecialCharacter());
         }
 
@@ -54,7 +69,7 @@ public class Captcha {
             if (sb.toString().trim().isEmpty()) continue;
             if (y != height - 1) sb.append("\n");
         }
-        return addNoise(sb.toString(), 25);
+        return addNoise(sb.toString());
     }
 
 }
