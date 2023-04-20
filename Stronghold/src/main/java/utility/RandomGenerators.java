@@ -5,6 +5,10 @@ import org.passay.*;
 
 public class RandomGenerators
 {
+    /**
+     *
+     * @return random password that includes at least 1 of each [A-Z][a-z][0-9][!@#$&*%_~.] with length between 6-12
+     */
     public static String randomPassword()
     {
         LengthRule lengthRule = new LengthRule(6, 12);
@@ -15,9 +19,13 @@ public class RandomGenerators
 
         WhitespaceRule WCR = new WhitespaceRule();
 
-        return new PasswordGenerator().generatePassword(8, LCR, UCR, DCR, SCR);
+        return new PasswordGenerator().generatePassword(randomNumber(6, 12), LCR, UCR, DCR, SCR);
     }
 
+    /**
+     *
+     * @return random slogan
+     */
     public static String randomSlogan()
     {
         String[] slogans =
@@ -39,6 +47,9 @@ public class RandomGenerators
         return slogans[randomNumber(0, slogans.length - 1)];
     }
 
+    /**
+     * @return random 4-8 length number string
+     */
     public static String randomCaptcha()
     {
         CharacterRule DCR = new CharacterRule(EnglishCharacterData.Digit, 1);
@@ -46,18 +57,33 @@ public class RandomGenerators
         return new PasswordGenerator().generatePassword(randomNumber(4,8), DCR);
     }
 
+    /**
+     *
+     * @return random special character of "!@#$&*%_~."
+     */
     public static char randomSpecialCharacter()
     {
         String specialCharacters = SpecialCharacterData.NonWord.getCharacters();
         return specialCharacters.charAt(randomNumber(0, specialCharacters.length() - 1));
     }
 
+    /**
+     *
+     * @param percentage 0-100 % for probability of true
+     * @return boolean false or true
+     */
     public static boolean randomTrue(int percentage)
     {
         int rand = randomNumber(0, 100);
         return rand <= percentage;
     }
 
+    /**
+     *
+     * @param min minimum
+     * @param max maximum
+     * @return random number between min-max
+     */
     public static int randomNumber(int min, int max)
     {
         return (int)(Math.random()*(max-min+1)+min);
