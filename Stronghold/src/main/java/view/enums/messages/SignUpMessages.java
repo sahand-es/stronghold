@@ -1,5 +1,18 @@
 package view.enums.messages;
 
-public enum SignUpMessages
-{
+public enum SignUpMessages {
+    EMPTYUSERNAME,
+    EMPTYPASSWORD,
+    EMPTYPASSWORDCONFIRM,
+    EMPTYNICKNAME,
+    EMPTYEMAIL,
+    INVALIDUSERFORMAT,
+    USEREXIST,
+    INSUFFICIENTPASS,
+    INVALIDPASSFORMAT,
+    INVALIDPASSCONFIRM,
+    EXISTINGEMAIL,
+    INVALIDEMAIL,
+    SUCCESS,
+    ;
 }

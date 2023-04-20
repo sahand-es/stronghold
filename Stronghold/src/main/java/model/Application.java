@@ -30,4 +30,11 @@ public class Application {
         }
         return null;
     }
+    public static User getUserByEmail(String email) {
+        for (User user : users) {
+            if (user.getEmail().equals(email))
+                return user;
+        }
+        return null;
+    }
 }

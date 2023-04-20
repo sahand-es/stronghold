@@ -5,6 +5,9 @@ import java.util.regex.Pattern;
 
 public enum SignUpCommands
 {
+    EXIT("^\\s*exit\\s*$"),
+    CREATE("^user create -u (?<username>.+ )?-p (?<password>\\S+ )?(?<confirmPassword>\\S+ )?-n (?<nickname>.+)?-email(?<email> \\S+)?( -s (?<slogan>.+)?)?$"),
+
     ;
 
     String regex;
