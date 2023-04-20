@@ -42,11 +42,11 @@ private final String captchaString;
 
         StringBuilder sb = new StringBuilder();
 
-        for (int y = 0; y < height; y++) {
+        for (int y = 0; y < height ; y++) {
             for (int x = 0; x < width; x++)
                 sb.append(image.getRGB(x, y) == -16777216 ? " " : "$");
             if (sb.toString().trim().isEmpty()) continue;
-            sb.append("\n");
+            if (y != height - 1) sb.append("\n");
         }
        return addNoise(sb.toString(), 25);
     }
