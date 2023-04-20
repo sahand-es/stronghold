@@ -18,10 +18,6 @@ public class RandomGenerators
         return new PasswordGenerator().generatePassword(8, LCR, UCR, DCR, SCR);
     }
 
-    public static void main(String[] args) {
-        System.out.println(randomSlogan());
-    }
-
     public static String randomSlogan()
     {
         String[] slogans =
@@ -45,7 +41,9 @@ public class RandomGenerators
 
     public static String randomCaptcha()
     {
-        return null;
+        CharacterRule DCR = new CharacterRule(EnglishCharacterData.Digit, 1);
+
+        return new PasswordGenerator().generatePassword(randomNumber(4,8), DCR);
     }
 
     public static int randomNumber(int min, int max)
