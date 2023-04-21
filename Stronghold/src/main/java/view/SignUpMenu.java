@@ -1,6 +1,7 @@
 package view;
 
 import controller.SignUpControl;
+import utility.SecurityQuestions;
 import view.enums.commands.SignUpCommands;
 import view.enums.messages.SignUpMessages;
 
@@ -107,6 +108,33 @@ public class SignUpMenu
             }
             else
                 System.out.println("Password doesn't match! in order to go to signup menu type \"back\"");
+        }
+    }
+
+    public static String getSecurityQuestionAnswer(){
+        java.util.Scanner scanner = new java.util.Scanner(System.in);
+        System.out.println("Pick you're security question number and then give an answer to it");
+        System.out.println("it must be in this format: question pick -q <question number> -a <answer> -c <answer confirm>");
+        for (int i = 0; i< SecurityQuestions.securityQuestions.length ; i++){
+            int a = i + 1;
+            System.out.println(a + ", " + SecurityQuestions.securityQuestions[i]);
+        }
+        String command;
+        while(true){
+            command = scanner.nextLine();
+            Matcher matcher;
+            if ((matcher = SignUpCommands.getMatcher(command, SignUpCommands.QUESTION )) != null){
+                String questionNumber = matcher.group("questionNumber");
+                String answer = matcher.group("answer");
+                String answerConfirm = matcher.group("answerConfirm");
+                if (answer.equals(answerConfirm)){
+                    return questionNumber + "-" + answer;
+                }
+                else
+                    System.out.println("answer confirmation doesn't match");
+            }
+            else
+                System.out.println("My liege, that's an invalid command!");
         }
     }
 

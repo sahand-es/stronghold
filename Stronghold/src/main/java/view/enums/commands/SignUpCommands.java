@@ -7,7 +7,7 @@ public enum SignUpCommands
 {
     EXIT("^\\s*exit\\s*$"),
     CREATE("^user create -u (?<username>.+ )?-p (?<password>\\S+ )?(?<confirmPassword>\\S+ )?-n (?<nickname>.+)?-email(?<email> \\S+)?( -s (?<slogan>.+)?)?$"),
-
+    QUESTION("^question pick -q (?<questionNumber>\\d) -a (?<answer>\\S+) -c (?<answerConfirm>\\S+)$"),
     ;
 
     String regex;

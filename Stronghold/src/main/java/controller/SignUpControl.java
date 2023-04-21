@@ -52,12 +52,13 @@ public class SignUpControl
         }
         if(password.equals("random") && passwordConfirm == null){
            password = RandomGenerators.randomPassword();
-           if(SignUpMenu.secondLayerCheckRandom(password)){
-               return SignUpMessages.SUCCESS;
-           }
-           else
+           if(!SignUpMenu.secondLayerCheckRandom(password)){
                return SignUpMessages.FAILED;
+           }
         }
+        String Answer = SignUpMenu.getSecurityQuestionAnswer();
+        //Todo Get captcha confirmation
+        //Todo add user
         return SignUpMessages.SUCCESS;
     }
 
