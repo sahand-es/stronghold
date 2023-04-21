@@ -24,7 +24,6 @@ public class User {
         this.securityQuestion = securityQuestion;
         this.securityAnswer = securityAnswer;
         setPassword(password);
-
         Application.addUser(this);
     }
 

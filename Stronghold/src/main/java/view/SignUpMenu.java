@@ -30,10 +30,15 @@ public class SignUpMenu
 
     private static void checkCreateUser(Matcher matcher){
         String username = matcher.group("username");
+        if (username != null){username = username.trim();}
         String password = matcher.group("password");
+        if (password != null){password = password.trim();}
         String passwordConfirm = matcher.group("confirmPassword");
+        if (passwordConfirm != null){passwordConfirm = passwordConfirm.trim();}
         String nickname = matcher.group("nickname");
+        if (nickname != null){nickname = nickname.trim();}
         String email = matcher.group("email");
+        if (email != null){email = email.trim();}
         String slogan = matcher.group("slogan");
         SignUpMessages message = SignUpControl.Signup(username,password,passwordConfirm,nickname,email,slogan);
         switch (message) {
@@ -46,11 +51,35 @@ public class SignUpMenu
             case EMPTYPASSWORDCONFIRM:
                 System.out.println("My liege, you must confirm your password");
                 break;
+            case INVALIDPASSCONFIRM:
+                System.out.println("My liege, your password doesn't match with the password confirmation");
+                break;
             case EMPTYNICKNAME:
                 System.out.println("My liege, you must give a nickname!");
                 break;
             case EMPTYEMAIL:
                 System.out.println("My liege, you must give an email!");
+                break;
+            case INVALIDUSERFORMAT:
+                System.out.println("My liege, your username format is invalid");
+                break;
+            case USEREXIST:
+                System.out.println("My liege, this username already exist");
+                break;
+            case INSUFFICIENTPASS:
+                System.out.println("My liege, your password must be at least 6 characters");
+                break;
+            case INVALIDPASSFORMAT:
+                System.out.println("My liege, your password format is invalid");
+                break;
+            case EXISTINGEMAIL:
+                System.out.println("My liege, this email already exist");
+                break;
+            case INVALIDEMAIL:
+                System.out.println("My liege, your email format is invalid");
+                break;
+            case INVALIDCOMMANDCOMBINATION:
+                System.out.println("My liege, you have gave an invalid combination");
                 break;
             case SUCCESS:
                 System.out.println("Your account has been successfully created!");

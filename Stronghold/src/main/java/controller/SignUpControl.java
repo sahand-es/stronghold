@@ -12,7 +12,7 @@ public class SignUpControl
         if (password == null && passwordConfirm == null){
             return SignUpMessages.EMPTYPASSWORD;
         }
-        if (passwordConfirm == null){
+        if (!password.equals("random") && passwordConfirm == null){
             return SignUpMessages.EMPTYPASSWORDCONFIRM;
         }
         if (nickname == null){
@@ -21,21 +21,35 @@ public class SignUpControl
         if (email == null){
             return SignUpMessages.EMPTYEMAIL;
         }
+        if (!password.equals("random") && !password.equals(passwordConfirm)){
+            return SignUpMessages.INVALIDPASSCONFIRM;
+        }
         if (CheckFunctions.checkUsernameFormat(username)){
             return SignUpMessages.INVALIDUSERFORMAT;
         }
         if (CheckFunctions.checkUsernameExits(username)){
             return SignUpMessages.USEREXIST;
         }
-        if (password.length() < 6){
+        if (!password.equals("random") && password.length() < 6){
             return SignUpMessages.INSUFFICIENTPASS;
         }
-        if (CheckFunctions.checkPasswordFormat(password)){
+        if (!password.equals("random") && CheckFunctions.checkPasswordFormat(password)){
             return SignUpMessages.INVALIDPASSFORMAT;
         }
-        if (!password.equals(passwordConfirm)){
-            return SignUpMessages.INVALIDPASSCONFIRM;
+        //ToDo check email format
+        //ToDo check email existence
+        if(password.equals("random") && passwordConfirm != null){
+            return SignUpMessages.INVALIDCOMMANDCOMBINATION;
         }
+        if(password.equals("random") && passwordConfirm == null){
+           //ToDo generate random password
+        }
+        if (slogan != null){
+            if(slogan.equals("random")){
+                //ToDo generate random slogan
+            }
+        }
+        //ToDo new user(it'll be added to users arraylist)
 
         return SignUpMessages.SUCCESS;
     }

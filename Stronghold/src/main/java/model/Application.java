@@ -9,7 +9,7 @@ import java.util.Date;
 
 public class Application {
 
-    private static final ArrayList<User> users;
+    private static final ArrayList<User> users ;
 
     static {
         users = DataManager.loadUsers();
@@ -24,6 +24,8 @@ public class Application {
     }
 
     public static User getUserByUsername(String username) {
+        if (users == null)
+            return null;
         for (User user : users) {
             if (user.getUsername().equals(username))
                 return user;
