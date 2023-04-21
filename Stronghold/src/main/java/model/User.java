@@ -1,7 +1,6 @@
 package model;
 
 import utility.SHA;
-import view.enums.others.SecurityQuestions;
 
 import java.security.NoSuchAlgorithmException;
 
@@ -11,17 +10,17 @@ public class User {
     private String nickname;
     private String email;
     private String slogan;
-    private final SecurityQuestions securityQuestion;
+    private int securityQuestionNumber;
 
     private int score;
     private int highScore;
     private final String securityAnswer;
 
-    public User(String username, String password, String nickname, String email, SecurityQuestions securityQuestion, String securityAnswer) {
+    public User(String username, String password, String nickname, String email, int securityQuestionNumber, String securityAnswer) {
         this.username = username;
         this.nickname = nickname;
         this.email = email;
-        this.securityQuestion = securityQuestion;
+        this.securityQuestionNumber = securityQuestionNumber;
         this.securityAnswer = securityAnswer;
         setPassword(password);
         Application.addUser(this);
@@ -47,8 +46,8 @@ public class User {
         return highScore;
     }
 
-    public SecurityQuestions getSecurityQuestion() {
-        return securityQuestion;
+    public int getSecurityQuestionNumber() {
+        return securityQuestionNumber;
     }
 
     public void setUsername(String username) {
