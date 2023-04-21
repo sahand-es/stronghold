@@ -14,6 +14,7 @@ public enum SignUpMessages {
     EXISTINGEMAIL,
     INVALIDEMAIL,
     INVALIDCOMMANDCOMBINATION,
+    FAILED,
     SUCCESS,
     ;
 }

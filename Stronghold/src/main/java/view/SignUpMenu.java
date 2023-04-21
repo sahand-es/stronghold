@@ -84,8 +84,29 @@ public class SignUpMenu
             case SUCCESS:
                 System.out.println("Your account has been successfully created!");
                 break;
+            case FAILED:
+                System.out.println("SignUp Failed!");
+                break;
             default:
                 break;
+        }
+    }
+
+    public static Boolean secondLayerCheckRandom(String password){
+        System.out.println("Your random password is: " + password);
+        java.util.Scanner scanner = new java.util.Scanner(System.in);
+        String passCheck;
+        while (true){
+            System.out.print("Please re-enter your password here:");
+            passCheck = scanner.nextLine();
+            if (passCheck.equals(password)){
+                return true;
+            }
+            else if (passCheck.equals("back")) {
+                return false;
+            }
+            else
+                System.out.println("Password doesn't match! in order to go to signup menu type \"back\"");
         }
     }
 

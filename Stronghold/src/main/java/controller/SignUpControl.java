@@ -1,11 +1,15 @@
 package controller;
 
+import model.User;
 import utility.CheckFunctions;
+import utility.RandomGenerators;
+import view.SignUpMenu;
 import view.enums.messages.SignUpMessages;
 
 public class SignUpControl
 {
     public static SignUpMessages Signup(String username, String password,String passwordConfirm, String nickname, String email, String slogan) {
+        boolean randomCheck = false;
         if (username == null){
             return SignUpMessages.EMPTYUSERNAME;
         }
@@ -41,16 +45,19 @@ public class SignUpControl
         if(password.equals("random") && passwordConfirm != null){
             return SignUpMessages.INVALIDCOMMANDCOMBINATION;
         }
-        if(password.equals("random") && passwordConfirm == null){
-           //ToDo generate random password
-        }
         if (slogan != null){
             if(slogan.equals("random")){
-                //ToDo generate random slogan
+                slogan = RandomGenerators.randomSlogan();
             }
         }
-        //ToDo new user(it'll be added to users arraylist)
-
+        if(password.equals("random") && passwordConfirm == null){
+           password = RandomGenerators.randomPassword();
+           if(SignUpMenu.secondLayerCheckRandom(password)){
+               return SignUpMessages.SUCCESS;
+           }
+           else
+               return SignUpMessages.FAILED;
+        }
         return SignUpMessages.SUCCESS;
     }
 
