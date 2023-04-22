@@ -79,6 +79,10 @@ public class User {
     }
 
     public boolean checkAnswer(String answerToCheck) {
-        return securityAnswer.equals(answerToCheck);
+        return securityAnswer.equalsIgnoreCase(answerToCheck);
+    }
+
+    public boolean checkEmail(String emailToCheck) {
+        return email.equalsIgnoreCase(emailToCheck);
     }
 }

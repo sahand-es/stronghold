@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DataManager {
-    private static final String USERS_DATABASE_PATH = "src/main/resources/Users.json";
+    public static final String USERS_DATABASE_PATH = "src/main/resources/Users.json";
 
     public static ArrayList<User> loadUsers() {
         try {
