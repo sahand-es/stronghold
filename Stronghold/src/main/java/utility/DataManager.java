@@ -6,8 +6,7 @@ import com.google.gson.reflect.TypeToken;
 import model.Application;
 import model.User;
 
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -44,4 +43,37 @@ public class DataManager {
             throw new RuntimeException(e);
         }
     }
+
+    /**
+     *
+     * @param filePath file path from src
+     * @return arraylist of string[] which first element contains attributes
+     */
+    public static ArrayList<String[]> getArrayListFromCSV(String filePath) {
+        BufferedReader bufferedReader;
+        try {
+            bufferedReader = new BufferedReader(new FileReader(filePath));
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        ArrayList<String[]> result = new ArrayList<>();
+        String newLine;
+        while (true) {
+            try {
+                if ((newLine = bufferedReader.readLine()) == null) break;
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            result.add(trimAll(newLine.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)")));
+        }
+        return result;
+    }
+
+    private static String[] trimAll(String[] stringArray) {
+        for (int i = 0; i < stringArray.length; i++)
+            stringArray[i] = stringArray[i].trim();
+        return stringArray;
+    }
+
+
 }
