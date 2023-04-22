@@ -2,19 +2,27 @@ package model.resourecs;
 
 import model.society.enums.Resources;
 
+import java.util.ArrayList;
+
 public class Resource
 {
-    Resources name;
+    Resources kind;
     int count;
+    private ArrayList<Resource> price;
 
     public Resource(Resources resource)
     {
-        this.name = resource;
+        this.kind = resource;
+    }
+    
+    public Resource(String resourceName)
+    {
+        kind = Resources.getResourceByName(resourceName);
     }
 
-    public Resources getName()
+    public Resources getKind()
     {
-        return name;
+        return kind;
     }
 
     public int getCount()

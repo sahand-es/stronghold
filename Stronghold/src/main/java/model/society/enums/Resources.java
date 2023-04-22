@@ -1,7 +1,5 @@
 package model.society.enums;
 
-import model.resourecs.Resource;
-
 public enum Resources
 {
 //  Initial materials:
@@ -43,7 +41,7 @@ public enum Resources
         this.name = name;
     }
 
-    public Resources getResourceByName(String resourceName)
+    public static Resources getResourceByName(String resourceName)
     {
         for (Resources resource : Resources.values()) {
             if (resource.name.equalsIgnoreCase(resourceName.trim()))
