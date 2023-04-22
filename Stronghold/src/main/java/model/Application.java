@@ -34,7 +34,7 @@ public class Application {
     }
     public static User getUserByEmail(String email) {
         for (User user : users) {
-            if (user.getEmail().equals(email))
+            if (user.getEmail().equalsIgnoreCase(email))
                 return user;
         }
         return null;

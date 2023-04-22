@@ -33,9 +33,9 @@ public class CheckFunctions
         return true;
     }
 
-    public static boolean emailExits(String email)
+    public static boolean checkEmailExits(String email)
     {
-        return true;
+        return Application.getUserByEmail(email) != null;
     }
 
     public static boolean checkEmailFormat(String email)

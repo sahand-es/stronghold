@@ -1,19 +1,9 @@
-import model.Application;
 import model.User;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import utility.DataManager;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class TestUser {
+public class UserTest {
 
     User user1 = new User("bluh", "S@hand844", "duh", "asdfa@dsaf.com", 2, "bluh");
     User user2 = new User("bluhasdf", "S@hand844", "nibba", "asdfa@dsakf.com", 1, "bluh");
