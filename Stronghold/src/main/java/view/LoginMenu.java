@@ -29,8 +29,15 @@ public class LoginMenu
     }
 
     private static void checkLogin(Matcher matcher) {
+        // TODO: handel time
+
         String username = matcher.group("username").trim();
         String password = matcher.group("password");
+        // TODO: add stay logged in flag.
+
+
+
+
 
     }
 
