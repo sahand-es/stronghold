@@ -22,8 +22,7 @@ public class LoginControl {
         if (!user.checkPassword(password))
             return LoginMessages.PASSWORD_DIDNT_MATCH;
 
-
-
+        Application.setCurrentUser(user);
 
         return LoginMessages.SUCCESSFUL;
     }

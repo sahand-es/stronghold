@@ -1,6 +1,8 @@
 package view;
 
+import controller.LoginControl;
 import view.enums.commands.LoginCommands;
+import view.enums.messages.LoginMessages;
 
 import java.util.regex.Matcher;
 public class LoginMenu
@@ -22,7 +24,7 @@ public class LoginMenu
             } else if (LoginCommands.getMatcher(command,LoginCommands.REGISTER) != null) {
                 //TODO: open signup menu.
             } else {
-                System.out.println("That's an invalid command, my Lord!");
+                System.out.println("invalid command!");
             }
         }
 
@@ -35,7 +37,33 @@ public class LoginMenu
         String password = matcher.group("password");
         // TODO: add stay logged in flag.
 
+        LoginMessages message;
+        message = LoginControl.checkLogin(username,password);
 
+        switch (message){
+            case EMPTY_USERNAME:
+                System.out.println("You must enter a username!");
+                break;
+
+            case EMPTY_PASSWORD:
+                System.out.println("You must give a password!");
+                break;
+
+            case USERNAME_DIDNT_MATCH:
+                System.out.println("username doesn't exist!");
+                break;
+
+            case PASSWORD_DIDNT_MATCH:
+                System.out.println("password doesn't match!");
+                break;
+
+            case SUCCESSFUL:
+                System.out.println("user logged in successfully");
+                break;
+
+            default:
+                break;
+        }
 
 
 
