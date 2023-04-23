@@ -4,7 +4,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public enum LoginCommands {
-    LOGIN(""),
+    LOGIN("^user login -u (?<username>.+) -p (?<password>\\S+)(?<stayLoggedIn> --stay-logged-in)?$"),
     FORGOT_PASSWORD(""),
     LOGOUT(""),
     REGISTER("")
