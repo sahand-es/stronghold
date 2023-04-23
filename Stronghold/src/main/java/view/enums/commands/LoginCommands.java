@@ -3,8 +3,11 @@ package view.enums.commands;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public enum LoginCommands
-{
+public enum LoginCommands {
+    LOGIN(""),
+    FORGOT_PASSWORD(""),
+    LOGOUT(""),
+    REGISTER("")
     ;
 
     String regex;

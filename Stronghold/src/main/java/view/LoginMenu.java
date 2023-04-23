@@ -1,5 +1,7 @@
 package view;
 
+import view.enums.commands.LoginCommands;
+
 import java.util.regex.Matcher;
 public class LoginMenu
 {
@@ -7,6 +9,10 @@ public class LoginMenu
         java.util.Scanner scanner = new java.util.Scanner(System.in);
         String command;
         Matcher matcher;
+
+        while (true){
+            command = scanner.nextLine();
+        }
 
     }
 
