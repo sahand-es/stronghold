@@ -10,6 +10,7 @@ import java.util.Date;
 public class Application {
 
     private static final ArrayList<User> users ;
+    private static User currentUser;
 
     static {
         users = DataManager.loadUsers();
@@ -38,5 +39,13 @@ public class Application {
                 return user;
         }
         return null;
+    }
+
+    public static User getCurrentUser() {
+        return currentUser;
+    }
+
+    public static void setCurrentUser(User currentUser) {
+        Application.currentUser = currentUser;
     }
 }
