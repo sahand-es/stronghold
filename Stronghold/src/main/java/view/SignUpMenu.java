@@ -41,7 +41,7 @@ public class SignUpMenu
         String email = matcher.group("email");
         if (email != null){email = email.trim();}
         String slogan = matcher.group("slogan");
-        SignUpMessages message = SignUpControl.Signup(username,password,passwordConfirm,nickname,email,slogan);
+        SignUpMessages message = SignUpControl.signUp(username,password,passwordConfirm,nickname,email,slogan);
         switch (message) {
             case EMPTY_USERNAME:
                 System.out.println("My liege, you must give a username!");

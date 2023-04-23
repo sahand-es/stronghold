@@ -7,7 +7,7 @@ import view.enums.messages.SignUpMessages;
 
 public class SignUpControl
 {
-    public static SignUpMessages Signup(String username, String password,String passwordConfirm, String nickname, String email, String slogan) {
+    public static SignUpMessages signUp(String username, String password, String passwordConfirm, String nickname, String email, String slogan) {
         boolean randomCheck = false;
         if (username == null){
             return SignUpMessages.EMPTY_USERNAME;
