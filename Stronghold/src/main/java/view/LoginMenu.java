@@ -29,6 +29,8 @@ public class LoginMenu
     }
 
     private static void checkLogin(Matcher matcher) {
+        String username = matcher.group("username").trim();
+        String password = matcher.group("password");
 
     }
 
