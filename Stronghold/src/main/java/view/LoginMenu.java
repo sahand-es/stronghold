@@ -102,20 +102,40 @@ public class LoginMenu
     private static void askSecurityQuestion(Scanner scanner){
         String input;
         String securityQuestion = LoginControl.getSecurityQuestion();
+        boolean flag = true;
 
 
-        while (true){
+        while (flag){
             System.out.println(securityQuestion);
             input = scanner.nextLine();
 
-            LoginMessages messages;
+            LoginMessages message;
+            message = LoginControl.checkAskSecurityQuestion(input);
+
+            switch (message){
+                case BACK:
+                    flag = false;
+                    break;
+
+                case INCORRECT_ANSWER:
+                    System.out.println("your answer is wrong!");
+                    break;
+
+                case SUCCESSFUL:
+                    getPassword(scanner);
+                    flag = false;
+                    break;
+
+                default:
+                    break;
+            }
 
 
         }
 
     }
 
-    private static void getPassword(){
+    private static void getPassword(Scanner scanner){
 
     }
 
