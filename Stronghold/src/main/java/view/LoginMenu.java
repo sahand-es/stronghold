@@ -74,7 +74,25 @@ public class LoginMenu
     private static void forgotPassword(Matcher matcher ,Scanner scanner) {
         String username = matcher.group("username").trim();
 
+        LoginMessages message;
+        message = LoginControl.checkForgotPassword(username);
 
+        switch (message){
+            case EMPTY_USERNAME:
+                System.out.println("username is empty, please try again.");
+                break;
+
+            case USERNAME_DIDNT_MATCH:
+                System.out.println("username didn't match, please try again.");
+                break;
+
+            case SUCCESSFUL:
+                askSecurityQuestion();
+                break;
+
+            default:
+                break;
+        }
 
     }
 
