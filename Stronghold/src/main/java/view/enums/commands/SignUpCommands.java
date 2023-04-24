@@ -6,7 +6,8 @@ import java.util.regex.Pattern;
 public enum SignUpCommands
 {
     EXIT("^\\s*exit\\s*$"),
-    CREATE("^user create -u (?<username>.+ )?-p (?<password>\\S+ )?(?<confirmPassword>\\S+ )?-n (?<nickname>.+)?-email(?<email> \\S+)?( -s (?<slogan>.+)?)?$"),
+    CREATE("^(\\s+)?user\\s+create\\s+.+"),
+    ARGUMENT("(\\s+-(?<argumentSpace>\\w+)\\s+\"(?<firstStringSpace>[^-\"]+)\"(?:\\s+(\")?(?<secondStringSpace>[^-\"]+))?)(?:\\s+(?<secondStringsSpaceNON>\\S+))?|(\\s+-(?<argument>\\w+)\\s+(?<firstString>[^- ]+)(?:\\s+(?<secondString>[^- ]+))?)"),
     QUESTION("^question pick -q (?<questionNumber>\\d) -a (?<answer>\\S+) -c (?<answerConfirm>\\S+)$"),
     ;
 
@@ -22,4 +23,9 @@ public enum SignUpCommands
         Matcher matcher = Pattern.compile(command.regex).matcher(input);
         return matcher.matches() ? matcher : null;
     }
+
+    public static String getRegexARGUMENT(){
+        return ARGUMENT.regex;
+    }
+
 }

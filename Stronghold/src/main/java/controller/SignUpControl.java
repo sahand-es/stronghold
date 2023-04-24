@@ -5,9 +5,17 @@ import utility.RandomGenerators;
 import view.SignUpMenu;
 import view.enums.messages.SignUpMessages;
 
+import java.util.HashMap;
+
 public class SignUpControl
 {
-    public static SignUpMessages signUp(String username, String password, String passwordConfirm, String nickname, String email, String slogan) {
+    public static SignUpMessages signUp(HashMap<String,String> data) {
+        String username = data.get("username");
+        String password = data.get("password");
+        String passwordConfirm = data.get("passwordConfirm");
+        String nickname = data.get("nickname");
+        String email = data.get("email");
+        String slogan = data.get("slogan");
         boolean randomCheck = false;
         if (username == null){
             return SignUpMessages.EMPTY_USERNAME;
