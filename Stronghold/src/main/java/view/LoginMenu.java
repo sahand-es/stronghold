@@ -1,9 +1,11 @@
 package view;
 
 import controller.LoginControl;
+import model.User;
 import view.enums.commands.LoginCommands;
 import view.enums.messages.LoginMessages;
 
+import java.util.Scanner;
 import java.util.regex.Matcher;
 public class LoginMenu
 {
@@ -19,8 +21,8 @@ public class LoginMenu
                 break;
             } else if ((matcher = LoginCommands.getMatcher(command,LoginCommands.LOGIN)) != null) {
                 checkLogin(matcher);
-            } else if (LoginCommands.getMatcher(command,LoginCommands.FORGOT_PASSWORD) != null) {
-                forgotPassword();
+            } else if ((matcher = LoginCommands.getMatcher(command,LoginCommands.FORGOT_PASSWORD)) != null) {
+                forgotPassword(matcher ,scanner);
             } else if (LoginCommands.getMatcher(command,LoginCommands.REGISTER) != null) {
                 //TODO: open signup menu.
             } else {
@@ -69,13 +71,13 @@ public class LoginMenu
 
     }
 
-    private static void forgotPassword() {
+    private static void forgotPassword(Matcher matcher ,Scanner scanner) {
+        String username = matcher.group("username").trim();
+
+
 
     }
 
-    private static void getUsername(){
-
-    }
 
     private static void askSecurityQuestion(){
 
