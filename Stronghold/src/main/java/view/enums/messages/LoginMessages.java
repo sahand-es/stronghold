@@ -5,5 +5,7 @@ public enum LoginMessages {
     EMPTY_PASSWORD,
     USERNAME_DIDNT_MATCH,
     PASSWORD_DIDNT_MATCH,
-    SUCCESSFUL
+    SUCCESSFUL,
+    BACK,
+    INCORRECT_ANSWER
 }

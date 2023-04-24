@@ -51,4 +51,9 @@ public class LoginControl {
     public static String getSecurityQuestion(){
         return SecurityQuestions.getSecurityQuestion(currentUser.getSecurityQuestionNumber());
     }
+
+    public static LoginMessages checkAskSecurityQuestion(String input){
+
+        return LoginMessages.SUCCESSFUL;
+    }
 }
