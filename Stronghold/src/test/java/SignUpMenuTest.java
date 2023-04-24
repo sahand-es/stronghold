@@ -70,7 +70,7 @@ public class SignUpMenuTest {
     }
 
     @Test
-    public void test3(){
+    public void test3() {
         HashMap<String, String> answer;
         answer = answerMap("sahand_es", "CorrectP@ssword1", "CorrectP@ssword1",
                 "sahand", "email   @gmail   .com", null);
@@ -87,10 +87,10 @@ public class SignUpMenuTest {
                 "create user -p CorrectP@ssword1 CorrectP@ssword1 -u sahand_es " +
                         "-n sahand -email \"email   @gmail   .com\""
         );
-
     }
 
-    @Test
+
+        @Test
     public void test4(){
         testNull("user create -u sahand_es -u nigga -p pass1 pass1 -n sahand -email email@gmail.com -s thisisatest");
         testNull("user create -u sahand_es -p pass1 pass1 bluh -n sahand -email email@gmail.com -s thisisatest");
@@ -99,6 +99,15 @@ public class SignUpMenuTest {
         testNull("user create ezafe inja -u sahand_es -p pass1 pass1 -n sahand -email email@gmail.com  ");
     }
 
+    @Test
+    public void test5(){
+        HashMap<String, String> answer;
+        answer = answerMap("-sahand_es-", "pass1", "pass with space", "--nickname",
+                "email", null);
+
+        testExtraction(answer,
+                "create user -u -sahand_es- -p pass1 \"pass with space\" -n --nickname -email email");
+    }
     public void testNull(String input) {
 
         HashMap<String, String> data = SignUpMenu.extractCreateCommand(input);
