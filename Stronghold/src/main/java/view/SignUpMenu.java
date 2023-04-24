@@ -10,36 +10,35 @@ import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class SignUpMenu
-{
-    private static HashMap<String,String> createData ;
-    static{
+public class SignUpMenu {
+    private static HashMap<String, String> createData;
+
+    static {
         createData = new HashMap<>();
     }
-    public static void run()
-    {
+
+    public static void run() {
         java.util.Scanner scanner = new java.util.Scanner(System.in);
         String command;
         Matcher matcher;
 
-        while(true){
+        while (true) {
             command = scanner.nextLine();
-            if (SignUpCommands.getMatcher(command, SignUpCommands.EXIT) != null){
+            if (SignUpCommands.getMatcher(command, SignUpCommands.EXIT) != null) {
                 return;
-            }
-            else if((matcher = SignUpCommands.getMatcher(command, SignUpCommands.CREATE )) != null){
-                checkCreateUser(matcher, command);
-            }
-            else
+            } else if ((matcher = SignUpCommands.getMatcher(command, SignUpCommands.CREATE)) != null) {
+                extractCreateCommand(command);
+                checkCreateUser(matcher,command);
+            } else
                 System.out.println("My liege, that's an invalid command!");
         }
     }
 
 
-    private static void extractCreateCommand(Matcher matcher,String command){
+    public static HashMap<String, String> extractCreateCommand(String command) {
         createData.clear();
         String username = "";
-        String password= "";
+        String password = "";
         String passwordConfirm = "";
         String nickname = "";
         String email = "";
@@ -49,15 +48,15 @@ public class SignUpMenu
         Pattern pattern = Pattern.compile(regex);
         Matcher checkMatcher = pattern.matcher(command);
 
-        while (checkMatcher.find()){
+        while (checkMatcher.find()) {
             String argName = checkMatcher.group("argument");
             String argNameSpace = checkMatcher.group("argumentSpace");
-            String argVal,argVal2,argVal2SpaceNON;
+            String argVal, argVal2, argVal2SpaceNON;
             String argValSpace, argVal2Space;
-            if (argName != null){
+            if (argName != null) {
                 argVal = checkMatcher.group("firstString");
                 argVal2 = checkMatcher.group("secondString");
-                switch (argName){
+                switch (argName) {
                     case "u":
                         username = argVal;
                         break;
@@ -77,14 +76,13 @@ public class SignUpMenu
                     default:
                         System.out.println("My liege, that's an invalid argument in create user command!");
                         createData.clear();
-                        return;
+                        return null;
                 }
-            }
-            else {
+            } else {
                 argValSpace = checkMatcher.group("firstStringSpace");
                 argVal2Space = checkMatcher.group("secondStringSpace");
                 argVal2SpaceNON = checkMatcher.group("secondStringsSpaceNON");
-                switch (argNameSpace){
+                switch (argNameSpace) {
                     case "u":
                         username = argValSpace;
                         break;
@@ -104,25 +102,25 @@ public class SignUpMenu
                     default:
                         System.out.println("My liege, that's an invalid argument in create user command!");
                         createData.clear();
-                        return;
+                        return null;
                 }
             }
         }
-        createData.put("username",username);
-        createData.put("nickname",nickname);
-        createData.put("password",password);
-        createData.put("passwordConfirm",passwordConfirm);
-        createData.put("email",email);
-        createData.put("slogan",slogan);
+        createData.put("username", username);
+        createData.put("nickname", nickname);
+        createData.put("password", password);
+        createData.put("passwordConfirm", passwordConfirm);
+        createData.put("email", email);
+        createData.put("slogan", slogan);
+
+        return createData;
     }
 
-    private static void checkCreateUser(Matcher matcher,String command){
-        extractCreateCommand(matcher,command);
+    private static void checkCreateUser(Matcher matcher, String command) {
         SignUpMessages message;
-        if (command.matches(".*-s.*") && createData.get("slogan").equals("")){
+        if (command.matches(".*-s.*") && createData.get("slogan").equals("")) {
             System.out.println("My liege, you must give a slogan when you give it's argument!");
-        }
-        else {
+        } else {
             message = SignUpControl.signUp(createData);
             switch (message) {
                 case EMPTY_USERNAME:
@@ -176,52 +174,48 @@ public class SignUpMenu
         }
     }
 
-    public static Boolean secondLayerCheckRandom(String password){
+    public static Boolean secondLayerCheckRandom(String password) {
         System.out.println("Your random password is: " + password);
         java.util.Scanner scanner = new java.util.Scanner(System.in);
         String passCheck;
-        while (true){
+        while (true) {
             System.out.print("Please re-enter your password here:");
             passCheck = scanner.nextLine();
-            if (passCheck.equals(password)){
+            if (passCheck.equals(password)) {
                 return true;
-            }
-            else if (passCheck.equals("back")) {
+            } else if (passCheck.equals("back")) {
                 return false;
-            }
-            else
+            } else
                 System.out.println("Password doesn't match! in order to go to signup menu type \"back\"");
         }
     }
 
-    public static String getSecurityQuestionAnswer(){
+    public static String getSecurityQuestionAnswer() {
         java.util.Scanner scanner = new java.util.Scanner(System.in);
         System.out.println("Pick you're security question number and then give an answer to it");
         System.out.println("it must be in this format: question pick -q <question number> -a <answer> -c <answer confirm>");
-        for (int i = 0; i< SecurityQuestions.securityQuestions.length ; i++){
+        for (int i = 0; i < SecurityQuestions.securityQuestions.length; i++) {
             int a = i + 1;
             System.out.println(a + ", " + SecurityQuestions.securityQuestions[i]);
         }
         String command;
-        while(true){
+        while (true) {
             command = scanner.nextLine();
             Matcher matcher;
-            if ((matcher = SignUpCommands.getMatcher(command, SignUpCommands.QUESTION )) != null){
+            if ((matcher = SignUpCommands.getMatcher(command, SignUpCommands.QUESTION)) != null) {
                 String questionNumber = matcher.group("questionNumber");
                 String answer = matcher.group("answer");
                 String answerConfirm = matcher.group("answerConfirm");
-                if (answer.equals(answerConfirm)){
+                if (answer.equals(answerConfirm)) {
                     return questionNumber + "-" + answer;
-                }
-                else
+                } else
                     System.out.println("answer confirmation doesn't match");
-            }
-            else
+            } else
                 System.out.println("My liege, that's an invalid command!");
         }
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         run();
     }
 

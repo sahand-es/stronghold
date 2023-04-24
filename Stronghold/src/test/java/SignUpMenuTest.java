@@ -1,96 +1,114 @@
 import org.junit.jupiter.api.Test;
+import view.SignUpMenu;
 import view.enums.commands.SignUpCommands;
 
 import java.util.HashMap;
-import java.util.Map;
 import java.util.regex.Matcher;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class SignUpMenuTest {
-    /*
-    exit:
-
-    exit
-        exit
-    exit
-
-    create:
-
-    move:
-
-    user create -u sahand_es -p CorrectP@ssword1 CorrectP@ssword1 -email email@gmail.com -n sahand -s "this is a test"
-    user create -p CorrectP@ssword1 CorrectP@ssword1 -email email@gmail.com -n sahand -s "this is a test" -u sahand_es
-    user create -n sahand -p CorrectP@ssword1 CorrectP@ssword1 -email email@gmail.com -s "this is a test" -u sahand_es
-    user create -n sahand -p CorrectP@ssword1 CorrectP@ssword1 -u sahand_es -email email@gmail.com
-    user create -p CorrectP@ssword1 CorrectP@ssword1 -n sahand -u sahand_es -email email@gmail.com
-    user create -u sahand_es -p CorrectP@ssword1 CorrectP@ssword1 -email email@gmail.com -n sahand -s thisisatest
-
-    quote and space:
-
-    user create -u "sahand_es      "       -p        CorrectP@ssword1     CorrectP@ssword1    -email    email@gmail.com -n sahand -s "this is a test"
-
-
-
-    random:
-
-    user create -u sahand_es -p random -email email@gmail.com -n sahand
-    user create -u sahand_es -p CorrectP@ssword1 CorrectP@ssword1 -email email@gmail.com -n sahand -s random
-    user create -u sahand_es -p random CorrectP@ssword1 -email email@gmail.com -n sahand -s random
-
-
-     */
     @Test
-    public void tests() {
-        HashMap<String, String> answer = new HashMap<>();
-        answer = answerMap("sahand_es", "CorrectP@ssword1", "CorrectP@ssword1", "sahand", "email@gmail.com", "thisisatest");
-        assertTrue(regexTest(
-                answer,
-                "user create -u sahand_es -p CorrectP@ssword1 CorrectP@ssword1 -n sahand -email email@gmail.com -s thisisatest"
-        ));
+    public void test1() {
+        HashMap<String, String> answer;
+        answer = answerMap("sahand_es", "CorrectP@ssword1", "CorrectP@ssword1",
+                "sahand", "email@gmail.com", "thisisatest");
 
-        assertTrue(regexTest(
-                answer,
-                "  user      create     -u     sahand_es   -p     CorrectP@ssword1        CorrectP@ssword1     -n     sahand  -email      email@gmail.com -s thisisatest"
-        ));
+        testExtraction(answer,
+                "  user      create     -u     sahand_es   -p     CorrectP@ssword1        CorrectP@ssword1" +
+                        "     -n     sahand  -email      email@gmail.com -s thisisatest");
+        testExtraction(answer,
+                "  user      create     -u     sahand_es   -p     CorrectP@ssword1        CorrectP@ssword1" +
+                        "     -n     sahand  -email      email@gmail.com -s thisisatest");
 
-        assertTrue(regexTest(
-                answer,
-                "user create -u sahand_es -p CorrectP@ssword1 CorrectP@ssword1 -email email@gmail.com -n sahand -s thisisatest"
-        ));
+        testExtraction(answer,
+                "user create -u sahand_es -p CorrectP@ssword1 CorrectP@ssword1 -email email@gmail.com -n sahand" +
+                        " -s thisisatest");
 
-        assertTrue(regexTest(
-                answer,
-                "user create -email email@gmail.com -p CorrectP@ssword1 CorrectP@ssword1 -n sahand -s thisisatest -u sahand_es"
-        ));
+        testExtraction(answer,
+                "user create -email email@gmail.com -p CorrectP@ssword1 CorrectP@ssword1 -n sahand -s thisisatest" +
+                        " -u sahand_es"
+        );
 
-        assertTrue(regexTest(
-                answer,
-                "user    create -email   email@gmail.com    -p CorrectP@ssword1 CorrectP@ssword1 -n   sahand -s thisisatest -u sahand_es"
-        ));
+        testExtraction(answer,
+                "user    create -email   email@gmail.com    -p CorrectP@ssword1 CorrectP@ssword1 -n   sahand" +
+                        " -s thisisatest -u sahand_es"
+        );
 
-        assertTrue(regexTest(
-                answer,
-                "       user      create -email    email@gmail.com -p CorrectP@ssword1 CorrectP@ssword1 -n sahand -s    thisisatest -u sahand_es        "
-        ));
+        testExtraction(answer,
+                "       user      create -email    email@gmail.com -p CorrectP@ssword1 CorrectP@ssword1 -n sahand " +
+                        "-s    thisisatest -u sahand_es        "
+        );
+    }
 
+    @Test
+
+    public void test2() {
+        HashMap<String, String> answer;
+        answer = answerMap("sahand_es", "CorrectP@ssword1", "CorrectP@ssword1",
+                "sahand", "email   @gmail   .com", "in che kosSherie?");
+
+        testExtraction(answer,
+                "create user -u sahand_es -p CorrectP@ssword1 CorrectP@ssword1 " +
+                        "-n sahand -email \"email   @gmail   .com\" -s \"in che kosSherie?\""
+        );
+
+        testExtraction(answer,
+                "create    user     -u     sahand_es -p CorrectP@ssword1 CorrectP@ssword1 " +
+                        "-n sahand -email    \"email   @gmail   .com\" -s       \"in che kosSherie?\""
+        );
+
+        testExtraction(answer,
+                "create    user  -p CorrectP@ssword1 CorrectP@ssword1      -u     sahand_es " +
+                        "-n      sahand -email    \"email   @gmail   .com\" -s       \"in che kosSherie?\""
+        );
+
+        testExtraction(answer,
+                "   create  user  -p CorrectP@ssword1 CorrectP@ssword1      -u     sahand_es " +
+                        "-email    \"email   @gmail   .com\" -s       \"in che kosSherie?\"  -n    sahand "
+        );
+    }
+
+    @Test
+    public void test3(){
+        HashMap<String, String> answer;
+        answer = answerMap("sahand_es", "CorrectP@ssword1", "CorrectP@ssword1",
+                "sahand", "email   @gmail   .com", null);
+
+        testExtraction(answer,
+                "create user -u sahand_es -p CorrectP@ssword1 CorrectP@ssword1 " +
+                        "-n sahand -email \"email   @gmail   .com\""
+        );
+        testExtraction(answer,
+                "create user -email \"email   @gmail   .com\"     -u sahand_es -p CorrectP@ssword1 CorrectP@ssword1 " +
+                        "-n sahand"
+        );
+        testExtraction(answer,
+                "create user -p CorrectP@ssword1 CorrectP@ssword1 -u sahand_es " +
+                        "-n sahand -email \"email   @gmail   .com\""
+        );
 
     }
 
+    @Test
+    public void test4(){
+        testNull("user create -u sahand_es -u nigga -p pass1 pass1 -n sahand -email email@gmail.com -s thisisatest");
+        testNull("user create -u sahand_es -p pass1 pass1 bluh -n sahand -email email@gmail.com -s thisisatest");
+        testNull("user create -u sahand_es -p pass1 pass1 -n sahand -email email@gmail.com ezafe ezafe");
+        testNull("user create -u sahand_es -p pass1 pass1 -n sahand -email email@gmail.com -b wtf");
+        testNull("user create ezafe inja -u sahand_es -p pass1 pass1 -n sahand -email email@gmail.com  ");
+    }
 
-    public boolean regexTest(HashMap<String, String> answer, String input) {
-        Matcher matcher = SignUpCommands.getMatcher(input, SignUpCommands.CREATE);
+    public void testNull(String input) {
 
-        HashMap<String, String> data;
-        if (matcher != null)
-            data = checkCreateUser(matcher);
-        else {
-            fail("regex did not matched");
-            return false;
-        }
+        HashMap<String, String> data = SignUpMenu.extractCreateCommand(input);
+        assertNull(data, "It should return null");
+    }
 
-        return isEqual(answer, data);
+
+    public void testExtraction(HashMap<String, String> answer, String input) {
+        HashMap<String, String> data = SignUpMenu.extractCreateCommand(input);
+        assertTrue(isEqual(answer, data));
     }
 
     private boolean isEqual(HashMap<String, String> answer, HashMap<String, String> data) {
@@ -100,41 +118,6 @@ public class SignUpMenuTest {
         }
 
         return true;
-    }
-
-    private HashMap<String, String> checkCreateUser(Matcher matcher) {
-        HashMap<String, String> data = new HashMap<>();
-
-        String username = matcher.group("username");
-        if (username != null) {
-            username = username.trim();
-        }
-        String password = matcher.group("password");
-        if (password != null) {
-            password = password.trim();
-        }
-        String passwordConfirm = matcher.group("confirmPassword");
-        if (passwordConfirm != null) {
-            passwordConfirm = passwordConfirm.trim();
-        }
-        String nickname = matcher.group("nickname");
-        if (nickname != null) {
-            nickname = nickname.trim();
-        }
-        String email = matcher.group("email");
-        if (email != null) {
-            email = email.trim();
-        }
-        String slogan = matcher.group("slogan");
-
-        data.put("username", username);
-        data.put("password", password);
-        data.put("passwordConfirm", passwordConfirm);
-        data.put("nickname", nickname);
-        data.put("email", email);
-        data.put("slogan", slogan);
-
-        return data;
     }
 
     private HashMap<String, String> answerMap(String username, String password, String passwordConfirm, String nickname, String email, String slogan) {
