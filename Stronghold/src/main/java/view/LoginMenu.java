@@ -20,7 +20,7 @@ public class LoginMenu
             } else if ((matcher = LoginCommands.getMatcher(command,LoginCommands.LOGIN)) != null) {
                 checkLogin(matcher);
             } else if (LoginCommands.getMatcher(command,LoginCommands.FORGOT_PASSWORD) != null) {
-                checkForgotPassword();
+                forgotPassword();
             } else if (LoginCommands.getMatcher(command,LoginCommands.REGISTER) != null) {
                 //TODO: open signup menu.
             } else {
@@ -69,9 +69,22 @@ public class LoginMenu
 
     }
 
-    private static void checkForgotPassword() {
+    private static void forgotPassword() {
 
     }
+
+    private static void getUsername(){
+
+    }
+
+    private static void askSecurityQuestion(){
+
+    }
+
+    private static void getPassword(){
+
+    }
+
 
 
 }
