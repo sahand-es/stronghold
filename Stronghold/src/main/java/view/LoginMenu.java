@@ -87,17 +87,24 @@ public class LoginMenu
                 break;
 
             case SUCCESSFUL:
-                askSecurityQuestion();
+                askSecurityQuestion(scanner);
                 break;
 
             default:
                 break;
         }
 
+        LoginControl.clearCurrentUser();
+
     }
 
 
-    private static void askSecurityQuestion(){
+    private static void askSecurityQuestion(Scanner scanner){
+        String input;
+
+        while (true){
+
+        }
 
     }
 

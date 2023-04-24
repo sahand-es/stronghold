@@ -42,4 +42,8 @@ public class LoginControl {
 
         return LoginMessages.SUCCESSFUL;
     }
+
+    public static void clearCurrentUser(){
+        currentUser = null;
+    }
 }
