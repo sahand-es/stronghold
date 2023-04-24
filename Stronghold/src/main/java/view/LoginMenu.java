@@ -101,8 +101,12 @@ public class LoginMenu
 
     private static void askSecurityQuestion(Scanner scanner){
         String input;
+        String securityQuestion = LoginControl.getSecurityQuestion();
+
 
         while (true){
+            System.out.println(securityQuestion);
+            input = scanner.nextLine();
 
         }
 

@@ -2,6 +2,7 @@ package controller;
 
 import model.Application;
 import model.User;
+import utility.SecurityQuestions;
 import view.enums.messages.LoginMessages;
 
 public class LoginControl {
@@ -45,5 +46,9 @@ public class LoginControl {
 
     public static void clearCurrentUser(){
         currentUser = null;
+    }
+
+    public static String getSecurityQuestion(){
+        return SecurityQuestions.getSecurityQuestion(currentUser.getSecurityQuestionNumber());
     }
 }
