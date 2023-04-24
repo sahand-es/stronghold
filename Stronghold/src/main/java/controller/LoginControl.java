@@ -5,6 +5,8 @@ import model.User;
 import view.enums.messages.LoginMessages;
 
 public class LoginControl {
+
+    private static User currentUser;
     public static LoginMessages checkLogin(String username, String password){
         User user;
 
@@ -27,7 +29,17 @@ public class LoginControl {
         return LoginMessages.SUCCESSFUL;
     }
 
-    public static LoginMessages checkForgotPassword(String answer){
-        return null;
+    public static LoginMessages checkForgotPassword(String username){
+        if (username == null)
+            return LoginMessages.EMPTY_USERNAME;
+
+        User user = Application.getUserByUsername(username);
+
+        if (user == null)
+            return LoginMessages.USERNAME_DIDNT_MATCH;
+
+        currentUser = user;
+
+        return LoginMessages.SUCCESSFUL;
     }
 }
