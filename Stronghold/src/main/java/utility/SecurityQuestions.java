@@ -6,4 +6,8 @@ public class SecurityQuestions {
             "What was my first pet’s name? ",
             "What is my mother’s last name?"
     };
+
+    public static String getSecurityQuestion(int index){
+        return securityQuestions[index];
+    }
 }
