@@ -53,6 +53,11 @@ public class LoginControl {
     }
 
     public static LoginMessages checkAskSecurityQuestion(String input){
+        if (input.equals("back"))
+            return LoginMessages.BACK;
+
+        if (!currentUser.checkAnswer(input))
+            return LoginMessages.INCORRECT_ANSWER;
 
         return LoginMessages.SUCCESSFUL;
     }
