@@ -1,5 +1,14 @@
 package view.enums.messages;
 
-public enum LoginMessages
-{
+public enum LoginMessages {
+    EMPTY_USERNAME,
+    EMPTY_PASSWORD,
+    USERNAME_DIDNT_MATCH,
+    PASSWORD_DIDNT_MATCH,
+    SUCCESSFUL,
+    BACK,
+    INCORRECT_ANSWER,
+    RANDOM,
+    INVALID_PASSWORD_FORMAT,
+    INSUFFICIENT_PASSWORD
 }

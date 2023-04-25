@@ -2,7 +2,7 @@ package view;
 
 public class MainMenu
 {
-    public void run()
+    public static void run()
     {
 
     }

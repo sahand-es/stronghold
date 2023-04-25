@@ -3,8 +3,11 @@ package view.enums.commands;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public enum LoginCommands
-{
+public enum LoginCommands {
+    LOGIN("^user login -u (?<username>.+ )?-p (?<password>\\S+ )?(?<stayLoggedIn> --stay-logged-in)?$"),
+    FORGOT_PASSWORD("^forgot my password -u (?<username>.+)?$"),
+    EXIT("^exit$"),
+    REGISTER("^signup menu$")
     ;
 
     String regex;
