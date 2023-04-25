@@ -1,5 +1,6 @@
 package view;
 
+import model.Application;
 import view.enums.commands.ProfileCommands;
 
 import java.util.regex.Matcher;
@@ -64,7 +65,7 @@ public class ProfileMenu
     }
 
     private static void checkRemoveSlogan(){
-
+        Application.getCurrentUser().setSlogan(null);
     }
 
     private static void displayAll(){
