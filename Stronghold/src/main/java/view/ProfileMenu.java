@@ -69,7 +69,9 @@ public class ProfileMenu
     }
 
     private static void displayAll(){
-
+        displayHighScore();
+        displayRank();
+        displaySlogan();
     }
 
     private static void displayHighScore(){
