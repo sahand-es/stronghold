@@ -12,6 +12,7 @@ public class User {
     private String slogan;
     private int securityQuestionNumber;
 
+    private int rank;
     private int score;
     private int highScore;
     private final String securityAnswer;
@@ -84,5 +85,13 @@ public class User {
 
     public boolean checkEmail(String emailToCheck) {
         return email.equalsIgnoreCase(emailToCheck);
+    }
+
+    public int getRank() {
+        return rank;
+    }
+
+    public void setRank(int rank) {
+        this.rank = rank;
     }
 }
