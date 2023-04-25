@@ -133,13 +133,45 @@ public class LoginMenu
 
     private static void getPassword(Scanner scanner){
         String input;
+        boolean flag = true;
 
-        while (true){
+        while (flag){
             System.out.println("please enter your password:");
             input = scanner.nextLine().trim();
 
             LoginMessages message;
             message = LoginControl.checkGetPassword(input);
+
+            switch (message){
+                case BACK:
+                    flag = false;
+                    break;
+
+                case RANDOM:
+                    //TODO: add random password.
+                    flag = false;
+                    break;
+
+                case EMPTY_PASSWORD:
+                    System.out.println("you must enter a password");
+                    break;
+
+                case INSUFFICIENT_PASSWORD:
+                    System.out.println("your password must be at least 6 characters");
+                    break;
+
+                case INVALID_PASSWORD_FORMAT:
+                    System.out.println("Invalid password format!, pleas chose another password");
+                    break;
+
+                case SUCCESSFUL:
+                    System.out.println("your password changed successfully!");
+                    flag = false;
+                    break;
+
+                default:
+                    break;
+            }
 
 
         }
