@@ -83,4 +83,8 @@ public class LoginControl {
 
         return LoginMessages.SUCCESSFUL;
     }
+
+    public static void setPassword(String password){
+        currentUser.setPassword(password);
+    }
 }

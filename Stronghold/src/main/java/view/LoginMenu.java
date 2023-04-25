@@ -2,6 +2,7 @@ package view;
 
 import controller.LoginControl;
 import model.User;
+import utility.RandomGenerators;
 import view.enums.commands.LoginCommands;
 import view.enums.messages.LoginMessages;
 
@@ -148,7 +149,7 @@ public class LoginMenu
                     break;
 
                 case RANDOM:
-                    //TODO: add random password.
+                    getRandomPassword(scanner);
                     flag = false;
                     break;
 
@@ -172,9 +173,30 @@ public class LoginMenu
                 default:
                     break;
             }
-
-
         }
+
+    }
+
+    public static void getRandomPassword(Scanner scanner){
+        String password;
+        String input;
+
+        while (true) {
+            password = RandomGenerators.randomPassword();
+            System.out.println("Your random password is: " + password);
+            System.out.print("Please re-enter your password here:");
+            input = scanner.nextLine().trim();
+
+            if (input.equals("back")){
+                break;
+            } else if (input.equals(password)){
+                LoginControl.setPassword(password);
+                break;
+            } else {
+                System.out.println("Password doesn't match! in order to go to login menu type \"back\"");
+            }
+        }
+
 
     }
 
