@@ -136,7 +136,10 @@ public class LoginMenu
 
         while (true){
             System.out.println("please enter your password:");
-            input = scanner.nextLine();
+            input = scanner.nextLine().trim();
+
+            LoginMessages message;
+            message = LoginControl.checkGetPassword(input);
 
 
         }

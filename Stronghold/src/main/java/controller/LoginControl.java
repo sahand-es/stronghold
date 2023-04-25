@@ -2,6 +2,7 @@ package controller;
 
 import model.Application;
 import model.User;
+import utility.CheckFunctions;
 import utility.SecurityQuestions;
 import view.enums.messages.LoginMessages;
 
@@ -58,6 +59,27 @@ public class LoginControl {
 
         if (!currentUser.checkAnswer(input))
             return LoginMessages.INCORRECT_ANSWER;
+
+        return LoginMessages.SUCCESSFUL;
+    }
+
+    public static LoginMessages checkGetPassword(String password){
+        if (password.equals("back"))
+            return LoginMessages.BACK;
+
+        if (password.equals("random"))
+            return LoginMessages.RANDOM;
+
+        if (password.equals(""))
+            return LoginMessages.EMPTY_PASSWORD;
+
+        if (password.length() < 6)
+            return LoginMessages.INSUFFICIENT_PASSWORD;
+
+        if (CheckFunctions.checkPasswordFormat(password))
+            return  LoginMessages.INVALID_PASSWORD_FORMAT;
+
+        currentUser.setPassword(password);
 
         return LoginMessages.SUCCESSFUL;
     }
