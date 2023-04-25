@@ -15,7 +15,8 @@ public enum ProfileCommands {
     DISPLAY_HIGH_SCORE("^profile display highscore$"),
     DISPLAY_RANK("^profile display rank$"),
     DISPLAY_SLOGAN("^profile display slogan$"),
-    DISPLAY_ALL("^profile display$")
+    DISPLAY_ALL("^profile display$"),
+    BACK("^back$")
     ;
 
     String regex;
