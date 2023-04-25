@@ -79,7 +79,12 @@ public class ProfileMenu
         System.out.println("rank: " + Application.getCurrentUser().getRank());
     }
     private static void displaySlogan(){
+        String slogan = Application.getCurrentUser().getSlogan();
 
+        if (slogan == null)
+            System.out.println("Slogan is empty!");
+        else
+            System.out.println(slogan);
     }
 
 }
