@@ -214,9 +214,4 @@ public class SignUpMenu {
                 System.out.println("My liege, that's an invalid command!");
         }
     }
-
-    public static void main(String[] args) {
-        run();
-    }
-
 }
