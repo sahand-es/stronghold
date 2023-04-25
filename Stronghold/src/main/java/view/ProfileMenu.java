@@ -76,7 +76,7 @@ public class ProfileMenu
         System.out.println("high score: " + Application.getCurrentUser().getHighScore());
     }
     private static void displayRank(){
-
+        System.out.println("rank: " + Application.getCurrentUser().getRank());
     }
     private static void displaySlogan(){
 
