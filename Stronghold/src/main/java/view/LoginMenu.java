@@ -1,7 +1,8 @@
 package view;
 
 import controller.LoginControl;
-import model.User;
+
+import model.Application;
 import utility.RandomGenerators;
 import view.enums.commands.LoginCommands;
 import view.enums.messages.LoginMessages;
@@ -18,16 +19,21 @@ public class LoginMenu
         while (true){
             command = scanner.nextLine();
 
-            if (LoginCommands.getMatcher(command,LoginCommands.LOGOUT) != null){
+            if (LoginCommands.getMatcher(command,LoginCommands.EXIT) != null){
                 break;
             } else if ((matcher = LoginCommands.getMatcher(command,LoginCommands.LOGIN)) != null) {
                 checkLogin(matcher);
             } else if ((matcher = LoginCommands.getMatcher(command,LoginCommands.FORGOT_PASSWORD)) != null) {
                 forgotPassword(matcher ,scanner);
             } else if (LoginCommands.getMatcher(command,LoginCommands.REGISTER) != null) {
-                //TODO: open signup menu.
+                SignUpMenu.run();
             } else {
                 System.out.println("invalid command!");
+            }
+
+            if(Application.getCurrentUser() != null){
+                MainMenu.run();
+                Application.setCurrentUser(null);
             }
         }
 
