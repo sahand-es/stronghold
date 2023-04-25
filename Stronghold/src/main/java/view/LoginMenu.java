@@ -104,8 +104,7 @@ public class LoginMenu
         String securityQuestion = LoginControl.getSecurityQuestion();
         boolean flag = true;
 
-
-        while (flag){
+        while (flag) {
             System.out.println(securityQuestion);
             input = scanner.nextLine();
 
@@ -118,7 +117,7 @@ public class LoginMenu
                     break;
 
                 case INCORRECT_ANSWER:
-                    System.out.println("your answer is wrong!");
+                    System.out.println("your answer is wrong!, please try again.");
                     break;
 
                 case SUCCESSFUL:
@@ -129,13 +128,18 @@ public class LoginMenu
                 default:
                     break;
             }
-
-
         }
-
     }
 
     private static void getPassword(Scanner scanner){
+        String input;
+
+        while (true){
+            System.out.println("please enter your password:");
+            input = scanner.nextLine();
+
+
+        }
 
     }
 
