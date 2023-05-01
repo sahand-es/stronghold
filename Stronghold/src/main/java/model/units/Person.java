@@ -3,6 +3,7 @@ package model.units;
 import model.map.Block;
 import model.resourecs.Armour;
 import model.society.Government;
+import model.units.enums.UnitNames;
 
 import java.util.ArrayList;
 
@@ -11,13 +12,13 @@ public abstract class Person {
     private int speed;
     private int defencePower;
     private Armour armour;
-    private String name;
+    private UnitNames name;
     private Block block;
     private Government government;
     private static ArrayList<Person> allUnits;
 
 
-    public Person(int hp, int speed, int defencePower, Armour armour, String name, Block block) {
+    public Person(int hp, int speed, int defencePower, Armour armour, UnitNames name, Block block) {
         this.hp = hp;
         this.speed = speed;
         this.defencePower = defencePower;
@@ -42,7 +43,7 @@ public abstract class Person {
         return armour;
     }
 
-    public String getName() {
+    public UnitNames getName() {
         return name;
     }
 

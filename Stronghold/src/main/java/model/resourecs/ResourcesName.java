@@ -1,4 +1,4 @@
-package model.society.enums;
+package model.resourecs;
 
 public enum ResourcesName
 {

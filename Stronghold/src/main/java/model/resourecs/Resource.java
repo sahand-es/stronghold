@@ -1,6 +1,5 @@
 package model.resourecs;
 
-import model.society.enums.ResourcesName;
 import utility.DataManager;
 
 import java.util.ArrayList;
