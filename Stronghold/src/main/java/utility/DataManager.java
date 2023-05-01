@@ -14,6 +14,8 @@ import java.util.List;
 
 public class DataManager {
     public static final String USERS_DATABASE_PATH = "src/main/resources/Users.json";
+    public static final String RESOURCES_PATH = "src/main/resources/ResourceAndFood.csv";
+    public static final String WEAPONS_PATH = "src/main/resources/WeaponAndArmour.csv";
 
     public static ArrayList<User> loadUsers() {
         try {

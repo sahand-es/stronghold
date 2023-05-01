@@ -10,11 +10,11 @@ public class Resource {
     ResourcesName kind;
     int count;
     private final HashMap<ResourcesName, Integer> price;
-    private int howManyFor1Price;
-    private static final ArrayList<Resource> allResources = new ArrayList<>();
+    protected int howManyFor1Price;
+    protected static final ArrayList<Resource> allResources = new ArrayList<>();
 
     static {
-        ArrayList<String[]> resourceCsv = DataManager.getArrayListFromCSV("src/main/resources/ResourceAndFood.csv");
+        ArrayList<String[]> resourceCsv = DataManager.getArrayListFromCSV(DataManager.RESOURCES_PATH);
         String[] attributeNames = resourceCsv.get(0);
 
         for (int i = 1; i < resourceCsv.size(); i++) {
@@ -25,19 +25,17 @@ public class Resource {
             for (int j = 0; j < attributeNames.length; j++) {
                 switch (attributeNames[j]) {
                     case "Type": {
-                        if (false && !attributeNames[j].equals("Initial"))
-                            continue;
-                        break;
+//                        ToDo: if we want to have food class
                     }
                     case "Name": {
                         name = attributes[j];
                         break;
                     }
                     case "Price Kind": {
-                            if (!attributes[j].equals("null")) {
-                                price.put(ResourcesName.getResourceByName(attributes[j]), Integer.parseInt(attributes[j+1]));
+                        if (!attributes[j].equals("null")) {
+                            price.put(ResourcesName.getResourceByName(attributes[j]), Integer.parseInt(attributes[j + 1]));
                         }
-                            break;
+                        break;
                     }
                     case "Count": {
                         howMany = Integer.parseInt(attributes[j]);
@@ -52,10 +50,11 @@ public class Resource {
 
     }
 
-    private Resource(String name, HashMap<ResourcesName, Integer> price, int howManyFor1Price) {
+    protected Resource(String name, HashMap<ResourcesName, Integer> price, int howManyFor1Price) {
         kind = ResourcesName.getResourceByName(name);
         count = 0;
         this.price = price;
+        this.howManyFor1Price = howManyFor1Price;
 
         allResources.add(this);
     }
@@ -111,7 +110,7 @@ public class Resource {
         this.count += count;
     }
 
-    public void removeCount(int count){
+    public void removeCount(int count) {
         this.count -= count;
     }
 

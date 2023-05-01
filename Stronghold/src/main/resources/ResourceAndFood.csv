@@ -1,4 +1,4 @@
-﻿Type,Name,Price Kind,Price Count,Count
+Type,Name,Price Kind,Price Count,Count
 Initial,Wheat,null,null,1
 Initial,Flour,Wheat,10,1
 Initial,Hops,null,null,1
