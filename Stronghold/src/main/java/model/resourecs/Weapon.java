@@ -118,14 +118,4 @@ public class Weapon extends Resource {
                 ", attackRange=" + attackRange +
                 "}\n";
     }
-
-    public static void main(String[] args) {
-        System.out.println(allResources);
-
-        Weapon weapon = new Weapon(ResourcesName.BOW, 0);
-        Weapon weapon2 = new Weapon("sword", 0);
-        System.out.println(weapon.getDamage());
-        System.out.println(weapon2.getDamage());
-
-    }
 }

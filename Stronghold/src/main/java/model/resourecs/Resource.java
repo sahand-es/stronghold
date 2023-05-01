@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Resource {
-    ResourcesName kind;
-    int count;
-    private final HashMap<ResourcesName, Integer> price;
+    protected final ResourcesName kind;
+    protected int count;
+    protected final HashMap<ResourcesName, Integer> price;
     protected int howManyFor1Price;
     protected static final ArrayList<Resource> allResources = new ArrayList<>();
 

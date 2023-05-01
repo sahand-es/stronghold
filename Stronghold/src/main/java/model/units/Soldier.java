@@ -4,6 +4,7 @@ import model.map.Block;
 import model.resourecs.Armour;
 import model.resourecs.Weapon;
 import model.units.enums.SoldierUnitState;
+import model.units.enums.UnitNames;
 
 public class Soldier extends Person {
 
@@ -11,7 +12,7 @@ public class Soldier extends Person {
 
     SoldierUnitState soldierUnitState;
 
-    public Soldier(int hp, int speed, int defencePower, Armour armour, String name, Block block, Weapon weapon) {
+    public Soldier(int hp, int speed, int defencePower, Armour armour, UnitNames name, Block block, Weapon weapon) {
         super(hp, speed, defencePower, armour, name, block);
         this.weapon = weapon;
     }

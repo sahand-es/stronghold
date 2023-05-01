@@ -15,7 +15,7 @@ public abstract class Person {
     private UnitNames name;
     private Block block;
     private Government government;
-    private static ArrayList<Person> allUnits;
+    private static final ArrayList<Person> allUnits = new ArrayList<>();
 
 
     public Person(int hp, int speed, int defencePower, Armour armour, UnitNames name, Block block) {
