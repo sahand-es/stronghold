@@ -1,6 +1,6 @@
 package model.society.enums;
 
-public enum Resources
+public enum ResourcesName
 {
 //  Initial materials:
     WHEAT("Wheat"),
@@ -37,13 +37,13 @@ public enum Resources
 
     private final String name;
 
-    Resources(String name) {
+    ResourcesName(String name) {
         this.name = name;
     }
 
-    public static Resources getResourceByName(String resourceName)
+    public static ResourcesName getResourceByName(String resourceName)
     {
-        for (Resources resource : Resources.values()) {
+        for (ResourcesName resource : ResourcesName.values()) {
             if (resource.name.equalsIgnoreCase(resourceName.trim()))
                 return resource;
         }

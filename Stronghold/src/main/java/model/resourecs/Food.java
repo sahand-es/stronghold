@@ -1,9 +1,9 @@
 package model.resourecs;
 
-import model.society.enums.Resources;
+import model.society.enums.ResourcesName;
 
 public class Food extends Resource{
-    public Food(Resources resource) {
-        super(resource);
+    public Food(ResourcesName resource) {
+        super(resource, 0);
     }
 }

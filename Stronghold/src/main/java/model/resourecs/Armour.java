@@ -1,9 +1,9 @@
 package model.resourecs;
 
-import model.society.enums.Resources;
+import model.society.enums.ResourcesName;
 
 public class Armour extends Resource{
-    public Armour(Resources resource) {
-        super(resource);
+    public Armour(ResourcesName resource) {
+        super(resource, 0);
     }
 }

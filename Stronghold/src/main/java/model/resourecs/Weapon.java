@@ -1,14 +1,12 @@
 package model.resourecs;
 
-import model.society.enums.Resources;
-
-import java.util.ArrayList;
+import model.society.enums.ResourcesName;
 
 public class Weapon extends Resource{
 
     private int damage;
     private int attackRange;
-    public Weapon(Resources resource) {
-        super(resource);
+    public Weapon(ResourcesName resource) {
+        super(resource, 0);
     }
 }
