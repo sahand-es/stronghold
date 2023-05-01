@@ -68,6 +68,46 @@ public class Weapon extends Resource {
         this.attackRange = attackRange;
     }
 
+    public Weapon(String name, int count) {
+        super(name, count);
+
+        Weapon weaponToClone = (Weapon) getResourceByName(name);
+        this.damage = weaponToClone.damage;
+        this.attackRange = weaponToClone.attackRange;
+    }
+
+    public Weapon(String name) {
+        super(name);
+
+        Weapon weaponToClone = (Weapon) getResourceByName(name);
+        this.damage = weaponToClone.damage;
+        this.attackRange = weaponToClone.attackRange;
+    }
+
+    public Weapon(ResourcesName name, int count) {
+        super(name, count);
+
+        Weapon weaponToClone = (Weapon) getResourceByResourcesName(name);
+        this.damage = weaponToClone.damage;
+        this.attackRange = weaponToClone.attackRange;
+    }
+
+    public Weapon(ResourcesName name) {
+        super(name);
+
+        Weapon weaponToClone = (Weapon) getResourceByResourcesName(name);
+        this.damage = weaponToClone.damage;
+        this.attackRange = weaponToClone.attackRange;
+    }
+
+    public int getDamage() {
+        return damage;
+    }
+
+    public int getAttackRange() {
+        return attackRange;
+    }
+
     @Override
     public String toString() {
         return "Weapon{" +
@@ -82,5 +122,11 @@ public class Weapon extends Resource {
 
     public static void main(String[] args) {
         System.out.println(allResources);
+
+        Weapon weapon = new Weapon(ResourcesName.BOW, 0);
+        Weapon weapon2 = new Weapon("sword", 0);
+        System.out.println(weapon.getDamage());
+        System.out.println(weapon2.getDamage());
+
     }
 }

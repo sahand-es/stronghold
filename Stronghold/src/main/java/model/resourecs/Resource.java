@@ -68,6 +68,15 @@ public class Resource {
         this.price = resourceToClone.price;
         this.kind = resourceToClone.kind;
     }
+    public Resource(String name) {
+        Resource resourceToClone = getResourceByName(name);
+        assert resourceToClone != null;
+
+        this.count = 0;
+        this.howManyFor1Price = resourceToClone.howManyFor1Price;
+        this.price = resourceToClone.price;
+        this.kind = resourceToClone.kind;
+    }
 
     public Resource(ResourcesName name, int count) {
         Resource resourceToClone = getResourceByResourcesName(name);
@@ -78,7 +87,16 @@ public class Resource {
         this.kind = resourceToClone.getKind();
     }
 
-    private Resource getResourceByName(String name) {
+    public Resource(ResourcesName name) {
+        Resource resourceToClone = getResourceByResourcesName(name);
+        assert resourceToClone != null;
+
+        this.count = 0;
+        this.price = resourceToClone.getPrice();
+        this.kind = resourceToClone.getKind();
+    }
+
+    Resource getResourceByName(String name) {
         for (Resource resource : allResources) {
             if (resource.getKind().equals(ResourcesName.getResourceByName(name)))
                 return resource;
@@ -86,7 +104,7 @@ public class Resource {
         return null;
     }
 
-    private Resource getResourceByResourcesName(ResourcesName resourceName) {
+     Resource getResourceByResourcesName(ResourcesName resourceName) {
         for (Resource resource : allResources) {
             if (resource.getKind().equals(resourceName))
                 return resource;
