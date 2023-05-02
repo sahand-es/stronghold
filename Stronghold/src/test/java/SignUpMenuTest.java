@@ -49,22 +49,22 @@ public class SignUpMenuTest {
                 "sahand", "email   @gmail   .com", "in che tesTie?");
 
         testExtraction(answer,
-                "create user -u sahand_es -p CorrectP@ssword1 CorrectP@ssword1 " +
+                "user create -u sahand_es -p CorrectP@ssword1 CorrectP@ssword1 " +
                         "-n sahand -email \"email   @gmail   .com\" -s \"in che tesTie?\""
         );
 
         testExtraction(answer,
-                "create    user     -u     sahand_es -p CorrectP@ssword1 CorrectP@ssword1 " +
+                "user    create     -u     sahand_es -p CorrectP@ssword1 CorrectP@ssword1 " +
                         "-n sahand -email    \"email   @gmail   .com\" -s       \"in che tesTie?\""
         );
 
         testExtraction(answer,
-                "create    user  -p CorrectP@ssword1 CorrectP@ssword1      -u     sahand_es " +
+                "user    create  -p CorrectP@ssword1 CorrectP@ssword1      -u     sahand_es " +
                         "-n      sahand -email    \"email   @gmail   .com\" -s       \"in che tesTie?\""
         );
 
         testExtraction(answer,
-                "   create  user  -p CorrectP@ssword1 CorrectP@ssword1      -u     sahand_es " +
+                "   user create  -p CorrectP@ssword1 CorrectP@ssword1      -u     sahand_es " +
                         "-email    \"email   @gmail   .com\" -s       \"in che tesTie?\"  -n    sahand "
         );
     }
@@ -76,15 +76,15 @@ public class SignUpMenuTest {
                 "sahand", "email   @gmail   .com", null);
 
         testExtraction(answer,
-                "create user -u sahand_es -p CorrectP@ssword1 CorrectP@ssword1 " +
+                "user create -u sahand_es -p CorrectP@ssword1 CorrectP@ssword1 " +
                         "-n sahand -email \"email   @gmail   .com\""
         );
         testExtraction(answer,
-                "create user -email \"email   @gmail   .com\"     -u sahand_es -p CorrectP@ssword1 CorrectP@ssword1 " +
+                "user create -email \"email   @gmail   .com\"     -u sahand_es -p CorrectP@ssword1 CorrectP@ssword1 " +
                         "-n sahand"
         );
         testExtraction(answer,
-                "create user -p CorrectP@ssword1 CorrectP@ssword1 -u sahand_es " +
+                "user create -p CorrectP@ssword1 CorrectP@ssword1 -u sahand_es " +
                         "-n sahand -email \"email   @gmail   .com\""
         );
     }
@@ -106,7 +106,7 @@ public class SignUpMenuTest {
                 "email", null);
 
         testExtraction(answer,
-                "create user -u -sahand_es- -p pass1 \"pass with space\" -n --nickname -email email");
+                "user create -u -sahand_es- -p pass1 \"pass with space\" -n --nickname -email email");
     }
     public void testNull(String input) {
 

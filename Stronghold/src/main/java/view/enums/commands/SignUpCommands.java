@@ -7,6 +7,7 @@ public enum SignUpCommands
 {
     EXIT("^\\s*exit\\s*$"),
     CREATE("^(\\s+)?user\\s+create\\s+.+"),
+    FINALCREATECHECK("^(\\s+)?user\\s+create(\\s+)?$"),
     ARGUMENT("((\\s+)?-(?<argumentSpace>\\w+)\\s+\"(?<firstStringSpace>[^-\"]+)\"(\\s+)?(?:\\s+(\")?(?<secondStringSpace>[^-\"]+))?)(?:\\s+(?<secondStringsSpaceNON>\\S+))?|((\\s+)?-(?<argument>\\w+)\\s+(?<firstString>[^- ]+)(?:\\s+(?<secondString>[^- ]+))?)"),
     QUESTION("^question pick -q (?<questionNumber>\\d) -a (?<answer>\\S+) -c (?<answerConfirm>\\S+)$"),
     ;

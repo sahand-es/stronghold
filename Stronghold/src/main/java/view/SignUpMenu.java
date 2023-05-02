@@ -56,120 +56,135 @@ public class SignUpMenu {
             if (argName != null) {
                 argVal = checkMatcher.group("firstString");
                 argVal2 = checkMatcher.group("secondString");
-                switch (argName) {
-                    case "u":
-                        username = argVal;
-                        break;
-                    case "p":
-                        password = argVal;
-                        passwordConfirm = argVal2;
-                        break;
-                    case "n":
-                        nickname = argVal;
-                        break;
-                    case "email":
-                        email = argVal;
-                        break;
-                    case "s":
-                        slogan = argVal;
-                        break;
-                    default:
-                        System.out.println("My liege, that's an invalid argument in create user command!");
-                        createData.clear();
-                        return null;
+                if (argName.equals("u") && username.equals("")){
+                    username = argVal;
                 }
-            } else {
+                else if (argName.equals("p") && password.equals("") && passwordConfirm.equals("")){
+                    password = argVal;
+                    passwordConfirm = argVal2;
+                }
+                else if (argName.equals("n") && nickname.equals("")){
+                    nickname = argVal;
+                }
+                else if (argName.equals("email") && email.equals("")){
+                    email = argVal;
+                }
+                else if (argName.equals("s") && slogan.equals("")){
+                    slogan = argVal;
+                }
+                else {
+                    System.out.println("My liege, that's an invalid argument in create user command!");
+                    createData.clear();
+                    createData = null;
+                    return null;
+                }
+            }
+            else {
                 argValSpace = checkMatcher.group("firstStringSpace");
                 argVal2Space = checkMatcher.group("secondStringSpace");
                 argVal2SpaceNON = checkMatcher.group("secondStringsSpaceNON");
-                switch (argNameSpace) {
-                    case "u":
-                        username = argValSpace;
-                        break;
-                    case "p":
-                        password = argValSpace;
-                        passwordConfirm = argVal2Space + argVal2SpaceNON;
-                        break;
-                    case "n":
-                        nickname = argValSpace;
-                        break;
-                    case "email":
-                        email = argValSpace;
-                        break;
-                    case "s":
-                        slogan = argValSpace;
-                        break;
-                    default:
-                        System.out.println("My liege, that's an invalid argument in create user command!");
-                        createData.clear();
-                        return null;
+                if (argNameSpace.equals("u") && username.equals("")){
+                    username = argValSpace;
+                }
+                else if (argNameSpace.equals("p") && password.equals("") && passwordConfirm.equals("")){
+                    password = argValSpace;
+                    passwordConfirm = argVal2Space + argVal2SpaceNON;
+                }
+                else if (argNameSpace.equals("n") && nickname.equals("")){
+                    nickname = argValSpace;
+                }
+                else if (argNameSpace.equals("email") && email.equals("")){
+                    email = argValSpace;
+                }
+                else if (argNameSpace.equals("s") && slogan.equals("")){
+                    slogan = argValSpace;
+                }
+                else {
+                    System.out.println("My liege, that's an invalid argument in create user command!");
+                    createData.clear();
+                    createData = null;
+                    return null;
                 }
             }
-        }
-        createData.put("username", username);
-        createData.put("nickname", nickname);
-        createData.put("password", password);
-        createData.put("passwordConfirm", passwordConfirm);
-        createData.put("email", email);
-        createData.put("slogan", slogan);
 
-        return createData;
+            System.out.println("group" + checkMatcher.group());
+            command = command.replaceAll(checkMatcher.group().toString().trim(),"");
+
+
+        }
+        System.out.println(command);
+        //if (SignUpCommands.getMatcher(command, SignUpCommands.FINALCREATECHECK) != null){
+            createData.put("username", username);
+            createData.put("nickname", nickname);
+            createData.put("password", password);
+            createData.put("passwordConfirm", passwordConfirm);
+            createData.put("email", email);
+            createData.put("slogan", slogan);
+
+            return createData;
+//        }
+//        else
+//            return null;
+
     }
 
     private static void checkCreateUser(Matcher matcher, String command) {
         SignUpMessages message;
-        if (command.matches(".*-s.*") && createData.get("slogan").equals("")) {
-            System.out.println("My liege, you must give a slogan when you give it's argument!");
-        } else {
-            message = SignUpControl.signUp(createData);
-            switch (message) {
-                case EMPTY_USERNAME:
-                    System.out.println("My liege, you must give a username!");
-                    break;
-                case EMPTY_PASSWORD:
-                    System.out.println("My liege, you must give a password!");
-                    break;
-                case EMPTY_PASSWORD_CONFIRM:
-                    System.out.println("My liege, you must confirm your password");
-                    break;
-                case INVALID_PASS_CONFIRM:
-                    System.out.println("My liege, your password doesn't match with the password confirmation");
-                    break;
-                case EMPTY_NICKNAME:
-                    System.out.println("My liege, you must give a nickname!");
-                    break;
-                case EMPTY_EMAIL:
-                    System.out.println("My liege, you must give an email!");
-                    break;
-                case INVALID_USER_FORMAT:
-                    System.out.println("My liege, your username format is invalid");
-                    break;
-                case USER_EXIST:
-                    System.out.println("My liege, this username already exist");
-                    break;
-                case INSUFFICIENT_PASS:
-                    System.out.println("My liege, your password must be at least 6 characters");
-                    break;
-                case INVALID_PASS_FORMAT:
-                    System.out.println("My liege, your password format is invalid");
-                    break;
-                case EXISTING_EMAIL:
-                    System.out.println("My liege, this email already exist");
-                    break;
-                case INVALID_EMAIL:
-                    System.out.println("My liege, your email format is invalid");
-                    break;
-                case INVALID_COMMAND_COMBINATION:
-                    System.out.println("My liege, you have gave an invalid combination");
-                    break;
-                case SUCCESS:
-                    System.out.println("Your account has been successfully created!");
-                    break;
-                case FAILED:
-                    System.out.println("SignUp Failed!");
-                    break;
-                default:
-                    break;
+        if(createData != null){
+            if (command.matches(".*-s.*") && createData.get("slogan").equals("")) {
+                System.out.println("My liege, you must give a slogan when you give it's argument!");
+            }
+            else {
+                message = SignUpControl.signUp(createData);
+                switch (message) {
+                    case EMPTY_USERNAME:
+                        System.out.println("My liege, you must give a username!");
+                        break;
+                    case EMPTY_PASSWORD:
+                        System.out.println("My liege, you must give a password!");
+                        break;
+                    case EMPTY_PASSWORD_CONFIRM:
+                        System.out.println("My liege, you must confirm your password");
+                        break;
+                    case INVALID_PASS_CONFIRM:
+                        System.out.println("My liege, your password doesn't match with the password confirmation");
+                        break;
+                    case EMPTY_NICKNAME:
+                        System.out.println("My liege, you must give a nickname!");
+                        break;
+                    case EMPTY_EMAIL:
+                        System.out.println("My liege, you must give an email!");
+                        break;
+                    case INVALID_USER_FORMAT:
+                        System.out.println("My liege, your username format is invalid");
+                        break;
+                    case USER_EXIST:
+                        System.out.println("My liege, this username already exist");
+                        break;
+                    case INSUFFICIENT_PASS:
+                        System.out.println("My liege, your password must be at least 6 characters");
+                        break;
+                    case INVALID_PASS_FORMAT:
+                        System.out.println("My liege, your password format is invalid");
+                        break;
+                    case EXISTING_EMAIL:
+                        System.out.println("My liege, this email already exist");
+                        break;
+                    case INVALID_EMAIL:
+                        System.out.println("My liege, your email format is invalid");
+                        break;
+                    case INVALID_COMMAND_COMBINATION:
+                        System.out.println("My liege, you have gave an invalid combination");
+                        break;
+                    case SUCCESS:
+                        System.out.println("Your account has been successfully created!");
+                        break;
+                    case FAILED:
+                        System.out.println("SignUp Failed!");
+                        break;
+                    default:
+                        break;
+                }
             }
         }
     }
@@ -213,5 +228,11 @@ public class SignUpMenu {
             } else
                 System.out.println("My liege, that's an invalid command!");
         }
+    }
+
+    //ToDo delete void main after debugging
+    public static void main(String[] args) {
+        SignUpMenu signUpMenu = new SignUpMenu();
+        signUpMenu.run();
     }
 }
