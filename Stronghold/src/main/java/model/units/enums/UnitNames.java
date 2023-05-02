@@ -8,7 +8,7 @@ public enum UnitNames {
     SPEARMAN("Spearman"),
     PIKEMAN("Pikeman"),
     MACEMAN("Maceman"),
-    SWORDMAN("Swrodman"),
+    SWORDSMAN("Swrodman"),
     KNIGHT("Knight"),
     TUNNELER("Tunneler"),
     LADDERMAN("Ladderman"),

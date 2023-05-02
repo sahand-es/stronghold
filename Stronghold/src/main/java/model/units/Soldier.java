@@ -6,15 +6,17 @@ import model.resourecs.Weapon;
 import model.units.enums.SoldierUnitState;
 import model.units.enums.UnitNames;
 
+import java.util.ArrayList;
+
 public class Soldier extends Person {
 
     Weapon weapon;
 
     SoldierUnitState soldierUnitState;
-
-    public Soldier(int hp, int speed, int defencePower, Armour armour, UnitNames name, Block block, Weapon weapon) {
-        super(hp, speed, defencePower, armour, name, block);
+    public Soldier(int hp, int speed, int defencePower, ArrayList<Armour> armour, UnitNames name, boolean canClimbLadder, boolean canDigMoat, Weapon weapon, SoldierUnitState soldierUnitState) {
+        super(hp, speed, defencePower, armour, name, canClimbLadder, canDigMoat);
         this.weapon = weapon;
+        this.soldierUnitState = soldierUnitState;
     }
 
     public SoldierUnitState getSoldierUnitState()

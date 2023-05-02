@@ -1,4 +1,5 @@
 Type,Name,Price Kind,Price Count,Count
+Initial,Gold,null,null,1
 Initial,Wheat,null,null,1
 Initial,Flour,Wheat,10,1
 Initial,Hops,null,null,1

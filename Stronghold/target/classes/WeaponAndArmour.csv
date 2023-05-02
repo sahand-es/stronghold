@@ -1,10 +1,15 @@
 Type,Name,Damage,Attack Range,Price Kind,Price Count,Count,Speed Boost,Defence Boost
 Weapon,Bow,10,4,Wood,2,1,null,null
-Weapon,Crossbow,13,3,Wood,3,1,null,null
+Weapon,Crossbow,18,3,Wood,3,1,null,null
 Weapon,Spear,15,2,Wood,1,1,null,null
-Weapon,Pike,22,1,Wood,2,1,null,null
+Weapon,Pike,15,1,Wood,2,1,null,null
 Weapon,Mace,18,1,Iron,1,1,null,null
-Weapon,Sword,20,1,Iron,1,1,null,null
+Weapon,Sword,25,1,Iron,1,1,null,null
+Weapon,Torch,15,1,null,null,1,null,null
+Weapon,Scimitar,18,1,null,null,1,null,null
+Weapon,Greek Fire,0,1,null,null,1,null,null
+Weapon,Sling,15,2,null,null,1,null,null
+Weapon,Staff,15,1,null,null,1,null,null
 Armour,Leather,null,null,Cow,1,3,-1,2
 Armour,Metal,null,null,Iron,1,1,-2,4
 Armour,Horse,null,null,Wheat,1,1,1,1

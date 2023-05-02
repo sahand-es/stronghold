@@ -11,20 +11,26 @@ public abstract class Person {
     private int hp;
     private int speed;
     private int defencePower;
-    private Armour armour;
+    private ArrayList<Armour> armour;
     private UnitNames name;
     private Block block;
     private Government government;
+
+    protected boolean canClimbLadder;
+    protected boolean canDigMoat;
     private static final ArrayList<Person> allUnits = new ArrayList<>();
 
 
-    public Person(int hp, int speed, int defencePower, Armour armour, UnitNames name, Block block) {
+    protected Person(int hp, int speed, int defencePower, ArrayList<Armour> armour, UnitNames name, boolean canClimbLadder, boolean canDigMoat) {
         this.hp = hp;
         this.speed = speed;
         this.defencePower = defencePower;
         this.armour = armour;
         this.name = name;
-        this.block = block;
+        this.canClimbLadder = canClimbLadder;
+        this.canDigMoat = canDigMoat;
+
+        allUnits.add(this);
     }
 
     public int getHp() {
@@ -39,7 +45,7 @@ public abstract class Person {
         return defencePower;
     }
 
-    public Armour getArmour() {
+    public ArrayList<Armour> getArmour() {
         return armour;
     }
 

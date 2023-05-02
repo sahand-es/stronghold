@@ -1,0 +1,19 @@
+Kind,Name,Hp,Speed,Defence Power,Armour,Weapon,Price kind,Price Count,Climb Ladder,Dig Moat
+Soldier,Archer,100,9,2,null,Bow,Gold~Bow,12~1,Yes,Yes
+Soldier,Crossbowman,100,4,3,Leather,Croosbow,Gold~Crossbow~Leather,20~1~1,No,No
+Soldier,Spearman,100,6,1,null,Spear,Gold~Spear,8~1,Yes,Yes
+Soldier,Pikeman,100,4,4,Metal,Pike,Gold~Pike~Metal,20~1~1,No,Yes
+Soldier,Maceman,100,6,3,Leather,Mace,Gold~Mace~Leather,20~1~1,Yes,Yes
+Soldier,Swordsman,100,3,1,Metal,Sword,Gold~Sword~Metal,40~1~1,No,No
+Soldier,Knight,100,9,4,Metal~Horse,Sword,Gold~Sword~Metal~Horse,40~1~1~1,No,No
+Soldier,Black Monk,100,3,3,null,Staff,Gold~Staff,10~1,No,No
+Soldier,Arabian Bow,100,9,1,null,Bow,Gold~Bow,75~1,No,Yes
+Soldier,Slave,100,9,0,null,Torch,Gold~Torch,5~1,No,Yes
+Soldier,Slinger,100,9,1,null,Sling,Gold~Sling,12~1,No,No
+Soldier,Assassin,100,6,2,null,Scimitar,Gold~Scimitar,60~1,No,No
+Soldier,Horse Archer,100,9,3,Horse,Bow,Gold~Bow~Horse,60~1~1,No,No
+Soldier,Arabian Swrodsman,100,10,4,Metal,Scimitar,Gold~Scimitar~Metal,80~1~1,No,No
+Soldier,Fire Thrower,100,10,1,null,Greek Fire,Gold~Greek Fire,100~1,No,No
+Worker,Tunneler,80,9,1,null,null,Gold,30,No,No
+Worker,Ladderman,80,9,1,null,null,Gold,30,No,No
+Worker,Engineer,80,6,1,null,null,Gold,30,No,Yes

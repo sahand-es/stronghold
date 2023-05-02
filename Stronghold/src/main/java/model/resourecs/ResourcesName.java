@@ -3,6 +3,7 @@ package model.resourecs;
 public enum ResourcesName
 {
 //  Initial materials:
+    GOLD("Gold"),
     WHEAT("Wheat"),
     FLOUR("Flour"),
     HOPS("Hops"),
@@ -25,6 +26,11 @@ public enum ResourcesName
     PIKE("Pike"),
     MACE("Mace"),
     SWORD("Sword"),
+    STAFF("Staff"),
+    TORCH("Torch"),
+    SLING("Sling"),
+    SCIMITAR("Scimitar"),
+    GREEK_FIRE("Greek Fire"),
 
 //  Armors:
     LEATHER("Leather"),
