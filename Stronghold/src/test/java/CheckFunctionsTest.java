@@ -55,10 +55,10 @@ public class CheckFunctionsTest {
 
     public void emailFormat() {
         assertTrue(CheckFunctions.checkEmailFormat("email1@gmail.com"));
-        assertTrue(CheckFunctions.checkEmailFormat("123slave@nibba.s"));
-        assertTrue(CheckFunctions.checkEmailFormat("KIR@MIKHAM.CUM"));
+        assertTrue(CheckFunctions.checkEmailFormat("123pastil@shiba.s"));
+        assertTrue(CheckFunctions.checkEmailFormat("DOOGH@MIKHAM.ALI"));
 
-        assertFalse(CheckFunctions.checkEmailFormat("@NMIKHAM.CUM"));
+        assertFalse(CheckFunctions.checkEmailFormat("@NEMIKHAM.SWF"));
         assertFalse(CheckFunctions.checkEmailFormat("MOOz@.CUM"));
         assertFalse(CheckFunctions.checkEmailFormat("MOOz@."));
         assertFalse(CheckFunctions.checkEmailFormat("MOOz@sd f.asdf"));

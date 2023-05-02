@@ -99,7 +99,7 @@ public class SignUpMenuTest {
         testNull("user create something in here -u sahand_es -p pass1 pass1 -n sahand -email email@gmail.com  ");
     }
 
-    
+
     public void testNull(String input) {
 
         HashMap<String, String> data = SignUpMenu.extractCreateCommand(input);

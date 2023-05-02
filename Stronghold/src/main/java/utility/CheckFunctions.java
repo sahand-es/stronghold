@@ -5,11 +5,6 @@ import model.Application;
 public class CheckFunctions
 {
 
-    public static boolean checkEmpty(String username, String password, String nickname, String email)
-    {
-        return true;
-    }
-
     public static boolean checkUsernameFormat(String username) {
         return username.matches(".*[^A-Za-z0-9_].*");
     }
