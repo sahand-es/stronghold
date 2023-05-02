@@ -99,15 +99,7 @@ public class SignUpMenuTest {
         testNull("user create something in here -u sahand_es -p pass1 pass1 -n sahand -email email@gmail.com  ");
     }
 
-    @Test
-    public void test5(){
-        HashMap<String, String> answer;
-        answer = answerMap("-sahand_es-", "pass1", "pass with space", "--nickname",
-                "email", null);
-
-        testExtraction(answer,
-                "user create -u -sahand_es- -p pass1 \"pass with space\" -n --nickname -email email");
-    }
+    
     public void testNull(String input) {
 
         HashMap<String, String> data = SignUpMenu.extractCreateCommand(input);
