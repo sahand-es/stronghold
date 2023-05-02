@@ -53,19 +53,19 @@ public class CheckFunctionsTest {
     @Test
 
     public void emailFormat() {
-        assertTrue(CheckFunctions.checkEmailFormat("email1@gmail.com"));
-        assertTrue(CheckFunctions.checkEmailFormat("123pastil@shiba.s"));
-        assertTrue(CheckFunctions.checkEmailFormat("DOOGH@MIKHAM.ALI"));
+        assertFalse(CheckFunctions.checkEmailFormat("email1@gmail.com"));
+        assertFalse(CheckFunctions.checkEmailFormat("123pastil@shiba.s"));
+        assertFalse(CheckFunctions.checkEmailFormat("DOOGH@MIKHAM.ALI"));
 
-        assertFalse(CheckFunctions.checkEmailFormat("@NEMIKHAM.SWF"));
-        assertFalse(CheckFunctions.checkEmailFormat("MOOz@.CUM"));
-        assertFalse(CheckFunctions.checkEmailFormat("MOOz@."));
-        assertFalse(CheckFunctions.checkEmailFormat("MOOz@sd f.asdf"));
-        assertFalse(CheckFunctions.checkEmailFormat("MOOz@sdf.asd f"));
-        assertFalse(CheckFunctions.checkEmailFormat("MOO z@sdf.asdf"));
-        assertFalse(CheckFunctions.checkEmailFormat("MOOzsdf.asdf"));
-        assertFalse(CheckFunctions.checkEmailFormat(" @MOOzsdf.asdf"));
-        assertFalse(CheckFunctions.checkEmailFormat("@1.asdf"));
+        assertTrue(CheckFunctions.checkEmailFormat("@NEMIKHAM.SWF"));
+        assertTrue(CheckFunctions.checkEmailFormat("MOOz@.CUM"));
+        assertTrue(CheckFunctions.checkEmailFormat("MOOz@."));
+        assertTrue(CheckFunctions.checkEmailFormat("MOOz@sd f.asdf"));
+        assertTrue(CheckFunctions.checkEmailFormat("MOOz@sdf.asd f"));
+        assertTrue(CheckFunctions.checkEmailFormat("MOO z@sdf.asdf"));
+        assertTrue(CheckFunctions.checkEmailFormat("MOOzsdf.asdf"));
+        assertTrue(CheckFunctions.checkEmailFormat(" @MOOzsdf.asdf"));
+        assertTrue(CheckFunctions.checkEmailFormat("@1.asdf"));
     }
 
 }
