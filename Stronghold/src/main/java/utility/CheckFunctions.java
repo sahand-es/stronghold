@@ -20,6 +20,9 @@ public class CheckFunctions
         if (!password.matches(".*[a-z].*")) {
             return true;
         }
+        if (!password.matches(".*[A-Z].*")) {
+            return true;
+        }
         return !password.matches(".*[^A-Za-z0-9].*");
     }
 

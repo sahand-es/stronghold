@@ -22,17 +22,16 @@ public class CheckFunctionsTest {
 
     @Test
     public void passwordFormat() {
-        assertTrue(CheckFunctions.checkPasswordFormat("Tes!t1"));
-        assertTrue(CheckFunctions.checkPasswordFormat("s##Ddf23"));
-        assertTrue(CheckFunctions.checkPasswordFormat("AAAAbb~2222"));
-        assertTrue(CheckFunctions.checkPasswordFormat("123P$b"));
-        assertTrue(CheckFunctions.checkPasswordFormat("S@has90"));
-
-        assertFalse(CheckFunctions.checkPasswordFormat("Test1"));
-        assertFalse(CheckFunctions.checkPasswordFormat("s##df23"));
-        assertFalse(CheckFunctions.checkPasswordFormat("AAAA~2222"));
+        assertFalse(CheckFunctions.checkPasswordFormat("Tes!t1"));
+        assertFalse(CheckFunctions.checkPasswordFormat("s##Ddf23"));
+        assertFalse(CheckFunctions.checkPasswordFormat("AAAAbb~2222"));
         assertFalse(CheckFunctions.checkPasswordFormat("123P$b"));
-        assertFalse(CheckFunctions.checkPasswordFormat("S@has"));
+        assertFalse(CheckFunctions.checkPasswordFormat("S@has90"));
+
+        assertTrue(CheckFunctions.checkPasswordFormat("Test1"));
+        assertTrue(CheckFunctions.checkPasswordFormat("s##df23"));
+        assertTrue(CheckFunctions.checkPasswordFormat("AAAA~2222"));
+        assertTrue(CheckFunctions.checkPasswordFormat("S@has"));
     }
 
     @Test
