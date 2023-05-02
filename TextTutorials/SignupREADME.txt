@@ -1,3 +1,4 @@
+1.
 In order to create a user you must give this command and fill the fields that have <>:
 user create -u <username> -p <password> <confirmPassword> -n <nickname> -email <email.email@.com> (-s <slogan>)?
 
@@ -7,5 +8,12 @@ user create -u <username> -p random -n <nickname> -email <email.email@.com>
 If you want the password and the slogan to be generated randomly this command is needed:
 user create -u <username> -p random -n <nickname> -email <email.email@.com> -s random
 
-
 *Keep in mind that there shouldn't be any extra white-spaces and the part which is in parentheses isn't mandatory to be given
+Also it's possible to give the arguments in different orders
+
+2.
+If there wasn't any errors in the previous part, then you would be asked for an answer to a security question
+*this part's tutorial is given in command line
+
+3.
+Eventually you must verify the captcha for your username to be submitted
