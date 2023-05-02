@@ -7,17 +7,17 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CheckFunctionsTest {
     @Test
     public void usernameFormat() {
-        assertTrue(CheckFunctions.checkUsernameFormat("asdf"));
-        assertTrue(CheckFunctions.checkUsernameFormat("asdAS_12"));
-        assertTrue(CheckFunctions.checkUsernameFormat("1_2A__Sds1"));
-        assertTrue(CheckFunctions.checkUsernameFormat("sadf"));
+        assertFalse(CheckFunctions.checkUsernameFormat("asdf"));
+        assertFalse(CheckFunctions.checkUsernameFormat("asdAS_12"));
+        assertFalse(CheckFunctions.checkUsernameFormat("1_2A__Sds1"));
+        assertFalse(CheckFunctions.checkUsernameFormat("sadf"));
 
-        assertFalse(CheckFunctions.checkUsernameFormat("s  adf"));
-        assertFalse(CheckFunctions.checkUsernameFormat("fasdf!As"));
-        assertFalse(CheckFunctions.checkUsernameFormat("  sadf"));
-        assertFalse(CheckFunctions.checkUsernameFormat("SD-f"));
-        assertFalse(CheckFunctions.checkUsernameFormat("   "));
-        assertFalse(CheckFunctions.checkUsernameFormat("S "));
+        assertTrue(CheckFunctions.checkUsernameFormat("s  adf"));
+        assertTrue(CheckFunctions.checkUsernameFormat("fasdf!As"));
+        assertTrue(CheckFunctions.checkUsernameFormat("  sadf"));
+        assertTrue(CheckFunctions.checkUsernameFormat("SD-f"));
+        assertTrue(CheckFunctions.checkUsernameFormat("   "));
+        assertTrue(CheckFunctions.checkUsernameFormat("S "));
     }
 
     @Test
