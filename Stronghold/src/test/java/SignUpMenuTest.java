@@ -46,26 +46,26 @@ public class SignUpMenuTest {
     public void test2() {
         HashMap<String, String> answer;
         answer = answerMap("sahand_es", "CorrectP@ssword1", "CorrectP@ssword1",
-                "sahand", "email   @gmail   .com", "in che kosSherie?");
+                "sahand", "email   @gmail   .com", "in che tesTie?");
 
         testExtraction(answer,
                 "create user -u sahand_es -p CorrectP@ssword1 CorrectP@ssword1 " +
-                        "-n sahand -email \"email   @gmail   .com\" -s \"in che kosSherie?\""
+                        "-n sahand -email \"email   @gmail   .com\" -s \"in che tesTie?\""
         );
 
         testExtraction(answer,
                 "create    user     -u     sahand_es -p CorrectP@ssword1 CorrectP@ssword1 " +
-                        "-n sahand -email    \"email   @gmail   .com\" -s       \"in che kosSherie?\""
+                        "-n sahand -email    \"email   @gmail   .com\" -s       \"in che tesTie?\""
         );
 
         testExtraction(answer,
                 "create    user  -p CorrectP@ssword1 CorrectP@ssword1      -u     sahand_es " +
-                        "-n      sahand -email    \"email   @gmail   .com\" -s       \"in che kosSherie?\""
+                        "-n      sahand -email    \"email   @gmail   .com\" -s       \"in che tesTie?\""
         );
 
         testExtraction(answer,
                 "   create  user  -p CorrectP@ssword1 CorrectP@ssword1      -u     sahand_es " +
-                        "-email    \"email   @gmail   .com\" -s       \"in che kosSherie?\"  -n    sahand "
+                        "-email    \"email   @gmail   .com\" -s       \"in che tesTie?\"  -n    sahand "
         );
     }
 
