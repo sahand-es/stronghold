@@ -64,8 +64,17 @@ public class SignUpControl
            }
         }
         HashMap<String, String> QA = SignUpMenu.getSecurityQuestionAnswer();
-        //Todo Get captcha confirmation
-        //Todo add user
+        if (QA == null){
+            return SignUpMessages.FAILED;
+        }
+        else {
+            System.out.println("number: "+QA.get("questionNumber"));
+            System.out.println("answer: "+QA.get("answer"));
+            System.out.println("answer: "+QA.get("answerConfirm"));
+        }
+
+        //ToDo Get captcha confirmation
+        //ToDo add user
         return SignUpMessages.SUCCESS;
     }
 

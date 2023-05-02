@@ -207,7 +207,7 @@ public class SignUpMenu {
                 System.out.println("Password doesn't match! in order to go to signup menu type \"back\"");
         }
     }
-
+// ToDo debug security
     public static HashMap<String, String> getSecurityQuestionAnswer() {
         java.util.Scanner scanner = new java.util.Scanner(System.in);
         System.out.println("Pick you're security question number and then give an answer to it");
@@ -221,6 +221,7 @@ public class SignUpMenu {
         String answer = "";
         String answerConfirm = "";
         boolean terminated = false;
+        boolean notFound = true;
         while (true) {
             command = scanner.nextLine();
             Matcher matcher;
@@ -230,12 +231,14 @@ public class SignUpMenu {
                 break;
             }
             else if ((matcher = SignUpCommands.getMatcher(command, SignUpCommands.QUESTION)) != null) {
+
                 if(questionData != null){ questionData.clear(); }
                 String regex = SignUpCommands.getRegexQUESTIONARGUMENT();
                 Pattern pattern = Pattern.compile(regex);
                 Matcher checkMatcher = pattern.matcher(command);
 
                 while (checkMatcher.find()) {
+                    notFound = false;
                     String argName = checkMatcher.group("argument");
                     String argVal, argValSpace;
                     if (argName != null) {
@@ -259,10 +262,10 @@ public class SignUpMenu {
                     }
 
                     command = command.replaceAll(checkMatcher.group().toString().trim(),"");
-                    break;
+                    System.out.println(command);
                 }
             }
-            else{
+            else if(notFound){
                 System.out.println("My liege, that's an invalid command!");
                 System.out.println("Re-enter your answer or type \"exit\" to get back to signup menu:");
             }
