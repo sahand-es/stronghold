@@ -36,7 +36,7 @@ public class SignUpMenu {
 
 
     public static HashMap<String, String> extractCreateCommand(String command) {
-        createData.clear();
+        if(createData != null){ createData.clear(); }
         String username = "";
         String password = "";
         String passwordConfirm = "";
@@ -74,7 +74,7 @@ public class SignUpMenu {
                 }
                 else {
                     System.out.println("My liege, that's an invalid argument in create user command!");
-                    createData.clear();
+                    if(createData != null){ createData.clear(); }
                     createData = null;
                     return null;
                 }
@@ -101,19 +101,18 @@ public class SignUpMenu {
                 }
                 else {
                     System.out.println("My liege, that's an invalid argument in create user command!");
-                    createData.clear();
+                    if(createData != null){ createData.clear(); }
                     createData = null;
                     return null;
                 }
             }
 
-            System.out.println("group" + checkMatcher.group());
             command = command.replaceAll(checkMatcher.group().toString().trim(),"");
 
 
         }
-        System.out.println(command);
-        //if (SignUpCommands.getMatcher(command, SignUpCommands.FINALCREATECHECK) != null){
+
+        if (SignUpCommands.getMatcher(command, SignUpCommands.FINALCREATECHECK) != null){
             createData.put("username", username);
             createData.put("nickname", nickname);
             createData.put("password", password);
@@ -122,10 +121,12 @@ public class SignUpMenu {
             createData.put("slogan", slogan);
 
             return createData;
-//        }
-//        else
-//            return null;
-
+        }
+        else{
+            System.out.println("My liege, that's an invalid argument in create user command!");
+            createData = null;
+            return null;
+        }
     }
 
     private static void checkCreateUser(Matcher matcher, String command) {
