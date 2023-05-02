@@ -92,11 +92,11 @@ public class SignUpMenuTest {
 
         @Test
     public void test4(){
-        testNull("user create -u sahand_es -u nigga -p pass1 pass1 -n sahand -email email@gmail.com -s thisisatest");
-        testNull("user create -u sahand_es -p pass1 pass1 bluh -n sahand -email email@gmail.com -s thisisatest");
-        testNull("user create -u sahand_es -p pass1 pass1 -n sahand -email email@gmail.com ezafe ezafe");
-        testNull("user create -u sahand_es -p pass1 pass1 -n sahand -email email@gmail.com -b wtf");
-        testNull("user create ezafe inja -u sahand_es -p pass1 pass1 -n sahand -email email@gmail.com  ");
+        testNull("user create -u sahand_es -u armin -p pass1 pass1 -n sahand -email email@gmail.com -s thisIsATest");
+        testNull("user create -u sahand_es -p pass1 pass1 bluh -n sahand -email email@gmail.com -s thisIsATest");
+        testNull("user create -u sahand_es -p pass1 pass1 -n sahand -email email@gmail.com something something");
+        testNull("user create -u sahand_es -p pass1 pass1 -n sahand -email email@gmail.com -b something");
+        testNull("user create something in here -u sahand_es -p pass1 pass1 -n sahand -email email@gmail.com  ");
     }
 
     @Test
