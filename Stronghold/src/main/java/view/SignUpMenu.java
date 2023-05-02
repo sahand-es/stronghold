@@ -12,9 +12,11 @@ import java.util.regex.Pattern;
 
 public class SignUpMenu {
     private static HashMap<String, String> createData;
+    private static HashMap<String, String> questionData;
 
     static {
         createData = new HashMap<>();
+        questionData = new HashMap<>();
     }
 
     public static void run() {
@@ -206,7 +208,7 @@ public class SignUpMenu {
         }
     }
 
-    public static String getSecurityQuestionAnswer() {
+    public static HashMap<String, String> getSecurityQuestionAnswer() {
         java.util.Scanner scanner = new java.util.Scanner(System.in);
         System.out.println("Pick you're security question number and then give an answer to it");
         System.out.println("it must be in this format: question pick -q <question number> -a <answer> -c <answer confirm>");
@@ -215,20 +217,69 @@ public class SignUpMenu {
             System.out.println(a + ", " + SecurityQuestions.securityQuestions[i]);
         }
         String command;
+        String questionNumber = "";
+        String answer = "";
+        String answerConfirm = "";
+        boolean terminated = false;
         while (true) {
             command = scanner.nextLine();
             Matcher matcher;
-            if ((matcher = SignUpCommands.getMatcher(command, SignUpCommands.QUESTION)) != null) {
-                String questionNumber = matcher.group("questionNumber");
-                String answer = matcher.group("answer");
-                String answerConfirm = matcher.group("answerConfirm");
-                if (answer.equals(answerConfirm)) {
-                    return questionNumber + "-" + answer;
-                } else
-                    System.out.println("answer confirmation doesn't match");
-            } else
+            if((matcher = SignUpCommands.getMatcher(command, SignUpCommands.EXIT)) != null){
+                if(questionData != null){ questionData = null; }
+                terminated = true;
+                break;
+            }
+            else if ((matcher = SignUpCommands.getMatcher(command, SignUpCommands.QUESTION)) != null) {
+                if(questionData != null){ questionData.clear(); }
+                String regex = SignUpCommands.getRegexQUESTIONARGUMENT();
+                Pattern pattern = Pattern.compile(regex);
+                Matcher checkMatcher = pattern.matcher(command);
+
+                while (checkMatcher.find()) {
+                    String argName = checkMatcher.group("argument");
+                    String argVal, argValSpace;
+                    if (argName != null) {
+                        argVal = checkMatcher.group("string");
+                        argValSpace = checkMatcher.group("stringSpace");
+                        if (argName.equals("q") && questionNumber.equals("")){
+                            questionNumber = argVal;
+                        }
+                        else if (argName.equals("a") && answer.equals("")){
+                            answer = argVal + argValSpace;
+                        }
+                        else if (argName.equals("c") && answerConfirm.equals("")){
+                            answerConfirm = argVal + argValSpace;
+                        }
+                        else {
+                            System.out.println("My liege, that's an invalid argument in question pick command!");
+                            if(questionData != null){ questionData.clear(); }
+                            questionData = null;
+                            return null;
+                        }
+                    }
+
+                    command = command.replaceAll(checkMatcher.group().toString().trim(),"");
+                    break;
+                }
+            }
+            else{
                 System.out.println("My liege, that's an invalid command!");
+                System.out.println("Re-enter your answer or type \"exit\" to get back to signup menu:");
+            }
         }
+        if (terminated){
+            System.out.println("Signup terminated!");
+        }
+        else if (SignUpCommands.getMatcher(command, SignUpCommands.FINALQUESTIONCHECK) != null){
+            questionData.put("questionNumber", questionNumber);
+            questionData.put("answer", answer);
+            questionData.put("answerConfirm", answerConfirm);
+        }
+        else{
+            System.out.println("My liege, that's an invalid argument in question pick command!");
+            questionData = null;
+        }
+        return questionData;
     }
 
     //ToDo delete void main after debugging

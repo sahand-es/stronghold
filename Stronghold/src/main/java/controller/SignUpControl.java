@@ -63,7 +63,7 @@ public class SignUpControl
                return SignUpMessages.FAILED;
            }
         }
-        String Answer = SignUpMenu.getSecurityQuestionAnswer();
+        HashMap<String, String> QA = SignUpMenu.getSecurityQuestionAnswer();
         //Todo Get captcha confirmation
         //Todo add user
         return SignUpMessages.SUCCESS;
