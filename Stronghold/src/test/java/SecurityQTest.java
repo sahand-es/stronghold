@@ -8,6 +8,33 @@ import java.util.regex.Matcher;
 import static org.junit.jupiter.api.Assertions.*;
 public class SecurityQTest {
 
+    @Test
+    public void test1() {
+        HashMap<String, String> answer;
+        answer = answerMap("33333", "ookHey", "gooGooLee");
+
+        testExtraction(answer,
+                "    question pick    -q   33333     -a    ookHey  -c  gooGooLee");
+        testExtraction(answer,
+                "question pick    -a    ookHey   -q   33333    -c  gooGooLee");
+
+        testExtraction(answer,
+                "question pick    -a    ookHey    -c  \"gooGooLee\" -q   33333");
+
+        testExtraction(answer,
+                "question pick    -a    \"ookHey\"    -c  gooGooLee -q   33333"
+        );
+
+        testExtraction(answer,
+                "    question pick    -a    ookHey    -c  gooGooLee -q   \"33333\"     "
+        );
+
+        testExtraction(answer,
+                "question          pick    -q   33333     -a    ookHey  -c  gooGooLee"
+        );
+
+    }
+
     public void testNull(String input) {
         HashMap<String, String> data = SignUpMenu.extractSecurityAnswer(input);
         assertNull(data, "It should return null");

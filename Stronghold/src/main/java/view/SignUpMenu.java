@@ -226,13 +226,13 @@ public class SignUpMenu {
                 argVal = checkMatcher.group("string");
                 argValSpace = checkMatcher.group("stringSpace");
                 if (argName.equals("q") && questionNumber.equals("")){
-                    questionNumber = argVal;
+                    questionNumber = (argVal != null) ? argVal : argValSpace;
                 }
                 else if (argName.equals("a") && answer.equals("")){
-                    answer = argVal + argValSpace;
+                    answer = (argVal != null) ? argVal : argValSpace;
                 }
                 else if (argName.equals("c") && answerConfirm.equals("")){
-                    answerConfirm = argVal + argValSpace;
+                    answerConfirm = (argVal != null) ? argVal : argValSpace;
                 }
                 else {
                     System.out.println("My liege, that's an invalid argument in question pick command!");
@@ -257,6 +257,9 @@ public class SignUpMenu {
             questionData.put("questionNumber",questionNumber);
             questionData.put("answer",answer);
             questionData.put("answerConfirm",answerConfirm);
+            System.out.println("questionNumber: " + questionNumber);
+            System.out.println("answer: " + answer);
+            System.out.println("answerConfirm: " + answerConfirm);
             return questionData;
         }
         else
