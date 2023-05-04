@@ -6,6 +6,7 @@ import java.util.regex.Pattern;
 public enum SignUpCommands
 {
     EXIT("^\\s*exit\\s*$"),
+    BACK("^\\s*back\\s*$"),
     CREATE("^(\\s+)?user\\s+create\\s+.+"),
     FINALCREATECHECK("^(\\s+)?user\\s+create(\\s+)?$"),
     ARGUMENT("((\\s+)?-(?<argumentSpace>\\w+)\\s+\"(?<firstStringSpace>[^-\"]+)\"(\\s+)?(?:\\s+(\")?(?<secondStringSpace>[^-\"]+))?)(?:\\s+(?<secondStringsSpaceNON>\\S+))?|((\\s+)?-(?<argument>\\w+)\\s+(?<firstString>[^- ]+)(?:\\s+(?<secondString>[^- ]+))?)"),

@@ -222,16 +222,17 @@ public class SignUpMenu {
         String answerConfirm = "";
         boolean terminated = false;
         boolean notFound = true;
+
         while (true) {
             command = scanner.nextLine();
             Matcher matcher;
-            if((matcher = SignUpCommands.getMatcher(command, SignUpCommands.EXIT)) != null){
+
+            if((matcher = SignUpCommands.getMatcher(command, SignUpCommands.BACK)) != null){
                 if(questionData != null){ questionData = null; }
                 terminated = true;
                 break;
             }
             else if ((matcher = SignUpCommands.getMatcher(command, SignUpCommands.QUESTION)) != null) {
-
                 if(questionData != null){ questionData.clear(); }
                 String regex = SignUpCommands.getRegexQUESTIONARGUMENT();
                 Pattern pattern = Pattern.compile(regex);
@@ -262,16 +263,19 @@ public class SignUpMenu {
                     }
 
                     command = command.replaceAll(checkMatcher.group().toString().trim(),"");
-                    System.out.println(command);
+
                 }
+                break;
+
             }
-            else if(notFound){
+            if(notFound){
                 System.out.println("My liege, that's an invalid command!");
-                System.out.println("Re-enter your answer or type \"exit\" to get back to signup menu:");
+                System.out.println("Re-enter your answer or type \"back\" to get back to signup menu:");
             }
         }
+
         if (terminated){
-            System.out.println("Signup terminated!");
+            System.out.print("");
         }
         else if (SignUpCommands.getMatcher(command, SignUpCommands.FINALQUESTIONCHECK) != null){
             questionData.put("questionNumber", questionNumber);
@@ -282,6 +286,7 @@ public class SignUpMenu {
             System.out.println("My liege, that's an invalid argument in question pick command!");
             questionData = null;
         }
+
         return questionData;
     }
 

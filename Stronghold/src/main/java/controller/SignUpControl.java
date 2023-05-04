@@ -63,15 +63,15 @@ public class SignUpControl
                return SignUpMessages.FAILED;
            }
         }
+
         HashMap<String, String> QA = SignUpMenu.getSecurityQuestionAnswer();
-        if (QA == null){
-            return SignUpMessages.FAILED;
-        }
-        else {
+        if (QA != null){
             System.out.println("number: "+QA.get("questionNumber"));
             System.out.println("answer: "+QA.get("answer"));
-            System.out.println("answer: "+QA.get("answerConfirm"));
+            System.out.println("answerConfirm: "+QA.get("answerConfirm"));
         }
+        else
+            return SignUpMessages.FAILED;
 
         //ToDo Get captcha confirmation
         //ToDo add user

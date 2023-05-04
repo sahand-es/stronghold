@@ -36,7 +36,9 @@ public class CheckFunctions
         return Application.getUserByEmail(email) != null;
     }
 
-    public static boolean checkEmailFormat(String email) { return !email.matches("([^\\@\\s])+\\@([^\\.\\s])+\\.(\\S+)+");}
+    public static boolean checkEmailFormat(String email) {
+        return !email.matches("([^\\@\\s])+\\@([^\\.\\s])+\\.(\\S+)+");
+    }
 
 
 
