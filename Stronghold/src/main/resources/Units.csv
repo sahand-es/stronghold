@@ -1,6 +1,6 @@
 Kind,Name,Hp,Speed,Defence Power,Armour,Weapon,Price kind,Price Count,Climb Ladder,Dig Moat
 Soldier,Archer,100,9,2,null,Bow,Gold~Bow,12~1,Yes,Yes
-Soldier,Crossbowman,100,4,3,Leather,Croosbow,Gold~Crossbow~Leather,20~1~1,No,No
+Soldier,Crossbowman,100,4,3,Leather,Crossbow,Gold~Crossbow~Leather,20~1~1,No,No
 Soldier,Spearman,100,6,1,null,Spear,Gold~Spear,8~1,Yes,Yes
 Soldier,Pikeman,100,4,4,Metal,Pike,Gold~Pike~Metal,20~1~1,No,Yes
 Soldier,Maceman,100,6,3,Leather,Mace,Gold~Mace~Leather,20~1~1,Yes,Yes

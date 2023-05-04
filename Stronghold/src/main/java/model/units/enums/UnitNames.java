@@ -4,11 +4,11 @@ import model.resourecs.ResourcesName;
 
 public enum UnitNames {
     ARCHER("Archer"),
-    CROSSBOWMEN("Crossbowmen"),
+    CROSSBOWMAN("Crossbowman"),
     SPEARMAN("Spearman"),
     PIKEMAN("Pikeman"),
     MACEMAN("Maceman"),
-    SWORDSMAN("Swrodman"),
+    SWORDSMAN("Swordsman"),
     KNIGHT("Knight"),
     TUNNELER("Tunneler"),
     LADDERMAN("Ladderman"),
