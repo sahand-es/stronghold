@@ -20,8 +20,7 @@ public enum UnitNames {
     ARABIAN_SWORDSMAN("Arabian Swordsman"),
     ARABIAN_BOW("Arabian Bow"),
     BLACK_MONK("Black Monk"),
-    FIRE_THROWER("Fire Thrower")
-    ;
+    FIRE_THROWER("Fire Thrower");
     private final String name;
 
     UnitNames(String name) {
@@ -32,8 +31,7 @@ public enum UnitNames {
         return name;
     }
 
-    public static UnitNames getUnitByName(String name)
-    {
+    public static UnitNames getUnitByName(String name) {
         for (UnitNames unitName : UnitNames.values()) {
             if (unitName.name.equalsIgnoreCase(name.trim()))
                 return unitName;

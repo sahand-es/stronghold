@@ -9,13 +9,13 @@ import model.units.enums.UnitNames;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Tunneler extends Person {
+public class Tunneler extends WorkerUnit {
 
-    public Tunneler(int hp, int speed, int defencePower, ArrayList<Armour> armour, UnitNames name, HashMap<ResourcesName, Integer> price, boolean canClimbLadder, boolean canDigMoat) {
-        super(hp, speed, defencePower, armour, name, price, canClimbLadder, canDigMoat);
+    public Tunneler() {
+        super(UnitNames.TUNNELER);
     }
 
-    public void makeTunnel(Block block){
+    public void makeTunnel(Block block) {
 
     }
 }

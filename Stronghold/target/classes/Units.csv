@@ -12,7 +12,7 @@ Soldier,Slave,100,9,0,null,Torch,Gold~Torch,5~1,No,Yes
 Soldier,Slinger,100,9,1,null,Sling,Gold~Sling,12~1,No,No
 Soldier,Assassin,100,6,2,null,Scimitar,Gold~Scimitar,60~1,No,No
 Soldier,Horse Archer,100,9,3,Horse,Bow,Gold~Bow~Horse,60~1~1,No,No
-Soldier,Arabian Swrodsman,100,10,4,Metal,Scimitar,Gold~Scimitar~Metal,80~1~1,No,No
+Soldier,Arabian Swordsman,100,10,4,Metal,Scimitar,Gold~Scimitar~Metal,80~1~1,No,No
 Soldier,Fire Thrower,100,10,1,null,Greek Fire,Gold~Greek Fire,100~1,No,No
 Worker,Tunneler,80,9,1,null,null,Gold,30,No,No
 Worker,Ladderman,80,9,1,null,null,Gold,30,No,No

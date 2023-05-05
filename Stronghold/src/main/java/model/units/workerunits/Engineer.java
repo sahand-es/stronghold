@@ -4,23 +4,25 @@ import model.map.Block;
 import model.map.Directions;
 import model.resourecs.Armour;
 import model.resourecs.ResourcesName;
+import model.resourecs.Weapon;
+import model.units.Soldier;
 import model.units.enums.UnitNames;
+import utility.DataManager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Engineer extends WorkerUnit
-{
-    public Engineer(int hp, int speed, int defencePower, ArrayList<Armour> armour, UnitNames name, HashMap<ResourcesName, Integer> price, boolean canClimbLadder, boolean canDigMoat) {
-        super(hp, speed, defencePower, armour, name, price, canClimbLadder, canDigMoat);
+public class Engineer extends WorkerUnit {
+    public Engineer() {
+        super(UnitNames.ENGINEER);
     }
 
-    public void pourOil(Directions direction)
-    {
+
+    public void pourOil(Directions direction) {
 
     }
-    public void build()
-    {
+
+    public void build() {
 
     }
 }

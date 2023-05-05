@@ -121,14 +121,15 @@ public class Soldier extends Person {
         this.soldierUnitState = SoldierUnitState.STANDING;
     }
 
-    public Soldier(UnitNames name){
+    public Soldier(UnitNames name) {
         super(name);
         Soldier soldierToClone = (Soldier) getPersonByUnitName(name);
 
         this.weapon = soldierToClone.weapon;
         this.soldierUnitState = SoldierUnitState.STANDING;
     }
-    public Soldier(String name){
+
+    public Soldier(String name) {
         super(name);
         Soldier soldierToClone = (Soldier) getPersonByName(name);
 
@@ -146,16 +147,16 @@ public class Soldier extends Person {
 
     @Override
     public String toString() {
-        return "Soldier{" +
+        return this.name + "{" +
                 "weapon=" + weapon.getKind() +
                 ", hp=" + hp +
                 ", speed=" + speed +
                 ", defencePower=" + defencePower +
                 ", armour=" + armour +
-                ", name=" + name +
                 ", price=" + price +
                 "}\n";
     }
+
 }
 
 
