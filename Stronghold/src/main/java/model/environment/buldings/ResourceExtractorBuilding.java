@@ -2,10 +2,12 @@ package model.environment.buldings;
 
 import model.environment.buldings.enums.BuildingCategory;
 import model.resourecs.Resource;
+import model.resourecs.ResourcesName;
 import model.society.Government;
 import model.units.Person;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ResourceExtractorBuilding extends WorkingBuilding {
 
@@ -13,10 +15,12 @@ public class ResourceExtractorBuilding extends WorkingBuilding {
 
     int rate;
 
-    public ResourceExtractorBuilding(String name, int size, BuildingCategory category, int hp, Government owner, ArrayList<Resource> price, ArrayList<Resource> extractedResource, int rate, ArrayList<Person> workers) {
-        super(name ,size, category ,hp, owner, price,workers);
-        this.extractedResource = extractedResource;
-        this.rate = rate;
+    protected ResourceExtractorBuilding(int size,
+                                        int hp,
+                                        BuildingCategory category,
+                                        HashMap<ResourcesName, Integer> price) {
+
+        super(size, hp, category, price);
     }
 
     public ArrayList<Resource> getExtractedResource() {
