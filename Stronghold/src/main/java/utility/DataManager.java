@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DataManager {
-    public static final String USERS_DATABASE_PATH = "src/main/resources/Users.json";
+    public static final String USERS_DATABASE_PATH = "src/main/resources/users.json";
 
     public static ArrayList<User> loadUsers() {
         try {
@@ -25,9 +25,10 @@ public class DataManager {
             }.getType());
 
             if (users == null)
-                return new ArrayList<>();
+                return (new ArrayList<>());
             return users;
-        } catch (Exception ignored) {
+           }
+        catch (Exception ignored) {
             return null;
         }
     }

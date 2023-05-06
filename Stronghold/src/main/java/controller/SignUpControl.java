@@ -1,6 +1,6 @@
 package controller;
 
-import utility.Captcha;
+import view.Captcha;
 import utility.CheckFunctions;
 import utility.RandomGenerators;
 import view.SignUpMenu;
