@@ -1,5 +1,7 @@
 package controller;
 
+import model.Application;
+import model.User;
 import view.Captcha;
 import utility.CheckFunctions;
 import utility.RandomGenerators;
@@ -75,11 +77,16 @@ public class SignUpControl {
             return SignUpMessages.FAILED;
         }
 
+        int questionNumber = Integer.parseInt(QA.get("questionNumber"));
+        String answer = QA.get("answer");
+
         if (!Captcha.run()){
             return SignUpMessages.FAILED;
         }
 
-        //ToDo add user
+        User user = new User(username,password,nickname,email,questionNumber,answer);
+        Application.addUser(user);
+        
         return SignUpMessages.SUCCESS;
     }
 
