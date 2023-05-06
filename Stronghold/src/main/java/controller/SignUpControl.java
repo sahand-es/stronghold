@@ -2,6 +2,7 @@ package controller;
 
 import model.Application;
 import model.User;
+import utility.DataManager;
 import view.Captcha;
 import utility.CheckFunctions;
 import utility.RandomGenerators;
@@ -85,7 +86,8 @@ public class SignUpControl {
         }
 
         User user = new User(username,password,nickname,email,questionNumber,answer);
-        
+        DataManager.saveUsers();
+
         return SignUpMessages.SUCCESS;
     }
 
