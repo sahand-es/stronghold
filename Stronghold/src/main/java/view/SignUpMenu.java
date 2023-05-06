@@ -131,6 +131,60 @@ public class SignUpMenu {
         }
     }
 
+    public static HashMap<String, String> extractSecurityAnswer(String command) {
+        String questionNumber = "";
+        String answer = "";
+        String answerConfirm = "";
+        boolean found = false;
+        String regex = SignUpCommands.getRegexQUESTIONARGUMENT();
+        Pattern pattern = Pattern.compile(regex);
+        Matcher checkMatcher = pattern.matcher(command);
+
+        while (checkMatcher.find()) {
+            found = true;
+            String argName = checkMatcher.group("argument");
+            String argVal, argValSpace;
+            if (argName != null) {
+                argVal = checkMatcher.group("string");
+                argValSpace = checkMatcher.group("stringSpace");
+                if (argName.equals("q") && questionNumber.equals("")){
+                    questionNumber = (argVal != null) ? argVal : argValSpace;
+                }
+                else if (argName.equals("a") && answer.equals("")){
+                    answer = (argVal != null) ? argVal : argValSpace;
+                }
+                else if (argName.equals("c") && answerConfirm.equals("")){
+                    answerConfirm = (argVal != null) ? argVal : argValSpace;
+                }
+                else {
+                    System.out.println("My liege, that's an invalid argument in question pick command!");
+                    if(questionData != null){ questionData.clear(); }
+                    questionData = null;
+                    return null;
+                }
+            }
+
+            command = command.replaceAll(checkMatcher.group().toString().trim(),"");
+
+        }
+        if (SignUpCommands.getMatcher(command,SignUpCommands.FINALQUESTIONCHECK) == null){
+            System.out.println("My liege, that's an invalid argument in question pick command!");
+            if(questionData != null){ questionData.clear(); }
+            questionData = null;
+            return null;
+        }
+
+        if (found){
+            questionData = new HashMap<>();
+            questionData.put("questionNumber",questionNumber);
+            questionData.put("answer",answer);
+            questionData.put("answerConfirm",answerConfirm);
+            return questionData;
+        }
+        else
+            return null;
+    }
+
     private static void checkCreateUser(Matcher matcher, String command) {
         SignUpMessages message;
         if(createData != null){
@@ -209,65 +263,7 @@ public class SignUpMenu {
     }
 
 
-    public static HashMap<String, String> extractSecurityAnswer(String command) {
-        String questionNumber = "";
-        String answer = "";
-        String answerConfirm = "";
-        boolean found = false;
-        String regex = SignUpCommands.getRegexQUESTIONARGUMENT();
-        Pattern pattern = Pattern.compile(regex);
-        Matcher checkMatcher = pattern.matcher(command);
 
-        while (checkMatcher.find()) {
-            found = true;
-            String argName = checkMatcher.group("argument");
-            String argVal, argValSpace;
-            if (argName != null) {
-                argVal = checkMatcher.group("string");
-                argValSpace = checkMatcher.group("stringSpace");
-                if (argName.equals("q") && questionNumber.equals("")){
-                    questionNumber = (argVal != null) ? argVal : argValSpace;
-                }
-                else if (argName.equals("a") && answer.equals("")){
-                    answer = (argVal != null) ? argVal : argValSpace;
-                }
-                else if (argName.equals("c") && answerConfirm.equals("")){
-                    answerConfirm = (argVal != null) ? argVal : argValSpace;
-                }
-                else {
-                    System.out.println("My liege, that's an invalid argument in question pick command!");
-                    if(questionData != null){ questionData.clear(); }
-                    questionData = null;
-                    return null;
-                }
-            }
-
-            command = command.replaceAll(checkMatcher.group().toString().trim(),"");
-
-        }
-        if (SignUpCommands.getMatcher(command,SignUpCommands.FINALQUESTIONCHECK) == null){
-            System.out.println("My liege, that's an invalid argument in question pick command!");
-            if(questionData != null){ questionData.clear(); }
-            questionData = null;
-            return null;
-        }
-
-        if (found){
-            questionData = new HashMap<>();
-            questionData.put("questionNumber",questionNumber);
-            questionData.put("answer",answer);
-            questionData.put("answerConfirm",answerConfirm);
-            System.out.println("questionNumber: " + questionNumber);
-            System.out.println("answer: " + answer);
-            System.out.println("answerConfirm: " + answerConfirm);
-            return questionData;
-        }
-        else
-            return null;
-    }
-
-
-// ToDo debug security
     public static HashMap<String, String> getSecurityQuestionAnswer() {
         java.util.Scanner scanner = new java.util.Scanner(System.in);
         System.out.println("Pick you're security question number and then give an answer to it");
