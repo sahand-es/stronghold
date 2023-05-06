@@ -2,15 +2,15 @@ package model.environment.buldings;
 
 import model.environment.buldings.enums.BuildingCategory;
 import model.resourecs.Resource;
+import model.resourecs.ResourcesName;
 import model.society.Government;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Traps extends Building{
 
-    public Traps(String name, int size, BuildingCategory category, int hp, Government owner, ArrayList<Resource> price) {
-        super(name,size,category, hp, owner, price);
+    protected Traps(int size, int hp, BuildingCategory category, HashMap<ResourcesName, Integer> price) {
+        super(size, hp, category, price);
     }
-
-
 }
