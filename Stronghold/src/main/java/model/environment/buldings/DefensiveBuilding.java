@@ -14,7 +14,7 @@ public class DefensiveBuilding extends Building {
 
     private int damage;
 
-    public DefensiveBuilding(int size, int hp, BuildingCategory category,
+    protected DefensiveBuilding(int size, int hp, BuildingCategory category,
                              HashMap<ResourcesName, Integer> price,
                              int fireRange, int defenceRange, int damage) {
         super(size, hp, category, price);
