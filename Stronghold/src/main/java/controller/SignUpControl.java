@@ -85,7 +85,6 @@ public class SignUpControl {
         }
 
         User user = new User(username,password,nickname,email,questionNumber,answer);
-        Application.addUser(user);
         
         return SignUpMessages.SUCCESS;
     }
