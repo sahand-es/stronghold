@@ -35,6 +35,42 @@ public class SecurityQTest {
 
     }
 
+    @Test
+    public void test2() {
+        HashMap<String, String> answer;
+        answer = answerMap("33333", "ooo kHey", "goo  Goo  Lee");
+
+        testExtraction(answer,
+                "question          pick    -q   33333     -a    \"ooo kHey\"  -c  \"goo  Goo  Lee\""
+        );
+
+        testExtraction(answer,
+                "question          pick    -q   33333     -c  \"goo  Goo  Lee\"  -a    \"ooo kHey\""
+        );
+
+        testExtraction(answer,
+                "      question          pick  -a    \"ooo kHey\"  -q   33333     -c  \"goo  Goo  Lee\"  "
+        );
+
+        testExtraction(answer,
+                "question          pick  -a    \"ooo kHey\"    -c  \"goo  Goo  Lee\"  -q   33333"
+        );
+    }
+
+    @Test
+    public void test3(){
+        testNull("pick question -q   33333     -a    ookHey  -c  gooGooLee");
+        testNull("question pick -q   33333     -a    ookHey  -c  gooGooLee -t test");
+        testNull("question pick -q  test 33333     -a    ookHey  -c  gooGooLee");
+        testNull("question pick -q   33333   test  -a    ookHey  -c  gooGooLee    ");
+        testNull("question pick -q   33333     -a  test  ookHey  -c  gooGooLee");
+        testNull("question pick -q   33333     -a  \"test  ookHey\"test  -c  gooGooLee  ");
+        testNull("question pick -q   33333     -a  test\"test  ookHey\"  -c  gooGooLee");
+        testNull("question pick -q   33333     -a  test  ookHey  -c  \"gooGooLee");
+        testNull("question pick -q   33333     -a  ookHey  -c test gooGooLee");
+        testNull("question pick -q   33333     -a  test  ookHey  -c  gooGooLee test");
+    }
+
     public void testNull(String input) {
         HashMap<String, String> data = SignUpMenu.extractSecurityAnswer(input);
         assertNull(data, "It should return null");
