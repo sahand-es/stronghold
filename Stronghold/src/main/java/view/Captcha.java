@@ -1,5 +1,6 @@
-package utility;
+package view;
 
+import utility.RandomGenerators;
 import view.enums.commands.SignUpCommands;
 
 import java.awt.*;
