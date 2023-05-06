@@ -13,6 +13,7 @@ public enum SignUpCommands
     QUESTION("^(\\s+)?question\\s+pick\\s+.+"),
     QUESTION_ARGUMENT("((\\s+)?-(?<argument>\\w+))((\\s+\"(?<stringSpace>[^-\"]+)\")|(\\s+)?(?<string>[^- ]+))"),
     FINALQUESTIONCHECK("^(\\s+)?question\\s+pick(\\s+)?$"),
+    NUMBER_FORMAT("1|2|3"),
     ;
 
     String regex;

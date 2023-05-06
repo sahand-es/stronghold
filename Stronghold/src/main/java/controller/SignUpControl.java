@@ -8,8 +8,8 @@ import view.enums.messages.SignUpMessages;
 
 import java.util.HashMap;
 
-public class SignUpControl
-{
+public class SignUpControl {
+
     public static SignUpMessages signUp(HashMap<String,String> data) {
         String username = data.get("username");
         String password = data.get("password");
@@ -71,13 +71,9 @@ public class SignUpControl
 
         HashMap<String, String> QA = SignUpMenu.getSecurityQuestionAnswer();
 
-        if (QA != null){
-            System.out.println("number: "+QA.get("questionNumber"));
-            System.out.println("answer: "+QA.get("answer"));
-            System.out.println("answerConfirm: "+QA.get("answerConfirm"));
-        }
-        else
+        if (QA == null) {
             return SignUpMessages.FAILED;
+        }
 
         if (!Captcha.run()){
             return SignUpMessages.FAILED;

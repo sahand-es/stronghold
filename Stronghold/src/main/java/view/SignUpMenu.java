@@ -1,6 +1,7 @@
 package view;
 
 import controller.SignUpControl;
+import utility.CheckFunctions;
 import utility.SecurityQuestions;
 import view.enums.commands.SignUpCommands;
 import view.enums.messages.SignUpMessages;
@@ -273,7 +274,7 @@ public class SignUpMenu {
             System.out.println(a + ", " + SecurityQuestions.securityQuestions[i]);
         }
         String command;
-
+        outer:
         while (true) {
             command = scanner.nextLine();
             Matcher matcher;
@@ -285,10 +286,22 @@ public class SignUpMenu {
             else if ((matcher = SignUpCommands.getMatcher(command, SignUpCommands.QUESTION)) != null) {
                 if(questionData != null){ questionData.clear(); }
                 if((questionData = extractSecurityAnswer(command)) != null){
-                    break;
+
+                    SignUpMessages message = CheckFunctions.questionCommandCheck(questionData);
+                    switch (message) {
+                        case QUESTION_INVALID_NUMBER:
+                            System.out.println("My liege, you must give a number between 1 to 3!");
+                            break;
+                        case QUESTION_INVALID_ANSWER:
+                            System.out.println("My liege, your answers don't match!");
+                            break;
+                        case SUCCESS:
+                            break outer;
+                        default:
+                            break;
+                    }
                 }
-                else
-                    System.out.println("Re-enter your answer or type \"back\" to get back to signup menu:");
+                System.out.println("Re-enter your answer or type \"back\" to get back to signup menu:");
             }
             else{
                 System.out.println("My liege, that's an invalid command!");

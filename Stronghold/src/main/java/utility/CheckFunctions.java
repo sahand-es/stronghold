@@ -1,6 +1,11 @@
 package utility;
 
 import model.Application;
+import view.enums.commands.SignUpCommands;
+import view.enums.messages.SignUpMessages;
+
+import java.util.HashMap;
+import java.util.regex.Matcher;
 
 public class CheckFunctions
 {
@@ -40,7 +45,22 @@ public class CheckFunctions
         return !email.matches("([^\\@\\s])+\\@([^\\.\\s])+\\.(\\S+)+");
     }
 
+    public static SignUpMessages questionCommandCheck(HashMap<String, String> questionData) {
+        String questionNumber = questionData.get("questionNumber");
+        String answer = questionData.get("answer");
+        String answerConfirm = questionData.get("answerConfirm");
+        Matcher matcher ;
 
+        if ((matcher = SignUpCommands.getMatcher(questionNumber,SignUpCommands.NUMBER_FORMAT)) == null){
+            return SignUpMessages.QUESTION_INVALID_NUMBER;
+        }
+        else if (!answer.equals(answerConfirm)) {
+            return SignUpMessages.QUESTION_INVALID_ANSWER;
+        }
+        else
+            return SignUpMessages.SUCCESS;
+
+    }
 
 
 }

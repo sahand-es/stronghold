@@ -9,11 +9,14 @@ import java.util.Date;
 
 public class Application {
 
-    private static ArrayList<User> users = new ArrayList<>();
+    private static ArrayList<User> users ;
     private static User currentUser;
 
     static {
         users = DataManager.loadUsers();
+        if (users == null){
+            users = new ArrayList<>();
+        }
     }
 
     public static ArrayList<User> getUsers() {
