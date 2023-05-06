@@ -13,7 +13,7 @@ public class HouseBuilding extends Building{
     private int peopleCapacity;
 
 
-    public HouseBuilding(int size, int hp,
+    protected HouseBuilding(int size, int hp,
                          BuildingCategory category,
                          HashMap<ResourcesName, Integer> price,
                          int peopleCapacity) {

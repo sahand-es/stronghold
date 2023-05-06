@@ -2,20 +2,20 @@ package model.environment.buldings;
 
 import model.environment.buldings.enums.BuildingCategory;
 import model.resourecs.Resource;
+import model.resourecs.ResourcesName;
 import model.society.Government;
 import model.units.Person;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Inn extends WorkingBuilding {
     int popularityRate;
 
     int whineUsageRate;
 
-    public Inn(String name, int size, BuildingCategory category, int hp, Government owner, ArrayList<Resource> price, ArrayList<Person> workers, int popularityRate, int whineUsageRate) {
-        super(name, size, category, hp, owner, price, workers);
-        this.popularityRate = popularityRate;
-        this.whineUsageRate = whineUsageRate;
+    protected Inn(int size, int hp, BuildingCategory category, HashMap<ResourcesName, Integer> price) {
+        super(size, hp, category, price);
     }
 
     public int getPopularityRate() {
