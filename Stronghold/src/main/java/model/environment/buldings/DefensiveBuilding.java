@@ -2,18 +2,26 @@ package model.environment.buldings;
 
 import model.environment.buldings.enums.BuildingCategory;
 import model.resourecs.Resource;
+import model.resourecs.ResourcesName;
 import model.society.Government;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
-public class DefensiveBuilding extends Building
-{
+public class DefensiveBuilding extends Building {
     private int fireRange;
     private int defenceRange;
 
-    private int attackPoint;
+    private int damage;
 
-    private int defencePoint;
+    public DefensiveBuilding(int size, int hp, BuildingCategory category,
+                             HashMap<ResourcesName, Integer> price,
+                             int fireRange, int defenceRange, int damage) {
+        super(size, hp, category, price);
+        this.fireRange = fireRange;
+        this.defenceRange = defenceRange;
+        this.damage = damage;
+    }
 
     public int getFireRange() {
         return fireRange;
@@ -31,28 +39,12 @@ public class DefensiveBuilding extends Building
         this.defenceRange = defenceRange;
     }
 
-    public int getAttackPoint() {
-        return attackPoint;
+    public int getDamage() {
+        return damage;
     }
 
-    public void setAttackPoint(int attackPoint) {
-        this.attackPoint = attackPoint;
-    }
-
-    public int getDefencePoint() {
-        return defencePoint;
-    }
-
-    public void setDefencePoint(int defencePoint) {
-        this.defencePoint = defencePoint;
-    }
-
-    public DefensiveBuilding(String name, int size, BuildingCategory category, int hp, Government owner, ArrayList<Resource> price, int fireRange, int defenceRange, int attackPoint, int defencePoint) {
-        super(name,size,category, hp,owner, price);
-        this.fireRange = fireRange;
-        this.defenceRange = defenceRange;
-        this.attackPoint = attackPoint;
-        this.defencePoint = defencePoint;
+    public void setDamage(int damage) {
+        this.damage = damage;
     }
 }
 
