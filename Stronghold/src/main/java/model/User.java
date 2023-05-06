@@ -20,7 +20,7 @@ public class User {
     public User(String username, String password, String nickname, String email, int securityQuestionNumber, String securityAnswer) {
         this.username = username;
         this.nickname = nickname;
-        this.email = email;
+        this.email = email.toLowerCase();
         this.securityQuestionNumber = securityQuestionNumber;
         this.securityAnswer = securityAnswer;
         setPassword(password);
@@ -64,7 +64,7 @@ public class User {
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        this.email = email.toLowerCase();
     }
 
     public void setSlogan(String slogan) {

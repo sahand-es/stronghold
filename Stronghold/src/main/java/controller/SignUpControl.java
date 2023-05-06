@@ -69,6 +69,7 @@ public class SignUpControl
         }
 
         HashMap<String, String> QA = SignUpMenu.getSecurityQuestionAnswer();
+
         if (QA != null){
             System.out.println("number: "+QA.get("questionNumber"));
             System.out.println("answer: "+QA.get("answer"));
@@ -76,6 +77,7 @@ public class SignUpControl
         }
         else
             return SignUpMessages.FAILED;
+
 
         //ToDo Get captcha confirmation
         //ToDo add user
