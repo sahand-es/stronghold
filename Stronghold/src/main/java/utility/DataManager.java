@@ -52,4 +52,8 @@ public class DataManager {
             throw new RuntimeException(e);
         }
     }
+
+    //ToDo save logged in user in it's json file
+    //ToDo delete Logged in user from json file
+    //This must be called for when we log out in profile menu
 }

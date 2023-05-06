@@ -12,6 +12,7 @@ import java.util.regex.Matcher;
 public class LoginMenu
 {
     public static void run() {
+        //ToDo check for logged in User
         java.util.Scanner scanner = new java.util.Scanner(System.in);
         String command;
         Matcher matcher;
