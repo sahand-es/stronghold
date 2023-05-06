@@ -1,6 +1,7 @@
 package model.units.enums;
 
 import model.resourecs.ResourcesName;
+import org.jetbrains.annotations.NotNull;
 
 public enum UnitNames {
     ARCHER("Archer"),
@@ -31,11 +32,12 @@ public enum UnitNames {
         return name;
     }
 
+    @NotNull
     public static UnitNames getUnitByName(String name) {
         for (UnitNames unitName : UnitNames.values()) {
             if (unitName.name.equalsIgnoreCase(name.trim()))
                 return unitName;
         }
-        return null;
+        throw new RuntimeException();
     }
 }

@@ -1,71 +1,73 @@
 package model.environment.buildings.enums;
 
+import org.jetbrains.annotations.NotNull;
+
 public enum BuildingName {
-// Gate:
+    // Gate:
     SMALL_STONE_GATEHOUSE("Small Stone Gatehouse"),
     LARGE_STONE_GATEHOUSE("Large Stone Gatehouse"),
 
-// Bridge:
+    // Bridge:
     DRAWBRIDGE("Drawbridge"),
 
-// Defencive:
+    // Defencive:
     LOOKOUT_TOWER("Lookout Tower"),
-    PERIMETER_TOWER("Perimeter Tower\n"),
-    DEFENCE_TURRET("Defence Turret\n"),
-    SQUARE_TOWER("Square Tower\n"),
-    ROUND_TOWER("Round Tower\n"),
-    CAGED_WARDOGS("Caged War Dogs\n"),
+    PERIMETER_TOWER("Perimeter Tower"),
+    DEFENCE_TURRET("Defence Turret"),
+    SQUARE_TOWER("Square Tower"),
+    ROUND_TOWER("Round Tower"),
+    CAGED_WAR_DOGS("Caged War Dogs"),
 
-// Storage:
-    ARMOURY("Armoury\n"),
-    GRANARY("Granary\n"),
-    STOCKPILE("Stockpile\n"),
+    // Storage:
+    ARMOURY("Armoury"),
+    GRANARY("Granary"),
+    STOCKPILE("Stockpile"),
 
-// Unit Maker:
-    BARRACKS("Barracks\n"),
-    MERCENARY_POST("Mercenary Post\n"),
-    ENGINEER_GUILD("Engineer Guild\n"),
-    TUNNELER_GUILD("Tunneler Guild\n"),
+    // Unit Maker:
+    BARRACKS("Barracks"),
+    MERCENARY_POST("Mercenary Post"),
+    ENGINEER_GUILD("Engineer Guild"),
+    TUNNELER_GUILD("Tunneler Guild"),
 
-// Trap:
-    KILLING_PIT("Killing Pit\n"),
-    PITCH_DITCH("Pitch Ditch\n"),
+    // Trap:
+    KILLING_PIT("Killing Pit"),
+    PITCH_DITCH("Pitch Ditch"),
 
-// Resource Maker:
-    OIL_SMELTER("Oil Smelter\n"),
-    BAKERY("Bakery\n"),
-    BREWER("Brewer\n"),
-    MILL("Mill\n"),
-    ARMOURER("Armourer\n"),
-    BLACKSMITH("Blacksmith\n"),
-    FLETCHER("Fletcher\n"),
-    POLETURNER("Poleturner\n"),
+    // Resource Maker:
+    OIL_SMELTER("Oil Smelter"),
+    BAKERY("Bakery"),
+    BREWER("Brewer"),
+    MILL("Mill"),
+    ARMOURER("Armourer"),
+    BLACKSMITH("Blacksmith"),
+    FLETCHER("Fletcher"),
+    POLETURNER("Poleturner"),
 
-// Extractor:
-    APPLE_ORCHARD("Apple Orchard\n"),
-    DAIRY_FARMER("Dairy Farmer\n"),
-    HOPS_FARMER("Hops Farmer\n"),
-    HUNTERS_POST("Hunter Post\n"),
-    WHEAT_FARMER("Wheat Farmer\n"),
-    IRON_MINE("Iron Mine\n"),
-    PITCH_RIG("Pitch Rig\n"),
-    QUARRY("Quarry\n"),
-    WOODCUTTER("Woodcutter\n"),
-    STABLE("Stable\n"),
+    // Extractor:
+    APPLE_ORCHARD("Apple Orchard"),
+    DAIRY_FARMER("Dairy Farmer"),
+    HOPS_FARMER("Hops Farmer"),
+    HUNTERS_POST("Hunter Post"),
+    WHEAT_FARMER("Wheat Farmer"),
+    IRON_MINE("Iron Mine"),
+    PITCH_RIG("Pitch Rig"),
+    QUARRY("Quarry"),
+    WOODCUTTER("Woodcutter"),
+    STABLE("Stable"),
 
-// Church:
-    CHURCH("Church\n"),
-    CATHEDRAL("Cathedral\n"),
+    // Church:
+    CHURCH("Church"),
+    CATHEDRAL("Cathedral"),
 
-// Other:
-    SEIGE_TENT("Siege Tent\n"),
-    INN("Inn\n"),
-    MARKET("Market\n"),
-    HOVEL("Hovel\n"),
-    TUNNEL_ENTRANCE("Tunnel Entrance\n"),
-    OX_TETHER("Ox Tether\n"),
+    // Other:
+    SIEGE_TENT("Siege Tent"),
+    INN("Inn"),
+    MARKET("Market"),
+    HOVEL("Hovel"),
+    TUNNEL_ENTRANCE("Tunnel Entrance"),
+    OX_TETHER("Ox Tether"),
     ;
-    final String name;
+    private final String name;
 
     BuildingName(String name) {
         this.name = name;
@@ -73,5 +75,14 @@ public enum BuildingName {
 
     public String getName() {
         return name;
+    }
+
+    @NotNull
+    public static BuildingName getBuildingNameByName(String name) {
+        for (BuildingName buildingName : BuildingName.values()) {
+            if (buildingName.getName().equalsIgnoreCase(name))
+                return buildingName;
+        }
+        throw new RuntimeException();
     }
 }
