@@ -2,24 +2,29 @@ package model.environment.buldings;
 
 import model.environment.Environment;
 import model.environment.buldings.enums.BuildingCategory;
+import model.resourecs.ResourcesName;
 import model.society.Government;
 import model.resourecs.Resource;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Building extends Environment
 {
     Government owner;
-    BuildingCategory category;
     int hp;
-    ArrayList<Resource> price;
+    BuildingCategory category;
+    HashMap<ResourcesName, Integer> price;
 
-    public Building(String name,int size,BuildingCategory category,int hp,Government owner, ArrayList<Resource> price) {
-        super(name,size);
-        this.category = category;
+    ArrayList<Building> allBuildings = new ArrayList<>();
+
+    protected Building(int size, int hp, BuildingCategory category, HashMap<ResourcesName, Integer> price) {
+        super(size);
         this.hp = hp;
-        this.owner = owner;
+        this.category = category;
         this.price = price;
+
+        allBuildings.add(this);
     }
 
     public Government getOwner() {
@@ -30,11 +35,7 @@ public class Building extends Environment
         this.owner = owner;
     }
 
-    public ArrayList<Resource> getPrice() {
+    public HashMap<ResourcesName, Integer> getPrice() {
         return price;
-    }
-
-    public void setPrice(ArrayList<Resource> price) {
-        this.price = price;
     }
 }
