@@ -1,0 +1,18 @@
+The program will start from Login Menu. You're either logged in from your previous login (by setting --stay-logged-in
+flag at the end of login command) or you must log in.
+if you want to signup you must give this command at Login Menu : "signup menu"
+now you are referred to SignUp Menu which you must follow the SignupREADME text for it's tutorial.
+After you've signed up you would be passed back to Login Menu in which you must follow the login command to log in.
+In order to login you must give this command:
+    user login -u <username> -p <password>
+
+If you want to stay logged in you must add this flag at the end of your command:
+    user login -u <username> -p <password> --stay-logged-in
+
+If everything goes properly then you would be logged in and you would go to Profile Menu
+
+In case you have forgotten your password you can recover it by giving this command:
+    forgot my password -u <username>
+
+By giving "exit" command in this menu or SignUp Menu, the program will be terminated
+
