@@ -1,5 +1,6 @@
 package controller;
 
+import utility.Captcha;
 import utility.CheckFunctions;
 import utility.RandomGenerators;
 import view.SignUpMenu;
@@ -78,8 +79,10 @@ public class SignUpControl
         else
             return SignUpMessages.FAILED;
 
+        if (!Captcha.run()){
+            return SignUpMessages.FAILED;
+        }
 
-        //ToDo Get captcha confirmation
         //ToDo add user
         return SignUpMessages.SUCCESS;
     }
