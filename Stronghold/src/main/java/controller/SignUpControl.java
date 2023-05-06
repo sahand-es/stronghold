@@ -47,8 +47,12 @@ public class SignUpControl
         if (!password.equals("random") && CheckFunctions.checkPasswordFormat(password)){
             return SignUpMessages.INVALID_PASS_FORMAT;
         }
-        //ToDo check email format
-        //ToDo check email existence
+        if (CheckFunctions.checkEmailFormat(email)){
+           return SignUpMessages.INVALID_EMAIL;
+        }
+        if (CheckFunctions.checkEmailExits(email)){
+            return SignUpMessages.EXISTING_EMAIL;
+        }
         if(password.equals("random") && passwordConfirm != null){
             return SignUpMessages.INVALID_COMMAND_COMBINATION;
         }
