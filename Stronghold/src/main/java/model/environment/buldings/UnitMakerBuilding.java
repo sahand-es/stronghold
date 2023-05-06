@@ -14,9 +14,11 @@ public class UnitMakerBuilding extends Building{
 
     ArrayList<Soldier> units;
 
-    protected UnitMakerBuilding(int size, int hp, BuildingCategory category, HashMap<ResourcesName, Integer> price, ArrayList<Soldier> units) {
+    protected UnitMakerBuilding(int size,
+                                int hp,
+                                BuildingCategory category,
+                                HashMap<ResourcesName, Integer> price) {
         super(size, hp, category, price);
-        this.units = units;
     }
 
     public ArrayList<Soldier> getUnits() {

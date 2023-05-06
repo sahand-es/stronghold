@@ -18,6 +18,10 @@ public class Building extends Environment
 
     ArrayList<Building> allBuildings = new ArrayList<>();
 
+    static {
+
+    }
+
     protected Building(int size, int hp, BuildingCategory category, HashMap<ResourcesName, Integer> price) {
         super(size);
         this.hp = hp;
