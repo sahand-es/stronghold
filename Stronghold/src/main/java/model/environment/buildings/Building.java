@@ -1,31 +1,33 @@
-package model.environment.buldings;
+package model.environment.buildings;
 
 import model.environment.Environment;
-import model.environment.buldings.enums.BuildingCategory;
+import model.environment.buildings.enums.BuildingCategory;
+import model.environment.buildings.enums.BuildingName;
 import model.resourecs.ResourcesName;
 import model.society.Government;
-import model.resourecs.Resource;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Building extends Environment
-{
+public class Building extends Environment {
+
     Government owner;
     int hp;
     BuildingCategory category;
+    BuildingName name;
     HashMap<ResourcesName, Integer> price;
 
     ArrayList<Building> allBuildings = new ArrayList<>();
 
-    static {
-
-    }
-
-    protected Building(int size, int hp, BuildingCategory category, HashMap<ResourcesName, Integer> price) {
+    protected Building(int size,
+                       int hp,
+                       BuildingCategory category,
+                       BuildingName name,
+                       HashMap<ResourcesName, Integer> price) {
         super(size);
         this.hp = hp;
         this.category = category;
+        this.name = name;
         this.price = price;
 
         allBuildings.add(this);

@@ -1,7 +1,6 @@
 package model.map;
 
 import model.environment.Environment;
-import model.environment.buldings.Building;
 import model.units.Person;
 
 import java.util.ArrayList;

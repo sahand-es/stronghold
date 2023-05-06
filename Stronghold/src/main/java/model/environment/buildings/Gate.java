@@ -1,12 +1,10 @@
-package model.environment.buldings;
+package model.environment.buildings;
 
 import model.environment.Direction;
-import model.environment.buldings.enums.BuildingCategory;
-import model.resourecs.Resource;
+import model.environment.buildings.enums.BuildingCategory;
+import model.environment.buildings.enums.BuildingName;
 import model.resourecs.ResourcesName;
-import model.society.Government;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Gate extends HouseBuilding{
@@ -17,9 +15,10 @@ public class Gate extends HouseBuilding{
                    int hp,
                    BuildingCategory category,
                    HashMap<ResourcesName, Integer> price,
+                   BuildingName name,
                    int peopleCapacity) {
 
-        super(size, hp, category, price, peopleCapacity);
+        super(size, hp, category, price, name, peopleCapacity);
     }
 
     public Direction getDirection() {

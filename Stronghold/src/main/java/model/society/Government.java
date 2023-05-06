@@ -1,7 +1,7 @@
 package model.society;
 
 import model.User;
-import model.environment.buldings.Building;
+import model.environment.buildings.Building;
 import model.society.enums.Colors;
 import model.resourecs.Resource;
 import model.units.Person;

@@ -1,24 +1,23 @@
-package model.environment.buldings;
+package model.environment.buildings;
 
-import model.environment.buldings.enums.BuildingCategory;
-import model.resourecs.Resource;
+import model.environment.buildings.enums.BuildingCategory;
+import model.environment.buildings.enums.BuildingName;
 import model.resourecs.ResourcesName;
-import model.society.Government;
-import model.units.Person;
 import model.units.Soldier;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class UnitMakerBuilding extends Building{
+public class UnitMakerBuilding extends Building {
 
     ArrayList<Soldier> units;
 
     protected UnitMakerBuilding(int size,
                                 int hp,
                                 BuildingCategory category,
+                                BuildingName name,
                                 HashMap<ResourcesName, Integer> price) {
-        super(size, hp, category, price);
+        super(size, hp, category, name, price);
     }
 
     public ArrayList<Soldier> getUnits() {
@@ -29,7 +28,7 @@ public class UnitMakerBuilding extends Building{
         this.units = units;
     }
 
-    public void makeUnit(Soldier soldier){
+    public void makeUnit(Soldier soldier) {
 
     }
 }

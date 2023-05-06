@@ -1,11 +1,9 @@
-package model.environment.buldings;
+package model.environment.buildings;
 
-import model.environment.buldings.enums.BuildingCategory;
-import model.resourecs.Resource;
+import model.environment.buildings.enums.BuildingCategory;
+import model.environment.buildings.enums.BuildingName;
 import model.resourecs.ResourcesName;
-import model.society.Government;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class DefensiveBuilding extends Building {
@@ -15,9 +13,10 @@ public class DefensiveBuilding extends Building {
     private int damage;
 
     protected DefensiveBuilding(int size, int hp, BuildingCategory category,
-                             HashMap<ResourcesName, Integer> price,
-                             int fireRange, int defenceRange, int damage) {
-        super(size, hp, category, price);
+                                HashMap<ResourcesName, Integer> price,
+                                BuildingName name,
+                                int fireRange, int defenceRange, int damage) {
+        super(size, hp, category, name, price);
         this.fireRange = fireRange;
         this.defenceRange = defenceRange;
         this.damage = damage;
