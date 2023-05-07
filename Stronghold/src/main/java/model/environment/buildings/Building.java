@@ -31,6 +31,8 @@ public class Building extends Environment {
             String[] attributes = resourceCsv.get(i);
             String kind = "";
             int hp = 0, size = 0;
+            int capacity = 0;
+            int fireRange = 0, defenceRange = 0, damage = 0;
             BuildingCategory buildingCategory = null;
             BuildingName name = null;
             HashMap<ResourcesName, Integer> price = new HashMap<>();
@@ -71,11 +73,36 @@ public class Building extends Environment {
                         }
                         break;
                     }
+                    case "Capacity" : {
+                        if (attributes[j].equals("null"))
+                            continue;
+                        capacity = Integer.parseInt(attributes[j]);
+                        break;
+                    }
+                    case "Fire Range" : {
+                        if (attributes[j].equals("null"))
+                            continue;
+                        fireRange = Integer.parseInt(attributes[j]);
+                        break;
+                    }
+                    case "Defence Range" : {
+                        if (attributes[j].equals("null"))
+                            continue;
+                        defenceRange = Integer.parseInt(attributes[j]);
+                        break;
+                    }
+                    case "Damage" : {
+                        if (attributes[j].equals("null"))
+                            continue;
+                        damage = Integer.parseInt(attributes[j]);
+                        break;
+                    }
+
                 }
             }
             switch (kind) {
                 case "Gate": {
-                    new Gate(size, hp, buildingCategory, name, price, 0);
+                    new Gate(size, hp, buildingCategory, name, price, capacity);
                     break;
                 }
                 case "Bridge": {
@@ -92,7 +119,7 @@ public class Building extends Environment {
                 }
                 case "Defensive": {
                     new DefensiveBuilding(size, hp, buildingCategory, price, name,
-                            0, 0, 0);
+                            fireRange, defenceRange, damage);
                     break;
                 }
                 case "Extractor": {
@@ -104,7 +131,7 @@ public class Building extends Environment {
                     break;
                 }
                 case "Storage": {
-                    new StorageBuilding(size, hp, buildingCategory, name, price, 0);
+                    new StorageBuilding(size, hp, buildingCategory, name, price, capacity);
                     break;
                 }
                 case "Trap": {
@@ -116,7 +143,7 @@ public class Building extends Environment {
                     break;
                 }
                 case "House": {
-                    new HouseBuilding(size, hp, buildingCategory, name, price, 0);
+                    new HouseBuilding(size, hp, buildingCategory, name, price, capacity);
                     break;
                 }
                 case "Inn": {
@@ -175,9 +202,5 @@ public class Building extends Environment {
                 ", category=" + category +
                 ", price=" + price +
                 "}\n";
-    }
-
-    public static void main(String[] args) {
-        System.out.println(allBuildings);
     }
 }
