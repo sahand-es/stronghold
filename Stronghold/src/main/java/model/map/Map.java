@@ -13,12 +13,11 @@ public class Map
         this.width = width;
 
         grid = new Block[height][width];
-
-        for (int x = 0; x < grid.length; x++)
+        for (int y = 0; y < height; y++)
         {
-            for (int y = 0; y < grid[x].length; y++)
+            for (int x = 0; x < width; x++)
             {
-                grid[x][y] = new Block(x, y, Texture.GROUND);
+                grid[y][x] = new Block(x, y, Texture.GROUND);
             }
         }
     }
