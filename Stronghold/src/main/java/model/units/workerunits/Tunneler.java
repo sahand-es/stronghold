@@ -1,18 +1,12 @@
 package model.units.workerunits;
 
 import model.map.Block;
-import model.resourecs.Armour;
-import model.resourecs.ResourcesName;
-import model.units.Person;
-import model.units.enums.UnitNames;
-
-import java.util.ArrayList;
-import java.util.HashMap;
+import model.units.enums.UnitName;
 
 public class Tunneler extends WorkerUnit {
 
     public Tunneler() {
-        super(UnitNames.TUNNELER);
+        super(UnitName.TUNNELER);
     }
 
     public void makeTunnel(Block block) {

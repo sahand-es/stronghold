@@ -1,45 +1,45 @@
 Kind,Name,Category,Size,Hp,Price Kind,Price Count
-Gate,Small Stone Gatehouse,Castle,2,1000,null,null
-Gate,Large Stone Gatehouse,Castle,3,2000,Stone,20
 Bridge,Drawbridge,Castle,1,0,Wood,10
-Defencive,Lookout Tower,Castle,1,200,Stone,10
-Defencive,Perimeter Tower,Castle,2,1000,Stone,10
-Defencive,Defence Turret,Castle,2,1200,Stone,15
-Defencive,Square Tower,Castle,2,1600,Stone,35
-Defencive,Round Tower,Castle,2,2000,Stone,40
-Storage,Armoury,Castle,2,500,Wood,5
-Unit Maker,Barracks,Castle,3,500,Stone,15
-Unit Maker,Mercenary Post,Castle,2,500,Wood,10
-Unit Maker,Engineer Guild,Castle,2,500,Wood~Gold,10~100
-Trap,Killing Pit,Castle,1,0,Wood,6
-Resource Maker,Oil Smelter,Castle,1,300,Iron~Gold,10~100
-Trap,Pitch Ditch,Castle,1,0,Pitch,1
-Defencive,Caged War Dogs,Castle,1,100,Wood~Gold,10~100
 Building,Siege Tent,Castle,2,500,null,null
+Building,Ox Tether,Industry,1,100,Wood,5
+Building,Tunnel Entrance ,Weapons,1,0,null,null
+Church,Church,Town,2,800,Gold,500
+Church,Cathedral,Town,3,1200,Gold,1000
+Defensive,Lookout Tower,Castle,1,200,Stone,10
+Defensive,Perimeter Tower,Castle,2,1000,Stone,10
+Defensive,Defence Turret,Castle,2,1200,Stone,15
+Defensive,Square Tower,Castle,2,1600,Stone,35
+Defensive,Round Tower,Castle,2,2000,Stone,40
+Defensive,Caged War Dogs,Castle,1,100,Wood~Gold,10~100
 Extractor,Stable,Castle,2,300,Wood~Gold,20~400
-Unit Maker,Tunneler Guild,Castle,2,500,Wood~Gold,10~100
 Extractor,Apple Orchard,Farm,2,100,Wood,5
 Extractor,Dairy Farmer,Farm,2,100,Wood,10
 Extractor,Hops Farmer,Farm,2,100,Wood,15
 Extractor,Hunter Post,Farm,2,100,Wood,5
 Extractor,Wheat Farmer,Farm,2,100,Wood,15
-Resource Maker,Bakery,Food Processing,1,300,Wood,10
-Resource Maker,Brewer,Food Processing,1,300,Wood,10
-Storage,Granary,Food Processing,2,300,Wood,5
-Inn,Inn,Food Processing,2,300,Wood~Gold,20~100
-Resource Maker,Mill,Food Processing,2,300,Wood,20
 Extractor,Iron Mine,Industry,2,100,Wood,20
-Shop,Market,Industry,1,300,Wood,5
-Building,Ox Tether,Industry,1,100,Wood,5
 Extractor,Pitch Rig,Industry,2,100,Wood,20
 Extractor,Quarry,Industry,2,300,Wood,20
-Storage,Stockpile,Industry,2,0,null,null
 Extractor,Woodcutter,Industry,2,100,Wood,3
+Gate,Small Stone Gatehouse,Castle,2,1000,null,null
+Gate,Large Stone Gatehouse,Castle,3,2000,Stone,20
 House,Hovel,Town,2,100,Wood,6
-Church,Church,Town,2,800,Gold,500
-Church,Cathedral,Town,3,1200,Gold,1000
+Inn,Inn,Food Processing,2,300,Wood~Gold,20~100
+Resource Maker,Oil Smelter,Castle,1,300,Iron~Gold,10~100
+Resource Maker,Bakery,Food Processing,1,300,Wood,10
+Resource Maker,Brewer,Food Processing,1,300,Wood,10
+Resource Maker,Mill,Food Processing,2,300,Wood,20
 Resource Maker,Armourer,Weapons,2,300,Wood~Gold,20~100
 Resource Maker,Blacksmith,Weapons,2,300,Wood~Gold,20~200
 Resource Maker,Fletcher,Weapons,2,300,Wood~Gold,20~100
 Resource Maker,Poleturner,Weapons,2,300,Wood~Gold,10~100
-Building,Tunnel Entrance ,Weapons,1,0,null,null
+Shop,Market,Industry,1,300,Wood,5
+Storage,Armoury,Castle,2,500,Wood,5
+Storage,Granary,Food Processing,2,300,Wood,5
+Storage,Stockpile,Industry,2,0,null,null
+Trap,Killing Pit,Castle,1,0,Wood,6
+Trap,Pitch Ditch,Castle,1,0,Pitch,1
+Unit Maker,Barracks,Castle,3,500,Stone,15
+Unit Maker,Mercenary Post,Castle,2,500,Wood,10
+Unit Maker,Engineer Guild,Castle,2,500,Wood~Gold,10~100
+Unit Maker,Tunneler Guild,Castle,2,500,Wood~Gold,10~100

@@ -13,8 +13,8 @@ public class HouseBuilding extends Building {
 
     protected HouseBuilding(int size, int hp,
                             BuildingCategory category,
-                            HashMap<ResourcesName, Integer> price,
                             BuildingName name,
+                            HashMap<ResourcesName, Integer> price,
                             int peopleCapacity) {
 
         super(size, hp, category, name, price);

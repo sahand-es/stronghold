@@ -4,7 +4,7 @@ import model.map.Block;
 import model.resourecs.Armour;
 import model.resourecs.ResourcesName;
 import model.society.Government;
-import model.units.enums.UnitNames;
+import model.units.enums.UnitName;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,7 +14,7 @@ public abstract class Person {
     protected int speed;
     protected int defencePower;
     protected ArrayList<Armour> armour;
-    protected UnitNames name;
+    protected UnitName name;
 
     protected final HashMap<ResourcesName, Integer> price;
     protected Block block;
@@ -26,7 +26,7 @@ public abstract class Person {
 
 
     protected Person(int hp, int speed, int defencePower,
-                     ArrayList<Armour> armour, UnitNames name,
+                     ArrayList<Armour> armour, UnitName name,
                      HashMap<ResourcesName, Integer> price,
                      boolean canClimbLadder, boolean canDigMoat) {
         this.hp = hp;
@@ -54,7 +54,7 @@ public abstract class Person {
         this.canDigMoat = personToClone.canDigMoat;
     }
 
-    public Person(UnitNames name) {
+    public Person(UnitName name) {
         Person personToClone = getPersonByUnitName(name);
 
         this.hp = personToClone.hp;
@@ -69,13 +69,13 @@ public abstract class Person {
 
     protected Person getPersonByName(String name) {
         for (Person unit : allUnits) {
-            if (unit.getName().equals(UnitNames.getUnitByName(name)))
+            if (unit.getName().equals(UnitName.getUnitByName(name)))
                 return unit;
         }
         return null;
     }
 
-    protected Person getPersonByUnitName(UnitNames name) {
+    protected Person getPersonByUnitName(UnitName name) {
         for (Person unit : allUnits) {
             if (unit.getName().equals(name))
                 return unit;
@@ -99,7 +99,7 @@ public abstract class Person {
         return armour;
     }
 
-    public UnitNames getName() {
+    public UnitName getName() {
         return name;
     }
 

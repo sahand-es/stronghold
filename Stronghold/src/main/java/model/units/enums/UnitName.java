@@ -1,9 +1,8 @@
 package model.units.enums;
 
-import model.resourecs.ResourcesName;
 import org.jetbrains.annotations.NotNull;
 
-public enum UnitNames {
+public enum UnitName {
     ARCHER("Archer"),
     CROSSBOWMAN("Crossbowman"),
     SPEARMAN("Spearman"),
@@ -24,7 +23,7 @@ public enum UnitNames {
     FIRE_THROWER("Fire Thrower");
     private final String name;
 
-    UnitNames(String name) {
+    UnitName(String name) {
         this.name = name;
     }
 
@@ -33,8 +32,8 @@ public enum UnitNames {
     }
 
     @NotNull
-    public static UnitNames getUnitByName(String name) {
-        for (UnitNames unitName : UnitNames.values()) {
+    public static UnitName getUnitByName(String name) {
+        for (UnitName unitName : UnitName.values()) {
             if (unitName.name.equalsIgnoreCase(name.trim()))
                 return unitName;
         }

@@ -3,8 +3,8 @@ package model.environment;
 public class tree extends Environment{
     TreeType treeType;
 
-    public tree(String name, int size, TreeType treeType) {
-        super(name, size);
+    public tree(int size, TreeType treeType) {
+        super(size);
         this.treeType = treeType;
     }
 

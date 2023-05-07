@@ -1,11 +1,10 @@
 package model.units;
 
 import model.resourecs.Armour;
-import model.resourecs.Resource;
 import model.resourecs.ResourcesName;
 import model.resourecs.Weapon;
 import model.units.enums.SoldierUnitState;
-import model.units.enums.UnitNames;
+import model.units.enums.UnitName;
 import utility.DataManager;
 
 import java.util.ArrayList;
@@ -27,7 +26,7 @@ public class Soldier extends Person {
             String[] attributes = resourceCsv.get(i);
             int hp = 0, speed = 0, defencePower = 0;
             ArrayList<Armour> armours = new ArrayList<>();
-            UnitNames name = null;
+            UnitName name = null;
             boolean canClimbLadder = false, canDigMoat = false;
             Weapon weaponToAdd = null;
             HashMap<ResourcesName, Integer> price = new HashMap<>();
@@ -40,7 +39,7 @@ public class Soldier extends Person {
                         break;
                     }
                     case "Name": {
-                        name = UnitNames.getUnitByName(attributes[j]);
+                        name = UnitName.getUnitByName(attributes[j]);
                         break;
                     }
                     case "Hp": {
@@ -113,7 +112,7 @@ public class Soldier extends Person {
     }
 
     private Soldier(int hp, int speed, int defencePower,
-                    ArrayList<Armour> armour, UnitNames name,
+                    ArrayList<Armour> armour, UnitName name,
                     boolean canClimbLadder, boolean canDigMoat,
                     HashMap<ResourcesName, Integer> price, Weapon weapon) {
         super(hp, speed, defencePower, armour, name, price, canClimbLadder, canDigMoat);
@@ -121,7 +120,7 @@ public class Soldier extends Person {
         this.soldierUnitState = SoldierUnitState.STANDING;
     }
 
-    public Soldier(UnitNames name) {
+    public Soldier(UnitName name) {
         super(name);
         Soldier soldierToClone = (Soldier) getPersonByUnitName(name);
 
