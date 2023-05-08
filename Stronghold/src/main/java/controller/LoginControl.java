@@ -20,6 +20,8 @@ public class LoginControl {
         if (!user.checkPassword(password))
             return LoginMessages.PASSWORD_DIDNT_MATCH;
 
+        //ToDo add captcha
+
         Application.setCurrentUser(user);
         if(stay){
             DataManager.saveLoggedIn();
@@ -54,6 +56,8 @@ public class LoginControl {
         if (!currentUser.checkAnswer(input))
             return LoginMessages.INCORRECT_ANSWER;
 
+        //ToDo add captcha
+
         return LoginMessages.SUCCESSFUL;
     }
 
@@ -72,6 +76,8 @@ public class LoginControl {
 
         if (CheckFunctions.checkPasswordFormat(password))
             return  LoginMessages.INVALID_PASSWORD_FORMAT;
+
+        //ToDo add captcha
 
         currentUser.setPassword(password);
 

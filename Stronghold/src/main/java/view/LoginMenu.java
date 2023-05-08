@@ -246,6 +246,7 @@ public class LoginMenu
                 break;
             }
             else if (input.equals(password)){
+                //ToDo add captcha
                 LoginControl.setPassword(password);
                 break;
             }
