@@ -28,6 +28,7 @@ public class SignUpMenu {
         while (true) {
             command = scanner.nextLine();
             //ToDo add back feature
+            //ToDo switch to login menu
 
             if (SignUpCommands.getMatcher(command, SignUpCommands.EXIT) != null) {
                 //Todo terminate

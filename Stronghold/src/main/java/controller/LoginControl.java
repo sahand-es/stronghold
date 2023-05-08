@@ -20,6 +20,7 @@ public class LoginControl {
             return LoginMessages.USER_NOT_FOUND;
 
         if (!user.checkPassword(password))
+            //todo add delay
             return LoginMessages.PASSWORD_DIDNT_MATCH;
 
         if (!Captcha.run()){
