@@ -5,6 +5,7 @@ import model.User;
 import utility.CheckFunctions;
 import utility.DataManager;
 import utility.SecurityQuestions;
+import view.enums.commands.LoginCommands;
 import view.enums.messages.LoginMessages;
 
 public class LoginControl {
@@ -35,7 +36,6 @@ public class LoginControl {
 
         currentUser = user;
 
-
         return LoginMessages.SUCCESSFUL;
     }
 
@@ -48,7 +48,7 @@ public class LoginControl {
     }
 
     public static LoginMessages checkAskSecurityQuestion(String input){
-        if (input.equals("back"))
+        if (LoginCommands.getMatcher(input,LoginCommands.BACK) != null)
             return LoginMessages.BACK;
 
         if (!currentUser.checkAnswer(input))

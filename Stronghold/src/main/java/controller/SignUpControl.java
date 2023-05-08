@@ -85,7 +85,7 @@ public class SignUpControl {
             return SignUpMessages.FAILED;
         }
 
-        User user = new User(username,password,nickname,email,questionNumber,answer);
+        User user = new User(username,password,nickname,email,questionNumber - 1,answer);
         DataManager.saveUsers();
 
         return SignUpMessages.SUCCESS;

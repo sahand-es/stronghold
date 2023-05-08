@@ -146,6 +146,7 @@ public class LoginMenu
         String securityQuestion = LoginControl.getSecurityQuestion();
         boolean flag = true;
 
+
         while (flag) {
             System.out.println(securityQuestion);
             input = scanner.nextLine();
@@ -156,6 +157,7 @@ public class LoginMenu
             switch (message){
                 case BACK:
                     flag = false;
+                    System.out.println("Forgot pass command terminated!");
                     break;
 
                 case INCORRECT_ANSWER:
@@ -187,6 +189,7 @@ public class LoginMenu
             switch (message){
                 case BACK:
                     flag = false;
+                    System.out.println("Forgot pass command terminated!");
                     break;
 
                 case RANDOM:
@@ -195,7 +198,7 @@ public class LoginMenu
                     break;
 
                 case EMPTY_PASSWORD:
-                    System.out.println("You must enter a password");
+                    System.out.println("You must enter a password or type \"back\"");
                     break;
 
                 case INSUFFICIENT_PASSWORD:
@@ -203,7 +206,7 @@ public class LoginMenu
                     break;
 
                 case INVALID_PASSWORD_FORMAT:
-                    System.out.println("Invalid password format!, pleas chose another password");
+                    System.out.println("Invalid password format!, pleas choose another password or type \"back\"");
                     break;
 
                 case SUCCESSFUL:

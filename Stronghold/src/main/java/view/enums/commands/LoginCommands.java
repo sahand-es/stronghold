@@ -11,6 +11,7 @@ public enum LoginCommands {
     STAY_LOGGED_IN("--stay-logged-in"),
     FORGOT_PASSWORD("^\\s*forgot\\s+my\\s+password\\s+-u(\\s+)?((?<username>\\S+)|\"(?<usernameSpace>.+)\")?\\s*$"),
     EXIT("^\\s*exit\\s*$"),
+    BACK("^\\s*back\\s*$"),
     SIGNUP("^\\s*signup\\s+menu\\s*$")
     ;
 
