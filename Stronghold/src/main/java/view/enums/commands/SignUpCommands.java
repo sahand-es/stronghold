@@ -23,8 +23,7 @@ public enum SignUpCommands
         this.regex = regex;
     }
 
-    public static Matcher getMatcher(String input ,SignUpCommands command)
-    {
+    public static Matcher getMatcher(String input ,SignUpCommands command) {
         Matcher matcher = Pattern.compile(command.regex).matcher(input);
         return matcher.matches() ? matcher : null;
     }

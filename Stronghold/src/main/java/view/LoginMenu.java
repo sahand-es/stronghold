@@ -7,10 +7,13 @@ import model.User;
 import utility.DataManager;
 import utility.RandomGenerators;
 import view.enums.commands.LoginCommands;
+import view.enums.commands.SignUpCommands;
 import view.enums.messages.LoginMessages;
 
 import java.util.Scanner;
 import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class LoginMenu
 {
     public static void run() {
@@ -25,7 +28,7 @@ public class LoginMenu
             if (LoginCommands.getMatcher(command,LoginCommands.EXIT) != null){
                 break;
             } else if ((matcher = LoginCommands.getMatcher(command,LoginCommands.LOGIN)) != null) {
-                checkLogin(matcher);
+                checkLogin(command);
             } else if ((matcher = LoginCommands.getMatcher(command,LoginCommands.FORGOT_PASSWORD)) != null) {
                 forgotPassword(matcher ,scanner);
             } else if (LoginCommands.getMatcher(command,LoginCommands.SIGNUP) != null) {
@@ -34,50 +37,66 @@ public class LoginMenu
                 System.out.println("invalid command!");
             }
 
-            if(Application.getCurrentUser() != null){
-                MainMenu.run();
-                Application.setCurrentUser(null);
-            }
         }
 
     }
 
-    private static void checkLogin(Matcher matcher) {
-        // TODO: handel time
+    private static void checkLogin(String command) {
+        String username = "";
+        String password = "";
+        boolean stayLogged = false;
 
-        String username = matcher.group("username").trim();
-        String password = matcher.group("password");
-        // TODO: add stay logged in flag.
+        String regexUSER = LoginCommands.getRegexUSER();
+        Matcher userMatcher = Pattern.compile(regexUSER).matcher(command);
 
-        LoginMessages message;
-        message = LoginControl.checkLogin(username,password);
+        if (userMatcher.find()){
+            String argVal = userMatcher.group("username");
+            String argValSpace = userMatcher.group("usernameSpace");
+            command = command.replaceAll(userMatcher.group().toString().trim(),"");
+            username = (argVal != null) ? argVal : username;
+            username = (argValSpace != null) ? argValSpace : username;
+            if (username == null){
+                System.out.println("My liege, you must give username to log in");
+                return;
+            }
+        }
 
-        switch (message){
-            case EMPTY_USERNAME:
-                System.out.println("You must enter a username!");
-                break;
+        String regexPASS = LoginCommands.getRegexPASS();
+        Matcher passMatcher = Pattern.compile(regexPASS).matcher(command);
 
-            case EMPTY_PASSWORD:
-                System.out.println("You must give a password!");
-                break;
+        if (passMatcher.find()){
+            String argVal = passMatcher.group("password");
+            String argValSpace = passMatcher.group("passwordSpace");
+            command = command.replaceAll(passMatcher.group().toString().trim(),"");
+            password = (argVal != null) ? argVal : password;
+            password = (argValSpace != null) ? argValSpace : password;
+            if (password == null){
+                System.out.println("My liege, you must give password to log in");
+                return;
+            }
+        }
 
-            case USERNAME_DIDNT_MATCH:
-                System.out.println("username doesn't exist!");
-                break;
+        String regexStayLoggedIn = LoginCommands.getRegexStayLoggedIn();
+        Matcher stayLoggedInMatcher = Pattern.compile(regexStayLoggedIn).matcher(command);
 
-            case PASSWORD_DIDNT_MATCH:
-                System.out.println("password doesn't match!");
-                break;
+        if (stayLoggedInMatcher.find()){
+            stayLogged = true;
+            command = command.replaceAll(stayLoggedInMatcher.group().toString().trim(),"");
+        }
 
+        if (LoginCommands.getMatcher(command,LoginCommands.FINAL_LOGIN_CHECK) == null){
+            System.out.println("My liege, there is an invalid argument in login command");
+        }
+
+        LoginMessages messages = LoginControl.checkLogin(username,password);
+
+        switch (messages){
             case SUCCESSFUL:
-                System.out.println("user logged in successfully");
+                System.out.println("Welcome back my liege!");
                 break;
-
             default:
                 break;
         }
-
-
 
     }
 
@@ -209,5 +228,10 @@ public class LoginMenu
 
     }
 
+
+    public static void main(String args[]){
+        LoginMenu loginMenu = new LoginMenu();
+        loginMenu.run();
+    }
 
 }
