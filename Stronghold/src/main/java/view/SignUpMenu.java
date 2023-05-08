@@ -1,8 +1,10 @@
 package view;
 
 import controller.SignUpControl;
+import model.Application;
 import utility.CheckFunctions;
 import utility.SecurityQuestions;
+import view.enums.AllMenus;
 import view.enums.commands.SignUpCommands;
 import view.enums.messages.SignUpMessages;
 
@@ -27,22 +29,34 @@ public class SignUpMenu {
 
         while (true) {
             command = scanner.nextLine();
-            //ToDo add back feature
-            //ToDo switch to login menu
+
 
             if (SignUpCommands.getMatcher(command, SignUpCommands.EXIT) != null) {
-                //Todo terminate
                 System.exit(0);
             }
-            else if ((matcher = SignUpCommands.getMatcher(command, SignUpCommands.SHOW_MENU)) != null) {
+            else if ( SignUpCommands.getMatcher(command, SignUpCommands.BACK) != null) {
+                System.out.println("You're now in Login Menu!");
+                Application.setCurrentMenu(AllMenus.LOGIN_MENU);
+                return;
+            }
+            else if ( SignUpCommands.getMatcher(command, SignUpCommands.SHOW_MENU) != null) {
                 System.out.println("You're in Sign-Up Menu!");
             }
             else if ((matcher = SignUpCommands.getMatcher(command, SignUpCommands.CREATE)) != null) {
                 extractCreateCommand(command);
                 checkCreateUser(matcher,command);
             }
-            else
+            else{
                 System.out.println("My liege, that's an invalid command!");
+            }
+
+            switch (Application.getCurrentMenu()){
+                case LOGIN_MENU:
+                    System.out.println("You're in Login Menu!");
+                    return;
+                default:
+                    break;
+            }
         }
     }
 
@@ -245,6 +259,7 @@ public class SignUpMenu {
                         break;
                     case SUCCESS:
                         System.out.println("Your account has been successfully created!");
+                        Application.setCurrentMenu(AllMenus.LOGIN_MENU);
                         break;
                     case FAILED:
                         System.out.println("SignUp Failed!");

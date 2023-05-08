@@ -1,6 +1,7 @@
 package model;
 
 import utility.DataManager;
+import view.enums.AllMenus;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ public class Application {
 
     private static ArrayList<User> users ;
     private static User currentUser;
+    private static AllMenus currentMenu;
 
     static {
         users = DataManager.loadUsers();
@@ -51,5 +53,13 @@ public class Application {
 
     public static void setCurrentUser(User currentUser) {
         Application.currentUser = currentUser;
+    }
+
+    public static AllMenus getCurrentMenu() {
+        return currentMenu;
+    }
+
+    public static void setCurrentMenu(AllMenus currentMenu) {
+        Application.currentMenu = currentMenu;
     }
 }

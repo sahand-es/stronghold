@@ -6,6 +6,7 @@ import model.Application;
 import model.User;
 import utility.DataManager;
 import utility.RandomGenerators;
+import view.enums.AllMenus;
 import view.enums.commands.LoginCommands;
 import view.enums.commands.SignUpCommands;
 import view.enums.messages.LoginMessages;
@@ -18,9 +19,6 @@ public class LoginMenu
 {
     public static void run() {
 
-        System.out.println("You're in Login Menu!");
-
-
         java.util.Scanner scanner = new java.util.Scanner(System.in);
         String command;
         Matcher matcher;
@@ -29,8 +27,7 @@ public class LoginMenu
             command = scanner.nextLine();
 
             if (LoginCommands.getMatcher(command,LoginCommands.EXIT) != null){
-                //Todo terminate
-                break;
+                System.exit(0);
             }
             else if ((matcher = LoginCommands.getMatcher(command, LoginCommands.SHOW_MENU)) != null) {
                 System.out.println("You're in Login Menu!");
@@ -40,11 +37,22 @@ public class LoginMenu
             } else if ((matcher = LoginCommands.getMatcher(command,LoginCommands.FORGOT_PASSWORD)) != null) {
                 forgotPassword(matcher ,scanner);
             } else if (LoginCommands.getMatcher(command,LoginCommands.SIGNUP) != null) {
-                //Todo switch to signUp Menu
+                Application.setCurrentMenu(AllMenus.SIGNUP_MENU);
             } else {
                 System.out.println("Invalid command!");
             }
 
+            switch (Application.getCurrentMenu()){
+                case SIGNUP_MENU:
+                    System.out.println("You're now in SignUp Menu!");
+                    SignUpMenu.run();
+                    break;
+                case MAIN_MENU:
+                    System.out.println("You're now in Main Menu!");
+                    return;
+                default:
+                    break;
+            }
         }
 
     }
@@ -110,6 +118,7 @@ public class LoginMenu
                 break;
             case SUCCESSFUL:
                 System.out.println("Welcome back my liege!");
+                Application.setCurrentMenu(AllMenus.MAIN_MENU);
                 break;
             default:
                 break;
