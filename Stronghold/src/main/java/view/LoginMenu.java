@@ -3,6 +3,8 @@ package view;
 import controller.LoginControl;
 
 import model.Application;
+import model.User;
+import utility.DataManager;
 import utility.RandomGenerators;
 import view.enums.commands.LoginCommands;
 import view.enums.messages.LoginMessages;
@@ -206,7 +208,6 @@ public class LoginMenu
 
 
     }
-
 
 
 }

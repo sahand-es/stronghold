@@ -17,6 +17,7 @@ public class DataManager {
     //public static final String USERS_DATABASE_PATH = "src/main/resources/users.json";
     public static final String USERS_DATABASE_PATH = "Stronghold/src/main/resources/users.json";
 
+    public static final String LOGGED_IN_DATABASE_PATH = "Stronghold/src/main/resources/loggedInUser.json";
 
     public static ArrayList<User> loadUsers() {
         try {
@@ -35,9 +36,7 @@ public class DataManager {
         }
     }
 
-    /**
-     * call when you want save users database
-     */
+    // call when you want save users database
 
     // TODO: 4/22/2023  call when program ends
     public static void saveUsers() {
@@ -46,6 +45,33 @@ public class DataManager {
             fileWriter = new FileWriter(USERS_DATABASE_PATH);
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             String json = gson.toJson(Application.getUsers());
+            fileWriter.write(json);
+            fileWriter.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static User loadLoggedInUser() {
+        try {
+            Gson gson = new Gson();
+            String text = new String(Files.readAllBytes(Paths.get(LOGGED_IN_DATABASE_PATH)));
+
+            User user = gson.fromJson(text, new TypeToken<User>() {
+            }.getType());
+
+            return user;
+        }
+        catch (Exception ignored) {
+            return null;
+        }
+    }
+    public static void saveLoggedIn() {
+        FileWriter fileWriter;
+        try {
+            fileWriter = new FileWriter(LOGGED_IN_DATABASE_PATH);
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            String json = gson.toJson(Application.getCurrentUser());
             fileWriter.write(json);
             fileWriter.close();
         } catch (IOException e) {
