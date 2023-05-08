@@ -17,7 +17,11 @@ import java.util.regex.Pattern;
 public class LoginMenu
 {
     public static void run() {
-        //ToDo check for logged in User
+        //ToDo change this to switch menu to profile menu
+        if(DataManager.loadLoggedInUser() != null){
+            System.out.println("This represents that there is a logged in user");
+        }
+
         java.util.Scanner scanner = new java.util.Scanner(System.in);
         String command;
         Matcher matcher;
@@ -107,24 +111,27 @@ public class LoginMenu
     }
 
     private static void forgotPassword(Matcher matcher ,Scanner scanner) {
-        String username = matcher.group("username").trim();
+        String username = "";
+        String argVal = matcher.group("username");
+        String argValSpace = matcher.group("usernameSpace");
+        username = (argVal != null) ? argVal : username;
+        username = (argValSpace != null) ? argValSpace : username;
+
+        if (username.equals("")){
+            System.out.println("My liege you must give a username!");
+            return;
+        }
 
         LoginMessages message;
         message = LoginControl.checkForgotPassword(username);
 
         switch (message){
-            case EMPTY_USERNAME:
-                System.out.println("Username is empty, please try again.");
-                break;
-
             case USER_NOT_FOUND:
-                System.out.println("Username didn't match, please try again.");
+                System.out.println("This Username doesn't exist!");
                 break;
-
             case SUCCESSFUL:
                 askSecurityQuestion(scanner);
                 break;
-
             default:
                 break;
         }

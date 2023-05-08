@@ -27,8 +27,6 @@ public class LoginControl {
     }
 
     public static LoginMessages checkForgotPassword(String username){
-        if (username == null)
-            return LoginMessages.EMPTY_USERNAME;
 
         User user = Application.getUserByUsername(username);
 
@@ -36,6 +34,7 @@ public class LoginControl {
             return LoginMessages.USER_NOT_FOUND;
 
         currentUser = user;
+
 
         return LoginMessages.SUCCESSFUL;
     }
