@@ -17,10 +17,15 @@ import java.util.regex.Pattern;
 public class LoginMenu
 {
     public static void run() {
-        if(DataManager.loadLoggedInUser() != null){
-            //Todo switch to Main Menu
-            System.out.println("This represents that there is a logged in user");
+        if(DataManager.loadLoggedInUser() == null){
+            System.out.println("No user is logged in!");
+            System.out.println("You can log in or if you don't have any account " +
+                    "you can make one by going to sign-up menu");
         }
+        else{
+            //Todo switch to Main Menu
+        }
+
 
         java.util.Scanner scanner = new java.util.Scanner(System.in);
         String command;
@@ -166,7 +171,7 @@ public class LoginMenu
                     break;
 
                 case INCORRECT_ANSWER:
-                    System.out.println("Your answer is wrong!, please try again.");
+                    System.out.println("Your answer is wrong!, please try again or type \"back\" to cancel");
                     break;
 
                 case SUCCESSFUL:
@@ -203,7 +208,7 @@ public class LoginMenu
                     break;
 
                 case EMPTY_PASSWORD:
-                    System.out.println("You must enter a password or type \"back\"");
+                    System.out.println("You must enter a password or type \"back\" to cancel");
                     break;
 
                 case INSUFFICIENT_PASSWORD:
@@ -211,7 +216,8 @@ public class LoginMenu
                     break;
 
                 case INVALID_PASSWORD_FORMAT:
-                    System.out.println("Invalid password format!, pleas choose another password or type \"back\"");
+                    System.out.println("Invalid password format!, pleas choose " +
+                            "another password or type \"back\" to cancel");
                     break;
 
                 case SUCCESSFUL:
@@ -247,7 +253,7 @@ public class LoginMenu
                 System.out.println("Password doesn't match! in order to go to login menu type \"back\"");
             }
         }
-        
+
     }
 
 
