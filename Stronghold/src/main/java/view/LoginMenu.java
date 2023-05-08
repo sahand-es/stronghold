@@ -34,7 +34,7 @@ public class LoginMenu
             } else if (LoginCommands.getMatcher(command,LoginCommands.SIGNUP) != null) {
                 SignUpMenu.run();
             } else {
-                System.out.println("invalid command!");
+                System.out.println("Invalid command!");
             }
 
         }
@@ -56,7 +56,7 @@ public class LoginMenu
             username = (argVal != null) ? argVal : username;
             username = (argValSpace != null) ? argValSpace : username;
             if (username == null){
-                System.out.println("My liege, you must give username to log in");
+                System.out.println("My liege, you must give username to log in!");
                 return;
             }
         }
@@ -71,7 +71,7 @@ public class LoginMenu
             password = (argVal != null) ? argVal : password;
             password = (argValSpace != null) ? argValSpace : password;
             if (password == null){
-                System.out.println("My liege, you must give password to log in");
+                System.out.println("My liege, you must give password to log in!");
                 return;
             }
         }
@@ -108,11 +108,11 @@ public class LoginMenu
 
         switch (message){
             case EMPTY_USERNAME:
-                System.out.println("username is empty, please try again.");
+                System.out.println("Username is empty, please try again.");
                 break;
 
             case USERNAME_DIDNT_MATCH:
-                System.out.println("username didn't match, please try again.");
+                System.out.println("Username didn't match, please try again.");
                 break;
 
             case SUCCESSFUL:
@@ -146,7 +146,7 @@ public class LoginMenu
                     break;
 
                 case INCORRECT_ANSWER:
-                    System.out.println("your answer is wrong!, please try again.");
+                    System.out.println("Your answer is wrong!, please try again.");
                     break;
 
                 case SUCCESSFUL:
@@ -165,7 +165,7 @@ public class LoginMenu
         boolean flag = true;
 
         while (flag){
-            System.out.println("please enter your password:");
+            System.out.println("Please enter your password:");
             input = scanner.nextLine().trim();
 
             LoginMessages message;
@@ -182,11 +182,11 @@ public class LoginMenu
                     break;
 
                 case EMPTY_PASSWORD:
-                    System.out.println("you must enter a password");
+                    System.out.println("You must enter a password");
                     break;
 
                 case INSUFFICIENT_PASSWORD:
-                    System.out.println("your password must be at least 6 characters");
+                    System.out.println("Your password must be at least 6 characters");
                     break;
 
                 case INVALID_PASSWORD_FORMAT:
@@ -194,7 +194,7 @@ public class LoginMenu
                     break;
 
                 case SUCCESSFUL:
-                    System.out.println("your password changed successfully!");
+                    System.out.println("Your password changed successfully!");
                     flag = false;
                     break;
 
