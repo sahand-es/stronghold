@@ -17,8 +17,8 @@ import java.util.regex.Pattern;
 public class LoginMenu
 {
     public static void run() {
-        //ToDo change this to switch menu to profile menu
         if(DataManager.loadLoggedInUser() != null){
+            //Todo switch to Main Menu
             System.out.println("This represents that there is a logged in user");
         }
 
@@ -29,6 +29,7 @@ public class LoginMenu
         while (true){
             command = scanner.nextLine();
 
+            //ToDo show Menu feature
             if (LoginCommands.getMatcher(command,LoginCommands.EXIT) != null){
                 break;
             } else if ((matcher = LoginCommands.getMatcher(command,LoginCommands.LOGIN)) != null) {
@@ -36,7 +37,7 @@ public class LoginMenu
             } else if ((matcher = LoginCommands.getMatcher(command,LoginCommands.FORGOT_PASSWORD)) != null) {
                 forgotPassword(matcher ,scanner);
             } else if (LoginCommands.getMatcher(command,LoginCommands.SIGNUP) != null) {
-                SignUpMenu.run();
+                //Todo switch to signUp Menu
             } else {
                 System.out.println("Invalid command!");
             }

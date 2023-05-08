@@ -28,6 +28,7 @@ public class SignUpMenu {
         while (true) {
             command = scanner.nextLine();
             //ToDo add back feature
+            //ToDo show Menu feature
             if (SignUpCommands.getMatcher(command, SignUpCommands.EXIT) != null) {
                 System.exit(0);
             } else if ((matcher = SignUpCommands.getMatcher(command, SignUpCommands.CREATE)) != null) {

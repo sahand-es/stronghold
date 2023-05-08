@@ -15,8 +15,9 @@ public class ProfileMenu
         while (true){
             command = scanner.nextLine();
 
+            //ToDo show Menu feature
             if (ProfileCommands.getMatcher(command,ProfileCommands.BACK) != null) {
-                break;
+                //ToDo switch to main menu
             } else if ((matcher = ProfileCommands.getMatcher(command,ProfileCommands.CHANGE_USERNAME)) != null) {
                 checkChangeUsername(matcher);
             } else if ((matcher = ProfileCommands.getMatcher(command,ProfileCommands.CHANGE_NICKNAME)) != null) {
