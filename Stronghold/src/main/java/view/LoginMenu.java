@@ -88,9 +88,15 @@ public class LoginMenu
             System.out.println("My liege, there is an invalid argument in login command");
         }
 
-        LoginMessages messages = LoginControl.checkLogin(username,password);
+        LoginMessages messages = LoginControl.checkLogin(username,password,stayLogged);
 
         switch (messages){
+            case USER_NOT_FOUND:
+                System.out.println("There is no user with this username!");
+                break;
+            case PASSWORD_DIDNT_MATCH:
+                System.out.println("Incorrect password!");
+                break;
             case SUCCESSFUL:
                 System.out.println("Welcome back my liege!");
                 break;

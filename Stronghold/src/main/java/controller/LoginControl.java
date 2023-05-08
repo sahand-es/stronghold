@@ -3,31 +3,26 @@ package controller;
 import model.Application;
 import model.User;
 import utility.CheckFunctions;
+import utility.DataManager;
 import utility.SecurityQuestions;
 import view.enums.messages.LoginMessages;
 
 public class LoginControl {
 
     private static User currentUser;
-    public static LoginMessages checkLogin(String username, String password){
-        User user;
+    public static LoginMessages checkLogin(String username, String password, Boolean stay){
 
-        if (username == null)
-            return LoginMessages.EMPTY_USERNAME;
-
-        if (password == null)
-            return LoginMessages.EMPTY_PASSWORD;
-
-        user = Application.getUserByUsername(username);
-
+        User user = Application.getUserByUsername(username);
         if (user == null)
-            return LoginMessages.USERNAME_DIDNT_MATCH;
+            return LoginMessages.USER_NOT_FOUND;
 
         if (!user.checkPassword(password))
             return LoginMessages.PASSWORD_DIDNT_MATCH;
 
         Application.setCurrentUser(user);
-
+        if(stay){
+            DataManager.saveLoggedIn();
+        }
         return LoginMessages.SUCCESSFUL;
     }
 
@@ -38,7 +33,7 @@ public class LoginControl {
         User user = Application.getUserByUsername(username);
 
         if (user == null)
-            return LoginMessages.USERNAME_DIDNT_MATCH;
+            return LoginMessages.USER_NOT_FOUND;
 
         currentUser = user;
 

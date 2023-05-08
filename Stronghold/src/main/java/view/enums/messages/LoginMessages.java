@@ -3,7 +3,7 @@ package view.enums.messages;
 public enum LoginMessages {
     EMPTY_USERNAME,
     EMPTY_PASSWORD,
-    USERNAME_DIDNT_MATCH,
+    USER_NOT_FOUND,
     PASSWORD_DIDNT_MATCH,
     SUCCESSFUL,
     BACK,
