@@ -138,7 +138,7 @@ public class SignUpMenu {
 
         }
 
-        if (SignUpCommands.getMatcher(command, SignUpCommands.FINALCREATECHECK) != null){
+        if (SignUpCommands.getMatcher(command, SignUpCommands.FINAL_CREATE_CHECK) != null){
             createData.put("username", username);
             createData.put("nickname", nickname);
             createData.put("password", password);
@@ -191,7 +191,7 @@ public class SignUpMenu {
             command = command.replaceAll(checkMatcher.group().toString().trim(),"");
 
         }
-        if (SignUpCommands.getMatcher(command,SignUpCommands.FINALQUESTIONCHECK) == null){
+        if (SignUpCommands.getMatcher(command,SignUpCommands.FINAL_QUESTION_CHECK) == null){
             System.out.println("My liege, that's an invalid argument in question pick command!");
             if(questionData != null){ questionData.clear(); }
             questionData = null;

@@ -9,11 +9,11 @@ public enum SignUpCommands
     BACK("^\\s*back\\s*$"),
     SHOW_MENU("^\\s*show\\s+menu\\s*$"),
     CREATE("^(\\s+)?user\\s+create\\s+.+"),
-    FINALCREATECHECK("^(\\s+)?user\\s+create(\\s+)?$"),
+    FINAL_CREATE_CHECK("^(\\s+)?user\\s+create(\\s+)?$"),
     ARGUMENT("((\\s+)?-(?<argumentSpace>\\w+)\\s+\"(?<firstStringSpace>[^-\"]+)\"(\\s+)?(?:\\s+(\")?(?<secondStringSpace>[^-\"]+))?)(?:\\s+(?<secondStringsSpaceNON>\\S+))?|((\\s+)?-(?<argument>\\w+)\\s+(?<firstString>[^- ]+)(?:\\s+(?<secondString>[^- ]+))?)"),
     QUESTION("^(\\s+)?question\\s+pick\\s+.+"),
     QUESTION_ARGUMENT("((\\s+)?-(?<argument>\\w+))((\\s+\"(?<stringSpace>[^-\"]+)\")|(\\s+)?(?<string>[^- ]+))"),
-    FINALQUESTIONCHECK("^(\\s+)?question\\s+pick(\\s+)?$"),
+    FINAL_QUESTION_CHECK("^(\\s+)?question\\s+pick(\\s+)?$"),
     NUMBER_FORMAT("1|2|3"),
     ;
 
