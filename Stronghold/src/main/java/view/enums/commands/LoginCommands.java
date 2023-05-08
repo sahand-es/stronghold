@@ -4,10 +4,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public enum LoginCommands {
-    LOGIN("^user login -u (?<username>.+ )?-p (?<password>\\S+ )?(?<stayLoggedIn> --stay-logged-in)?$"),
-    FORGOT_PASSWORD("^forgot my password -u (?<username>.+)?$"),
-    EXIT("^exit$"),
-    REGISTER("^signup menu$")
+    LOGIN("^\\s*user\\s+login\\s+"),
+    USER_ARGUMENT("-u\\s+((?<username>\\S+)|\"(?<usernameSpace>.+)\")?"),
+    PASS_ARGUMENT("-p\\s+((?<password>\\S+)|\"(?<passwordSpace>.+)\")?"),
+    STAY_LOGGED_IN("--stay-logged-in"),
+    FORGOT_PASSWORD("^\\s*forgot\\s+my\\s+password\\s+-u\\s+((?<username>\\S+)|\"(?<usernameSpace>.+)\")?\\s*$"),
+    EXIT("^\\s*exit\\s*$"),
+    SIGNUP("^\\s*signup\\s+menu\\s*$")
     ;
 
     String regex;

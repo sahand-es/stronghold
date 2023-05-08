@@ -28,7 +28,7 @@ public class LoginMenu
                 checkLogin(matcher);
             } else if ((matcher = LoginCommands.getMatcher(command,LoginCommands.FORGOT_PASSWORD)) != null) {
                 forgotPassword(matcher ,scanner);
-            } else if (LoginCommands.getMatcher(command,LoginCommands.REGISTER) != null) {
+            } else if (LoginCommands.getMatcher(command,LoginCommands.SIGNUP) != null) {
                 SignUpMenu.run();
             } else {
                 System.out.println("invalid command!");

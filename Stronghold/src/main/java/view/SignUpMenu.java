@@ -29,7 +29,7 @@ public class SignUpMenu {
             command = scanner.nextLine();
             //ToDo add back feature
             if (SignUpCommands.getMatcher(command, SignUpCommands.EXIT) != null) {
-                return;
+                System.exit(0);
             } else if ((matcher = SignUpCommands.getMatcher(command, SignUpCommands.CREATE)) != null) {
                 extractCreateCommand(command);
                 checkCreateUser(matcher,command);
