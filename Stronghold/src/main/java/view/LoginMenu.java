@@ -111,6 +111,9 @@ public class LoginMenu
             case PASSWORD_DIDNT_MATCH:
                 System.out.println("Incorrect password!");
                 break;
+            case FAILED:
+                System.out.println("Login Failed!");
+                break;
             case SUCCESSFUL:
                 System.out.println("Welcome back my liege!");
                 break;
@@ -190,7 +193,7 @@ public class LoginMenu
         boolean flag = true;
 
         while (flag){
-            System.out.println("Please enter your password:");
+            System.out.println("Please enter your new password:");
             input = scanner.nextLine().trim();
 
             LoginMessages message;
@@ -220,6 +223,11 @@ public class LoginMenu
                             "another password or type \"back\" to cancel");
                     break;
 
+                case FAILED:
+                    System.out.println("Password change was failed!");
+                    flag = false;
+                    break;
+
                 case SUCCESSFUL:
                     System.out.println("Your password changed successfully!");
                     flag = false;
@@ -239,15 +247,21 @@ public class LoginMenu
         while (true) {
             password = RandomGenerators.randomPassword();
             System.out.println("Your random password is: " + password);
-            System.out.print("Please re-enter your password here:");
+            System.out.print("Please re-enter your random password :");
             input = scanner.nextLine().trim();
 
             if (LoginCommands.getMatcher(input,LoginCommands.BACK) != null){
+                System.out.println("Password change was cancelled!");
                 break;
             }
             else if (input.equals(password)){
-                //ToDo add captcha
-                LoginControl.setPassword(password);
+                if (Captcha.run()){
+                    LoginControl.setPassword(password);
+                    System.out.println("Your password changed successfully!");
+                }
+                else
+                    System.out.println("Password change was failed!");
+
                 break;
             }
             else {

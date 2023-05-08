@@ -13,6 +13,7 @@ public enum LoginCommands {
     FORGOT_PASSWORD("^\\s*forgot\\s+my\\s+password\\s+-u(\\s+)?((?<username>\\S+)|\"(?<usernameSpace>.+)\")?\\s*$"),
     EXIT("^\\s*exit\\s*$"),
     BACK("^\\s*back\\s*$"),
+    RANDOM("^\\s*random\\s*$"),
     SIGNUP("^\\s*signup\\s+menu\\s*$")
     ;
 

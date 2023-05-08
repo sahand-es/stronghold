@@ -6,6 +6,7 @@ public enum LoginMessages {
     USER_NOT_FOUND,
     PASSWORD_DIDNT_MATCH,
     SUCCESSFUL,
+    FAILED,
     BACK,
     INCORRECT_ANSWER,
     RANDOM,

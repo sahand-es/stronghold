@@ -5,8 +5,10 @@ import model.User;
 import utility.CheckFunctions;
 import utility.DataManager;
 import utility.SecurityQuestions;
+import view.Captcha;
 import view.enums.commands.LoginCommands;
 import view.enums.messages.LoginMessages;
+import view.enums.messages.SignUpMessages;
 
 public class LoginControl {
 
@@ -20,7 +22,9 @@ public class LoginControl {
         if (!user.checkPassword(password))
             return LoginMessages.PASSWORD_DIDNT_MATCH;
 
-        //ToDo add captcha
+        if (!Captcha.run()){
+            return LoginMessages.FAILED;
+        }
 
         Application.setCurrentUser(user);
         if(stay){
@@ -56,16 +60,15 @@ public class LoginControl {
         if (!currentUser.checkAnswer(input))
             return LoginMessages.INCORRECT_ANSWER;
 
-        //ToDo add captcha
 
         return LoginMessages.SUCCESSFUL;
     }
 
     public static LoginMessages checkGetPassword(String password){
-        if (password.equals("back"))
+        if (LoginCommands.getMatcher(password,LoginCommands.BACK) != null)
             return LoginMessages.BACK;
 
-        if (password.equals("random"))
+        if (LoginCommands.getMatcher(password,LoginCommands.RANDOM) != null)
             return LoginMessages.RANDOM;
 
         if (password.equals(""))
@@ -77,7 +80,9 @@ public class LoginControl {
         if (CheckFunctions.checkPasswordFormat(password))
             return  LoginMessages.INVALID_PASSWORD_FORMAT;
 
-        //ToDo add captcha
+        if (!Captcha.run()){
+            return LoginMessages.FAILED;
+        }
 
         currentUser.setPassword(password);
 
