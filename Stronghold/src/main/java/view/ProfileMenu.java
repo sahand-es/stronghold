@@ -1,12 +1,15 @@
 package view;
 
 import model.Application;
+import model.User;
+import view.enums.AllMenus;
 import view.enums.commands.ProfileCommands;
 
 import java.util.regex.Matcher;
 
 public class ProfileMenu
 {
+    private static User currentUser = Application.getCurrentUser();
     public static void run() {
         java.util.Scanner scanner = new java.util.Scanner(System.in);
         String command;
@@ -15,31 +18,44 @@ public class ProfileMenu
         while (true){
             command = scanner.nextLine();
 
-            //ToDo show Menu feature
             if (ProfileCommands.getMatcher(command,ProfileCommands.BACK) != null) {
-                //ToDo switch to main menu
-            } else if ((matcher = ProfileCommands.getMatcher(command,ProfileCommands.CHANGE_USERNAME)) != null) {
-                checkChangeUsername(matcher);
-            } else if ((matcher = ProfileCommands.getMatcher(command,ProfileCommands.CHANGE_NICKNAME)) != null) {
-                checkChangeNickname(matcher);
-            } else if ((matcher = ProfileCommands.getMatcher(command,ProfileCommands.CHANGE_PASSWORD)) != null) {
-                checkChangePassword(matcher);
-            } else if ((matcher = ProfileCommands.getMatcher(command,ProfileCommands.CHANGE_EMAIL)) != null) {
-                checkChangeEmail(matcher);
-            } else if ((matcher = ProfileCommands.getMatcher(command,ProfileCommands.CHANGE_SLOGAN)) != null) {
-                checkChangeSlogan(matcher);
-            } else if (ProfileCommands.getMatcher(command,ProfileCommands.REMOVE_SLOGAN) != null) {
-                checkRemoveSlogan();
-            } else if (ProfileCommands.getMatcher(command,ProfileCommands.DISPLAY_HIGH_SCORE) != null) {
-                displayHighScore();
-            } else if (ProfileCommands.getMatcher(command,ProfileCommands.DISPLAY_RANK) != null) {
-                displayRank();
-            } else if (ProfileCommands.getMatcher(command,ProfileCommands.DISPLAY_SLOGAN) != null) {
-                displaySlogan();
-            } else if (ProfileCommands.getMatcher(command,ProfileCommands.DISPLAY_ALL) != null) {
-                displayAll();
-            } else {
-                System.out.println("invalid command!");
+                Application.setCurrentMenu(AllMenus.MAIN_MENU);
+            }
+            else if ( ProfileCommands.getMatcher(command,ProfileCommands.SHOW_MENU) != null) {
+                System.out.println("You're in Profile Menu!");
+            }
+            else if ((matcher = ProfileCommands.getMatcher(command,ProfileCommands.CHANGE_USERNAME)) != null) {
+                //todo
+            }
+            else if ((matcher = ProfileCommands.getMatcher(command,ProfileCommands.CHANGE_NICKNAME)) != null) {
+                //todo
+            }
+            else if ((matcher = ProfileCommands.getMatcher(command,ProfileCommands.CHANGE_PASSWORD)) != null) {
+                //todo
+            }
+            else if ((matcher = ProfileCommands.getMatcher(command,ProfileCommands.CHANGE_EMAIL)) != null) {
+                //todo
+            }
+            else if ((matcher = ProfileCommands.getMatcher(command,ProfileCommands.CHANGE_SLOGAN)) != null) {
+                //todo
+            }
+            else if (ProfileCommands.getMatcher(command,ProfileCommands.REMOVE_SLOGAN) != null) {
+                //todo
+            }
+            else if (ProfileCommands.getMatcher(command,ProfileCommands.DISPLAY_HIGH_SCORE) != null) {
+                //todo
+            }
+            else if (ProfileCommands.getMatcher(command,ProfileCommands.DISPLAY_RANK) != null) {
+                //todo
+            }
+            else if (ProfileCommands.getMatcher(command,ProfileCommands.DISPLAY_SLOGAN) != null) {
+                //todo
+            }
+            else if (ProfileCommands.getMatcher(command,ProfileCommands.DISPLAY_ALL) != null) {
+                //todo
+            }
+            else {
+                System.out.println("My liege, that's an invalid command!");
             }
         }
 
@@ -76,13 +92,13 @@ public class ProfileMenu
     }
 
     private static void displayHighScore(){
-        System.out.println("high score: " + Application.getCurrentUser().getHighScore());
+        System.out.println("high score: " + currentUser);
     }
     private static void displayRank(){
-        System.out.println("rank: " + Application.getCurrentUser().getRank());
+        System.out.println("rank: " + currentUser);
     }
     private static void displaySlogan(){
-        String slogan = Application.getCurrentUser().getSlogan();
+        String slogan = currentUser.getSlogan();
 
         if (slogan == null)
             System.out.println("Slogan is empty!");

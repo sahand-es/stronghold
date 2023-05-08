@@ -29,17 +29,17 @@ public class LoginMenu
             if (LoginCommands.getMatcher(command,LoginCommands.EXIT) != null){
                 System.exit(0);
             }
-            else if ((matcher = LoginCommands.getMatcher(command, LoginCommands.SHOW_MENU)) != null) {
+            else if ( LoginCommands.getMatcher(command, LoginCommands.SHOW_MENU) != null) {
                 System.out.println("You're in Login Menu!");
             }
-            else if ((matcher = LoginCommands.getMatcher(command,LoginCommands.LOGIN)) != null) {
+            else if (LoginCommands.getMatcher(command,LoginCommands.LOGIN) != null) {
                 checkLogin(command);
             } else if ((matcher = LoginCommands.getMatcher(command,LoginCommands.FORGOT_PASSWORD)) != null) {
                 forgotPassword(matcher ,scanner);
             } else if (LoginCommands.getMatcher(command,LoginCommands.SIGNUP) != null) {
                 Application.setCurrentMenu(AllMenus.SIGNUP_MENU);
             } else {
-                System.out.println("Invalid command!");
+                System.out.println("My liege, that's an invalid command!");
             }
 
             switch (Application.getCurrentMenu()){
