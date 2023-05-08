@@ -28,13 +28,19 @@ public class SignUpMenu {
         while (true) {
             command = scanner.nextLine();
             //ToDo add back feature
-            //ToDo show Menu feature
+
             if (SignUpCommands.getMatcher(command, SignUpCommands.EXIT) != null) {
+                //Todo terminate
                 System.exit(0);
-            } else if ((matcher = SignUpCommands.getMatcher(command, SignUpCommands.CREATE)) != null) {
+            }
+            else if ((matcher = SignUpCommands.getMatcher(command, SignUpCommands.SHOW_MENU)) != null) {
+                System.out.println("You're in Sign-Up Menu!");
+            }
+            else if ((matcher = SignUpCommands.getMatcher(command, SignUpCommands.CREATE)) != null) {
                 extractCreateCommand(command);
                 checkCreateUser(matcher,command);
-            } else
+            }
+            else
                 System.out.println("My liege, that's an invalid command!");
         }
     }

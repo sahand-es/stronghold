@@ -4,6 +4,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public enum LoginCommands {
+    SHOW_MENU("^\\s*show\\s+menu\\s*$"),
     LOGIN("^\\s*user\\s+login\\s+.+"),
     USER_ARGUMENT("-u\\s+(\"(?<usernameSpace>[^-]+)\"|(?<username>[^-\\s]+))?"),
     PASS_ARGUMENT("-p\\s+((\"(?<passwordSpace>[^-]+)\")|(?<password>[^-\\s]+))?"),

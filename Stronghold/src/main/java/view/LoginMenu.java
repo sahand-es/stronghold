@@ -29,10 +29,14 @@ public class LoginMenu
         while (true){
             command = scanner.nextLine();
 
-            //ToDo show Menu feature
             if (LoginCommands.getMatcher(command,LoginCommands.EXIT) != null){
+                //Todo terminate
                 break;
-            } else if ((matcher = LoginCommands.getMatcher(command,LoginCommands.LOGIN)) != null) {
+            }
+            else if ((matcher = LoginCommands.getMatcher(command, LoginCommands.SHOW_MENU)) != null) {
+                System.out.println("You're in Login Menu!");
+            }
+            else if ((matcher = LoginCommands.getMatcher(command,LoginCommands.LOGIN)) != null) {
                 checkLogin(command);
             } else if ((matcher = LoginCommands.getMatcher(command,LoginCommands.FORGOT_PASSWORD)) != null) {
                 forgotPassword(matcher ,scanner);
@@ -232,17 +236,18 @@ public class LoginMenu
             System.out.print("Please re-enter your password here:");
             input = scanner.nextLine().trim();
 
-            if (input.equals("back")){
+            if (LoginCommands.getMatcher(input,LoginCommands.BACK) != null){
                 break;
-            } else if (input.equals(password)){
+            }
+            else if (input.equals(password)){
                 LoginControl.setPassword(password);
                 break;
-            } else {
+            }
+            else {
                 System.out.println("Password doesn't match! in order to go to login menu type \"back\"");
             }
         }
-
-
+        
     }
 
 
