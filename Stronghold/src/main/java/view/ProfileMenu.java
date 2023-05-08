@@ -57,6 +57,14 @@ public class ProfileMenu
             else {
                 System.out.println("My liege, that's an invalid command!");
             }
+
+            switch (Application.getCurrentMenu()){
+                case MAIN_MENU:
+                    System.out.println("You're now in Main Menu!");
+                    return;
+                default:
+                    break;
+            }
         }
 
     }
