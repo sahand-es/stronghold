@@ -17,14 +17,8 @@ import java.util.regex.Pattern;
 public class LoginMenu
 {
     public static void run() {
-        if(DataManager.loadLoggedInUser() == null){
-            System.out.println("No user is logged in!");
-            System.out.println("You can log in or if you don't have any account " +
-                    "you can make one by going to sign-up menu");
-        }
-        else{
-            //Todo switch to Main Menu
-        }
+
+        System.out.println("You're in Login Menu!");
 
 
         java.util.Scanner scanner = new java.util.Scanner(System.in);
@@ -272,9 +266,5 @@ public class LoginMenu
     }
 
 
-    public static void main(String args[]){
-        LoginMenu loginMenu = new LoginMenu();
-        loginMenu.run();
-    }
 
 }

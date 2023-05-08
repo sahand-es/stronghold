@@ -17,6 +17,7 @@ public class Application {
         if (users == null){
             users = new ArrayList<>();
         }
+        currentUser = DataManager.loadLoggedInUser();
     }
 
     public static ArrayList<User> getUsers() {
