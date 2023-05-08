@@ -55,7 +55,7 @@ public class LoginMenu
             command = command.replaceAll(userMatcher.group().toString().trim(),"");
             username = (argVal != null) ? argVal : username;
             username = (argValSpace != null) ? argValSpace : username;
-            if (username == null){
+            if (username.equals("")){
                 System.out.println("My liege, you must give username to log in!");
                 return;
             }
@@ -70,7 +70,7 @@ public class LoginMenu
             command = command.replaceAll(passMatcher.group().toString().trim(),"");
             password = (argVal != null) ? argVal : password;
             password = (argValSpace != null) ? argValSpace : password;
-            if (password == null){
+            if (password.equals("")){
                 System.out.println("My liege, you must give password to log in!");
                 return;
             }
@@ -117,7 +117,7 @@ public class LoginMenu
                 System.out.println("Username is empty, please try again.");
                 break;
 
-            case USERNAME_DIDNT_MATCH:
+            case USER_NOT_FOUND:
                 System.out.println("Username didn't match, please try again.");
                 break;
 

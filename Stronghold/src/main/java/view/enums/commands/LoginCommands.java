@@ -4,9 +4,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public enum LoginCommands {
-    LOGIN("^\\s*user\\s+login\\s+"),
-    USER_ARGUMENT("-u\\s+((?<username>\\S+)|\"(?<usernameSpace>.+)\")?"),
-    PASS_ARGUMENT("-p\\s+((?<password>\\S+)|\"(?<passwordSpace>.+)\")?"),
+    LOGIN("^\\s*user\\s+login\\s+.+"),
+    USER_ARGUMENT("-u\\s+(\"(?<usernameSpace>[^-]+)\"|(?<username>[^-\\s]+))?"),
+    PASS_ARGUMENT("-p\\s+((\"(?<passwordSpace>[^-]+)\")|(?<password>[^-\\s]+))?"),
     FINAL_LOGIN_CHECK("^(\\s+)?user\\s+login(\\s+)?$"),
     STAY_LOGGED_IN("--stay-logged-in"),
     FORGOT_PASSWORD("^\\s*forgot\\s+my\\s+password\\s+-u\\s+((?<username>\\S+)|\"(?<usernameSpace>.+)\")?\\s*$"),
