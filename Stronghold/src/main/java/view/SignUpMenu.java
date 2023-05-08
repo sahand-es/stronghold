@@ -313,9 +313,4 @@ public class SignUpMenu {
         return questionData;
     }
 
-    //ToDo delete void main after debugging
-    public static void main(String[] args) {
-        SignUpMenu signUpMenu = new SignUpMenu();
-        signUpMenu.run();
-    }
 }
