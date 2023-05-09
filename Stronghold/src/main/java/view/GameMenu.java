@@ -2,7 +2,7 @@ package view;
 
 public class GameMenu
 {
-    public void run()
+    public static void run()
     {
 
     }

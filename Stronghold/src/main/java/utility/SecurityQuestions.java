@@ -2,9 +2,9 @@ package utility;
 
 public class SecurityQuestions {
     public static String[] securityQuestions = {
-            "What is my father’s name?",
-            "What was my first pet’s name? ",
-            "What is my mother’s last name?"
+            "What was your first job? ",
+            "What was your first pet’s name? ",
+            "What is your social security number? "
     };
 
     public static String getSecurityQuestion(int index){

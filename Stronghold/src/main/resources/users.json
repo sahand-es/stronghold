@@ -1,0 +1,24 @@
+[
+  {
+    "username": "First",
+    "password": "abf04a2aa490956913986ae3b624c1353e06b0ce61fa43481e87296ae7f66c54",
+    "nickname": "FirstUser",
+    "email": "armin@armin.gmail.com",
+    "securityQuestionNumber": 1,
+    "rank": 0,
+    "score": 0,
+    "highScore": 0,
+    "securityAnswer": "Daisy"
+  },
+  {
+    "username": "Second",
+    "password": "4b7e2d4af154f3c2bf02fcbc0dab1fb1f6843cd30501a0d5e815a1dc0a5557e9",
+    "nickname": "nick",
+    "email": "email2.email@email.com",
+    "securityQuestionNumber": 0,
+    "rank": 0,
+    "score": 0,
+    "highScore": 0,
+    "securityAnswer": "teaching"
+  }
+]

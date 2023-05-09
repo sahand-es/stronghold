@@ -6,9 +6,15 @@ import java.util.regex.Pattern;
 public enum SignUpCommands
 {
     EXIT("^\\s*exit\\s*$"),
+    BACK("^\\s*back\\s*$"),
+    SHOW_MENU("^\\s*show\\s+menu\\s*$"),
     CREATE("^(\\s+)?user\\s+create\\s+.+"),
-    ARGUMENT("(\\s+-(?<argumentSpace>\\w+)\\s+\"(?<firstStringSpace>[^-\"]+)\"(?:\\s+(\")?(?<secondStringSpace>[^-\"]+))?)(?:\\s+(?<secondStringsSpaceNON>\\S+))?|(\\s+-(?<argument>\\w+)\\s+(?<firstString>[^- ]+)(?:\\s+(?<secondString>[^- ]+))?)"),
-    QUESTION("^question pick -q (?<questionNumber>\\d) -a (?<answer>\\S+) -c (?<answerConfirm>\\S+)$"),
+    FINAL_CREATE_CHECK("^(\\s+)?user\\s+create(\\s+)?$"),
+    ARGUMENT("((\\s+)?-(?<argumentSpace>\\w+)\\s+\"(?<firstStringSpace>[^-\"]+)\"(\\s+)?(?:\\s+(\")?(?<secondStringSpace>[^-\"]+))?)(?:\\s+(?<secondStringsSpaceNON>\\S+))?|((\\s+)?-(?<argument>\\w+)\\s+(?<firstString>[^- ]+)(?:\\s+(?<secondString>[^- ]+))?)"),
+    QUESTION("^(\\s+)?question\\s+pick\\s+.+"),
+    QUESTION_ARGUMENT("((\\s+)?-(?<argument>\\w+))((\\s+\"(?<stringSpace>[^-\"]+)\")|(\\s+)?(?<string>[^- ]+))"),
+    FINAL_QUESTION_CHECK("^(\\s+)?question\\s+pick(\\s+)?$"),
+    NUMBER_FORMAT("1|2|3"),
     ;
 
     String regex;
@@ -18,14 +24,17 @@ public enum SignUpCommands
         this.regex = regex;
     }
 
-    public static Matcher getMatcher(String input ,SignUpCommands command)
-    {
+    public static Matcher getMatcher(String input ,SignUpCommands command) {
         Matcher matcher = Pattern.compile(command.regex).matcher(input);
         return matcher.matches() ? matcher : null;
     }
 
     public static String getRegexARGUMENT(){
         return ARGUMENT.regex;
+    }
+
+    public static String getRegexQUESTIONARGUMENT(){
+        return QUESTION_ARGUMENT.regex;
     }
 
 }

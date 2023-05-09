@@ -1,0 +1,3 @@
+The program will start from Main Menu. You're either logged in from your previous login (by setting --stay-logged-in
+flag at the end of login command) or you must log in which the program will open up login menu (read Login menu Tutorial).
+

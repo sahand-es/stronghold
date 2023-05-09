@@ -1,5 +1,9 @@
 package controller;
 
+import model.Application;
+import model.User;
+import utility.DataManager;
+import view.Captcha;
 import utility.CheckFunctions;
 import utility.RandomGenerators;
 import view.SignUpMenu;
@@ -7,8 +11,8 @@ import view.enums.messages.SignUpMessages;
 
 import java.util.HashMap;
 
-public class SignUpControl
-{
+public class SignUpControl {
+
     public static SignUpMessages signUp(HashMap<String,String> data) {
         String username = data.get("username");
         String password = data.get("password");
@@ -47,8 +51,12 @@ public class SignUpControl
         if (!password.equals("random") && CheckFunctions.checkPasswordFormat(password)){
             return SignUpMessages.INVALID_PASS_FORMAT;
         }
-        //ToDo check email format
-        //ToDo check email existence
+        if (CheckFunctions.checkEmailFormat(email)){
+           return SignUpMessages.INVALID_EMAIL;
+        }
+        if (CheckFunctions.checkEmailExits(email)){
+            return SignUpMessages.EXISTING_EMAIL;
+        }
         if(password.equals("random") && passwordConfirm != null){
             return SignUpMessages.INVALID_COMMAND_COMBINATION;
         }
@@ -63,9 +71,23 @@ public class SignUpControl
                return SignUpMessages.FAILED;
            }
         }
-        String Answer = SignUpMenu.getSecurityQuestionAnswer();
-        //Todo Get captcha confirmation
-        //Todo add user
+
+        HashMap<String, String> QA = SignUpMenu.getSecurityQuestionAnswer();
+
+        if (QA == null) {
+            return SignUpMessages.FAILED;
+        }
+
+        int questionNumber = Integer.parseInt(QA.get("questionNumber"));
+        String answer = QA.get("answer");
+
+        if (!Captcha.run()){
+            return SignUpMessages.FAILED;
+        }
+
+        User user = new User(username,password,nickname,email,questionNumber - 1,answer);
+        DataManager.saveUsers();
+
         return SignUpMessages.SUCCESS;
     }
 
