@@ -1,5 +1,7 @@
 package model.environment;
 
+import model.map.Direction;
+
 public class Rock extends Environment{
     Direction direction;
 

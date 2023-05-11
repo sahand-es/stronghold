@@ -1,6 +1,6 @@
 package model.environment.buldings;
 
-import model.environment.Direction;
+import model.map.Direction;
 import model.environment.buldings.enums.BuildingCategory;
 import model.resourecs.Resource;
 import model.society.Government;

@@ -17,9 +17,17 @@ public class Map
         {
             for (int x = 0; x < width; x++)
             {
-                grid[y][x] = new Block(x, y, Texture.GROUND);
+                grid[y][x] = new Block(x, y, Texture.GROUND, this);
             }
         }
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public int getWidth() {
+        return width;
     }
 
     public Block getBlockByXY(int x, int y)
@@ -34,6 +42,14 @@ public class Map
 //        ToDo: x, y.
 
         return null;
+    }
+
+    public boolean isValidXY(int x, int y) {
+        if (x < 0 || x > width)
+            return false;
+        if (y < 0 || y > height)
+            return false;
+        return true;
     }
 
 }

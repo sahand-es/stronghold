@@ -1,6 +1,10 @@
 package model.units;
 
+import model.Application;
+import model.Game;
 import model.map.Block;
+import model.map.Direction;
+import model.map.Map;
 import model.resourecs.Armour;
 import model.resourecs.ResourcesName;
 import model.society.Government;
@@ -8,6 +12,8 @@ import model.units.enums.UnitNames;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public abstract class Person {
     protected int hp;
@@ -19,6 +25,7 @@ public abstract class Person {
     protected final HashMap<ResourcesName, Integer> price;
     protected Block block;
     protected Government government;
+    protected Queue<Block> moveQueue;
 
     protected boolean canClimbLadder;
     protected boolean canDigMoat;
@@ -112,7 +119,59 @@ public abstract class Person {
     }
 
     public void move(Block destination) {
+        HashMap<Block, Block> route = BFS(destination);
+        if (route == null)
+            return;
 
+    }
+
+    private HashMap<Block, Block> BFS(Block destination) {
+        Map map = block.getMap();
+
+        Queue<Block> queue = new LinkedList<>();
+        queue.add(block);
+
+
+        boolean[][] visited = new boolean[map.getHeight()][map.getWidth()];
+        HashMap<Block, Block> route = new HashMap<>();
+
+
+        while (!queue.isEmpty()) {
+            Block currentBlock = queue.poll();
+            int x = currentBlock.getX();
+            int y = currentBlock.getY();
+
+            for (int i = 0; i < 3; i++) {
+                for (Direction dir : Direction.values()) {
+                    int nextX = x + dir.deltaX, nextY = y + dir.deltaY;
+                    if (map.isValidXY(nextX, nextY) && !visited[nextY][nextX]) {
+                        Block nextBlock = map.getBlockByXY(nextX, nextY);
+
+                        if (nextBlock.canPassThisBlock(this)) {
+
+                            visited[nextX][nextY] = true;
+                            queue.add(nextBlock);
+
+                            route.put(currentBlock, nextBlock);
+
+                            if (nextBlock.equals(destination)) {
+                                queue.clear();
+                                return route;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    private void addRouteToQueue(HashMap<Block, Block> route, Block destination) {
+        Block blockIter = block;
+        while (!blockIter.equals(destination)) {
+            moveQueue.add(blockIter);
+            blockIter = route.get(blockIter);
+        }
     }
 
     private void die() {

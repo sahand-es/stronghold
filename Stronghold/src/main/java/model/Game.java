@@ -22,6 +22,9 @@ public class Game
 
     private final static  ArrayList<Environment> allEnvironments =new ArrayList<>();
 
+    public Map getMap() {
+        return map;
+    }
 
     private void runGame()
     {
