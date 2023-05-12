@@ -1,26 +1,27 @@
 package model.society;
 
 import model.resourecs.ResourceHolder;
+import model.resourecs.ResourcesName;
 
 public class Trade
 {
-    String tradeId;
     Government seller;
     Government buyer;
-    ResourceHolder resourceHolder;
+    ResourcesName resource;
     String message;
-    int count;
+    int amount;
     int price;
 
-    public Trade(String tradeId, Government seller, Government buyer, ResourceHolder resourceHolder, String message, int count, int price)
+    boolean accepted;
+
+    public Trade(Government seller, Government buyer, ResourcesName resource, int count, int price)
     {
-        this.tradeId = tradeId;
         this.seller = seller;
         this.buyer = buyer;
-        this.resourceHolder = resourceHolder;
-        this.message = message;
-        this.count = count;
+        this.resource = resource;
+        this.amount = count;
         this.price = price;
+        accepted = false;
     }
 
     public Government getSeller()
@@ -33,9 +34,9 @@ public class Trade
         return buyer;
     }
 
-    public ResourceHolder getResource()
+    public ResourcesName getResource()
     {
-        return resourceHolder;
+        return resource;
     }
 
     public String getMessage()
@@ -45,7 +46,7 @@ public class Trade
 
     public int getCount()
     {
-        return count;
+        return amount;
     }
 
     public int getPrice()
