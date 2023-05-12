@@ -4,6 +4,7 @@ import controller.LoginControl;
 
 import model.Application;
 import model.User;
+import utility.CheckFunctions;
 import utility.DataManager;
 import utility.RandomGenerators;
 import view.enums.AllMenus;
@@ -68,12 +69,10 @@ public class LoginMenu
         Matcher userMatcher = Pattern.compile(regexUSER).matcher(command);
 
         if (userMatcher.find()){
-            String argVal = userMatcher.group("username");
-            String argValSpace = userMatcher.group("usernameSpace");
+            username = CheckFunctions.getUserFromMatcher(userMatcher);
             command = command.replaceAll(userMatcher.group().toString().trim(),"");
-            username = (argVal != null) ? argVal : username;
-            username = (argValSpace != null) ? argValSpace : username;
-            if (username.equals("")){
+
+            if (username == null){
                 System.out.println("My liege, you must give username to log in!");
                 return;
             }
@@ -83,12 +82,10 @@ public class LoginMenu
         Matcher passMatcher = Pattern.compile(regexPASS).matcher(command);
 
         if (passMatcher.find()){
-            String argVal = passMatcher.group("password");
-            String argValSpace = passMatcher.group("passwordSpace");
+            password = CheckFunctions.getPassFromMatcher(passMatcher);
             command = command.replaceAll(passMatcher.group().toString().trim(),"");
-            password = (argVal != null) ? argVal : password;
-            password = (argValSpace != null) ? argValSpace : password;
-            if (password.equals("")){
+
+            if (password == null){
                 System.out.println("My liege, you must give password to log in!");
                 return;
             }
@@ -102,8 +99,10 @@ public class LoginMenu
             command = command.replaceAll(stayLoggedInMatcher.group().toString().trim(),"");
         }
 
+
         if (LoginCommands.getMatcher(command,LoginCommands.FINAL_LOGIN_CHECK) == null){
             System.out.println("My liege, there is an invalid argument in login command");
+            return;
         }
 
         LoginMessages messages = LoginControl.checkLogin(username,password,stayLogged);
@@ -134,13 +133,9 @@ public class LoginMenu
     }
 
     private static void forgotPassword(Matcher matcher ,Scanner scanner) {
-        String username = "";
-        String argVal = matcher.group("username");
-        String argValSpace = matcher.group("usernameSpace");
-        username = (argVal != null) ? argVal : username;
-        username = (argValSpace != null) ? argValSpace : username;
+        String username = CheckFunctions.getUserFromMatcher(matcher);
 
-        if (username.equals("")){
+        if (username == null){
             System.out.println("My liege you must give a username!");
             return;
         }

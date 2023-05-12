@@ -6,8 +6,7 @@ public class ProfileControl
 {
 
     public static ProfileMessages changeUsername(String username){
-
-
+        return null;
     }
 
     public static ProfileMessages changeNickname(String nickname){

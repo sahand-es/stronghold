@@ -44,6 +44,19 @@ public class CheckFunctions
 
         return username;
     }
+    public static String getPassFromMatcher(Matcher matcher){
+        String password = "";
+        String argVal = matcher.group("password");
+        String argValSpace = matcher.group("passwordSpace");
+        password = (argVal != null) ? argVal : password;
+        password = (argValSpace != null) ? argValSpace : password;
+
+        if (password.equals("")){
+            return null;
+        }
+
+        return password;
+    }
     public static boolean checkEmailExits(String email)
     {
         return Application.getUserByEmail(email) != null;

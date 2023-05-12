@@ -72,7 +72,6 @@ public class ProfileMenu
     private static void checkChangeUsername(Matcher matcher){
 
 
-
     }
 
     private static void checkChangeNickname(Matcher matcher){
