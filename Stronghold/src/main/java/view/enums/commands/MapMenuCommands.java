@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 public enum MapMenuCommands {
     SHOW_MENU("^\\s*show\\s+menu\\s*$"),
-    BACK("^\\s*back\\s*$"),
+    EXIT("^\\s*exit\\s*$"),
 
     ;
 

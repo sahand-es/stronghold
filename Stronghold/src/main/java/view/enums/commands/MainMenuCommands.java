@@ -9,6 +9,7 @@ public enum MainMenuCommands
     SHOW_MENU("^\\s*show\\s+menu\\s*$"),
     PROFILE_MENU("^\\s*profile\\s+menu\\s*$"),
     GAME_MENU("^\\s*game\\s+menu\\s*$"),
+    //todo edit this regex
     SHOW_MAP("s"),
     LOGOUT("^\\s*user\\s+logout\\s*$"),
     ;
