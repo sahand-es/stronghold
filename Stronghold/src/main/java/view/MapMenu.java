@@ -13,24 +13,18 @@ public class MapMenu {
 
         while(true){
 
-            if(Application.getCurrentUser() == null){
-                Application.setCurrentMenu(AllMenus.LOGIN_MENU);
-                System.out.println("There is no logged in user!");
+
+            command = scanner.nextLine();
+            if(MainMenuCommands.getMatcher(command,MainMenuCommands.EXIT) != null){
+                System.exit(0);
             }
 
-            else{
-                command = scanner.nextLine();
-                if(MainMenuCommands.getMatcher(command,MainMenuCommands.EXIT) != null){
-                    System.exit(0);
-                }
-
-                else if(MainMenuCommands.getMatcher(command,MainMenuCommands.SHOW_MENU) != null){
-                    System.out.println("You're in Map Menu!");
-                }
-                else
-                    System.out.println("My liege, that's an invalid command!");
-                
+            else if(MainMenuCommands.getMatcher(command,MainMenuCommands.SHOW_MENU) != null){
+                System.out.println("You're in Map Menu!");
             }
+            else
+                System.out.println("My liege, that's an invalid command!");
+
 
 
             switch (Application.getCurrentMenu()){
