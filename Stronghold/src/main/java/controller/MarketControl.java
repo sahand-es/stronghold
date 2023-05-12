@@ -73,6 +73,24 @@ public class MarketControl
         return true;
     }
 
+    public static boolean checksell(String name,int amount,Government government){
+
+        if(!ResourcesName.isValidName(name))
+            return false;
+
+
+        HashMap<ResourcesName,Integer> price = new HashMap<>();
+        price.put(ResourcesName.getResourceByName(name),amount);
+
+        if(!government.getResource().checkPay(price))
+            return false;
+
+        government.getResource().pay(price);
+        government.getResource().addGold(amount * sellPrice.get(ResourcesName.getResourceByName(name)));
+
+        return true;
+    }
+
     public static void main(String[] args) {
         System.out.println(showPrice());
     }
