@@ -36,8 +36,25 @@ public class ProfileControl
         return ProfileMessages.SUCCESS;
     }
 
-    public static ProfileMessages changePassword(String password){
-        return null;
+    public static ProfileMessages changePassword(String oldPassword, String newPassword){
+        User currentUser = Application.getCurrentUser();
+        if (!currentUser.checkPassword(oldPassword)){
+            return ProfileMessages.WRONG_PASSWORD;
+        }
+        if (newPassword.length() < 6){
+            return ProfileMessages.INSUFFICIENT_PASS;
+        }
+        if (CheckFunctions.checkPasswordFormat(newPassword)){
+            return ProfileMessages.INVALID_PASS_FORMAT;
+        }
+        if (oldPassword.equals(newPassword)){
+            return ProfileMessages.SAME_PASS;
+        }
+
+
+
+
+        return ProfileMessages.SUCCESS;
     }
 
     public static ProfileMessages changeEmail(String email){

@@ -5,10 +5,12 @@ import model.Application;
 import model.User;
 import utility.CheckFunctions;
 import view.enums.AllMenus;
+import view.enums.commands.LoginCommands;
 import view.enums.commands.ProfileCommands;
 import view.enums.messages.ProfileMessages;
 
 import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ProfileMenu
 {
@@ -34,7 +36,7 @@ public class ProfileMenu
                 checkChangeNickname(matcher);
             }
             else if ((matcher = ProfileCommands.getMatcher(command,ProfileCommands.CHANGE_PASSWORD)) != null) {
-                //todo
+                checkChangePassword(command);
             }
             else if ((matcher = ProfileCommands.getMatcher(command,ProfileCommands.CHANGE_EMAIL)) != null) {
                 //todo
@@ -117,7 +119,47 @@ public class ProfileMenu
         }
     }
 
-    private static void checkChangePassword(Matcher matcher){
+    private static void checkChangePassword(String command){
+        String oldPassword, newPassword;
+
+        String regexOLD = ProfileCommands.getRegexOLDPASS();
+        Matcher matcherOldPass = Pattern.compile(regexOLD).matcher(command);
+        if(!matcherOldPass.find()){
+            System.out.println("You must give the old password!");
+            return;
+        }
+
+        oldPassword = CheckFunctions.getPassFromMatcher(matcherOldPass);
+        command = command.replaceAll(matcherOldPass.group().toString().trim(),"");
+
+        String regexNEW = ProfileCommands.getRegexNEWPASS();
+        Matcher matcherNewPass = Pattern.compile(regexNEW).matcher(command);
+        if(!matcherNewPass.find()){
+            System.out.println("You must give the new password!");
+            return;
+        }
+
+        newPassword = CheckFunctions.getPassFromMatcher(matcherNewPass);
+        command = command.replaceAll(matcherNewPass.group().toString().trim(),"");
+
+        ProfileMessages messages = ProfileControl.changePassword(oldPassword,newPassword);
+
+        switch (messages){
+            case WRONG_PASSWORD:
+                System.out.println("Wrong password!");
+                break;
+            case INSUFFICIENT_PASS:
+                System.out.println("Your password must be at least 6 characters");
+                break;
+            case INVALID_PASS_FORMAT:
+                System.out.println("Your password format is invalid");
+                break;
+            case SUCCESS:
+                System.out.println("Password changed Successfully!");
+                break;
+            default:
+                break;
+        }
 
     }
 
@@ -154,4 +196,5 @@ public class ProfileMenu
             System.out.println(slogan);
     }
 
+    
 }
