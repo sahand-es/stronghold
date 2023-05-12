@@ -8,7 +8,7 @@ import model.resourecs.ResourcesName;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class ResourceExtractorBuilding extends WorkingBuilding {
+public class ResourceExtractorBuilding extends Building {
 
     ArrayList<ResourceHolder> extractedResourceHolder;
 
