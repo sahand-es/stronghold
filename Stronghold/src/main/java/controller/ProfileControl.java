@@ -3,6 +3,8 @@ package controller;
 import model.Application;
 import model.User;
 import utility.CheckFunctions;
+import view.Captcha;
+import view.ProfileMenu;
 import view.enums.messages.ProfileMessages;
 import view.enums.messages.SignUpMessages;
 
@@ -51,8 +53,17 @@ public class ProfileControl
             return ProfileMessages.SAME_PASS;
         }
 
+        if (!Captcha.run()){
+            return ProfileMessages.FAILED;
+        }
 
+        if (ProfileMenu.getPassConfirmation(newPassword)){
+            return ProfileMessages.FAILED;
+        }
 
+        User userInArray = Application.getUserByUsername(currentUser.getUsername());
+        currentUser.setPassword(newPassword);
+        userInArray.setPassword(newPassword);
 
         return ProfileMessages.SUCCESS;
     }

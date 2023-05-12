@@ -142,17 +142,28 @@ public class ProfileMenu
         newPassword = CheckFunctions.getPassFromMatcher(matcherNewPass);
         command = command.replaceAll(matcherNewPass.group().toString().trim(),"");
 
+        if (ProfileCommands.getMatcher(command,ProfileCommands.CHANGE_PASSWORD_FINAL_CHECK) == null){
+            System.out.println("My liege, there is an invalid argument in change pass command");
+            return;
+        }
+
         ProfileMessages messages = ProfileControl.changePassword(oldPassword,newPassword);
 
         switch (messages){
             case WRONG_PASSWORD:
                 System.out.println("Wrong password!");
                 break;
+            case SAME_PASS:
+                System.out.println("Your new password must be different than your previous password!");
+                break;
             case INSUFFICIENT_PASS:
                 System.out.println("Your password must be at least 6 characters");
                 break;
             case INVALID_PASS_FORMAT:
                 System.out.println("Your password format is invalid");
+                break;
+            case FAILED:
+                System.out.println("Password change command was terminated!");
                 break;
             case SUCCESS:
                 System.out.println("Password changed Successfully!");
@@ -196,5 +207,21 @@ public class ProfileMenu
             System.out.println(slogan);
     }
 
-    
+    public static boolean getPassConfirmation(String password){
+        java.util.Scanner scanner = new java.util.Scanner(System.in);
+        String command;
+        while (true){
+            System.out.println("Please enter your new password again or type \"back\" to cancel:");
+            command = scanner.nextLine();
+            if (command.equals(password)){
+                return false;
+            }
+            else if(ProfileCommands.getMatcher(command, ProfileCommands.BACK) != null){
+                System.out.println("Cancelled!");
+                return true;
+            }
+            else
+                System.out.println("Incorrect!");
+        }
+    }
 }

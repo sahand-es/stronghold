@@ -7,7 +7,6 @@ public enum ProfileMessages
     USER_EXIST,
     INSUFFICIENT_PASS,
     INVALID_PASS_FORMAT,
-    INVALID_PASS_CONFIRM,
     WRONG_PASSWORD,
     SAME_PASS,
     FAILED,
