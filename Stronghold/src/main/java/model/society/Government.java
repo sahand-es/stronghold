@@ -257,4 +257,13 @@ public class Government
         populationCapacity -= capacity;
     }
 
+    public String ratesShow() {
+        StringBuilder output = new StringBuilder();
+        output.append("Tax rate: ").append(taxRate);
+        output.append("Fear rate: ").append(fearRate);
+        output.append("Food rate: ").append(foodRate);
+
+        return output.toString();
+    }
+
 }
