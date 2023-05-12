@@ -15,9 +15,11 @@ public class Government
     private int foodRate;
     private int taxRate;
     private int fearRate;
+    private int population;
 
 
     private ArrayList<Trade> tradesDone;
+
     private Colors color;
     private User owner;
 
@@ -72,11 +74,32 @@ public class Government
         popularity += fearRate;
     }
 
+    public int getPopulation() {
+        return population;
+    }
+
+    public void setPopulation(int population) {
+        this.population = population;
+    }
+
     private int calcPopularityOfTaxRate(){
         int output;
         output = -2 * this.taxRate;
         if (this.taxRate <= 0)
             output++;
+        return output;
+    }
+
+    public int calcTax(){
+        int output = 0;
+        if(this.taxRate == 0)
+            return output;
+
+        if (this.taxRate > 0){
+            output = (int) (0.2f*taxRate +0.4f)*getPopulation();
+        } else {
+            output = (int) (0.2f*taxRate -0.4f)*getPopulation();
+        }
         return output;
     }
 }
