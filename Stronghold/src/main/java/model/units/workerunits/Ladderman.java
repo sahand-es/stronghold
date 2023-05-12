@@ -1,5 +1,6 @@
 package model.units.workerunits;
 
+import model.units.WorkerUnit;
 import model.units.enums.UnitName;
 
 public class Ladderman extends WorkerUnit {
