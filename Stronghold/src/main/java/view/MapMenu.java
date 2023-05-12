@@ -36,16 +36,30 @@ public class MapMenu {
     public static void run(int x , int y){
         setMapX(x);
         setMapY(y);
-
-        Map map = new Map(200,200);
+        int height = 200;
+        int width = 200;
+        Map map = new Map(height,width);
 
         map.setTexture(5,5, Texture.WATER);
         java.util.Scanner scanner = new java.util.Scanner(System.in);
         String command;
 
         while(true){
+
+            if (getMapX() > width - 5){
+                setMapX(width - 5);
+            }
+            if (getMapX() < 5){
+                setMapX(5);
+            }
+            if (getMapY() > height - 1){
+                setMapY(height - 1);
+            }
+            if (getMapY() < 1){
+                setMapY(1);
+            }
+
             Block block = map.getBlockByXY(getMapX(),getMapY());
-            //System.out.println("XY: " + getMapX() + " " + getMapY());
             System.out.println(map.showMap(block));
 
             command = scanner.nextLine();
@@ -123,7 +137,7 @@ public class MapMenu {
         }
         else{
             setMapX(getMapX() + right - left);
-            setMapY(getMapY() + up - down);
+            setMapY(getMapY() - up + down);
         }
     }
 
