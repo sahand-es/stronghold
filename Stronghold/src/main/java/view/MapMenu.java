@@ -52,7 +52,9 @@ public class MapMenu {
             else if(MapMenuCommands.getMatcher(command,MapMenuCommands.MAP) != null){
                 getCoordinates(command);
             }
-            //todo show detail
+            else if(MapMenuCommands.getMatcher(command,MapMenuCommands.SHOW_DETAILS) != null){
+                checkShowMap(command);
+            }
             else if(MapMenuCommands.getMatcher(command,MapMenuCommands.SHOW_MENU) != null){
                 System.out.println("You're in Map Menu!");
             }
@@ -119,4 +121,39 @@ public class MapMenu {
         }
     }
 
+    private static void checkShowMap(String command){
+        String x,y;
+
+        String regexForX = MainMenuCommands.getRegexForX();
+        Matcher matcherX = Pattern.compile(regexForX).matcher(command);
+        if(!matcherX.find()){
+            System.out.println("You must give x!");
+            return;
+        }
+        else
+            x = matcherX.group("xNum");
+
+        command = command.replaceAll(matcherX.group().toString().trim(),"");
+
+        String regexForY = MainMenuCommands.getRegexForY();
+        Matcher matcherY = Pattern.compile(regexForY).matcher(command);
+        if(!matcherY.find()){
+            System.out.println("You must give y!");
+            return;
+        }
+        else
+            y = matcherY.group("yNum");
+
+        command = command.replaceAll(matcherY.group().toString().trim(),"");
+
+        if (MapMenuCommands.getMatcher(command, MapMenuCommands.SHOW_MAP_DETAILS_CHECK) == null){
+            System.out.println("Invalid argument in show details command!");
+            return;
+        }
+
+        //todo typecast to int
+        System.out.println("X: " + x);
+        System.out.println("Y: " + y);
+
+    }
 }

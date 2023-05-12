@@ -12,6 +12,8 @@ public enum MapMenuCommands {
     LEFT("(?<leftNumber>\\d+)?(\\s+)?left"),
     UP("(?<upNumber>\\d+)?(\\s+)?up"),
     DOWN("(?<downNumber>\\d+)?(\\s+)?down"),
+    SHOW_DETAILS("^\\s*show\\s+details\\s+.*"),
+    SHOW_MAP_DETAILS_CHECK("^\\s*show\\s+details\\s+$"),
     ;
 
     String regex;
