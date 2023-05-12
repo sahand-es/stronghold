@@ -1,6 +1,7 @@
 package controller;
 
 import model.resourecs.ResourcesName;
+import model.society.Government;
 
 import java.util.HashMap;
 
@@ -55,6 +56,13 @@ public class MarketControl
         }
 
         return output;
+    }
+
+    public static boolean checkBuy(String name,int amount,Government government){
+
+
+
+        return true;
     }
 
     public static void main(String[] args) {
