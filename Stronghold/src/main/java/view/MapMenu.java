@@ -14,7 +14,6 @@ public class MapMenu {
 
         while(true){
 
-            System.out.println("XY: " + x + " " + y);
             //todo literally show the fucking map!
 
             command = scanner.nextLine();

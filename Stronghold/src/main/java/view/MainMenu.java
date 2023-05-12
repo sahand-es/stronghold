@@ -108,18 +108,18 @@ public class MainMenu
             return;
         }
         else
-            x = matcherX.group("x_num");
+            x = matcherX.group("xNum");
 
         command = command.replaceAll(matcherX.group().toString().trim(),"");
 
         String regexForY = MainMenuCommands.getRegexForY();
         Matcher matcherY = Pattern.compile(regexForY).matcher(command);
-        if(!matcherX.find()){
+        if(!matcherY.find()){
             System.out.println("You must give y!");
             return;
         }
         else
-            y = matcherX.group("Y_num");
+            y = matcherY.group("yNum");
 
         command = command.replaceAll(matcherY.group().toString().trim(),"");
 

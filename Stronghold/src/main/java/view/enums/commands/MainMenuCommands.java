@@ -9,10 +9,10 @@ public enum MainMenuCommands
     SHOW_MENU("^\\s*show\\s+menu\\s*$"),
     PROFILE_MENU("^\\s*profile\\s+menu\\s*$"),
     GAME_MENU("^\\s*game\\s+menu\\s*$"),
-    SHOW_MAP("^\\s*show\\s+map\\s*"),
+    SHOW_MAP("^\\s*show\\s+map\\s+.*"),
     SHOW_MAP_FINAL_CHECK("^\\s*show\\s+map\\s+$"),
-    X_DIR("-x\\s+(?<x_num>\\S+)"),
-    Y_DIR("-y\\s+(?<y_num>\\S+)"),
+    X_DIR("-x\\s+(?<xNum>\\S+)"),
+    Y_DIR("-y\\s+(?<yNum>\\S+)"),
     LOGOUT("^\\s*user\\s+logout\\s*$"),
     ;
 
