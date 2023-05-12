@@ -143,11 +143,4 @@ public class DataManager {
 
     //ToDo delete Logged in user from json file
     //This must be called for when we log out in profile menu
-
-    public static void main(String[] args) {
-        Map map = new Map(100, 100);
-        Game game = new Game(map);
-        System.out.println(Application.getGames());
-        saveGames(map);
-    }
 }

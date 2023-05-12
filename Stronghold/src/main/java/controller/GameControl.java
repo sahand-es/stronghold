@@ -25,6 +25,10 @@ public class GameControl {
         this.game = game;
     }
 
+    private GameMessages createBuilding(int x, int y, String type) {
+
+        return GameMessages.SUCCESS;
+    }
     private GameMessages selectBuilding(int x, int y) {
         Map map = game.getMap();
         if (!map.isValidXY(x, y))
@@ -42,6 +46,4 @@ public class GameControl {
         selectedBuilding = (Building) map.getBlockByXY(x, y).getEnvironment();
         return GameMessages.SUCCESS;
     }
-
-
 }

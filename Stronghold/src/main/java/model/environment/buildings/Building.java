@@ -163,8 +163,10 @@ public class Building extends Environment {
                     break;
                 }
 
-                case "Castle":
+                case "Castle": {
                     new Castle(hp, buildingCategory, name, price);
+                    break;
+                }
                 default:
                     throw new RuntimeException();
             }
@@ -218,5 +220,9 @@ public class Building extends Environment {
                 ", category=" + category +
                 ", price=" + price +
                 "}\n";
+    }
+
+    public static void main(String[] args) {
+        System.out.println(allBuildings);
     }
 }

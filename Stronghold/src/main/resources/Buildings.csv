@@ -45,4 +45,4 @@ Unit Maker,Engineer Guild,Castle,2,500,Wood~Gold,10~100,null,null,null,null,null
 Building,Short Wall,Castle,1,100,Stone,1,null,null,null,null,null
 Building,Tall Wall,Castle,1,100,Stone,1,null,null,null,null,null
 Building,Stair,Castle,1,100,Stone,1,null,null,null,null,null
-Castle,Castel,Castle,1,3000,null,null,null,null,null,null,null
+Castle,Castle,Castle,1,3000,null,null,null,null,null,null,null
