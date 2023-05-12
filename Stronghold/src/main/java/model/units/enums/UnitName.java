@@ -24,7 +24,12 @@ public enum UnitName {
     ARABIAN_SWORDSMAN("Arabian Swordsman"),
     ARABIAN_BOW("Arabian Bow"),
     BLACK_MONK("Black Monk"),
-    FIRE_THROWER("Fire Thrower");
+    FIRE_THROWER("Fire Thrower"),
+    BATTERING_RAM("Battering Ram"),
+    CATAPULT("Catapult"),
+    STONE_THROWER("Stone Thrower"),
+    SIEGE_TOWER("Siege Tower")
+    ;
     private final String name;
     public final static ArrayList<UnitName> Barracks = new ArrayList<>(List.of(ARCHER,CROSSBOWMAN,SPEARMAN,PIKEMAN,MACEMAN,SWORDSMAN,KNIGHT));
     public final static ArrayList<UnitName> MercenaryPost = new ArrayList<>(List.of(SLAVE,SLINGER,ASSASSIN,HORSE_ARCHER,ARABIAN_BOW,ARABIAN_SWORDSMAN,FIRE_THROWER));

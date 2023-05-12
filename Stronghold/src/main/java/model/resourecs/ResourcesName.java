@@ -38,6 +38,8 @@ public enum ResourcesName
     SLING("Sling"),
     SCIMITAR("Scimitar"),
     GREEK_FIRE("Greek Fire"),
+    RAM("RAM"),
+    THROWER("Thrower"),
 
 //  Armors:
     LEATHER("Leather"),
