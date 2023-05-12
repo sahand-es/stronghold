@@ -2,23 +2,19 @@ package model.map;
 
 import model.society.enums.Colors;
 
-public class Map
-{
+public class Map {
     Block[][] grid;
 
     private final int height;
     private final int width;
 
-    public Map(int height, int width)
-    {
+    public Map(int height, int width) {
         this.height = height;
         this.width = width;
 
         grid = new Block[height][width];
-        for (int y = 0; y < height; y++)
-        {
-            for (int x = 0; x < width; x++)
-            {
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
                 grid[y][x] = new Block(x, y, Texture.GROUND, this);
             }
         }
@@ -32,13 +28,11 @@ public class Map
         return width;
     }
 
-    public Block getBlockByXY(int x, int y)
-    {
+    public Block getBlockByXY(int x, int y) {
         return grid[y][x];
     }
 
-    public Block[][] getMiniMap(int x, int y, int width, int height)
-    {
+    public Block[][] getMiniMap(int x, int y, int width, int height) {
         Block[][] miniMap;
 
 //        ToDo: x, y.
@@ -58,10 +52,17 @@ public class Map
 
         for (int x = leftCornerX; x < width + leftCornerX; x++) {
             for (int y = leftCornerY; y < height + leftCornerY; y++) {
-                getBlockByXY(x,y).setTexture(texture);
+                getBlockByXY(x, y).setTexture(texture);
             }
         }
 
+    }
+
+    public void clearBlock(int x, int y) {
+        grid[y][x] = new Block(x, y, Texture.GROUND, this);
+    }
+
+    public void dropRock(int x, int y) {
     }
 
     public boolean isValidXY(int x, int y) {
@@ -75,7 +76,7 @@ public class Map
     public String showMap(Block block) {
         int blockWidth = 5, blockHeight = 3;
         StringBuilder output = new StringBuilder();
-        int heightRange = 1, widthRange= 5;
+        int heightRange = 1, widthRange = 5;
         int xCorner = block.getX() - widthRange, yCorner = block.getY() - heightRange;
 
         for (int y = yCorner; y < heightRange * 2 + 1 + yCorner; y++) {
@@ -93,7 +94,7 @@ public class Map
                     output.append("#".repeat(blockWidth));
                     output.append(Colors.RESET);
                 }
-            output.append("|\n");
+                output.append("|\n");
             }
 
 
@@ -107,8 +108,8 @@ public class Map
     public static void main(String[] args) {
         Map map = new Map(100, 100);
 //        map.setTexture(50, 50, Texture.WATER);
-        map.setGroupTexture(50,50,55,51, Texture.WATER);
-        System.out.println(map.showMap(map.getBlockByXY(50,50)));
+        map.setGroupTexture(50, 50, 55, 51, Texture.WATER);
+        System.out.println(map.showMap(map.getBlockByXY(50, 50)));
     }
 
 }
