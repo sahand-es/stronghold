@@ -15,6 +15,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class MapMenu {
+    private static int HEIGHT = 200;
+    private static int WIDTH = 200;
     private static int mapX,mapY;
 
     public static int getMapX() {
@@ -36,9 +38,7 @@ public class MapMenu {
     public static void run(int x , int y){
         setMapX(x);
         setMapY(y);
-        int height = 200;
-        int width = 200;
-        Map map = new Map(height,width);
+        Map map = new Map(HEIGHT,WIDTH);
 
         map.setTexture(5,5, Texture.WATER);
         java.util.Scanner scanner = new java.util.Scanner(System.in);
@@ -46,14 +46,14 @@ public class MapMenu {
 
         while(true){
 
-            if (getMapX() > width - 5){
-                setMapX(width - 5);
+            if (getMapX() > WIDTH - 5){
+                setMapX(WIDTH - 5);
             }
             if (getMapX() < 5){
                 setMapX(5);
             }
-            if (getMapY() > height - 1){
-                setMapY(height - 1);
+            if (getMapY() > HEIGHT - 1){
+                setMapY(HEIGHT - 1);
             }
             if (getMapY() < 1){
                 setMapY(1);
@@ -171,9 +171,15 @@ public class MapMenu {
             return;
         }
 
-        //todo typecast to int
-        System.out.println("X: " + x);
-        System.out.println("Y: " + y);
+        if (Integer.parseInt(x) < 0 || Integer.parseInt(x) > WIDTH){
+            System.out.println("Out of bound in X axis!");
+            return;
+        }
+        if (Integer.parseInt(y) < 0 || Integer.parseInt(y) > HEIGHT){
+            System.out.println("Out of bound in Y axis!");
+            return;
+        }
 
+        
     }
 }
