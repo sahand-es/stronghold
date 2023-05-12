@@ -13,7 +13,6 @@ import java.util.HashMap;
 public class StorageBuilding extends Building {
 
     int capacity;
-    ArrayList<ResourceHolder> storage;
 
     protected StorageBuilding(int hp,
                               BuildingCategory category,
@@ -29,17 +28,12 @@ public class StorageBuilding extends Building {
         super(name, government, block);
         StorageBuilding buildingToClone = (StorageBuilding) getBuildingByBuildingName(name);
         this.capacity = buildingToClone.capacity;
-    }
-
-    public ArrayList<ResourceHolder> getStorage() {
-        return storage;
-    }
-
-    public void setStorage(ArrayList<ResourceHolder> storage) {
-        this.storage = storage;
+        government.addCapacity(name,this.capacity);
     }
 
     public int getCapacity() {
         return capacity;
     }
+
+
 }

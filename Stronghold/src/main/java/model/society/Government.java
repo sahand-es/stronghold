@@ -3,6 +3,7 @@ package model.society;
 import model.Game;
 import model.User;
 import model.environment.buildings.Building;
+import model.environment.buildings.enums.BuildingName;
 import model.resourecs.Resource;
 import model.siegeutil.SiegeUtil;
 import model.society.enums.Colors;
@@ -211,17 +212,17 @@ public class Government
         popularity += amount;
     }
 
-    public void addCapacity(String BuildingName, int capacity){
-        switch (BuildingName){
-            case "Armory":
+    public void addCapacity(BuildingName name, int capacity){
+        switch (name){
+            case ARMOURY:
                 weaponCapacity += capacity;
                 break;
 
-            case "Granary":
+            case GRANARY:
                 foodCapacity += capacity;
                 break;
 
-            case "Stockpile":
+            case STOCKPILE:
                 materialCapacity += capacity;
                 break;
 
@@ -230,17 +231,17 @@ public class Government
         }
     }
 
-    public void subtractCapacity(String BuildingName, int capacity){
-        switch (BuildingName){
-            case "Armory":
+    public void subtractCapacity(BuildingName building, int capacity){
+        switch (building){
+            case ARMOURY:
                 weaponCapacity -= capacity;
                 break;
 
-            case "Granary":
+            case GRANARY:
                 foodCapacity -= capacity;
                 break;
 
-            case "Stockpile":
+            case STOCKPILE:
                 materialCapacity -= capacity;
                 break;
 
