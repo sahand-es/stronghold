@@ -39,9 +39,8 @@ public class Government
     private User owner;
     private Game game;
 
-    public Government(User owner,Game game)
+    public Government(Game game)
     {
-        this.owner = owner;
         this.game = game;
         tradesDone = new ArrayList<>();
         units = new ArrayList<>();

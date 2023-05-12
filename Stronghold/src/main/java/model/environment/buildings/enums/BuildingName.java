@@ -68,7 +68,8 @@ public enum BuildingName {
     OX_TETHER("Ox Tether"),
     SHORT_WALL("Short Wall"),
     TALL_WALL("Tall_Wall"),
-    STAIR("Stair")
+    STAIR("Stair"),
+    CASTLE("Castle")
     ;
     private final String name;
 
