@@ -29,7 +29,7 @@ public class MainMenu
                 }
                 else if(MainMenuCommands.getMatcher(command,MainMenuCommands.LOGOUT) != null){
                     Application.setCurrentUser(null);
-                    DataManager.saveLoggedIn();
+                    DataManager.saveLoggedIn(null);
                 }
                 else if(MainMenuCommands.getMatcher(command,MainMenuCommands.PROFILE_MENU) != null){
                     Application.setCurrentMenu(AllMenus.PROFILE_MENU);

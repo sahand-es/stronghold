@@ -65,12 +65,12 @@ public class DataManager {
             return null;
         }
     }
-    public static void saveLoggedIn() {
+    public static void saveLoggedIn(User user) {
         FileWriter fileWriter;
         try {
             fileWriter = new FileWriter(LOGGED_IN_DATABASE_PATH);
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
-            String json = gson.toJson(Application.getCurrentUser());
+            String json = gson.toJson(user);
             fileWriter.write(json);
             fileWriter.close();
         } catch (IOException e) {
@@ -78,4 +78,8 @@ public class DataManager {
         }
     }
 
+    public static void saver(){
+        saveUsers();
+        saveLoggedIn(null);
+    }
 }
