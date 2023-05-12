@@ -71,5 +71,20 @@ public class Resource {
         return output;
     }
 
+    public void payFood(int amount){
+        int foodValue;
+        for (ResourcesName food : ResourcesName.foods) {
+            foodValue = this.allResources.get(food);
+            if (amount < foodValue){
+                this.allResources.put(food,foodValue-amount);
+                break;
+            } else {
+                this.allResources.put(food,0);
+                amount = amount - foodValue;
+            }
+        }
+
+    }
+
 
 }
