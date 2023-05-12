@@ -38,5 +38,29 @@ public class MarketControl
         }
     }
 
+    public static String showPrice(){
+        String output = "foods";
+        for (ResourcesName food : ResourcesName.foods) {
+            output += "\n" + food.name() + ": buy = " + buyPrice.get(food) + "  sell =" + sellPrice.get(food);
+        }
+        output += "\nmaterials:" ;
+
+        for (ResourcesName material : ResourcesName.Materials) {
+            output += "\n" + material.name() + ": buy = " + buyPrice.get(material) + "  sell =" + sellPrice.get(material);
+        }
+
+        output += "\nweapons:";
+        for (ResourcesName weapon : ResourcesName.weapons) {
+            output += "\n" + weapon.name() + ": buy = " + buyPrice.get(weapon) + "  sell =" + sellPrice.get(weapon);
+        }
+
+        return output;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(showPrice());
+    }
+
+
 
 }
