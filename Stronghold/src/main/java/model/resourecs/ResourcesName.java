@@ -17,6 +17,7 @@ public enum ResourcesName
     IRON("Iron"),
     WOOD("Wood"),
     PITCH("Pitch"),
+    OIL("Oil"),
 
 //  Foods:
     MEAT("Meat"),

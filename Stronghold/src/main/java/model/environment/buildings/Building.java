@@ -37,6 +37,7 @@ public class Building extends Environment {
             BuildingCategory buildingCategory = null;
             BuildingName name = null;
             HashMap<ResourcesName, Integer> price = new HashMap<>();
+            ArrayList<ResourcesName> extract = new ArrayList<>();
 
             for (int j = 0; j < attributeNames.length; j++) {
                 switch (attributeNames[j]) {
@@ -98,6 +99,15 @@ public class Building extends Environment {
                         damage = Integer.parseInt(attributes[j]);
                         break;
                     }
+                    case "Extracted Resource": {
+                        if (attributes[j].equals("null"))
+                            continue;
+                        String[] extractNames = attributes[j].split("~");
+                        for (String extractName : extractNames) {
+                            extract.add(ResourcesName.getResourceByName(extractName));
+                        }
+                        break;
+                    }
 
                 }
             }
@@ -124,13 +134,10 @@ public class Building extends Environment {
                     break;
                 }
                 case "Extractor": {
-                    new ResourceExtractorBuilding(hp, buildingCategory, name, price);
+                    new ResourceExtractorBuilding(hp, buildingCategory, name, price, extract);
                     break;
                 }
-                case "Resource Maker": {
-                    new ResourceMakerBuilding(hp, buildingCategory, name, price);
-                    break;
-                }
+
                 case "Storage": {
                     new StorageBuilding(hp, buildingCategory, name, price, capacity);
                     break;
