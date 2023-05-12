@@ -149,7 +149,6 @@ public abstract class Person {
         }
     }
 
-
     protected Person(int hp, int speed, int defencePower,
                      UnitName name,
                      HashMap<ResourcesName, Integer> price,
@@ -226,7 +225,11 @@ public abstract class Person {
     }
 
     public void takeDamage(int damage) {
-
+        if ((damage - defencePower) < hp) {
+            hp -= (damage - defencePower);
+            return;
+        }
+        die();
     }
 
     public void findPath(Block destination) {
@@ -301,7 +304,12 @@ public abstract class Person {
         }
     }
 
+    //    TODO: delete this from government
     private void die() {
+        this.block.removeUnit(this);
+    }
 
+    public static void main(String[] args) {
+        System.out.println(allUnits);
     }
 }
