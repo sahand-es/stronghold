@@ -18,12 +18,13 @@ public class User {
     private int highScore;
     private final String securityAnswer;
 
-    public User(String username, String password, String nickname, String email, int securityQuestionNumber, String securityAnswer) {
+    public User(String username, String password, String nickname, String email, int securityQuestionNumber, String securityAnswer,String slogan) {
         this.username = username;
         this.nickname = nickname;
         this.email = email.toLowerCase();
         this.securityQuestionNumber = securityQuestionNumber;
         this.securityAnswer = securityAnswer;
+        this.slogan = slogan;
         setPassword(password);
         Application.addUser(this);
     }

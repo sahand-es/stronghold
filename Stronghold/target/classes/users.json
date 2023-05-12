@@ -4,6 +4,7 @@
     "password": "abf04a2aa490956913986ae3b624c1353e06b0ce61fa43481e87296ae7f66c54",
     "nickname": "FirstUser",
     "email": "test.change@email.com",
+    "slogan": "sousef tala",
     "securityQuestionNumber": 1,
     "rank": 0,
     "score": 0,
@@ -20,5 +21,28 @@
     "score": 0,
     "highScore": 0,
     "securityAnswer": "teaching"
+  },
+  {
+    "username": "Third",
+    "password": "4dd2819710037299e85056d209224db2a97d1076e9910c6b3a49a6f9b1203e70",
+    "nickname": "nick",
+    "email": "email.test@gmail.com",
+    "securityQuestionNumber": 1,
+    "rank": 0,
+    "score": 0,
+    "highScore": 0,
+    "securityAnswer": "1234567"
+  },
+  {
+    "username": "Fourth",
+    "password": "dcdfc70aca8d1126dee2f7810e164c4b3d59c1de6c868197151d3a10e75cc8c1",
+    "nickname": "chahar",
+    "email": "test.test@gmail.com",
+    "slogan": "Armin: Let Your Mustache Castles in Sharif University Roar with Sahand!",
+    "securityQuestionNumber": 1,
+    "rank": 0,
+    "score": 0,
+    "highScore": 0,
+    "securityAnswer": "just a test"
   }
 ]

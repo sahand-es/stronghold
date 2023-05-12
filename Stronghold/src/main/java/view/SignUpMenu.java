@@ -150,7 +150,7 @@ public class SignUpMenu {
         }
         else{
             System.out.println("My liege, that's an invalid argument in create user command!");
-            createData = null;
+            createData.clear();
             return null;
         }
     }
@@ -212,7 +212,10 @@ public class SignUpMenu {
     private static void checkCreateUser(Matcher matcher, String command) {
         SignUpMessages message;
         if(createData != null){
-            if (command.matches(".*-s.*") && createData.get("slogan").equals("")) {
+            if (command.matches(".*-s.*") && createData.get("slogan") == null) {
+                System.out.println("My liege, you must give a slogan when you give it's argument!");
+            }
+            else if (command.matches(".*-s.*") && createData.get("slogan").equals(null)) {
                 System.out.println("My liege, you must give a slogan when you give it's argument!");
             }
             else {
