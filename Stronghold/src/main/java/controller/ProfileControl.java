@@ -21,7 +21,7 @@ public class ProfileControl
         User userInArray = Application.getUserByUsername(currentUser.getUsername());
         currentUser.setUsername(username);
         userInArray.setUsername(username);
-        return ProfileMessages.SUCCES;
+        return ProfileMessages.SUCCESS;
     }
 
     public static ProfileMessages changeNickname(String nickname){
@@ -33,7 +33,7 @@ public class ProfileControl
         User userInArray = Application.getUserByUsername(currentUser.getUsername());
         currentUser.setNickname(nickname);
         userInArray.setNickname(nickname);
-        return ProfileMessages.SUCCES;
+        return ProfileMessages.SUCCESS;
     }
 
     public static ProfileMessages changePassword(String password){

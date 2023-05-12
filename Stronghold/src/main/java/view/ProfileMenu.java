@@ -88,7 +88,7 @@ public class ProfileMenu
             case USER_EXIST:
                 System.out.println("That username is already taken!");
                 break;
-            case SUCCES:
+            case SUCCESS:
                 System.out.println("Username changed Successfully!");
                 break;
             default:
@@ -109,7 +109,7 @@ public class ProfileMenu
             case INVALID_NICK_FORMAT:
                 System.out.println("That's an invalid format for nickname!");
                 break;
-            case SUCCES:
+            case SUCCESS:
                 System.out.println("Nickname changed Successfully!");
                 break;
             default:
