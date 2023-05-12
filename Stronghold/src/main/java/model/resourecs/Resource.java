@@ -55,4 +55,12 @@ public class Resource {
         return output;
     }
 
+    public int getWeaponAmount(){
+        int output = 0;
+        for (ResourcesName weapon : ResourcesName.weapons) {
+            output += this.allResources.get(weapon);
+        }
+        return output;
+    }
+
 }
