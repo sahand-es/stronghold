@@ -60,7 +60,15 @@ public class MarketControl
 
     public static boolean checkBuy(String name,int amount,Government government){
 
+        if(!ResourcesName.isValidName(name))
+            return false;
 
+        int price = buyPrice.get(ResourcesName.getResourceByName(name)) * amount;
+
+        if(amount > government.getResource().getGold())
+            return false;
+
+        government.getResource().addGold(-amount);
 
         return true;
     }
