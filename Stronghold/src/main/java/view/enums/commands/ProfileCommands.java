@@ -6,13 +6,14 @@ import java.util.regex.Pattern;
 public enum ProfileCommands {
 
 
-    CHANGE_USERNAME("^\\s*profile\\s+change\\s+-u\\s+((\"(?<usernameSpace>.+)\")|(?<username>\\S+))$"),
-    CHANGE_NICKNAME("^\\s*profile\\s+change\\s+-n\\s+((\"(?<nicknameSpace>.+)\")|(?<nickname>\\S+))$"),
-    CHANGE_PASSWORD("^\\s*profile\\s+change\\s+password\\s*$"),
+    CHANGE_USERNAME("^\\s*profile\\s+change\\s+-u(\\s+)?(((\"(?<usernameSpace>.+)\")|(?<username>\\S+)))?$"),
+    CHANGE_NICKNAME("^\\s*profile\\s+change\\s+-n(\\s+)?(((\"(?<nicknameSpace>.+)\")|(?<nickname>\\S+)))?$"),
+    CHANGE_PASSWORD("^\\s*profile\\s+change\\s+password\\s.*"),
+    CHANGE_PASSWORD_FINAL_CHECK("^\\s*profile\\s+change\\s+password\\s+$"),
     CHANGE_PASSWORD_OLD("-o\\s+((\"(?<passwordSpace>[^-]+)\")|(?<password>[^-\\s]+))?"),
     CHANGE_PASSWORD_NEW("-n\\s+((\"(?<passwordSpace>[^-]+)\")|(?<password>[^-\\s]+))?"),
-    CHANGE_EMAIL("^\\s*profile\\s+change\\s+-e\\s+((\"(?<emailSpace>.+)\")|(?<email>\\S+))$"),
-    CHANGE_SLOGAN("^\\s*profile\\s+change\\s+slogan\\s+-s\\s+((\"(?<passwordSpace>.+)\")|(?<password>\\S+))$"),
+    CHANGE_EMAIL("^\\s*profile\\s+change\\s+-e(\\s+)?(((\"(?<emailSpace>.+)\")|(?<email>\\S+)))?$"),
+    CHANGE_SLOGAN("^\\s*profile\\s+change\\s+slogan\\s+-s(\\s+)?(((\"(?<sloganSpace>.+)\")|(?<slogan>\\S+)))?$"),
     REMOVE_SLOGAN("^\\s*profile\\s+remove\\s+slogan\\s*$"),
     DISPLAY_HIGH_SCORE("^\\s*profile\\s+display\\s+highscore\\s*$"),
     DISPLAY_RANK("^\\s*profile\\s+display\\s+rank\\s*$"),
@@ -33,5 +34,12 @@ public enum ProfileCommands {
     {
         Matcher matcher = Pattern.compile(command.regex).matcher(input);
         return matcher.matches() ? matcher : null;
+    }
+
+    public static String getRegexOLDPASS(){
+        return CHANGE_PASSWORD_OLD.regex;
+    }
+    public static String getRegexNEWPASS(){
+        return CHANGE_PASSWORD_NEW.regex;
     }
 }

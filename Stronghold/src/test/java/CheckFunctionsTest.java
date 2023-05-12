@@ -36,8 +36,8 @@ public class CheckFunctionsTest {
 
     @Test
     public void exists() {
-        User user1 = new User("yousef", "S@hand844", "duh", "asdfa@dsaf.com", 2, "bluh");
-        User user2 = new User("sahand", "S@hand844", "duh", "asdafa@dsaf.com", 2, "bluh");
+        User user1 = new User("yousef", "S@hand844", "duh", "asdfa@dsaf.com", 2, "bluh",null);
+        User user2 = new User("sahand", "S@hand844", "duh", "asdafa@dsaf.com", 2, "bluh",null);
 
         assertTrue(CheckFunctions.checkUsernameExits("sahand"));
         assertTrue(CheckFunctions.checkUsernameExits("yousef"));

@@ -1,24 +1,80 @@
 [
   {
+    "username": "bluh",
+    "password": "e0de5e0d7c08bd4decf7df3053f80edb0cc34c06cee39f771ab85c3db2b9adcf",
+    "nickname": "duh",
+    "email": "asdfa@dsaf.com",
+    "securityQuestionNumber": 2,
+    "rank": 0,
+    "score": 0,
+    "highScore": 0,
+    "securityAnswer": "bluh"
+  },
+  {
+    "username": "bluhasdf",
+    "password": "e0de5e0d7c08bd4decf7df3053f80edb0cc34c06cee39f771ab85c3db2b9adcf",
+    "nickname": "nibba",
+    "email": "asdfa@dsakf.com",
+    "securityQuestionNumber": 1,
+    "rank": 0,
+    "score": 0,
+    "highScore": 0,
+    "securityAnswer": "bluh"
+  },
+  {
+    "username": "bluh",
+    "password": "e0de5e0d7c08bd4decf7df3053f80edb0cc34c06cee39f771ab85c3db2b9adcf",
+    "nickname": "duh",
+    "email": "newemail",
+    "securityQuestionNumber": 2,
+    "rank": 0,
+    "score": 0,
+    "highScore": 0,
+    "securityAnswer": "bluh"
+  },
+  {
+    "username": "bluhasdf",
+    "password": "e0de5e0d7c08bd4decf7df3053f80edb0cc34c06cee39f771ab85c3db2b9adcf",
+    "nickname": "nibba",
+    "email": "asdfa@dsakf.com",
+    "securityQuestionNumber": 1,
+    "rank": 0,
+    "score": 0,
+    "highScore": 0,
+    "securityAnswer": "bluh"
+  },
+  {
+    "username": "bluh",
+    "password": "5da7dd57905dca05ed787d6f1be93bc0e4d279bee43553c2e08874f38fda93b",
+    "nickname": "duh",
+    "email": "asdfa@dsaf.com",
+    "securityQuestionNumber": 2,
+    "rank": 0,
+    "score": 0,
+    "highScore": 0,
+    "securityAnswer": "bluh"
+  },
+  {
+    "username": "bluhasdf",
+    "password": "e0de5e0d7c08bd4decf7df3053f80edb0cc34c06cee39f771ab85c3db2b9adcf",
+    "nickname": "nibba",
+    "email": "asdfa@dsakf.com",
+    "securityQuestionNumber": 1,
+    "rank": 0,
+    "score": 0,
+    "highScore": 0,
+    "securityAnswer": "bluh"
+  },
+  {
     "username": "First",
     "password": "abf04a2aa490956913986ae3b624c1353e06b0ce61fa43481e87296ae7f66c54",
-    "nickname": "FirstUser",
-    "email": "armin@armin.gmail.com",
+    "nickname": "nick",
+    "email": "test@test.gmail.com",
+    "slogan": "",
     "securityQuestionNumber": 1,
     "rank": 0,
     "score": 0,
     "highScore": 0,
     "securityAnswer": "Daisy"
-  },
-  {
-    "username": "Second",
-    "password": "4b7e2d4af154f3c2bf02fcbc0dab1fb1f6843cd30501a0d5e815a1dc0a5557e9",
-    "nickname": "nick",
-    "email": "email2.email@email.com",
-    "securityQuestionNumber": 0,
-    "rank": 0,
-    "score": 0,
-    "highScore": 0,
-    "securityAnswer": "teaching"
   }
 ]
