@@ -12,12 +12,11 @@ import java.util.ArrayList;
 public class Government
 {
     private int popularity;
-    private int gold;
-    private int population;
-    private ArrayList<ResourceHolder> resourceHolders;
-    private ArrayList<ResourceHolder> foods;
-    private ArrayList<Building> buildings;
-    private ArrayList<Person> allUnits;
+    private int foodRate;
+    private int taxRate;
+    private int fearRate;
+
+
     private ArrayList<Trade> tradesDone;
     private Colors color;
     private User owner;
@@ -27,24 +26,7 @@ public class Government
         this.owner = owner;
     }
 
-    public int getPopularity()
-    {
-        return popularity;
-    }
 
-    public int getGold()
-    {
-        return gold;
-    }
-
-    public int getPopulation()
-    {
-        return population;
-    }
-
-    private static void popularityFactorControl(){
-
-    }
     public void populationGrowth()
     {
 
@@ -53,5 +35,38 @@ public class Government
     public static void trade(Trade trade)
     {
 
+    }
+
+    public int getPopularity() {
+        return popularity;
+    }
+
+    public void setPopularity(int popularity) {
+        this.popularity = popularity;
+    }
+
+    public int getFoodRate() {
+        return foodRate;
+    }
+
+    public void setFoodRate(int foodRate) {
+        this.foodRate = foodRate;
+        popularity += 4 * foodRate;
+    }
+
+    public int getTaxRate() {
+        return taxRate;
+    }
+
+    public void setTaxRate(int taxRate) {
+        this.taxRate = taxRate;
+    }
+
+    public int getFearRate() {
+        return fearRate;
+    }
+
+    public void setFearRate(int fearRate) {
+        this.fearRate = fearRate;
     }
 }
