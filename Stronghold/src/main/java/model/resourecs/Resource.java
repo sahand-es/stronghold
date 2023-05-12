@@ -20,4 +20,12 @@ public class Resource {
             this.allResources.put(resourcesName,s);
         }
     }
+
+    public void pay(HashMap<ResourcesName,Integer> price){
+        int s;
+        for (ResourcesName resourcesName : price.keySet()) {
+            s = this.allResources.get(resourcesName) - price.get(resourcesName);
+            this.allResources.put(resourcesName,s);
+        }
+    }
 }
