@@ -212,6 +212,10 @@ public class Building extends Environment {
         return price;
     }
 
+    public BuildingName getName() {
+        return name;
+    }
+
     @Override
     public String toString() {
         return this.name + "{" +

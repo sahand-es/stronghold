@@ -2,10 +2,12 @@ package controller;
 
 import model.Game;
 import model.environment.buildings.Building;
+import model.environment.buildings.UnitMakerBuilding;
 import model.environment.buildings.enums.BuildingName;
 import model.map.Map;
 import model.society.Government;
 import model.units.Person;
+import model.units.enums.UnitName;
 import view.enums.messages.GameMessages;
     /*
     TODO:
@@ -18,8 +20,8 @@ import view.enums.messages.GameMessages;
 
 public class GameControl {
     private Game game;
-    private Person selectedUnit;
-    private Building selectedBuilding;
+    private Person selectedUnit = null;
+    private Building selectedBuilding = null;
     private Government currentGovernment;
 
     public void setGame(Game game) {
@@ -40,7 +42,27 @@ public class GameControl {
             return GameMessages.CANNOT_BUILD_HERE;
 
         new Building(BuildingName.getBuildingNameByName(type), currentGovernment, map.getBlockByXY(x, y));
-            return GameMessages.SUCCESS;
+        return GameMessages.SUCCESS;
+    }
+
+    private GameMessages createUnit(String type, int count) {
+        Person person = null;
+        if (selectedBuilding == null)
+            return GameMessages.BUILDING_NOT_SELECTED;
+        if (!(selectedBuilding instanceof UnitMakerBuilding))
+            return GameMessages.NOT_UNIT_MAKER;
+        if (!UnitName.isValidName(type))
+            return GameMessages.INVALID_UNIT_TYPE;
+        person = new Person(UnitName.getUnitByName(type));
+        if (!currentGovernment.getResource().checkPay(person.getPrice(), count))
+            return GameMessages.NOT_ENOUGH_RESOURCE;
+        if (!UnitName.canThisBuildingMakeIt(selectedBuilding.getName(), person.getName()))
+            return GameMessages.CANNOT_MAKE_THIS_UNIT_IN_THIS_BUILDING;
+
+        for (int i = 0; i < count; i++) {
+            new Person(UnitName.getUnitByName(type), selectedBuilding.getBlock(), currentGovernment);
+        }
+        return GameMessages.SUCCESS;
     }
 
     private GameMessages selectBuilding(int x, int y) {
@@ -59,5 +81,9 @@ public class GameControl {
 
         selectedBuilding = (Building) map.getBlockByXY(x, y).getEnvironment();
         return GameMessages.SUCCESS;
+    }
+
+    private void deselectBuilding() {
+        selectedBuilding = null;
     }
 }

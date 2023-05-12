@@ -93,7 +93,7 @@ public enum BuildingName {
     }
     public static boolean isValidName(String name) {
         for (BuildingName val : values()) {
-            if (val.getName().equals(name))
+            if (val.getName().equalsIgnoreCase(name))
                 return true;
         }
         return false;

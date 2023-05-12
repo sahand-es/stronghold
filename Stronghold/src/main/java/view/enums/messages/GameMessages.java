@@ -12,9 +12,10 @@ public enum GameMessages {
     NOT_A_BUILDING,
 // create unit:
     BUILDING_NOT_SELECTED,
-    INVALID_UNIT,
+    INVALID_UNIT_TYPE,
     INVALID_COUNT,
     CANNOT_MAKE_THIS_UNIT_IN_THIS_BUILDING,
+    NOT_UNIT_MAKER,
 // repair:
     NOT_ENOUGH_ROCK,
     ENEMY_CLOSE,
