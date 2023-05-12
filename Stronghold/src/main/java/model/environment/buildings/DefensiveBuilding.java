@@ -2,7 +2,9 @@ package model.environment.buildings;
 
 import model.environment.buildings.enums.BuildingCategory;
 import model.environment.buildings.enums.BuildingName;
+import model.map.Block;
 import model.resourecs.ResourcesName;
+import model.society.Government;
 
 import java.util.HashMap;
 
@@ -20,6 +22,14 @@ public class DefensiveBuilding extends Building {
         this.fireRange = fireRange;
         this.defenceRange = defenceRange;
         this.damage = damage;
+    }
+
+    public DefensiveBuilding(BuildingName name, Government government, Block block) {
+        super(name, government, block);
+        DefensiveBuilding defensiveBuilding = (DefensiveBuilding) getBuildingByBuildingName(name);
+        this.fireRange = defensiveBuilding.getFireRange();
+        this.defenceRange = defensiveBuilding.getDefenceRange();
+        this.damage = defensiveBuilding.getDamage();
     }
 
     public int getFireRange() {
