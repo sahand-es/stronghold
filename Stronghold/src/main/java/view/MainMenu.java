@@ -4,10 +4,33 @@ import model.Application;
 import utility.DataManager;
 import view.enums.AllMenus;
 import view.enums.commands.MainMenuCommands;
+import view.enums.commands.ProfileCommands;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class MainMenu
 {
+    private static int x;
+    private static int y;
+
+    public static int getX() {
+        return x;
+    }
+
+    public static void setX(int x) {
+        MainMenu.x = x;
+    }
+
+    public static int getY() {
+        return y;
+    }
+
+    public static void setY(int y) {
+        MainMenu.y = y;
+    }
+
     public static void run() throws InterruptedException {
         System.out.println("You're now in Main Menu!");
         java.util.Scanner scanner = new java.util.Scanner(System.in);
@@ -39,7 +62,7 @@ public class MainMenu
                     Application.setCurrentMenu(AllMenus.GAME_MENU);
                 }
                 else if(MainMenuCommands.getMatcher(command,MainMenuCommands.SHOW_MAP) != null){
-                    Application.setCurrentMenu(AllMenus.MAP_MENU);
+                   checkShowMAp(command);
                 }
                 else if(MainMenuCommands.getMatcher(command,MainMenuCommands.SHOW_MENU) != null){
                     System.out.println("You're in Main Menu!");
@@ -66,7 +89,7 @@ public class MainMenu
                     break;
                 case MAP_MENU:
                     System.out.println("You're now in Map Menu!");
-                    MapMenu.run();
+                    MapMenu.run(getX(),getY());
                     break;
                 default:
                     break;
@@ -75,5 +98,40 @@ public class MainMenu
 
     }
 
+    private static void checkShowMAp(String command){
+        String x,y;
+
+        String regexForX = MainMenuCommands.getRegexForX();
+        Matcher matcherX = Pattern.compile(regexForX).matcher(command);
+        if(!matcherX.find()){
+            System.out.println("You must give x!");
+            return;
+        }
+        else
+            x = matcherX.group("x_num");
+
+        command = command.replaceAll(matcherX.group().toString().trim(),"");
+
+        String regexForY = MainMenuCommands.getRegexForY();
+        Matcher matcherY = Pattern.compile(regexForY).matcher(command);
+        if(!matcherX.find()){
+            System.out.println("You must give y!");
+            return;
+        }
+        else
+            y = matcherX.group("Y_num");
+
+        command = command.replaceAll(matcherY.group().toString().trim(),"");
+
+        if (MainMenuCommands.getMatcher(command, MainMenuCommands.SHOW_MAP_FINAL_CHECK) == null){
+            System.out.println("Invalid argument in show map command!");
+            return;
+        }
+
+        setX(Integer.parseInt(x));
+        setY(Integer.parseInt(y));
+        Application.setCurrentMenu(AllMenus.MAP_MENU);
+
+    }
 
 }
