@@ -1,9 +1,12 @@
 package view;
 
+import controller.ProfileControl;
 import model.Application;
 import model.User;
+import utility.CheckFunctions;
 import view.enums.AllMenus;
 import view.enums.commands.ProfileCommands;
+import view.enums.messages.ProfileMessages;
 
 import java.util.regex.Matcher;
 
@@ -70,8 +73,27 @@ public class ProfileMenu
     }
 
     private static void checkChangeUsername(Matcher matcher){
+        String username = CheckFunctions.getUserFromMatcher(matcher);
+        if (username == null){
+            System.out.println("My liege, you must give username to log in!");
+            return;
+        }
 
+        ProfileMessages messages = ProfileControl.changeUsername(username);
 
+        switch (messages){
+            case INVALID_USER_FORMAT:
+                System.out.println("That's an invalid format for username!");
+                break;
+            case USER_EXIST:
+                System.out.println("That username is already taken!");
+                break;
+            case SUCCES:
+                System.out.println("Username changed Successfully!");
+                break;
+            default:
+                break;
+        }
     }
 
     private static void checkChangeNickname(Matcher matcher){

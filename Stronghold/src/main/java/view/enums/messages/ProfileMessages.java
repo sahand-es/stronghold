@@ -2,8 +2,8 @@ package view.enums.messages;
 
 public enum ProfileMessages
 {
-
-    FAILED,
+    INVALID_USER_FORMAT,
+    USER_EXIST,
     SUCCES;
 
 }
