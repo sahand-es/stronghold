@@ -18,6 +18,13 @@ public class Government
     private int population;
 
 
+    private int populationCapacity;
+    private int foodCapacity;
+    private int weaponCapacity;
+
+    private int materialCapacity;
+
+
     private ArrayList<Trade> tradesDone;
 
     private Colors color;
@@ -80,6 +87,38 @@ public class Government
 
     public void setPopulation(int population) {
         this.population = population;
+    }
+
+    public int getPopulationCapacity() {
+        return populationCapacity;
+    }
+
+    public void setPopulationCapacity(int populationCapacity) {
+        this.populationCapacity = populationCapacity;
+    }
+
+    public int getFoodCapacity() {
+        return foodCapacity;
+    }
+
+    public void setFoodCapacity(int foodCapacity) {
+        this.foodCapacity = foodCapacity;
+    }
+
+    public int getWeaponCapacity() {
+        return weaponCapacity;
+    }
+
+    public void setWeaponCapacity(int weaponCapacity) {
+        this.weaponCapacity = weaponCapacity;
+    }
+
+    public int getMaterialCapacity() {
+        return materialCapacity;
+    }
+
+    public void setMaterialCapacity(int materialCapacity) {
+        this.materialCapacity = materialCapacity;
     }
 
     private int calcPopularityOfTaxRate(){
