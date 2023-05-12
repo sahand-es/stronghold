@@ -31,9 +31,10 @@ public enum UnitName {
     SIEGE_TOWER("Siege Tower")
     ;
     private final String name;
-    public final static ArrayList<UnitName> Barracks = new ArrayList<>(List.of(ARCHER,CROSSBOWMAN,SPEARMAN,PIKEMAN,MACEMAN,SWORDSMAN,KNIGHT));
-    public final static ArrayList<UnitName> MercenaryPost = new ArrayList<>(List.of(SLAVE,SLINGER,ASSASSIN,HORSE_ARCHER,ARABIAN_BOW,ARABIAN_SWORDSMAN,FIRE_THROWER));
-    public final static ArrayList<UnitName> EngineerGuild = new ArrayList<>(List.of(ENGINEER,LADDERMAN,TUNNELER));
+    public final static ArrayList<UnitName> barracks = new ArrayList<>(List.of(ARCHER,CROSSBOWMAN,SPEARMAN,PIKEMAN,MACEMAN,SWORDSMAN,KNIGHT));
+    public final static ArrayList<UnitName> mercenaryPost = new ArrayList<>(List.of(SLAVE,SLINGER,ASSASSIN,HORSE_ARCHER,ARABIAN_BOW,ARABIAN_SWORDSMAN,FIRE_THROWER));
+    public final static ArrayList<UnitName> engineerGuild = new ArrayList<>(List.of(ENGINEER,LADDERMAN,TUNNELER));
+
 
     UnitName(String name) {
         this.name = name;
@@ -52,16 +53,38 @@ public enum UnitName {
         throw new RuntimeException();
     }
 
+    public static boolean isValidName(String name) {
+        for (UnitName value : UnitName.values()) {
+            if (value.getName().equalsIgnoreCase(name))
+                return true;
+        }
+        return false;
+    }
+
+    public static boolean canThisBuildingMakeIt(BuildingName buildingName, UnitName unitName) {
+        switch (buildingName) {
+            case BARRACKS: {
+                return barracks.contains(unitName);
+            }
+            case MERCENARY_POST: {
+                return mercenaryPost.contains(unitName);
+            }
+            case ENGINEER_GUILD: {
+                return engineerGuild.contains(unitName);
+            }
+        }
+        return false;
+    }
     public static ArrayList<UnitName> getUnits(BuildingName name){
         switch (name){
             case BARRACKS:
-                return Barracks;
+                return barracks;
 
             case MERCENARY_POST:
-                return MercenaryPost;
+                return mercenaryPost;
 
             case ENGINEER_GUILD:
-                return EngineerGuild;
+                return engineerGuild;
 
             default:
                 return null;

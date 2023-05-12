@@ -196,7 +196,7 @@ public class Building extends Environment {
         government.addBuilding(this);
     }
 
-    protected Building getBuildingByBuildingName(BuildingName name) {
+    public static Building getBuildingByBuildingName(BuildingName name) {
         for (Building building : allBuildings) {
             if (building.name.equals(name))
                 return building;
@@ -212,6 +212,10 @@ public class Building extends Environment {
         return price;
     }
 
+    public BuildingName getName() {
+        return name;
+    }
+
     @Override
     public String toString() {
         return this.name + "{" +
@@ -220,9 +224,5 @@ public class Building extends Environment {
                 ", category=" + category +
                 ", price=" + price +
                 "}\n";
-    }
-
-    public static void main(String[] args) {
-        System.out.println(allBuildings);
     }
 }

@@ -91,4 +91,11 @@ public enum BuildingName {
         }
         throw new RuntimeException();
     }
+    public static boolean isValidName(String name) {
+        for (BuildingName val : values()) {
+            if (val.getName().equalsIgnoreCase(name))
+                return true;
+        }
+        return false;
+    }
 }
