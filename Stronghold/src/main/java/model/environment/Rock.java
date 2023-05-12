@@ -5,9 +5,8 @@ import model.map.Direction;
 public class Rock extends Environment{
     Direction direction;
 
-    public Rock(String name, int size, Direction direction) {
-        super(name, size);
-        this.direction = direction;
+    public Rock(int size) {
+        super(size);
     }
 
     public Direction getDirection() {

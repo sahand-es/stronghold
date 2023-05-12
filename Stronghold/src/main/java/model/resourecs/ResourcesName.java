@@ -1,5 +1,7 @@
 package model.resourecs;
 
+import org.jetbrains.annotations.NotNull;
+
 public enum ResourcesName
 {
 //  Initial materials:
@@ -47,12 +49,13 @@ public enum ResourcesName
         this.name = name;
     }
 
+    @NotNull
     public static ResourcesName getResourceByName(String resourceName)
     {
         for (ResourcesName resource : ResourcesName.values()) {
             if (resource.name.equalsIgnoreCase(resourceName.trim()))
                 return resource;
         }
-        return null;
+        throw new RuntimeException();
     }
 }

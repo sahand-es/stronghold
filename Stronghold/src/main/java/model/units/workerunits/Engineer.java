@@ -1,11 +1,11 @@
 package model.units.workerunits;
 
 import model.map.Direction;
-import model.units.enums.UnitNames;
+import model.units.enums.UnitName;
 
 public class Engineer extends WorkerUnit {
     public Engineer() {
-        super(UnitNames.ENGINEER);
+        super(UnitName.ENGINEER);
     }
 
 

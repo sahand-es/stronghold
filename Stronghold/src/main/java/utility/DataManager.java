@@ -13,10 +13,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DataManager {
-    public static final String USERS_DATABASE_PATH = "src/main/resources/Users.json";
+    public static final String USERS_DATABASE_PATH = "src/main/resources/users.json";
     public static final String RESOURCES_PATH = "src/main/resources/ResourceAndFood.csv";
     public static final String WEAPONS_PATH = "src/main/resources/WeaponAndArmour.csv";
     public static final String UNITS_PATH = "src/main/resources/Units.csv";
+    public static final String BUILDINGS_PATH = "src/main/resources/Buildings.csv";
 
     public static ArrayList<User> loadUsers() {
         try {

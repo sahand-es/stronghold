@@ -5,7 +5,7 @@ import model.resourecs.ResourcesName;
 import model.resourecs.Weapon;
 import model.units.Person;
 import model.units.Soldier;
-import model.units.enums.UnitNames;
+import model.units.enums.UnitName;
 import utility.DataManager;
 
 import java.util.ArrayList;
@@ -23,7 +23,7 @@ public class WorkerUnit extends Person {
             String[] attributes = resourceCsv.get(i);
             int hp = 0, speed = 0, defencePower = 0;
             ArrayList<Armour> armours = new ArrayList<>();
-            UnitNames name = null;
+            UnitName name = null;
             boolean canClimbLadder = false, canDigMoat = false;
             Weapon weaponToAdd = null;
             HashMap<ResourcesName, Integer> price = new HashMap<>();
@@ -35,7 +35,7 @@ public class WorkerUnit extends Person {
                             continue start;
                     }
                     case "Name": {
-                        name = UnitNames.getUnitByName(attributes[j]);
+                        name = UnitName.getUnitByName(attributes[j]);
                         break;
                     }
                     case "Hp": {
@@ -93,12 +93,12 @@ public class WorkerUnit extends Person {
         }
     }
 
-    private WorkerUnit(int hp, int speed, int defencePower, ArrayList<Armour> armour, UnitNames name, HashMap<ResourcesName, Integer> price, boolean canClimbLadder, boolean canDigMoat) {
+    private WorkerUnit(int hp, int speed, int defencePower, ArrayList<Armour> armour, UnitName name, HashMap<ResourcesName, Integer> price, boolean canClimbLadder, boolean canDigMoat) {
         super(hp, speed, defencePower, armour, name, price, canClimbLadder, canDigMoat);
     }
 
 
-    public WorkerUnit(UnitNames name) {
+    public WorkerUnit(UnitName name) {
         super(name);
     }
 
@@ -116,7 +116,7 @@ public class WorkerUnit extends Person {
     }
 
     public static void main(String[] args) {
-        Soldier s = new Soldier(UnitNames.ARCHER);
+        Soldier s = new Soldier(UnitName.ARCHER);
         System.out.println(allUnits);
     }
 }
