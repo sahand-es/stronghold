@@ -2,6 +2,7 @@ package controller;
 
 import model.Game;
 import model.environment.buildings.Building;
+import model.environment.buildings.enums.BuildingName;
 import model.map.Map;
 import model.society.Government;
 import model.units.Person;
@@ -26,9 +27,22 @@ public class GameControl {
     }
 
     private GameMessages createBuilding(int x, int y, String type) {
+        Building building = null;
+        Map map = game.getMap();
+        if (!map.isValidXY(x, y))
+            return GameMessages.INVALID_XY;
+        if (!BuildingName.isValidName(type))
+            return GameMessages.INVALID_BUILDING_TYPE;
+        building = Building.getBuildingByBuildingName(BuildingName.getBuildingNameByName(type));
+        if (!currentGovernment.getResource().checkPay(building.getPrice()))
+            return GameMessages.NOT_ENOUGH_RESOURCE;
+        if (!map.getBlockByXY(x, y).canBuildOnThis())
+            return GameMessages.CANNOT_BUILD_HERE;
 
-        return GameMessages.SUCCESS;
+        new Building(BuildingName.getBuildingNameByName(type), currentGovernment, map.getBlockByXY(x, y));
+            return GameMessages.SUCCESS;
     }
+
     private GameMessages selectBuilding(int x, int y) {
         Map map = game.getMap();
         if (!map.isValidXY(x, y))
