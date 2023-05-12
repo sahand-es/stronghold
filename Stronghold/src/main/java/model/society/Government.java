@@ -69,6 +69,7 @@ public class Government
 
     public void setFearRate(int fearRate) {
         this.fearRate = fearRate;
+        popularity += fearRate;
     }
 
     private int calcPopularityOfTaxRate(){
