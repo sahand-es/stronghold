@@ -60,6 +60,7 @@ public class MainMenu
                     System.out.println("You're now in Game Menu!");
                     GameMenu.run();
                     break;
+                //todo add map menu run
                 default:
                     break;
             }
