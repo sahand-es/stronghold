@@ -2,7 +2,7 @@ package model.environment.buildings;
 
 import model.environment.buildings.enums.BuildingCategory;
 import model.environment.buildings.enums.BuildingName;
-import model.resourecs.Resource;
+import model.resourecs.ResourceHolder;
 import model.resourecs.ResourcesName;
 
 import java.util.ArrayList;
@@ -11,7 +11,7 @@ import java.util.HashMap;
 public class StorageBuilding extends Building {
 
     int capacity;
-    ArrayList<Resource> storage;
+    ArrayList<ResourceHolder> storage;
 
     protected StorageBuilding(int size,
                               int hp,
@@ -24,11 +24,11 @@ public class StorageBuilding extends Building {
         this.capacity = capacity;
     }
 
-    public ArrayList<Resource> getStorage() {
+    public ArrayList<ResourceHolder> getStorage() {
         return storage;
     }
 
-    public void setStorage(ArrayList<Resource> storage) {
+    public void setStorage(ArrayList<ResourceHolder> storage) {
         this.storage = storage;
     }
 

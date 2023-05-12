@@ -2,7 +2,7 @@ package model.environment.buildings;
 
 import model.environment.buildings.enums.BuildingCategory;
 import model.environment.buildings.enums.BuildingName;
-import model.resourecs.Resource;
+import model.resourecs.ResourceHolder;
 import model.resourecs.ResourcesName;
 
 import java.util.ArrayList;
@@ -10,7 +10,7 @@ import java.util.HashMap;
 
 public class ResourceExtractorBuilding extends WorkingBuilding {
 
-    ArrayList<Resource> extractedResource;
+    ArrayList<ResourceHolder> extractedResourceHolder;
 
     int rate;
 
@@ -23,12 +23,12 @@ public class ResourceExtractorBuilding extends WorkingBuilding {
         super(size, hp, category, name, price);
     }
 
-    public ArrayList<Resource> getExtractedResource() {
-        return extractedResource;
+    public ArrayList<ResourceHolder> getExtractedResource() {
+        return extractedResourceHolder;
     }
 
-    public void setExtractedResource(ArrayList<Resource> extractedResource) {
-        this.extractedResource = extractedResource;
+    public void setExtractedResource(ArrayList<ResourceHolder> extractedResourceHolder) {
+        this.extractedResourceHolder = extractedResourceHolder;
     }
 
     public int getRate() {

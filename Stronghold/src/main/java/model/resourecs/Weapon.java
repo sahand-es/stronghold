@@ -5,7 +5,7 @@ import utility.DataManager;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Weapon extends Resource {
+public class Weapon extends ResourceHolder {
 
     private final int damage;
     private final int attackRange;

@@ -3,7 +3,7 @@ package model.society;
 import model.User;
 import model.environment.buildings.Building;
 import model.society.enums.Colors;
-import model.resourecs.Resource;
+import model.resourecs.ResourceHolder;
 import model.units.Person;
 
 
@@ -14,8 +14,8 @@ public class Government
     private int popularity;
     private int gold;
     private int population;
-    private ArrayList<Resource> resources;
-    private ArrayList<Resource> foods;
+    private ArrayList<ResourceHolder> resourceHolders;
+    private ArrayList<ResourceHolder> foods;
     private ArrayList<Building> buildings;
     private ArrayList<Person> allUnits;
     private ArrayList<Trade> tradesDone;

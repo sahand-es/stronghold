@@ -1,13 +1,10 @@
 package model.environment.buildings;
 
-import model.environment.Direction;
+import model.map.Direction;
 import model.environment.buildings.enums.BuildingCategory;
 import model.environment.buildings.enums.BuildingName;
-import model.resourecs.Resource;
 import model.resourecs.ResourcesName;
-import model.society.Government;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Bridge extends Building {

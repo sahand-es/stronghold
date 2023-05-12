@@ -5,7 +5,7 @@ import utility.DataManager;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Armour extends Resource{
+public class Armour extends ResourceHolder {
     int speedBoost;
     int defenceBoost;
 
