@@ -83,7 +83,12 @@ public class ProfileControl
         return ProfileMessages.SUCCESS;
     }
     public static ProfileMessages changeSlogan(String slogan){
-        return null;
+        User currentUser = Application.getCurrentUser();
+        User userInArray = Application.getUserByUsername(currentUser.getUsername());
+        currentUser.setSlogan(slogan);
+        userInArray.setSlogan(slogan);
+
+        return ProfileMessages.SUCCESS;
     }
 
     public static ProfileMessages removeSlogan(){

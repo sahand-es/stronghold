@@ -42,7 +42,7 @@ public class ProfileMenu
                 checkChangeEmail(matcher);
             }
             else if ((matcher = ProfileCommands.getMatcher(command,ProfileCommands.CHANGE_SLOGAN)) != null) {
-                //todo
+                checkChangeSlogan(matcher);
             }
             else if (ProfileCommands.getMatcher(command,ProfileCommands.REMOVE_SLOGAN) != null) {
                 //todo
@@ -199,7 +199,21 @@ public class ProfileMenu
     }
 
     private static void checkChangeSlogan(Matcher matcher){
+        String slogan = CheckFunctions.getSloganFromMatcher(matcher);
+        if (slogan == null){
+            System.out.println("My liege, you must give slogan!");
+            return;
+        }
 
+        ProfileMessages messages = ProfileControl.changeSlogan(slogan);
+
+        switch (messages){
+            case SUCCESS:
+                System.out.println("Slogan changed Successfully!");
+                break;
+            default:
+                break;
+        }
     }
 
     private static void checkRemoveSlogan(){

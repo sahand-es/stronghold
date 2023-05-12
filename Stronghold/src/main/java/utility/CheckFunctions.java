@@ -86,6 +86,19 @@ public class CheckFunctions
 
         return email;
     }
+    public static String getSloganFromMatcher(Matcher matcher){
+        String slogan = "";
+        String argVal = matcher.group("slogan");
+        String argValSpace = matcher.group("sloganSpace");
+        slogan = (argVal != null) ? argVal : slogan;
+        slogan = (argValSpace != null) ? argValSpace : slogan;
+
+        if (slogan.equals("")){
+            return null;
+        }
+
+        return slogan;
+    }
     public static boolean checkEmailExits(String email)
     {
         return Application.getUserByEmail(email) != null;
