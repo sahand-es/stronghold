@@ -18,6 +18,15 @@ public class MapMenu {
     private static int HEIGHT = 200;
     private static int WIDTH = 200;
     private static int mapX,mapY;
+    private static Map map = new Map(HEIGHT,WIDTH);
+
+    public static Map getMap() {
+        return map;
+    }
+
+    public static void setMap(Map map) {
+        MapMenu.map = map;
+    }
 
     public static int getMapX() {
         return mapX;
@@ -38,7 +47,7 @@ public class MapMenu {
     public static void run(int x , int y){
         setMapX(x);
         setMapY(y);
-        Map map = new Map(HEIGHT,WIDTH);
+        Map map = getMap();
 
         map.setTexture(5,5, Texture.WATER);
         java.util.Scanner scanner = new java.util.Scanner(System.in);
@@ -180,6 +189,9 @@ public class MapMenu {
             return;
         }
 
-        //todo add show details
+        Map map = getMap();
+        Block block = map.getBlockByXY(Integer.parseInt(x), Integer.parseInt(y));
+        System.out.println(block.showDetails());
+
     }
 }
