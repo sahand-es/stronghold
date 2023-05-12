@@ -28,6 +28,7 @@ public class MainMenu
                     System.exit(0);
                 }
                 else if(MainMenuCommands.getMatcher(command,MainMenuCommands.LOGOUT) != null){
+                    System.out.println("user logged out successfully!");
                     Application.setCurrentUser(null);
                     DataManager.saveLoggedIn(null);
                 }
