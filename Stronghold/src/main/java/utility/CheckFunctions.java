@@ -13,6 +13,9 @@ public class CheckFunctions
     public static boolean checkUsernameFormat(String username) {
         return username.matches(".*[^A-Za-z0-9_].*");
     }
+    public static boolean checkNicknameFormat(String nickname) {
+        return nickname.matches(".*\\s.*");
+    }
 
     public static boolean checkUsernameExits(String username) {
         return Application.getUserByUsername(username) != null;
@@ -56,6 +59,19 @@ public class CheckFunctions
         }
 
         return password;
+    }
+    public static String getNickFromMatcher(Matcher matcher){
+        String nickname = "";
+        String argVal = matcher.group("nickname");
+        String argValSpace = matcher.group("nicknameSpace");
+        nickname = (argVal != null) ? argVal : nickname;
+        nickname = (argValSpace != null) ? argValSpace : nickname;
+
+        if (nickname.equals("")){
+            return null;
+        }
+
+        return nickname;
     }
     public static boolean checkEmailExits(String email)
     {

@@ -25,7 +25,15 @@ public class ProfileControl
     }
 
     public static ProfileMessages changeNickname(String nickname){
-        return null;
+        if (CheckFunctions.checkNicknameFormat(nickname)){
+            return ProfileMessages.INVALID_NICK_FORMAT;
+        }
+
+        User currentUser = Application.getCurrentUser();
+        User userInArray = Application.getUserByUsername(currentUser.getUsername());
+        currentUser.setNickname(nickname);
+        userInArray.setNickname(nickname);
+        return ProfileMessages.SUCCES;
     }
 
     public static ProfileMessages changePassword(String password){

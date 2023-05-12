@@ -7,7 +7,7 @@ public enum ProfileCommands {
 
 
     CHANGE_USERNAME("^\\s*profile\\s+change\\s+-u(\\s+)?(((\"(?<usernameSpace>.+)\")|(?<username>\\S+)))?$"),
-    CHANGE_NICKNAME("^\\s*profile\\s+change\\s+-n\\s+((\"(?<nicknameSpace>.+)\")|(?<nickname>\\S+))$"),
+    CHANGE_NICKNAME("^\\s*profile\\s+change\\s+-n(\\s+)?(((\"(?<nicknameSpace>.+)\")|(?<nickname>\\S+)))?$"),
     CHANGE_PASSWORD("^\\s*profile\\s+change\\s+password\\s*$"),
     CHANGE_PASSWORD_OLD("-o\\s+((\"(?<passwordSpace>[^-]+)\")|(?<password>[^-\\s]+))?"),
     CHANGE_PASSWORD_NEW("-n\\s+((\"(?<passwordSpace>[^-]+)\")|(?<password>[^-\\s]+))?"),

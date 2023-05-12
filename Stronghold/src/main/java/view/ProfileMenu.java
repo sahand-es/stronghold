@@ -31,7 +31,7 @@ public class ProfileMenu
                 checkChangeUsername(matcher);
             }
             else if ((matcher = ProfileCommands.getMatcher(command,ProfileCommands.CHANGE_NICKNAME)) != null) {
-                //todo
+                checkChangeNickname(matcher);
             }
             else if ((matcher = ProfileCommands.getMatcher(command,ProfileCommands.CHANGE_PASSWORD)) != null) {
                 //todo
@@ -75,7 +75,7 @@ public class ProfileMenu
     private static void checkChangeUsername(Matcher matcher){
         String username = CheckFunctions.getUserFromMatcher(matcher);
         if (username == null){
-            System.out.println("My liege, you must give username to log in!");
+            System.out.println("My liege, you must give username!");
             return;
         }
 
@@ -97,7 +97,24 @@ public class ProfileMenu
     }
 
     private static void checkChangeNickname(Matcher matcher){
+        String nickname = CheckFunctions.getNickFromMatcher(matcher);
+        if (nickname == null){
+            System.out.println("My liege, you must give nickname!");
+            return;
+        }
 
+        ProfileMessages messages = ProfileControl.changeNickname(nickname);
+
+        switch (messages){
+            case INVALID_NICK_FORMAT:
+                System.out.println("That's an invalid format for nickname!");
+                break;
+            case SUCCES:
+                System.out.println("Nickname changed Successfully!");
+                break;
+            default:
+                break;
+        }
     }
 
     private static void checkChangePassword(Matcher matcher){
