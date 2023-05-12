@@ -14,13 +14,12 @@ public class ResourceExtractorBuilding extends WorkingBuilding {
 
     int rate;
 
-    protected ResourceExtractorBuilding(int size,
-                                        int hp,
+    protected ResourceExtractorBuilding(int hp,
                                         BuildingCategory category,
                                         BuildingName name,
                                         HashMap<ResourcesName, Integer> price) {
 
-        super(size, hp, category, name, price);
+        super(hp, category, name, price);
     }
 
     public ArrayList<ResourceHolder> getExtractedResource() {

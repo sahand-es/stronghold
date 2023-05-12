@@ -297,6 +297,7 @@ public abstract class Person {
     }
 
     private void addRouteToQueue(HashMap<Block, Block> route, Block destination) {
+        moveQueue = new LinkedList<>();
         Block blockIter = block;
         while (!blockIter.equals(destination)) {
             moveQueue.add(blockIter);

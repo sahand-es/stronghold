@@ -11,12 +11,11 @@ public class Inn extends WorkingBuilding {
 
     int whineUsageRate;
 
-    protected Inn(int size,
-                  int hp,
+    protected Inn(int hp,
                   BuildingCategory category,
                   BuildingName name,
                   HashMap<ResourcesName, Integer> price) {
-        super(size, hp, category, name, price);
+        super(hp, category, name, price);
     }
 
     public int getPopularityRate() {

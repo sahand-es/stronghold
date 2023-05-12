@@ -10,11 +10,14 @@ import utility.DataManager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class Soldier extends Person {
 
     private final int damage;
     private final int attackRange;
+    Queue<Person> attackQueue;
 
     SoldierUnitState soldierUnitState;
 
@@ -47,7 +50,13 @@ public class Soldier extends Person {
         this.soldierUnitState = soldierUnitState;
     }
 
-    public void attackEnemy(Person enemyToAttack) {
+    public void setAttackQueue(Person enemyToAttack) {
+        attackQueue = new LinkedList<>();
+        attackQueue.add(enemyToAttack);
+        Block enemyBlock = enemyToAttack.getBlock();
+        Block closestBlock = enemyBlock.findClosestBlock(attackRange, block);
+
+        findPath(closestBlock);
 
     }
 

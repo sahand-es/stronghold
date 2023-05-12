@@ -11,14 +11,13 @@ public class Gate extends HouseBuilding{
 
     Direction direction;
 
-    protected Gate(int size,
-                   int hp,
+    protected Gate(int hp,
                    BuildingCategory category,
                    BuildingName name,
                    HashMap<ResourcesName, Integer> price,
                    int peopleCapacity) {
 
-        super(size, hp, category, name, price, peopleCapacity);
+        super(hp, category, name, price, peopleCapacity);
     }
 
     public Direction getDirection() {

@@ -13,12 +13,12 @@ public class Bridge extends Building {
 
     boolean isOpen;
 
-    protected Bridge(int size,
+    protected Bridge(
                      int hp,
                      BuildingCategory category,
                      BuildingName name,
                      HashMap<ResourcesName, Integer> price) {
-        super(size, hp, category, name, price);
+        super(hp, category, name, price);
     }
 
     public boolean isOpen() {
