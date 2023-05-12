@@ -96,7 +96,12 @@ public class Block {
         int delY = this.y - block.getY();
         return Math.sqrt(Math.pow(delX, 2) + Math.pow(delY, 2));
     }
+//TODO: complete details.
+    public String showDetails() {
+        StringBuilder output = new StringBuilder();
 
+        return output.toString();
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -46,6 +46,24 @@ public class Map
         return null;
     }
 
+    public void setTexture(int x, int y, Texture texture) {
+        getBlockByXY(x, y).setTexture(texture);
+    }
+
+    public void setGroupTexture(int leftCornerX, int leftCornerY,
+                                int rightCornerX, int rightCornerY,
+                                Texture texture) {
+
+        int width = rightCornerX - leftCornerX, height = rightCornerY - leftCornerY;
+
+        for (int x = leftCornerX; x < width + leftCornerX; x++) {
+            for (int y = leftCornerY; y < height + leftCornerY; y++) {
+                getBlockByXY(x,y).setTexture(texture);
+            }
+        }
+
+    }
+
     public boolean isValidXY(int x, int y) {
         if (x < 0 || x > width)
             return false;
@@ -55,16 +73,15 @@ public class Map
     }
 
     public String showMap(Block block) {
-        int blockWidth = 6, blockHeight = 3;
+        int blockWidth = 5, blockHeight = 3;
         StringBuilder output = new StringBuilder();
         int heightRange = 1, widthRange= 5;
-        int xCorner = block.getX() - heightRange, yCorner = block.getY() - widthRange;
+        int xCorner = block.getX() - widthRange, yCorner = block.getY() - heightRange;
 
         for (int y = yCorner; y < heightRange * 2 + 1 + yCorner; y++) {
 
             output.append("-".repeat((widthRange * 2 + 1) * (blockWidth + 1)));
-            output.append("-");
-            output.append("\n");
+            output.append("-\n");
 
             for (int i = 0; i < blockHeight; i++) {
 
@@ -82,13 +99,16 @@ public class Map
 
         }
         output.append("-".repeat((widthRange * 2 + 1) * (blockWidth + 1)));
+        output.append("-");
 
         return output.toString();
     }
 
     public static void main(String[] args) {
-        Map map = new Map(400, 400);
-        System.out.println(map.showMap(map.getBlockByXY(100,100)));
+        Map map = new Map(100, 100);
+//        map.setTexture(50, 50, Texture.WATER);
+        map.setGroupTexture(50,50,55,51, Texture.WATER);
+        System.out.println(map.showMap(map.getBlockByXY(50,50)));
     }
 
 }
