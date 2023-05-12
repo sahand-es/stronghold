@@ -25,7 +25,7 @@ public class Government
     private int weaponCapacity;
     private int materialCapacity;
 
-    private Resource resource;
+    private final Resource resource;
 
 
     private final ArrayList<Trade> tradesDone;
