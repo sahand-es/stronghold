@@ -13,6 +13,7 @@ public class Resource {
         }
 
         this.addGold(100);
+        this.addPeople(10);
 
         for (ResourcesName food : ResourcesName.foods) {
             allResources.put(food,50);
@@ -99,6 +100,20 @@ public class Resource {
         int gold = this.allResources.get(ResourcesName.GOLD);
         gold += amount;
         this.allResources.put(ResourcesName.GOLD,gold);
+    }
+
+    public int getGold(){
+        return  this.allResources.get(ResourcesName.GOLD);
+    }
+
+    public void addPeople(int amount) {
+        int populaion = this.allResources.get(ResourcesName.PEOPLE);
+        populaion += amount;
+        this.allResources.put(ResourcesName.PEOPLE,populaion);
+    }
+
+    public int getPeople(){
+        return this.allResources.get(ResourcesName.PEOPLE);
     }
 
 

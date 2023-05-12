@@ -17,7 +17,7 @@ public class Government
     private int foodRate;
     private int taxRate;
     private int fearRate;
-    private int population;
+
 
 
     private int populationCapacity;
@@ -96,13 +96,6 @@ public class Government
         popularity += fearRate;
     }
 
-    public int getPopulation() {
-        return population + units.size();
-    }
-
-    public void setPopulation(int population) {
-        this.population = population;
-    }
 
     public int getPopulationCapacity() {
         return populationCapacity;
@@ -154,6 +147,10 @@ public class Government
 
     public Resource getResource() {
         return resource;
+    }
+
+    public int getPopulation(){
+        return resource.getPeople() + units.size();
     }
 
     private int calcPopularityOfTaxRate(){
