@@ -164,7 +164,7 @@ public class Building extends Environment {
                 }
 
                 case "Castle":
-                    new Castle(hp, buildingCategory, name, new HashMap<>());
+                    new Castle(hp, buildingCategory, name, price);
                 default:
                     throw new RuntimeException();
             }
