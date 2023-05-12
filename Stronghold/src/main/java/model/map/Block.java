@@ -71,6 +71,7 @@ public class Block {
         this.texture = texture;
     }
     public boolean canPassThisBlock(Person person) {
+//        TODO: sang derakht bazi_textura wall
         return true;
     }
     public Block findClosestBlock(int range, Block block) {

@@ -13,17 +13,27 @@ public class Application {
     private static ArrayList<User> users ;
     private static User currentUser;
     private static AllMenus currentMenu;
+    private static ArrayList<Game> games;
 
     static {
         users = DataManager.loadUsers();
         if (users == null){
             users = new ArrayList<>();
         }
+        games = DataManager.loadGames();
         currentUser = DataManager.loadLoggedInUser();
     }
 
     public static ArrayList<User> getUsers() {
         return users;
+    }
+
+    public static ArrayList<Game> getGames() {
+        return games;
+    }
+
+    public static void addGame(Game game) {
+        games.add(game);
     }
 
     public static void addUser(User user) {

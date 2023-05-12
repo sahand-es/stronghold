@@ -32,14 +32,6 @@ public class Map {
         return grid[y][x];
     }
 
-    public Block[][] getMiniMap(int x, int y, int width, int height) {
-        Block[][] miniMap;
-
-//        ToDo: x, y.
-
-        return null;
-    }
-
     public void setTexture(int x, int y, Texture texture) {
         getBlockByXY(x, y).setTexture(texture);
     }

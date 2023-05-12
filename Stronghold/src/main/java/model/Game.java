@@ -6,11 +6,17 @@ import model.siegeutil.SiegeUtil;
 import model.society.Government;
 import model.society.Trade;
 import model.units.Person;
+import utility.DataManager;
 
 import java.util.ArrayList;
 
 public class Game
 {
+    public Game(Map map) {
+        this.map = map;
+        Application.addGame(this);
+    }
+
     Map map;
     int turn;
     private final ArrayList<Government> governments =new ArrayList<>();
@@ -65,10 +71,5 @@ public class Game
     }
 
 
-
-    private void runGame()
-    {
-
-    }
 
 }

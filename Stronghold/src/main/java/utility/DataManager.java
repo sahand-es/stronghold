@@ -4,7 +4,9 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import model.Application;
+import model.Game;
 import model.User;
+import model.map.Map;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -19,6 +21,7 @@ public class DataManager {
     public static final String WEAPONS_PATH = "src/main/resources/WeaponAndArmour.csv";
     public static final String UNITS_PATH = "src/main/resources/Units.csv";
     public static final String BUILDINGS_PATH = "src/main/resources/Buildings.csv";
+    public static final String GAMES_PATH = "src/main/resources/Games.json";
 
     public static ArrayList<User> loadUsers() {
         try {
@@ -83,6 +86,32 @@ public class DataManager {
         return stringArray;
     }
 
+    public static void saveGames(Map map) {
+        try {
+            FileWriter fileWriter = new FileWriter(GAMES_PATH);
+            Gson gson = new  GsonBuilder().setPrettyPrinting().create();
+            String json = gson.toJson(map);
+            fileWriter.write(json);
+            fileWriter.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static ArrayList<Game> loadGames() {
+        try {
+            Gson gson = new Gson();
+            String text = new String(Files.readAllBytes(Paths.get(GAMES_PATH)));
+            ArrayList<Game> games = gson.fromJson(text, new TypeToken<List<Game>>() {
+            }.getType());
+
+            if (games == null)
+                return (new ArrayList<>());
+            return games;
+        } catch (Exception ignored) {
+            return null;
+        }
+    }
 
 
     public static User loadLoggedInUser() {
@@ -115,4 +144,10 @@ public class DataManager {
     //ToDo delete Logged in user from json file
     //This must be called for when we log out in profile menu
 
+    public static void main(String[] args) {
+        Map map = new Map(100, 100);
+        Game game = new Game(map);
+        System.out.println(Application.getGames());
+        saveGames(map);
+    }
 }
