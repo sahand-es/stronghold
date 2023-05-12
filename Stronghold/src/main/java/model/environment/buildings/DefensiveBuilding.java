@@ -12,11 +12,11 @@ public class DefensiveBuilding extends Building {
 
     private int damage;
 
-    protected DefensiveBuilding(int size, int hp, BuildingCategory category,
+    protected DefensiveBuilding(int hp, BuildingCategory category,
                                 HashMap<ResourcesName, Integer> price,
                                 BuildingName name,
                                 int fireRange, int defenceRange, int damage) {
-        super(size, hp, category, name, price);
+        super(hp, category, name, price);
         this.fireRange = fireRange;
         this.defenceRange = defenceRange;
         this.damage = damage;

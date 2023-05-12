@@ -12,11 +12,10 @@ public abstract class WorkingBuilding extends Building {
 
     ArrayList<Person> workers;
 
-    protected WorkingBuilding(int size,
-                              int hp,
+    protected WorkingBuilding(int hp,
                               BuildingCategory category,
                               BuildingName name,
                               HashMap<ResourcesName, Integer> price) {
-        super(size, hp, category, name, price);
+        super(hp, category, name, price);
     }
 }

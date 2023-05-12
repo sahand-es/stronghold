@@ -3,6 +3,7 @@ package model.environment.buildings;
 import model.environment.Environment;
 import model.environment.buildings.enums.BuildingCategory;
 import model.environment.buildings.enums.BuildingName;
+import model.map.Block;
 import model.resourecs.Armour;
 import model.resourecs.ResourcesName;
 import model.society.Government;
@@ -13,7 +14,7 @@ import java.util.HashMap;
 
 public class Building extends Environment {
 
-    protected Government owner;
+    protected Government government;
     protected int hp;
     protected BuildingCategory category;
     protected BuildingName name;
@@ -102,56 +103,56 @@ public class Building extends Environment {
             }
             switch (kind) {
                 case "Gate": {
-                    new Gate(size, hp, buildingCategory, name, price, capacity);
+                    new Gate(hp, buildingCategory, name, price, capacity);
                     break;
                 }
                 case "Bridge": {
-                    new Bridge(size, hp, buildingCategory, name, price);
+                    new Bridge(hp, buildingCategory, name, price);
                     break;
                 }
                 case "Building": {
-                    new Building(size, hp, buildingCategory, name, price);
+                    new Building(hp, buildingCategory, name, price);
                     break;
                 }
                 case "Church": {
-                    new Church(size, hp, buildingCategory, name, price);
+                    new Church(hp, buildingCategory, name, price);
                     break;
                 }
                 case "Defensive": {
-                    new DefensiveBuilding(size, hp, buildingCategory, price, name,
+                    new DefensiveBuilding(hp, buildingCategory, price, name,
                             fireRange, defenceRange, damage);
                     break;
                 }
                 case "Extractor": {
-                    new ResourceExtractorBuilding(size, hp, buildingCategory, name, price);
+                    new ResourceExtractorBuilding(hp, buildingCategory, name, price);
                     break;
                 }
                 case "Resource Maker": {
-                    new ResourceMakerBuilding(size, hp, buildingCategory, name, price);
+                    new ResourceMakerBuilding(hp, buildingCategory, name, price);
                     break;
                 }
                 case "Storage": {
-                    new StorageBuilding(size, hp, buildingCategory, name, price, capacity);
+                    new StorageBuilding(hp, buildingCategory, name, price, capacity);
                     break;
                 }
                 case "Trap": {
-                    new Traps(size, hp, buildingCategory, name, price);
+                    new Traps(hp, buildingCategory, name, price);
                     break;
                 }
                 case "Unit Maker": {
-                    new UnitMakerBuilding(size, hp, buildingCategory, name, price);
+                    new UnitMakerBuilding(hp, buildingCategory, name, price);
                     break;
                 }
                 case "House": {
-                    new HouseBuilding(size, hp, buildingCategory, name, price, capacity);
+                    new HouseBuilding(hp, buildingCategory, name, price, capacity);
                     break;
                 }
                 case "Inn": {
-                    new Inn(size, hp, buildingCategory, name, price);
+                    new Inn(hp, buildingCategory, name, price);
                     break;
                 }
                 case "Shop": {
-                    new Shop(size, hp, buildingCategory, name, price);
+                    new Shop(hp, buildingCategory, name, price);
                     break;
                 }
                 default:
@@ -160,18 +161,25 @@ public class Building extends Environment {
         }
     }
 
-    protected Building(int size,
-                       int hp,
+    protected Building(int hp,
                        BuildingCategory category,
                        BuildingName name,
                        HashMap<ResourcesName, Integer> price) {
-        super(size);
         this.hp = hp;
         this.category = category;
         this.name = name;
         this.price = price;
 
         allBuildings.add(this);
+    }
+    public Building(BuildingName name, Government government, Block block) {
+        Building buildingToClone = getBuildingByBuildingName(name);
+        this.hp = buildingToClone.hp;
+        this.category = buildingToClone.category;
+        this.name = buildingToClone.name;
+        this.price = buildingToClone.price;
+        this.government = government;
+        super.setBlock(block);
     }
 
     protected Building getBuildingByBuildingName(BuildingName name) {
@@ -182,12 +190,8 @@ public class Building extends Environment {
         return null;
     }
 
-    public Government getOwner() {
-        return owner;
-    }
-
-    public void setOwner(Government owner) {
-        this.owner = owner;
+    public Government getGovernment() {
+        return government;
     }
 
     public HashMap<ResourcesName, Integer> getPrice() {

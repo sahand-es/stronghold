@@ -2,7 +2,9 @@ package model.environment.buildings;
 
 import model.environment.buildings.enums.BuildingCategory;
 import model.environment.buildings.enums.BuildingName;
+import model.map.Block;
 import model.resourecs.ResourcesName;
+import model.society.Government;
 import model.units.Soldier;
 
 import java.util.ArrayList;
@@ -12,13 +14,13 @@ public class UnitMakerBuilding extends Building {
 
     ArrayList<Soldier> units;
 
-    protected UnitMakerBuilding(int size,
-                                int hp,
+    protected UnitMakerBuilding(int hp,
                                 BuildingCategory category,
                                 BuildingName name,
                                 HashMap<ResourcesName, Integer> price) {
-        super(size, hp, category, name, price);
+        super(hp, category, name, price);
     }
+
 
     public ArrayList<Soldier> getUnits() {
         return units;

@@ -5,12 +5,9 @@ import model.map.Block;
 import java.util.ArrayList;
 
 public abstract class Environment {
-    int size;
-    ArrayList<Block> blocks;
+    Block block;
 
-    public Environment(int size) {
-        this.size = size;
+    public void setBlock(Block block) {
+        this.block = block;
     }
-
-
 }

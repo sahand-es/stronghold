@@ -12,12 +12,11 @@ public class ResourceMakerBuilding extends ResourceExtractorBuilding {
 
     ArrayList<ResourceHolder> inputResourceHolder;
 
-    protected ResourceMakerBuilding(int size,
-                                    int hp,
+    protected ResourceMakerBuilding(int hp,
                                     BuildingCategory category,
                                     BuildingName name,
                                     HashMap<ResourcesName, Integer> price) {
-        super(size, hp, category, name, price);
+        super(hp, category, name, price);
     }
 
     public ArrayList<ResourceHolder> getInputResource() {

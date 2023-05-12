@@ -11,13 +11,13 @@ public class HouseBuilding extends Building {
     private int peopleCapacity;
 
 
-    protected HouseBuilding(int size, int hp,
+    protected HouseBuilding(int hp,
                             BuildingCategory category,
                             BuildingName name,
                             HashMap<ResourcesName, Integer> price,
                             int peopleCapacity) {
 
-        super(size, hp, category, name, price);
+        super(hp, category, name, price);
         this.peopleCapacity = peopleCapacity;
     }
 

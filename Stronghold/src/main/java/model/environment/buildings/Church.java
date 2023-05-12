@@ -11,12 +11,11 @@ import java.util.HashMap;
 public class Church extends Building {
     private ArrayList<Soldier> monks;
 
-    protected Church(int size,
-                     int hp,
+    protected Church(int hp,
                      BuildingCategory category,
                      BuildingName name,
                      HashMap<ResourcesName, Integer> price) {
-        super(size, hp, category, name, price);
+        super(hp, category, name, price);
     }
 
     public void makeMonk() {
