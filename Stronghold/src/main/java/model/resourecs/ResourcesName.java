@@ -1,5 +1,6 @@
 package model.resourecs;
 
+import model.units.Person;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;

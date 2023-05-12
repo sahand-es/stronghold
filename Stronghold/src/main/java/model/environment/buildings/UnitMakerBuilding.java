@@ -6,13 +6,14 @@ import model.map.Block;
 import model.resourecs.ResourcesName;
 import model.society.Government;
 import model.units.Soldier;
+import model.units.enums.UnitName;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class UnitMakerBuilding extends Building {
 
-    ArrayList<Soldier> units;
+    ArrayList<UnitName> units;
 
     protected UnitMakerBuilding(int hp,
                                 BuildingCategory category,
@@ -23,13 +24,14 @@ public class UnitMakerBuilding extends Building {
 
     public UnitMakerBuilding(BuildingName name, Government government, Block block) {
         super(name, government, block);
+        units = UnitName.getUnits(name);
     }
 
-    public ArrayList<Soldier> getUnits() {
+    public ArrayList<UnitName> getUnits() {
         return units;
     }
 
-    public void setUnits(ArrayList<Soldier> units) {
+    public void setUnits(ArrayList<UnitName> units) {
         this.units = units;
     }
 

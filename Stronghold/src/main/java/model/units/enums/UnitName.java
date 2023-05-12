@@ -1,6 +1,10 @@
 package model.units.enums;
 
+import model.environment.buildings.enums.BuildingName;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public enum UnitName {
     ARCHER("Archer"),
@@ -22,6 +26,9 @@ public enum UnitName {
     BLACK_MONK("Black Monk"),
     FIRE_THROWER("Fire Thrower");
     private final String name;
+    public final static ArrayList<UnitName> Barracks = new ArrayList<>(List.of(ARCHER,CROSSBOWMAN,SPEARMAN,PIKEMAN,MACEMAN,SWORDSMAN,KNIGHT));
+    public final static ArrayList<UnitName> MercenaryPost = new ArrayList<>(List.of(SLAVE,SLINGER,ASSASSIN,HORSE_ARCHER,ARABIAN_BOW,ARABIAN_SWORDSMAN,FIRE_THROWER));
+    public final static ArrayList<UnitName> EngineerGuild = new ArrayList<>(List.of(ENGINEER,LADDERMAN,TUNNELER));
 
     UnitName(String name) {
         this.name = name;
@@ -38,5 +45,21 @@ public enum UnitName {
                 return unitName;
         }
         throw new RuntimeException();
+    }
+
+    public static ArrayList<UnitName> getUnits(BuildingName name){
+        switch (name){
+            case BARRACKS:
+                return Barracks;
+
+            case MERCENARY_POST:
+                return MercenaryPost;
+
+            case ENGINEER_GUILD:
+                return EngineerGuild;
+
+            default:
+                return null;
+        }
     }
 }

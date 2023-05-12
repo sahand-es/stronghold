@@ -42,4 +42,3 @@ Trap,Pitch Ditch,Castle,1,0,Pitch,1,null,null,null,null,null
 Unit Maker,Barracks,Castle,3,500,Stone,15,null,null,null,null,null
 Unit Maker,Mercenary Post,Castle,2,500,Wood,10,null,null,null,null,null
 Unit Maker,Engineer Guild,Castle,2,500,Wood~Gold,10~100,null,null,null,null,null
-Unit Maker,Tunneler Guild,Castle,2,500,Wood~Gold,10~100,null,null,null,null,null
