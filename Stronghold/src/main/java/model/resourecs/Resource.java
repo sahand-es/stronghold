@@ -11,6 +11,15 @@ public class Resource {
         for (ResourcesName name : ResourcesName.values()) {
             allResources.put(name, 0);
         }
+
+        this.addGold(100);
+
+        for (ResourcesName food : ResourcesName.foods) {
+            allResources.put(food,50);
+        }
+        for (ResourcesName material : ResourcesName.Materials) {
+            allResources.put(material,25);
+        }
     }
 
     public void add(HashMap<ResourcesName,Integer> product){
@@ -84,6 +93,12 @@ public class Resource {
             }
         }
 
+    }
+
+    public void addGold(int amount){
+        int gold = this.allResources.get(ResourcesName.GOLD);
+        gold += amount;
+        this.allResources.put(ResourcesName.GOLD,gold);
     }
 
 
