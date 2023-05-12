@@ -12,4 +12,12 @@ public class Resource {
             allResources.put(name, 0);
         }
     }
+
+    public void add(HashMap<ResourcesName,Integer> product){
+        int s;
+        for (ResourcesName resourcesName : product.keySet()) {
+            s = this.allResources.get(resourcesName) + product.get(resourcesName);
+            this.allResources.put(resourcesName,s);
+        }
+    }
 }
