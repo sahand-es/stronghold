@@ -47,8 +47,9 @@ public enum ResourcesName
 
 
     private final String name;
+    public final static ArrayList<ResourcesName> Materials = new ArrayList<>(List.of(WHEAT,FLOUR,HOPS,ALE,STONE,WOOD,PITCH));
     public final static ArrayList<ResourcesName> foods = new ArrayList<>(List.of(MEAT, APPLE, CHEESE,BREAD));
-    public final static ArrayList<ResourcesName> weapons = new ArrayList<>(List.of(BOW,CROSSBOW,SPEAR,PIKE,MACE,SWORD));
+    public final static ArrayList<ResourcesName> weapons = new ArrayList<>(List.of(BOW,CROSSBOW,SPEAR,PIKE,MACE,SWORD,LEATHER,METAL));
 
     ResourcesName(String name) {
         this.name = name;

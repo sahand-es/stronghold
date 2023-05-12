@@ -63,4 +63,13 @@ public class Resource {
         return output;
     }
 
+    public int getMaterialAmount(){
+        int output = 0;
+        for (ResourcesName material : ResourcesName.Materials) {
+            output += this.allResources.get(material);
+        }
+        return output;
+    }
+
+
 }
