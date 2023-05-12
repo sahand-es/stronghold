@@ -47,4 +47,12 @@ public class Resource {
         return output;
     }
 
+    public int getFoodAmount(){
+        int output = 0;
+        for (ResourcesName food : ResourcesName.foods) {
+            output += this.allResources.get(food);
+        }
+        return output;
+    }
+
 }
