@@ -139,7 +139,7 @@ public abstract class Person {
                     break;
                 }
                 case "Worker": {
-                    new WorkerUnit(hp, speed, defencePower, name, price ,canClimbLadder, canDigMoat);
+                    new WorkerUnit(hp, speed, defencePower, name, price, canClimbLadder, canDigMoat);
                     break;
                 }
                 default:
@@ -229,11 +229,27 @@ public abstract class Person {
 
     }
 
-    public void move(Block destination) {
+    public void findPath(Block destination) {
         HashMap<Block, Block> route = BFS(destination);
         if (route == null)
             return;
+        addRouteToQueue(route, destination);
+    }
 
+    public void move() {
+        if (!moveQueue.isEmpty()) {
+            Block lastBlock = null;
+            int blocksMoved = 0;
+            while (!moveQueue.isEmpty() && blocksMoved < speed) {
+                lastBlock = moveQueue.peek();
+                moveQueue.remove();
+                blocksMoved += 1;
+            }
+
+            this.block.removeUnit(this);
+            lastBlock.addUnit(this);
+            this.block = lastBlock;
+        }
     }
 
     private HashMap<Block, Block> BFS(Block destination) {

@@ -6,25 +6,22 @@ import model.units.Person;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Block
-{
+public class Block {
     private final int x;
     private final int y;
     private Texture texture;
     private Map map;
 
     private Environment whatIsOnThisBlock;
-    private static ArrayList<Person> units;
+    private ArrayList<Person> units;
 
-    protected Block(int x, int y, Texture texture, Map map)
-    {
+    protected Block(int x, int y, Texture texture, Map map) {
         this.x = x;
         this.y = y;
         this.texture = texture;
         this.map = map;
     }
 
-    static
     {
         units = new ArrayList<Person>();
     }
@@ -32,26 +29,31 @@ public class Block
     public Map getMap() {
         return map;
     }
-    public static ArrayList<Person> getUnits() {
+
+    public ArrayList<Person> getUnits() {
         return units;
     }
 
-    public static void setUnits(ArrayList<Person> units) {
-        Block.units = units;
+    public void addUnit(Person person) {
+        units.add(person);
     }
 
-    public int getX()
-    {
+    public void removeUnit(Person person) {
+        for (Person unit : units) {
+            if (unit.equals(person))
+                units.remove(person);
+        }
+    }
+
+    public int getX() {
         return x;
     }
 
-    public int getY()
-    {
+    public int getY() {
         return y;
     }
 
-    public boolean canPassThisBlock(Person person)
-    {
+    public boolean canPassThisBlock(Person person) {
         return true;
     }
 
