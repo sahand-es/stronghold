@@ -162,6 +162,9 @@ public class Building extends Environment {
                     new Shop(hp, buildingCategory, name, price);
                     break;
                 }
+
+                case "Castle":
+                    new Castle(hp, buildingCategory, name, new HashMap<>());
                 default:
                     throw new RuntimeException();
             }
