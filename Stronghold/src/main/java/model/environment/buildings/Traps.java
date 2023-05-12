@@ -2,7 +2,9 @@ package model.environment.buildings;
 
 import model.environment.buildings.enums.BuildingCategory;
 import model.environment.buildings.enums.BuildingName;
+import model.map.Block;
 import model.resourecs.ResourcesName;
+import model.society.Government;
 
 import java.util.HashMap;
 
@@ -13,5 +15,9 @@ public class Traps extends Building{
                     BuildingName name,
                     HashMap<ResourcesName, Integer> price) {
         super(hp, category, name, price);
+    }
+
+    public Traps(BuildingName name, Government government, Block block) {
+        super(name, government, block);
     }
 }

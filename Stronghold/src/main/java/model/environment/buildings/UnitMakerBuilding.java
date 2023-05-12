@@ -21,6 +21,9 @@ public class UnitMakerBuilding extends Building {
         super(hp, category, name, price);
     }
 
+    public UnitMakerBuilding(BuildingName name, Government government, Block block) {
+        super(name, government, block);
+    }
 
     public ArrayList<Soldier> getUnits() {
         return units;

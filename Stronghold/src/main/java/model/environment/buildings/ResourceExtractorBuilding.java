@@ -30,6 +30,7 @@ public class ResourceExtractorBuilding extends Building {
         super(name, government, block);
         ResourceExtractorBuilding buildingToClone = (ResourceExtractorBuilding) getBuildingByBuildingName(name);
         this.rate = buildingToClone.getRate();
+        this.extractedResources = buildingToClone.getExtractedResource();
     }
 
     public ArrayList<ResourcesName> getExtractedResource() {
