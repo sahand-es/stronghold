@@ -1,5 +1,6 @@
 package model.society;
 
+import model.Game;
 import model.User;
 import model.environment.buildings.Building;
 import model.resourecs.Resource;
@@ -35,10 +36,12 @@ public class Government
 
     private Colors color;
     private User owner;
+    private Game game;
 
-    public Government(User owner)
+    public Government(User owner,Game game)
     {
         this.owner = owner;
+        this.game = game;
         tradesDone = new ArrayList<>();
         units = new ArrayList<>();
         siegeUtils = new ArrayList<>();
@@ -176,25 +179,31 @@ public class Government
 
     public void addBuilding(Building building){
         buildings.add(building);
+        game.addBuilding(building);
     }
 
     public void removeBuilding(Building building){
         buildings.remove(building);
+        game.removeBuilding(building);
     }
 
     public void addUnit(Person unit){
         units.add(unit);
+        game.addUnit(unit);
     }
 
     public void removeUnit(Person unit){
         units.remove(unit);
+        game.removeUnit(unit);
     }
 
     public  void addSiegeUtil(SiegeUtil siegeUtil){
         siegeUtils.add(siegeUtil);
+        game.addSiegeUtil(siegeUtil);
     }
 
     public void removeSiegeUtil(SiegeUtil siegeUtil){
         siegeUtils.remove(siegeUtil);
+        game.removeSiegeUtil(siegeUtil);
     }
 }
