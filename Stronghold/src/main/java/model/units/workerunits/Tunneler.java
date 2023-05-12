@@ -1,6 +1,7 @@
 package model.units.workerunits;
 
 import model.map.Block;
+import model.units.WorkerUnit;
 import model.units.enums.UnitName;
 
 public class Tunneler extends WorkerUnit {

@@ -105,4 +105,12 @@ public class Armour extends ResourceHolder {
         this.speedBoost = armourToClone.speedBoost;
         this.defenceBoost = armourToClone.defenceBoost;
     }
+
+    public int getSpeedBoost() {
+        return speedBoost;
+    }
+
+    public int getDefenceBoost() {
+        return defenceBoost;
+    }
 }

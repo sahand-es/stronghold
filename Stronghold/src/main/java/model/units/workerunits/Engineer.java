@@ -1,6 +1,7 @@
 package model.units.workerunits;
 
 import model.map.Direction;
+import model.units.WorkerUnit;
 import model.units.enums.UnitName;
 
 public class Engineer extends WorkerUnit {

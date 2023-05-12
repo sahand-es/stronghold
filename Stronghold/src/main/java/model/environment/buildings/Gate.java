@@ -1,6 +1,6 @@
 package model.environment.buildings;
 
-import model.environment.Direction;
+import model.map.Direction;
 import model.environment.buildings.enums.BuildingCategory;
 import model.environment.buildings.enums.BuildingName;
 import model.resourecs.ResourcesName;
