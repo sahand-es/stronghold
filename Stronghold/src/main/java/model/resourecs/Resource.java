@@ -28,4 +28,13 @@ public class Resource {
             this.allResources.put(resourcesName,s);
         }
     }
+
+    public boolean checkPay(HashMap<ResourcesName,Integer> price){
+        for (ResourcesName resourcesName : price.keySet()) {
+            if(this.allResources.get(resourcesName) < price.get(resourcesName))
+                return false;
+        }
+
+        return true;
+    }
 }
