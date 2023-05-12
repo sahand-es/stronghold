@@ -43,7 +43,8 @@ public enum ResourcesName
     HORSE("Horse"),
 
 //  Others:
-    COW("Cow");
+    COW("Cow"),
+    PEOPLE("People");
 
 
     private final String name;

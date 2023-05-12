@@ -2,7 +2,9 @@ package model.environment.buildings;
 
 import model.environment.buildings.enums.BuildingCategory;
 import model.environment.buildings.enums.BuildingName;
+import model.map.Block;
 import model.resourecs.ResourcesName;
+import model.society.Government;
 
 import java.util.HashMap;
 
@@ -19,6 +21,14 @@ public class HouseBuilding extends Building {
 
         super(hp, category, name, price);
         this.peopleCapacity = peopleCapacity;
+    }
+
+
+    public HouseBuilding(BuildingName name, Government government, Block block) {
+        super(name, government, block);
+        HouseBuilding buildingToClone = (HouseBuilding) getBuildingByBuildingName(name);
+        this.peopleCapacity = buildingToClone.peopleCapacity;
+        government.addPopulationCapacity(this.peopleCapacity);
     }
 
     public int getPeopleCapacity() {

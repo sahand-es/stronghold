@@ -1,7 +1,11 @@
 package model.society;
 
+import model.Game;
 import model.User;
 import model.environment.buildings.Building;
+import model.environment.buildings.enums.BuildingName;
+import model.resourecs.Resource;
+import model.siegeutil.SiegeUtil;
 import model.society.enums.Colors;
 import model.resourecs.ResourceHolder;
 import model.units.Person;
@@ -17,13 +21,37 @@ public class Government
     private int fearRate;
 
 
-    private ArrayList<Trade> tradesDone;
+
+    private int populationCapacity;
+    private int foodCapacity;
+    private int weaponCapacity;
+    private int materialCapacity;
+
+    private final Resource resource;
+
+
+    private final ArrayList<Trade> tradesDone;
+    private final ArrayList<Person> units;
+    private final ArrayList<SiegeUtil> siegeUtils;
+    private final ArrayList<Building> buildings;
+
     private Colors color;
     private User owner;
+    private Game game;
 
-    public Government(User owner)
+    public Government(User owner,Game game)
     {
         this.owner = owner;
+        this.game = game;
+        tradesDone = new ArrayList<>();
+        units = new ArrayList<>();
+        siegeUtils = new ArrayList<>();
+        buildings = new ArrayList<>();
+        taxRate = 0;
+        fearRate = 0;
+        foodRate = 0;
+        popularity = 50;
+        resource = new Resource();
     }
 
 
@@ -60,6 +88,7 @@ public class Government
 
     public void setTaxRate(int taxRate) {
         this.taxRate = taxRate;
+        popularity += this.calcPopularityOfTaxRate();
     }
 
     public int getFearRate() {
@@ -68,5 +97,165 @@ public class Government
 
     public void setFearRate(int fearRate) {
         this.fearRate = fearRate;
+        popularity += fearRate;
     }
+
+
+    public int getPopulationCapacity() {
+        return populationCapacity;
+    }
+
+    public void setPopulationCapacity(int populationCapacity) {
+        this.populationCapacity = populationCapacity;
+    }
+
+    public int getFoodCapacity() {
+        return foodCapacity;
+    }
+
+    public void setFoodCapacity(int foodCapacity) {
+        this.foodCapacity = foodCapacity;
+    }
+
+    public int getWeaponCapacity() {
+        return weaponCapacity;
+    }
+
+    public void setWeaponCapacity(int weaponCapacity) {
+        this.weaponCapacity = weaponCapacity;
+    }
+
+    public int getMaterialCapacity() {
+        return materialCapacity;
+    }
+
+    public void setMaterialCapacity(int materialCapacity) {
+        this.materialCapacity = materialCapacity;
+    }
+
+    public ArrayList<Trade> getTradesDone() {
+        return tradesDone;
+    }
+
+    public ArrayList<Person> getUnits() {
+        return units;
+    }
+
+    public ArrayList<SiegeUtil> getSiegeUtils() {
+        return siegeUtils;
+    }
+
+    public ArrayList<Building> getBuildings() {
+        return buildings;
+    }
+
+    public Resource getResource() {
+        return resource;
+    }
+
+    public int getPopulation(){
+        return resource.getPeople() + units.size();
+    }
+
+    private int calcPopularityOfTaxRate(){
+        int output;
+        output = -2 * this.taxRate;
+        if (this.taxRate <= 0)
+            output++;
+        return output;
+    }
+
+    public int calcTax(){
+        int output = 0;
+        if(this.taxRate == 0)
+            return output;
+
+        if (this.taxRate > 0){
+            output = (int) (0.2f*taxRate +0.4f)*getPopulation();
+        } else {
+            output = (int) (0.2f*taxRate -0.4f)*getPopulation();
+        }
+        return output;
+    }
+
+    public void addBuilding(Building building){
+        buildings.add(building);
+        game.addBuilding(building);
+    }
+
+    public void removeBuilding(Building building){
+        buildings.remove(building);
+        game.removeBuilding(building);
+    }
+
+    public void addUnit(Person unit){
+        units.add(unit);
+        game.addUnit(unit);
+    }
+
+    public void removeUnit(Person unit){
+        units.remove(unit);
+        game.removeUnit(unit);
+    }
+
+    public  void addSiegeUtil(SiegeUtil siegeUtil){
+        siegeUtils.add(siegeUtil);
+        game.addSiegeUtil(siegeUtil);
+    }
+
+    public void removeSiegeUtil(SiegeUtil siegeUtil){
+        siegeUtils.remove(siegeUtil);
+        game.removeSiegeUtil(siegeUtil);
+    }
+
+    public void addPopularity(int amount){
+        popularity += amount;
+    }
+
+    public void addCapacity(BuildingName name, int capacity){
+        switch (name){
+            case ARMOURY:
+                weaponCapacity += capacity;
+                break;
+
+            case GRANARY:
+                foodCapacity += capacity;
+                break;
+
+            case STOCKPILE:
+                materialCapacity += capacity;
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    public void subtractCapacity(BuildingName building, int capacity){
+        switch (building){
+            case ARMOURY:
+                weaponCapacity -= capacity;
+                break;
+
+            case GRANARY:
+                foodCapacity -= capacity;
+                break;
+
+            case STOCKPILE:
+                materialCapacity -= capacity;
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    public void addPopulationCapacity(int capacity){
+        populationCapacity += capacity;
+    }
+
+    public void subtractPopulationCapacity(int capacity){
+        populationCapacity -= capacity;
+    }
+
 }

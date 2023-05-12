@@ -9,5 +9,6 @@ public abstract class Environment {
 
     public void setBlock(Block block) {
         this.block = block;
+        block.setEnvironment(this);
     }
 }

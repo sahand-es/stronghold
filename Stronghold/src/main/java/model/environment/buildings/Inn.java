@@ -6,7 +6,7 @@ import model.resourecs.ResourcesName;
 
 import java.util.HashMap;
 
-public class Inn extends WorkingBuilding {
+public class Inn extends Building {
     int popularityRate;
 
     int whineUsageRate;

@@ -180,6 +180,8 @@ public class Building extends Environment {
         this.price = buildingToClone.price;
         this.government = government;
         super.setBlock(block);
+        block.setEnvironment(this);
+        government.addBuilding(this);
     }
 
     protected Building getBuildingByBuildingName(BuildingName name) {

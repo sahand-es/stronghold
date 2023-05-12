@@ -13,7 +13,7 @@ public class Block {
     private Texture texture;
     private Map map;
 
-    private Environment whatIsOnThisBlock;
+    private Environment environment;
     private ArrayList<Person> units;
 
     protected Block(int x, int y, Texture texture, Map map) {
@@ -55,12 +55,12 @@ public class Block {
     }
 
 
-    public Environment getWhatIsOnThisBlock() {
-        return whatIsOnThisBlock;
+    public Environment getEnvironment() {
+        return environment;
     }
 
-    public void setWhatIsOnThisBlock(Environment whatIsOnThisBlock) {
-        this.whatIsOnThisBlock = whatIsOnThisBlock;
+    public void setEnvironment(Environment environment) {
+        this.environment = environment;
     }
 
     public Texture getTexture() {
