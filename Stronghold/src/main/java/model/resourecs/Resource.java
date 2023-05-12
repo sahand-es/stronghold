@@ -37,4 +37,14 @@ public class Resource {
 
         return true;
     }
+
+    public int getFoodDiversity(){
+        int output = 0;
+        for (ResourcesName food : ResourcesName.foods) {
+            if (this.allResources.get(food) != 0)
+                output ++;
+        }
+        return output;
+    }
+
 }

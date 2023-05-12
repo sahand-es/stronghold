@@ -2,6 +2,9 @@ package model.resourecs;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public enum ResourcesName
 {
 //  Initial materials:
@@ -44,6 +47,7 @@ public enum ResourcesName
 
 
     private final String name;
+    public final static ArrayList<ResourcesName> foods = new ArrayList<>(List.of(MEAT, APPLE, CHEESE,BREAD));
 
     ResourcesName(String name) {
         this.name = name;
@@ -58,4 +62,6 @@ public enum ResourcesName
         }
         throw new RuntimeException();
     }
+
+
 }
