@@ -25,7 +25,7 @@ public class ProfileMenu
                 System.out.println("You're in Profile Menu!");
             }
             else if ((matcher = ProfileCommands.getMatcher(command,ProfileCommands.CHANGE_USERNAME)) != null) {
-                //todo
+                checkChangeUsername(matcher);
             }
             else if ((matcher = ProfileCommands.getMatcher(command,ProfileCommands.CHANGE_NICKNAME)) != null) {
                 //todo
@@ -70,6 +70,8 @@ public class ProfileMenu
     }
 
     private static void checkChangeUsername(Matcher matcher){
+
+
 
     }
 

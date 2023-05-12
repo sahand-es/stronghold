@@ -31,11 +31,19 @@ public class CheckFunctions
         return !password.matches(".*[^A-Za-z0-9].*");
     }
 
-    public static boolean checkReEnteredPassword(String password, String reEnteredPassword)
-    {
-        return true;
-    }
+    public static String getUserFromMatcher(Matcher matcher){
+        String username = "";
+        String argVal = matcher.group("username");
+        String argValSpace = matcher.group("usernameSpace");
+        username = (argVal != null) ? argVal : username;
+        username = (argValSpace != null) ? argValSpace : username;
 
+        if (username.equals("")){
+            return null;
+        }
+
+        return username;
+    }
     public static boolean checkEmailExits(String email)
     {
         return Application.getUserByEmail(email) != null;
