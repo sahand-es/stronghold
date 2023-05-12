@@ -13,6 +13,9 @@ public class CheckFunctions
     public static boolean checkUsernameFormat(String username) {
         return username.matches(".*[^A-Za-z0-9_].*");
     }
+    public static boolean checkNicknameFormat(String nickname) {
+        return nickname.matches(".*\\s.*");
+    }
 
     public static boolean checkUsernameExits(String username) {
         return Application.getUserByUsername(username) != null;
@@ -31,11 +34,71 @@ public class CheckFunctions
         return !password.matches(".*[^A-Za-z0-9].*");
     }
 
-    public static boolean checkReEnteredPassword(String password, String reEnteredPassword)
-    {
-        return true;
-    }
+    public static String getUserFromMatcher(Matcher matcher){
+        String username = "";
+        String argVal = matcher.group("username");
+        String argValSpace = matcher.group("usernameSpace");
+        username = (argVal != null) ? argVal : username;
+        username = (argValSpace != null) ? argValSpace : username;
 
+        if (username.equals("")){
+            return null;
+        }
+
+        return username;
+    }
+    public static String getPassFromMatcher(Matcher matcher){
+        String password = "";
+        String argVal = matcher.group("password");
+        String argValSpace = matcher.group("passwordSpace");
+        password = (argVal != null) ? argVal : password;
+        password = (argValSpace != null) ? argValSpace : password;
+
+        if (password.equals("")){
+            return null;
+        }
+
+        return password;
+    }
+    public static String getNickFromMatcher(Matcher matcher){
+        String nickname = "";
+        String argVal = matcher.group("nickname");
+        String argValSpace = matcher.group("nicknameSpace");
+        nickname = (argVal != null) ? argVal : nickname;
+        nickname = (argValSpace != null) ? argValSpace : nickname;
+
+        if (nickname.equals("")){
+            return null;
+        }
+
+        return nickname;
+    }
+    public static String getEmailFromMatcher(Matcher matcher){
+        String email = "";
+        String argVal = matcher.group("email");
+        String argValSpace = matcher.group("emailSpace");
+        email = (argVal != null) ? argVal : email;
+        email = (argValSpace != null) ? argValSpace : email;
+
+        if (email.equals("")){
+            return null;
+        }
+
+        return email;
+    }
+    public static String getSloganFromMatcher(Matcher matcher){
+        String slogan = "";
+        String argVal = matcher.group("slogan");
+        String argValSpace = matcher.group("sloganSpace");
+        slogan = (argVal != null) ? argVal : slogan;
+        slogan = (argValSpace != null) ? argValSpace : slogan;
+
+        if (slogan.equals("")){
+            return null;
+        }
+
+        return slogan;
+    }
     public static boolean checkEmailExits(String email)
     {
         return Application.getUserByEmail(email) != null;

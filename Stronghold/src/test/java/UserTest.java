@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class UserTest {
 
-    User user1 = new User("bluh", "S@hand844", "duh", "asdfa@dsaf.com", 2, "bluh");
-    User user2 = new User("bluhasdf", "S@hand844", "nibba", "asdfa@dsakf.com", 1, "bluh");
+    User user1 = new User("bluh", "S@hand844", "duh", "asdfa@dsaf.com", 2, "bluh",null);
+    User user2 = new User("bluhasdf", "S@hand844", "nibba", "asdfa@dsakf.com", 1, "bluh",null);
 
 
     @Test

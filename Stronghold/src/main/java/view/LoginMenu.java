@@ -4,6 +4,7 @@ import controller.LoginControl;
 
 import model.Application;
 import model.User;
+import utility.CheckFunctions;
 import utility.DataManager;
 import utility.RandomGenerators;
 import view.enums.AllMenus;
@@ -17,8 +18,10 @@ import java.util.regex.Pattern;
 
 public class LoginMenu
 {
-    public static void run() {
+    private static int wrongAttempts ;
+    public static void run() throws InterruptedException {
 
+        setWrongAttempts(0);
         java.util.Scanner scanner = new java.util.Scanner(System.in);
         String command;
         Matcher matcher;
@@ -57,7 +60,7 @@ public class LoginMenu
 
     }
 
-    private static void checkLogin(String command) {
+    private static void checkLogin(String command) throws InterruptedException {
         String username = "";
         String password = "";
         boolean stayLogged = false;
@@ -66,12 +69,10 @@ public class LoginMenu
         Matcher userMatcher = Pattern.compile(regexUSER).matcher(command);
 
         if (userMatcher.find()){
-            String argVal = userMatcher.group("username");
-            String argValSpace = userMatcher.group("usernameSpace");
+            username = CheckFunctions.getUserFromMatcher(userMatcher);
             command = command.replaceAll(userMatcher.group().toString().trim(),"");
-            username = (argVal != null) ? argVal : username;
-            username = (argValSpace != null) ? argValSpace : username;
-            if (username.equals("")){
+
+            if (username == null){
                 System.out.println("My liege, you must give username to log in!");
                 return;
             }
@@ -81,12 +82,10 @@ public class LoginMenu
         Matcher passMatcher = Pattern.compile(regexPASS).matcher(command);
 
         if (passMatcher.find()){
-            String argVal = passMatcher.group("password");
-            String argValSpace = passMatcher.group("passwordSpace");
+            password = CheckFunctions.getPassFromMatcher(passMatcher);
             command = command.replaceAll(passMatcher.group().toString().trim(),"");
-            password = (argVal != null) ? argVal : password;
-            password = (argValSpace != null) ? argValSpace : password;
-            if (password.equals("")){
+
+            if (password == null){
                 System.out.println("My liege, you must give password to log in!");
                 return;
             }
@@ -100,8 +99,10 @@ public class LoginMenu
             command = command.replaceAll(stayLoggedInMatcher.group().toString().trim(),"");
         }
 
+
         if (LoginCommands.getMatcher(command,LoginCommands.FINAL_LOGIN_CHECK) == null){
             System.out.println("My liege, there is an invalid argument in login command");
+            return;
         }
 
         LoginMessages messages = LoginControl.checkLogin(username,password,stayLogged);
@@ -111,7 +112,12 @@ public class LoginMenu
                 System.out.println("There is no user with this username!");
                 break;
             case PASSWORD_DIDNT_MATCH:
-                System.out.println("Incorrect password!");
+                setWrongAttempts(getWrongAttempts() + 1);
+                System.out.println("Incorrect password, you had " + getWrongAttempts() + " wrong attempts!");
+                for (int timeRemaining = getWrongAttempts() * 5; timeRemaining > 0; timeRemaining--) {
+                    System.out.println(timeRemaining + "...");
+                    Thread.sleep(1000);
+                }
                 break;
             case FAILED:
                 System.out.println("Login Failed!");
@@ -127,13 +133,9 @@ public class LoginMenu
     }
 
     private static void forgotPassword(Matcher matcher ,Scanner scanner) {
-        String username = "";
-        String argVal = matcher.group("username");
-        String argValSpace = matcher.group("usernameSpace");
-        username = (argVal != null) ? argVal : username;
-        username = (argValSpace != null) ? argValSpace : username;
+        String username = CheckFunctions.getUserFromMatcher(matcher);
 
-        if (username.equals("")){
+        if (username == null){
             System.out.println("My liege you must give a username!");
             return;
         }
@@ -275,5 +277,11 @@ public class LoginMenu
     }
 
 
+    public static int getWrongAttempts() {
+        return wrongAttempts;
+    }
 
+    public static void setWrongAttempts(int wrongAttempts) {
+        LoginMenu.wrongAttempts = wrongAttempts;
+    }
 }

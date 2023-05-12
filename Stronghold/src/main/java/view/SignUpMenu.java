@@ -150,7 +150,7 @@ public class SignUpMenu {
         }
         else{
             System.out.println("My liege, that's an invalid argument in create user command!");
-            createData = null;
+            createData.clear();
             return null;
         }
     }
@@ -212,7 +212,10 @@ public class SignUpMenu {
     private static void checkCreateUser(Matcher matcher, String command) {
         SignUpMessages message;
         if(createData != null){
-            if (command.matches(".*-s.*") && createData.get("slogan").equals("")) {
+            if (command.matches(".*-s.*") && createData.get("slogan") == null) {
+                System.out.println("My liege, you must give a slogan when you give it's argument!");
+            }
+            else if (command.matches(".*-s.*") && createData.get("slogan").equals(null)) {
                 System.out.println("My liege, you must give a slogan when you give it's argument!");
             }
             else {
@@ -237,25 +240,25 @@ public class SignUpMenu {
                         System.out.println("My liege, you must give an email!");
                         break;
                     case INVALID_USER_FORMAT:
-                        System.out.println("My liege, your username format is invalid");
+                        System.out.println("My liege, your username format is invalid!");
                         break;
                     case USER_EXIST:
-                        System.out.println("My liege, this username already exist");
+                        System.out.println("My liege, this username already exist!");
                         break;
                     case INSUFFICIENT_PASS:
-                        System.out.println("My liege, your password must be at least 6 characters");
+                        System.out.println("My liege, your password must be at least 6 characters!");
                         break;
                     case INVALID_PASS_FORMAT:
-                        System.out.println("My liege, your password format is invalid");
+                        System.out.println("My liege, your password format is invalid!");
                         break;
                     case EXISTING_EMAIL:
-                        System.out.println("My liege, this email already exist");
+                        System.out.println("My liege, this email already exist!");
                         break;
                     case INVALID_EMAIL:
-                        System.out.println("My liege, your email format is invalid");
+                        System.out.println("My liege, your email format is invalid!");
                         break;
                     case INVALID_COMMAND_COMBINATION:
-                        System.out.println("My liege, you have gave an invalid combination");
+                        System.out.println("My liege, you have gave an invalid combination!");
                         break;
                     case SUCCESS:
                         System.out.println("Your account has been successfully created!");

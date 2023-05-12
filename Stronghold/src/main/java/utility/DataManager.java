@@ -128,12 +128,12 @@ public class DataManager {
             return null;
         }
     }
-    public static void saveLoggedIn() {
+    public static void saveLoggedIn(User user) {
         FileWriter fileWriter;
         try {
             fileWriter = new FileWriter(LOGGED_IN_DATABASE_PATH);
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
-            String json = gson.toJson(Application.getCurrentUser());
+            String json = gson.toJson(user);
             fileWriter.write(json);
             fileWriter.close();
         } catch (IOException e) {
@@ -141,13 +141,8 @@ public class DataManager {
         }
     }
 
-    //ToDo delete Logged in user from json file
-    //This must be called for when we log out in profile menu
-
-    public static void main(String[] args) {
-        Map map = new Map(100, 100);
-        Game game = new Game(map);
-        System.out.println(Application.getGames());
-        saveGames(map);
+    public static void saver(){
+        saveUsers();
+        saveLoggedIn(null);
     }
 }
