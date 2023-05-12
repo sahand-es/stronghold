@@ -46,26 +46,26 @@ public class SignUpMenuTest {
     public void test2() {
         HashMap<String, String> answer;
         answer = answerMap("sahand_es", "CorrectP@ssword1", "CorrectP@ssword1",
-                "sahand", "email   @gmail   .com", "in che kosSherie?");
+                "sahand", "email   @gmail   .com", "in che tesTie?");
 
         testExtraction(answer,
-                "create user -u sahand_es -p CorrectP@ssword1 CorrectP@ssword1 " +
-                        "-n sahand -email \"email   @gmail   .com\" -s \"in che kosSherie?\""
+                "user create -u sahand_es -p CorrectP@ssword1 CorrectP@ssword1 " +
+                        "-n sahand -email \"email   @gmail   .com\" -s \"in che tesTie?\""
         );
 
         testExtraction(answer,
-                "create    user     -u     sahand_es -p CorrectP@ssword1 CorrectP@ssword1 " +
-                        "-n sahand -email    \"email   @gmail   .com\" -s       \"in che kosSherie?\""
+                "user    create     -u     sahand_es -p CorrectP@ssword1 CorrectP@ssword1 " +
+                        "-n sahand -email    \"email   @gmail   .com\" -s       \"in che tesTie?\""
         );
 
         testExtraction(answer,
-                "create    user  -p CorrectP@ssword1 CorrectP@ssword1      -u     sahand_es " +
-                        "-n      sahand -email    \"email   @gmail   .com\" -s       \"in che kosSherie?\""
+                "user    create  -p CorrectP@ssword1 CorrectP@ssword1      -u     sahand_es " +
+                        "-n      sahand -email    \"email   @gmail   .com\" -s       \"in che tesTie?\""
         );
 
         testExtraction(answer,
-                "   create  user  -p CorrectP@ssword1 CorrectP@ssword1      -u     sahand_es " +
-                        "-email    \"email   @gmail   .com\" -s       \"in che kosSherie?\"  -n    sahand "
+                "   user create  -p CorrectP@ssword1 CorrectP@ssword1      -u     sahand_es " +
+                        "-email    \"email   @gmail   .com\" -s       \"in che tesTie?\"  -n    sahand "
         );
     }
 
@@ -76,15 +76,15 @@ public class SignUpMenuTest {
                 "sahand", "email   @gmail   .com", null);
 
         testExtraction(answer,
-                "create user -u sahand_es -p CorrectP@ssword1 CorrectP@ssword1 " +
+                "user create -u sahand_es -p CorrectP@ssword1 CorrectP@ssword1 " +
                         "-n sahand -email \"email   @gmail   .com\""
         );
         testExtraction(answer,
-                "create user -email \"email   @gmail   .com\"     -u sahand_es -p CorrectP@ssword1 CorrectP@ssword1 " +
+                "user create -email \"email   @gmail   .com\"     -u sahand_es -p CorrectP@ssword1 CorrectP@ssword1 " +
                         "-n sahand"
         );
         testExtraction(answer,
-                "create user -p CorrectP@ssword1 CorrectP@ssword1 -u sahand_es " +
+                "user create -p CorrectP@ssword1 CorrectP@ssword1 -u sahand_es " +
                         "-n sahand -email \"email   @gmail   .com\""
         );
     }
@@ -92,22 +92,14 @@ public class SignUpMenuTest {
 
         @Test
     public void test4(){
-        testNull("user create -u sahand_es -u nigga -p pass1 pass1 -n sahand -email email@gmail.com -s thisisatest");
-        testNull("user create -u sahand_es -p pass1 pass1 bluh -n sahand -email email@gmail.com -s thisisatest");
-        testNull("user create -u sahand_es -p pass1 pass1 -n sahand -email email@gmail.com ezafe ezafe");
-        testNull("user create -u sahand_es -p pass1 pass1 -n sahand -email email@gmail.com -b wtf");
-        testNull("user create ezafe inja -u sahand_es -p pass1 pass1 -n sahand -email email@gmail.com  ");
+        testNull("user create -u sahand_es -u armin -p pass1 pass1 -n sahand -email email@gmail.com -s thisIsATest");
+        testNull("user create -u sahand_es -p pass1 pass1 bluh -n sahand -email email@gmail.com -s thisIsATest");
+        testNull("user create -u sahand_es -p pass1 pass1 -n sahand -email email@gmail.com something something");
+        testNull("user create -u sahand_es -p pass1 pass1 -n sahand -email email@gmail.com -b something");
+        testNull("user create something in here -u sahand_es -p pass1 pass1 -n sahand -email email@gmail.com  ");
     }
 
-    @Test
-    public void test5(){
-        HashMap<String, String> answer;
-        answer = answerMap("-sahand_es-", "pass1", "pass with space", "--nickname",
-                "email", null);
 
-        testExtraction(answer,
-                "create user -u -sahand_es- -p pass1 \"pass with space\" -n --nickname -email email");
-    }
     public void testNull(String input) {
 
         HashMap<String, String> data = SignUpMenu.extractCreateCommand(input);

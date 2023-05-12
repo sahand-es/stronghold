@@ -5,6 +5,11 @@ import java.util.regex.Pattern;
 
 public enum MainMenuCommands
 {
+    EXIT("^\\s*exit\\s*$"),
+    SHOW_MENU("^\\s*show\\s+menu\\s*$"),
+    PROFILE_MENU("^\\s*profile\\s+menu\\s*$"),
+    GAME_MENU("^\\s*game\\s+menu\\s*$"),
+    LOGOUT("^\\s*user\\s+logout\\s*$"),
     ;
 
     String regex;

@@ -7,32 +7,31 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CheckFunctionsTest {
     @Test
     public void usernameFormat() {
-        assertTrue(CheckFunctions.checkUsernameFormat("asdf"));
-        assertTrue(CheckFunctions.checkUsernameFormat("asdAS_12"));
-        assertTrue(CheckFunctions.checkUsernameFormat("1_2A__Sds1"));
-        assertTrue(CheckFunctions.checkUsernameFormat("sadf"));
+        assertFalse(CheckFunctions.checkUsernameFormat("asdf"));
+        assertFalse(CheckFunctions.checkUsernameFormat("asdAS_12"));
+        assertFalse(CheckFunctions.checkUsernameFormat("1_2A__Sds1"));
+        assertFalse(CheckFunctions.checkUsernameFormat("sadf"));
 
-        assertFalse(CheckFunctions.checkUsernameFormat("s  adf"));
-        assertFalse(CheckFunctions.checkUsernameFormat("fasdf!As"));
-        assertFalse(CheckFunctions.checkUsernameFormat("  sadf"));
-        assertFalse(CheckFunctions.checkUsernameFormat("SD-f"));
-        assertFalse(CheckFunctions.checkUsernameFormat("   "));
-        assertFalse(CheckFunctions.checkUsernameFormat("S "));
+        assertTrue(CheckFunctions.checkUsernameFormat("s  adf"));
+        assertTrue(CheckFunctions.checkUsernameFormat("fasdf!As"));
+        assertTrue(CheckFunctions.checkUsernameFormat("  sadf"));
+        assertTrue(CheckFunctions.checkUsernameFormat("SD-f"));
+        assertTrue(CheckFunctions.checkUsernameFormat("   "));
+        assertTrue(CheckFunctions.checkUsernameFormat("S "));
     }
 
     @Test
     public void passwordFormat() {
-        assertTrue(CheckFunctions.checkPasswordFormat("Tes!t1"));
-        assertTrue(CheckFunctions.checkPasswordFormat("s##Ddf23"));
-        assertTrue(CheckFunctions.checkPasswordFormat("AAAAbb~2222"));
-        assertTrue(CheckFunctions.checkPasswordFormat("123P$b"));
-        assertTrue(CheckFunctions.checkPasswordFormat("S@has90"));
-
-        assertFalse(CheckFunctions.checkPasswordFormat("Test1"));
-        assertFalse(CheckFunctions.checkPasswordFormat("s##df23"));
-        assertFalse(CheckFunctions.checkPasswordFormat("AAAA~2222"));
+        assertFalse(CheckFunctions.checkPasswordFormat("Tes!t1"));
+        assertFalse(CheckFunctions.checkPasswordFormat("s##Ddf23"));
+        assertFalse(CheckFunctions.checkPasswordFormat("AAAAbb~2222"));
         assertFalse(CheckFunctions.checkPasswordFormat("123P$b"));
-        assertFalse(CheckFunctions.checkPasswordFormat("S@has"));
+        assertFalse(CheckFunctions.checkPasswordFormat("S@has90"));
+
+        assertTrue(CheckFunctions.checkPasswordFormat("Test1"));
+        assertTrue(CheckFunctions.checkPasswordFormat("s##df23"));
+        assertTrue(CheckFunctions.checkPasswordFormat("AAAA~2222"));
+        assertTrue(CheckFunctions.checkPasswordFormat("S@has"));
     }
 
     @Test
@@ -54,19 +53,19 @@ public class CheckFunctionsTest {
     @Test
 
     public void emailFormat() {
-        assertTrue(CheckFunctions.checkEmailFormat("email1@gmail.com"));
-        assertTrue(CheckFunctions.checkEmailFormat("123slave@nibba.s"));
-        assertTrue(CheckFunctions.checkEmailFormat("KIR@MIKHAM.CUM"));
+        assertFalse(CheckFunctions.checkEmailFormat("email1@gmail.com"));
+        assertFalse(CheckFunctions.checkEmailFormat("123pastil@shiba.s"));
+        assertFalse(CheckFunctions.checkEmailFormat("DOOGH@MIKHAM.ALI"));
 
-        assertFalse(CheckFunctions.checkEmailFormat("@NMIKHAM.CUM"));
-        assertFalse(CheckFunctions.checkEmailFormat("MOOz@.CUM"));
-        assertFalse(CheckFunctions.checkEmailFormat("MOOz@."));
-        assertFalse(CheckFunctions.checkEmailFormat("MOOz@sd f.asdf"));
-        assertFalse(CheckFunctions.checkEmailFormat("MOOz@sdf.asd f"));
-        assertFalse(CheckFunctions.checkEmailFormat("MOO z@sdf.asdf"));
-        assertFalse(CheckFunctions.checkEmailFormat("MOOzsdf.asdf"));
-        assertFalse(CheckFunctions.checkEmailFormat(" @MOOzsdf.asdf"));
-        assertFalse(CheckFunctions.checkEmailFormat("@1.asdf"));
+        assertTrue(CheckFunctions.checkEmailFormat("@NEMIKHAM.SWF"));
+        assertTrue(CheckFunctions.checkEmailFormat("MOOz@.CUM"));
+        assertTrue(CheckFunctions.checkEmailFormat("MOOz@."));
+        assertTrue(CheckFunctions.checkEmailFormat("MOOz@sd f.asdf"));
+        assertTrue(CheckFunctions.checkEmailFormat("MOOz@sdf.asd f"));
+        assertTrue(CheckFunctions.checkEmailFormat("MOO z@sdf.asdf"));
+        assertTrue(CheckFunctions.checkEmailFormat("MOOzsdf.asdf"));
+        assertTrue(CheckFunctions.checkEmailFormat(" @MOOzsdf.asdf"));
+        assertTrue(CheckFunctions.checkEmailFormat("@1.asdf"));
     }
 
 }

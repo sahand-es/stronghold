@@ -1,5 +1,6 @@
 package model;
 
+import utility.DataManager;
 import utility.SHA;
 
 import java.security.NoSuchAlgorithmException;
@@ -20,7 +21,7 @@ public class User {
     public User(String username, String password, String nickname, String email, int securityQuestionNumber, String securityAnswer) {
         this.username = username;
         this.nickname = nickname;
-        this.email = email;
+        this.email = email.toLowerCase();
         this.securityQuestionNumber = securityQuestionNumber;
         this.securityAnswer = securityAnswer;
         setPassword(password);
@@ -53,26 +54,32 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
+        DataManager.saveUsers();
     }
 
     public void setPassword(String password) {
         this.password = SHA.shaString(password);
+        DataManager.saveUsers();
     }
 
     public void setNickname(String nickname) {
         this.nickname = nickname;
+        DataManager.saveUsers();
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        this.email = email.toLowerCase();
+        DataManager.saveUsers();
     }
 
     public void setSlogan(String slogan) {
         this.slogan = slogan;
+        DataManager.saveUsers();
     }
 
     public void setHighScore(int highScore) {
         this.highScore = highScore;
+        DataManager.saveUsers();
     }
 
     public boolean checkPassword(String passwordToCheck) {
@@ -93,5 +100,6 @@ public class User {
 
     public void setRank(int rank) {
         this.rank = rank;
+        DataManager.saveUsers();
     }
 }

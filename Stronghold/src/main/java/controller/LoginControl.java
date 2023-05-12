@@ -3,42 +3,43 @@ package controller;
 import model.Application;
 import model.User;
 import utility.CheckFunctions;
+import utility.DataManager;
 import utility.SecurityQuestions;
+import view.Captcha;
+import view.enums.commands.LoginCommands;
 import view.enums.messages.LoginMessages;
+import view.enums.messages.SignUpMessages;
 
 public class LoginControl {
 
     private static User currentUser;
-    public static LoginMessages checkLogin(String username, String password){
-        User user;
+    public static LoginMessages checkLogin(String username, String password, Boolean stay){
 
-        if (username == null)
-            return LoginMessages.EMPTY_USERNAME;
-
-        if (password == null)
-            return LoginMessages.EMPTY_PASSWORD;
-
-        user = Application.getUserByUsername(username);
-
+        User user = Application.getUserByUsername(username);
         if (user == null)
-            return LoginMessages.USERNAME_DIDNT_MATCH;
+            return LoginMessages.USER_NOT_FOUND;
 
         if (!user.checkPassword(password))
+            //todo add delay
             return LoginMessages.PASSWORD_DIDNT_MATCH;
 
-        Application.setCurrentUser(user);
+        if (!Captcha.run()){
+            return LoginMessages.FAILED;
+        }
 
+        Application.setCurrentUser(user);
+        if(stay){
+            DataManager.saveLoggedIn();
+        }
         return LoginMessages.SUCCESSFUL;
     }
 
     public static LoginMessages checkForgotPassword(String username){
-        if (username == null)
-            return LoginMessages.EMPTY_USERNAME;
 
         User user = Application.getUserByUsername(username);
 
         if (user == null)
-            return LoginMessages.USERNAME_DIDNT_MATCH;
+            return LoginMessages.USER_NOT_FOUND;
 
         currentUser = user;
 
@@ -54,20 +55,21 @@ public class LoginControl {
     }
 
     public static LoginMessages checkAskSecurityQuestion(String input){
-        if (input.equals("back"))
+        if (LoginCommands.getMatcher(input,LoginCommands.BACK) != null)
             return LoginMessages.BACK;
 
         if (!currentUser.checkAnswer(input))
             return LoginMessages.INCORRECT_ANSWER;
 
+
         return LoginMessages.SUCCESSFUL;
     }
 
     public static LoginMessages checkGetPassword(String password){
-        if (password.equals("back"))
+        if (LoginCommands.getMatcher(password,LoginCommands.BACK) != null)
             return LoginMessages.BACK;
 
-        if (password.equals("random"))
+        if (LoginCommands.getMatcher(password,LoginCommands.RANDOM) != null)
             return LoginMessages.RANDOM;
 
         if (password.equals(""))
@@ -78,6 +80,10 @@ public class LoginControl {
 
         if (CheckFunctions.checkPasswordFormat(password))
             return  LoginMessages.INVALID_PASSWORD_FORMAT;
+
+        if (!Captcha.run()){
+            return LoginMessages.FAILED;
+        }
 
         currentUser.setPassword(password);
 

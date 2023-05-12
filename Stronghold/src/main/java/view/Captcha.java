@@ -1,7 +1,11 @@
-package utility;
+package view;
+
+import utility.RandomGenerators;
+import view.enums.commands.SignUpCommands;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.regex.Matcher;
 
 /**
  * @author Sahand
@@ -72,4 +76,26 @@ public class Captcha {
         return addNoise(sb.toString());
     }
 
+    public static boolean run() {
+        java.util.Scanner scanner = new java.util.Scanner(System.in);
+        Captcha captcha = new Captcha();
+        String command;
+        Matcher matcher;
+        while(true){
+
+            System.out.println(captcha.resetAndGetCaptcha());
+            System.out.println("type in the captcha:");
+            command = scanner.nextLine();
+
+            if (captcha.checkCaptcha(command)){
+                return true;
+            }
+            else if((matcher = SignUpCommands.getMatcher(command,SignUpCommands.BACK)) != null){
+                return false;
+            }
+            else {
+                System.out.println("invalid captcha! type in the new captcha or \"back\" to go back:");
+            }
+        }
+    }
 }
