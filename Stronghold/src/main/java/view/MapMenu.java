@@ -4,6 +4,7 @@ import model.Application;
 import utility.DataManager;
 import view.enums.AllMenus;
 import view.enums.commands.MainMenuCommands;
+import view.enums.commands.MapMenuCommands;
 
 public class MapMenu {
     public static void run(){
@@ -12,11 +13,12 @@ public class MapMenu {
         String command;
 
         while(true){
-
-
             command = scanner.nextLine();
-            if(MainMenuCommands.getMatcher(command,MainMenuCommands.EXIT) != null){
-                System.exit(0);
+
+            if(MapMenuCommands.getMatcher(command, MapMenuCommands.BACK) != null){
+                System.out.println("You're in Main Menu!");
+                Application.setCurrentMenu(AllMenus.MAIN_MENU);
+                return;
             }
 
             else if(MainMenuCommands.getMatcher(command,MainMenuCommands.SHOW_MENU) != null){

@@ -16,7 +16,7 @@ public enum MapMenuCommands {
         this.regex = regex;
     }
 
-    public static Matcher getMatcher(String input , MainMenuCommands command)
+    public static Matcher getMatcher(String input , MapMenuCommands command)
     {
         Matcher matcher = Pattern.compile(command.regex).matcher(input);
         return matcher.matches() ? matcher : null;

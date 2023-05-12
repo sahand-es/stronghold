@@ -1,1 +1,12 @@
-null
+{
+  "username": "First",
+  "password": "abf04a2aa490956913986ae3b624c1353e06b0ce61fa43481e87296ae7f66c54",
+  "nickname": "FirstUser",
+  "email": "test.change@email.com",
+  "slogan": "sousef tala",
+  "securityQuestionNumber": 1,
+  "rank": 0,
+  "score": 0,
+  "highScore": 0,
+  "securityAnswer": "Daisy"
+}
