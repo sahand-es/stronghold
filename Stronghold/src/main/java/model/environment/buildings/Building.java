@@ -219,4 +219,8 @@ public class Building extends Environment {
                 ", price=" + price +
                 "}\n";
     }
+
+    public BuildingName getName() {
+        return name;
+    }
 }

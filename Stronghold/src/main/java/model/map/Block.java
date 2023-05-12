@@ -1,6 +1,9 @@
 package model.map;
 
 import model.environment.Environment;
+import model.environment.Rock;
+import model.environment.buildings.Building;
+import model.environment.tree;
 import model.units.Person;
 
 import java.util.ArrayList;
@@ -99,9 +102,22 @@ public class Block {
     }
     //TODO: complete details.
     public String showDetails() {
-        StringBuilder output = new StringBuilder();
+        String output ="texture: " + this.texture.getName();
 
-        return output.toString();
+        if(environment instanceof Building)
+            output += "\nBuilding: " + ((Building) environment).getName().getName();
+
+        if(environment instanceof tree)
+            output += "\ntree";
+
+        if(environment instanceof Rock)
+            output += "\nrock";
+
+        for (Person unit : units) {
+            output += "\n" +unit.getName().getName();
+        }
+
+        return output;
     }
     @Override
     public boolean equals(Object o) {
