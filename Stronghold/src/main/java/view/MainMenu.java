@@ -38,13 +38,16 @@ public class MainMenu
                 else if(MainMenuCommands.getMatcher(command,MainMenuCommands.GAME_MENU) != null){
                     Application.setCurrentMenu(AllMenus.GAME_MENU);
                 }
+                else if(MainMenuCommands.getMatcher(command,MainMenuCommands.SHOW_MAP) != null){
+                    Application.setCurrentMenu(AllMenus.MAP_MENU);
+                }
                 else if(MainMenuCommands.getMatcher(command,MainMenuCommands.SHOW_MENU) != null){
                     System.out.println("You're in Main Menu!");
                 }
                 else
                     System.out.println("My liege, that's an invalid command!");
 
-                //todo add map menu
+
             }
 
 
@@ -61,7 +64,10 @@ public class MainMenu
                     System.out.println("You're now in Game Menu!");
                     GameMenu.run();
                     break;
-                //todo add map menu run
+                case MAP_MENU:
+                    System.out.println("You're now in Map Menu!");
+                    MapMenu.run();
+                    break;
                 default:
                     break;
             }
