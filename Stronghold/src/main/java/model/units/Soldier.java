@@ -1,5 +1,6 @@
 package model.units;
 
+import model.map.Block;
 import model.resourecs.Armour;
 import model.resourecs.ResourcesName;
 import model.resourecs.Weapon;
@@ -44,6 +45,10 @@ public class Soldier extends Person {
 
     public void setSoldierUnitState(SoldierUnitState soldierUnitState) {
         this.soldierUnitState = soldierUnitState;
+    }
+
+    public void attackEnemy(Person enemyToAttack) {
+
     }
 
     @Override

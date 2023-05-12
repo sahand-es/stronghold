@@ -5,6 +5,7 @@ import model.units.Person;
 
 import java.util.ArrayList;
 import java.util.Objects;
+import java.lang.Math;
 
 public class Block {
     private final int x;
@@ -53,9 +54,6 @@ public class Block {
         return y;
     }
 
-    public boolean canPassThisBlock(Person person) {
-        return true;
-    }
 
     public Environment getWhatIsOnThisBlock() {
         return whatIsOnThisBlock;
@@ -71,6 +69,32 @@ public class Block {
 
     public void setTexture(Texture texture) {
         this.texture = texture;
+    }
+    public boolean canPassThisBlock(Person person) {
+        return true;
+    }
+    public Block findClosestBlock(int range, Block block) {
+        int xCorner = this.x - range, yCorner = this.y - range;
+        Block closestBlock = null;
+        double distance = Double.MAX_VALUE;
+        for (int y = yCorner; y < 2 * range + 1 + yCorner; y++) {
+            for (int x = xCorner; x < 2 * range + 1 + xCorner; x++) {
+                if (map.isValidXY(x, y)) {
+                    Block blockToCheck = getMap().getBlockByXY(x, y);
+                    if (distance > block.distanceTo(blockToCheck)){
+                        closestBlock = blockToCheck;
+                        distance = this.distanceTo(blockToCheck);
+                    }
+                }
+            }
+        }
+        return closestBlock;
+    }
+
+    public double distanceTo(Block block) {
+        int delX = this.x - block.getX();
+        int delY = this.y - block.getY();
+        return Math.sqrt(Math.pow(delX, 2) + Math.pow(delY, 2));
     }
 
     @Override

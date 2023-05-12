@@ -308,8 +308,4 @@ public abstract class Person {
     private void die() {
         this.block.removeUnit(this);
     }
-
-    public static void main(String[] args) {
-        System.out.println(allUnits);
-    }
 }
