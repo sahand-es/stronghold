@@ -86,4 +86,15 @@ public class GameControl {
     private void deselectBuilding() {
         selectedBuilding = null;
     }
+
+    private void nextTurn(){
+
+        if(game.goToNextTurn()){
+            for (Person unit : game.getAllUnits()) {
+                unit.move();
+                //todo attack
+            }
+        }
+        currentGovernment = game.getCurrentGovernment();
+    }
 }
