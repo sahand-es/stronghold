@@ -54,33 +54,32 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
-        DataManager.saveUsers();
-        DataManager.saveLoggedIn();
+        DataManager.saver();
     }
 
     public void setPassword(String password) {
         this.password = SHA.shaString(password);
-        DataManager.saveUsers();
+        DataManager.saver();
     }
 
     public void setNickname(String nickname) {
         this.nickname = nickname;
-        DataManager.saveUsers();
+        DataManager.saver();
     }
 
     public void setEmail(String email) {
         this.email = email.toLowerCase();
-        DataManager.saveUsers();
+        DataManager.saver();
     }
 
     public void setSlogan(String slogan) {
         this.slogan = slogan;
-        DataManager.saveUsers();
+        DataManager.saver();
     }
 
     public void setHighScore(int highScore) {
         this.highScore = highScore;
-        DataManager.saveUsers();
+        DataManager.saver();
     }
 
     public boolean checkPassword(String passwordToCheck) {
@@ -101,6 +100,6 @@ public class User {
 
     public void setRank(int rank) {
         this.rank = rank;
-        DataManager.saveUsers();
+        DataManager.saver();
     }
 }

@@ -30,7 +30,7 @@ public class LoginControl {
 
         Application.setCurrentUser(user);
         if(stay){
-            DataManager.saveLoggedIn();
+            DataManager.saveLoggedIn(Application.getCurrentUser());
         }
         return LoginMessages.SUCCESSFUL;
     }
