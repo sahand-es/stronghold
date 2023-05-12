@@ -210,4 +210,51 @@ public class Government
     public void addPopularity(int amount){
         popularity += amount;
     }
+
+    public void addCapacity(String BuildingName, int capacity){
+        switch (BuildingName){
+            case "Armory":
+                weaponCapacity += capacity;
+                break;
+
+            case "Granary":
+                foodCapacity += capacity;
+                break;
+
+            case "Stockpile":
+                materialCapacity += capacity;
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    public void subtractCapacity(String BuildingName, int capacity){
+        switch (BuildingName){
+            case "Armory":
+                weaponCapacity -= capacity;
+                break;
+
+            case "Granary":
+                foodCapacity -= capacity;
+                break;
+
+            case "Stockpile":
+                materialCapacity -= capacity;
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    public void addPopulationCapacity(int capacity){
+        populationCapacity += capacity;
+    }
+
+    public void subtractPopulationCapacity(int capacity){
+        populationCapacity -= capacity;
+    }
+
 }
