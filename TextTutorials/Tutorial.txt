@@ -4,5 +4,18 @@ flag at the end of login command) or you must log in which the program will open
 Any field in commands can be given with a space but it must be inside quotation marks(""). It's important to know you must
 close it or the command won't be read.
 
+Profile menu:
+To go into profile menu you must give this command:
+	profile menu
+
+To logout:
+	user logout
+
+
+In order to exit:
+	exit
+
+
+* You can type "show menu" in each menu to see that menu
 
 
