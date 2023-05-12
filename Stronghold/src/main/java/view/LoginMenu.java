@@ -17,8 +17,10 @@ import java.util.regex.Pattern;
 
 public class LoginMenu
 {
-    public static void run() {
+    private static int wrongAttempts ;
+    public static void run() throws InterruptedException {
 
+        setWrongAttempts(0);
         java.util.Scanner scanner = new java.util.Scanner(System.in);
         String command;
         Matcher matcher;
@@ -57,7 +59,7 @@ public class LoginMenu
 
     }
 
-    private static void checkLogin(String command) {
+    private static void checkLogin(String command) throws InterruptedException {
         String username = "";
         String password = "";
         boolean stayLogged = false;
@@ -111,7 +113,12 @@ public class LoginMenu
                 System.out.println("There is no user with this username!");
                 break;
             case PASSWORD_DIDNT_MATCH:
-                System.out.println("Incorrect password!");
+                setWrongAttempts(getWrongAttempts() + 1);
+                System.out.println("Incorrect password, you had " + getWrongAttempts() + " wrong attempts!");
+                for (int timeRemaining = getWrongAttempts() * 5; timeRemaining > 0; timeRemaining--) {
+                    System.out.println(timeRemaining + "...");
+                    Thread.sleep(1000);
+                }
                 break;
             case FAILED:
                 System.out.println("Login Failed!");
@@ -275,5 +282,11 @@ public class LoginMenu
     }
 
 
+    public static int getWrongAttempts() {
+        return wrongAttempts;
+    }
 
+    public static void setWrongAttempts(int wrongAttempts) {
+        LoginMenu.wrongAttempts = wrongAttempts;
+    }
 }

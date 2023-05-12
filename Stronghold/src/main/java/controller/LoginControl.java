@@ -6,6 +6,7 @@ import utility.CheckFunctions;
 import utility.DataManager;
 import utility.SecurityQuestions;
 import view.Captcha;
+import view.LoginMenu;
 import view.enums.commands.LoginCommands;
 import view.enums.messages.LoginMessages;
 import view.enums.messages.SignUpMessages;
@@ -20,9 +21,9 @@ public class LoginControl {
             return LoginMessages.USER_NOT_FOUND;
 
         if (!user.checkPassword(password))
-            //todo add delay
             return LoginMessages.PASSWORD_DIDNT_MATCH;
 
+        LoginMenu.setWrongAttempts(0);
         if (!Captcha.run()){
             return LoginMessages.FAILED;
         }

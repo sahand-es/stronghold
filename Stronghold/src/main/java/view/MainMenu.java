@@ -8,8 +8,7 @@ import view.enums.commands.MainMenuCommands;
 
 public class MainMenu
 {
-    public static void run()
-    {
+    public static void run() throws InterruptedException {
         System.out.println("You're now in Main Menu!");
         java.util.Scanner scanner = new java.util.Scanner(System.in);
         String command;
