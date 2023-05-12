@@ -16,6 +16,7 @@
     "password": "4b7e2d4af154f3c2bf02fcbc0dab1fb1f6843cd30501a0d5e815a1dc0a5557e9",
     "nickname": "testChange",
     "email": "email2.email@email.com",
+    "slogan": "teeeeest",
     "securityQuestionNumber": 0,
     "rank": 0,
     "score": 0,
@@ -44,5 +45,17 @@
     "score": 0,
     "highScore": 0,
     "securityAnswer": "just a test"
+  },
+  {
+    "username": "Fifth",
+    "password": "b47253895433a0f6092e8b1d2958d95412097666737e5ef6d043c212db5a5fbb",
+    "nickname": "panj",
+    "email": "test.teste@gmail.com",
+    "slogan": "",
+    "securityQuestionNumber": 0,
+    "rank": 0,
+    "score": 0,
+    "highScore": 0,
+    "securityAnswer": "\u003canswer\u003e"
   }
 ]

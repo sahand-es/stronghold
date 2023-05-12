@@ -45,7 +45,8 @@ public class ProfileMenu
                 checkChangeSlogan(matcher);
             }
             else if (ProfileCommands.getMatcher(command,ProfileCommands.REMOVE_SLOGAN) != null) {
-                //todo
+                ProfileControl.removeSlogan();
+                System.out.println("Slogan removed successfully!");
             }
             else if (ProfileCommands.getMatcher(command,ProfileCommands.DISPLAY_HIGH_SCORE) != null) {
                 //todo

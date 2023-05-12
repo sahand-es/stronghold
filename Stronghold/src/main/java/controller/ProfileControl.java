@@ -92,6 +92,11 @@ public class ProfileControl
     }
 
     public static ProfileMessages removeSlogan(){
-        return null;
+        User currentUser = Application.getCurrentUser();
+        User userInArray = Application.getUserByUsername(currentUser.getUsername());
+        currentUser.setSlogan(null);
+        userInArray.setSlogan(null);
+
+        return ProfileMessages.SUCCESS;
     }
 }
