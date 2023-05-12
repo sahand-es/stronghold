@@ -2,6 +2,7 @@ package model.society;
 
 import model.User;
 import model.environment.buildings.Building;
+import model.siegeutil.SiegeUtil;
 import model.society.enums.Colors;
 import model.resourecs.ResourceHolder;
 import model.units.Person;
@@ -21,11 +22,13 @@ public class Government
     private int populationCapacity;
     private int foodCapacity;
     private int weaponCapacity;
-
     private int materialCapacity;
 
 
-    private ArrayList<Trade> tradesDone;
+    private final ArrayList<Trade> tradesDone;
+    private final ArrayList<Person> units;
+    private final ArrayList<SiegeUtil> siegeUtils;
+    private final ArrayList<Building> buildings;
 
     private Colors color;
     private User owner;
@@ -33,6 +36,10 @@ public class Government
     public Government(User owner)
     {
         this.owner = owner;
+        tradesDone = new ArrayList<>();
+        units = new ArrayList<>();
+        siegeUtils = new ArrayList<>();
+        buildings = new ArrayList<>();
     }
 
 
@@ -119,6 +126,22 @@ public class Government
 
     public void setMaterialCapacity(int materialCapacity) {
         this.materialCapacity = materialCapacity;
+    }
+
+    public ArrayList<Trade> getTradesDone() {
+        return tradesDone;
+    }
+
+    public ArrayList<Person> getUnits() {
+        return units;
+    }
+
+    public ArrayList<SiegeUtil> getSiegeUtils() {
+        return siegeUtils;
+    }
+
+    public ArrayList<Building> getBuildings() {
+        return buildings;
     }
 
     private int calcPopularityOfTaxRate(){
