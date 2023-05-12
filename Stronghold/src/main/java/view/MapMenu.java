@@ -1,6 +1,9 @@
 package view;
 
 import model.Application;
+import model.map.Block;
+import model.map.Map;
+import model.map.Texture;
 import utility.CheckFunctions;
 import utility.DataManager;
 import view.enums.AllMenus;
@@ -34,13 +37,16 @@ public class MapMenu {
         setMapX(x);
         setMapY(y);
 
+        Map map = new Map(200,200);
+
+        map.setTexture(5,5, Texture.WATER);
         java.util.Scanner scanner = new java.util.Scanner(System.in);
         String command;
 
         while(true){
-
-            System.out.println("XY: " + getMapX() + " " + getMapY());
-            //todo literally show the fucking map!
+            Block block = map.getBlockByXY(getMapX(),getMapY());
+            //System.out.println("XY: " + getMapX() + " " + getMapY());
+            System.out.println(map.showMap(block));
 
             command = scanner.nextLine();
 

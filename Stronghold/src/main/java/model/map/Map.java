@@ -97,6 +97,7 @@ public class Map {
         return output.toString();
     }
 
+    //todo delete psvm
     public static void main(String[] args) {
         Map map = new Map(100, 100);
 //        map.setTexture(50, 50, Texture.WATER);
