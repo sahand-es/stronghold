@@ -46,4 +46,15 @@ public class GameControl {
         selectedBuilding = (Building) map.getBlockByXY(x, y).getEnvironment();
         return GameMessages.SUCCESS;
     }
+
+    private void nextTurn(){
+
+        if(game.goToNextTurn()){
+            for (Person unit : game.getAllUnits()) {
+                unit.move();
+                //todo attack
+            }
+        }
+        currentGovernment = game.getCurrentGovernment();
+    }
 }

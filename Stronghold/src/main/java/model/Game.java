@@ -22,7 +22,9 @@ public class Game {
     }
 
     Map map;
-    int turn;
+
+    int turn = 0;
+    int day = 1;
     private final ArrayList<Government> governments = new ArrayList<>();
 
     private final ArrayList<Person> allUnits = new ArrayList<>();
@@ -74,5 +76,29 @@ public class Game {
         allSiegeUtil.remove(siegeUtil);
     }
 
+    public ArrayList<Government> getGovernments() {
+        return governments;
+    }
 
+    public boolean goToNextTurn(){
+        turn ++;
+        if(turn > governments.size()){
+            turn = 0;
+            day++;
+            return true;
+        }
+        return false;
+    }
+
+    public int getTurn() {
+        return turn;
+    }
+
+    public int getDay(){
+        return day;
+    }
+
+    public Government getCurrentGovernment(){
+        return governments.get(turn);
+    }
 }
