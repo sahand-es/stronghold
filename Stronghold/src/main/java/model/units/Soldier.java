@@ -57,7 +57,16 @@ public class Soldier extends Person {
         Block closestBlock = enemyBlock.findClosestBlock(attackRange, block);
 
         findPath(closestBlock);
+    }
 
+    public boolean isReadyToAttack() {
+        if (attackQueue.isEmpty())
+            return false;
+        setAttackQueue(attackQueue.peek());
+        return moveQueue.isEmpty();
+    }
+    public int getDamage() {
+        return damage;
     }
 
     @Override
