@@ -173,4 +173,28 @@ public class Government
         }
         return output;
     }
+
+    public void addBuilding(Building building){
+        buildings.add(building);
+    }
+
+    public void removeBuilding(Building building){
+        buildings.remove(building);
+    }
+
+    public void addUnit(Person unit){
+        units.add(unit);
+    }
+
+    public void removeUnit(Person unit){
+        units.remove(unit);
+    }
+
+    public  void addSiegeUtil(SiegeUtil siegeUtil){
+        siegeUtils.add(siegeUtil);
+    }
+
+    public void removeSiegeUtil(SiegeUtil siegeUtil){
+        siegeUtils.remove(siegeUtil);
+    }
 }
