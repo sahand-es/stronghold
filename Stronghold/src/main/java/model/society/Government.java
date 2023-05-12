@@ -206,4 +206,8 @@ public class Government
         siegeUtils.remove(siegeUtil);
         game.removeSiegeUtil(siegeUtil);
     }
+
+    public void addPopularity(int amount){
+        popularity += amount;
+    }
 }
