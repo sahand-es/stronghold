@@ -69,7 +69,18 @@ public class ProfileControl
     }
 
     public static ProfileMessages changeEmail(String email){
-        return null;
+        if (CheckFunctions.checkEmailFormat(email)){
+            return ProfileMessages.INVALID_EMAIL;
+        }
+        if (CheckFunctions.checkEmailExits(email)){
+            return ProfileMessages.EXISTING_EMAIL;
+        }
+        User currentUser = Application.getCurrentUser();
+        User userInArray = Application.getUserByUsername(currentUser.getUsername());
+        currentUser.setEmail(email);
+        userInArray.setEmail(email);
+
+        return ProfileMessages.SUCCESS;
     }
     public static ProfileMessages changeSlogan(String slogan){
         return null;

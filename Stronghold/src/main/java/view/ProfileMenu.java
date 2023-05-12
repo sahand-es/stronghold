@@ -39,7 +39,7 @@ public class ProfileMenu
                 checkChangePassword(command);
             }
             else if ((matcher = ProfileCommands.getMatcher(command,ProfileCommands.CHANGE_EMAIL)) != null) {
-                //todo
+                checkChangeEmail(matcher);
             }
             else if ((matcher = ProfileCommands.getMatcher(command,ProfileCommands.CHANGE_SLOGAN)) != null) {
                 //todo
@@ -175,7 +175,27 @@ public class ProfileMenu
     }
 
     private static void checkChangeEmail(Matcher matcher){
+        String email = CheckFunctions.getEmailFromMatcher(matcher);
+        if (email == null){
+            System.out.println("My liege, you must give email!");
+            return;
+        }
 
+        ProfileMessages messages = ProfileControl.changeEmail(email);
+
+        switch (messages){
+            case INVALID_EMAIL:
+                System.out.println("That's an invalid format for email!");
+                break;
+            case EXISTING_EMAIL:
+                System.out.println("That email is already taken!");
+                break;
+            case SUCCESS:
+                System.out.println("Email changed Successfully!");
+                break;
+            default:
+                break;
+        }
     }
 
     private static void checkChangeSlogan(Matcher matcher){

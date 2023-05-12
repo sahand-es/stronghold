@@ -9,6 +9,8 @@ public enum ProfileMessages
     INVALID_PASS_FORMAT,
     WRONG_PASSWORD,
     SAME_PASS,
+    INVALID_EMAIL,
+    EXISTING_EMAIL,
     FAILED,
     SUCCESS;
 

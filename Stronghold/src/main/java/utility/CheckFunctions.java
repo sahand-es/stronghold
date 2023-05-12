@@ -73,6 +73,19 @@ public class CheckFunctions
 
         return nickname;
     }
+    public static String getEmailFromMatcher(Matcher matcher){
+        String email = "";
+        String argVal = matcher.group("email");
+        String argValSpace = matcher.group("emailSpace");
+        email = (argVal != null) ? argVal : email;
+        email = (argValSpace != null) ? argValSpace : email;
+
+        if (email.equals("")){
+            return null;
+        }
+
+        return email;
+    }
     public static boolean checkEmailExits(String email)
     {
         return Application.getUserByEmail(email) != null;
