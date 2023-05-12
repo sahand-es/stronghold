@@ -55,6 +55,7 @@ public class User {
     public void setUsername(String username) {
         this.username = username;
         DataManager.saveUsers();
+        DataManager.saveLoggedIn();
     }
 
     public void setPassword(String password) {

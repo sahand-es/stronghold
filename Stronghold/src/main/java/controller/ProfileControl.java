@@ -18,7 +18,9 @@ public class ProfileControl
         }
 
         User currentUser = Application.getCurrentUser();
+        User userInArray = Application.getUserByUsername(currentUser.getUsername());
         currentUser.setUsername(username);
+        userInArray.setUsername(username);
         return ProfileMessages.SUCCES;
     }
 
