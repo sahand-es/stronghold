@@ -1,9 +1,11 @@
 package model.environment.buildings;
 
+import model.map.Block;
 import model.map.Direction;
 import model.environment.buildings.enums.BuildingCategory;
 import model.environment.buildings.enums.BuildingName;
 import model.resourecs.ResourcesName;
+import model.society.Government;
 
 import java.util.HashMap;
 
@@ -19,6 +21,12 @@ public class Bridge extends Building {
                      BuildingName name,
                      HashMap<ResourcesName, Integer> price) {
         super(hp, category, name, price);
+    }
+
+    public Bridge(BuildingName name, Government government, Block block) {
+        super(name, government, block);
+        this.direction = Direction.UP;
+        this.isOpen = true;
     }
 
     public boolean isOpen() {
