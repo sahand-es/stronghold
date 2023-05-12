@@ -49,16 +49,31 @@ public class ProfileMenu
                 System.out.println("Slogan removed successfully!");
             }
             else if (ProfileCommands.getMatcher(command,ProfileCommands.DISPLAY_HIGH_SCORE) != null) {
-                //todo
+                System.out.println("Your High-Score is :" + Application.getCurrentUser().getHighScore());
             }
             else if (ProfileCommands.getMatcher(command,ProfileCommands.DISPLAY_RANK) != null) {
-                //todo
+                System.out.println("Your Rank is :" + Application.getCurrentUser().getRank());
             }
             else if (ProfileCommands.getMatcher(command,ProfileCommands.DISPLAY_SLOGAN) != null) {
-                //todo
+                String slogan = Application.getCurrentUser().getSlogan();
+                if (slogan != null){
+                    System.out.println("Your Slogan is :" + slogan);
+                }
+                else
+                    System.out.println("Slogan is empty!");
             }
             else if (ProfileCommands.getMatcher(command,ProfileCommands.DISPLAY_ALL) != null) {
-                //todo
+                System.out.println("Your Username is :" + Application.getCurrentUser().getUsername());
+                System.out.println("Your Nickname is :" + Application.getCurrentUser().getNickname());
+                System.out.println("Your Email is :" + Application.getCurrentUser().getEmail());
+                String slogan = Application.getCurrentUser().getSlogan();
+                if (slogan != null){
+                    System.out.println("Your Slogan is :" + slogan);
+                }
+                else
+                    System.out.println("Slogan is empty!");
+                System.out.println("Your High-Score is :" + Application.getCurrentUser().getHighScore());
+                System.out.println("Your Rank is :" + Application.getCurrentUser().getRank());
             }
             else {
                 System.out.println("My liege, that's an invalid command!");
