@@ -9,7 +9,6 @@ import model.society.Government;
 import java.util.HashMap;
 
 public class Inn extends Building {
-    int popularityRate;
 
     int whineUsageRate;
 
@@ -22,14 +21,8 @@ public class Inn extends Building {
 
     public Inn(BuildingName name, Government government, Block block) {
         super(name, government, block);
-    }
-
-    public int getPopularityRate() {
-        return popularityRate;
-    }
-
-    public void setPopularityRate(int popularityRate) {
-        this.popularityRate = popularityRate;
+        Inn buildingToClone = (Inn) getBuildingByBuildingName(name);
+        this.whineUsageRate = this.getWhineUsageRate();
     }
 
     public int getWhineUsageRate() {
