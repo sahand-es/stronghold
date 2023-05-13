@@ -29,10 +29,10 @@ import java.util.HashMap;
  */
 
 public class GameControl {
-    private Game game;
-    private Map map;
-    private Person selectedUnit = null;
-    private Building selectedBuilding = null;
+    private static Game game;
+    private static Map map;
+    private static Person selectedUnit = null;
+    private static Building selectedBuilding = null;
     private static Government currentGovernment;
 
     public GameControl(Game game) {
@@ -40,19 +40,19 @@ public class GameControl {
         currentGovernment = game.getCurrentGovernment();
     }
 
-    public void setGame(Game game) {
-        this.game = game;
-        this.map = game.getMap();
+    public static void setGame(Game theGame) {
+        game = theGame;
+        map = game.getMap();
     }
 
-    public GameMessages foodRate(int rate) {
+    public static GameMessages foodRate(int rate) {
         if (rate < -2 || rate > 2)
             return GameMessages.INVALID_RATE;
         currentGovernment.setFoodRate(rate);
         return GameMessages.SUCCESS;
     }
 
-    public GameMessages fearRate(int rate) {
+    public static GameMessages fearRate(int rate) {
         if (rate < -5 || rate > 5)
             return GameMessages.INVALID_RATE;
 
@@ -60,7 +60,7 @@ public class GameControl {
         return GameMessages.SUCCESS;
     }
 
-    public GameMessages taxRate(int rate) {
+    public static GameMessages taxRate(int rate) {
         if (rate < -3 || rate > 8)
             return GameMessages.INVALID_RATE;
 
@@ -68,7 +68,7 @@ public class GameControl {
         return GameMessages.SUCCESS;
     }
 
-    public GameMessages createBuilding(int x, int y, String type) {
+    public static GameMessages createBuilding(int x, int y, String type) {
         Building building = null;
         Map map = game.getMap();
         if (!map.isValidXY(x, y))
@@ -141,7 +141,7 @@ public class GameControl {
         return GameMessages.SUCCESS;
     }
 
-    public GameMessages createUnit(String type, int count) {
+    public static GameMessages createUnit(String type, int count) {
         Person person = null;
         if (selectedBuilding == null)
             return GameMessages.BUILDING_NOT_SELECTED;
@@ -185,7 +185,7 @@ public class GameControl {
         return GameMessages.SUCCESS;
     }
 
-    public GameMessages selectBuilding(int x, int y) {
+    public static GameMessages selectBuilding(int x, int y) {
         if (!map.isValidXY(x, y))
             return GameMessages.INVALID_XY;
         if (map.getBlockByXY(x, y).getEnvironment() == null)
@@ -206,7 +206,7 @@ public class GameControl {
     }
 //ToDo: selected building change menu.
 
-    public GameMessages repair() {
+    public static GameMessages repair() {
         if (selectedBuilding == null)
             return GameMessages.BUILDING_NOT_SELECTED;
         if (!selectedBuilding.getCategory().equals(BuildingCategory.CASTLE) && !selectedBuilding.getPrice().containsKey(ResourcesName.STONE))
@@ -221,11 +221,11 @@ public class GameControl {
         return GameMessages.SUCCESS;
     }
 
-    private void deSelectBuilding() {
+    private static void deSelectBuilding() {
         selectedBuilding = null;
     }
 
-    public GameMessages selectUnit(int x, int y, int selectedCount) {
+    public static GameMessages selectUnit(int x, int y, int selectedCount) {
         Block block = null;
         if (!map.isValidXY(x, y))
             return GameMessages.INVALID_XY;
@@ -239,11 +239,11 @@ public class GameControl {
         return GameMessages.SUCCESS;
     }
 
-    private void deSelectUnit() {
+    private static void deSelectUnit() {
         selectedUnit = null;
     }
 
-    public GameMessages moveUnit(int x, int y) {
+    public static GameMessages moveUnit(int x, int y) {
         if (selectedUnit == null)
             return GameMessages.UNIT_NOT_SELECTED;
         if (!map.isValidXY(x, y))
@@ -254,7 +254,7 @@ public class GameControl {
         return GameMessages.SUCCESS;
     }
 
-    public GameMessages patrolUnit(int x1, int y1, int x2, int y2) {
+    public static GameMessages patrolUnit(int x1, int y1, int x2, int y2) {
         if (selectedUnit == null)
             return GameMessages.UNIT_NOT_SELECTED;
         if (!map.isValidXY(x1, y1) || !map.isValidXY(x2, y2))
@@ -266,7 +266,7 @@ public class GameControl {
         return GameMessages.SUCCESS;
     }
 
-    public GameMessages setSoldierState(String state) {
+    public static GameMessages setSoldierState(String state) {
         if (selectedUnit == null)
             return GameMessages.UNIT_NOT_SELECTED;
         if (!(selectedUnit instanceof Soldier))
@@ -276,7 +276,7 @@ public class GameControl {
         return GameMessages.SUCCESS;
     }
 
-    public GameMessages disbandUnit() {
+    public static GameMessages disbandUnit() {
         if (selectedUnit == null)
             return GameMessages.UNIT_NOT_SELECTED;
 
@@ -284,7 +284,7 @@ public class GameControl {
         return GameMessages.SUCCESS;
     }
 
-    public GameMessages attack(int x, int y) {
+    public static GameMessages attack(int x, int y) {
         if (selectedUnit == null)
             return GameMessages.UNIT_NOT_SELECTED;
         if (!map.isValidXY(x, y))
@@ -302,7 +302,7 @@ public class GameControl {
         return GameMessages.SUCCESS;
     }
 
-    public GameMessages pourOil(String direction) {
+    public static GameMessages pourOil(String direction) {
         if (selectedUnit == null)
             return GameMessages.UNIT_NOT_SELECTED;
         if (!(selectedUnit instanceof Engineer))
@@ -315,7 +315,7 @@ public class GameControl {
         return GameMessages.SUCCESS;
     }
 
-    public GameMessages digTunnel(int x, int y) {
+    public static GameMessages digTunnel(int x, int y) {
         if (selectedUnit == null)
             return GameMessages.UNIT_NOT_SELECTED;
         if (!map.isValidXY(x, y))
@@ -331,7 +331,7 @@ public class GameControl {
         return GameMessages.SUCCESS;
     }
 
-    private void attackControl() {
+    private static void attackControl() {
         for (Person unit : game.getAllUnits()) {
             if (!(unit instanceof Soldier))
                 continue;
@@ -360,7 +360,7 @@ public class GameControl {
         }
     }
 
-    private Person findClosestEnemy(Person person) {
+    private static Person findClosestEnemy(Person person) {
         Person closestPerson = null;
         double minDistance = Double.MAX_VALUE;
         for (Person unit : game.getAllUnits()) {
@@ -374,7 +374,7 @@ public class GameControl {
         return closestPerson;
     }
 
-    private void extractControl() {
+    private static void extractControl() {
         for (Building building : currentGovernment.getBuildings()) {
             if (building instanceof ResourceExtractorBuilding) {
                 ((ResourceExtractorBuilding) building).extract();
@@ -382,7 +382,7 @@ public class GameControl {
         }
     }
 
-    private void giveFood() {
+    private static void giveFood() {
         if(currentGovernment.getResource().getFoodAmount() < currentGovernment.foodUsage()) {
             currentGovernment.setFoodRate(-2);
         } else {
@@ -391,7 +391,7 @@ public class GameControl {
         }
     }
 
-    private void getTax(){
+    private static void getTax(){
         if(currentGovernment.getResource().getGold() < -1 * currentGovernment.calcTax()){
             currentGovernment.setTaxRate(0);
         } else {
@@ -399,20 +399,20 @@ public class GameControl {
         }
     }
 
-    private void moveAllUnits() {
+    private static void moveAllUnits() {
         for (Person unit : game.getAllUnits()) {
             unit.move();
         }
     }
 
-    private void digAllTunnels() {
+    private static void digAllTunnels() {
         for (Person unit : game.getAllUnits()) {
             if (unit instanceof Tunneler)
                 ((Tunneler) unit).digTunnel();
         }
     }
 
-    private void attackFunction(Soldier soldier) {
+    private static void attackFunction(Soldier soldier) {
         Person opponnet;
         if (soldier.isReadyToAttack()) {
             opponnet = soldier.getOpponnet();
@@ -449,7 +449,7 @@ public class GameControl {
         }
     }
 
-    private void doAttacks() {
+    private static void doAttacks() {
         for (Person unit : game.getAllUnits()) {
             if (unit instanceof Soldier) {
                 Soldier soldier = (Soldier) unit;
@@ -459,7 +459,7 @@ public class GameControl {
     }
 
 
-    public void nextTurn() {
+    public static void nextTurn() {
         giveFood();
         getTax();
         extractControl();
