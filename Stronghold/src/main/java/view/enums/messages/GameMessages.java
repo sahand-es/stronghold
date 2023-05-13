@@ -37,7 +37,7 @@ public enum GameMessages {
     CAN_NOT_ATTACK_WITH_THIS_UNIT_TYPE("Selected unit can not attack!"),
     NO_ENEMY_TO_ATTACK("There is no enemy to attack in there!"),
     CAN_NOT_GO_THERE_TO_ATTACK("Selected unit can not attack enemy in there!"),
-    TRADE_MENU("trade menu"),
+    MARKET_MENU("market menu"),
 //  pour oil:
     SELECTED_UNIT_IS_NOT_ENGINEER("Selected unit is not an engineer!"),
     INVALID_DIRECTION("Invalid Direction!"),

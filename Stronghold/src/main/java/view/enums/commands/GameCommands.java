@@ -4,19 +4,17 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public enum GameCommands {
-//    Todo: negative int
 //    resouces show
-//    map show
     BACK("^\\s*back\\s*$"),
     SHOW_MENU("^\\s*show\\s+menu\\s*$"),
     SHOW_POPULARITY("^\\s*show\\s+popularity\\s*$"),
     SHOW_POPULARITY_FACTORS("^\\s*show\\s+popularity\\s+factors\\s*$"),
     SHOW_FOOD("^\\s*show\\s+food\\s+list\\s*$"),
-    FOOD_RATE("^\\s*food\\s+rate\\s+-r\\s+(?<foodRateNumber>\\d+)\\s*$"),
+    FOOD_RATE("^\\s*food\\s+rate\\s+-r\\s+(?<foodRateNumber>-?\\d+)\\s*$"),
     FOOD_RATE_SHOW("^\\s*food\\s+rate\\s+show\\s*$"),
-    TAX_RATE("^\\s*tax\\s+rate\\s+-r\\s+(?<taxRateNumber>\\d+)\\s*$"),
+    TAX_RATE("^\\s*tax\\s+rate\\s+-r\\s+(?<taxRateNumber>-?\\d+)\\s*$"),
     TAX_RATE_SHOW("^\\s*tax\\s+rate\\s+show\\s*$"),
-    FEAR_RATE("^\\s*fear\\s+rate\\s+-r\\s+(?<fearRateNumber>\\d+)\\s*$"),
+    FEAR_RATE("^\\s*fear\\s+rate\\s+-r\\s+(?<fearRateNumber>-?\\d+)\\s*$"),
     FEAR_RATE_SHOW("^\\s*fear\\s+rate\\s+show\\s*$"),
     CREATE_BUILDING("^\\s*create\\s+building\\s+.*"),
     CREATE_BUILDING_CHECK("^\\s*create\\s+building\\s+$"),
@@ -30,7 +28,6 @@ public enum GameCommands {
     COUNT("-c\\s+(?<count>\\d+)"),
     REPAIR("^\\s*repair\\s*$"),
     SELECT_UNIT("^\\s*select\\s+unit\\s+-n\\s(?<selectionCount>\\d+)\\s+.*"),
-//    Todo: -n akhar
     SELECT_UNIT_CHECK("^\\s*select\\s+unit\\s+-n\\s(?<selectionCount>\\d+)\\s+$"),
     MOVE_UNIT("^\\s*move\\s+unit\\s+to\\s+.*"),
     MOVE_UNIT_CHECK("^\\s*move\\s+unit\\s+to\\s+$"),
@@ -59,7 +56,7 @@ public enum GameCommands {
     CLEAR_CHECK("\\s*clear\\s+$"),
     DROP_ROCK("\\s*drop rock\\s+-x\\s+(?<xNumber>\\d+)\\s+-y\\s+(?<yNumber>\\d+)\\s+-d\\s+(?<direction>\\S+)\\s*"),
     DROP_TREE("\\s*drop tree\\s+-x\\s+(?<xNumber>\\d+)\\s+-y\\s+(?<yNumber>\\d+)\\s+-t\\s+(?<type>\\S+)\\s*"),
-//    TOdo: hejab eslami
+//
     DROP_BUILDING("\\s*drop building\\s+-x\\s+(?<xNumber>\\d+)\\s+-y\\s+(?<yNumber>\\d+)\\s+-t\\s+(?<type>\\S+)\\s*"),
     DROP_UNIT("\\s*drop unit\\s+-x\\s+(?<xNumber>\\d+)\\s+-y\\s+(?<yNumber>\\d+)\\s+-t\\s+(?<type>\\S+)\\s+-c\\s+(?<count>\\S+)\\s*"),
     SHOW_UNIT_DATA("\\s*show\\s+unit\\s+data\\s*"),

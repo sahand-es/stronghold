@@ -292,7 +292,7 @@ public class GameControl {
         selectedBuilding = (Building) map.getBlockByXY(x, y).getEnvironment();
 
         if (selectedBuilding instanceof Shop)
-            return GameMessages.TRADE_MENU;
+            return GameMessages.MARKET_MENU;
         return GameMessages.SUCCESS;
     }
 
@@ -318,7 +318,7 @@ public class GameControl {
         stonePrice.put(ResourcesName.STONE, selectedBuilding.getPrice().get(ResourcesName.STONE) / 2);
         if (!currentGovernment.getResource().checkPay(stonePrice))
             return GameMessages.NOT_ENOUGH_ROCK;
-//ToDo: close enemy
+
 
         selectedBuilding.repair();
         return GameMessages.SUCCESS;
@@ -608,5 +608,9 @@ public class GameControl {
 
     public static Government getCurrentGovernment() {
         return currentGovernment;
+    }
+
+    public static void setSelectedBuilding(Building selectedBuilding) {
+        GameControl.selectedBuilding = selectedBuilding;
     }
 }

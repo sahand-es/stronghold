@@ -10,12 +10,13 @@ import java.util.HashMap;
 
 public class Castle extends Building {
 
-    public Castle(int hp, BuildingCategory category, BuildingName name, HashMap<ResourcesName, Integer> price) {
+    protected Castle(int hp, BuildingCategory category, BuildingName name, HashMap<ResourcesName, Integer> price) {
         super(hp, category, name, price);
     }
 
     public Castle(BuildingName name, Government government, Block block) {
         super(name, government, block);
+        government.setCastle(this);
     }
 
 

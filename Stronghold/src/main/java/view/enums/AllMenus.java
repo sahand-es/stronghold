@@ -8,5 +8,6 @@ public enum AllMenus {
     GAME_MENU,
     MAP_MENU,
     TRADE_MENU,
+    MARKET_MENU
     ;
 }

@@ -10,7 +10,6 @@ import model.units.Soldier;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-// Todo: can extend from unit maker
 public class Church extends UnitMakerBuilding {
 
     protected Church(int hp,

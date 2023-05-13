@@ -36,6 +36,9 @@ public class Government {
     private Colors color;
     private Game game;
 
+    private Castle castle;
+
+
     public Government(Colors color, Game game) {
         this.game = game;
         this.color = color;
@@ -290,11 +293,11 @@ public class Government {
     }
 
     public Castle getCastle() {
-        for (Building building : buildings) {
-            if (building instanceof Castle)
-                return (Castle) building;
-        }
-        return null;
+        return castle;
+    }
+
+    public void setCastle(Castle castle) {
+        this.castle = castle;
     }
 
     public void addTrade(Trade trade) {

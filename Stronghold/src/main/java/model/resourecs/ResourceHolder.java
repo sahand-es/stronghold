@@ -29,7 +29,6 @@ public class ResourceHolder {
             for (int j = 0; j < attributeNames.length; j++) {
                 switch (attributeNames[j]) {
                     case "Type": {
-//                        ToDo: if we want to have food class
                     }
                     case "Name": {
                         name = attributes[j];

@@ -326,9 +326,9 @@ public class Person {
         HashMap<Block, Block> route = new HashMap<>();
 
         long startTime = System.currentTimeMillis();
-        long end = startTime + 4 * 1000;
+        long end = startTime + 2 * 1000;
 //todo : add time limit
-        while (!queue.isEmpty()) {
+        while (!queue.isEmpty() && System.currentTimeMillis() < end) {
             Block currentBlock = queue.poll();
             int x = currentBlock.getX();
             int y = currentBlock.getY();

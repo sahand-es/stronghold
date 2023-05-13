@@ -150,7 +150,6 @@ public class GameMenu {
                 System.out.println(GameControl.showSelectedUnitDetails());
             }
             else if(GameCommands.getMatcher(command,GameCommands.NEXT_TURN) != null){
-//               TODo: print goverment data day kir
                 GameControl.nextTurn();
                 System.out.println(Application.getCurrentGame().getCurrentGovernment());
             }
@@ -166,6 +165,12 @@ public class GameMenu {
                     System.out.println("You're now in Trade Menu!");
                     TradeMenu.run();
                     break;
+
+                case MARKET_MENU:
+                    System.out.println("You're now in Market Menu!");
+                    MarketMenu.run();
+                    break;
+
 
                 case MAP_MENU:
                     System.out.println("You're now in Map Menu!");
@@ -297,6 +302,11 @@ public class GameMenu {
         int Y = Integer.parseInt(y);
         GameMessages message = GameControl.selectBuilding(X,Y);
         System.out.println(message.message());
+
+        if (message.equals(GameMessages.MARKET_MENU)){
+            Application.setCurrentMenu(AllMenus.MARKET_MENU);
+            GameControl.setSelectedBuilding(null);
+        }
     }
 
     private static void checkCreateUnit(String command){

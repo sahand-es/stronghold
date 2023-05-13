@@ -64,7 +64,7 @@ public class Resource {
         }
         return true;
     }
-    //todo fix
+
     public boolean checkAvailablity(HashMap<ResourcesName, Integer> count) {
         for (ResourcesName resourcesName : count.keySet()) {
             if (this.allResources.get(resourcesName) < count.get(resourcesName) )
