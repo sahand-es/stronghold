@@ -4,6 +4,7 @@ import model.environment.Environment;
 import model.environment.Rock;
 import model.environment.buildings.Building;
 import model.environment.buildings.enums.BuildingName;
+import model.society.Government;
 import model.units.Person;
 import model.units.enums.UnitName;
 
@@ -97,8 +98,6 @@ public class Block {
         return false;
     }
 
-
-
     public boolean canPassThisBlock(Person person) {
         if(this.environment == null)
             return this.texture.canPass();
@@ -109,6 +108,23 @@ public class Block {
                 return false;
             }
         }
+    }
+
+    public Person selectUnit(Government government, int selectCount) {
+        ArrayList<Person> thisGovernmentUnits = new ArrayList<>();
+        for (Person unit : units) {
+            if (unit.getGovernment().equals(government))
+                thisGovernmentUnits.add(unit);
+        }
+        return thisGovernmentUnits.get(selectCount % (thisGovernmentUnits.size() - 1));
+    }
+
+    public boolean doesGovernmentHaveUnit(Government government) {
+        for (Person unit : units) {
+            if (unit.getGovernment().equals(government))
+                return true;
+        }
+        return false;
     }
 
     public boolean canBuildOnThis(BuildingName buildingName) {

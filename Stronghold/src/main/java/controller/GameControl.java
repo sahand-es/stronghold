@@ -4,10 +4,10 @@ import model.Game;
 import model.environment.buildings.Building;
 import model.environment.buildings.UnitMakerBuilding;
 import model.environment.buildings.enums.BuildingName;
+import model.map.Block;
 import model.map.Map;
 import model.society.Government;
 import model.units.Person;
-import model.units.Soldier;
 import model.units.enums.UnitName;
 import view.enums.messages.GameMessages;
     /*
@@ -21,12 +21,14 @@ import view.enums.messages.GameMessages;
 
 public class GameControl {
     private Game game;
+    private Map map;
     private Person selectedUnit = null;
     private Building selectedBuilding = null;
     private Government currentGovernment;
 
     public void setGame(Game game) {
         this.game = game;
+        this.map = game.getMap();
     }
 
     private GameMessages createBuilding(int x, int y, String type) {
@@ -69,7 +71,6 @@ public class GameControl {
     }
 
     private GameMessages selectBuilding(int x, int y) {
-        Map map = game.getMap();
         if (!map.isValidXY(x, y))
             return GameMessages.INVALID_XY;
         if (map.getBlockByXY(x, y).getEnvironment() == null)
@@ -86,12 +87,26 @@ public class GameControl {
         return GameMessages.SUCCESS;
     }
 
-    private void deselectBuilding() {
+
+    private void deSelectBuilding() {
         selectedBuilding = null;
     }
 
+    private GameMessages selectUnit(int x, int y, int selectedCount) {
+        Block block = null;
+        if (!map.isValidXY(x, y))
+            return GameMessages.INVALID_XY;
+        block = map.getBlockByXY(x, y);
+        if (block.getUnits().size() == 0)
+            return GameMessages.EMPTY_XY_UNIT;
+        if (!block.doesGovernmentHaveUnit(currentGovernment))
+            return GameMessages.NOT_YOURS_UNIT;
+
+        selectedUnit = block.selectUnit(currentGovernment, selectedCount);
+        return GameMessages.SUCCESS;
+    }
+
     private GameMessages moveUnit(int x, int y) {
-        Map map = game.getMap();
         if (selectedUnit == null)
             return GameMessages.NOT_SELECTED_UNIT;
         if (!map.isValidXY(x, y))
@@ -103,20 +118,19 @@ public class GameControl {
     }
 
     private GameMessages patrolUnit(int x1, int y1, int x2, int y2) {
-        Map map = game.getMap();
         if (selectedUnit == null)
             return GameMessages.NOT_SELECTED_UNIT;
-        if (!map.isValidXY(x1, y1) || !map.isValidXY(x2,y2))
+        if (!map.isValidXY(x1, y1) || !map.isValidXY(x2, y2))
             return GameMessages.INVALID_XY;
-        if (!selectedUnit.canGoThere(map.getBlockByXY(x1, y1)) || !selectedUnit.canGoThere(map.getBlockByXY(x2,y2)))
+        if (!selectedUnit.canGoThere(map.getBlockByXY(x1, y1)) || !selectedUnit.canGoThere(map.getBlockByXY(x2, y2)))
             return GameMessages.CANNOT_GO_THERE;
 
-        selectedUnit.setPatrol(map.getBlockByXY(x1, y1), map.getBlockByXY(x2,y2));
+        selectedUnit.setPatrol(map.getBlockByXY(x1, y1), map.getBlockByXY(x2, y2));
         return GameMessages.SUCCESS;
     }
 
-    private void nextTurn(){
-        if(game.goToNextTurn()){
+    private void nextTurn() {
+        if (game.goToNextTurn()) {
             for (Person unit : game.getAllUnits()) {
                 unit.move();
                 //todo attack
