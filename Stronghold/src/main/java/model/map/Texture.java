@@ -15,7 +15,8 @@ public enum Texture
     WATER(Colors.BLUE_BACKGROUND_BRIGHT, "Water",true),
     DEEP_WATER(Colors.BLUE_BACKGROUND,"Deep Water",false),
     SAND(Colors.YELLOW_BOLD,"Sand" , true),
-    PITCH(Colors.BLACK_BACKGROUND_BRIGHT,"Pitch",false)
+    PITCH(Colors.BLACK_BACKGROUND_BRIGHT,"Pitch",false),
+    OIL(Colors.BLACK_BACKGROUND,"Oil",false);
     ;
 
     private final String name;
