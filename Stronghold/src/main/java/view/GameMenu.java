@@ -727,8 +727,8 @@ public class GameMenu {
         int X = Integer.parseInt(x);
         int Y = Integer.parseInt(y);
 
-        //todo give this to it's controller
-
+        GameMessages message = GameControl.clearBlock(X,Y);
+        System.out.println(message.message());
     }
 
     private static void checkDropRock(Matcher matcher){
