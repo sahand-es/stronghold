@@ -11,14 +11,12 @@ import model.units.Person;
 
 import java.util.ArrayList;
 
-public class Government
-{
-//    ToDo: auto rate when there is not enough food
+public class Government {
+    //    ToDo: auto rate when there is not enough food
     private int popularity;
     private int foodRate;
     private int taxRate;
     private int fearRate;
-
 
 
     private int populationCapacity;
@@ -36,8 +34,7 @@ public class Government
     private Colors color;
     private Game game;
 
-    public Government(Colors color,Game game)
-    {
+    public Government(Colors color, Game game) {
         this.game = game;
         this.color = color;
         tradesHistory = new ArrayList<>();
@@ -51,13 +48,11 @@ public class Government
     }
 
 
-    public void populationGrowth()
-    {
+    public void populationGrowth() {
 
     }
 
-    public static void trade(Trade trade)
-    {
+    public static void trade(Trade trade) {
 
     }
 
@@ -145,11 +140,11 @@ public class Government
         return resource;
     }
 
-    public int getPopulation(){
+    public int getPopulation() {
         return resource.getPeople() + units.size();
     }
 
-    private int calcPopularityOfTaxRate(){
+    private int calcPopularityOfTaxRate() {
         int output;
         output = -2 * this.taxRate;
         if (this.taxRate <= 0)
@@ -157,45 +152,45 @@ public class Government
         return output;
     }
 
-    public int calcTax(){
+    public int calcTax() {
         int output = 0;
-        if(this.taxRate == 0)
+        if (this.taxRate == 0)
             return output;
 
-        if (this.taxRate > 0){
-            output = (int) (0.2f*taxRate +0.4f)*getPopulation();
+        if (this.taxRate > 0) {
+            output = (int) (0.2f * taxRate + 0.4f) * getPopulation();
         } else {
-            output = (int) (0.2f*taxRate -0.4f)*getPopulation();
+            output = (int) (0.2f * taxRate - 0.4f) * getPopulation();
         }
         return output;
     }
 
-    public void addBuilding(Building building){
+    public void addBuilding(Building building) {
         buildings.add(building);
         game.addBuilding(building);
     }
 
-    public void removeBuilding(Building building){
+    public void removeBuilding(Building building) {
         buildings.remove(building);
         game.removeBuilding(building);
     }
 
-    public void addUnit(Person unit){
+    public void addUnit(Person unit) {
         units.add(unit);
         game.addUnit(unit);
     }
 
-    public void removeUnit(Person unit){
+    public void removeUnit(Person unit) {
         units.remove(unit);
         game.removeUnit(unit);
     }
 
-    public void addPopularity(int amount){
+    public void addPopularity(int amount) {
         popularity += amount;
     }
 
-    public void addCapacity(BuildingName name, int capacity){
-        switch (name){
+    public void addCapacity(BuildingName name, int capacity) {
+        switch (name) {
             case ARMOURY:
                 weaponCapacity += capacity;
                 break;
@@ -213,8 +208,8 @@ public class Government
         }
     }
 
-    public void subtractCapacity(BuildingName building, int capacity){
-        switch (building){
+    public void subtractCapacity(BuildingName building, int capacity) {
+        switch (building) {
             case ARMOURY:
                 weaponCapacity -= capacity;
                 break;
@@ -232,12 +227,12 @@ public class Government
         }
     }
 
-    public void addPopulationCapacity(int capacity){
+    public void addPopulationCapacity(int capacity) {
         populationCapacity += capacity;
         resource.addPeople(capacity);
     }
 
-    public void subtractPopulationCapacity(int capacity){
+    public void subtractPopulationCapacity(int capacity) {
         populationCapacity -= capacity;
     }
 
@@ -262,7 +257,7 @@ public class Government
         return null;
     }
 
-    public void addTrade(Trade trade){
+    public void addTrade(Trade trade) {
         this.tradesHistory.add(trade);
     }
 
@@ -274,7 +269,7 @@ public class Government
                 '}';
     }
 
-    public void lose(){
+    public void lose() {
         for (Person unit : units) {
             unit.die();
         }

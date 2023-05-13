@@ -73,6 +73,14 @@ public class Soldier extends Person {
 
         findPath(closestBlock);
     }
+
+    public Person getOpponnet() {
+        return attackQueue.peek();
+    }
+
+    public void freeAttackQueue() {
+        attackQueue = new LinkedList<>();
+    }
     public boolean isReadyToAttack() {
        if (attackQueue.isEmpty())
            return false;

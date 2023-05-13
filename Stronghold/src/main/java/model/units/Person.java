@@ -269,9 +269,9 @@ public class Person {
     public void takeDamage(int damage) {
         if ((damage - defencePower) < hp) {
             hp -= (damage - defencePower);
-            return;
         }
-        die();
+        if (hp <= 0)
+            die();
     }
 
     public boolean findPath(Block destination) {

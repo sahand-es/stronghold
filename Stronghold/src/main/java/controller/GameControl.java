@@ -296,7 +296,7 @@ public class GameControl {
                 }
             }
 
-//get damage react:
+//react to getting damage:
             Soldier soldier = (Soldier) unit;
             if (soldier.isReadyToAttack())
                 if (soldier.getAttackQueue().peek() instanceof Soldier) {
@@ -322,16 +322,70 @@ public class GameControl {
     }
 
     private void extractControl() {
+        for (Building building : game.getAllBuildings()) {
+            if (building instanceof ResourceExtractorBuilding) {
+                ((ResourceExtractorBuilding) building).extract();
+            }
+        }
+    }
 
+    private void giveFood() {
+        // TODO:
+    }
+
+    private void moveAllUnits() {
+        for (Person unit : game.getAllUnits()) {
+            unit.move();
+        }
+    }
+
+    private void attack(Soldier soldier) {
+        Person opponnet;
+        if (soldier.isReadyToAttack()) {
+            opponnet = soldier.getOpponnet();
+            if (!(opponnet instanceof Soldier)) {
+                opponnet.die();
+                soldier.freeAttackQueue();
+            }
+            if (opponnet instanceof Soldier) {
+                if (!((Soldier) opponnet).isReadyToAttack()) {
+                    opponnet.die();
+                    soldier.freeAttackQueue();
+                }
+                else {
+                    while (true) {
+                        opponnet.takeDamage(soldier.getDamage());
+                        soldier.takeDamage(((Soldier) opponnet).getDamage());
+
+                        if (opponnet.getHp() < 0) {
+                            soldier.freeAttackQueue();
+                            break;
+                        }
+                        if (soldier.getHp() < 0) {
+                            ((Soldier) opponnet).freeAttackQueue();
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private void doAttacks() {
+        for (Person unit : game.getAllUnits()) {
+            if (unit instanceof Soldier) {
+                Soldier soldier = (Soldier) unit;
+                attack(soldier);
+            }
+        }
     }
 
 
     private void nextTurn() {
         if (game.goToNextTurn()) {
-            for (Person unit : game.getAllUnits()) {
-                unit.move();
-                //todo attack
-            }
+            attackControl();
+            moveAllUnits();
+            doAttacks();
         }
         currentGovernment = game.getCurrentGovernment();
     }

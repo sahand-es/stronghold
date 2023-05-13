@@ -49,6 +49,10 @@ public class ResourceExtractorBuilding extends Building {
         this.rate = rate;
     }
 
+
+    public void extract() {
+//        ToDo
+    }
     @Override
     public String toString() {
         return  this.name+"{" +
