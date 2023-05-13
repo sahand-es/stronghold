@@ -674,9 +674,13 @@ public class GameMenu {
             return;
         }
 
+        int X1 = Integer.parseInt(x1);
+        int Y1 = Integer.parseInt(y1);
+        int X2 = Integer.parseInt(x2);
+        int Y2 = Integer.parseInt(y2);
 
-        //todo give this to it's controller
-
+        GameMessages message = GameControl.setGroupTexture(X1,Y1,X2,Y2,type);
+        System.out.println(message.message());
     }
 
 
@@ -711,6 +715,8 @@ public class GameMenu {
             return;
         }
 
+        int X = Integer.parseInt(x);
+        int Y = Integer.parseInt(y);
 
         //todo give this to it's controller
 
@@ -722,8 +728,11 @@ public class GameMenu {
         String direction = matcher.group("direction");
 
 
-        //todo give this to it's controller
+        int X = Integer.parseInt(x);
+        int Y = Integer.parseInt(y);
 
+        GameMessages message = GameControl.dropRock(X,Y);
+        System.out.println(message.message());
     }
 
     private static void checkDropTree(Matcher matcher){
@@ -732,8 +741,11 @@ public class GameMenu {
         String type = matcher.group("type");
 
 
-        //todo give this to it's controller
+        int X = Integer.parseInt(x);
+        int Y = Integer.parseInt(y);
 
+        GameMessages message = GameControl.dropTree(X,Y);
+        System.out.println(message.message());
     }
 
     private static void checkDropBuilding(Matcher matcher){
