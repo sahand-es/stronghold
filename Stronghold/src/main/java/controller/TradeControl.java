@@ -6,6 +6,7 @@ import model.society.Government;
 import model.society.Trade;
 import view.enums.messages.TradeMessages;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class TradeControl
@@ -46,5 +47,16 @@ public class TradeControl
         game.getCurrentGovernment().addTrade(trade);
 
         return TradeMessages.SUCCESSFUL;
+    }
+
+    public static String displayTrades(ArrayList<Trade> trades){
+        String output = "Trades:";
+
+        for (Trade trade : trades) {
+            output += "\nid) " + trade.getId() + " government: " + trade.getOwner().getColor().getColorName() + " | " ;
+            output += trade.getPrice().get(trade.getResource()) + " " + trade.getResource().name() + " gold = " + trade.getGold();
+        }
+
+        return output;
     }
 }

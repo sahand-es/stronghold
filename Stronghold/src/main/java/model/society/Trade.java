@@ -12,12 +12,15 @@ public class Trade
     private int id;
     static int idSetter = 1;
 
+    private ResourcesName resource;
+
     private HashMap<ResourcesName,Integer> price ;
 
 
     public Trade(Government seller, ResourcesName resource,int amount, int gold)
     {
         this.owner = seller;
+        this.resource = resource;
         price = new HashMap<>();
         price.put(resource,amount);
         this.gold = gold;
@@ -40,6 +43,9 @@ public class Trade
         return id;
     }
 
+    public ResourcesName getResource() {
+        return resource;
+    }
 
     public HashMap<ResourcesName, Integer> getPrice() {
         return price;
