@@ -11,20 +11,25 @@ import java.util.HashMap;
 
 public class TradeControl
 {
-    public static TradeMessages makeTrade(Game game, String targetColor, String resourceName, int amount , int gold){
-        Government currentGovernment = game.getCurrentGovernment();
-        Government targetGovernment = game.getGovernmentByColor(targetColor);
-        if(targetGovernment == null)
-            return TradeMessages.INVALID_COLOR;
+    public static TradeMessages makeTrade(HashMap<String,String> data){
+        String type = data.get("type");
+        String price = data.get("price");
+        String amount = data.get("amount");
+        String tradeMessage = data.get("tradeMessage");
 
-        if(!ResourcesName.isValidName(resourceName))
-            return TradeMessages.INVALID_RESOURCE;
+        if(type.equals("")){
+            return TradeMessages.TYPE_EMPTY;
+        }
+        if(price.equals("")){
+            return TradeMessages.PRICE_EMPTY;
+        }
+        if(amount.equals("")){
+            return TradeMessages.AMOUNT_EMPTY;
+        }
+        if(tradeMessage.equals("")){
+            return TradeMessages.MESSAGE_EMPTY;
+        }
 
-        ResourcesName resource = ResourcesName.getResourceByName(resourceName);
-
-        Trade trade = new Trade(currentGovernment,resource,amount,gold);
-        game.addTrade(trade);
-        currentGovernment.addTrade(trade);
 
         return TradeMessages.SUCCESSFUL;
     }
@@ -32,7 +37,7 @@ public class TradeControl
     public static TradeMessages acceptTrade(Game game,int id) {
         Trade trade = game.getTradeById(id);
         if (trade == null)
-            return TradeMessages.TRADE_ID_DOESNT_EXIST;
+            return TradeMessages.TRADE_ID_DOES_NOT_EXIST;
 
         if (!(game.getCurrentGovernment()).getResource().checkPay(trade.getPrice()))
             return TradeMessages.NOT_ENOUGH_RESOURCES;

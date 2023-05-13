@@ -6,6 +6,7 @@ import view.enums.AllMenus;
 import view.enums.commands.MapMenuCommands;
 import view.enums.commands.SignUpCommands;
 import view.enums.commands.TradeCommands;
+import view.enums.messages.SignUpMessages;
 
 import java.util.HashMap;
 import java.util.regex.Matcher;
@@ -31,16 +32,12 @@ public class TradeMenu {
                 extractTradeCommand(command);
                 System.out.println(tradeData);
             }
-//            else if(MapMenuCommands.getMatcher(command,MapMenuCommands.SHOW_DETAILS) != null){
-//                checkShowMap(command);
-//            }
-//            else if(MapMenuCommands.getMatcher(command,MapMenuCommands.SHOW_MENU) != null){
-//                System.out.println("You're in Map Menu!");
-//            }
+
             else
                 System.out.println("My liege, that's an invalid command!");
 
 
+            //todo switch menu
 //            switch (Application.getCurrentMenu()){
 //                case MAIN_MENU:
 //                    return;
@@ -130,6 +127,13 @@ public class TradeMenu {
         }
     }
 
+
+    private static void checkTradeRequest(){
+        if(tradeData != null){
+            SignUpMessages message = ;
+
+        }
+    }
 
     public static void main(String[] args) {
         TradeMenu tradeMenu = new TradeMenu();
