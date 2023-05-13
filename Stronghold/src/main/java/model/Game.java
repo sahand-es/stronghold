@@ -117,7 +117,15 @@ public class Game {
         return null;
     }
 
-    public static void addTrades(Trade trade){
+    public void addTrades(Trade trade){
         allTrades.add(trade);
+    }
+
+    public Trade getTradeById(int id){
+        for (Trade trade : allTrades) {
+            if(trade.getId() == id)
+                return trade;
+        }
+        return null;
     }
 }

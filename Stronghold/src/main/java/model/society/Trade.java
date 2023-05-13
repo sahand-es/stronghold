@@ -1,15 +1,13 @@
 package model.society;
 
-import model.Application;
-import model.resourecs.ResourceHolder;
 import model.resourecs.ResourcesName;
 
 import java.util.HashMap;
 
 public class Trade
 {
-    private Government seller;
-    private Government buyer;
+    private Government requestor;
+    private Government donator;
     private String message;
     private int gold;
     private int id;
@@ -21,8 +19,8 @@ public class Trade
 
     public Trade(Government seller, Government buyer, ResourcesName resource,int amount, int gold)
     {
-        this.seller = seller;
-        this.buyer = buyer;
+        this.requestor = seller;
+        this.donator = buyer;
         price = new HashMap<>();
         price.put(resource,amount);
         this.gold = gold;
@@ -31,14 +29,14 @@ public class Trade
         accepted = false;
     }
 
-    public Government getSeller()
+    public Government getRequestor()
     {
-        return seller;
+        return requestor;
     }
 
-    public Government getBuyer()
+    public Government getDonator()
     {
-        return buyer;
+        return donator;
     }
 
 
@@ -47,6 +45,9 @@ public class Trade
         return message;
     }
 
+    public int getId() {
+        return id;
+    }
 
     public boolean isAccepted() {
         return accepted;
@@ -54,5 +55,9 @@ public class Trade
 
     public void setAccepted(boolean accepted) {
         this.accepted = accepted;
+    }
+
+    public HashMap<ResourcesName, Integer> getPrice() {
+        return price;
     }
 }
