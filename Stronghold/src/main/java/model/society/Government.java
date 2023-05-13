@@ -189,7 +189,12 @@ public class Government {
     }
 
     public void removeBuilding(Building building) {
-        buildings.remove(building);
+        for (Building buildingToRemove : buildings) {
+            if (buildingToRemove.equals(buildingToRemove)) {
+                buildings.remove(buildingToRemove);
+                return;
+            }
+        }
         game.removeBuilding(building);
     }
 
@@ -199,7 +204,12 @@ public class Government {
     }
 
     public void removeUnit(Person unit) {
-        units.remove(unit);
+        for (Person person : units) {
+            if (person.equals(unit)) {
+                units.remove(person);
+                return;
+            }
+        }
         game.removeUnit(unit);
     }
 

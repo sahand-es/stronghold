@@ -1,5 +1,6 @@
 package model.map;
 
+import com.sun.source.tree.Tree;
 import model.environment.Environment;
 import model.environment.Rock;
 import model.environment.buildings.Building;
@@ -217,6 +218,22 @@ public class Block {
             }
         }
         return output;
+    }
+
+    public ArrayList<Character> getBlockDetailForShowMap() {
+        ArrayList<Character> chars = new ArrayList<>();
+        if (!units.isEmpty())
+            chars.add('S');
+        if (environment != null && environment instanceof Building)
+            chars.add('B');
+        if (environment instanceof Tree)
+            chars.add('T');
+        if (environment instanceof Rock)
+            chars.add('R');
+
+        if (chars.isEmpty())
+            chars.add('#');
+        return chars;
     }
     @Override
     public boolean equals(Object o) {

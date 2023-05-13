@@ -285,8 +285,9 @@ public class Person {
     }
 
     public void move() {
+//        ToDo: get damage if trap
         if (!moveQueue.isEmpty()) {
-            Block lastBlock = null;
+            Block lastBlock = block;
             int blocksMoved = 0;
             while (!moveQueue.isEmpty() && blocksMoved < speed) {
                 lastBlock = moveQueue.peek();
