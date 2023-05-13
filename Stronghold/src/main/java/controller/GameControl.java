@@ -5,6 +5,7 @@ import model.environment.buildings.*;
 import model.environment.buildings.enums.BuildingCategory;
 import model.environment.buildings.enums.BuildingName;
 import model.map.Block;
+import model.map.Direction;
 import model.map.Map;
 import model.resourecs.ResourcesName;
 import model.society.Government;
@@ -297,6 +298,19 @@ public class GameControl {
         if (!soldier.setAttackQueue(block.getEnemy(selectedUnit))) {
             return GameMessages.CAN_NOT_GO_THERE_TO_ATTACK;
         }
+
+        return GameMessages.SUCCESS;
+    }
+
+    public GameMessages pourOil(String direction) {
+        if (selectedUnit == null)
+            return GameMessages.UNIT_NOT_SELECTED;
+        if (!(selectedUnit instanceof Engineer))
+            return GameMessages.SELECTED_UNIT_IS_NOT_ENGINEER;
+        if (!Direction.isValid(direction))
+            return GameMessages.INVALID_DIRECTION;
+
+        ((Engineer) selectedUnit).pourOil(Direction.getByString(direction));
 
         return GameMessages.SUCCESS;
     }

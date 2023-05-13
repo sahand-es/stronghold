@@ -36,7 +36,14 @@ public enum GameMessages {
     CAN_NOT_ATTACK_WITH_THIS_UNIT_TYPE,
     NO_ENEMY_TO_ATTACK,
     CAN_NOT_GO_THERE_TO_ATTACK,
-    TRADE_MENU;
+    TRADE_MENU,
+//  pour oil:
+    SELECTED_UNIT_IS_NOT_ENGINEER,
+    INVALID_DIRECTION;
+
+
+    ;
+
 //  state:
 ;
 
