@@ -604,8 +604,8 @@ public class GameMenu {
         int X = Integer.parseInt(x);
         int Y = Integer.parseInt(y);
 
-        //ToDO
-
+        GameMessages message = GameControl.setTexture(X,Y,type);
+        System.out.println(message.message());
     }
 
     private static void checkSetTextureArea(String command){
