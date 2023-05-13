@@ -2,7 +2,6 @@ package model;
 
 import model.environment.buildings.Building;
 import model.map.Map;
-import model.siegeutil.SiegeUtil;
 import model.society.Government;
 import model.society.Trade;
 import model.society.enums.Colors;
@@ -24,7 +23,6 @@ public class Game {
 
     private final ArrayList<Building> allBuildings = new ArrayList<>();
 
-    private final ArrayList<SiegeUtil> allSiegeUtil = new ArrayList<>();
 
     public Game(Map map, int governmentCount) {
         this.map = map;
@@ -50,9 +48,6 @@ public class Game {
         return allBuildings;
     }
 
-    public ArrayList<SiegeUtil> getAllSiegeUtil() {
-        return allSiegeUtil;
-    }
 
     public void addUnit(Person unit) {
         allUnits.add(unit);
@@ -62,9 +57,6 @@ public class Game {
         allBuildings.add(building);
     }
 
-    public void addSiegeUtil(SiegeUtil siegeUtil) {
-        allSiegeUtil.add(siegeUtil);
-    }
 
     public void addTrade(Trade trade){
         allTrades.add(trade);
@@ -78,9 +70,6 @@ public class Game {
         allBuildings.remove(building);
     }
 
-    public void removeSiegeUtil(SiegeUtil siegeUtil) {
-        allSiegeUtil.remove(siegeUtil);
-    }
 
     public void removeTrade(Trade trade){
         allTrades.remove(trade);
