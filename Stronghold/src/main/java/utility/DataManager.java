@@ -40,8 +40,6 @@ public class DataManager {
     }
 
     // call when you want save users database
-
-    // TODO: 4/22/2023  call when program ends
     public static void saveUsers() {
         FileWriter fileWriter;
         try {

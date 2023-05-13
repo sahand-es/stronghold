@@ -35,6 +35,7 @@ public enum UnitName {
     public final static ArrayList<UnitName> barracks = new ArrayList<>(List.of(ARCHER,CROSSBOWMAN,SPEARMAN,PIKEMAN,MACEMAN,SWORDSMAN,KNIGHT));
     public final static ArrayList<UnitName> mercenaryPost = new ArrayList<>(List.of(SLAVE,SLINGER,ASSASSIN,HORSE_ARCHER,ARABIAN_BOW,ARABIAN_SWORDSMAN,FIRE_THROWER));
     public final static ArrayList<UnitName> engineerGuild = new ArrayList<>(List.of(ENGINEER,LADDERMAN,TUNNELER));
+    public final static ArrayList<UnitName> church = new ArrayList<>(List.of(BLACK_MONK));
     public final static ArrayList<UnitName>  siegeBuilds = new ArrayList<>(List.of(BATTERING_RAM, CATAPULT, STONE_THROWER, SIEGE_TOWER));
 
 
@@ -84,6 +85,10 @@ public enum UnitName {
             case ENGINEER_GUILD: {
                 return engineerGuild.contains(unitName);
             }
+            case CHURCH:
+            case CATHEDRAL:
+                return church.contains(unitName);
+
         }
         return false;
     }
@@ -97,6 +102,9 @@ public enum UnitName {
 
             case ENGINEER_GUILD:
                 return engineerGuild;
+            case CHURCH:
+            case CATHEDRAL:
+                return church;
 
             default:
                 return null;
