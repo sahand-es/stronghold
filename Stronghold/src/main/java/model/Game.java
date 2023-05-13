@@ -29,7 +29,7 @@ public class Game {
 
         for (int i = 0; i < governmentCount; i++) {
             governments.add(new Government(Colors.colorsArr.get(i), this));
-
+//  Todo: change init with
             map.initGovernments(governments);
 
             Application.addGame(this);

@@ -1,5 +1,6 @@
 package model.units;
 
+import model.Game;
 import model.map.Block;
 import model.resourecs.Armour;
 import model.resourecs.ResourcesName;
@@ -18,7 +19,7 @@ public class Soldier extends Person {
 
     private final int damage;
     private final int attackRange;
-    Queue<Person> attackQueue;
+    Queue<Person> attackQueue = new LinkedList<>();
 
     SoldierUnitState soldierUnitState;
 
@@ -32,6 +33,10 @@ public class Soldier extends Person {
 
         this.damage = damage;
         this.attackRange = attackRange;
+    }
+
+    public Queue<Person> getAttackQueue() {
+        return attackQueue;
     }
 
     public Soldier(UnitName name) {
@@ -68,9 +73,11 @@ public class Soldier extends Person {
 
         findPath(closestBlock);
     }
-
     public boolean isReadyToAttack() {
-       return true;
+       if (attackQueue.isEmpty())
+           return false;
+       setAttackQueue(attackQueue.peek());
+       return moveQueue.isEmpty();
     }
     public int getDamage() {
         return damage + government.getFearRate();

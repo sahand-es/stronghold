@@ -193,8 +193,12 @@ public class GameControl {
         }
 
         selectedBuilding = (Building) map.getBlockByXY(x, y).getEnvironment();
+
+        if (selectedBuilding instanceof Shop)
+            return GameMessages.TRADE_MENU;
         return GameMessages.SUCCESS;
     }
+//ToDo: selected building change menu.
 
     private GameMessages repair() {
         if (selectedBuilding == null)
@@ -202,9 +206,10 @@ public class GameControl {
         if (!selectedBuilding.getCategory().equals(BuildingCategory.CASTLE) && !selectedBuilding.getPrice().containsKey(ResourcesName.STONE))
             return GameMessages.CANNOT_REPAIR_THIS_BUILDING_TYPE;
         HashMap<ResourcesName, Integer> stonePrice = new HashMap<>();
-        stonePrice.put(ResourcesName.STONE, selectedBuilding.getPrice().get(ResourcesName.STONE)/2);
+        stonePrice.put(ResourcesName.STONE, selectedBuilding.getPrice().get(ResourcesName.STONE) / 2);
         if (!currentGovernment.getResource().checkPay(stonePrice))
             return GameMessages.NOT_ENOUGH_ROCK;
+//ToDo: close enemy
 
         selectedBuilding.repair();
         return GameMessages.SUCCESS;
@@ -265,7 +270,6 @@ public class GameControl {
         return GameMessages.SUCCESS;
     }
 
-
     private GameMessages disbandUnit() {
         if (selectedUnit == null)
             return GameMessages.UNIT_NOT_SELECTED;
@@ -273,6 +277,54 @@ public class GameControl {
         selectedUnit.findPath(currentGovernment.getCastle().getBlock());
         return GameMessages.SUCCESS;
     }
+
+    private void attackControl() {
+        for (Person unit : game.getAllUnits()) {
+            if (!(unit instanceof Soldier))
+                continue;
+            Person closestPerson = findClosestEnemy(unit);
+//attack
+            if (closestPerson != null) {
+                Soldier soldier = (Soldier) unit;
+                if (soldier.getAttackQueue().isEmpty()) {
+                    if (soldier.getSoldierUnitState().equals(SoldierUnitState.OFFENSIVE))
+                        soldier.setAttackQueue(closestPerson);
+                    if (soldier.getSoldierUnitState().equals(SoldierUnitState.DEFENSIVE)) {
+                        if (unit.getBlock().distanceTo(closestPerson.getBlock()) < 15)
+                            soldier.setAttackQueue(closestPerson);
+                    }
+                }
+            }
+
+//get damage react:
+            Soldier soldier = (Soldier) unit;
+            if (soldier.isReadyToAttack())
+                if (soldier.getAttackQueue().peek() instanceof Soldier) {
+                    Soldier lockedSoldier = (Soldier) soldier.getAttackQueue().peek();
+                    if (!lockedSoldier.getSoldierUnitState().equals(SoldierUnitState.STANDING))
+                        lockedSoldier.setAttackQueue(unit);
+                }
+        }
+    }
+
+    private Person findClosestEnemy(Person person) {
+        Person closestPerson = null;
+        double minDistance = Double.MAX_VALUE;
+        for (Person unit : game.getAllUnits()) {
+            if (unit.getBlock().distanceTo(person.getBlock()) < minDistance) {
+                if (!unit.getGovernment().equals(person.getGovernment())) {
+                    minDistance = unit.getBlock().distanceTo(person.getBlock());
+                    closestPerson = unit;
+                }
+            }
+        }
+        return closestPerson;
+    }
+
+    private void extractControl() {
+
+    }
+
 
     private void nextTurn() {
         if (game.goToNextTurn()) {

@@ -30,10 +30,11 @@ public enum GameMessages {
     INVALID_UNIT_STATE,
     CLOSE_RANGE_UNIT,
     UNIT_NOT_SELECTED,
+    THIS_UNIT_DOES_NOT_HAVE_STATE,
     SUCCESS,
+    TRADE_MENU;
 //  state:
-    THIS_UNIT_DOES_NOT_HAVE_STATE;
-
+;
 
     ;
 }
