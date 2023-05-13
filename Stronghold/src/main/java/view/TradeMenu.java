@@ -1,5 +1,6 @@
 package view;
 
+import controller.TradeControl;
 import model.Application;
 import model.map.Block;
 import view.enums.AllMenus;
@@ -7,6 +8,7 @@ import view.enums.commands.MapMenuCommands;
 import view.enums.commands.SignUpCommands;
 import view.enums.commands.TradeCommands;
 import view.enums.messages.SignUpMessages;
+import view.enums.messages.TradeMessages;
 
 import java.util.HashMap;
 import java.util.regex.Matcher;
@@ -109,7 +111,6 @@ public class TradeMenu {
 
             command = command.replaceAll(checkMatcher.group().toString().trim(),"");
 
-
         }
 
         if (TradeCommands.getMatcher(command, TradeCommands.FINAL_TRADE_CHECK) != null){
@@ -130,8 +131,41 @@ public class TradeMenu {
 
     private static void checkTradeRequest(){
         if(tradeData != null){
-            SignUpMessages message = ;
+            TradeMessages message = TradeControl.makeTrade(tradeData);
 
+            switch (message) {
+                case TYPE_EMPTY:
+                    System.out.println("My liege, you must give a type!");
+                    break;
+                case AMOUNT_EMPTY:
+                    System.out.println("My liege, you must give a amount!");
+                    break;
+                case MESSAGE_EMPTY:
+                    System.out.println("My liege, you must give a message!");
+                    break;
+                case PRICE_EMPTY:
+                    System.out.println("My liege, you must give a price!");
+                    break;
+                case INVALID_AMOUNT:
+                    System.out.println("My liege, that's an invalid format for amount!");
+                    break;
+                case INVALID_PRICE:
+                    System.out.println("My liege, that's an invalid format for price!");
+                    break;
+                case INVALID_RESOURCE:
+                    System.out.println("My liege, that's an invalid resource type!");
+                    break;
+                case NOT_ENOUGH_RESOURCES:
+                    System.out.println("My liege, you don't have enough resources!");
+                    break;
+
+                case SUCCESS:
+                    System.out.println("Trade request sent!");
+                    Application.setCurrentMenu(AllMenus.LOGIN_MENU);
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
