@@ -4,7 +4,6 @@ import model.Game;
 import model.environment.buildings.Building;
 import model.environment.buildings.enums.BuildingName;
 import model.resourecs.Resource;
-import model.siegeutil.SiegeUtil;
 import model.society.enums.Colors;
 import model.units.Person;
 
@@ -30,7 +29,6 @@ public class Government
 
     private final ArrayList<Trade> tradesHistory;
     private final ArrayList<Person> units;
-    private final ArrayList<SiegeUtil> siegeUtils;
     private final ArrayList<Building> buildings;
 
     private Colors color;
@@ -42,7 +40,6 @@ public class Government
         this.color = color;
         tradesHistory = new ArrayList<>();
         units = new ArrayList<>();
-        siegeUtils = new ArrayList<>();
         buildings = new ArrayList<>();
         taxRate = 0;
         fearRate = 0;
@@ -138,10 +135,6 @@ public class Government
         return units;
     }
 
-    public ArrayList<SiegeUtil> getSiegeUtils() {
-        return siegeUtils;
-    }
-
     public ArrayList<Building> getBuildings() {
         return buildings;
     }
@@ -193,16 +186,6 @@ public class Government
     public void removeUnit(Person unit){
         units.remove(unit);
         game.removeUnit(unit);
-    }
-
-    public  void addSiegeUtil(SiegeUtil siegeUtil){
-        siegeUtils.add(siegeUtil);
-        game.addSiegeUtil(siegeUtil);
-    }
-
-    public void removeSiegeUtil(SiegeUtil siegeUtil){
-        siegeUtils.remove(siegeUtil);
-        game.removeSiegeUtil(siegeUtil);
     }
 
     public void addPopularity(int amount){
@@ -279,5 +262,15 @@ public class Government
                 "color=" + color +
                 ", game=" + game +
                 '}';
+    }
+
+    public void lose(){
+        for (Person unit : units) {
+            unit.die();
+        }
+        for (Building building : buildings) {
+            building.die();
+        }
+        game.removeGovernment(this);
     }
 }

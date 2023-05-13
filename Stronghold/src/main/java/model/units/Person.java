@@ -279,7 +279,7 @@ public class Person {
         if (route == null)
             return false;
         addRouteToQueue(route, destination);
-        return true;
+       return true;
     }
 
     public void move() {
@@ -292,28 +292,13 @@ public class Person {
                 blocksMoved += 1;
             }
 
-            if (moveQueue.isEmpty()) {
-                if (patrolBlocks != null) {
-                    whichPatrolBlock = whichPatrolBlock.equals(patrolBlocks[0]) ? patrolBlocks[1] : patrolBlocks [0];
-                    findPath(whichPatrolBlock);
-                }
-            }
-
-            while (!moveQueue.isEmpty() && blocksMoved < speed) {
-                lastBlock = moveQueue.peek();
-                moveQueue.remove();
-                blocksMoved += 1;
-            }
-
             this.block.removeUnit(this);
             lastBlock.addUnit(this);
             this.block = lastBlock;
         }
     }
 
-    public boolean canGoThere(Block destination) {
-        return BFS(destination) != null;
-    }
+
     private HashMap<Block, Block> BFS(Block destination) {
         Map map = block.getMap();
 
@@ -327,7 +312,8 @@ public class Person {
 
         long startTime = System.currentTimeMillis();
         long end = startTime + 4 * 1000;
-        while (!queue.isEmpty() && System.currentTimeMillis() < end) {
+//todo : add time limit
+        while (!queue.isEmpty()) {
             Block currentBlock = queue.poll();
             int x = currentBlock.getX();
             int y = currentBlock.getY();
@@ -365,16 +351,19 @@ public class Person {
         Stack<Block> s = new Stack();  //create a stack
 
         //while the queue is not empty
-        while (!moveQueue.isEmpty()) {  //add the elements of the queue onto a stack
+        while(!moveQueue.isEmpty())
+        {  //add the elements of the queue onto a stack
             s.push(moveQueue.poll());
         }
 
         //while the stack is not empty
-        while (!s.isEmpty()) { //add the elements in the stack back to the queue
+        while(!s.isEmpty())
+        { //add the elements in the stack back to the queue
             moveQueue.add(s.pop());
         }
     }
 
+    public void die() {
     public void setPatrol(Block firstBlock, Block secondBlock) {
         patrolBlocks = new Block[]{firstBlock, secondBlock};
         whichPatrolBlock = firstBlock;
