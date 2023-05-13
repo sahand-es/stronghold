@@ -13,9 +13,9 @@ public class Game {
     public Game(Map map, int governmentCount) {
         this.map = map;
 
-        for (int i = 0; i < governmentCount; i++) {
+        /*for (int i = 0; i < governmentCount; i++) {
             governments.add(new Government(this));
-        }
+        }*/
         map.initGovernments(governments);
 
         Application.addGame(this);
@@ -100,5 +100,19 @@ public class Game {
 
     public Government getCurrentGovernment(){
         return governments.get(turn);
+    }
+
+    public Government getGovernmentByName(String name){
+        for (Government government : this.governments) {
+            if(government.getOwner().getNickname().equals(name))
+                return government;
+        }
+        return null;
+
+
+    }
+
+    public static void addTrades(Trade trade){
+        allTrades.add(trade);
     }
 }
