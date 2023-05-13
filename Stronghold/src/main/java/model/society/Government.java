@@ -178,7 +178,7 @@ public class Government {
         return output;
     }
 
-    public int calcFoodUsage(){
+    public int foodUsage(){
         return  (foodRate + 2) * getPopulation() / 2;
     }
 
@@ -298,7 +298,12 @@ public class Government {
 
 
     public void payFoodToPeople(){
-
+        if(resource.getFoodAmount() < foodUsage()) {
+            setFoodRate(-2);
+        } else {
+            resource.payFood(foodUsage());
+            popularity += resource.getFoodDiversity();
+        }
     }
 
     public void TaxingThePeople(){
