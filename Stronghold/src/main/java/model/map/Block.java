@@ -1,6 +1,7 @@
 package model.map;
 
 import model.environment.Environment;
+import model.environment.Rock;
 import model.environment.buildings.Building;
 import model.environment.buildings.enums.BuildingName;
 import model.units.Person;
@@ -107,7 +108,6 @@ public class Block {
         }
     }
 
-//    TODO: from texture
     public boolean canBuildOnThis(BuildingName buildingName) {
         if (this.environment != null)
             return false;
@@ -171,11 +171,25 @@ public class Block {
         int delY = this.y - block.getY();
         return Math.sqrt(Math.pow(delX, 2) + Math.pow(delY, 2));
     }
-//TODO: complete details.
     public String showDetails() {
-        StringBuilder output = new StringBuilder();
+        String output  = "" + this.texture;
+        if(environment != null) {
+            if (environment instanceof Building) {
+                output += "\nBuilding: " + ((Building) environment).getName();
+            } else if (environment instanceof Rock){
+                output += "\nRock";
+            } else {
+                output += "\nTree";
+            }
 
-        return output.toString();
+            if(units.size() != 0) {
+                output += "\nUnits:";
+                for (Person unit : units) {
+                    output += "\n" + unit.getName();
+                }
+            }
+        }
+        return output;
     }
     @Override
     public boolean equals(Object o) {
