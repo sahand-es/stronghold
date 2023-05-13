@@ -60,10 +60,7 @@ public class Soldier extends Person {
     }
 
     public boolean isReadyToAttack() {
-        if (attackQueue.isEmpty())
-            return false;
-        setAttackQueue(attackQueue.peek());
-        return moveQueue.isEmpty();
+       return true;
     }
     public int getDamage() {
         return damage;

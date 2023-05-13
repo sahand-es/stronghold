@@ -21,8 +21,9 @@ public class Person {
 
     protected final HashMap<ResourcesName, Integer> price;
     protected Block block;
+    protected Block destination;
     protected Government government;
-    protected Queue<Block> moveQueue;
+
 
     protected boolean canClimbLadder;
     protected boolean canDigMoat;
@@ -273,43 +274,33 @@ public class Person {
     }
 
     public boolean findPath(Block destination) {
-        HashMap<Block, Block> route = BFS(destination);
-        if (route == null)
-            return false;
-//        addRouteToQueue(route, destination);
-        return true;
+//        Map map = this.block.getMap();
+//        boolean[][] visited = new boolean[map.getHeight()][map.getWidth()];
+//
+//        return DFS(System.currentTimeMillis(), destination, this.getBlock(), visited, map);
+        return BFS(destination);
     }
 
     public void move() {
-        if (!moveQueue.isEmpty()) {
-            Block lastBlock = null;
-            int blocksMoved = 0;
-            while (!moveQueue.isEmpty() && blocksMoved < speed) {
-                lastBlock = moveQueue.peek();
-                moveQueue.remove();
-                blocksMoved += 1;
-            }
-
             this.block.removeUnit(this);
-            lastBlock.addUnit(this);
-            this.block = lastBlock;
-        }
+            destination.addUnit(this);
+            this.block = destination;
     }
 
-
-    private HashMap<Block, Block> BFS(Block destination) {
+    private boolean BFS(Block destination) {
         Map map = block.getMap();
 
         Queue<Block> queue = new LinkedList<>();
         queue.add(block);
 
 
+
         boolean[][] visited = new boolean[map.getHeight()][map.getWidth()];
         HashMap<Block, Block> route = new HashMap<>();
-        Direction[][] blockPrevs = new Direction[map.getHeight()][map.getWidth()];
+        visited[block.getY()][block.getX()] = true;
 
         long startTime = System.currentTimeMillis();
-        long end = startTime + 4 * 1000;
+        long end = startTime + 2 * 1000;
 //todo : add time limit
         while (!queue.isEmpty()) {
             Block currentBlock = queue.poll();
@@ -322,43 +313,19 @@ public class Person {
 
                     if (nextBlock.canPassThisBlock(this)) {
 
-                        visited[nextX][nextY] = true;
+                        visited[nextY][nextX] = true;
                         queue.add(nextBlock);
 
-                        route.put(nextBlock, currentBlock);
 
                         if (nextBlock.equals(destination)) {
                             queue.clear();
-                            return route;
+                            return true;
                         }
                     }
                 }
             }
         }
-        return null;
-    }
-
-    private void addRouteToQueue(HashMap<Block, Block> route, Block destination) {
-        moveQueue = new LinkedList<>();
-        Block blockIter = destination;
-        while (!blockIter.equals(block)) {
-            moveQueue.add(blockIter);
-            blockIter = route.get(blockIter);
-        }
-
-        Stack<Block> s = new Stack();  //create a stack
-
-        //while the queue is not empty
-        while(!moveQueue.isEmpty())
-        {  //add the elements of the queue onto a stack
-            s.push(moveQueue.poll());
-        }
-
-        //while the stack is not empty
-        while(!s.isEmpty())
-        { //add the elements in the stack back to the queue
-            moveQueue.add(s.pop());
-        }
+        return false;
     }
 
     //    TODO: delete this from government
