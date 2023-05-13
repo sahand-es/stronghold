@@ -7,6 +7,7 @@ import model.environment.buildings.enums.BuildingName;
 import model.map.Map;
 import model.society.Government;
 import model.units.Person;
+import model.units.Soldier;
 import model.units.enums.UnitName;
 import view.enums.messages.GameMessages;
     /*
@@ -41,6 +42,7 @@ public class GameControl {
         if (!map.getBlockByXY(x, y).canBuildOnThis())
             return GameMessages.CANNOT_BUILD_HERE;
 
+//      Todo: add constructors
         new Building(BuildingName.getBuildingNameByName(type), currentGovernment, map.getBlockByXY(x, y));
         return GameMessages.SUCCESS;
     }

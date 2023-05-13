@@ -113,7 +113,14 @@ public class Block {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Block block = (Block) o;
-        return x == block.x && y == block.y && Objects.equals(map, block.map);
+        return x == block.x && y == block.y;
     }
 
+    @Override
+    public String toString() {
+        return " {" +
+                "x=" + x +
+                ", y=" + y +
+                '}';
+    }
 }

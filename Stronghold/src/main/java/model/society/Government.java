@@ -272,4 +272,12 @@ public class Government
     public void addTrade(Trade trade){
         this.tradesHistory.add(trade);
     }
+
+    @Override
+    public String toString() {
+        return " {" +
+                "color=" + color +
+                ", game=" + game +
+                '}';
+    }
 }
