@@ -1,6 +1,8 @@
 package view;
 
 import model.Application;
+import model.Game;
+import model.map.Map;
 import utility.DataManager;
 import view.enums.AllMenus;
 import view.enums.commands.MainMenuCommands;
@@ -60,8 +62,21 @@ public class MainMenu
                     Application.setCurrentMenu(AllMenus.PROFILE_MENU);
                 }
                 else if((matcher = (MainMenuCommands.getMatcher(command,MainMenuCommands.START_GAME))) != null){
-                    //todo start game
-                    Application.setCurrentMenu(AllMenus.GAME_MENU);
+                    //TODO.
+                    int numberOfGovernments = Integer.parseInt(matcher.group("number"));
+                    int height = Integer.parseInt(matcher.group("height"));
+                    int width = Integer.parseInt(matcher.group("width"));
+
+                    if (numberOfGovernments > 8){
+                        System.out.println("number of players is mor than 8. Please try again");;
+                    } else {
+                        Map map = new Map(height,width);
+                        Game game = new Game(map , numberOfGovernments);
+
+                        Application.setCurrentMap(map);
+                        Application.setCurrentGame(game);
+                        Application.setCurrentMenu(AllMenus.GAME_MENU);
+                    }
                 }
                 else if(MainMenuCommands.getMatcher(command,MainMenuCommands.SHOW_MAP) != null){
                    checkShowMAp(command);

@@ -4,12 +4,15 @@ import controller.GameControl;
 import model.Application;
 import view.enums.AllMenus;
 import view.enums.commands.GameCommands;
+import view.enums.messages.GameMessages;
 
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class GameMenu {
+
+
 
     public static void run() {
         Application.setCurrentMenu(AllMenus.GAME_MENU);
@@ -45,7 +48,7 @@ public class GameMenu {
                 checkFoodRate(matcher);
             }
             else if(GameCommands.getMatcher(command,GameCommands.FOOD_RATE_SHOW) != null){
-                //todo (print this shit) show food rate
+                System.out.println("Food rate: " + GameControl.getCurrentGovernment().getFoodRate());
             }
             else if((matcher = GameCommands.getMatcher(command,GameCommands.TAX_RATE)) != null){
                 checkFearRate(matcher);
@@ -140,7 +143,8 @@ public class GameMenu {
     private static void checkFoodRate(Matcher matcher){
         //todo ina string e ha bepaaaaa!
         String foodRateNumber = matcher.group("foodRateNumber");
-
+        int rate = Integer.parseInt(foodRateNumber);
+        GameMessages message ;
 
         //todo give this to it's controller
 

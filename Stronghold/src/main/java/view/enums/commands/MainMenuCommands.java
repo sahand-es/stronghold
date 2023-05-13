@@ -8,7 +8,7 @@ public enum MainMenuCommands
     EXIT("^\\s*exit\\s*$"),
     SHOW_MENU("^\\s*show\\s+menu\\s*$"),
     PROFILE_MENU("^\\s*profile\\s+menu\\s*$"),
-    START_GAME("^\\s*start\\s+game\\s+-n\\s+(?<number>\\d+)\\s*$"),
+    START_GAME("^\\s*start\\s+game\\s+-w\\s+(?<width>\\d+)\\s+-h\\s(?<height>\\d+)\\s+-n\\s+(?<number>\\d+)\\s*$"),
     SHOW_MAP("^\\s*show\\s+map\\s+.*"),
     SHOW_MAP_FINAL_CHECK("^\\s*show\\s+map\\s+$"),
     X_DIR("-x\\s+(?<xNum>\\S+)"),
