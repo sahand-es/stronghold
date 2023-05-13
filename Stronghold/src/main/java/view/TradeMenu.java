@@ -32,7 +32,9 @@ public class TradeMenu {
             }
             else if(TradeCommands.getMatcher(command, TradeCommands.TRADE) != null){
                 extractTradeCommand(command);
-                System.out.println(tradeData);
+                if (tradeData != null){
+                    checkTradeRequest();
+                }
             }
 
             else
