@@ -1,8 +1,7 @@
 package controller;
 
 import model.Game;
-import model.environment.buildings.Building;
-import model.environment.buildings.UnitMakerBuilding;
+import model.environment.buildings.*;
 import model.environment.buildings.enums.BuildingName;
 import model.map.Block;
 import model.map.Map;
@@ -41,6 +40,7 @@ public class GameControl {
     private GameMessages fearRate(int rate) {
         if (rate < -5 || rate > 5)
             return GameMessages.INVALID_RATE;
+
         currentGovernment.setFearRate(rate);
         return GameMessages.SUCCESS;
     }
@@ -66,8 +66,63 @@ public class GameControl {
         if (!map.getBlockByXY(x, y).canBuildOnThis(BuildingName.getBuildingNameByName(type)))
             return GameMessages.CANNOT_BUILD_HERE;
 
+        BuildingName buildingName = BuildingName.getBuildingNameByName(type);
+        Block block = map.getBlockByXY(x, y);
 //      Todo: add constructors
-        new Building(BuildingName.getBuildingNameByName(type), currentGovernment, map.getBlockByXY(x, y));
+        switch (buildingName.kind) {
+            case "Gate": {
+                new Gate(buildingName, currentGovernment, block);
+                break;
+            }
+            case "Bridge": {
+                new Bridge(buildingName, currentGovernment, block);
+                break;
+            }
+            case "Defencive": {
+                new DefensiveBuilding(buildingName, currentGovernment, block);
+                break;
+            }
+            case "Storage": {
+                new StorageBuilding(buildingName, currentGovernment, block);
+                break;
+            }
+            case "Unit Maker": {
+                new UnitMakerBuilding(buildingName, currentGovernment, block);
+                break;
+            }
+            case "Trap": {
+                new Traps(buildingName, currentGovernment, block);
+                break;
+            }
+            case "Extractor": {
+                new ResourceExtractorBuilding(buildingName, currentGovernment, block);
+                break;
+            }
+            case "Church": {
+                new Church(buildingName, currentGovernment, block);
+                break;
+            }
+            case "Inn": {
+                new Inn(buildingName, currentGovernment, block);
+                break;
+            }
+            case "Shop": {
+                new Shop(buildingName, currentGovernment, block);
+                break;
+            }
+            case "House": {
+                new HouseBuilding(buildingName, currentGovernment, block);
+                break;
+            }
+            case "Castle": {
+                new Castle(buildingName, currentGovernment, block);
+                break;
+            }
+            default: {
+                new Building(buildingName, currentGovernment, block);
+                break;
+            }
+        }
         return GameMessages.SUCCESS;
     }
 

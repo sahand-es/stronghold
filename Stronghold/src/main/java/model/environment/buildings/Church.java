@@ -23,7 +23,10 @@ public class Church extends Building {
     public Church(BuildingName name, Government government, Block block) {
         super(name, government, block);
         monks = new ArrayList<>();
-        government.addPopularity(2);
+        if (name.equals(BuildingName.CHURCH))
+            government.addPopularity(2);
+        if (name.equals(BuildingName.CATHEDRAL))
+            government.addPopularity(4);
     }
 
     public void makeMonk() {

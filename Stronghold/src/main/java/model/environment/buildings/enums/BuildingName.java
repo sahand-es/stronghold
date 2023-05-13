@@ -4,79 +4,81 @@ import org.jetbrains.annotations.NotNull;
 
 public enum BuildingName {
     // Gate:
-    SMALL_STONE_GATEHOUSE("Small Stone Gatehouse"),
-    LARGE_STONE_GATEHOUSE("Large Stone Gatehouse"),
+    SMALL_STONE_GATEHOUSE("Small Stone Gatehouse", "Gate"),
+    LARGE_STONE_GATEHOUSE("Large Stone Gatehouse", "Gate"),
 
     // Bridge:
-    DRAWBRIDGE("Drawbridge"),
+    DRAWBRIDGE("Drawbridge", "Bridge"),
 
     // Defencive:
-    LOOKOUT_TOWER("Lookout Tower"),
-    PERIMETER_TOWER("Perimeter Tower"),
-    DEFENCE_TURRET("Defence Turret"),
-    SQUARE_TOWER("Square Tower"),
-    ROUND_TOWER("Round Tower"),
-    CAGED_WAR_DOGS("Caged War Dogs"),
+    LOOKOUT_TOWER("Lookout Tower", "Defencive"),
+    PERIMETER_TOWER("Perimeter Tower", "Defencive"),
+    DEFENCE_TURRET("Defence Turret", "Defencive"),
+    SQUARE_TOWER("Square Tower", "Defencive"),
+    ROUND_TOWER("Round Tower", "Defencive"),
+    CAGED_WAR_DOGS("Caged War Dogs", "Defencive"),
 
     // Storage:
-    ARMOURY("Armoury"),
-    GRANARY("Granary"),
-    STOCKPILE("Stockpile"),
+    ARMOURY("Armoury", "Storage"),
+    GRANARY("Granary", "Storage"),
+    STOCKPILE("Stockpile", "Storage"),
 
     // Unit Maker:
-    BARRACKS("Barracks"),
-    MERCENARY_POST("Mercenary Post"),
-    ENGINEER_GUILD("Engineer Guild"),
-    TUNNELER_GUILD("Tunneler Guild"),
+    BARRACKS("Barracks", "Unit Maker"),
+    MERCENARY_POST("Mercenary Post", "Unit Maker"),
+    ENGINEER_GUILD("Engineer Guild", "Unit Maker"),
+    TUNNELER_GUILD("Tunneler Guild", "Unit Maker"),
+    SIEGE_TENT("Siege Tent", "Unit Maker"),
 
     // Trap:
-    KILLING_PIT("Killing Pit"),
-    PITCH_DITCH("Pitch Ditch"),
+    KILLING_PIT("Killing Pit", "Trap"),
+    PITCH_DITCH("Pitch Ditch", "Trap"),
 
     // Resource Maker:
-    OIL_SMELTER("Oil Smelter"),
-    BAKERY("Bakery"),
-    BREWER("Brewer"),
-    MILL("Mill"),
-    ARMOURER("Armourer"),
-    BLACKSMITH("Blacksmith"),
-    FLETCHER("Fletcher"),
-    POLETURNER("Poleturner"),
+    OIL_SMELTER("Oil Smelter", "Extractor"),
+    BAKERY("Bakery", "Extractor"),
+    BREWER("Brewer", "Extractor"),
+    MILL("Mill", "Extractor"),
+    ARMOURER("Armourer", "Extractor"),
+    BLACKSMITH("Blacksmith", "Extractor"),
+    FLETCHER("Fletcher", "Extractor"),
+    POLETURNER("Poleturner", "Extractor"),
 
     // Extractor:
-    APPLE_ORCHARD("Apple Orchard"),
-    DAIRY_FARMER("Dairy Farmer"),
-    HOPS_FARMER("Hops Farmer"),
-    HUNTERS_POST("Hunter Post"),
-    WHEAT_FARMER("Wheat Farmer"),
-    IRON_MINE("Iron Mine"),
-    PITCH_RIG("Pitch Rig"),
-    QUARRY("Quarry"),
-    WOODCUTTER("Woodcutter"),
-    STABLE("Stable"),
+    APPLE_ORCHARD("Apple Orchard", "Extractor"),
+    DAIRY_FARMER("Dairy Farmer", "Extractor"),
+    HOPS_FARMER("Hops Farmer", "Extractor"),
+    HUNTERS_POST("Hunter Post", "Extractor"),
+    WHEAT_FARMER("Wheat Farmer", "Extractor"),
+    IRON_MINE("Iron Mine", "Extractor"),
+    PITCH_RIG("Pitch Rig", "Extractor"),
+    QUARRY("Quarry", "Extractor"),
+    WOODCUTTER("Woodcutter", "Extractor"),
+    STABLE("Stable", "Extractor"),
 
     // Church:
-    CHURCH("Church"),
-    CATHEDRAL("Cathedral"),
+    CHURCH("Church", "Church"),
+    CATHEDRAL("Cathedral", "Church"),
 
     // Other:
-    SIEGE_TENT("Siege Tent"),
-    INN("Inn"),
-    MARKET("Market"),
-    HOVEL("Hovel"),
-    TUNNEL_ENTRANCE("Tunnel Entrance"),
-    OX_TETHER("Ox Tether"),
-    SHORT_WALL("Short Wall"),
-    TALL_WALL("Tall Wall"),
-    STAIR("Stair"),
-    CASTLE("Castle"),
+    INN("Inn", "Inn"),
+    MARKET("Market", "Shop"),
+    HOVEL("Hovel", "House"),
+    TUNNEL_ENTRANCE("Tunnel Entrance", "Building"),
+    OX_TETHER("Ox Tether", "Building"),
+    SHORT_WALL("Short Wall", "Building"),
+    TALL_WALL("Tall Wall", "Building"),
+    STAIR("Stair", "Building"),
+    CASTLE("Castle", "Castle"),
 
 
     ;
     private final String name;
+    public final String kind;
 
-    BuildingName(String name) {
+    BuildingName(String name, String kind) {
         this.name = name;
+        this.kind = kind;
     }
 
     public String getName() {
