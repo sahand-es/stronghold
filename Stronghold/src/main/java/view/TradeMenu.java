@@ -28,9 +28,12 @@ public class TradeMenu {
             command = scanner.nextLine();
 
             if(TradeCommands.getMatcher(command, TradeCommands.BACK) != null){
-                System.out.println("You're in Game Menu!");
+                System.out.println("You're now in Game Menu!");
                 Application.setCurrentMenu(AllMenus.GAME_MENU);
                 return;
+            }
+            else if(TradeCommands.getMatcher(command, TradeCommands.SHOW_MENU) != null){
+                System.out.println("You're in Trade Menu!");
             }
             else if(TradeCommands.getMatcher(command, TradeCommands.TRADE) != null){
                 extractTradeCommand(command);
