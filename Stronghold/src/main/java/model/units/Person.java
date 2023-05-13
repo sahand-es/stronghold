@@ -267,9 +267,9 @@ public class Person {
     }
 
     public void takeDamage(int damage) {
-        damage = damage - defencePower < 0 ? 1 : damage - defencePower;
-        if ((damage - defencePower) <= hp) {
-            hp -= (damage - defencePower);
+        damage = (damage - defencePower) < 0 ? 1 : damage - defencePower;
+        if (damage <= hp) {
+            hp -= damage;
         }
         else hp = 0;
         if (hp <= 0)
