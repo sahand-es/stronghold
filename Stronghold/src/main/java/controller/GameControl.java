@@ -52,7 +52,7 @@ public class GameControl {
         return GameMessages.SUCCESS;
     }
 
-    public static GameMessages fearRate(int rate) {
+    public static GameMessages checkFearRate(int rate) {
         if (rate < -5 || rate > 5)
             return GameMessages.INVALID_RATE;
 
