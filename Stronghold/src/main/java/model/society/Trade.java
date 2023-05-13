@@ -10,17 +10,18 @@ public class Trade
     private String message;
     private int gold;
     private int id;
-    static int idSetter = 1;
+    static int idSetter = 1000;
 
     private ResourcesName resource;
 
     private HashMap<ResourcesName,Integer> price ;
 
 
-    public Trade(Government seller, ResourcesName resource,int amount, int gold)
+    public Trade(Government seller, ResourcesName resource,int amount, int gold, String message)
     {
         this.owner = seller;
         this.resource = resource;
+        this.message = message;
         price = new HashMap<>();
         price.put(resource,amount);
         this.gold = gold;

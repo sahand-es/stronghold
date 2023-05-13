@@ -17,10 +17,8 @@ public class Game {
     int turn = 0;
     int day = 1;
     private final ArrayList<Government> governments = new ArrayList<>();
-
     private final ArrayList<Person> allUnits = new ArrayList<>();
     private final  ArrayList<Trade> allTrades = new ArrayList<>();
-
     private final ArrayList<Building> allBuildings = new ArrayList<>();
 
 
@@ -34,6 +32,8 @@ public class Game {
 
             Application.addGame(this);
         }
+
+
     }
 
     public Map getMap() {
@@ -98,6 +98,7 @@ public class Game {
     }
 
     public Government getCurrentGovernment(){
+        System.out.println("turn: " + turn);
         return governments.get(turn);
     }
 

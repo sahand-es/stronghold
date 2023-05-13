@@ -25,6 +25,8 @@ public class Application {
         }
         games = DataManager.loadGames();
         currentUser = DataManager.loadLoggedInUser();
+        currentMap = new Map(200,200);
+        currentGame = new Game(currentMap,3);
     }
     private static ArrayList<Map> allMaps;
 
@@ -75,5 +77,21 @@ public class Application {
 
     public static void setCurrentMenu(AllMenus currentMenu) {
         Application.currentMenu = currentMenu;
+    }
+
+    public static Map getCurrentMap() {
+        return currentMap;
+    }
+
+    public static void setCurrentMap(Map currentMap) {
+        Application.currentMap = currentMap;
+    }
+
+    public static Game getCurrentGame() {
+        return currentGame;
+    }
+
+    public static void setCurrentGame(Game currentGame) {
+        Application.currentGame = currentGame;
     }
 }

@@ -1,5 +1,6 @@
 package controller;
 
+import model.Application;
 import model.Game;
 import model.resourecs.Resource;
 import model.resourecs.ResourcesName;
@@ -48,6 +49,11 @@ public class TradeControl
         if (government.checkEnoughForTrade(resource,Integer.parseInt(amount))){
             return TradeMessages.NOT_ENOUGH_RESOURCES;
         }
+
+        Trade trade = new Trade(government,resource,Integer.parseInt(amount),Integer.parseInt(price),tradeMessage);
+
+        Application.getCurrentGame().addTrade(trade);
+        government.addTrade(trade);
 
         return TradeMessages.SUCCESS;
     }
