@@ -1,5 +1,6 @@
 package model;
 
+import model.map.Map;
 import utility.DataManager;
 import view.enums.AllMenus;
 
@@ -13,6 +14,8 @@ public class Application {
     private static ArrayList<User> users ;
     private static User currentUser;
     private static AllMenus currentMenu;
+    private static Map currentMap;
+    private static Game currentGame;
     private static ArrayList<Game> games;
 
     static {
@@ -23,6 +26,7 @@ public class Application {
         games = DataManager.loadGames();
         currentUser = DataManager.loadLoggedInUser();
     }
+    private static ArrayList<Map> allMaps;
 
     public static ArrayList<User> getUsers() {
         return users;

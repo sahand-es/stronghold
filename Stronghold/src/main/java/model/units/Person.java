@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public abstract class Person {
+public class Person {
     protected int hp;
     protected int speed;
     protected int defencePower;
@@ -188,6 +188,20 @@ public abstract class Person {
         this.canDigMoat = personToClone.canDigMoat;
     }
 
+    public Person(UnitName name, Block block, Government government) {
+        Person personToClone = getPersonByUnitName(name);
+
+        this.hp = personToClone.hp;
+        this.speed = personToClone.speed;
+        this.defencePower = personToClone.defencePower;
+        this.name = personToClone.name;
+        this.price = personToClone.price;
+        this.canClimbLadder = personToClone.canClimbLadder;
+        this.canDigMoat = personToClone.canDigMoat;
+        this.setBlock(block);
+        setGovernment(government);
+    }
+
     protected Person getPersonByName(String name) {
         for (Person unit : allUnits) {
             if (unit.getName().equals(UnitName.getUnitByName(name)))
@@ -203,6 +217,19 @@ public abstract class Person {
         }
         return null;
     }
+
+    public void setGovernment(Government government) {
+        this.government = government;
+
+        government.addUnit(this);
+    }
+
+    public void setBlock(Block block) {
+        this.block = block;
+
+        block.addUnit(this);
+    }
+
 
     public int getHp() {
         return hp;
@@ -222,6 +249,22 @@ public abstract class Person {
 
     public Block getBlock() {
         return block;
+    }
+
+    public HashMap<ResourcesName, Integer> getPrice() {
+        return price;
+    }
+
+    public Government getGovernment() {
+        return government;
+    }
+
+    public boolean isCanClimbLadder() {
+        return canClimbLadder;
+    }
+
+    public boolean isCanDigMoat() {
+        return canDigMoat;
     }
 
     public void takeDamage(int damage) {

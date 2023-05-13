@@ -1,6 +1,7 @@
 package model.resourecs;
 
 import model.units.Person;
+import model.units.enums.UnitName;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -38,6 +39,8 @@ public enum ResourcesName
     SLING("Sling"),
     SCIMITAR("Scimitar"),
     GREEK_FIRE("Greek Fire"),
+    RAM("RAM"),
+    THROWER("Thrower"),
 
 //  Armors:
     LEATHER("Leather"),
@@ -67,6 +70,15 @@ public enum ResourcesName
         }
         throw new RuntimeException();
     }
+
+    public static boolean isValidName(String name) {
+        for (ResourcesName value : ResourcesName.values()) {
+            if (value.name().equalsIgnoreCase(name))
+                return true;
+        }
+        return false;
+    }
+
 
 
 }

@@ -67,8 +67,11 @@ public enum BuildingName {
     TUNNEL_ENTRANCE("Tunnel Entrance"),
     OX_TETHER("Ox Tether"),
     SHORT_WALL("Short Wall"),
-    TALL_WALL("Tall_Wall"),
-    STAIR("Stair")
+    TALL_WALL("Tall Wall"),
+    STAIR("Stair"),
+    CASTLE("Castle"),
+
+
     ;
     private final String name;
 
@@ -87,5 +90,12 @@ public enum BuildingName {
                 return buildingName;
         }
         throw new RuntimeException();
+    }
+    public static boolean isValidName(String name) {
+        for (BuildingName val : values()) {
+            if (val.getName().equalsIgnoreCase(name))
+                return true;
+        }
+        return false;
     }
 }

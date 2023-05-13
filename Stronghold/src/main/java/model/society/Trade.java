@@ -1,55 +1,61 @@
 package model.society;
 
-import model.resourecs.ResourceHolder;
+import model.resourecs.ResourcesName;
+
+import java.util.HashMap;
 
 public class Trade
 {
-    String tradeId;
-    Government seller;
-    Government buyer;
-    ResourceHolder resourceHolder;
-    String message;
-    int count;
-    int price;
+    private Government owner;
+    private String message;
+    private int gold;
+    private int id;
+    static int idSetter = 1;
 
-    public Trade(String tradeId, Government seller, Government buyer, ResourceHolder resourceHolder, String message, int count, int price)
+    private ResourcesName resource;
+
+    private HashMap<ResourcesName,Integer> price ;
+
+
+    public Trade(Government seller, ResourcesName resource,int amount, int gold)
     {
-        this.tradeId = tradeId;
-        this.seller = seller;
-        this.buyer = buyer;
-        this.resourceHolder = resourceHolder;
-        this.message = message;
-        this.count = count;
-        this.price = price;
+        this.owner = seller;
+        this.resource = resource;
+        price = new HashMap<>();
+        price.put(resource,amount);
+        this.gold = gold;
+        this.id = idSetter;
+        idSetter++;
     }
 
-    public Government getSeller()
+    public Government getOwner()
     {
-        return seller;
+        return owner;
     }
 
-    public Government getBuyer()
-    {
-        return buyer;
-    }
-
-    public ResourceHolder getResource()
-    {
-        return resourceHolder;
-    }
 
     public String getMessage()
     {
         return message;
     }
 
-    public int getCount()
-    {
-        return count;
+    public int getId() {
+        return id;
     }
 
-    public int getPrice()
-    {
+    public ResourcesName getResource() {
+        return resource;
+    }
+
+    public HashMap<ResourcesName, Integer> getPrice() {
         return price;
+    }
+
+    public int getGold() {
+        return gold;
+    }
+
+    public void setGold(int gold) {
+        this.gold = gold;
     }
 }

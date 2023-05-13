@@ -163,8 +163,10 @@ public class Building extends Environment {
                     break;
                 }
 
-                case "Castle":
+                case "Castle": {
                     new Castle(hp, buildingCategory, name, price);
+                    break;
+                }
                 default:
                     throw new RuntimeException();
             }
@@ -194,7 +196,7 @@ public class Building extends Environment {
         government.addBuilding(this);
     }
 
-    protected Building getBuildingByBuildingName(BuildingName name) {
+    public static Building getBuildingByBuildingName(BuildingName name) {
         for (Building building : allBuildings) {
             if (building.name.equals(name))
                 return building;
@@ -208,6 +210,10 @@ public class Building extends Environment {
 
     public HashMap<ResourcesName, Integer> getPrice() {
         return price;
+    }
+
+    public BuildingName getName() {
+        return name;
     }
 
     @Override

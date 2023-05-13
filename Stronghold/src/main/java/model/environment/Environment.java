@@ -11,4 +11,8 @@ public abstract class Environment {
         this.block = block;
         block.setEnvironment(this);
     }
+
+    public Block getBlock() {
+        return block;
+    }
 }

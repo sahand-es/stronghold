@@ -77,6 +77,11 @@ public class Block {
 //        TODO: sang derakht bazi_textura wall
         return true;
     }
+
+//    TODO: from texture
+    public boolean canBuildOnThis() {
+        return true;
+    }
     public Block findClosestBlock(int range, Block block) {
         int xCorner = this.x - range, yCorner = this.y - range;
         Block closestBlock = null;

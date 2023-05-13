@@ -1,6 +1,13 @@
 package model.map;
 
+import model.environment.buildings.Castle;
+import model.environment.buildings.StorageBuilding;
+import model.environment.buildings.enums.BuildingName;
+import model.society.Government;
 import model.society.enums.Colors;
+import utility.RandomGenerators;
+
+import java.util.ArrayList;
 
 public class Map {
     Block[][] grid;
@@ -17,6 +24,14 @@ public class Map {
             for (int x = 0; x < width; x++) {
                 grid[y][x] = new Block(x, y, Texture.GROUND, this);
             }
+        }
+    }
+    public void initGovernments(ArrayList<Government> governments) {
+        for (Government government : governments) {
+        int randX = RandomGenerators.randomNumber(2, width - 2), randY = RandomGenerators.randomNumber(2, height - 2);
+            new Castle(BuildingName.CASTLE, government,
+                    getBlockByXY(randX, randY));
+            new StorageBuilding(BuildingName.STOCKPILE, government, getBlockByXY(randX + 1, randY));
         }
     }
 
