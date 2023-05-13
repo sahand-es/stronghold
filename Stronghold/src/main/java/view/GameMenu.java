@@ -74,6 +74,25 @@ public class GameMenu {
             else if(GameCommands.getMatcher(command,GameCommands.REPAIR) != null){
                 //todo repair
             }
+            //todo get select unit
+
+            //todo get move unit
+
+            //todo get patrol unit
+
+            //todo get set state
+
+            //todo get attack -e
+
+            //todo get attack
+
+            //todo get pour oil
+
+            //todo get dig tunnel
+
+            //todo get build equipment
+
+            //todo get disband unit
             else
                 System.out.println("My liege, that's an invalid command!");
 
