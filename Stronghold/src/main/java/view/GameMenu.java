@@ -51,10 +51,10 @@ public class GameMenu {
                 System.out.println("Food rate: " + GameControl.getCurrentGovernment().getFoodRate());
             }
             else if((matcher = GameCommands.getMatcher(command,GameCommands.TAX_RATE)) != null){
-                checkFearRate(matcher);
+                checkTaxRate(matcher);
             }
             else if(GameCommands.getMatcher(command,GameCommands.TAX_RATE_SHOW) != null){
-                //todo (print this shit) show tax rate
+                System.out.println("Tax rate: " + GameControl.getCurrentGovernment().getTaxRate());
             }
             else if((matcher = GameCommands.getMatcher(command,GameCommands.FEAR_RATE)) != null){
                 checkTaxRate(matcher);
@@ -154,12 +154,16 @@ public class GameMenu {
     }
 
     private static void checkTaxRate(Matcher matcher){
-        //todo ina string e ha bepaaaaa!
-        String foodRateNumber = matcher.group("taxRateNumber");
+        String TaxRateNumber = matcher.group("taxRateNumber");
+        int rate = Integer.parseInt(TaxRateNumber);
+        GameMessages message = GameControl.checkTaxRate(rate);
 
-
-        //todo give this to it's controller
-
+        if (message.equals(GameMessages.INVALID_RATE)){
+            System.out.println("rate is invalid");
+        }
+        if(message.equals(GameMessages.SUCCESS)){
+            System.out.println("tax rate:" + rate);
+        }
     }
 
     private static void checkFearRate(Matcher matcher){

@@ -60,7 +60,7 @@ public class GameControl {
         return GameMessages.SUCCESS;
     }
 
-    public static GameMessages taxRate(int rate) {
+    public static GameMessages checkTaxRate(int rate) {
         if (rate < -3 || rate > 8)
             return GameMessages.INVALID_RATE;
 
