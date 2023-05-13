@@ -51,7 +51,17 @@ public class ResourceExtractorBuilding extends Building {
 
 
     public void extract() {
-//        ToDo
+        HashMap<ResourcesName,Integer> extractPrice;
+        HashMap<ResourcesName,Integer> product;
+        for (ResourcesName resource : extractedResources) {
+            extractPrice = ResourceHolder.getResourcePrice(resource);
+            product = new HashMap<>();
+            product.put(resource,rate);
+            if (government.getResource().checkPay(extractPrice,rate)){
+                government.getResource().pay(extractPrice,rate);
+                government.getResource().add(product);
+            }
+        }
     }
     @Override
     public String toString() {

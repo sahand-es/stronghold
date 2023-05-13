@@ -39,6 +39,14 @@ public class Resource {
         }
     }
 
+    public void pay(HashMap<ResourcesName, Integer> price,int count) {
+        int s;
+        for (ResourcesName resourcesName : price.keySet()) {
+            s = this.allResources.get(resourcesName) - count * price.get(resourcesName);
+            this.allResources.put(resourcesName, s);
+        }
+    }
+
     public boolean checkPay(HashMap<ResourcesName, Integer> price) {
         for (ResourcesName resourcesName : price.keySet()) {
             if (this.allResources.get(resourcesName) < price.get(resourcesName))
