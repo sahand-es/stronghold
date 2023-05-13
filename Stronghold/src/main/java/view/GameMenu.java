@@ -257,9 +257,10 @@ public class GameMenu {
             return;
         }
 
-
-        //todo give this to it's controller
-
+        int X = Integer.parseInt(x);
+        int Y = Integer.parseInt(y);
+        GameMessages message = GameControl.selectBuilding(X,Y);
+        System.out.println(message.message());
     }
 
     private static void checkCreateUnit(String command){
@@ -293,9 +294,10 @@ public class GameMenu {
             return;
         }
 
+        int c = Integer.parseInt(count);
 
-        //todo give this to it's controller
-
+        GameMessages message = GameControl.createUnit(type,c);
+        System.out.println(message.message());
     }
 
     private static void checkSelectUnit(String command){
@@ -330,7 +332,11 @@ public class GameMenu {
         }
 
 
-        //todo give this to it's controller
+        int X = Integer.parseInt(x);
+        int Y = Integer.parseInt(y);
+
+        GameMessages message = GameControl.selectUnit(X,Y,1); //TODO: add to regex.
+        System.out.println(message.message());
 
     }
 
@@ -366,8 +372,11 @@ public class GameMenu {
             return;
         }
 
+        int X = Integer.parseInt(x);
+        int Y = Integer.parseInt(y);
 
-        //todo give this to it's controller
+        GameMessages message = GameControl.moveUnit(X,Y);
+        System.out.println(message.message());
 
     }
 
@@ -426,9 +435,13 @@ public class GameMenu {
             return;
         }
 
+        int X1 = Integer.parseInt(x1);
+        int Y1 = Integer.parseInt(y1);
+        int X2 = Integer.parseInt(x2);
+        int Y2 = Integer.parseInt(y2);
 
-        //todo give this to it's controller
-
+        GameMessages message = GameControl.patrolUnit(X1,Y1,X2,Y2);
+        System.out.println(message.message());
     }
 
 
@@ -474,9 +487,11 @@ public class GameMenu {
             return;
         }
 
+        int X = Integer.parseInt(x);
+        int Y = Integer.parseInt(y);
 
-        //todo give this to it's controller
-
+        GameMessages message = GameControl.setSoldierState(state);
+        System.out.println(message.message());
     }
 
     private static void checkAttack(Matcher matcher){
@@ -485,17 +500,19 @@ public class GameMenu {
         x = matcher.group("xNumber");
         y = matcher.group("yNumber");
 
+        int X = Integer.parseInt(x);
+        int Y = Integer.parseInt(y);
 
-        //todo give this to it's controller
+        GameMessages message = GameControl.attack(X,Y);
+        System.out.println(message.message());
 
     }
 
     private static void checkPourOil(Matcher matcher){
         String direction = matcher.group("direction");
 
-
-        //todo give this to it's controller
-
+        GameMessages message = GameControl.pourOil(direction);
+        System.out.println(message.message());
     }
 
     private static void checkDigTunnel(String command){
@@ -529,9 +546,11 @@ public class GameMenu {
             return;
         }
 
+        int X = Integer.parseInt(x);
+        int Y = Integer.parseInt(y);
 
-        //todo give this to it's controller
-
+        GameMessages message = GameControl.digTunnel(X,Y);
+        System.out.println(message.message());
     }
 
     private static void checkBuildEquipment(Matcher matcher){
@@ -585,7 +604,10 @@ public class GameMenu {
         }
 
 
-        //todo give this to it's controller
+        int X = Integer.parseInt(x);
+        int Y = Integer.parseInt(y);
+
+        //ToDO
 
     }
 
@@ -722,6 +744,8 @@ public class GameMenu {
         String y = matcher.group("yNumber");
         String type = matcher.group("type");
 
+        int X = Integer.parseInt(x);
+        int Y = Integer.parseInt(y);
 
         //todo give this to it's controller
 
