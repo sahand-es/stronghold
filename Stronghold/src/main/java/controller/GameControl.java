@@ -347,9 +347,21 @@ public class GameControl {
         }
     }
 
-    private void giveFoodAndGetTax() {
-        currentGovernment.payFoodToPeople();
-        currentGovernment.TaxingThePeople();
+    private void giveFood() {
+        if(currentGovernment.getResource().getFoodAmount() < currentGovernment.foodUsage()) {
+            currentGovernment.setFoodRate(-2);
+        } else {
+            currentGovernment.getResource().payFood(currentGovernment.foodUsage());
+            currentGovernment.addPopularity(currentGovernment.getResource().getFoodDiversity());
+        }
+    }
+
+    private void getTax(){
+        if(currentGovernment.getResource().getGold() < -1 * currentGovernment.calcTax()){
+            currentGovernment.setTaxRate(0);
+        } else {
+            currentGovernment.getResource().addGold(currentGovernment.calcTax());
+        }
     }
 
     private void moveAllUnits() {

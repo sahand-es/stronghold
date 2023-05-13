@@ -297,21 +297,5 @@ public class Government {
     }
 
 
-    public void payFoodToPeople(){
-        if(resource.getFoodAmount() < foodUsage()) {
-            setFoodRate(-2);
-        } else {
-            resource.payFood(foodUsage());
-            popularity += resource.getFoodDiversity();
-        }
-    }
 
-    public void TaxingThePeople(){
-        if(resource.getGold() < -1 * calcTax()){
-            setTaxRate(0);
-        } else {
-            resource.addGold(calcTax());
-        }
-
-    }
 }
