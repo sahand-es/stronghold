@@ -255,4 +255,14 @@ public class Government
     public void addTrade(Trade trade){
         this.tradesHistory.add(trade);
     }
+
+    public void lose(){
+        for (Person unit : units) {
+            unit.die();
+        }
+        for (Building building : buildings) {
+            building.die();
+        }
+        game.removeGovernment(this);
+    }
 }

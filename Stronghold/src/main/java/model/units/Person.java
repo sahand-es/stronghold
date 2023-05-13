@@ -348,7 +348,7 @@ public class Person {
         }
     }
 
-    private void die() {
+    public void die() {
         this.block.removeUnit(this);
         this.government.removeUnit(this);
     }

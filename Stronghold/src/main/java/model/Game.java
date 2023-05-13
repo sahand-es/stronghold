@@ -124,4 +124,8 @@ public class Game {
     public ArrayList<Trade> getAllTrades() {
         return allTrades;
     }
+
+    public void removeGovernment(Government government){
+        governments.remove(government);
+    }
 }

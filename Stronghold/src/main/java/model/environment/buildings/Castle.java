@@ -21,6 +21,8 @@ public class Castle extends Building {
 
     @Override
     public void die(){
-        //TODO;
+        government.removeBuilding(this);
+        this.getBlock().setEnvironment(null);
+        government.lose();
     }
 }
