@@ -90,6 +90,12 @@ public class Resource {
         return output;
     }
 
+    public void printFoods(){
+        for (ResourcesName food : ResourcesName.foods) {
+            System.out.println(food.name() + ": " + allResources.get(food));
+        }
+    }
+
     public int getWeaponAmount() {
         int output = 0;
         for (ResourcesName weapon : ResourcesName.weapons) {

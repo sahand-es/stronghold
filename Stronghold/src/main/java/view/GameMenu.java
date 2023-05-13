@@ -36,10 +36,10 @@ public class GameMenu {
                 System.out.println("Fear rate: " + GameControl.getCurrentGovernment().getFearRate());
             }
             else if(GameCommands.getMatcher(command,GameCommands.SHOW_POPULARITY) != null){
-                //todo (print this shit) show popularity
+                System.out.println("Popularity: " + GameControl.getCurrentGovernment().getPopularity());
             }
             else if(GameCommands.getMatcher(command,GameCommands.SHOW_FOOD) != null){
-                //todo (print this shit) show food list
+                GameControl.getCurrentGovernment().getResource().printFoods();
             }
             else if((matcher = GameCommands.getMatcher(command,GameCommands.FOOD_RATE)) != null){
                 checkFoodRate(matcher);
