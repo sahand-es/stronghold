@@ -39,14 +39,14 @@ public class GameControl {
         this.map = game.getMap();
     }
 
-    private GameMessages foodRate(int rate) {
+    public GameMessages foodRate(int rate) {
         if (rate < -2 || rate > 2)
             return GameMessages.INVALID_RATE;
         currentGovernment.setFoodRate(rate);
         return GameMessages.SUCCESS;
     }
 
-    private GameMessages fearRate(int rate) {
+    public GameMessages fearRate(int rate) {
         if (rate < -5 || rate > 5)
             return GameMessages.INVALID_RATE;
 
@@ -54,7 +54,7 @@ public class GameControl {
         return GameMessages.SUCCESS;
     }
 
-    private GameMessages taxRate(int rate) {
+    public GameMessages taxRate(int rate) {
         if (rate < -3 || rate > 8)
             return GameMessages.INVALID_RATE;
 
@@ -62,7 +62,7 @@ public class GameControl {
         return GameMessages.SUCCESS;
     }
 
-    private GameMessages createBuilding(int x, int y, String type) {
+    public GameMessages createBuilding(int x, int y, String type) {
         Building building = null;
         Map map = game.getMap();
         if (!map.isValidXY(x, y))
@@ -135,7 +135,7 @@ public class GameControl {
         return GameMessages.SUCCESS;
     }
 
-    private GameMessages createUnit(String type, int count) {
+    public GameMessages createUnit(String type, int count) {
         Person person = null;
         if (selectedBuilding == null)
             return GameMessages.BUILDING_NOT_SELECTED;
@@ -179,7 +179,7 @@ public class GameControl {
         return GameMessages.SUCCESS;
     }
 
-    private GameMessages selectBuilding(int x, int y) {
+    public GameMessages selectBuilding(int x, int y) {
         if (!map.isValidXY(x, y))
             return GameMessages.INVALID_XY;
         if (map.getBlockByXY(x, y).getEnvironment() == null)
@@ -200,7 +200,7 @@ public class GameControl {
     }
 //ToDo: selected building change menu.
 
-    private GameMessages repair() {
+    public GameMessages repair() {
         if (selectedBuilding == null)
             return GameMessages.BUILDING_NOT_SELECTED;
         if (!selectedBuilding.getCategory().equals(BuildingCategory.CASTLE) && !selectedBuilding.getPrice().containsKey(ResourcesName.STONE))
@@ -219,7 +219,7 @@ public class GameControl {
         selectedBuilding = null;
     }
 
-    private GameMessages selectUnit(int x, int y, int selectedCount) {
+    public GameMessages selectUnit(int x, int y, int selectedCount) {
         Block block = null;
         if (!map.isValidXY(x, y))
             return GameMessages.INVALID_XY;
@@ -237,7 +237,7 @@ public class GameControl {
         selectedUnit = null;
     }
 
-    private GameMessages moveUnit(int x, int y) {
+    public GameMessages moveUnit(int x, int y) {
         if (selectedUnit == null)
             return GameMessages.UNIT_NOT_SELECTED;
         if (!map.isValidXY(x, y))
@@ -248,7 +248,7 @@ public class GameControl {
         return GameMessages.SUCCESS;
     }
 
-    private GameMessages patrolUnit(int x1, int y1, int x2, int y2) {
+    public GameMessages patrolUnit(int x1, int y1, int x2, int y2) {
         if (selectedUnit == null)
             return GameMessages.UNIT_NOT_SELECTED;
         if (!map.isValidXY(x1, y1) || !map.isValidXY(x2, y2))
@@ -260,7 +260,7 @@ public class GameControl {
         return GameMessages.SUCCESS;
     }
 
-    private GameMessages setSoldierState(String state) {
+    public GameMessages setSoldierState(String state) {
         if (selectedUnit == null)
             return GameMessages.UNIT_NOT_SELECTED;
         if (!(selectedUnit instanceof Soldier))
@@ -270,7 +270,7 @@ public class GameControl {
         return GameMessages.SUCCESS;
     }
 
-    private GameMessages disbandUnit() {
+    public GameMessages disbandUnit() {
         if (selectedUnit == null)
             return GameMessages.UNIT_NOT_SELECTED;
 
@@ -278,7 +278,7 @@ public class GameControl {
         return GameMessages.SUCCESS;
     }
 
-    private GameMessages attack(int x, int y) {
+    public GameMessages attack(int x, int y) {
         if (selectedUnit == null)
             return GameMessages.UNIT_NOT_SELECTED;
         if (!map.isValidXY(x, y))
