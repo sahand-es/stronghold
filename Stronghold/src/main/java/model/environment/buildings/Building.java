@@ -237,4 +237,9 @@ public class Building extends Environment {
 
         return true;
     }
+
+    public void die(){
+        government.removeBuilding(this);
+        this.getBlock().setEnvironment(null);
+    }
 }
