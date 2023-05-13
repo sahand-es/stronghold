@@ -23,6 +23,8 @@ public class TradeMenu {
     public static void run() {
         java.util.Scanner scanner = new java.util.Scanner(System.in);
         String command;
+        Matcher matcher;
+
         while(true){
 
             command = scanner.nextLine();
@@ -35,11 +37,10 @@ public class TradeMenu {
             else if(TradeCommands.getMatcher(command, TradeCommands.SHOW_MENU) != null){
                 System.out.println("You're in Trade Menu!");
             }
-            else if(TradeCommands.getMatcher(command, TradeCommands.TRADE) != null){
-                extractTradeCommand(command);
-                if (tradeData != null){
-                    checkTradeRequest();
-                }
+            else if((matcher = TradeCommands.getMatcher(command, TradeCommands.TRADE)) != null){
+                checkTradeRequest(matcher);
+            } else if ((matcher = TradeCommands.getMatcher(command, TradeCommands.TRADE_ACCEPT)) != null){
+
             }
 
             else
@@ -130,9 +131,15 @@ public class TradeMenu {
     }
 
 
-    private static void checkTradeRequest(){
-        if(tradeData != null){
-            TradeMessages message = TradeControl.makeTrade(tradeData);
+    private static void checkTradeRequest(Matcher matcher){
+        String resourceType = matcher.group("resourceType");
+        int amount = Integer.parseInt(matcher.group("amount"));
+        int price = Integer.parseInt(matcher.group("price"));
+        String message1 = matcher.group("message");
+
+
+
+        TradeMessages message = TradeControl.makeTrade(resourceType,amount,price,message1);
 
             switch (message) {
                 case TYPE_EMPTY:
@@ -175,4 +182,4 @@ public class TradeMenu {
 //        TradeMenu tradeMenu = new TradeMenu();
 //        tradeMenu.run();
 //    }
-}
+

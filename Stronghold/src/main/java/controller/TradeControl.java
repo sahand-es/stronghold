@@ -14,31 +14,18 @@ import java.util.HashMap;
 
 public class TradeControl
 {
-    public static TradeMessages makeTrade(HashMap<String,String> data){
-        String type = data.get("type");
-        String price = data.get("price");
-        String amount = data.get("amount");
-        String tradeMessage = data.get("tradeMessage");
+    public static TradeMessages makeTrade(String type,int amount,int price,String tradeMessage){
+
 
         if(type == null){
             return TradeMessages.TYPE_EMPTY;
         }
-        if(price == null){
-            return TradeMessages.PRICE_EMPTY;
-        }
-        if(amount == null){
-            return TradeMessages.AMOUNT_EMPTY;
-        }
+
         if(tradeMessage == null){
             return TradeMessages.MESSAGE_EMPTY;
         }
 
-        if (CheckFunctions.checkPriceFormat(price)){
-            return TradeMessages.INVALID_PRICE;
-        }
-        if (CheckFunctions.checkAmountFormat(amount)){
-            return TradeMessages.INVALID_AMOUNT;
-        }
+
         if (!ResourcesName.isValidName(type)){
             return TradeMessages.INVALID_RESOURCE;
         }
@@ -46,11 +33,11 @@ public class TradeControl
         ResourcesName resource = ResourcesName.getResourceByName(type);
         Government government = GameControl.getCurrentGovernment();
 
-        if (government.checkEnoughForTrade(resource,Integer.parseInt(amount))){
+        if (government.checkEnoughForTrade(resource,amount)){
             return TradeMessages.NOT_ENOUGH_RESOURCES;
         }
 
-        Trade trade = new Trade(government,resource,Integer.parseInt(amount),Integer.parseInt(price),tradeMessage);
+        Trade trade = new Trade(government,resource,amount,price,tradeMessage);
 
         Application.getCurrentGame().addTrade(trade);
         government.addTrade(trade);
