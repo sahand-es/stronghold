@@ -1,5 +1,6 @@
 package view;
 
+import controller.GameControl;
 import model.Application;
 import view.enums.AllMenus;
 import view.enums.commands.GameCommands;
@@ -30,7 +31,9 @@ public class GameMenu {
                 Application.setCurrentMenu(AllMenus.TRADE_MENU);
             }
             else if(GameCommands.getMatcher(command,GameCommands.SHOW_POPULARITY_FACTORS) != null){
-                //todo (print this shit) show popularity factors
+                System.out.println("Food rate: " + GameControl.getCurrentGovernment().getFoodRate());
+                System.out.println("Tax rate: " + GameControl.getCurrentGovernment().getTaxRate());
+                System.out.println("Fear rate: " + GameControl.getCurrentGovernment().getFearRate());
             }
             else if(GameCommands.getMatcher(command,GameCommands.SHOW_POPULARITY) != null){
                 //todo (print this shit) show popularity
