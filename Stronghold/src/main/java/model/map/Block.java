@@ -46,7 +46,10 @@ public class Block {
     public void removeUnit(Person person) {
         for (Person unit : units) {
             if (unit.equals(person))
+            {
                 units.remove(person);
+                break;
+            }
         }
     }
 
@@ -197,5 +200,13 @@ public class Block {
         if (o == null || getClass() != o.getClass()) return false;
         Block block = (Block) o;
         return x == block.x && y == block.y && Objects.equals(map, block.map);
+    }
+
+    @Override
+    public String toString() {
+        return " {" +
+                "x=" + x +
+                ", y=" + y +
+                '}';
     }
 }

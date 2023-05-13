@@ -10,10 +10,7 @@ import model.society.Government;
 import model.units.enums.UnitName;
 import utility.DataManager;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
 public class Person {
     protected int hp;
@@ -25,7 +22,7 @@ public class Person {
     protected final HashMap<ResourcesName, Integer> price;
     protected Block block;
     protected Government government;
-    protected Queue<Block> moveQueue;
+    protected Queue<Block> moveQueue = new LinkedList<>();
 
     protected boolean canClimbLadder;
     protected boolean canDigMoat;
@@ -275,11 +272,12 @@ public class Person {
         die();
     }
 
-    public void findPath(Block destination) {
+    public boolean findPath(Block destination) {
         HashMap<Block, Block> route = BFS(destination);
         if (route == null)
-            return;
+            return false;
         addRouteToQueue(route, destination);
+       return true;
     }
 
     public void move() {
@@ -298,6 +296,7 @@ public class Person {
         }
     }
 
+
     private HashMap<Block, Block> BFS(Block destination) {
         Map map = block.getMap();
 
@@ -307,30 +306,30 @@ public class Person {
 
         boolean[][] visited = new boolean[map.getHeight()][map.getWidth()];
         HashMap<Block, Block> route = new HashMap<>();
+        visited[block.getY()][block.getX()] = true;
 
-
+        long startTime = System.currentTimeMillis();
+        long end = startTime + 4 * 1000;
+//todo : add time limit
         while (!queue.isEmpty()) {
             Block currentBlock = queue.poll();
             int x = currentBlock.getX();
             int y = currentBlock.getY();
+            for (Direction dir : Direction.values()) {
+                int nextX = x + dir.deltaX, nextY = y + dir.deltaY;
+                if (map.isValidXY(nextX, nextY) && !visited[nextY][nextX]) {
+                    Block nextBlock = map.getBlockByXY(nextX, nextY);
 
-            for (int i = 0; i < 3; i++) {
-                for (Direction dir : Direction.values()) {
-                    int nextX = x + dir.deltaX, nextY = y + dir.deltaY;
-                    if (map.isValidXY(nextX, nextY) && !visited[nextY][nextX]) {
-                        Block nextBlock = map.getBlockByXY(nextX, nextY);
+                    if (nextBlock.canPassThisBlock(this)) {
 
-                        if (nextBlock.canPassThisBlock(this)) {
+                        visited[nextY][nextX] = true;
+                        queue.add(nextBlock);
 
-                            visited[nextX][nextY] = true;
-                            queue.add(nextBlock);
+                        route.put(nextBlock, currentBlock);
 
-                            route.put(currentBlock, nextBlock);
-
-                            if (nextBlock.equals(destination)) {
-                                queue.clear();
-                                return route;
-                            }
+                        if (nextBlock.equals(destination)) {
+                            queue.clear();
+                            return route;
                         }
                     }
                 }
@@ -341,10 +340,24 @@ public class Person {
 
     private void addRouteToQueue(HashMap<Block, Block> route, Block destination) {
         moveQueue = new LinkedList<>();
-        Block blockIter = block;
-        while (!blockIter.equals(destination)) {
+        Block blockIter = destination;
+        while (!blockIter.equals(block)) {
             moveQueue.add(blockIter);
             blockIter = route.get(blockIter);
+        }
+
+        Stack<Block> s = new Stack();  //create a stack
+
+        //while the queue is not empty
+        while(!moveQueue.isEmpty())
+        {  //add the elements of the queue onto a stack
+            s.push(moveQueue.poll());
+        }
+
+        //while the stack is not empty
+        while(!s.isEmpty())
+        { //add the elements in the stack back to the queue
+            moveQueue.add(s.pop());
         }
     }
 
@@ -352,4 +365,14 @@ public class Person {
         this.block.removeUnit(this);
         this.government.removeUnit(this);
     }
+
+    @Override
+    public String toString() {
+        return this.getName() + "{" +
+                "hp=" + hp +
+                ", block=" + block +
+                ", government=" + government +
+                '}';
+    }
+
 }

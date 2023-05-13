@@ -256,6 +256,14 @@ public class Government
         this.tradesHistory.add(trade);
     }
 
+    @Override
+    public String toString() {
+        return " {" +
+                "color=" + color +
+                ", game=" + game +
+                '}';
+    }
+
     public void lose(){
         for (Person unit : units) {
             unit.die();
