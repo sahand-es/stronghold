@@ -5,6 +5,7 @@ import model.environment.buildings.*;
 import model.environment.buildings.enums.BuildingCategory;
 import model.environment.buildings.enums.BuildingName;
 import model.map.Block;
+import model.map.Direction;
 import model.map.Map;
 import model.resourecs.ResourcesName;
 import model.society.Government;
@@ -301,6 +302,35 @@ public class GameControl {
         return GameMessages.SUCCESS;
     }
 
+    public GameMessages pourOil(String direction) {
+        if (selectedUnit == null)
+            return GameMessages.UNIT_NOT_SELECTED;
+        if (!(selectedUnit instanceof Engineer))
+            return GameMessages.SELECTED_UNIT_IS_NOT_ENGINEER;
+        if (!Direction.isValid(direction))
+            return GameMessages.INVALID_DIRECTION;
+
+        ((Engineer) selectedUnit).pourOil(Direction.getByString(direction));
+
+        return GameMessages.SUCCESS;
+    }
+
+    public GameMessages digTunnel(int x, int y) {
+        if (selectedUnit == null)
+            return GameMessages.UNIT_NOT_SELECTED;
+        if (!map.isValidXY(x, y))
+            return GameMessages.INVALID_XY;
+        if (!(selectedUnit instanceof Tunneler))
+            return GameMessages.SELECTED_UNIT_IS_NOT_TUNNELER;
+        Tunneler tunneler = (Tunneler) selectedUnit;
+        if (!tunneler.canDigThere(map.getBlockByXY(x,y)))
+            return GameMessages.CAN_NOT_DIG_THERE;
+
+        tunneler.setTunnelQueue(map.getBlockByXY(x, y));
+
+        return GameMessages.SUCCESS;
+    }
+
     private void attackControl() {
         for (Person unit : game.getAllUnits()) {
             if (!(unit instanceof Soldier))
@@ -375,6 +405,13 @@ public class GameControl {
         }
     }
 
+    private void digAllTunnels() {
+        for (Person unit : game.getAllUnits()) {
+            if (unit instanceof Tunneler)
+                ((Tunneler) unit).digTunnel();
+        }
+    }
+
     private void attackFunction(Soldier soldier) {
         Person opponnet;
         if (soldier.isReadyToAttack()) {
@@ -429,6 +466,7 @@ public class GameControl {
         if (game.goToNextTurn()) {
             attackControl();
             moveAllUnits();
+            digAllTunnels();
             doAttacks();
         }
         currentGovernment = game.getCurrentGovernment();
