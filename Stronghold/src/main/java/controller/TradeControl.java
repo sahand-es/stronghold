@@ -29,9 +29,9 @@ public class TradeControl
         if(tradeMessage.equals("")){
             return TradeMessages.MESSAGE_EMPTY;
         }
+        
 
-
-        return TradeMessages.SUCCESSFUL;
+        return TradeMessages.SUCCESS;
     }
 
     public static TradeMessages acceptTrade(Game game,int id) {
