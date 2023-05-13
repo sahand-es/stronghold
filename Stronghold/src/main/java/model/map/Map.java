@@ -73,9 +73,9 @@ public class Map {
     }
 
     public boolean isValidXY(int x, int y) {
-        if (x < 0 || x > width)
+        if (x < 0 || x > width - 1)
             return false;
-        if (y < 0 || y > height)
+        if (y < 0 || y > height - 1)
             return false;
         return true;
     }
