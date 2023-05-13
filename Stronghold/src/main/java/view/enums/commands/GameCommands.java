@@ -26,6 +26,16 @@ public enum GameCommands {
     TYPE("-t\\s+(?<type>\\S+)"),
     COUNT("-c\\s+(?<count>\\d+)"),
     REPAIR("^\\s*repair\\s*$"),
+    SELECT_UNIT("^\\s*select\\s+unit\\s+.*"),
+    SELECT_UNIT_CHECK("^\\s*select\\s+unit\\s+$"),
+    MOVE_UNIT("^\\s*move\\s+unit\\s+to\\s+.*"),
+    MOVE_UNIT_CHECK("^\\s*move\\s+unit\\s+to\\s+$"),
+    PATROL_UNIT("^\\s*patrol\\s+unit\\s+.*"),
+    PATROL_UNIT_CHECK("^\\s*patrol\\s+unit\\s+$"),
+    X1_DIR("-x1\\s+(?<x1Num>\\d+)"),
+    Y1_DIR("-y1\\s+(?<y1Num>\\d+)"),
+    X2_DIR("-x2\\s+(?<x2Num>\\d+)"),
+    Y2_DIR("-y2\\s+(?<y2Num>\\d+)"),
     TRADE("^\\s*trade\\s+menu\\s*$")
     ;
 
@@ -44,8 +54,20 @@ public enum GameCommands {
     public static String getRegexForX(){
         return X_DIR.regex;
     }
+    public static String getRegexForX1(){
+        return X1_DIR.regex;
+    }
+    public static String getRegexForX2(){
+        return X2_DIR.regex;
+    }
     public static String getRegexForY(){
         return Y_DIR.regex;
+    }
+    public static String getRegexForY1(){
+        return Y1_DIR.regex;
+    }
+    public static String getRegexForY2(){
+        return Y2_DIR.regex;
     }
     public static String getRegexForType(){
         return TYPE.regex;

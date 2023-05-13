@@ -72,11 +72,15 @@ public class GameMenu {
             else if(GameCommands.getMatcher(command,GameCommands.REPAIR) != null){
                 //todo repair
             }
-            //todo get select unit
-
-            //todo get move unit
-
-            //todo get patrol unit
+            else if(GameCommands.getMatcher(command,GameCommands.SELECT_UNIT) != null){
+                checkSelectUnit(command);
+            }
+            else if(GameCommands.getMatcher(command,GameCommands.MOVE_UNIT) != null){
+                checkMoveUnit(command);
+            }
+            else if(GameCommands.getMatcher(command,GameCommands.PATROL_UNIT) != null){
+                checkPatrolUnit(command);
+            }
 
             //todo get set state
 
@@ -216,6 +220,139 @@ public class GameMenu {
 
         if (GameCommands.getMatcher(command, GameCommands.CREATE_UNIT_CHECK) == null){
             System.out.println("Invalid argument in create unit command!");
+            return;
+        }
+
+
+        //todo give this to it's controller
+
+    }
+
+    private static void checkSelectUnit(String command){
+        String x,y;
+
+        String regexForX = GameCommands.getRegexForX();
+        Matcher matcherX = Pattern.compile(regexForX).matcher(command);
+        if(!matcherX.find()){
+            System.out.println("You must give x!");
+            return;
+        }
+        else
+            x = matcherX.group("xNum");
+
+        command = command.replaceAll(matcherX.group().toString().trim(),"");
+
+        String regexForY = GameCommands.getRegexForY();
+        Matcher matcherY = Pattern.compile(regexForY).matcher(command);
+        if(!matcherY.find()){
+            System.out.println("You must give y!");
+            return;
+        }
+        else
+            y = matcherY.group("yNum");
+
+        command = command.replaceAll(matcherY.group().toString().trim(),"");
+
+
+        if (GameCommands.getMatcher(command, GameCommands.SELECT_UNIT_CHECK) == null){
+            System.out.println("Invalid argument in select unit command!");
+            return;
+        }
+
+
+        //todo give this to it's controller
+
+    }
+
+
+    private static void checkMoveUnit(String command){
+        String x,y;
+
+        String regexForX = GameCommands.getRegexForX();
+        Matcher matcherX = Pattern.compile(regexForX).matcher(command);
+        if(!matcherX.find()){
+            System.out.println("You must give x!");
+            return;
+        }
+        else
+            x = matcherX.group("xNum");
+
+        command = command.replaceAll(matcherX.group().toString().trim(),"");
+
+        String regexForY = GameCommands.getRegexForY();
+        Matcher matcherY = Pattern.compile(regexForY).matcher(command);
+        if(!matcherY.find()){
+            System.out.println("You must give y!");
+            return;
+        }
+        else
+            y = matcherY.group("yNum");
+
+        command = command.replaceAll(matcherY.group().toString().trim(),"");
+
+
+        if (GameCommands.getMatcher(command, GameCommands.MOVE_UNIT_CHECK) == null){
+            System.out.println("Invalid argument in move unit command!");
+            return;
+        }
+
+
+        //todo give this to it's controller
+
+    }
+
+
+    private static void checkPatrolUnit(String command){
+        String x1,y1;
+        String x2,y2;
+
+        String regexForX1 = GameCommands.getRegexForX1();
+        Matcher matcherX1 = Pattern.compile(regexForX1).matcher(command);
+        if(!matcherX1.find()){
+            System.out.println("You must give x1!");
+            return;
+        }
+        else
+            x1 = matcherX1.group("x1Num");
+
+        command = command.replaceAll(matcherX1.group().toString().trim(),"");
+
+        String regexForY1 = GameCommands.getRegexForY1();
+        Matcher matcherY1 = Pattern.compile(regexForY1).matcher(command);
+        if(!matcherY1.find()){
+            System.out.println("You must give y1!");
+            return;
+        }
+        else
+            y1 = matcherY1.group("y1Num");
+
+        command = command.replaceAll(matcherY1.group().toString().trim(),"");
+
+
+        String regexForX2 = GameCommands.getRegexForX2();
+        Matcher matcherX2 = Pattern.compile(regexForX2).matcher(command);
+        if(!matcherX2.find()){
+            System.out.println("You must give x2!");
+            return;
+        }
+        else
+            x2 = matcherX2.group("x2Num");
+
+        command = command.replaceAll(matcherX2.group().toString().trim(),"");
+
+        String regexForY2 = GameCommands.getRegexForY2();
+        Matcher matcherY2 = Pattern.compile(regexForY2).matcher(command);
+        if(!matcherY2.find()){
+            System.out.println("You must give y2!");
+            return;
+        }
+        else
+            y2 = matcherY2.group("y2Num");
+
+        command = command.replaceAll(matcherY2.group().toString().trim(),"");
+
+        if (GameCommands.getMatcher(command, GameCommands.PATROL_UNIT_CHECK) == null){
+            System.out.println("Invalid argument in patrol unit command!");
             return;
         }
 
