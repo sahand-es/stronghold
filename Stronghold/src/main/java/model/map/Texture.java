@@ -9,7 +9,7 @@ public enum Texture
     ROCK(Colors.WHITE_BACKGROUND_BRIGHT, "Rock",true),
     BIG_ROCK(Colors.WHITE_BACKGROUND, "Big Rock",false),
     IRON(Colors.BLACK, "Iron",true),
-    GRASS(Colors.CYAN_BACKGROUND_BRIGHT, "Grass",false),
+    GRASS(Colors.CYAN_BACKGROUND_BRIGHT, "Grass",true),
     SHORT_GRASS_LAWN(Colors.GREEN_BACKGROUND_BRIGHT, "Short Grass Lawn",true),
     TALL_GRASS_LAWN(Colors.CYAN_BACKGROUND, "Tall Grass Lawn",true),
     WATER(Colors.BLUE_BACKGROUND_BRIGHT, "Water",true),

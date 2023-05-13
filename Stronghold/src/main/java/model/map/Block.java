@@ -1,8 +1,8 @@
 package model.map;
 
-import com.sun.source.tree.Tree;
 import model.environment.Environment;
 import model.environment.Rock;
+import model.environment.TreeClass;
 import model.environment.buildings.Building;
 import model.environment.buildings.enums.BuildingName;
 import model.society.Government;
@@ -226,7 +226,7 @@ public class Block {
             chars.add('S');
         if (environment != null && environment instanceof Building)
             chars.add('B');
-        if (environment instanceof Tree)
+        if (environment instanceof TreeClass)
             chars.add('T');
         if (environment instanceof Rock)
             chars.add('R');

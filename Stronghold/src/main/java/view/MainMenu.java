@@ -62,7 +62,7 @@ public class MainMenu
                     Application.setCurrentMenu(AllMenus.PROFILE_MENU);
                 }
                 else if((matcher = (MainMenuCommands.getMatcher(command,MainMenuCommands.START_GAME))) != null){
-                    //TODO.
+
                     int numberOfGovernments = Integer.parseInt(matcher.group("number"));
                     int height = Integer.parseInt(matcher.group("height"));
                     int width = Integer.parseInt(matcher.group("width"));

@@ -53,7 +53,7 @@ public enum GameMessages {
     INVALID_SIEGE_BUILD_NAME("Invalid siege equipment name!"),
     SIEGE_TENT_NOT_BUILD("Make siege tent first!"),
 
-    CAN_NOT_DROP_UNIT_HERE("Can not build siege equipment here!"),
+    CAN_NOT_DROP_UNIT_HERE("Can not drop unit here!"),
 
 //  map:
     INVALID_TEXTURE("Invalid texture!"),

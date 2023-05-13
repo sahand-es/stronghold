@@ -18,7 +18,7 @@ public class MapMenu {
     private static int HEIGHT = 200;
     private static int WIDTH = 200;
     private static int mapX,mapY;
-    private static Map map = new Map(HEIGHT,WIDTH);
+    private static Map map;
 
     public static Map getMap() {
         return map;
@@ -26,6 +26,8 @@ public class MapMenu {
 
     public static void setMap(Map map) {
         MapMenu.map = map;
+        HEIGHT = map.getHeight();
+        WIDTH = map.getWidth();
     }
 
     public static int getMapX() {
@@ -47,9 +49,9 @@ public class MapMenu {
     public static void run(int x , int y){
         setMapX(x);
         setMapY(y);
-        Map map = getMap();
+        setMap(Application.getCurrentGame().getMap());
 
-        map.setTexture(5,5, Texture.WATER);
+        //map.setTexture(5,5, Texture.WATER);
         java.util.Scanner scanner = new java.util.Scanner(System.in);
         String command;
 
@@ -74,8 +76,8 @@ public class MapMenu {
             command = scanner.nextLine();
 
             if(MapMenuCommands.getMatcher(command, MapMenuCommands.EXIT) != null){
-                System.out.println("You're in Main Menu!");
-                Application.setCurrentMenu(AllMenus.MAIN_MENU);
+                System.out.println("You're in Game Menu!");
+                Application.setCurrentMenu(AllMenus.GAME_MENU);
                 return;
             }
             else if(MapMenuCommands.getMatcher(command,MapMenuCommands.MAP) != null){
@@ -92,7 +94,7 @@ public class MapMenu {
 
 
             switch (Application.getCurrentMenu()){
-                case MAIN_MENU:
+                case GAME_MENU:
                     return;
                 default:
                     break;

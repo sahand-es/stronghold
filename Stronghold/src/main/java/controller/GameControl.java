@@ -2,7 +2,7 @@ package controller;
 
 import model.Game;
 import model.environment.Rock;
-import model.environment.Tree;
+import model.environment.TreeClass;
 import model.environment.buildings.*;
 import model.environment.buildings.enums.BuildingCategory;
 import model.environment.buildings.enums.BuildingName;
@@ -77,7 +77,7 @@ public class GameControl {
     public static GameMessages dropTree(int x, int y) {
         if (!map.isValidXY(x, y))
             return GameMessages.INVALID_XY;
-        new Tree(map.getBlockByXY(x, y));
+        new TreeClass(map.getBlockByXY(x, y));
 
         return GameMessages.SUCCESS;
     }

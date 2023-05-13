@@ -2,7 +2,7 @@ package model.environment;
 
 import model.map.Block;
 
-public class Tree extends Environment{
+public class TreeClass extends Environment{
     TreeType treeType;
 
 
@@ -15,7 +15,7 @@ public class Tree extends Environment{
         this.treeType = treeType;
     }
 
-    public Tree(Block block) {
+    public TreeClass(Block block) {
         block.setEnvironment(this);
     }
 }
