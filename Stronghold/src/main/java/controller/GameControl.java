@@ -89,6 +89,31 @@ public class GameControl {
         selectedBuilding = null;
     }
 
+    private GameMessages moveUnit(int x, int y) {
+        Map map = game.getMap();
+        if (selectedUnit == null)
+            return GameMessages.NOT_SELECTED_UNIT;
+        if (!map.isValidXY(x, y))
+            return GameMessages.INVALID_XY;
+        if (!selectedUnit.findPath(map.getBlockByXY(x, y)))
+            return GameMessages.CANNOT_GO_THERE;
+
+        return GameMessages.SUCCESS;
+    }
+
+    private GameMessages patrolUnit(int x1, int y1, int x2, int y2) {
+        Map map = game.getMap();
+        if (selectedUnit == null)
+            return GameMessages.NOT_SELECTED_UNIT;
+        if (!map.isValidXY(x1, y1) || !map.isValidXY(x2,y2))
+            return GameMessages.INVALID_XY;
+        if (!selectedUnit.canGoThere(map.getBlockByXY(x1, y1)) || !selectedUnit.canGoThere(map.getBlockByXY(x2,y2)))
+            return GameMessages.CANNOT_GO_THERE;
+
+        selectedUnit.setPatrol(map.getBlockByXY(x1, y1), map.getBlockByXY(x2,y2));
+        return GameMessages.SUCCESS;
+    }
+
     private void nextTurn(){
         if(game.goToNextTurn()){
             for (Person unit : game.getAllUnits()) {

@@ -311,6 +311,9 @@ public class Person {
         }
     }
 
+    public boolean canGoThere(Block destination) {
+        return BFS(destination) != null;
+    }
     private HashMap<Block, Block> BFS(Block destination) {
         Map map = block.getMap();
 
@@ -375,6 +378,7 @@ public class Person {
     public void setPatrol(Block firstBlock, Block secondBlock) {
         patrolBlocks = new Block[]{firstBlock, secondBlock};
         whichPatrolBlock = firstBlock;
+        findPath(firstBlock);
     }
 
     private void stopPatroling() {

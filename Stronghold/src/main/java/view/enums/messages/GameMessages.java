@@ -23,6 +23,7 @@ public enum GameMessages {
     EMPTY_XY_UNIT,
     NOT_YOURS_UNIT,
     // move unit:
+    CANNOT_GO_THERE,
 // patrol unit:
     INVALID_UNIT_STATE,
     CLOSE_RANGE_UNIT,
