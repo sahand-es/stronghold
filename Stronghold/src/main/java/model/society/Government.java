@@ -5,7 +5,6 @@ import model.environment.buildings.Building;
 import model.environment.buildings.enums.BuildingName;
 import model.resourecs.Resource;
 import model.resourecs.ResourcesName;
-import model.siegeutil.SiegeUtil;
 import model.society.enums.Colors;
 import model.units.Person;
 
