@@ -347,8 +347,9 @@ public class GameControl {
         }
     }
 
-    private void giveFood() {
-        // TODO:
+    private void giveFoodAndGetTax() {
+        currentGovernment.payFoodToPeople();
+        currentGovernment.TaxingThePeople();
     }
 
     private void moveAllUnits() {
