@@ -97,6 +97,18 @@ public class Resource {
         return output;
     }
 
+    public int getAmount(ResourcesName name){
+        if (ResourcesName.foods.contains(name)){
+            return getFoodAmount();
+        } else if (ResourcesName.weapons.contains(name)){
+            return getWeaponAmount();
+        } else if (ResourcesName.Materials.contains(name)){
+            return getMaterialAmount();
+        } else {
+            return 0;
+        }
+    }
+
     public void payFood(int amount) {
         int foodValue;
         for (ResourcesName food : ResourcesName.foods) {
