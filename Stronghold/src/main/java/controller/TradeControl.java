@@ -8,10 +8,10 @@ import view.enums.messages.TradeMessages;
 
 public class TradeControl
 {
-    public static TradeMessages makeTrade(Game game, Government currentGovernment, String target, String resourceName, int amount , int gold){
-        Government targetGovernment = game.getGovernmentByName(target);
+    public static TradeMessages makeTrade(Game game, Government currentGovernment, String targetColor, String resourceName, int amount , int gold){
+        Government targetGovernment = game.getGovernmentByColor(targetColor);
         if(targetGovernment == null)
-            return TradeMessages.INVALID_NICKNAME;
+            return TradeMessages.INVALID_COLOR;
 
         if(!ResourcesName.isValidName(resourceName))
             return TradeMessages.INVALID_RESOURCE;
@@ -19,7 +19,9 @@ public class TradeControl
         ResourcesName resource = ResourcesName.getResourceByName(resourceName);
 
         Trade trade = new Trade(currentGovernment,targetGovernment,resource,amount,gold);
-        game.
+        game.addTrade(trade);
+        currentGovernment.addTrade(trade);
+        targetGovernment.addTrade(trade);
 
 
 

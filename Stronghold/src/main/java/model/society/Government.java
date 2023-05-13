@@ -1,13 +1,11 @@
 package model.society;
 
 import model.Game;
-import model.User;
 import model.environment.buildings.Building;
 import model.environment.buildings.enums.BuildingName;
 import model.resourecs.Resource;
 import model.siegeutil.SiegeUtil;
 import model.society.enums.Colors;
-import model.resourecs.ResourceHolder;
 import model.units.Person;
 
 
@@ -30,7 +28,7 @@ public class Government
     private final Resource resource;
 
 
-    private final ArrayList<Trade> tradesDone;
+    private final ArrayList<Trade> tradesHistory;
     private final ArrayList<Person> units;
     private final ArrayList<SiegeUtil> siegeUtils;
     private final ArrayList<Building> buildings;
@@ -42,7 +40,7 @@ public class Government
     {
         this.game = game;
         this.color = color;
-        tradesDone = new ArrayList<>();
+        tradesHistory = new ArrayList<>();
         units = new ArrayList<>();
         siegeUtils = new ArrayList<>();
         buildings = new ArrayList<>();
@@ -132,8 +130,8 @@ public class Government
         this.materialCapacity = materialCapacity;
     }
 
-    public ArrayList<Trade> getTradesDone() {
-        return tradesDone;
+    public ArrayList<Trade> getTradesHistory() {
+        return tradesHistory;
     }
 
     public ArrayList<Person> getUnits() {
@@ -251,6 +249,7 @@ public class Government
 
     public void addPopulationCapacity(int capacity){
         populationCapacity += capacity;
+        resource.addPeople(capacity);
     }
 
     public void subtractPopulationCapacity(int capacity){
@@ -268,5 +267,9 @@ public class Government
 
     public Colors getColor() {
         return color;
+    }
+
+    public void addTrade(Trade trade){
+        this.tradesHistory.add(trade);
     }
 }

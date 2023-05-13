@@ -21,7 +21,6 @@ public class Game {
 
     private final ArrayList<Person> allUnits = new ArrayList<>();
 
-
     private final static ArrayList<Trade> allTrades = new ArrayList<>();
 
     private final ArrayList<Building> allBuildings = new ArrayList<>();
@@ -66,6 +65,10 @@ public class Game {
 
     public void addSiegeUtil(SiegeUtil siegeUtil) {
         allSiegeUtil.add(siegeUtil);
+    }
+
+    public void addTrade(Trade trade){
+        allTrades.add(trade);
     }
 
     public void removeUnit(Person unit) {
