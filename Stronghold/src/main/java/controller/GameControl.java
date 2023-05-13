@@ -413,6 +413,9 @@ public class GameControl {
 
 
     private void nextTurn() {
+        giveFood();
+        getTax();
+        extractControl();
         if (game.goToNextTurn()) {
             attackControl();
             moveAllUnits();
