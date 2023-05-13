@@ -57,8 +57,8 @@ public class Map {
 
         int width = rightCornerX - leftCornerX, height = rightCornerY - leftCornerY;
 
-        for (int x = leftCornerX; x < width + leftCornerX; x++) {
-            for (int y = leftCornerY; y < height + leftCornerY; y++) {
+        for (int x = leftCornerX; x < width + leftCornerX + 1; x++) {
+            for (int y = leftCornerY; y < height + leftCornerY + 1; y++) {
                 getBlockByXY(x, y).setTexture(texture);
             }
         }
@@ -73,9 +73,9 @@ public class Map {
     }
 
     public boolean isValidXY(int x, int y) {
-        if (x < 0 || x > width)
+        if (x < 0 || x > width - 1)
             return false;
-        if (y < 0 || y > height)
+        if (y < 0 || y > height - 1)
             return false;
         return true;
     }

@@ -22,7 +22,7 @@ public class Person {
     protected final HashMap<ResourcesName, Integer> price;
     protected Block block;
     protected Government government;
-    protected Queue<Block> moveQueue;
+    protected Queue<Block> moveQueue = new LinkedList<>();
 
     protected boolean canClimbLadder;
     protected boolean canDigMoat;
@@ -276,8 +276,8 @@ public class Person {
         HashMap<Block, Block> route = BFS(destination);
         if (route == null)
             return false;
-//        addRouteToQueue(route, destination);
-        return true;
+        addRouteToQueue(route, destination);
+       return true;
     }
 
     public void move() {
@@ -306,7 +306,7 @@ public class Person {
 
         boolean[][] visited = new boolean[map.getHeight()][map.getWidth()];
         HashMap<Block, Block> route = new HashMap<>();
-        Direction[][] blockPrevs = new Direction[map.getHeight()][map.getWidth()];
+        visited[block.getY()][block.getX()] = true;
 
         long startTime = System.currentTimeMillis();
         long end = startTime + 4 * 1000;
@@ -322,7 +322,7 @@ public class Person {
 
                     if (nextBlock.canPassThisBlock(this)) {
 
-                        visited[nextX][nextY] = true;
+                        visited[nextY][nextX] = true;
                         queue.add(nextBlock);
 
                         route.put(nextBlock, currentBlock);
