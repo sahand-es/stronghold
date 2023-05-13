@@ -53,6 +53,15 @@ public class GameControl {
         return GameMessages.SUCCESS;
     }
 
+    public static GameMessages clearBlock(int x, int y) {
+        if (!map.isValidXY(x, y))
+            return GameMessages.INVALID_XY;
+
+
+        map.getBlockByXY(x,y).clearBlock();
+        return GameMessages.SUCCESS;
+    }
+
     public static GameMessages setGroupTexture(int x1, int y1, int x2, int y2, String texture) {
         if (!map.isValidXY(x1, y1) || !map.isValidXY(x2, y2))
             return GameMessages.INVALID_XY;

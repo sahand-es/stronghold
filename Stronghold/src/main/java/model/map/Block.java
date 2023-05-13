@@ -250,4 +250,12 @@ public class Block {
                 ", y=" + y +
                 '}';
     }
+
+    public void clearBlock(){
+        for (Person unit : units) {
+            unit.die();
+        }
+        if (environment instanceof Building)
+            ((Building) environment).die();
+    }
 }
