@@ -50,7 +50,7 @@ public class TradeControl
     }
 
     public static String displayTrades(ArrayList<Trade> trades){
-        String output = "Trades:";
+        String output = "";
 
         for (Trade trade : trades) {
             output += "\nid) " + trade.getId() + " government: " + trade.getOwner().getColor().getColorName() + " | " ;
@@ -59,4 +59,14 @@ public class TradeControl
 
         return output;
     }
+
+    public static String showAllTrades(Game game){
+        return "all trades:" + displayTrades(game.getAllTrades());
+    }
+
+    public static String showTradeHistory(Game game){
+        return "trades history:" + displayTrades(game.getCurrentGovernment().getTradesHistory());
+    }
+
+
 }

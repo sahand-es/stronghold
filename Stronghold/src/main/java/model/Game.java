@@ -20,8 +20,7 @@ public class Game {
     private final ArrayList<Government> governments = new ArrayList<>();
 
     private final ArrayList<Person> allUnits = new ArrayList<>();
-
-    private final static ArrayList<Trade> allTrades = new ArrayList<>();
+    private final  ArrayList<Trade> allTrades = new ArrayList<>();
 
     private final ArrayList<Building> allBuildings = new ArrayList<>();
 
@@ -131,5 +130,9 @@ public class Game {
                 return trade;
         }
         return null;
+    }
+
+    public ArrayList<Trade> getAllTrades() {
+        return allTrades;
     }
 }
