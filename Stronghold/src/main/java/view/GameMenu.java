@@ -301,7 +301,7 @@ public class GameMenu {
     }
 
     private static void checkSelectUnit(String command){
-        String x,y;
+        String x,y,s;
 
         String regexForX = GameCommands.getRegexForX();
         Matcher matcherX = Pattern.compile(regexForX).matcher(command);
@@ -325,17 +325,21 @@ public class GameMenu {
 
         command = command.replaceAll(matcherY.group().toString().trim(),"");
 
-
-        if (GameCommands.getMatcher(command, GameCommands.SELECT_UNIT_CHECK) == null){
+        Matcher matcher;
+        if ((matcher = GameCommands.getMatcher(command, GameCommands.SELECT_UNIT_CHECK)) == null){
             System.out.println("Invalid argument in select unit command!");
             return;
         }
+        s = matcher.group("selectionCount");
+
 
 
         int X = Integer.parseInt(x);
         int Y = Integer.parseInt(y);
+        int S = Integer.parseInt(s);
 
-        GameMessages message = GameControl.selectUnit(X,Y,1); //TODO: add to regex.
+
+        GameMessages message = GameControl.selectUnit(X,Y,S);
         System.out.println(message.message());
     }
 
