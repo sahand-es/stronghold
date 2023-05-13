@@ -2,13 +2,13 @@ package controller;
 
 import model.Application;
 import model.User;
-import utility.CheckFunctions;
-import utility.DataManager;
-import utility.SecurityQuestions;
+import utility.*;
+//import utility.DataManager;
+//import utility.SecurityQuestions;
 import view.Captcha;
 import view.LoginMenu;
-import view.enums.commands.LoginCommands;
-import view.enums.messages.LoginMessages;
+import view.enums.commands.*;
+import view.enums.messages.*;
 import view.enums.messages.SignUpMessages;
 
 public class LoginControl {

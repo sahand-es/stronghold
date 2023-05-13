@@ -4,8 +4,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public enum TradeCommands {
+
     BACK("^\\s*back\\s*$"),
+
     SHOW_MENU("^\\s*show\\s+menu\\s*$"),
+    TRADE("^(\\s+)?trade\\s+request\\s+.+"),
+    FINAL_TRADE_CHECK("^(\\s+)?trade\\s+request(\\s+)?$"),
+
     ;
 
     String regex;
@@ -19,5 +24,5 @@ public enum TradeCommands {
         Matcher matcher = Pattern.compile(command.regex).matcher(input);
         return matcher.matches() ? matcher : null;
     }
-    
+
 }
