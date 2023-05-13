@@ -10,6 +10,7 @@ import model.units.Person;
 
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Government {
     //    ToDo: auto rate when there is not enough food
@@ -277,5 +278,18 @@ public class Government {
             building.die();
         }
         game.removeGovernment(this);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Government that = (Government) o;
+        return color == that.color;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(color);
     }
 }

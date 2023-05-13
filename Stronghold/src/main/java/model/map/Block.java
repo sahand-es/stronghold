@@ -116,7 +116,7 @@ public class Block {
             if (unit.getGovernment().equals(government))
                 thisGovernmentUnits.add(unit);
         }
-        return thisGovernmentUnits.get(selectCount % (thisGovernmentUnits.size() - 1));
+        return thisGovernmentUnits.get((selectCount % thisGovernmentUnits.size()));
     }
 
     public Person getEnemy(Person person) {
@@ -185,7 +185,7 @@ public class Block {
                     Block blockToCheck = getMap().getBlockByXY(x, y);
                     if (distance > block.distanceTo(blockToCheck)){
                         closestBlock = blockToCheck;
-                        distance = this.distanceTo(blockToCheck);
+                        distance = block.distanceTo(blockToCheck);
                     }
                 }
             }

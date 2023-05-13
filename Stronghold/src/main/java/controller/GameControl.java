@@ -34,6 +34,11 @@ public class GameControl {
     private Building selectedBuilding = null;
     private Government currentGovernment;
 
+    public GameControl(Game game) {
+        setGame(game);
+        currentGovernment = game.getCurrentGovernment();
+    }
+
     public void setGame(Game game) {
         this.game = game;
         this.map = game.getMap();
@@ -319,7 +324,7 @@ public class GameControl {
             if (soldier.isReadyToAttack())
                 if (soldier.getAttackQueue().peek() instanceof Soldier) {
                     Soldier lockedSoldier = (Soldier) soldier.getAttackQueue().peek();
-                    if (!lockedSoldier.getSoldierUnitState().equals(SoldierUnitState.STANDING))
+                    if (true || !lockedSoldier.getSoldierUnitState().equals(SoldierUnitState.STANDING))
                         lockedSoldier.setAttackQueue(unit);
                 }
         }
@@ -375,11 +380,16 @@ public class GameControl {
                         opponnet.takeDamage(soldier.getDamage());
                         soldier.takeDamage(((Soldier) opponnet).getDamage());
 
-                        if (opponnet.getHp() < 0) {
+                        if (opponnet.getHp() == 0 && soldier.getHp() == 0) {
+                            soldier.freeAttackQueue();
+                            ((Soldier) opponnet).freeAttackQueue();
+                            break;
+                        }
+                        if (opponnet.getHp() <= 0) {
                             soldier.freeAttackQueue();
                             break;
                         }
-                        if (soldier.getHp() < 0) {
+                        if (soldier.getHp() <= 0) {
                             ((Soldier) opponnet).freeAttackQueue();
                             break;
                         }
@@ -399,12 +409,14 @@ public class GameControl {
     }
 
 
-    private void nextTurn() {
+    public void nextTurn() {
         if (game.goToNextTurn()) {
             attackControl();
             moveAllUnits();
             doAttacks();
         }
         currentGovernment = game.getCurrentGovernment();
+        deSelectBuilding();
+        deSelectUnit();
     }
 }

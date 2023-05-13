@@ -267,9 +267,11 @@ public class Person {
     }
 
     public void takeDamage(int damage) {
-        if ((damage - defencePower) < hp) {
+        damage = damage - defencePower < 0 ? 1 : damage - defencePower;
+        if ((damage - defencePower) <= hp) {
             hp -= (damage - defencePower);
         }
+        else hp = 0;
         if (hp <= 0)
             die();
     }
@@ -311,7 +313,6 @@ public class Person {
 
         boolean[][] visited = new boolean[map.getHeight()][map.getWidth()];
         HashMap<Block, Block> route = new HashMap<>();
-        visited[block.getY()][block.getX()] = true;
 
         long startTime = System.currentTimeMillis();
         long end = startTime + 4 * 1000;
@@ -377,6 +378,7 @@ public class Person {
     }
 
     public void die() {
+        this.hp = 0;
         this.block.removeUnit(this);
         this.government.removeUnit(this);
     }

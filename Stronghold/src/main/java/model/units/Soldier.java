@@ -67,12 +67,13 @@ public class Soldier extends Person {
 
     public boolean setAttackQueue(Person enemyToAttack) {
         attackQueue = new LinkedList<>();
-        attackQueue.add(enemyToAttack);
         Block enemyBlock = enemyToAttack.getBlock();
         Block closestBlock = enemyBlock.findClosestBlock(attackRange, block);
 
         if (!canGoThere(closestBlock))
             return false;
+
+        attackQueue.add(enemyToAttack);
 
         findPath(closestBlock);
         return true;
