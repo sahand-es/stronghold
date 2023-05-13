@@ -2,6 +2,7 @@ package model.society;
 
 import model.Game;
 import model.environment.buildings.Building;
+import model.environment.buildings.Castle;
 import model.environment.buildings.enums.BuildingName;
 import model.resourecs.Resource;
 import model.society.enums.Colors;
@@ -251,6 +252,14 @@ public class Government
 
     public Colors getColor() {
         return color;
+    }
+
+    public Castle getCastle() {
+        for (Building building : buildings) {
+            if (building instanceof Castle)
+                return (Castle) building;
+        }
+        return null;
     }
 
     public void addTrade(Trade trade){

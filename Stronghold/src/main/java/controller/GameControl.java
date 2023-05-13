@@ -10,6 +10,7 @@ import model.resourecs.ResourcesName;
 import model.society.Government;
 import model.units.Person;
 import model.units.Soldier;
+import model.units.enums.SoldierUnitState;
 import model.units.enums.UnitName;
 import model.units.workerunits.Engineer;
 import model.units.workerunits.Ladderman;
@@ -195,6 +196,19 @@ public class GameControl {
         return GameMessages.SUCCESS;
     }
 
+    private GameMessages repair() {
+        if (selectedBuilding == null)
+            return GameMessages.BUILDING_NOT_SELECTED;
+        if (!selectedBuilding.getCategory().equals(BuildingCategory.CASTLE) && !selectedBuilding.getPrice().containsKey(ResourcesName.STONE))
+            return GameMessages.CANNOT_REPAIR_THIS_BUILDING_TYPE;
+        HashMap<ResourcesName, Integer> stonePrice = new HashMap<>();
+        stonePrice.put(ResourcesName.STONE, selectedBuilding.getPrice().get(ResourcesName.STONE)/2);
+        if (!currentGovernment.getResource().checkPay(stonePrice))
+            return GameMessages.NOT_ENOUGH_ROCK;
+
+        selectedBuilding.repair();
+        return GameMessages.SUCCESS;
+    }
 
     private void deSelectBuilding() {
         selectedBuilding = null;
@@ -241,17 +255,22 @@ public class GameControl {
         return GameMessages.SUCCESS;
     }
 
-    private GameMessages repair() {
-        if (selectedBuilding == null)
-            return GameMessages.BUILDING_NOT_SELECTED;
-        if (!selectedBuilding.getCategory().equals(BuildingCategory.CASTLE) && !selectedBuilding.getPrice().containsKey(ResourcesName.STONE))
-            return GameMessages.CANNOT_REPAIR_THIS_BUILDING_TYPE;
-        HashMap<ResourcesName, Integer> stonePrice = new HashMap<>();
-        stonePrice.put(ResourcesName.STONE, selectedBuilding.getPrice().get(ResourcesName.STONE)/2);
-        if (!currentGovernment.getResource().checkPay(stonePrice))
-            return GameMessages.NOT_ENOUGH_ROCK;
+    private GameMessages setSoldierState(String state) {
+        if (selectedUnit == null)
+            return GameMessages.UNIT_NOT_SELECTED;
+        if (!(selectedUnit instanceof Soldier))
+            return GameMessages.THIS_UNIT_DOES_NOT_HAVE_STATE;
 
-        selectedBuilding.repair();
+        ((Soldier) selectedUnit).setSoldierUnitState(SoldierUnitState.getByType(state));
+        return GameMessages.SUCCESS;
+    }
+
+
+    private GameMessages disbandUnit() {
+        if (selectedUnit == null)
+            return GameMessages.UNIT_NOT_SELECTED;
+
+        selectedUnit.findPath(currentGovernment.getCastle().getBlock());
         return GameMessages.SUCCESS;
     }
 

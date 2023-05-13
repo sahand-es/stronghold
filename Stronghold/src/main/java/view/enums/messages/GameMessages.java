@@ -24,13 +24,16 @@ public enum GameMessages {
 // select unit:
     EMPTY_XY_UNIT,
     NOT_YOURS_UNIT,
-    // move unit:
+// move unit:
     CANNOT_GO_THERE,
 // patrol unit:
     INVALID_UNIT_STATE,
     CLOSE_RANGE_UNIT,
     UNIT_NOT_SELECTED,
     SUCCESS,
+//  state:
+    THIS_UNIT_DOES_NOT_HAVE_STATE;
+
 
     ;
 }
