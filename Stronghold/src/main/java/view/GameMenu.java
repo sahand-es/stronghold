@@ -72,7 +72,8 @@ public class GameMenu {
                 checkCreateUnit(command);
             }
             else if(GameCommands.getMatcher(command,GameCommands.REPAIR) != null){
-                //todo repair this shit
+                GameMessages message = GameControl.repair();
+                System.out.println(message.message());
             }
             else if(GameCommands.getMatcher(command,GameCommands.SELECT_UNIT) != null){
                 checkSelectUnit(command);
@@ -99,7 +100,8 @@ public class GameMenu {
                 checkBuildEquipment(matcher);
             }
             else if(GameCommands.getMatcher(command,GameCommands.DISBAND) != null){
-                //todo disband this shit
+                GameMessages message = GameControl.disbandUnit();
+                System.out.println(message.message());
             }
             else if(GameCommands.getMatcher(command,GameCommands.SET_TEXTURE_BLOCK) != null){
                 checkSetTextureBlock(command);
@@ -122,8 +124,11 @@ public class GameMenu {
             else if((matcher = GameCommands.getMatcher(command,GameCommands.DROP_UNIT)) != null){
                 checkDropUnit(matcher);
             }
+            else if (GameCommands.getMatcher(command,GameCommands.SHOW_UNIT_DATA) != null){
+                System.out.println(GameControl.showSelectedUnitDetails());
+            }
             else if(GameCommands.getMatcher(command,GameCommands.NEXT_TURN) != null){
-                //todo nextTurn this shit
+                GameControl.nextTurn();
             }
             else
                 System.out.println("My liege, that's an invalid command!");

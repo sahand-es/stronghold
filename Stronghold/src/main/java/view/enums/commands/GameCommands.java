@@ -57,7 +57,7 @@ public enum GameCommands {
     DROP_TREE("\\s*droptree\\s+-x\\s+(?<xNumber>\\d+)\\s+-y\\s+(?<yNumber>\\d+)\\s+-t\\s+(?<type>\\S+)\\s*"),
     DROP_BUILDING("\\s*dropbuilding\\s+-x\\s+(?<xNumber>\\d+)\\s+-y\\s+(?<yNumber>\\d+)\\s+-t\\s+(?<type>\\S+)\\s*"),
     DROP_UNIT("\\s*dropunit\\s+-x\\s+(?<xNumber>\\d+)\\s+-y\\s+(?<yNumber>\\d+)\\s+-t\\s+(?<type>\\S+)\\s+-c\\s+(?<count>\\S+)\\s*"),
-    ;
+    SHOW_UNIT_DATA("\\s+show\\s+unit\\+data");
 
     String regex;
 
