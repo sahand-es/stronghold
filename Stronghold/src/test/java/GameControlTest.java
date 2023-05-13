@@ -25,27 +25,31 @@ public class GameControlTest {
     public void attackTestStanding() {
         Soldier soldier1 = new Soldier(UnitName.ARCHER, map.getBlockByXY(0, 0), government1);
         Soldier soldier2 = new Soldier(UnitName.ARCHER, map.getBlockByXY(4, 4), government2);
-        System.out.println(soldier1.getHp() + ": " + soldier1.getGovernment().getColor().name());
-        System.out.println(soldier2.getHp() + ": " + soldier2.getGovernment().getColor().name());
+        System.out.println(soldier1.getName().getName() + ": " + soldier1.getHp());
+        System.out.println(soldier2.getName().getName() + ": " + soldier2.getHp());
 
 
         gameControl.selectUnit(0, 0, 1);
         gameControl.attack(4,4);
 
-        gameControl.nextTurn();
-        gameControl.nextTurn();
-        gameControl.nextTurn();
+        System.out.println(map.showMap(map.getBlockByXY(4,4), 3, 1));
 
-        System.out.println(soldier1.getHp());
-        System.out.println(soldier2.getHp());
+        gameControl.nextTurn();
+        gameControl.nextTurn();
+        gameControl.nextTurn();
+        System.out.println("After fight:");
+        System.out.println(soldier1.getName().getName() + ": " + soldier1.getHp());
+        System.out.println(soldier2.getName().getName() + ": " + soldier2.getHp());
     }
 
     @Test
     public void attackTestOffensive() {
         Soldier soldier1 = new Soldier(UnitName.ARCHER, map.getBlockByXY(0, 0), government1);
-        Soldier soldier2 = new Soldier(UnitName.ARCHER, map.getBlockByXY(4, 4), government2);
-        System.out.println(soldier1.getHp() + ": " + soldier1.getGovernment().getColor().name());
-        System.out.println(soldier2.getHp() + ": " + soldier2.getGovernment().getColor().name());
+        Soldier soldier2 = new Soldier(UnitName.ASSASSIN, map.getBlockByXY(4, 4), government2);
+        System.out.println(soldier1.getName().getName() + ": " + soldier1.getHp());
+        System.out.println(soldier2.getName().getName() + ": " + soldier2.getHp());
+
+        System.out.println(map.showMap(map.getBlockByXY(3,2), 3, 2));
 
 
         gameControl.selectUnit(0, 0, 1);
@@ -55,7 +59,13 @@ public class GameControlTest {
         gameControl.nextTurn();
         gameControl.nextTurn();
 
-        System.out.println(soldier1.getHp());
-        System.out.println(soldier2.getHp());
+        System.out.println("After fight:");
+
+
+        System.out.println(soldier1.getName().getName() + ": " + soldier1.getHp());
+        System.out.println(soldier2.getName().getName() + ": " + soldier2.getHp());
+
+        System.out.println(map.showMap(map.getBlockByXY(3,2), 3, 2));
+
     }
 }
