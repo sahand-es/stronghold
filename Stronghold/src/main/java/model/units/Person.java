@@ -298,6 +298,9 @@ public class Person {
         }
     }
 
+    public boolean canGoThere(Block destination) {
+        return BFS(destination) != null;
+    }
 
     private HashMap<Block, Block> BFS(Block destination) {
         Map map = block.getMap();
@@ -363,7 +366,6 @@ public class Person {
         }
     }
 
-    public void die() {
     public void setPatrol(Block firstBlock, Block secondBlock) {
         patrolBlocks = new Block[]{firstBlock, secondBlock};
         whichPatrolBlock = firstBlock;
@@ -374,7 +376,7 @@ public class Person {
         patrolBlocks = null;
     }
 
-    private void die() {
+    public void die() {
         this.block.removeUnit(this);
         this.government.removeUnit(this);
     }
@@ -389,3 +391,4 @@ public class Person {
     }
 
 }
+

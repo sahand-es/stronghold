@@ -62,6 +62,7 @@ public class GameControl {
             return GameMessages.CANNOT_MAKE_THIS_UNIT_IN_THIS_BUILDING;
 
         for (int i = 0; i < count; i++) {
+//            TODO: add constructor.
             new Person(UnitName.getUnitByName(type), selectedBuilding.getBlock(), currentGovernment);
         }
         return GameMessages.SUCCESS;
