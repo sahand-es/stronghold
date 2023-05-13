@@ -2,6 +2,7 @@ package model.society;
 
 import model.Game;
 import model.environment.buildings.Building;
+import model.environment.buildings.Castle;
 import model.environment.buildings.enums.BuildingName;
 import model.resourecs.Resource;
 import model.resourecs.ResourcesName;
@@ -10,15 +11,14 @@ import model.units.Person;
 
 
 import java.util.ArrayList;
+import java.util.Objects;
 
-public class Government
-{
-//    ToDo: auto rate when there is not enough food
+public class Government {
+    //    ToDo: auto rate when there is not enough food
     private int popularity;
     private int foodRate;
     private int taxRate;
     private int fearRate;
-
 
 
     private int populationCapacity;
@@ -36,8 +36,7 @@ public class Government
     private Colors color;
     private Game game;
 
-    public Government(Colors color,Game game)
-    {
+    public Government(Colors color, Game game) {
         this.game = game;
         this.color = color;
         tradesHistory = new ArrayList<>();
@@ -51,13 +50,11 @@ public class Government
     }
 
 
-    public void populationGrowth()
-    {
+    public void populationGrowth() {
 
     }
 
-    public static void trade(Trade trade)
-    {
+    public static void trade(Trade trade) {
 
     }
 
@@ -129,6 +126,18 @@ public class Government
         this.materialCapacity = materialCapacity;
     }
 
+    public int getCapacity(ResourcesName name){
+        if (ResourcesName.foods.contains(name)){
+            return foodCapacity;
+        } else if (ResourcesName.weapons.contains(name)){
+            return weaponCapacity;
+        } else if (ResourcesName.Materials.contains(name)){
+            return materialCapacity;
+        } else {
+            return 0;
+        }
+    }
+
     public ArrayList<Trade> getTradesHistory() {
         return tradesHistory;
     }
@@ -145,11 +154,11 @@ public class Government
         return resource;
     }
 
-    public int getPopulation(){
+    public int getPopulation() {
         return resource.getPeople() + units.size();
     }
 
-    private int calcPopularityOfTaxRate(){
+    private int calcPopularityOfTaxRate() {
         int output;
         output = -2 * this.taxRate;
         if (this.taxRate <= 0)
@@ -157,45 +166,59 @@ public class Government
         return output;
     }
 
-    public int calcTax(){
+    public int calcTax() {
         int output = 0;
-        if(this.taxRate == 0)
+        if (this.taxRate == 0)
             return output;
 
-        if (this.taxRate > 0){
-            output = (int) (0.2f*taxRate +0.4f)*getPopulation();
+        if (this.taxRate > 0) {
+            output = (int) (0.2f * taxRate + 0.4f) * getPopulation();
         } else {
-            output = (int) (0.2f*taxRate -0.4f)*getPopulation();
+            output = (int) (0.2f * taxRate - 0.4f) * getPopulation();
         }
         return output;
     }
 
-    public void addBuilding(Building building){
+    public int foodUsage(){
+        return  (foodRate + 2) * getPopulation() / 2;
+    }
+
+    public void addBuilding(Building building) {
         buildings.add(building);
         game.addBuilding(building);
     }
 
-    public void removeBuilding(Building building){
-        buildings.remove(building);
+    public void removeBuilding(Building building) {
+        for (Building buildingToRemove : buildings) {
+            if (buildingToRemove.equals(buildingToRemove)) {
+                buildings.remove(buildingToRemove);
+                return;
+            }
+        }
         game.removeBuilding(building);
     }
 
-    public void addUnit(Person unit){
+    public void addUnit(Person unit) {
         units.add(unit);
         game.addUnit(unit);
     }
 
-    public void removeUnit(Person unit){
-        units.remove(unit);
+    public void removeUnit(Person unit) {
+        for (Person person : units) {
+            if (person.equals(unit)) {
+                units.remove(person);
+                return;
+            }
+        }
         game.removeUnit(unit);
     }
 
-    public void addPopularity(int amount){
+    public void addPopularity(int amount) {
         popularity += amount;
     }
 
-    public void addCapacity(BuildingName name, int capacity){
-        switch (name){
+    public void addCapacity(BuildingName name, int capacity) {
+        switch (name) {
             case ARMOURY:
                 weaponCapacity += capacity;
                 break;
@@ -213,8 +236,8 @@ public class Government
         }
     }
 
-    public void subtractCapacity(BuildingName building, int capacity){
-        switch (building){
+    public void subtractCapacity(BuildingName building, int capacity) {
+        switch (building) {
             case ARMOURY:
                 weaponCapacity -= capacity;
                 break;
@@ -232,12 +255,12 @@ public class Government
         }
     }
 
-    public void addPopulationCapacity(int capacity){
+    public void addPopulationCapacity(int capacity) {
         populationCapacity += capacity;
         resource.addPeople(capacity);
     }
 
-    public void subtractPopulationCapacity(int capacity){
+    public void subtractPopulationCapacity(int capacity) {
         populationCapacity -= capacity;
     }
 
@@ -258,7 +281,15 @@ public class Government
         return color;
     }
 
-    public void addTrade(Trade trade){
+    public Castle getCastle() {
+        for (Building building : buildings) {
+            if (building instanceof Castle)
+                return (Castle) building;
+        }
+        return null;
+    }
+
+    public void addTrade(Trade trade) {
         this.tradesHistory.add(trade);
     }
 
@@ -270,7 +301,7 @@ public class Government
                 '}';
     }
 
-    public void lose(){
+    public void lose() {
         for (Person unit : units) {
             unit.die();
         }
@@ -278,5 +309,18 @@ public class Government
             building.die();
         }
         game.removeGovernment(this);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Government that = (Government) o;
+        return color == that.color;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(color);
     }
 }

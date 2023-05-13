@@ -1,5 +1,6 @@
 package model.map;
 
+import com.sun.source.tree.Tree;
 import model.environment.Environment;
 import model.environment.Rock;
 import model.environment.buildings.Building;
@@ -117,7 +118,15 @@ public class Block {
             if (unit.getGovernment().equals(government))
                 thisGovernmentUnits.add(unit);
         }
-        return thisGovernmentUnits.get(selectCount % (thisGovernmentUnits.size() - 1));
+        return thisGovernmentUnits.get((selectCount % thisGovernmentUnits.size()));
+    }
+
+    public Person getEnemy(Person person) {
+        for (Person unit : units) {
+            if (!unit.getGovernment().equals(person.getGovernment()))
+                return unit;
+        }
+        return null;
     }
 
     public boolean doesGovernmentHaveUnit(Government government) {
@@ -178,7 +187,7 @@ public class Block {
                     Block blockToCheck = getMap().getBlockByXY(x, y);
                     if (distance > block.distanceTo(blockToCheck)){
                         closestBlock = blockToCheck;
-                        distance = this.distanceTo(blockToCheck);
+                        distance = block.distanceTo(blockToCheck);
                     }
                 }
             }
@@ -210,6 +219,22 @@ public class Block {
             }
         }
         return output;
+    }
+
+    public ArrayList<Character> getBlockDetailForShowMap() {
+        ArrayList<Character> chars = new ArrayList<>();
+        if (!units.isEmpty())
+            chars.add('S');
+        if (environment != null && environment instanceof Building)
+            chars.add('B');
+        if (environment instanceof Tree)
+            chars.add('T');
+        if (environment instanceof Rock)
+            chars.add('R');
+
+        if (chars.isEmpty())
+            chars.add('#');
+        return chars;
     }
     @Override
     public boolean equals(Object o) {

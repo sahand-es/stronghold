@@ -26,9 +26,10 @@ public class Map {
             }
         }
     }
+
     public void initGovernments(ArrayList<Government> governments) {
         for (Government government : governments) {
-        int randX = RandomGenerators.randomNumber(2, width - 2), randY = RandomGenerators.randomNumber(2, height - 2);
+            int randX = RandomGenerators.randomNumber(2, width - 2), randY = RandomGenerators.randomNumber(2, height - 2);
             new Castle(BuildingName.CASTLE, government,
                     getBlockByXY(randX, randY));
             new StorageBuilding(BuildingName.STOCKPILE, government, getBlockByXY(randX + 1, randY));
@@ -98,7 +99,11 @@ public class Map {
 
                     output.append("|");
                     output.append(blockToPrint.getTexture().getColor());
-                    output.append("#".repeat(blockWidth));
+                    for (int i1 = 0; i1 < blockWidth; i1++) {
+                        char c = blockToPrint.getBlockDetailForShowMap().get(i1 % blockToPrint.getBlockDetailForShowMap().size());
+                        output.append(c);
+                    }
+//                    output.append("#".repeat(blockWidth));
                     output.append(Colors.RESET);
                 }
                 output.append("|\n");

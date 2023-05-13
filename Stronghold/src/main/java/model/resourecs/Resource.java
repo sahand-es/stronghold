@@ -40,6 +40,14 @@ public class Resource {
         }
     }
 
+    public void pay(HashMap<ResourcesName, Integer> price,int count) {
+        int s;
+        for (ResourcesName resourcesName : price.keySet()) {
+            s = this.allResources.get(resourcesName) - count * price.get(resourcesName);
+            this.allResources.put(resourcesName, s);
+        }
+    }
+
     public boolean checkPay(HashMap<ResourcesName, Integer> price) {
         for (ResourcesName resourcesName : price.keySet()) {
             if (this.allResources.get(resourcesName) < price.get(resourcesName))
@@ -96,6 +104,18 @@ public class Resource {
             output += this.allResources.get(material);
         }
         return output;
+    }
+
+    public int getAmount(ResourcesName name){
+        if (ResourcesName.foods.contains(name)){
+            return getFoodAmount();
+        } else if (ResourcesName.weapons.contains(name)){
+            return getWeaponAmount();
+        } else if (ResourcesName.Materials.contains(name)){
+            return getMaterialAmount();
+        } else {
+            return 0;
+        }
     }
 
     public void payFood(int amount) {

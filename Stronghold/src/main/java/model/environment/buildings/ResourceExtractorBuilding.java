@@ -49,6 +49,23 @@ public class ResourceExtractorBuilding extends Building {
         this.rate = rate;
     }
 
+
+    public void extract() {
+        HashMap<ResourcesName,Integer> extractPrice;
+        HashMap<ResourcesName,Integer> product;
+        for (ResourcesName resource : extractedResources) {
+            if (government.getCapacity(resource) < government.getResource().getAmount(resource))
+                rate = 0;
+
+            extractPrice = ResourceHolder.getResourcePrice(resource);
+            product = new HashMap<>();
+            product.put(resource,rate);
+            if (government.getResource().checkPay(extractPrice,rate)){
+                government.getResource().pay(extractPrice,rate);
+                government.getResource().add(product);
+            }
+        }
+    }
     @Override
     public String toString() {
         return  this.name+"{" +

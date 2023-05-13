@@ -27,13 +27,11 @@ public class Game {
 
         for (int i = 0; i < governmentCount; i++) {
             governments.add(new Government(Colors.colorsArr.get(i), this));
-
+//  Todo: change init with
             map.initGovernments(governments);
 
             Application.addGame(this);
         }
-
-
     }
 
     public Map getMap() {
@@ -41,11 +39,19 @@ public class Game {
     }
 
     public ArrayList<Person> getAllUnits() {
-        return allUnits;
+        ArrayList<Person> units = new ArrayList<>();
+        for (Government government : governments) {
+            units.addAll(government.getUnits());
+        }
+        return units;
     }
 
     public ArrayList<Building> getAllBuildings() {
-        return allBuildings;
+        ArrayList<Building> buildings = new ArrayList<>();
+        for (Government government : governments) {
+            buildings.addAll(government.getBuildings());
+        }
+        return buildings;
     }
 
 
@@ -58,20 +64,30 @@ public class Game {
     }
 
 
-    public void addTrade(Trade trade){
+    public void addTrade(Trade trade) {
         allTrades.add(trade);
     }
 
     public void removeUnit(Person unit) {
-        allUnits.remove(unit);
+        for (Person person : allUnits) {
+            if (person.equals(unit)) {
+                allUnits.remove(person);
+                return;
+            }
+        }
     }
 
     public void removeBuilding(Building building) {
-        allBuildings.remove(building);
+        for (Building buildingToRemove : allBuildings) {
+            if (buildingToRemove.equals(building)) {
+                allBuildings.remove(buildingToRemove);
+                return;
+            }
+        }
     }
 
 
-    public void removeTrade(Trade trade){
+    public void removeTrade(Trade trade) {
         allTrades.remove(trade);
     }
 
@@ -79,9 +95,9 @@ public class Game {
         return governments;
     }
 
-    public boolean goToNextTurn(){
-        turn ++;
-        if(turn > governments.size()){
+    public boolean goToNextTurn() {
+        turn++;
+        if (turn == governments.size()) {
             turn = 0;
             day++;
             return true;
@@ -93,30 +109,29 @@ public class Game {
         return turn;
     }
 
-    public int getDay(){
+    public int getDay() {
         return day;
     }
 
-    public Government getCurrentGovernment(){
-        System.out.println("turn: " + turn);
+    public Government getCurrentGovernment() {
         return governments.get(turn);
     }
 
-    public Government getGovernmentByColor(String name){
+    public Government getGovernmentByColor(String name) {
         for (Government government : this.governments) {
-            if(government.getColor().getColorName().equals(name))
+            if (government.getColor().getColorName().equals(name))
                 return government;
         }
         return null;
     }
 
-    public void addTrades(Trade trade){
+    public void addTrades(Trade trade) {
         allTrades.add(trade);
     }
 
-    public Trade getTradeById(int id){
+    public Trade getTradeById(int id) {
         for (Trade trade : allTrades) {
-            if(trade.getId() == id)
+            if (trade.getId() == id)
                 return trade;
         }
         return null;
@@ -126,7 +141,7 @@ public class Game {
         return allTrades;
     }
 
-    public void removeGovernment(Government government){
+    public void removeGovernment(Government government) {
         governments.remove(government);
     }
 }
