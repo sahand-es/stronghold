@@ -3,6 +3,7 @@ package view.enums.messages;
 public enum GameMessages {
     INVALID_RATE("Rate is invalid"),
     INVALID_XY("Invalid Coordinates"),
+    INVALID_RECTANGLE("Invalid coordinates, correct form: x1 <= x2, y1 <= y2"),
     NOT_ENOUGH_RESOURCE("Not enough resource"),
 // create building:
     CANNOT_BUILD_HERE("Can not build on this block"),
@@ -53,6 +54,10 @@ public enum GameMessages {
     SIEGE_TENT_NOT_BUILD("Make siege tent first"),
 
     CAN_NOT_DROP_UNIT_HERE("Can not build siege equipment here"),
+
+//  map:
+    INVALID_TEXTURE("Invalid texture"),
+
 
 ;
     final String message;
