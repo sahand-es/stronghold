@@ -28,7 +28,9 @@ public class TradeMenu {
             command = scanner.nextLine();
 
             if(TradeCommands.getMatcher(command, TradeCommands.BACK) != null){
-                //todo go back
+                System.out.println("You're in Game Menu!");
+                Application.setCurrentMenu(AllMenus.GAME_MENU);
+                return;
             }
             else if(TradeCommands.getMatcher(command, TradeCommands.TRADE) != null){
                 extractTradeCommand(command);
@@ -39,15 +41,6 @@ public class TradeMenu {
 
             else
                 System.out.println("My liege, that's an invalid command!");
-
-
-            //todo switch menu
-//            switch (Application.getCurrentMenu()){
-//                case MAIN_MENU:
-//                    return;
-//                default:
-//                    break;
-//            }
         }
 
     }
@@ -174,8 +167,9 @@ public class TradeMenu {
         }
     }
 
-    public static void main(String[] args) {
-        TradeMenu tradeMenu = new TradeMenu();
-        tradeMenu.run();
-    }
+    //todo delete psvm
+//    public static void main(String[] args) {
+//        TradeMenu tradeMenu = new TradeMenu();
+//        tradeMenu.run();
+//    }
 }
