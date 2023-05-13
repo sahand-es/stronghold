@@ -259,7 +259,7 @@ public class Person {
         return government;
     }
 
-    public boolean isCanClimbLadder() {
+    public boolean canClimbLadder() {
         return canClimbLadder;
     }
 
