@@ -10,6 +10,9 @@ public enum TradeCommands {
     SHOW_MENU("^\\s*show\\s+menu\\s*$"),
     TRADE("^(\\s+)?trade\\s+request\\s+.+"),
     FINAL_TRADE_CHECK("^(\\s+)?trade\\s+request(\\s+)?$"),
+    ARGUMENT("((\\s+)?-(?<argumentSpace>\\w+)\\s+\\\"(?<firstStringSpace>[^-\\\"]+)\\\"(\\s+)?(?:\\s+(\\\")?" +
+            "(?<secondStringSpace>[^-\\\"]+))?)|((\\s+)?-(?<argument>\\w+)\\s+(?<firstString>[^- ]+))"),
+
 
     ;
 
@@ -23,6 +26,10 @@ public enum TradeCommands {
     public static Matcher getMatcher(String input , TradeCommands command) {
         Matcher matcher = Pattern.compile(command.regex).matcher(input);
         return matcher.matches() ? matcher : null;
+    }
+
+    public static String getRegexARGUMENT(){
+        return ARGUMENT.regex;
     }
 
 }
