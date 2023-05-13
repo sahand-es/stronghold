@@ -22,7 +22,7 @@ public class GameControl {
     private Game game;
     private Person selectedUnit = null;
     private Building selectedBuilding = null;
-    private Government currentGovernment;
+    private static Government currentGovernment;
 
     public void setGame(Game game) {
         this.game = game;
@@ -98,7 +98,7 @@ public class GameControl {
         currentGovernment = game.getCurrentGovernment();
     }
 
-    public Government getCurrentGovernment() {
+    public static Government getCurrentGovernment() {
         return currentGovernment;
     }
 }

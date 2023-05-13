@@ -267,7 +267,7 @@ public class Government
     }
 
     public boolean checkEnoughForTrade(ResourcesName resourcesName, int amount) {
-        return resource.getAmount(resourcesName) > amount;
+        return resource.getAmount(resourcesName) < amount;
     }
 
     public Colors getColor() {
