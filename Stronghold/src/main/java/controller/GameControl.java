@@ -1,6 +1,8 @@
 package controller;
 
 import model.Game;
+import model.environment.Rock;
+import model.environment.Tree;
 import model.environment.buildings.*;
 import model.environment.buildings.enums.BuildingCategory;
 import model.environment.buildings.enums.BuildingName;
@@ -60,6 +62,22 @@ public class GameControl {
             return GameMessages.INVALID_TEXTURE;
 
         map.setGroupTexture(x1,y1,x2,y2, Texture.getTextureByString(texture));
+        return GameMessages.SUCCESS;
+    }
+
+    public static GameMessages dropTree(int x, int y) {
+        if (!map.isValidXY(x, y))
+            return GameMessages.INVALID_XY;
+        new Tree(map.getBlockByXY(x, y));
+
+        return GameMessages.SUCCESS;
+    }
+
+    public static GameMessages dropRock(int x, int y) {
+        if (!map.isValidXY(x, y))
+            return GameMessages.INVALID_XY;
+        new Rock(map.getBlockByXY(x, y));
+
         return GameMessages.SUCCESS;
     }
     public static void setGame(Game theGame) {
