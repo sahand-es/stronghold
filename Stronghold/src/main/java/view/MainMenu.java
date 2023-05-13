@@ -47,6 +47,7 @@ public class MainMenu
 
             else{
                 command = scanner.nextLine();
+                Matcher matcher;
                 if(MainMenuCommands.getMatcher(command,MainMenuCommands.EXIT) != null){
                     System.exit(0);
                 }
@@ -58,7 +59,8 @@ public class MainMenu
                 else if(MainMenuCommands.getMatcher(command,MainMenuCommands.PROFILE_MENU) != null){
                     Application.setCurrentMenu(AllMenus.PROFILE_MENU);
                 }
-                else if(MainMenuCommands.getMatcher(command,MainMenuCommands.GAME_MENU) != null){
+                else if((matcher = (MainMenuCommands.getMatcher(command,MainMenuCommands.START_GAME))) != null){
+                    //todo start game
                     Application.setCurrentMenu(AllMenus.GAME_MENU);
                 }
                 else if(MainMenuCommands.getMatcher(command,MainMenuCommands.SHOW_MAP) != null){
