@@ -96,6 +96,15 @@ public class Resource {
         }
     }
 
+    public String toString(){
+        String output= "resources:";
+        for (ResourcesName name : allResources.keySet()) {
+            if (allResources.get(name) != 0)
+                output += "\n" + name.name() + " = " + allResources.get(name);
+        }
+        return output;
+    }
+
     public int getWeaponAmount() {
         int output = 0;
         for (ResourcesName weapon : ResourcesName.weapons) {
@@ -161,5 +170,9 @@ public class Resource {
 
     public int getAmountOneResource(ResourcesName resourcesName) {
         return allResources.get(resourcesName);
+    }
+
+    public HashMap<ResourcesName, Integer> getAllResources() {
+        return allResources;
     }
 }

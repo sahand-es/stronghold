@@ -1,5 +1,6 @@
 package controller;
 
+import model.Application;
 import model.resourecs.ResourcesName;
 import model.society.Government;
 
@@ -58,22 +59,28 @@ public class MarketControl
         return output;
     }
 
-    public static boolean checkBuy(String name,int amount,Government government){
+    public static boolean checkBuy(String name,int amount){
+        Government government = Application.getCurrentGame().getCurrentGovernment();
 
         if(!ResourcesName.isValidName(name))
             return false;
 
         int price = buyPrice.get(ResourcesName.getResourceByName(name)) * amount;
 
-        if(amount > government.getResource().getGold())
+        if(price > government.getResource().getGold())
             return false;
 
-        government.getResource().addGold(-amount);
+        HashMap<ResourcesName,Integer> product = new HashMap<>();
+        product.put(ResourcesName.getResourceByName(name),amount);
+
+        government.getResource().addGold(-1 * price);
+        government.getResource().add(product);
 
         return true;
     }
 
-    public static boolean checksell(String name,int amount,Government government){
+    public static boolean checkSell(String name,int amount){
+        Government government = Application.getCurrentGame().getCurrentGovernment();
 
         if(!ResourcesName.isValidName(name))
             return false;

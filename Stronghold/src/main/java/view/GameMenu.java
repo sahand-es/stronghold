@@ -57,6 +57,9 @@ public class GameMenu {
                 System.out.println("Tax rate: " + GameControl.getCurrentGovernment().getTaxRate());
                 System.out.println("Fear rate: " + GameControl.getCurrentGovernment().getFearRate());
             }
+            else if(GameCommands.getMatcher(command,GameCommands.SHOW_RESOURCES) != null){
+                System.out.println(GameControl.getCurrentGovernment().getResource().toString());
+            }
             else if(GameCommands.getMatcher(command,GameCommands.SHOW_POPULARITY) != null){
                 System.out.println("Popularity: " + GameControl.getCurrentGovernment().getPopularity());
             }
@@ -244,7 +247,7 @@ public class GameMenu {
             return;
         }
         else
-            type = matcherType.group("type");
+            type = matcherType.group("type").trim();
 
         command = command.replaceAll(matcherType.group().toString().trim(),"");
 

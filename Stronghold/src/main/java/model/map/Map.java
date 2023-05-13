@@ -33,6 +33,7 @@ public class Map {
             new Castle(BuildingName.CASTLE, government,
                     getBlockByXY(randX, randY));
             new StorageBuilding(BuildingName.STOCKPILE, government, getBlockByXY(randX + 1, randY));
+            System.out.println(government.getColor() + ": " + "X=" + randX + " Y=" + randY);
         }
     }
 

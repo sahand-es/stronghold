@@ -14,7 +14,7 @@ public class ResourceExtractorBuilding extends Building {
 
     ArrayList<ResourcesName> extractedResources;
 
-    int rate;
+    int rate = 1;
 
     protected ResourceExtractorBuilding(int hp,
                                         BuildingCategory category,

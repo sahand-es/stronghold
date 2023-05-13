@@ -1,5 +1,6 @@
 package model.resourecs;
 
+import model.units.enums.UnitName;
 import utility.DataManager;
 
 import java.util.ArrayList;
@@ -49,8 +50,8 @@ public class ResourceHolder {
 
             new ResourceHolder(name, price, howMany);
         }
-
-
+        new Weapon(ResourcesName.BOW);
+        new Armour(ResourcesName.LEATHER);
     }
 
     protected ResourceHolder(String name, HashMap<ResourcesName, Integer> price, int howManyFor1Price) {
@@ -144,5 +145,11 @@ public class ResourceHolder {
                 ", price=" + price +
                 ", howManyFor1Price=" + howManyFor1Price +
                 "}\n";
+    }
+
+    public static void main(String[] args) {
+        Weapon weapon;
+        Armour armour;
+        System.out.println(ALL_RESOURCE_HOLDERS);
     }
 }

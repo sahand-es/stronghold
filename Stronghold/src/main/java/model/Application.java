@@ -25,9 +25,6 @@ public class Application {
         }
         games = DataManager.loadGames();
         currentUser = DataManager.loadLoggedInUser();
-        //todo delete this shit
-        currentMap = new Map(200,200);
-        currentGame = new Game(currentMap,3);
     }
     private static ArrayList<Map> allMaps;
 

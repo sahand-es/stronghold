@@ -26,7 +26,7 @@ public enum GameCommands {
     CREATE_UNIT_CHECK("^\\s*create unit\\s+$"),
     X_DIR("-x\\s+(?<xNum>\\d+)"),
     Y_DIR("-y\\s+(?<yNum>\\d+)"),
-    TYPE("-t\\s+(?<type>\\S+)"),
+    TYPE("-t\\s+(?<type>.+)"),
     COUNT("-c\\s+(?<count>\\d+)"),
     REPAIR("^\\s*repair\\s*$"),
     SELECT_UNIT("^\\s*select\\s+unit\\s+-n\\s(?<selectionCount>\\d+)\\s+.*"),
@@ -62,7 +62,8 @@ public enum GameCommands {
 //    TOdo: hejab eslami
     DROP_BUILDING("\\s*drop building\\s+-x\\s+(?<xNumber>\\d+)\\s+-y\\s+(?<yNumber>\\d+)\\s+-t\\s+(?<type>\\S+)\\s*"),
     DROP_UNIT("\\s*drop unit\\s+-x\\s+(?<xNumber>\\d+)\\s+-y\\s+(?<yNumber>\\d+)\\s+-t\\s+(?<type>\\S+)\\s+-c\\s+(?<count>\\S+)\\s*"),
-    SHOW_UNIT_DATA("\\s*show\\s+unit\\s+data\\s*");
+    SHOW_UNIT_DATA("\\s*show\\s+unit\\s+data\\s*"),
+    SHOW_RESOURCES("\\s*show\\s+resources\\s*");
 
     String regex;
 

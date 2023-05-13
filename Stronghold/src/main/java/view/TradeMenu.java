@@ -42,9 +42,9 @@ public class TradeMenu {
             } else if ((matcher = TradeCommands.getMatcher(command, TradeCommands.TRADE_ACCEPT)) != null){
                 checkTradeAccept(matcher);
             } else if (TradeCommands.getMatcher(command, TradeCommands.TRADE_LIST) != null){
-                TradeControl.showAllTrades();
-            } else if (TradeCommands.getMatcher(command, TradeCommands.TRADE_LIST) != null){
-                TradeControl.showTradeHistory();
+                System.out.println(TradeControl.showAllTrades());
+            } else if (TradeCommands.getMatcher(command, TradeCommands.TRADE_HISTORY) != null){
+                System.out.println(TradeControl.showTradeHistory());
             }
             else
                 System.out.println("My liege, that's an invalid command!");

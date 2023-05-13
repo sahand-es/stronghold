@@ -22,14 +22,7 @@ import model.units.workerunits.Tunneler;
 import view.enums.messages.GameMessages;
 
 import java.util.HashMap;
-    /*
-    TODO:
-    1-game menu run ba government
-    2-selects unit and building
-    3-attack
-    4-turn
-    5-create building
- */
+
 
 public class GameControl {
     private static Game game;
@@ -135,6 +128,7 @@ public class GameControl {
         Block block = map.getBlockByXY(x, y);
 
         buildingConstructorCaller(buildingName, block);
+        currentGovernment.getResource().pay(building.getPrice());
 
         return GameMessages.SUCCESS;
     }
@@ -228,6 +222,8 @@ public class GameControl {
 
         UnitName unitName = UnitName.getUnitByName(type);
         Block block = selectedBuilding.getBlock();
+
+        currentGovernment.getResource().pay(person.getPrice(),count);
 
         for (int i = 0; i < count; i++) {
             personConstructorCaller(unitName, block);
