@@ -180,6 +180,6 @@ public class MapMenu {
             return;
         }
 
-        
+        //todo add show details
     }
 }
