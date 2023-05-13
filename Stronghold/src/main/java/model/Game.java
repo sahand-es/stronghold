@@ -5,21 +5,13 @@ import model.map.Map;
 import model.siegeutil.SiegeUtil;
 import model.society.Government;
 import model.society.Trade;
+import model.society.enums.Colors;
 import model.units.Person;
 
 import java.util.ArrayList;
 
 public class Game {
-    public Game(Map map, int governmentCount) {
-        this.map = map;
 
-        /*for (int i = 0; i < governmentCount; i++) {
-            governments.add(new Government(this));
-        }*/
-        map.initGovernments(governments);
-
-        Application.addGame(this);
-    }
 
     Map map;
 
@@ -35,6 +27,18 @@ public class Game {
     private final ArrayList<Building> allBuildings = new ArrayList<>();
 
     private final ArrayList<SiegeUtil> allSiegeUtil = new ArrayList<>();
+
+    public Game(Map map, int governmentCount) {
+        this.map = map;
+
+        for (int i = 0; i < governmentCount; i++) {
+            governments.add(new Government(Colors.colorsArr.get(i), this));
+
+            map.initGovernments(governments);
+
+            Application.addGame(this);
+        }
+    }
 
     public Map getMap() {
         return map;
@@ -102,14 +106,12 @@ public class Game {
         return governments.get(turn);
     }
 
-    public Government getGovernmentByName(String name){
+    public Government getGovernmentByColor(String name){
         for (Government government : this.governments) {
-            if(government.getOwner().getNickname().equals(name))
+            if(government.getColor().getColorName().equals(name))
                 return government;
         }
         return null;
-
-
     }
 
     public static void addTrades(Trade trade){

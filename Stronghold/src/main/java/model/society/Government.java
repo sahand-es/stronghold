@@ -266,5 +266,7 @@ public class Government
         return output.toString();
     }
 
-
+    public Colors getColor() {
+        return color;
+    }
 }
