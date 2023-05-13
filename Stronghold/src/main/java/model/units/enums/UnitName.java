@@ -7,37 +7,39 @@ import java.util.ArrayList;
 import java.util.List;
 
 public enum UnitName {
-    ARCHER("Archer"),
-    CROSSBOWMAN("Crossbowman"),
-    SPEARMAN("Spearman"),
-    PIKEMAN("Pikeman"),
-    MACEMAN("Maceman"),
-    SWORDSMAN("Swordsman"),
-    KNIGHT("Knight"),
-    TUNNELER("Tunneler"),
-    LADDERMAN("Ladderman"),
-    ENGINEER("Engineer"),
-    SLAVE("Slave"),
-    SLINGER("Slinger"),
-    ASSASSIN("Assassin"),
-    HORSE_ARCHER("Horse Archer"),
-    ARABIAN_SWORDSMAN("Arabian Swordsman"),
-    ARABIAN_BOW("Arabian Bow"),
-    BLACK_MONK("Black Monk"),
-    FIRE_THROWER("Fire Thrower"),
-    BATTERING_RAM("Battering Ram"),
-    CATAPULT("Catapult"),
-    STONE_THROWER("Stone Thrower"),
-    SIEGE_TOWER("Siege Tower")
+    ARCHER("Archer", "Soldier"),
+    CROSSBOWMAN("Crossbowman", "Soldier"),
+    SPEARMAN("Spearman", "Soldier"),
+    PIKEMAN("Pikeman", "Soldier"),
+    MACEMAN("Maceman", "Soldier"),
+    SWORDSMAN("Swordsman", "Soldier"),
+    KNIGHT("Knight", "Soldier"),
+    TUNNELER("Tunneler", "Tunneler"),
+    LADDERMAN("Ladderman", "Ladderman"),
+    ENGINEER("Engineer", "Engineer"),
+    SLAVE("Slave", "Soldier"),
+    SLINGER("Slinger", "Soldier"),
+    ASSASSIN("Assassin", "Soldier"),
+    HORSE_ARCHER("Horse Archer", "Soldier"),
+    ARABIAN_SWORDSMAN("Arabian Swordsman", "Soldier"),
+    ARABIAN_BOW("Arabian Bow", "Soldier"),
+    BLACK_MONK("Black Monk", "Soldier"),
+    FIRE_THROWER("Fire Thrower", "Soldier"),
+    BATTERING_RAM("Battering Ram", "Soldier"),
+    CATAPULT("Catapult", "Soldier"),
+    STONE_THROWER("Stone Thrower", "Soldier"),
+    SIEGE_TOWER("Siege Tower", "Ladderman")
     ;
     private final String name;
+    public final String kind;
     public final static ArrayList<UnitName> barracks = new ArrayList<>(List.of(ARCHER,CROSSBOWMAN,SPEARMAN,PIKEMAN,MACEMAN,SWORDSMAN,KNIGHT));
     public final static ArrayList<UnitName> mercenaryPost = new ArrayList<>(List.of(SLAVE,SLINGER,ASSASSIN,HORSE_ARCHER,ARABIAN_BOW,ARABIAN_SWORDSMAN,FIRE_THROWER));
     public final static ArrayList<UnitName> engineerGuild = new ArrayList<>(List.of(ENGINEER,LADDERMAN,TUNNELER));
 
 
-    UnitName(String name) {
+    UnitName(String name, String kind) {
         this.name = name;
+        this.kind = kind;
     }
 
     public String getName() {

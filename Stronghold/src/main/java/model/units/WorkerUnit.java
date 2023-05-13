@@ -1,8 +1,10 @@
 package model.units;
 
+import model.map.Block;
 import model.resourecs.Armour;
 import model.resourecs.ResourcesName;
 import model.resourecs.Weapon;
+import model.society.Government;
 import model.units.Person;
 import model.units.Soldier;
 import model.units.enums.UnitName;
@@ -19,6 +21,9 @@ public class WorkerUnit extends Person {
         super(hp, speed, defencePower, name, price, canClimbLadder, canDigMoat);
     }
 
+    public WorkerUnit(UnitName name, Block block, Government government) {
+        super(name, block, government);
+    }
 
     public WorkerUnit(UnitName name) {
         super(name);

@@ -10,6 +10,7 @@ import model.units.Soldier;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+// Todo: can extend from unit maker
 public class Church extends Building {
     private ArrayList<Soldier> monks;
 
@@ -28,7 +29,7 @@ public class Church extends Building {
         if (name.equals(BuildingName.CATHEDRAL))
             government.addPopularity(4);
     }
-
+// ToDo: make monk
     public void makeMonk() {
 
     }

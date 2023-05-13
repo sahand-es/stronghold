@@ -7,7 +7,11 @@ import model.map.Block;
 import model.map.Map;
 import model.society.Government;
 import model.units.Person;
+import model.units.Soldier;
 import model.units.enums.UnitName;
+import model.units.workerunits.Engineer;
+import model.units.workerunits.Ladderman;
+import model.units.workerunits.Tunneler;
 import view.enums.messages.GameMessages;
     /*
     TODO:
@@ -140,9 +144,32 @@ public class GameControl {
         if (!UnitName.canThisBuildingMakeIt(selectedBuilding.getName(), person.getName()))
             return GameMessages.CANNOT_MAKE_THIS_UNIT_IN_THIS_BUILDING;
 
+        UnitName unitName = UnitName.getUnitByName(type);
+        Block block = selectedBuilding.getBlock();
+
         for (int i = 0; i < count; i++) {
-//            TODO: add constructor.
-            new Person(UnitName.getUnitByName(type), selectedBuilding.getBlock(), currentGovernment);
+            switch (unitName.kind) {
+                case "Soldier": {
+                    new Soldier(unitName, block, currentGovernment);
+                    break;
+                }
+                case "Tunneler": {
+                    new Tunneler(unitName, block, currentGovernment);
+                    break;
+                }
+                case "Engineer": {
+                    new Engineer(unitName, block, currentGovernment);
+                    break;
+                }
+                case "Ladderman": {
+                    new Ladderman(unitName, block, currentGovernment);
+                    break;
+                }
+                default: {
+                    new Person(unitName, block, currentGovernment);
+                    break;
+                }
+            }
         }
         return GameMessages.SUCCESS;
     }
