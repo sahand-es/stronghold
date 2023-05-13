@@ -166,6 +166,14 @@ public class Government {
         return output;
     }
 
+    public boolean doesHaveSiegeTent() {
+        for (Building building : buildings) {
+            if (building.getName().equals(BuildingName.SIEGE_TENT))
+                return true;
+        }
+        return false;
+    }
+
     public int calcTax() {
         int output = 0;
         if (this.taxRate == 0)

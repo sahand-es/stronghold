@@ -41,15 +41,19 @@ public enum GameMessages {
     SELECTED_UNIT_IS_NOT_ENGINEER,
     INVALID_DIRECTION,
 
-//  dig tunnel
+//  dig tunnel:
 
     SELECTED_UNIT_IS_NOT_TUNNELER,
 
-    CAN_NOT_DIG_THERE;
+    CAN_NOT_DIG_THERE,
+
+//  build:
+    INVALID_SIEGE_BUILD_NAME,
+    SIEGE_TENT_NOT_BUILD,
+
+
+
+
     ;
 
-//  state:
-;
-
-    ;
 }

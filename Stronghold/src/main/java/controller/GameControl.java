@@ -449,6 +449,33 @@ public class GameControl {
         }
     }
 
+    private GameMessages buildSiege(String buildName) {
+        if (selectedUnit == null)
+            return GameMessages.UNIT_NOT_SELECTED;
+        if (!(selectedUnit instanceof Engineer))
+            return GameMessages.SELECTED_UNIT_IS_NOT_ENGINEER;
+        if (!UnitName.isValidSiegeBuild(buildName))
+            return GameMessages.INVALID_SIEGE_BUILD_NAME;
+        UnitName unitName = UnitName.getUnitByName(buildName);
+        if (!currentGovernment.doesHaveSiegeTent())
+            return GameMessages.SIEGE_TENT_NOT_BUILD;
+        if (!currentGovernment.getResource().checkPay(new Person(UnitName.getUnitByName(buildName)).getPrice()))
+            return GameMessages.NOT_ENOUGH_RESOURCE;
+        switch (unitName) {
+            case CATAPULT:
+            case STONE_THROWER:
+            case BATTERING_RAM: {
+                new Soldier(unitName, selectedUnit.getBlock(), currentGovernment);
+                break;
+            }
+            case SIEGE_TOWER: {
+                new Ladderman(unitName, selectedUnit.getBlock(), currentGovernment);
+                break;
+            }
+        }
+        return GameMessages.SUCCESS;
+    }
+
     private void doAttacks() {
         for (Person unit : game.getAllUnits()) {
             if (unit instanceof Soldier) {
