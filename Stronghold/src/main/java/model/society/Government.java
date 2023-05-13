@@ -178,6 +178,10 @@ public class Government {
         return output;
     }
 
+    public int calcFoodUsage(){
+        return  (foodRate + 2) * getPopulation() / 2;
+    }
+
     public void addBuilding(Building building) {
         buildings.add(building);
         game.addBuilding(building);
@@ -290,5 +294,14 @@ public class Government {
             building.die();
         }
         game.removeGovernment(this);
+    }
+
+
+    public void payFoodToPeople(){
+
+    }
+
+    public void TaxingThePeople(){
+
     }
 }
