@@ -17,4 +17,10 @@ public class Castle extends Building {
     public Castle(BuildingName name, Government government, Block block) {
         super(name, government, block);
     }
+
+
+    @Override
+    public void die(){
+        //TODO;
+    }
 }
