@@ -4,6 +4,7 @@ import model.Game;
 import model.resourecs.ResourcesName;
 import model.society.Government;
 import model.society.Trade;
+import utility.CheckFunctions;
 import view.enums.messages.TradeMessages;
 
 import java.util.ArrayList;
@@ -30,6 +31,15 @@ public class TradeControl
             return TradeMessages.MESSAGE_EMPTY;
         }
 
+        if (CheckFunctions.checkPriceFormat(price)){
+            return TradeMessages.INVALID_PRICE;
+        }
+        if (CheckFunctions.checkAmountFormat(amount)){
+            return TradeMessages.INVALID_AMOUNT;
+        }
+        if (ResourcesName.isValidName(type)){
+            return TradeMessages.INVALID_RESOURCE;
+        }
 
         return TradeMessages.SUCCESS;
     }
