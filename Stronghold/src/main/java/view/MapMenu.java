@@ -69,7 +69,7 @@ public class MapMenu {
             }
 
             Block block = map.getBlockByXY(getMapX(),getMapY());
-            System.out.println(map.showMap(block));
+            System.out.println(map.showMap(block, 5, 1));
 
             command = scanner.nextLine();
 

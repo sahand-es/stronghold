@@ -81,10 +81,9 @@ public class Map {
         return true;
     }
 
-    public String showMap(Block block) {
+    public String showMap(Block block, int widthRange, int heightRange) {
         int blockWidth = 5, blockHeight = 3;
         StringBuilder output = new StringBuilder();
-        int heightRange = 1, widthRange = 5;
         int xCorner = block.getX() - widthRange, yCorner = block.getY() - heightRange;
 
         for (int y = yCorner; y < heightRange * 2 + 1 + yCorner; y++) {

@@ -153,7 +153,7 @@ public class Resource {
         return this.allResources.get(ResourcesName.PEOPLE);
     }
 
-    public int getAmount(ResourcesName resourcesName) {
+    public int getAmountOneResource(ResourcesName resourcesName) {
         return allResources.get(resourcesName);
     }
 }
