@@ -345,7 +345,7 @@ public class GameControl {
     }
 
     private void extractControl() {
-        for (Building building : game.getAllBuildings()) {
+        for (Building building : currentGovernment.getBuildings()) {
             if (building instanceof ResourceExtractorBuilding) {
                 ((ResourceExtractorBuilding) building).extract();
             }
@@ -353,7 +353,20 @@ public class GameControl {
     }
 
     private void giveFood() {
-        // TODO:
+        if(currentGovernment.getResource().getFoodAmount() < currentGovernment.foodUsage()) {
+            currentGovernment.setFoodRate(-2);
+        } else {
+            currentGovernment.getResource().payFood(currentGovernment.foodUsage());
+            currentGovernment.addPopularity(currentGovernment.getResource().getFoodDiversity());
+        }
+    }
+
+    private void getTax(){
+        if(currentGovernment.getResource().getGold() < -1 * currentGovernment.calcTax()){
+            currentGovernment.setTaxRate(0);
+        } else {
+            currentGovernment.getResource().addGold(currentGovernment.calcTax());
+        }
     }
 
     private void moveAllUnits() {
@@ -410,6 +423,9 @@ public class GameControl {
 
 
     public void nextTurn() {
+        giveFood();
+        getTax();
+        extractControl();
         if (game.goToNextTurn()) {
             attackControl();
             moveAllUnits();

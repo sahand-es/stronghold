@@ -101,6 +101,7 @@ public class Game {
         turn++;
         if (turn == governments.size()) {
             turn = 0;
+
             day++;
             return true;
         }
