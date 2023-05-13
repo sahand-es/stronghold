@@ -220,9 +220,10 @@ public class GameMenu {
             return;
         }
 
-
-        //todo give this to it's controller
-
+        int X = Integer.parseInt(x);
+        int Y = Integer.parseInt(y);
+        GameMessages message = GameControl.createBuilding(X,Y,type);
+        System.out.println(message.message());
     }
 
     private static void checkSelectBuilding(String command){
