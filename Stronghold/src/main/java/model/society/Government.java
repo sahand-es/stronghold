@@ -15,7 +15,6 @@ import java.util.ArrayList;
 
 public class Government
 {
-    User owner;
     private int popularity;
     private int foodRate;
     private int taxRate;
@@ -39,10 +38,10 @@ public class Government
     private Colors color;
     private Game game;
 
-    public Government(User government,Game game)
+    public Government(Colors color,Game game)
     {
         this.game = game;
-        this.owner = government;
+        this.color = color;
         tradesDone = new ArrayList<>();
         units = new ArrayList<>();
         siegeUtils = new ArrayList<>();
@@ -267,7 +266,5 @@ public class Government
         return output.toString();
     }
 
-    public User getOwner() {
-        return owner;
-    }
+
 }
