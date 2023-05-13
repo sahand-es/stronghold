@@ -24,6 +24,7 @@ public class Person {
     protected Government government;
     protected Queue<Block> moveQueue = new LinkedList<>();
     protected Block[] patrolBlocks = new Block[2];
+    protected Block whichPatrolBlock;
 
     protected boolean canClimbLadder;
     protected boolean canDigMoat;
@@ -291,12 +292,24 @@ public class Person {
                 blocksMoved += 1;
             }
 
+            if (moveQueue.isEmpty()) {
+                if (patrolBlocks != null) {
+                    whichPatrolBlock = whichPatrolBlock.equals(patrolBlocks[0]) ? patrolBlocks[1] : patrolBlocks [0];
+                    findPath(whichPatrolBlock);
+                }
+            }
+
+            while (!moveQueue.isEmpty() && blocksMoved < speed) {
+                lastBlock = moveQueue.peek();
+                moveQueue.remove();
+                blocksMoved += 1;
+            }
+
             this.block.removeUnit(this);
             lastBlock.addUnit(this);
             this.block = lastBlock;
         }
     }
-
 
     private HashMap<Block, Block> BFS(Block destination) {
         Map map = block.getMap();
@@ -361,6 +374,7 @@ public class Person {
 
     public void setPatrol(Block firstBlock, Block secondBlock) {
         patrolBlocks = new Block[]{firstBlock, secondBlock};
+        whichPatrolBlock = firstBlock;
     }
 
     private void stopPatroling() {
