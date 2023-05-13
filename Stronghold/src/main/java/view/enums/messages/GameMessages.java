@@ -39,9 +39,13 @@ public enum GameMessages {
     TRADE_MENU,
 //  pour oil:
     SELECTED_UNIT_IS_NOT_ENGINEER,
-    INVALID_DIRECTION;
+    INVALID_DIRECTION,
 
+//  dig tunnel
 
+    SELECTED_UNIT_IS_NOT_TUNNELER,
+
+    CAN_NOT_DIG_THERE;
     ;
 
 //  state:

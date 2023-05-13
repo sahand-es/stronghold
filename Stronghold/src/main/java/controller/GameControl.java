@@ -315,6 +315,22 @@ public class GameControl {
         return GameMessages.SUCCESS;
     }
 
+    public GameMessages digTunnel(int x, int y) {
+        if (selectedUnit == null)
+            return GameMessages.UNIT_NOT_SELECTED;
+        if (!map.isValidXY(x, y))
+            return GameMessages.INVALID_XY;
+        if (!(selectedUnit instanceof Tunneler))
+            return GameMessages.SELECTED_UNIT_IS_NOT_TUNNELER;
+        Tunneler tunneler = (Tunneler) selectedUnit;
+        if (!tunneler.canDigThere(map.getBlockByXY(x,y)))
+            return GameMessages.CAN_NOT_DIG_THERE;
+
+        tunneler.setTunnelQueue(map.getBlockByXY(x, y));
+
+        return GameMessages.SUCCESS;
+    }
+
     private void attackControl() {
         for (Person unit : game.getAllUnits()) {
             if (!(unit instanceof Soldier))
@@ -389,6 +405,13 @@ public class GameControl {
         }
     }
 
+    private void digAllTunnels() {
+        for (Person unit : game.getAllUnits()) {
+            if (unit instanceof Tunneler)
+                ((Tunneler) unit).digTunnel();
+        }
+    }
+
     private void attackFunction(Soldier soldier) {
         Person opponnet;
         if (soldier.isReadyToAttack()) {
@@ -443,6 +466,7 @@ public class GameControl {
         if (game.goToNextTurn()) {
             attackControl();
             moveAllUnits();
+            digAllTunnels();
             doAttacks();
         }
         currentGovernment = game.getCurrentGovernment();
