@@ -1,6 +1,7 @@
 package view.enums.messages;
 
 public enum GameMessages {
+    INVALID_RATE,
     INVALID_XY,
     NOT_ENOUGH_RESOURCE,
 // create building:

@@ -63,7 +63,7 @@ public class Soldier extends Person {
        return true;
     }
     public int getDamage() {
-        return damage;
+        return damage + government.getFearRate();
     }
 
     @Override

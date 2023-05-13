@@ -31,6 +31,28 @@ public class GameControl {
         this.map = game.getMap();
     }
 
+    private GameMessages foodRate(int rate) {
+        if (rate < -2 || rate > 2)
+            return GameMessages.INVALID_RATE;
+        currentGovernment.setFoodRate(rate);
+        return GameMessages.SUCCESS;
+    }
+
+    private GameMessages fearRate(int rate) {
+        if (rate < -5 || rate > 5)
+            return GameMessages.INVALID_RATE;
+        currentGovernment.setFearRate(rate);
+        return GameMessages.SUCCESS;
+    }
+
+    private GameMessages taxRate(int rate) {
+        if (rate < -3 || rate > 8)
+            return GameMessages.INVALID_RATE;
+
+        currentGovernment.setTaxRate(rate);
+        return GameMessages.SUCCESS;
+    }
+
     private GameMessages createBuilding(int x, int y, String type) {
         Building building = null;
         Map map = game.getMap();

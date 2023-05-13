@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 public class Government
 {
+//    ToDo: auto rate when there is not enough food
     private int popularity;
     private int foodRate;
     private int taxRate;
