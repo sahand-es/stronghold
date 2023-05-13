@@ -95,6 +95,27 @@ public class GameMenu {
             else if(GameCommands.getMatcher(command,GameCommands.DISBAND) != null){
                 //todo disband this shit
             }
+            else if(GameCommands.getMatcher(command,GameCommands.SET_TEXTURE_BLOCK) != null){
+                checkSetTextureBlock(command);
+            }
+            else if(GameCommands.getMatcher(command,GameCommands.SET_TEXTURE_AREA) != null){
+                checkSetTextureArea(command);
+            }
+            else if(GameCommands.getMatcher(command,GameCommands.CLEAR) != null){
+                checkClear(command);
+            }
+            else if((matcher = GameCommands.getMatcher(command,GameCommands.DROP_ROCK)) != null){
+                checkDropRock(matcher);
+            }
+            else if((matcher = GameCommands.getMatcher(command,GameCommands.DROP_TREE)) != null){
+                checkDropTree(matcher);
+            }
+            else if((matcher = GameCommands.getMatcher(command,GameCommands.DROP_BUILDING)) != null){
+                checkDropBuilding(matcher);
+            }
+            else if((matcher = GameCommands.getMatcher(command,GameCommands.DROP_UNIT)) != null){
+                checkDropUnit(matcher);
+            }
             else if(GameCommands.getMatcher(command,GameCommands.NEXT_TURN) != null){
                 //todo nextTurn this shit
             }
@@ -497,6 +518,201 @@ public class GameMenu {
     private static void checkBuildEquipment(Matcher matcher){
         String equipment = matcher.group("equipment");
 
+
+        //todo give this to it's controller
+
+    }
+
+
+    private static void checkSetTextureBlock(String command){
+        String x,y,type;
+
+        String regexForX = GameCommands.getRegexForX();
+        Matcher matcherX = Pattern.compile(regexForX).matcher(command);
+        if(!matcherX.find()){
+            System.out.println("You must give x!");
+            return;
+        }
+        else
+            x = matcherX.group("xNum");
+
+        command = command.replaceAll(matcherX.group().toString().trim(),"");
+
+        String regexForY = GameCommands.getRegexForY();
+        Matcher matcherY = Pattern.compile(regexForY).matcher(command);
+        if(!matcherY.find()){
+            System.out.println("You must give y!");
+            return;
+        }
+        else
+            y = matcherY.group("yNum");
+
+        command = command.replaceAll(matcherY.group().toString().trim(),"");
+
+        String regexForType = GameCommands.getRegexForType();
+        Matcher matcherType = Pattern.compile(regexForType).matcher(command);
+        if(!matcherType.find()){
+            System.out.println("You must give type!");
+            return;
+        }
+        else
+            type = matcherType.group("type");
+
+        command = command.replaceAll(matcherType.group().toString().trim(),"");
+
+        if (GameCommands.getMatcher(command, GameCommands.SET_TEXTURE_BLOCK_CHECK) == null){
+            System.out.println("Invalid argument in set texture command!");
+            return;
+        }
+
+
+        //todo give this to it's controller
+
+    }
+
+    private static void checkSetTextureArea(String command){
+        String x1,y1;
+        String x2,y2;
+        String type;
+
+        String regexForX1 = GameCommands.getRegexForX1();
+        Matcher matcherX1 = Pattern.compile(regexForX1).matcher(command);
+        if(!matcherX1.find()){
+            System.out.println("You must give x1!");
+            return;
+        }
+        else
+            x1 = matcherX1.group("x1Num");
+
+        command = command.replaceAll(matcherX1.group().toString().trim(),"");
+
+        String regexForY1 = GameCommands.getRegexForY1();
+        Matcher matcherY1 = Pattern.compile(regexForY1).matcher(command);
+        if(!matcherY1.find()){
+            System.out.println("You must give y1!");
+            return;
+        }
+        else
+            y1 = matcherY1.group("y1Num");
+
+        command = command.replaceAll(matcherY1.group().toString().trim(),"");
+
+
+        String regexForX2 = GameCommands.getRegexForX2();
+        Matcher matcherX2 = Pattern.compile(regexForX2).matcher(command);
+        if(!matcherX2.find()){
+            System.out.println("You must give x2!");
+            return;
+        }
+        else
+            x2 = matcherX2.group("x2Num");
+
+        command = command.replaceAll(matcherX2.group().toString().trim(),"");
+
+        String regexForY2 = GameCommands.getRegexForY2();
+        Matcher matcherY2 = Pattern.compile(regexForY2).matcher(command);
+        if(!matcherY2.find()){
+            System.out.println("You must give y2!");
+            return;
+        }
+        else
+            y2 = matcherY2.group("y2Num");
+
+        command = command.replaceAll(matcherY2.group().toString().trim(),"");
+
+        String regexForType = GameCommands.getRegexForType();
+        Matcher matcherType = Pattern.compile(regexForType).matcher(command);
+        if(!matcherType.find()){
+            System.out.println("You must give type!");
+            return;
+        }
+        else
+            type = matcherType.group("type");
+
+        command = command.replaceAll(matcherType.group().toString().trim(),"");
+
+        if (GameCommands.getMatcher(command, GameCommands.SET_TEXTURE_AREA_CHECK) == null){
+            System.out.println("Invalid argument in set texture command!");
+            return;
+        }
+
+
+        //todo give this to it's controller
+
+    }
+
+
+    private static void checkClear(String command){
+        String x,y;
+
+        String regexForX = GameCommands.getRegexForX();
+        Matcher matcherX = Pattern.compile(regexForX).matcher(command);
+        if(!matcherX.find()){
+            System.out.println("You must give x!");
+            return;
+        }
+        else
+            x = matcherX.group("xNum");
+
+        command = command.replaceAll(matcherX.group().toString().trim(),"");
+
+        String regexForY = GameCommands.getRegexForY();
+        Matcher matcherY = Pattern.compile(regexForY).matcher(command);
+        if(!matcherY.find()){
+            System.out.println("You must give y!");
+            return;
+        }
+        else
+            y = matcherY.group("yNum");
+
+        command = command.replaceAll(matcherY.group().toString().trim(),"");
+
+
+        if (GameCommands.getMatcher(command, GameCommands.CLEAR_CHECK) == null){
+            System.out.println("Invalid argument in clear command!");
+            return;
+        }
+
+
+        //todo give this to it's controller
+
+    }
+
+    private static void checkDropRock(Matcher matcher){
+        String x = matcher.group("xNumber");
+        String y = matcher.group("yNumber");
+        String direction = matcher.group("direction");
+
+
+        //todo give this to it's controller
+
+    }
+
+    private static void checkDropTree(Matcher matcher){
+        String x = matcher.group("xNumber");
+        String y = matcher.group("yNumber");
+        String type = matcher.group("type");
+
+
+        //todo give this to it's controller
+
+    }
+
+    private static void checkDropBuilding(Matcher matcher){
+        String x = matcher.group("xNumber");
+        String y = matcher.group("yNumber");
+        String type = matcher.group("type");
+
+
+        //todo give this to it's controller
+
+    }
+
+    private static void checkDropUnit(Matcher matcher){
+        String x = matcher.group("xNumber");
+        String y = matcher.group("yNumber");
+        String type = matcher.group("type");
+        String count = matcher.group("count");
 
         //todo give this to it's controller
 

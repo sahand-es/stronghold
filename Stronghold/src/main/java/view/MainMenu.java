@@ -72,7 +72,6 @@ public class MainMenu
                 else
                     System.out.println("My liege, that's an invalid command!");
 
-
             }
 
 

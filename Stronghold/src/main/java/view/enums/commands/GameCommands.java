@@ -47,7 +47,16 @@ public enum GameCommands {
     DISBAND("^\\s*disband\\s*$"),
     NEXT_TURN("^\\s*next\\s*turn\\s*$"),
     TRADE("^\\s*trade\\s+menu\\s*$"),
-
+    SET_TEXTURE_BLOCK("^\\s*settexture\\s+block\\s+.*"),
+    SET_TEXTURE_BLOCK_CHECK("^\\s*settexture\\s+block\\s+"),
+    SET_TEXTURE_AREA("^\\s*settexture\\s+area\\s+.*"),
+    SET_TEXTURE_AREA_CHECK("^\\s*settexture\\s+area\\s+"),
+    CLEAR("^\\s*clear\\s+.*"),
+    CLEAR_CHECK("\\s*clear\\s+$"),
+    DROP_ROCK("\\s*droprock\\s+-x\\s+(?<xNumber>\\d+)\\s+-y\\s+(?<yNumber>\\d+)\\s+-d\\s+(?<direction>\\S+)\\s*"),
+    DROP_TREE("\\s*droptree\\s+-x\\s+(?<xNumber>\\d+)\\s+-y\\s+(?<yNumber>\\d+)\\s+-t\\s+(?<type>\\S+)\\s*"),
+    DROP_BUILDING("\\s*dropbuilding\\s+-x\\s+(?<xNumber>\\d+)\\s+-y\\s+(?<yNumber>\\d+)\\s+-t\\s+(?<type>\\S+)\\s*"),
+    DROP_UNIT("\\s*dropunit\\s+-x\\s+(?<xNumber>\\d+)\\s+-y\\s+(?<yNumber>\\d+)\\s+-t\\s+(?<type>\\S+)\\s+-c\\s+(?<count>\\S+)\\s*"),
     ;
 
     String regex;
