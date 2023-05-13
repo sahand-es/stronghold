@@ -1,15 +1,10 @@
 package view;
 
 import model.Application;
-import model.Game;
-import model.map.Block;
-import model.map.Map;
-import utility.DataManager;
 import view.enums.AllMenus;
 import view.enums.commands.GameCommands;
-import view.enums.commands.MainMenuCommands;
-import view.enums.commands.MapMenuCommands;
 
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -22,6 +17,7 @@ public class GameMenu {
 
         while (true){
             command = scanner.nextLine();
+            Matcher matcher;
             if(GameCommands.getMatcher(command,GameCommands.BACK) != null){
                 System.out.println("You're now in Main Menu!");
                 Application.setCurrentMenu(AllMenus.MAIN_MENU);
@@ -34,31 +30,31 @@ public class GameMenu {
                 Application.setCurrentMenu(AllMenus.TRADE_MENU);
             }
             else if(GameCommands.getMatcher(command,GameCommands.SHOW_POPULARITY_FACTORS) != null){
-                //todo show popularity factors
+                //todo (print this shit) show popularity factors
             }
             else if(GameCommands.getMatcher(command,GameCommands.SHOW_POPULARITY) != null){
-                //todo show popularity
+                //todo (print this shit) show popularity
             }
             else if(GameCommands.getMatcher(command,GameCommands.SHOW_FOOD) != null){
-                //todo show food list
+                //todo (print this shit) show food list
             }
-            else if(GameCommands.getMatcher(command,GameCommands.FOOD_RATE) != null){
-                //todo get food rate
+            else if((matcher = GameCommands.getMatcher(command,GameCommands.FOOD_RATE)) != null){
+                checkFoodRate(matcher);
             }
             else if(GameCommands.getMatcher(command,GameCommands.FOOD_RATE_SHOW) != null){
-                //todo show food rate
+                //todo (print this shit) show food rate
             }
-            else if(GameCommands.getMatcher(command,GameCommands.TAX_RATE) != null){
-                //todo get tax rate
+            else if((matcher = GameCommands.getMatcher(command,GameCommands.TAX_RATE)) != null){
+                checkFearRate(matcher);
             }
             else if(GameCommands.getMatcher(command,GameCommands.TAX_RATE_SHOW) != null){
-                //todo show tax rate
+                //todo (print this shit) show tax rate
             }
-            else if(GameCommands.getMatcher(command,GameCommands.FEAR_RATE) != null){
-                //todo get tax rate
+            else if((matcher = GameCommands.getMatcher(command,GameCommands.FEAR_RATE)) != null){
+                checkTaxRate(matcher);
             }
             else if(GameCommands.getMatcher(command,GameCommands.FEAR_RATE_SHOW) != null){
-                //todo show tax rate
+                //todo (print this shit) show tax rate
             }
             else if(GameCommands.getMatcher(command,GameCommands.CREATE_BUILDING) != null){
                 checkCreateBuilding(command);
@@ -70,7 +66,7 @@ public class GameMenu {
                 checkCreateUnit(command);
             }
             else if(GameCommands.getMatcher(command,GameCommands.REPAIR) != null){
-                //todo repair
+                //todo repair this shit
             }
             else if(GameCommands.getMatcher(command,GameCommands.SELECT_UNIT) != null){
                 checkSelectUnit(command);
@@ -81,20 +77,27 @@ public class GameMenu {
             else if(GameCommands.getMatcher(command,GameCommands.PATROL_UNIT) != null){
                 checkPatrolUnit(command);
             }
-
-            //todo get set state
-
-            //todo get attack -e
-
-            //todo get attack
-
-            //todo get pour oil
-
-            //todo get dig tunnel
-
-            //todo get build equipment
-
-            //todo get disband unit
+            else if(GameCommands.getMatcher(command,GameCommands.SET) != null){
+                checkSetState(command);
+            }
+            else if((matcher = GameCommands.getMatcher(command,GameCommands.ATTACK)) != null){
+                checkAttack(matcher);
+            }
+            else if((matcher = GameCommands.getMatcher(command,GameCommands.POUR_OIL)) != null){
+                checkPourOil(matcher);
+            }
+            else if(GameCommands.getMatcher(command,GameCommands.DIG) != null){
+                checkDigTunnel(command);
+            }
+            else if((matcher = GameCommands.getMatcher(command,GameCommands.BUILD_EQUIPMENT)) != null){
+                checkBuildEquipment(matcher);
+            }
+            else if(GameCommands.getMatcher(command,GameCommands.DISBAND) != null){
+                //todo disband this shit
+            }
+            else if(GameCommands.getMatcher(command,GameCommands.NEXT_TURN) != null){
+                //todo nextTurn this shit
+            }
             else
                 System.out.println("My liege, that's an invalid command!");
 
@@ -108,6 +111,33 @@ public class GameMenu {
                     break;
             }
         }
+    }
+
+    private static void checkFoodRate(Matcher matcher){
+        //todo ina string e ha bepaaaaa!
+        String foodRateNumber = matcher.group("foodRateNumber");
+
+
+        //todo give this to it's controller
+
+    }
+
+    private static void checkTaxRate(Matcher matcher){
+        //todo ina string e ha bepaaaaa!
+        String foodRateNumber = matcher.group("taxRateNumber");
+
+
+        //todo give this to it's controller
+
+    }
+
+    private static void checkFearRate(Matcher matcher){
+        //todo ina string e ha bepaaaaa!
+        String foodRateNumber = matcher.group("fearRateNumber");
+
+
+        //todo give this to it's controller
+
     }
 
     private static void checkCreateBuilding(String command){
@@ -362,6 +392,117 @@ public class GameMenu {
     }
 
 
+    private static void checkSetState(String command){
+        String x,y,state;
+
+        String regexForX = GameCommands.getRegexForX();
+        Matcher matcherX = Pattern.compile(regexForX).matcher(command);
+        if(!matcherX.find()){
+            System.out.println("You must give x!");
+            return;
+        }
+        else
+            x = matcherX.group("xNum");
+
+        command = command.replaceAll(matcherX.group().toString().trim(),"");
+
+        String regexForY = GameCommands.getRegexForY();
+        Matcher matcherY = Pattern.compile(regexForY).matcher(command);
+        if(!matcherY.find()){
+            System.out.println("You must give y!");
+            return;
+        }
+        else
+            y = matcherY.group("yNum");
+
+        command = command.replaceAll(matcherY.group().toString().trim(),"");
+
+        String regexState = GameCommands.getRegexState();
+        Matcher matcherState = Pattern.compile(regexState).matcher(command);
+        if(!matcherState.find()){
+            System.out.println("You must give state!");
+            return;
+        }
+        else
+            state = matcherState.group("state");
+
+        command = command.replaceAll(matcherState.group().toString().trim(),"");
+
+
+        if (GameCommands.getMatcher(command, GameCommands.SET_CHECK) == null){
+            System.out.println("Invalid argument in set state command!");
+            return;
+        }
+
+
+        //todo give this to it's controller
+
+    }
+
+    private static void checkAttack(Matcher matcher){
+        String x,y;
+
+        x = matcher.group("xNumber");
+        y = matcher.group("yNumber");
+
+
+        //todo give this to it's controller
+
+    }
+
+    private static void checkPourOil(Matcher matcher){
+        String direction = matcher.group("direction");
+
+
+        //todo give this to it's controller
+
+    }
+
+    private static void checkDigTunnel(String command){
+        String x,y;
+
+        String regexForX = GameCommands.getRegexForX();
+        Matcher matcherX = Pattern.compile(regexForX).matcher(command);
+        if(!matcherX.find()){
+            System.out.println("You must give x!");
+            return;
+        }
+        else
+            x = matcherX.group("xNum");
+
+        command = command.replaceAll(matcherX.group().toString().trim(),"");
+
+        String regexForY = GameCommands.getRegexForY();
+        Matcher matcherY = Pattern.compile(regexForY).matcher(command);
+        if(!matcherY.find()){
+            System.out.println("You must give y!");
+            return;
+        }
+        else
+            y = matcherY.group("yNum");
+
+        command = command.replaceAll(matcherY.group().toString().trim(),"");
+
+
+        if (GameCommands.getMatcher(command, GameCommands.DIG_CHECK) == null){
+            System.out.println("Invalid argument in dig tunnel command!");
+            return;
+        }
+
+
+        //todo give this to it's controller
+
+    }
+
+    private static void checkBuildEquipment(Matcher matcher){
+        String equipment = matcher.group("equipment");
+
+
+        //todo give this to it's controller
+
+    }
+
+    //todo delete after debug
     public static void main(String[] args) {
         GameMenu gameMenu = new GameMenu();
         gameMenu.run();

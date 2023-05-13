@@ -9,11 +9,11 @@ public enum GameCommands {
     SHOW_POPULARITY("^\\s*show\\s+popularity\\s*$"),
     SHOW_POPULARITY_FACTORS("^\\s*show\\s+popularity\\s+factors\\s*$"),
     SHOW_FOOD("^\\s*show\\s+food\\s+list\\s*$"),
-    FOOD_RATE("^\\s*food\\s+rate\\s+-r\\s+(?<rateNumber>\\d+)\\s*$"),
+    FOOD_RATE("^\\s*food\\s+rate\\s+-r\\s+(?<foodRateNumber>\\d+)\\s*$"),
     FOOD_RATE_SHOW("^\\s*food\\s+rate\\s+show\\s*$"),
-    TAX_RATE("^\\s*tax\\s+rate\\s+-r\\s+(?<taxNumber>\\d+)\\s*$"),
+    TAX_RATE("^\\s*tax\\s+rate\\s+-r\\s+(?<taxRateNumber>\\d+)\\s*$"),
     TAX_RATE_SHOW("^\\s*tax\\s+rate\\s+show\\s*$"),
-    FEAR_RATE("^\\s*fear\\s+rate\\s+-r\\s+(?<fearNumber>\\d+)\\s*$"),
+    FEAR_RATE("^\\s*fear\\s+rate\\s+-r\\s+(?<fearRateNumber>\\d+)\\s*$"),
     FEAR_RATE_SHOW("^\\s*fear\\s+rate\\s+show\\s*$"),
     CREATE_BUILDING("^\\s*create\\s+building\\s+.*"),
     CREATE_BUILDING_CHECK("^\\s*create\\s+building\\s+$"),
@@ -36,7 +36,18 @@ public enum GameCommands {
     Y1_DIR("-y1\\s+(?<y1Num>\\d+)"),
     X2_DIR("-x2\\s+(?<x2Num>\\d+)"),
     Y2_DIR("-y2\\s+(?<y2Num>\\d+)"),
-    TRADE("^\\s*trade\\s+menu\\s*$")
+    SET("^\\s*set\\s+.*"),
+    SET_CHECK("^\\s*set\\s+$"),
+    STATE("-s\\s+(?<state>(standing|defensive|offensive))"),
+    ATTACK("\\s*attack\\s+-e\\s+(?<xNumber>\\d+)\\s+(?<yNumber>\\d+)\\s*"),
+    POUR_OIL("^\\s*pour\\s+oil\\s+-d\\s+(?<direction>\\S+)\\s*$"),
+    DIG("^\\s*dig\\s+tunnel\\s+.*"),
+    DIG_CHECK("\\s*dig\\s+tunnel\\s+$"),
+    BUILD_EQUIPMENT("^\\s*build\\s+-q\\s+(?<equipment>\\S+)\\s*$"),
+    DISBAND("^\\s*disband\\s*$"),
+    NEXT_TURN("^\\s*next\\s*turn\\s*$"),
+    TRADE("^\\s*trade\\s+menu\\s*$"),
+
     ;
 
     String regex;
@@ -74,5 +85,8 @@ public enum GameCommands {
     }
     public static String getRegexForCount(){
         return COUNT.regex;
+    }
+    public static String getRegexState(){
+        return STATE.regex;
     }
 }
