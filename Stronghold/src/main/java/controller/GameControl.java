@@ -205,7 +205,7 @@ public class GameControl {
         return GameMessages.SUCCESS;
     }
 
-    private void personConstructorCaller(UnitName unitName, Block block) {
+    private static void personConstructorCaller(UnitName unitName, Block block) {
         switch (unitName.kind) {
             case "Soldier": {
                 new Soldier(unitName, block, currentGovernment);
