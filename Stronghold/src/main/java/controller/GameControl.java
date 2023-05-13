@@ -278,6 +278,24 @@ public class GameControl {
         return GameMessages.SUCCESS;
     }
 
+    private GameMessages attack(int x, int y) {
+        if (selectedUnit == null)
+            return GameMessages.UNIT_NOT_SELECTED;
+        if (!map.isValidXY(x, y))
+            return GameMessages.INVALID_XY;
+        if (!(selectedUnit instanceof Soldier))
+            return GameMessages.CAN_NOT_ATTACK_WITH_THIS_UNIT_TYPE;
+        Soldier soldier = (Soldier) selectedUnit;
+        Block block = map.getBlockByXY(x,y);
+        if (block.getEnemy(selectedUnit) == null)
+            return GameMessages.NO_ENEMY_TO_ATTACK;
+        if (!soldier.setAttackQueue(block.getEnemy(selectedUnit))) {
+            return GameMessages.CAN_NOT_GO_THERE_TO_ATTACK;
+        }
+
+        return GameMessages.SUCCESS;
+    }
+
     private void attackControl() {
         for (Person unit : game.getAllUnits()) {
             if (!(unit instanceof Soldier))
@@ -339,7 +357,7 @@ public class GameControl {
         }
     }
 
-    private void attack(Soldier soldier) {
+    private void attackFunction(Soldier soldier) {
         Person opponnet;
         if (soldier.isReadyToAttack()) {
             opponnet = soldier.getOpponnet();
@@ -375,7 +393,7 @@ public class GameControl {
         for (Person unit : game.getAllUnits()) {
             if (unit instanceof Soldier) {
                 Soldier soldier = (Soldier) unit;
-                attack(soldier);
+                attackFunction(soldier);
             }
         }
     }

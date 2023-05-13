@@ -32,6 +32,10 @@ public enum GameMessages {
     UNIT_NOT_SELECTED,
     THIS_UNIT_DOES_NOT_HAVE_STATE,
     SUCCESS,
+//  attack:
+    CAN_NOT_ATTACK_WITH_THIS_UNIT_TYPE,
+    NO_ENEMY_TO_ATTACK,
+    CAN_NOT_GO_THERE_TO_ATTACK,
     TRADE_MENU;
 //  state:
 ;
