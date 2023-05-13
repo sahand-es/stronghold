@@ -65,13 +65,17 @@ public class Soldier extends Person {
         this.soldierUnitState = soldierUnitState;
     }
 
-    public void setAttackQueue(Person enemyToAttack) {
+    public boolean setAttackQueue(Person enemyToAttack) {
         attackQueue = new LinkedList<>();
         attackQueue.add(enemyToAttack);
         Block enemyBlock = enemyToAttack.getBlock();
         Block closestBlock = enemyBlock.findClosestBlock(attackRange, block);
 
+        if (!canGoThere(closestBlock))
+            return false;
+
         findPath(closestBlock);
+        return true;
     }
 
     public Person getOpponnet() {

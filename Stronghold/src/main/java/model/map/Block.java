@@ -119,6 +119,14 @@ public class Block {
         return thisGovernmentUnits.get(selectCount % (thisGovernmentUnits.size() - 1));
     }
 
+    public Person getEnemy(Person person) {
+        for (Person unit : units) {
+            if (!unit.getGovernment().equals(person.getGovernment()))
+                return unit;
+        }
+        return null;
+    }
+
     public boolean doesGovernmentHaveUnit(Government government) {
         for (Person unit : units) {
             if (unit.getGovernment().equals(government))
