@@ -41,13 +41,20 @@ public enum GameMessages {
     SELECTED_UNIT_IS_NOT_ENGINEER("This unit is not an engineer"),
     INVALID_DIRECTION("Invalid Direction"),
 
-//  dig tunnel
+//  dig tunnel:
 
     SELECTED_UNIT_IS_NOT_TUNNELER("This unit is not a tunneler"),
 
-    CAN_NOT_DIG_THERE("can not dig this block");
-    ;
+    CAN_NOT_DIG_THERE("can not dig this block"),
 
+
+//  build:
+    INVALID_SIEGE_BUILD_NAME("Invalid siege equipment name"),
+    SIEGE_TENT_NOT_BUILD("Make siege tent first"),
+
+    CAN_NOT_DROP_UNIT_HERE("Can not build siege equipment here"),
+
+;
     final String message;
 
     GameMessages(String message){

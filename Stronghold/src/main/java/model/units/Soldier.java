@@ -90,7 +90,7 @@ public class Soldier extends Person {
        if (attackQueue.isEmpty())
            return false;
        setAttackQueue(attackQueue.peek());
-       return moveQueue.isEmpty();
+       return moveQueue.size() <= getSpeed();
     }
     public int getDamage() {
         return damage + government.getFearRate();

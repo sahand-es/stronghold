@@ -35,6 +35,7 @@ public enum UnitName {
     public final static ArrayList<UnitName> barracks = new ArrayList<>(List.of(ARCHER,CROSSBOWMAN,SPEARMAN,PIKEMAN,MACEMAN,SWORDSMAN,KNIGHT));
     public final static ArrayList<UnitName> mercenaryPost = new ArrayList<>(List.of(SLAVE,SLINGER,ASSASSIN,HORSE_ARCHER,ARABIAN_BOW,ARABIAN_SWORDSMAN,FIRE_THROWER));
     public final static ArrayList<UnitName> engineerGuild = new ArrayList<>(List.of(ENGINEER,LADDERMAN,TUNNELER));
+    public final static ArrayList<UnitName>  siegeBuilds = new ArrayList<>(List.of(BATTERING_RAM, CATAPULT, STONE_THROWER, SIEGE_TOWER));
 
 
     UnitName(String name, String kind) {
@@ -58,6 +59,14 @@ public enum UnitName {
     public static boolean isValidName(String name) {
         for (UnitName value : UnitName.values()) {
             if (value.getName().equalsIgnoreCase(name))
+                return true;
+        }
+        return false;
+    }
+
+    public static boolean isValidSiegeBuild(String string) {
+        for (UnitName siegeBuild : siegeBuilds) {
+            if (siegeBuild.getName().equalsIgnoreCase(string))
                 return true;
         }
         return false;

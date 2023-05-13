@@ -44,8 +44,8 @@ public class GameControlTest {
 
     @Test
     public void attackTestOffensive() {
-        Soldier soldier1 = new Soldier(UnitName.ARCHER, map.getBlockByXY(0, 0), government1);
-        Soldier soldier2 = new Soldier(UnitName.ASSASSIN, map.getBlockByXY(4, 4), government2);
+        Soldier soldier1 = new Soldier(UnitName.ASSASSIN, map.getBlockByXY(0, 0), government1);
+        Soldier soldier2 = new Soldier(UnitName.KNIGHT, map.getBlockByXY(4, 4), government2);
         System.out.println(soldier1.getName().getName() + ": " + soldier1.getHp());
         System.out.println(soldier2.getName().getName() + ": " + soldier2.getHp());
 
