@@ -186,6 +186,11 @@ public class Building extends Environment {
 
         allBuildings.add(this);
     }
+
+    public BuildingCategory getCategory() {
+        return category;
+    }
+
     public Building(BuildingName name, Government government, Block block) {
         Building buildingToClone = getBuildingByBuildingName(name);
         this.hp = buildingToClone.hp;
@@ -236,6 +241,10 @@ public class Building extends Environment {
             return false;
 
         return true;
+    }
+
+    public void repair() {
+        hp = getBuildingByBuildingName(name).hp;
     }
 
     public void die(){

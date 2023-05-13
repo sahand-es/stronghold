@@ -20,6 +20,7 @@ public enum GameMessages {
 // repair:
     NOT_ENOUGH_ROCK,
     ENEMY_CLOSE,
+    CANNOT_REPAIR_THIS_BUILDING_TYPE,
 // select unit:
     EMPTY_XY_UNIT,
     NOT_YOURS_UNIT,
@@ -28,7 +29,7 @@ public enum GameMessages {
 // patrol unit:
     INVALID_UNIT_STATE,
     CLOSE_RANGE_UNIT,
-    NOT_SELECTED_UNIT,
+    UNIT_NOT_SELECTED,
     SUCCESS,
 
     ;

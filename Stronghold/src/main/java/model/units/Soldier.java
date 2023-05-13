@@ -45,6 +45,11 @@ public class Soldier extends Person {
 
     public Soldier(UnitName name, Block block, Government government) {
         super(name, block, government);
+        Soldier soldierToClone = (Soldier) getPersonByUnitName(name);
+
+        this.soldierUnitState = SoldierUnitState.STANDING;
+        this.attackRange = soldierToClone.attackRange;
+        this.damage = soldierToClone.damage;
     }
 
     public SoldierUnitState getSoldierUnitState() {

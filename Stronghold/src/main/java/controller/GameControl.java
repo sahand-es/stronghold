@@ -2,9 +2,11 @@ package controller;
 
 import model.Game;
 import model.environment.buildings.*;
+import model.environment.buildings.enums.BuildingCategory;
 import model.environment.buildings.enums.BuildingName;
 import model.map.Block;
 import model.map.Map;
+import model.resourecs.ResourcesName;
 import model.society.Government;
 import model.units.Person;
 import model.units.Soldier;
@@ -13,6 +15,8 @@ import model.units.workerunits.Engineer;
 import model.units.workerunits.Ladderman;
 import model.units.workerunits.Tunneler;
 import view.enums.messages.GameMessages;
+
+import java.util.HashMap;
     /*
     TODO:
     1-game menu run ba government
@@ -210,9 +214,13 @@ public class GameControl {
         return GameMessages.SUCCESS;
     }
 
+    private void deSelectUnit() {
+        selectedUnit = null;
+    }
+
     private GameMessages moveUnit(int x, int y) {
         if (selectedUnit == null)
-            return GameMessages.NOT_SELECTED_UNIT;
+            return GameMessages.UNIT_NOT_SELECTED;
         if (!map.isValidXY(x, y))
             return GameMessages.INVALID_XY;
         if (!selectedUnit.findPath(map.getBlockByXY(x, y)))
@@ -223,13 +231,27 @@ public class GameControl {
 
     private GameMessages patrolUnit(int x1, int y1, int x2, int y2) {
         if (selectedUnit == null)
-            return GameMessages.NOT_SELECTED_UNIT;
+            return GameMessages.UNIT_NOT_SELECTED;
         if (!map.isValidXY(x1, y1) || !map.isValidXY(x2, y2))
             return GameMessages.INVALID_XY;
         if (!selectedUnit.canGoThere(map.getBlockByXY(x1, y1)) || !selectedUnit.canGoThere(map.getBlockByXY(x2, y2)))
             return GameMessages.CANNOT_GO_THERE;
 
         selectedUnit.setPatrol(map.getBlockByXY(x1, y1), map.getBlockByXY(x2, y2));
+        return GameMessages.SUCCESS;
+    }
+
+    private GameMessages repair() {
+        if (selectedBuilding == null)
+            return GameMessages.BUILDING_NOT_SELECTED;
+        if (!selectedBuilding.getCategory().equals(BuildingCategory.CASTLE) && !selectedBuilding.getPrice().containsKey(ResourcesName.STONE))
+            return GameMessages.CANNOT_REPAIR_THIS_BUILDING_TYPE;
+        HashMap<ResourcesName, Integer> stonePrice = new HashMap<>();
+        stonePrice.put(ResourcesName.STONE, selectedBuilding.getPrice().get(ResourcesName.STONE)/2);
+        if (!currentGovernment.getResource().checkPay(stonePrice))
+            return GameMessages.NOT_ENOUGH_ROCK;
+
+        selectedBuilding.repair();
         return GameMessages.SUCCESS;
     }
 
