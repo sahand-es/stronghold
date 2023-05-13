@@ -23,6 +23,7 @@ public class Person {
     protected Block block;
     protected Government government;
     protected Queue<Block> moveQueue = new LinkedList<>();
+    protected Block[] patrolBlocks = new Block[2];
 
     protected boolean canClimbLadder;
     protected boolean canDigMoat;
@@ -277,7 +278,7 @@ public class Person {
         if (route == null)
             return false;
         addRouteToQueue(route, destination);
-       return true;
+        return true;
     }
 
     public void move() {
@@ -310,8 +311,7 @@ public class Person {
 
         long startTime = System.currentTimeMillis();
         long end = startTime + 4 * 1000;
-//todo : add time limit
-        while (!queue.isEmpty()) {
+        while (!queue.isEmpty() && System.currentTimeMillis() < end) {
             Block currentBlock = queue.poll();
             int x = currentBlock.getX();
             int y = currentBlock.getY();
@@ -349,16 +349,22 @@ public class Person {
         Stack<Block> s = new Stack();  //create a stack
 
         //while the queue is not empty
-        while(!moveQueue.isEmpty())
-        {  //add the elements of the queue onto a stack
+        while (!moveQueue.isEmpty()) {  //add the elements of the queue onto a stack
             s.push(moveQueue.poll());
         }
 
         //while the stack is not empty
-        while(!s.isEmpty())
-        { //add the elements in the stack back to the queue
+        while (!s.isEmpty()) { //add the elements in the stack back to the queue
             moveQueue.add(s.pop());
         }
+    }
+
+    public void setPatrol(Block firstBlock, Block secondBlock) {
+        patrolBlocks = new Block[]{firstBlock, secondBlock};
+    }
+
+    private void stopPatroling() {
+        patrolBlocks = null;
     }
 
     private void die() {

@@ -90,7 +90,6 @@ public class GameControl {
     }
 
     private void nextTurn(){
-
         if(game.goToNextTurn()){
             for (Person unit : game.getAllUnits()) {
                 unit.move();

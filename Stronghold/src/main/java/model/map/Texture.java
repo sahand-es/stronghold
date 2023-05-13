@@ -41,7 +41,6 @@ public enum Texture
         return null;
     }
 
-
     public String getColor() {
         return color;
     }

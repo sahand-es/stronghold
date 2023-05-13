@@ -80,10 +80,9 @@ public class Map {
         return true;
     }
 
-    public String showMap(Block block) {
+    public String showMap(Block block, int widthRange, int heightRange) {
         int blockWidth = 5, blockHeight = 3;
         StringBuilder output = new StringBuilder();
-        int heightRange = 1, widthRange = 5;
         int xCorner = block.getX() - widthRange, yCorner = block.getY() - heightRange;
 
         for (int y = yCorner; y < heightRange * 2 + 1 + yCorner; y++) {
@@ -111,12 +110,4 @@ public class Map {
 
         return output.toString();
     }
-
-    public static void main(String[] args) {
-        Map map = new Map(100, 100);
-//        map.setTexture(50, 50, Texture.WATER);
-        map.setGroupTexture(50, 50, 55, 51, Texture.WATER);
-        System.out.println(map.showMap(map.getBlockByXY(50, 50)));
-    }
-
 }
