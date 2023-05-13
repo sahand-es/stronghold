@@ -30,7 +30,7 @@ import java.util.HashMap;
 
 public class GameControl {
     private Game game;
-    private Map map;
+    private static Map map;
     private Person selectedUnit = null;
     private Building selectedBuilding = null;
     private static Government currentGovernment;
@@ -70,7 +70,6 @@ public class GameControl {
 
     public GameMessages createBuilding(int x, int y, String type) {
         Building building = null;
-        Map map = game.getMap();
         if (!map.isValidXY(x, y))
             return GameMessages.INVALID_XY;
         if (!BuildingName.isValidName(type))
@@ -83,7 +82,29 @@ public class GameControl {
 
         BuildingName buildingName = BuildingName.getBuildingNameByName(type);
         Block block = map.getBlockByXY(x, y);
-//      Todo: add constructors
+
+        buildingConstructorCaller(buildingName, block);
+
+        return GameMessages.SUCCESS;
+    }
+
+    public static  GameMessages dropBuilding(int x, int y, String type) {
+        Building building = null;
+        if (!map.isValidXY(x, y))
+            return GameMessages.INVALID_XY;
+        if (!BuildingName.isValidName(type))
+            return GameMessages.INVALID_BUILDING_TYPE;
+        building = Building.getBuildingByBuildingName(BuildingName.getBuildingNameByName(type));
+
+        BuildingName buildingName = BuildingName.getBuildingNameByName(type);
+        Block block = map.getBlockByXY(x, y);
+
+        buildingConstructorCaller(buildingName, block);
+
+        return GameMessages.SUCCESS;
+    }
+
+    private static void buildingConstructorCaller(BuildingName buildingName, Block block) {
         switch (buildingName.kind) {
             case "Gate": {
                 new Gate(buildingName, currentGovernment, block);
@@ -138,8 +159,8 @@ public class GameControl {
                 break;
             }
         }
-        return GameMessages.SUCCESS;
     }
+
 
     public GameMessages createUnit(String type, int count) {
         Person person = null;
@@ -159,30 +180,54 @@ public class GameControl {
         Block block = selectedBuilding.getBlock();
 
         for (int i = 0; i < count; i++) {
-            switch (unitName.kind) {
-                case "Soldier": {
-                    new Soldier(unitName, block, currentGovernment);
-                    break;
-                }
-                case "Tunneler": {
-                    new Tunneler(unitName, block, currentGovernment);
-                    break;
-                }
-                case "Engineer": {
-                    new Engineer(unitName, block, currentGovernment);
-                    break;
-                }
-                case "Ladderman": {
-                    new Ladderman(unitName, block, currentGovernment);
-                    break;
-                }
-                default: {
-                    new Person(unitName, block, currentGovernment);
-                    break;
-                }
-            }
+            personConstructorCaller(unitName, block);
         }
         return GameMessages.SUCCESS;
+    }
+
+    public GameMessages dropUnit(int x,int y,String type, int count) {
+        Person person = null;
+        if (!map.isValidXY(x, y))
+            return GameMessages.INVALID_XY;
+        Block block = map.getBlockByXY(x, y);
+        if (!UnitName.isValidName(type))
+            return GameMessages.INVALID_UNIT_TYPE;
+        person = new Person(UnitName.getUnitByName(type));
+        if (!block.canPassThisBlock(person))
+            return GameMessages.CAN_NOT_DROP_UNIT_HERE;
+
+        UnitName unitName = UnitName.getUnitByName(type);
+
+        for (int i = 0; i < count; i++) {
+            personConstructorCaller(unitName, block);
+        }
+
+        return GameMessages.SUCCESS;
+    }
+
+    private void personConstructorCaller(UnitName unitName, Block block) {
+        switch (unitName.kind) {
+            case "Soldier": {
+                new Soldier(unitName, block, currentGovernment);
+                break;
+            }
+            case "Tunneler": {
+                new Tunneler(unitName, block, currentGovernment);
+                break;
+            }
+            case "Engineer": {
+                new Engineer(unitName, block, currentGovernment);
+                break;
+            }
+            case "Ladderman": {
+                new Ladderman(unitName, block, currentGovernment);
+                break;
+            }
+            default: {
+                new Person(unitName, block, currentGovernment);
+                break;
+            }
+        }
     }
 
     public GameMessages selectBuilding(int x, int y) {
@@ -475,6 +520,7 @@ public class GameControl {
         }
         return GameMessages.SUCCESS;
     }
+
 
     private void doAttacks() {
         for (Person unit : game.getAllUnits()) {

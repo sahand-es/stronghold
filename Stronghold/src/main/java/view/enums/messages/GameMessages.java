@@ -51,6 +51,7 @@ public enum GameMessages {
     INVALID_SIEGE_BUILD_NAME,
     SIEGE_TENT_NOT_BUILD,
 
+    CAN_NOT_DROP_UNIT_HERE,
 
 
 
