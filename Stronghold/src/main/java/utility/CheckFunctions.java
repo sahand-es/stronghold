@@ -47,6 +47,36 @@ public class CheckFunctions
 
         return username;
     }
+    public static boolean checkEmailExits(String email)
+    {
+        return Application.getUserByEmail(email) != null;
+    }
+
+    public static boolean checkEmailFormat(String email) {
+        return !email.matches("([^\\@\\s])+\\@([^\\.\\s])+\\.(\\S+)+");
+    }
+
+    public static boolean checkPriceFormat(String price) {
+        if (price.matches("\\D"))
+            return true;
+        if (price.equals(""))
+            return true;
+        if(Integer.parseInt(price) < 0)
+            return true;
+
+        return false;
+    }
+
+    public static boolean checkAmountFormat(String amount) {
+        if (amount.matches("\\D"))
+            return true;
+        if (amount.equals(""))
+            return true;
+        if(Integer.parseInt(amount) < 1)
+            return true;
+
+        return false;
+    }
     public static String getPassFromMatcher(Matcher matcher){
         String password = "";
         String argVal = matcher.group("password");
@@ -98,14 +128,6 @@ public class CheckFunctions
         }
 
         return slogan;
-    }
-    public static boolean checkEmailExits(String email)
-    {
-        return Application.getUserByEmail(email) != null;
-    }
-
-    public static boolean checkEmailFormat(String email) {
-        return !email.matches("([^\\@\\s])+\\@([^\\.\\s])+\\.(\\S+)+");
     }
 
     public static SignUpMessages questionCommandCheck(HashMap<String, String> questionData) {

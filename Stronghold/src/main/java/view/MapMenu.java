@@ -1,6 +1,9 @@
 package view;
 
 import model.Application;
+import model.map.Block;
+import model.map.Map;
+import model.map.Texture;
 import utility.CheckFunctions;
 import utility.DataManager;
 import view.enums.AllMenus;
@@ -12,7 +15,20 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class MapMenu {
+    private static int HEIGHT = 200;
+    private static int WIDTH = 200;
     private static int mapX,mapY;
+    private static Map map;
+
+    public static Map getMap() {
+        return map;
+    }
+
+    public static void setMap(Map map) {
+        MapMenu.map = map;
+        HEIGHT = map.getHeight();
+        WIDTH = map.getWidth();
+    }
 
     public static int getMapX() {
         return mapX;
@@ -33,20 +49,35 @@ public class MapMenu {
     public static void run(int x , int y){
         setMapX(x);
         setMapY(y);
+        setMap(Application.getCurrentGame().getMap());
 
+        //map.setTexture(5,5, Texture.WATER);
         java.util.Scanner scanner = new java.util.Scanner(System.in);
         String command;
 
         while(true){
 
-            System.out.println("XY: " + getMapX() + " " + getMapY());
-            //todo literally show the fucking map!
+            if (getMapX() > WIDTH - 5){
+                setMapX(WIDTH - 5);
+            }
+            if (getMapX() < 5){
+                setMapX(5);
+            }
+            if (getMapY() > HEIGHT - 1){
+                setMapY(HEIGHT - 1);
+            }
+            if (getMapY() < 1){
+                setMapY(1);
+            }
+
+            Block block = map.getBlockByXY(getMapX(),getMapY());
+            System.out.println(map.showMap(block, 5, 1));
 
             command = scanner.nextLine();
 
             if(MapMenuCommands.getMatcher(command, MapMenuCommands.EXIT) != null){
-                System.out.println("You're in Main Menu!");
-                Application.setCurrentMenu(AllMenus.MAIN_MENU);
+                System.out.println("You're in Game Menu!");
+                Application.setCurrentMenu(AllMenus.GAME_MENU);
                 return;
             }
             else if(MapMenuCommands.getMatcher(command,MapMenuCommands.MAP) != null){
@@ -63,7 +94,7 @@ public class MapMenu {
 
 
             switch (Application.getCurrentMenu()){
-                case MAIN_MENU:
+                case GAME_MENU:
                     return;
                 default:
                     break;
@@ -117,7 +148,7 @@ public class MapMenu {
         }
         else{
             setMapX(getMapX() + right - left);
-            setMapY(getMapY() + up - down);
+            setMapY(getMapY() - up + down);
         }
     }
 
@@ -151,9 +182,18 @@ public class MapMenu {
             return;
         }
 
-        //todo typecast to int
-        System.out.println("X: " + x);
-        System.out.println("Y: " + y);
+        if (Integer.parseInt(x) < 0 || Integer.parseInt(x) > WIDTH){
+            System.out.println("Out of bound in X axis!");
+            return;
+        }
+        if (Integer.parseInt(y) < 0 || Integer.parseInt(y) > HEIGHT){
+            System.out.println("Out of bound in Y axis!");
+            return;
+        }
+
+        Map map = getMap();
+        Block block = map.getBlockByXY(Integer.parseInt(x), Integer.parseInt(y));
+        System.out.println(block.showDetails());
 
     }
 }

@@ -1,0 +1,48 @@
+Kind,Name,Category,Size,Hp,Price Kind,Price Count,Capacity,Fire Range,Defence Range,Damage,Extracted Resource
+Bridge,Drawbridge,Castle,1,0,Wood,10,null,null,null,null,null
+Unit Maker,Siege Tent,Castle,2,500,null,null,null,null,null,null,null
+Building,Ox Tether,Industry,1,100,Wood,5,null,null,null,null,null
+Building,Tunnel Entrance ,Weapons,1,0,null,null,null,null,null,null,null
+Church,Church,Town,2,800,Gold,500,null,null,null,null,null
+Church,Cathedral,Town,3,1200,Gold,1000,null,null,null,null,null
+Defensive,Lookout Tower,Castle,1,200,Stone,10,null,2,1,30,null
+Defensive,Perimeter Tower,Castle,2,1000,Stone,10,null,3,1,50,null
+Defensive,Defence Turret,Castle,2,1200,Stone,15,null,2,1,50,null
+Defensive,Square Tower,Castle,2,1600,Stone,35,null,3,1,50,null
+Defensive,Round Tower,Castle,2,2000,Stone,40,null,3,1,50,null
+Defensive,Caged War Dogs,Castle,1,100,Wood~Gold,10~100,null,1,1,100,null
+Extractor,Stable,Castle,2,300,Wood~Gold,20~400,null,null,null,null,Horse
+Extractor,Apple Orchard,Farm,2,100,Wood,5,null,null,null,null,Apple
+Extractor,Dairy Farmer,Farm,2,100,Wood,10,null,null,null,null,Cheese~Cow
+Extractor,Hops Farmer,Farm,2,100,Wood,15,null,null,null,null,Hops
+Extractor,Hunter Post,Farm,2,100,Wood,5,null,null,null,null,Meat
+Extractor,Wheat Farmer,Farm,2,100,Wood,15,null,null,null,null,Wheat
+Extractor,Iron Mine,Industry,2,100,Wood,20,null,null,null,null,Iron
+Extractor,Pitch Rig,Industry,2,100,Wood,20,null,null,null,null,Pitch
+Extractor,Quarry,Industry,2,300,Wood,20,null,null,null,null,Stone
+Extractor,Woodcutter,Industry,2,100,Wood,3,null,null,null,null,Wood
+Gate,Small Stone Gatehouse,Castle,2,1000,null,null,8,null,null,null,null
+Gate,Large Stone Gatehouse,Castle,3,2000,Stone,20,10,null,null,null,null
+House,Hovel,Town,2,100,Wood,6,8,null,null,null,null
+Inn,Inn,Food Processing,2,300,Wood~Gold,20~100,null,null,null,null,null
+Extractor,Oil Smelter,Castle,1,300,Iron~Gold,10~100,null,null,null,null,Oil
+Extractor,Bakery,Food Processing,1,300,Wood,10,null,null,null,null,Bread
+Extractor,Brewer,Food Processing,1,300,Wood,10,null,null,null,null,Ale
+Extractor,Mill,Food Processing,2,300,Wood,20,null,null,null,null,Flour
+Extractor,Armourer,Weapons,2,300,Wood~Gold,20~100,null,null,null,null,Leather~Metal
+Extractor,Blacksmith,Weapons,2,300,Wood~Gold,20~200,null,null,null,null,Sword~Mace
+Extractor,Fletcher,Weapons,2,300,Wood~Gold,20~100,null,null,null,null,Bow~Crossbow
+Extractor,Poleturner,Weapons,2,300,Wood~Gold,10~100,null,null,null,null,Pike~Spear
+Shop,Market,Industry,1,300,Wood,5,10,null,null,null,null
+Storage,Armoury,Castle,2,500,Wood,5,10,null,null,null,null
+Storage,Granary,Food Processing,2,300,Wood,5,10,null,null,null,null
+Storage,Stockpile,Industry,2,0,null,null,null,null,null,null,null
+Trap,Killing Pit,Castle,1,0,Wood,6,null,null,null,null,null
+Trap,Pitch Ditch,Castle,1,0,Pitch,1,null,null,null,null,null
+Unit Maker,Barracks,Castle,3,500,Stone,15,null,null,null,null,null
+Unit Maker,Mercenary Post,Castle,2,500,Wood,10,null,null,null,null,null
+Unit Maker,Engineer Guild,Castle,2,500,Wood~Gold,10~100,null,null,null,null,null
+Building,Short Wall,Castle,1,100,Stone,1,null,null,null,null,null
+Building,Tall Wall,Castle,1,100,Stone,1,null,null,null,null,null
+Building,Stair,Castle,1,100,Stone,1,null,null,null,null,null
+Castle,Castle,Castle,1,3000,null,null,null,null,null,null,null

@@ -1,5 +1,6 @@
 package model;
 
+import model.map.Map;
 import utility.DataManager;
 import view.enums.AllMenus;
 
@@ -13,17 +14,33 @@ public class Application {
     private static ArrayList<User> users ;
     private static User currentUser;
     private static AllMenus currentMenu;
+    private static Map currentMap;
+    private static Game currentGame;
+    private static ArrayList<Game> games;
 
     static {
         users = DataManager.loadUsers();
         if (users == null){
             users = new ArrayList<>();
         }
+        games = DataManager.loadGames();
         currentUser = DataManager.loadLoggedInUser();
+        //todo delete this shit
+        currentMap = new Map(200,200);
+        currentGame = new Game(currentMap,3);
     }
+    private static ArrayList<Map> allMaps;
 
     public static ArrayList<User> getUsers() {
         return users;
+    }
+
+    public static ArrayList<Game> getGames() {
+        return games;
+    }
+
+    public static void addGame(Game game) {
+        games.add(game);
     }
 
     public static void addUser(User user) {
@@ -61,5 +78,21 @@ public class Application {
 
     public static void setCurrentMenu(AllMenus currentMenu) {
         Application.currentMenu = currentMenu;
+    }
+
+    public static Map getCurrentMap() {
+        return currentMap;
+    }
+
+    public static void setCurrentMap(Map currentMap) {
+        Application.currentMap = currentMap;
+    }
+
+    public static Game getCurrentGame() {
+        return currentGame;
+    }
+
+    public static void setCurrentGame(Game currentGame) {
+        Application.currentGame = currentGame;
     }
 }

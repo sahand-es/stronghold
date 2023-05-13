@@ -4,19 +4,15 @@ import model.map.Block;
 
 import java.util.ArrayList;
 
-public abstract class Environment
-{
-    String name;
-    int size;
-    ArrayList<Block> blocks;
+public abstract class Environment {
+    Block block;
 
-    public Environment(String name,int size){
-        this.name = name;
-        this.size = size;
-        blocks = new ArrayList<>();
+    public void setBlock(Block block) {
+        this.block = block;
+        block.setEnvironment(this);
     }
 
-
-
-
+    public Block getBlock() {
+        return block;
+    }
 }

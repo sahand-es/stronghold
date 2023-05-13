@@ -1,7 +1,18 @@
 package model.society.enums;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public enum Colors {
 
+    BLACK_COLOR("black"),
+    RED_COLOR("red"),
+    GREEN_COLOR("green"),
+    YELLOW_COLOR("yellow"),
+    BLUE_COLOR("blue"),
+    PURPLE_COLOR("purple"),
+    CYAN_COLOR("cyan"),
+    WHITE_COLOR("white")
     ;
     // Reset
     public static final String RESET = "\033[0m";  // Text Reset
@@ -75,4 +86,18 @@ public enum Colors {
     public static final String PURPLE_BACKGROUND_BRIGHT = "\033[0;105m"; // PURPLE
     public static final String CYAN_BACKGROUND_BRIGHT = "\033[0;106m";  // CYAN
     public static final String WHITE_BACKGROUND_BRIGHT = "\033[0;107m";   // WHITE
+
+
+    public static final ArrayList<Colors> colorsArr = new ArrayList<>(List.of(BLACK_COLOR,RED_COLOR,GREEN_COLOR,YELLOW_COLOR,BLUE_COLOR,PURPLE_COLOR,CYAN_COLOR,WHITE_COLOR));
+
+    private String colorName;
+
+    Colors(String name){
+        colorName = name;
+    }
+
+    public String getColorName(){
+        return colorName;
+    }
+
 }

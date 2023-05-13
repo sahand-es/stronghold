@@ -1,17 +1,20 @@
 package model.units.workerunits;
 
 import model.map.Block;
-import model.resourecs.Armour;
+import model.society.Government;
+import model.units.WorkerUnit;
+import model.units.enums.UnitName;
 
-public class Ladderman extends WorkerUnit
-{
-    public Ladderman(int hp, int speed, int defencePower, Armour armour, String name, Block block)
-    {
-        super(hp, speed, defencePower, armour, name, block);
+public class Ladderman extends WorkerUnit {
+    public Ladderman() {
+        super(UnitName.LADDERMAN);
     }
 
-    public void putLadder()
-    {
-        
+    public Ladderman(UnitName name, Block block, Government government) {
+        super(name, block, government);
+    }
+
+    public void putLadder() {
+
     }
 }

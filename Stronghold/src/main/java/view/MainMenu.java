@@ -1,6 +1,8 @@
 package view;
 
 import model.Application;
+import model.Game;
+import model.map.Map;
 import utility.DataManager;
 import view.enums.AllMenus;
 import view.enums.commands.MainMenuCommands;
@@ -47,6 +49,7 @@ public class MainMenu
 
             else{
                 command = scanner.nextLine();
+                Matcher matcher;
                 if(MainMenuCommands.getMatcher(command,MainMenuCommands.EXIT) != null){
                     System.exit(0);
                 }
@@ -58,8 +61,22 @@ public class MainMenu
                 else if(MainMenuCommands.getMatcher(command,MainMenuCommands.PROFILE_MENU) != null){
                     Application.setCurrentMenu(AllMenus.PROFILE_MENU);
                 }
-                else if(MainMenuCommands.getMatcher(command,MainMenuCommands.GAME_MENU) != null){
-                    Application.setCurrentMenu(AllMenus.GAME_MENU);
+                else if((matcher = (MainMenuCommands.getMatcher(command,MainMenuCommands.START_GAME))) != null){
+
+                    int numberOfGovernments = Integer.parseInt(matcher.group("number"));
+                    int height = Integer.parseInt(matcher.group("height"));
+                    int width = Integer.parseInt(matcher.group("width"));
+
+                    if (numberOfGovernments > 8){
+                        System.out.println("number of players is mor than 8. Please try again");;
+                    } else {
+                        Map map = new Map(height,width);
+                        Game game = new Game(map , numberOfGovernments);
+
+                        Application.setCurrentMap(map);
+                        Application.setCurrentGame(game);
+                        Application.setCurrentMenu(AllMenus.GAME_MENU);
+                    }
                 }
                 else if(MainMenuCommands.getMatcher(command,MainMenuCommands.SHOW_MAP) != null){
                    checkShowMAp(command);
@@ -69,7 +86,6 @@ public class MainMenu
                 }
                 else
                     System.out.println("My liege, that's an invalid command!");
-
 
             }
 

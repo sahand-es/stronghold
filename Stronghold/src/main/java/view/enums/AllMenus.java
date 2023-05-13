@@ -6,5 +6,7 @@ public enum AllMenus {
     SIGNUP_MENU,
     PROFILE_MENU,
     GAME_MENU,
-    MAP_MENU;
+    MAP_MENU,
+    TRADE_MENU,
+    ;
 }

@@ -1,6 +1,6 @@
 package model;
 
-import utility.DataManager;
+import utility.*;
 import utility.SHA;
 
 import java.security.NoSuchAlgorithmException;
