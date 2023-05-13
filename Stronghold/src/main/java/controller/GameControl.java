@@ -45,7 +45,7 @@ public class GameControl {
         map = game.getMap();
     }
 
-    public static GameMessages foodRate(int rate) {
+    public static GameMessages checkFoodRate(int rate) {
         if (rate < -2 || rate > 2)
             return GameMessages.INVALID_RATE;
         currentGovernment.setFoodRate(rate);

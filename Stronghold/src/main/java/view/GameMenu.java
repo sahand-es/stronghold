@@ -141,13 +141,16 @@ public class GameMenu {
     }
 
     private static void checkFoodRate(Matcher matcher){
-        //todo ina string e ha bepaaaaa!
         String foodRateNumber = matcher.group("foodRateNumber");
         int rate = Integer.parseInt(foodRateNumber);
-        GameMessages message ;
+        GameMessages message = GameControl.checkFoodRate(rate);
 
-        //todo give this to it's controller
-
+        if (message.equals(GameMessages.INVALID_RATE)){
+            System.out.println("rate is invalid");
+        }
+        if(message.equals(GameMessages.SUCCESS)){
+            System.out.println("food rate:" + rate);
+        }
     }
 
     private static void checkTaxRate(Matcher matcher){
