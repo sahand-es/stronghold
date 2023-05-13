@@ -307,6 +307,11 @@ public class Government {
     }
 
     public void TaxingThePeople(){
+        if(resource.getGold() < -1 * calcTax()){
+            setTaxRate(0);
+        } else {
+            resource.addGold(calcTax());
+        }
 
     }
 }
