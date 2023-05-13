@@ -29,7 +29,7 @@ public class TradeControl
         if(tradeMessage.equals("")){
             return TradeMessages.MESSAGE_EMPTY;
         }
-        
+
 
         return TradeMessages.SUCCESS;
     }
@@ -51,7 +51,7 @@ public class TradeControl
         game.removeTrade(trade);
         game.getCurrentGovernment().addTrade(trade);
 
-        return TradeMessages.SUCCESSFUL;
+        return TradeMessages.SUCCESS;
     }
 
     public static String displayTrades(ArrayList<Trade> trades){
