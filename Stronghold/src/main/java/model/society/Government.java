@@ -5,6 +5,7 @@ import model.environment.buildings.Building;
 import model.environment.buildings.Castle;
 import model.environment.buildings.enums.BuildingName;
 import model.resourecs.Resource;
+import model.resourecs.ResourcesName;
 import model.society.enums.Colors;
 import model.units.Person;
 
@@ -122,6 +123,18 @@ public class Government {
 
     public void setMaterialCapacity(int materialCapacity) {
         this.materialCapacity = materialCapacity;
+    }
+
+    public int getCapacity(ResourcesName name){
+        if (ResourcesName.foods.contains(name)){
+            return foodCapacity;
+        } else if (ResourcesName.weapons.contains(name)){
+            return weaponCapacity;
+        } else if (ResourcesName.Materials.contains(name)){
+            return materialCapacity;
+        } else {
+            return 0;
+        }
     }
 
     public ArrayList<Trade> getTradesHistory() {
