@@ -83,6 +83,10 @@ public class Game {
         allSiegeUtil.remove(siegeUtil);
     }
 
+    public void removeTrade(Trade trade){
+        allTrades.remove(trade);
+    }
+
     public ArrayList<Government> getGovernments() {
         return governments;
     }

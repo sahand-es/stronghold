@@ -6,37 +6,28 @@ import java.util.HashMap;
 
 public class Trade
 {
-    private Government requestor;
-    private Government donator;
+    private Government owner;
     private String message;
     private int gold;
     private int id;
     static int idSetter = 1;
 
-    private boolean accepted;
     private HashMap<ResourcesName,Integer> price ;
 
 
-    public Trade(Government seller, Government buyer, ResourcesName resource,int amount, int gold)
+    public Trade(Government seller, ResourcesName resource,int amount, int gold)
     {
-        this.requestor = seller;
-        this.donator = buyer;
+        this.owner = seller;
         price = new HashMap<>();
         price.put(resource,amount);
         this.gold = gold;
         this.id = idSetter;
         idSetter++;
-        accepted = false;
     }
 
-    public Government getRequestor()
+    public Government getOwner()
     {
-        return requestor;
-    }
-
-    public Government getDonator()
-    {
-        return donator;
+        return owner;
     }
 
 
@@ -49,15 +40,16 @@ public class Trade
         return id;
     }
 
-    public boolean isAccepted() {
-        return accepted;
-    }
-
-    public void setAccepted(boolean accepted) {
-        this.accepted = accepted;
-    }
 
     public HashMap<ResourcesName, Integer> getPrice() {
         return price;
+    }
+
+    public int getGold() {
+        return gold;
+    }
+
+    public void setGold(int gold) {
+        this.gold = gold;
     }
 }
