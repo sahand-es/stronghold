@@ -13,6 +13,10 @@ public enum TradeCommands {
     ARGUMENT("((\\s+)?-(?<argumentSpace>\\w+)\\s+\\\"(?<firstStringSpace>[^-\\\"]+)\\\"(\\s+)?)" +
             "|((\\s+)?-(?<argument>\\w+)\\s+(?<firstString>[^- ]+)?)"),
 
+    TRADE_LIST("^(\\s+)?trade\\s+list\\s+.+"),
+    TRADE_ACCEPT("^\\s*trade\\s+accept\\s+.*"),
+    TRADE_ACCEPT_CHECK("^\\s*trade\\s+accept\\s+$"),
+    ID("")
 
     ;
 
