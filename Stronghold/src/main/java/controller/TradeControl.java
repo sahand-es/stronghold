@@ -18,16 +18,16 @@ public class TradeControl
         String amount = data.get("amount");
         String tradeMessage = data.get("tradeMessage");
 
-        if(type.equals("")){
+        if(type == null){
             return TradeMessages.TYPE_EMPTY;
         }
-        if(price.equals("")){
+        if(price == null){
             return TradeMessages.PRICE_EMPTY;
         }
-        if(amount.equals("")){
+        if(amount == null){
             return TradeMessages.AMOUNT_EMPTY;
         }
-        if(tradeMessage.equals("")){
+        if(tradeMessage == null){
             return TradeMessages.MESSAGE_EMPTY;
         }
 

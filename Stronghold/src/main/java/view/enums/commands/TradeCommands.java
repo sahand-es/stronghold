@@ -10,8 +10,8 @@ public enum TradeCommands {
     SHOW_MENU("^\\s*show\\s+menu\\s*$"),
     TRADE("^(\\s+)?trade\\s+request\\s+.+"),
     FINAL_TRADE_CHECK("^(\\s+)?trade\\s+request(\\s+)?$"),
-    ARGUMENT("((\\s+)?-(?<argumentSpace>\\w+)\\s+\\\"(?<firstStringSpace>[^-\\\"]+)\\\"(\\s+)?(?:\\s+(\\\")?" +
-            "(?<secondStringSpace>[^-\\\"]+))?)|((\\s+)?-(?<argument>\\w+)\\s+(?<firstString>[^- ]+))"),
+    ARGUMENT("((\\s+)?-(?<argumentSpace>\\w+)\\s+\\\"(?<firstStringSpace>[^-\\\"]+)\\\"(\\s+)?)" +
+            "|((\\s+)?-(?<argument>\\w+)\\s+(?<firstString>[^- ]+)?)"),
 
 
     ;

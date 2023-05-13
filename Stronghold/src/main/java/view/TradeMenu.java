@@ -54,6 +54,8 @@ public class TradeMenu {
 
     public static HashMap<String, String> extractTradeCommand(String command) {
         if(tradeData != null){ tradeData.clear(); }
+        else
+            tradeData = new HashMap<>();
         String type = "";
         String amount = "";
         String price = "";
@@ -116,18 +118,19 @@ public class TradeMenu {
         }
 
         if (TradeCommands.getMatcher(command, TradeCommands.FINAL_TRADE_CHECK) != null){
-            tradeData.put("type", type);
-            tradeData.put("amount", amount);
-            tradeData.put("price", price);
-            tradeData.put("tradeMessage", tradeMessage);
+                tradeData.put("type", type);
+                tradeData.put("amount", amount);
+                tradeData.put("price", price);
+                tradeData.put("tradeMessage", tradeMessage);
 
-            return tradeData;
+                return tradeData;
         }
         else{
             System.out.println("My liege, that's an invalid argument in trade request command!");
-            tradeData.clear();
+            tradeData = null;
             return null;
         }
+
     }
 
 

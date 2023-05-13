@@ -59,7 +59,8 @@ public class CheckFunctions
     public static boolean checkPriceFormat(String price) {
         if (price.matches("\\D"))
             return true;
-
+        if (price.equals(""))
+            return true;
         if(Integer.parseInt(price) < 0)
             return true;
 
@@ -69,7 +70,8 @@ public class CheckFunctions
     public static boolean checkAmountFormat(String amount) {
         if (amount.matches("\\D"))
             return true;
-
+        if (amount.equals(""))
+            return true;
         if(Integer.parseInt(amount) < 1)
             return true;
 
