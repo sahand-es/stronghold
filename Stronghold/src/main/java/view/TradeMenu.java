@@ -40,9 +40,12 @@ public class TradeMenu {
             else if((matcher = TradeCommands.getMatcher(command, TradeCommands.TRADE)) != null){
                 checkTradeRequest(matcher);
             } else if ((matcher = TradeCommands.getMatcher(command, TradeCommands.TRADE_ACCEPT)) != null){
-
+                checkTradeAccept(matcher);
+            } else if (TradeCommands.getMatcher(command, TradeCommands.TRADE_LIST) != null){
+                TradeControl.showAllTrades();
+            } else if (TradeCommands.getMatcher(command, TradeCommands.TRADE_LIST) != null){
+                TradeControl.showTradeHistory();
             }
-
             else
                 System.out.println("My liege, that's an invalid command!");
         }
@@ -131,11 +134,30 @@ public class TradeMenu {
     }
 
 
+    private static void checkTradeAccept(Matcher matcher){
+        int id = Integer.parseInt(matcher.group("id"));
+        String message1 = matcher.group("message").trim();
+
+        TradeMessages message = TradeControl.acceptTrade(id,message1);
+
+        switch (message){
+            case TRADE_ID_DOES_NOT_EXIST:
+                System.out.println("no trade with this id exist");
+                break;
+
+            case NOT_ENOUGH_RESOURCES:
+                System.out.println("you dont have enough resources");
+                break;
+
+            case SUCCESS:
+                System.out.println("trade done successfully");
+        }
+    }
     private static void checkTradeRequest(Matcher matcher){
         String resourceType = matcher.group("resourceType");
         int amount = Integer.parseInt(matcher.group("amount"));
         int price = Integer.parseInt(matcher.group("price"));
-        String message1 = matcher.group("message");
+        String message1 = matcher.group("message").trim();
 
 
 
@@ -176,6 +198,7 @@ public class TradeMenu {
             }
         }
     }
+
 
     //todo delete psvm
 //    public static void main(String[] args) {

@@ -45,7 +45,8 @@ public class TradeControl
         return TradeMessages.SUCCESS;
     }
 
-    public static TradeMessages acceptTrade(Game game,int id) {
+    public static TradeMessages acceptTrade(int id,String message) {
+        Game game = Application.getCurrentGame();
         Trade trade = game.getTradeById(id);
         if (trade == null)
             return TradeMessages.TRADE_ID_DOES_NOT_EXIST;
@@ -53,6 +54,7 @@ public class TradeControl
         if (!(game.getCurrentGovernment()).getResource().checkPay(trade.getPrice()))
             return TradeMessages.NOT_ENOUGH_RESOURCES;
 
+        trade.setMessage(message);
         game.getCurrentGovernment().getResource().pay(trade.getPrice());
         trade.getOwner().getResource().add(trade.getPrice());
 
@@ -76,11 +78,13 @@ public class TradeControl
         return output;
     }
 
-    public static String showAllTrades(Game game){
+    public static String showAllTrades(){
+        Game game = Application.getCurrentGame();
         return "all trades:" + displayTrades(game.getAllTrades());
     }
 
-    public static String showTradeHistory(Game game){
+    public static String showTradeHistory(){
+        Game game = Application.getCurrentGame();
         return "trades history:" + displayTrades(game.getCurrentGovernment().getTradesHistory());
     }
 
