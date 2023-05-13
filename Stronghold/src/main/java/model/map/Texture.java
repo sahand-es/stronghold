@@ -31,6 +31,10 @@ public enum Texture
         this.canPass = canPass;
     }
 
+    public static boolean isValid(String type) {
+        return getTextureByString(type) != null;
+    }
+
     public String getName() {
         return name;
     }

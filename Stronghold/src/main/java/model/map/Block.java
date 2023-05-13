@@ -4,7 +4,6 @@ import com.sun.source.tree.Tree;
 import model.environment.Environment;
 import model.environment.Rock;
 import model.environment.buildings.Building;
-import model.environment.tree;
 import model.environment.buildings.enums.BuildingName;
 import model.society.Government;
 import model.units.Person;
@@ -246,7 +245,7 @@ public class Block {
 
     @Override
     public String toString() {
-        return " {" +
+        return "{" +
                 "x=" + x +
                 ", y=" + y +
                 '}';

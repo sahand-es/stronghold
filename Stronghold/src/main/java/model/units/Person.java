@@ -1,5 +1,6 @@
 package model.units;
 
+import model.environment.buildings.Traps;
 import model.map.Block;
 import model.map.Direction;
 import model.map.Map;
@@ -291,6 +292,12 @@ public class Person {
             int blocksMoved = 0;
             while (!moveQueue.isEmpty() && blocksMoved < speed) {
                 lastBlock = moveQueue.peek();
+                if (lastBlock.getEnvironment() != null)
+                    if (lastBlock.getEnvironment() instanceof Traps) {
+                        die();
+                        return;
+                    }
+
                 moveQueue.remove();
                 blocksMoved += 1;
             }

@@ -1,12 +1,15 @@
 package controller;
 
 import model.Game;
+import model.environment.Rock;
+import model.environment.Tree;
 import model.environment.buildings.*;
 import model.environment.buildings.enums.BuildingCategory;
 import model.environment.buildings.enums.BuildingName;
 import model.map.Block;
 import model.map.Direction;
 import model.map.Map;
+import model.map.Texture;
 import model.resourecs.ResourcesName;
 import model.society.Government;
 import model.units.Person;
@@ -39,11 +42,49 @@ public class GameControl {
         setGame(game);
         currentGovernment = game.getCurrentGovernment();
     }
+// map:
+    public static GameMessages setTexture(int x, int y, String texture) {
+        if (!map.isValidXY(x, y))
+            return GameMessages.INVALID_XY;
+        if (!Texture.isValid(texture))
+            return GameMessages.INVALID_TEXTURE;
 
+        map.setTexture(x,y, Texture.getTextureByString(texture));
+        return GameMessages.SUCCESS;
+    }
+
+    public static GameMessages setGroupTexture(int x1, int y1, int x2, int y2, String texture) {
+        if (!map.isValidXY(x1, y1) || !map.isValidXY(x2, y2))
+            return GameMessages.INVALID_XY;
+        if (x1 > x2 || y1 > y2)
+            return GameMessages.INVALID_RECTANGLE;
+        if (!Texture.isValid(texture))
+            return GameMessages.INVALID_TEXTURE;
+
+        map.setGroupTexture(x1,y1,x2,y2, Texture.getTextureByString(texture));
+        return GameMessages.SUCCESS;
+    }
+
+    public static GameMessages dropTree(int x, int y) {
+        if (!map.isValidXY(x, y))
+            return GameMessages.INVALID_XY;
+        new Tree(map.getBlockByXY(x, y));
+
+        return GameMessages.SUCCESS;
+    }
+
+    public static GameMessages dropRock(int x, int y) {
+        if (!map.isValidXY(x, y))
+            return GameMessages.INVALID_XY;
+        new Rock(map.getBlockByXY(x, y));
+
+        return GameMessages.SUCCESS;
+    }
     public static void setGame(Game theGame) {
         game = theGame;
         map = game.getMap();
     }
+
 
     public static GameMessages checkFoodRate(int rate) {
         if (rate < -2 || rate > 2)
@@ -70,7 +111,6 @@ public class GameControl {
 
     public static GameMessages createBuilding(int x, int y, String type) {
         Building building = null;
-        Map map = game.getMap();
         if (!map.isValidXY(x, y))
             return GameMessages.INVALID_XY;
         if (!BuildingName.isValidName(type))
@@ -248,6 +288,18 @@ public class GameControl {
         if (selectedBuilding instanceof Shop)
             return GameMessages.TRADE_MENU;
         return GameMessages.SUCCESS;
+    }
+
+    public static String showSelectedUnitDetails() {
+        if (selectedUnit == null)
+            return GameMessages.UNIT_NOT_SELECTED.message();
+
+        String output = selectedUnit.getName() + ":\n" +
+                "Government: " + selectedUnit.getGovernment().getColor().name() + "\n" +
+                "Hp: " + selectedUnit.getHp() + "\n" +
+                "Block: " + selectedUnit.getBlock() + "\n";
+
+        return output;
     }
 //ToDo: selected building change menu.
 
