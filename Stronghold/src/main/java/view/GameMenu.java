@@ -17,6 +17,7 @@ public class GameMenu {
     public static void run() {
         Application.setCurrentMenu(AllMenus.GAME_MENU);
         java.util.Scanner scanner = new java.util.Scanner(System.in);
+        GameControl.setGame(Application.getCurrentGame());
         String command;
 
         while (true){
@@ -128,7 +129,9 @@ public class GameMenu {
                 System.out.println(GameControl.showSelectedUnitDetails());
             }
             else if(GameCommands.getMatcher(command,GameCommands.NEXT_TURN) != null){
+//               TODo: print goverment data day kir
                 GameControl.nextTurn();
+                System.out.println(Application.getCurrentGame().getCurrentGovernment());
             }
             else
                 System.out.println("My liege, that's an invalid command!");

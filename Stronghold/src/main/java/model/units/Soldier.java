@@ -21,7 +21,7 @@ public class Soldier extends Person {
     private final int attackRange;
     Queue<Person> attackQueue = new LinkedList<>();
 
-    SoldierUnitState soldierUnitState;
+    SoldierUnitState soldierUnitState = SoldierUnitState.STANDING;
 
     Soldier(int hp, int speed, int defencePower,
             int damage, int attackRange,

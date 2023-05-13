@@ -303,10 +303,7 @@ public class Government {
 
     @Override
     public String toString() {
-        return " {" +
-                "color=" + color +
-                ", game=" + game +
-                '}';
+        return color.getColorName();
     }
 
     public void lose() {

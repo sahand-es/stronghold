@@ -271,8 +271,7 @@ public class Person {
         damage = (damage - defencePower) < 0 ? 1 : damage - defencePower;
         if (damage <= hp) {
             hp -= damage;
-        }
-        else hp = 0;
+        } else hp = 0;
         if (hp <= 0)
             die();
     }
@@ -282,11 +281,10 @@ public class Person {
         if (route == null)
             return false;
         addRouteToQueue(route, destination);
-       return true;
+        return true;
     }
 
     public void move() {
-//        ToDo: get damage if trap
         if (!moveQueue.isEmpty()) {
             Block lastBlock = block;
             int blocksMoved = 0;
@@ -305,6 +303,11 @@ public class Person {
             this.block.removeUnit(this);
             lastBlock.addUnit(this);
             this.block = lastBlock;
+        }
+
+        if (whichPatrolBlock != null) {
+            whichPatrolBlock = whichPatrolBlock.equals(patrolBlocks[0]) ? patrolBlocks[1] : patrolBlocks[0];
+            findPath(whichPatrolBlock);
         }
     }
 
@@ -363,14 +366,12 @@ public class Person {
         Stack<Block> s = new Stack();  //create a stack
 
         //while the queue is not empty
-        while(!moveQueue.isEmpty())
-        {  //add the elements of the queue onto a stack
+        while (!moveQueue.isEmpty()) {  //add the elements of the queue onto a stack
             s.push(moveQueue.poll());
         }
 
         //while the stack is not empty
-        while(!s.isEmpty())
-        { //add the elements in the stack back to the queue
+        while (!s.isEmpty()) { //add the elements in the stack back to the queue
             moveQueue.add(s.pop());
         }
     }
@@ -381,8 +382,8 @@ public class Person {
         findPath(firstBlock);
     }
 
-    private void stopPatroling() {
-        patrolBlocks = null;
+    public void stopPatroling() {
+        whichPatrolBlock = null;
     }
 
     public void die() {

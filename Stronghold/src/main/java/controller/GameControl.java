@@ -92,6 +92,7 @@ public class GameControl {
     public static void setGame(Game theGame) {
         game = theGame;
         map = game.getMap();
+        currentGovernment = game.getCurrentGovernment();
     }
 
 
@@ -357,6 +358,7 @@ public class GameControl {
         if (!selectedUnit.findPath(map.getBlockByXY(x, y)))
             return GameMessages.CANNOT_GO_THERE;
 
+        selectedUnit.stopPatroling();
         return GameMessages.SUCCESS;
     }
 

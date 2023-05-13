@@ -4,6 +4,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public enum GameCommands {
+//    Todo: negative int
+//    resouces show
+//    map show
     BACK("^\\s*back\\s*$"),
     SHOW_MENU("^\\s*show\\s+menu\\s*$"),
     SHOW_POPULARITY("^\\s*show\\s+popularity\\s*$"),
@@ -19,14 +22,15 @@ public enum GameCommands {
     CREATE_BUILDING_CHECK("^\\s*create\\s+building\\s+$"),
     SELECT_BUILDING("^\\s*select\\s+building\\s+.*"),
     SELECT_BUILDING_CHECK("^\\s*select\\s+building\\s+$"),
-    CREATE_UNIT("^\\s*createunit\\s+.*"),
-    CREATE_UNIT_CHECK("^\\s*createunit\\s+$"),
+    CREATE_UNIT("^\\s*create unit\\s+.*"),
+    CREATE_UNIT_CHECK("^\\s*create unit\\s+$"),
     X_DIR("-x\\s+(?<xNum>\\d+)"),
     Y_DIR("-y\\s+(?<yNum>\\d+)"),
     TYPE("-t\\s+(?<type>\\S+)"),
     COUNT("-c\\s+(?<count>\\d+)"),
     REPAIR("^\\s*repair\\s*$"),
     SELECT_UNIT("^\\s*select\\s+unit\\s+-n\\s(?<selectionCount>\\d+)\\s+.*"),
+//    Todo: -n akhar
     SELECT_UNIT_CHECK("^\\s*select\\s+unit\\s+-n\\s(?<selectionCount>\\d+)\\s+$"),
     MOVE_UNIT("^\\s*move\\s+unit\\s+to\\s+.*"),
     MOVE_UNIT_CHECK("^\\s*move\\s+unit\\s+to\\s+$"),
@@ -47,17 +51,18 @@ public enum GameCommands {
     DISBAND("^\\s*disband\\s*$"),
     NEXT_TURN("^\\s*next\\s*turn\\s*$"),
     TRADE("^\\s*trade\\s+menu\\s*$"),
-    SET_TEXTURE_BLOCK("^\\s*settexture\\s+block\\s+.*"),
-    SET_TEXTURE_BLOCK_CHECK("^\\s*settexture\\s+block\\s+"),
-    SET_TEXTURE_AREA("^\\s*settexture\\s+area\\s+.*"),
-    SET_TEXTURE_AREA_CHECK("^\\s*settexture\\s+area\\s+"),
+    SET_TEXTURE_BLOCK("^\\s*set texture\\s+block\\s+.*"),
+    SET_TEXTURE_BLOCK_CHECK("^\\s*set texture\\s+block\\s+"),
+    SET_TEXTURE_AREA("^\\s*set texture\\s+area\\s+.*"),
+    SET_TEXTURE_AREA_CHECK("^\\s*set texture\\s+area\\s+"),
     CLEAR("^\\s*clear\\s+.*"),
     CLEAR_CHECK("\\s*clear\\s+$"),
-    DROP_ROCK("\\s*droprock\\s+-x\\s+(?<xNumber>\\d+)\\s+-y\\s+(?<yNumber>\\d+)\\s+-d\\s+(?<direction>\\S+)\\s*"),
-    DROP_TREE("\\s*droptree\\s+-x\\s+(?<xNumber>\\d+)\\s+-y\\s+(?<yNumber>\\d+)\\s+-t\\s+(?<type>\\S+)\\s*"),
-    DROP_BUILDING("\\s*dropbuilding\\s+-x\\s+(?<xNumber>\\d+)\\s+-y\\s+(?<yNumber>\\d+)\\s+-t\\s+(?<type>\\S+)\\s*"),
-    DROP_UNIT("\\s*dropunit\\s+-x\\s+(?<xNumber>\\d+)\\s+-y\\s+(?<yNumber>\\d+)\\s+-t\\s+(?<type>\\S+)\\s+-c\\s+(?<count>\\S+)\\s*"),
-    SHOW_UNIT_DATA("\\s+show\\s+unit\\+data");
+    DROP_ROCK("\\s*drop rock\\s+-x\\s+(?<xNumber>\\d+)\\s+-y\\s+(?<yNumber>\\d+)\\s+-d\\s+(?<direction>\\S+)\\s*"),
+    DROP_TREE("\\s*drop tree\\s+-x\\s+(?<xNumber>\\d+)\\s+-y\\s+(?<yNumber>\\d+)\\s+-t\\s+(?<type>\\S+)\\s*"),
+//    TOdo: hejab eslami
+    DROP_BUILDING("\\s*drop building\\s+-x\\s+(?<xNumber>\\d+)\\s+-y\\s+(?<yNumber>\\d+)\\s+-t\\s+(?<type>\\S+)\\s*"),
+    DROP_UNIT("\\s*drop unit\\s+-x\\s+(?<xNumber>\\d+)\\s+-y\\s+(?<yNumber>\\d+)\\s+-t\\s+(?<type>\\S+)\\s+-c\\s+(?<count>\\S+)\\s*"),
+    SHOW_UNIT_DATA("\\s*show\\s+unit\\s+data\\s*");
 
     String regex;
 
