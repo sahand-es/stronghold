@@ -185,7 +185,7 @@ public class GameControl {
         return GameMessages.SUCCESS;
     }
 
-    public GameMessages dropUnit(int x,int y,String type, int count) {
+    public static GameMessages dropUnit(int x,int y,String type, int count) {
         Person person = null;
         if (!map.isValidXY(x, y))
             return GameMessages.INVALID_XY;
@@ -494,7 +494,7 @@ public class GameControl {
         }
     }
 
-    private GameMessages buildSiege(String buildName) {
+    public static GameMessages buildSiege(String buildName) {
         if (selectedUnit == null)
             return GameMessages.UNIT_NOT_SELECTED;
         if (!(selectedUnit instanceof Engineer))

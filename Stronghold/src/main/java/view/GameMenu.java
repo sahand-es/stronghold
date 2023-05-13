@@ -337,7 +337,6 @@ public class GameMenu {
 
         GameMessages message = GameControl.selectUnit(X,Y,1); //TODO: add to regex.
         System.out.println(message.message());
-
     }
 
 
@@ -555,10 +554,8 @@ public class GameMenu {
 
     private static void checkBuildEquipment(Matcher matcher){
         String equipment = matcher.group("equipment");
-
-
-        //todo give this to it's controller
-
+        GameMessages message = GameControl.buildSiege(equipment);
+        System.out.println(message.message());
     }
 
 
@@ -747,8 +744,8 @@ public class GameMenu {
         int X = Integer.parseInt(x);
         int Y = Integer.parseInt(y);
 
-        //todo give this to it's controller
-
+        GameMessages message = GameControl.dropBuilding(X,Y,type);
+        System.out.println(message.message());
     }
 
     private static void checkDropUnit(Matcher matcher){
@@ -757,8 +754,12 @@ public class GameMenu {
         String type = matcher.group("type");
         String count = matcher.group("count");
 
-        //todo give this to it's controller
+        int X = Integer.parseInt(x);
+        int Y = Integer.parseInt(y);
+        int c = Integer.parseInt(count);
 
+        GameMessages message = GameControl.dropUnit(X,Y,type,c);
+        System.out.println(message.message());
     }
 
     //todo delete after debug
