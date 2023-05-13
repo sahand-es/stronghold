@@ -5,6 +5,7 @@ import model.environment.buildings.enums.BuildingName;
 import model.map.Block;
 import model.resourecs.ResourcesName;
 import model.society.Government;
+import model.units.Person;
 
 import java.util.HashMap;
 
@@ -19,5 +20,10 @@ public class Traps extends Building{
 
     public Traps(BuildingName name, Government government, Block block) {
         super(name, government, block);
+    }
+
+    @Override
+    public boolean canPassBuilding(Person person){
+        return true;
     }
 }

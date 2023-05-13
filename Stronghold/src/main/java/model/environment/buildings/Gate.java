@@ -6,6 +6,8 @@ import model.environment.buildings.enums.BuildingCategory;
 import model.environment.buildings.enums.BuildingName;
 import model.resourecs.ResourcesName;
 import model.society.Government;
+import model.units.Person;
+import model.units.enums.UnitName;
 
 import java.util.HashMap;
 
@@ -33,5 +35,16 @@ public class Gate extends HouseBuilding{
 
     public void setDirection(Direction direction) {
         this.direction = direction;
+    }
+
+    @Override
+    public boolean canPassBuilding(Person person){
+        if(person.getName().equals(UnitName.ASSASSIN))
+            return true;
+
+        if (person.getGovernment().equals(this.government))
+            return true;
+
+        return false;
     }
 }

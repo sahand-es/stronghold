@@ -4,6 +4,7 @@ import model.map.Block;
 import model.resourecs.Armour;
 import model.resourecs.ResourcesName;
 import model.resourecs.Weapon;
+import model.society.Government;
 import model.units.enums.SoldierUnitState;
 import model.units.enums.UnitName;
 import utility.DataManager;
@@ -42,6 +43,10 @@ public class Soldier extends Person {
         this.damage = soldierToClone.damage;
     }
 
+    public Soldier(UnitName name, Block block, Government government) {
+        super(name, block, government);
+    }
+
     public SoldierUnitState getSoldierUnitState() {
         return soldierUnitState;
     }
@@ -60,13 +65,10 @@ public class Soldier extends Person {
     }
 
     public boolean isReadyToAttack() {
-        if (attackQueue.isEmpty())
-            return false;
-        setAttackQueue(attackQueue.peek());
-        return moveQueue.isEmpty();
+       return true;
     }
     public int getDamage() {
-        return damage;
+        return damage + government.getFearRate();
     }
 
     @Override

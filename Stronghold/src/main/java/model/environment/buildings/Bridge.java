@@ -6,6 +6,8 @@ import model.environment.buildings.enums.BuildingCategory;
 import model.environment.buildings.enums.BuildingName;
 import model.resourecs.ResourcesName;
 import model.society.Government;
+import model.units.Person;
+import model.units.enums.UnitName;
 
 import java.util.HashMap;
 
@@ -35,5 +37,14 @@ public class Bridge extends Building {
 
     public void setOpen(boolean open) {
         isOpen = open;
+    }
+
+
+    @Override
+    public boolean canPassBuilding(Person person){
+        if(person.getName().equals(UnitName.ASSASSIN))
+            return true;
+
+        return isOpen;
     }
 }

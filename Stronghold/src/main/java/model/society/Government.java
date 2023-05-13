@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 public class Government
 {
+//    ToDo: auto rate when there is not enough food
     private int popularity;
     private int foodRate;
     private int taxRate;
@@ -31,7 +32,6 @@ public class Government
 
     private final ArrayList<Trade> tradesHistory;
     private final ArrayList<Person> units;
-    private final ArrayList<SiegeUtil> siegeUtils;
     private final ArrayList<Building> buildings;
 
     private Colors color;
@@ -43,7 +43,6 @@ public class Government
         this.color = color;
         tradesHistory = new ArrayList<>();
         units = new ArrayList<>();
-        siegeUtils = new ArrayList<>();
         buildings = new ArrayList<>();
         taxRate = 0;
         fearRate = 0;
@@ -139,10 +138,6 @@ public class Government
         return units;
     }
 
-    public ArrayList<SiegeUtil> getSiegeUtils() {
-        return siegeUtils;
-    }
-
     public ArrayList<Building> getBuildings() {
         return buildings;
     }
@@ -194,16 +189,6 @@ public class Government
     public void removeUnit(Person unit){
         units.remove(unit);
         game.removeUnit(unit);
-    }
-
-    public  void addSiegeUtil(SiegeUtil siegeUtil){
-        siegeUtils.add(siegeUtil);
-        game.addSiegeUtil(siegeUtil);
-    }
-
-    public void removeSiegeUtil(SiegeUtil siegeUtil){
-        siegeUtils.remove(siegeUtil);
-        game.removeSiegeUtil(siegeUtil);
     }
 
     public void addPopularity(int amount){
@@ -276,5 +261,23 @@ public class Government
 
     public void addTrade(Trade trade){
         this.tradesHistory.add(trade);
+    }
+
+    @Override
+    public String toString() {
+        return " {" +
+                "color=" + color +
+                ", game=" + game +
+                '}';
+    }
+
+    public void lose(){
+        for (Person unit : units) {
+            unit.die();
+        }
+        for (Building building : buildings) {
+            building.die();
+        }
+        game.removeGovernment(this);
     }
 }
