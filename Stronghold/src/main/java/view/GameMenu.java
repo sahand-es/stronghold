@@ -14,8 +14,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class GameMenu {
-    private static int HEIGHT = 200;
-    private static int WIDTH = 200;
 
     public static void run() {
         Application.setCurrentMenu(AllMenus.GAME_MENU);
