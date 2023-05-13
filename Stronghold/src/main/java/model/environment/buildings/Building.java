@@ -226,7 +226,4 @@ public class Building extends Environment {
                 "}\n";
     }
 
-    public BuildingName getName() {
-        return name;
-    }
 }
