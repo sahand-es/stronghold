@@ -44,7 +44,10 @@ public class Block {
     public void removeUnit(Person person) {
         for (Person unit : units) {
             if (unit.equals(person))
+            {
                 units.remove(person);
+                break;
+            }
         }
     }
 

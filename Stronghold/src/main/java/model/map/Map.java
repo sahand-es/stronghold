@@ -56,7 +56,7 @@ public class Map {
                                 Texture texture) {
 
         int width = rightCornerX - leftCornerX, height = rightCornerY - leftCornerY;
-//ToDo: khat.
+
         for (int x = leftCornerX; x < width + leftCornerX + 1; x++) {
             for (int y = leftCornerY; y < height + leftCornerY + 1; y++) {
                 getBlockByXY(x, y).setTexture(texture);

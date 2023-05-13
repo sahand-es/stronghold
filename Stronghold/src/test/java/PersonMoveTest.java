@@ -24,7 +24,7 @@ public class PersonMoveTest {
 
 //        assertTrue(person.findPath(map.getBlockByXY(9,9)));
     }
-//
+    //
     @Test
     public void test2() {
         map.setGroupTexture(3,0, 3, 2, Texture.DEEP_WATER);
@@ -35,11 +35,22 @@ public class PersonMoveTest {
 
         assertFalse(person.findPath(map.getBlockByXY(4,2)));
 
+        person.move();
+        System.out.println(person.getBlock());
+
         map.setTexture(3,1, Texture.GROUND);
 
         System.out.println(map.showMap(map.getBlockByXY(5, 1)));
 
-        assertTrue(person.findPath(map.getBlockByXY(8,8)));
+        assertTrue(person.findPath(map.getBlockByXY(15,15)));
+
+        person.move();
+        System.out.println(person.getBlock());
+        person.move();
+        System.out.println(person.getBlock());
+        person.move();
+        System.out.println(person.getBlock());
+
 //        assertTrue(person.findPath());
     }
 
