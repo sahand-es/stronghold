@@ -97,4 +97,8 @@ public class GameControl {
         }
         currentGovernment = game.getCurrentGovernment();
     }
+
+    public Government getCurrentGovernment() {
+        return currentGovernment;
+    }
 }

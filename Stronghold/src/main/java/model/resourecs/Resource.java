@@ -3,7 +3,7 @@ package model.resourecs;
 import java.util.HashMap;
 
 public class Resource {
-    private HashMap<ResourcesName, Integer> allResources;
+    private HashMap<ResourcesName, Integer> allResources; // name  -  amount
 
     public Resource() {
         allResources = new HashMap<>();
@@ -31,6 +31,7 @@ public class Resource {
         }
     }
 
+
     public void pay(HashMap<ResourcesName, Integer> price) {
         int s;
         for (ResourcesName resourcesName : price.keySet()) {
@@ -48,9 +49,17 @@ public class Resource {
         return true;
     }
 
-    public boolean checkPay(HashMap<ResourcesName, Integer> price, int count) {
-        for (ResourcesName resourcesName : price.keySet()) {
-            if (this.allResources.get(resourcesName) < price.get(resourcesName) * count)
+    public boolean checkPay(HashMap<ResourcesName, Integer> count, int price) {
+        for (ResourcesName resourcesName : count.keySet()) {
+            if (this.allResources.get(resourcesName) < count.get(resourcesName) * price)
+                return false;
+        }
+        return true;
+    }
+    //todo fix
+    public boolean checkAvailablity(HashMap<ResourcesName, Integer> count) {
+        for (ResourcesName resourcesName : count.keySet()) {
+            if (this.allResources.get(resourcesName) < count.get(resourcesName) )
                 return false;
         }
         return true;
@@ -124,5 +133,7 @@ public class Resource {
         return this.allResources.get(ResourcesName.PEOPLE);
     }
 
-
+    public int getAmount(ResourcesName resourcesName) {
+        return allResources.get(resourcesName);
+    }
 }

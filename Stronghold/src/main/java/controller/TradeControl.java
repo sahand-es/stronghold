@@ -1,6 +1,7 @@
 package controller;
 
 import model.Game;
+import model.resourecs.Resource;
 import model.resourecs.ResourcesName;
 import model.society.Government;
 import model.society.Trade;
@@ -37,9 +38,12 @@ public class TradeControl
         if (CheckFunctions.checkAmountFormat(amount)){
             return TradeMessages.INVALID_AMOUNT;
         }
-        if (ResourcesName.isValidName(type)){
+        if (!ResourcesName.isValidName(type)){
             return TradeMessages.INVALID_RESOURCE;
         }
+
+        ResourcesName resource = ResourcesName.getResourceByName(type);
+
 
         return TradeMessages.SUCCESS;
     }

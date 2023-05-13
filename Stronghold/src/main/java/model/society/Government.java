@@ -4,6 +4,7 @@ import model.Game;
 import model.environment.buildings.Building;
 import model.environment.buildings.enums.BuildingName;
 import model.resourecs.Resource;
+import model.resourecs.ResourcesName;
 import model.siegeutil.SiegeUtil;
 import model.society.enums.Colors;
 import model.units.Person;
@@ -263,6 +264,10 @@ public class Government
         output.append("Food rate: ").append(foodRate);
 
         return output.toString();
+    }
+
+    public boolean checkEnoughForTrade(ResourcesName resourcesName, int amount) {
+        return resource.getAmount(resourcesName) > amount;
     }
 
     public Colors getColor() {
