@@ -289,6 +289,18 @@ public class GameControl {
             return GameMessages.TRADE_MENU;
         return GameMessages.SUCCESS;
     }
+
+    public static String showSelectedUnitDetails() {
+        if (selectedUnit == null)
+            return GameMessages.UNIT_NOT_SELECTED.message();
+
+        String output = selectedUnit.getName() + ":\n" +
+                "Government: " + selectedUnit.getGovernment().getColor().name() + "\n" +
+                "Hp: " + selectedUnit.getHp() + "\n" +
+                "Block: " + selectedUnit.getBlock() + "\n";
+
+        return output;
+    }
 //ToDo: selected building change menu.
 
     public static GameMessages repair() {
