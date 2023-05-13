@@ -1,6 +1,6 @@
 Kind,Name,Category,Size,Hp,Price Kind,Price Count,Capacity,Fire Range,Defence Range,Damage,Extracted Resource
 Bridge,Drawbridge,Castle,1,0,Wood,10,null,null,null,null,null
-Building,Siege Tent,Castle,2,500,null,null,null,null,null,null,null
+Unit Maker,Siege Tent,Castle,2,500,null,null,null,null,null,null,null
 Building,Ox Tether,Industry,1,100,Wood,5,null,null,null,null,null
 Building,Tunnel Entrance ,Weapons,1,0,null,null,null,null,null,null,null
 Church,Church,Town,2,800,Gold,500,null,null,null,null,null
