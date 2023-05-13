@@ -361,9 +361,9 @@ public class Person {
         }
     }
 
-    //    TODO: delete this from government
     private void die() {
         this.block.removeUnit(this);
+        this.government.removeUnit(this);
     }
 
     @Override

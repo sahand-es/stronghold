@@ -1,7 +1,9 @@
 package model.map;
 
 import model.environment.Environment;
+import model.environment.Rock;
 import model.environment.buildings.Building;
+import model.environment.buildings.enums.BuildingName;
 import model.units.Person;
 import model.units.enums.UnitName;
 
@@ -109,8 +111,44 @@ public class Block {
         }
     }
 
-//    TODO: from texture
-    public boolean canBuildOnThis() {
+    public boolean canBuildOnThis(BuildingName buildingName) {
+        if (this.environment != null)
+            return false;
+
+        if (!this.texture.canPass() || texture.equals(Texture.WATER))
+            return false;
+
+        switch (buildingName){
+            case IRON_MINE:
+                if(!texture.equals(Texture.IRON))
+                    return false;
+                break;
+
+            case PITCH_RIG:
+                if(!texture.equals(Texture.PITCH))
+                    return false;
+                break;
+
+            case QUARRY:
+                if (!texture.equals(Texture.ROCK))
+                    return false;
+                break;
+
+            case WHEAT_FARMER:
+                if (texture.equals(Texture.SAND))
+                    return false;
+                break;
+
+            case HOPS_FARMER:
+                return !texture.equals(Texture.SAND);
+
+            default:
+                break;
+
+        }
+
+
+
         return true;
     }
     public Block findClosestBlock(int range, Block block) {
@@ -136,11 +174,25 @@ public class Block {
         int delY = this.y - block.getY();
         return Math.sqrt(Math.pow(delX, 2) + Math.pow(delY, 2));
     }
-//TODO: complete details.
     public String showDetails() {
-        StringBuilder output = new StringBuilder();
+        String output  = "" + this.texture;
+        if(environment != null) {
+            if (environment instanceof Building) {
+                output += "\nBuilding: " + ((Building) environment).getName();
+            } else if (environment instanceof Rock){
+                output += "\nRock";
+            } else {
+                output += "\nTree";
+            }
 
-        return output.toString();
+            if(units.size() != 0) {
+                output += "\nUnits:";
+                for (Person unit : units) {
+                    output += "\n" + unit.getName();
+                }
+            }
+        }
+        return output;
     }
     @Override
     public boolean equals(Object o) {

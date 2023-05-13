@@ -14,7 +14,8 @@ public enum Texture
     TALL_GRASS_LAWN(Colors.CYAN_BACKGROUND, "Tall Grass Lawn",true),
     WATER(Colors.BLUE_BACKGROUND_BRIGHT, "Water",true),
     DEEP_WATER(Colors.BLUE_BACKGROUND,"Deep Water",false),
-    SAND(Colors.YELLOW_BOLD,"Sand" , true)
+    SAND(Colors.YELLOW_BOLD,"Sand" , true),
+    PITCH(Colors.BLACK_BACKGROUND_BRIGHT,"Pitch",false)
     ;
 
     private final String name;
