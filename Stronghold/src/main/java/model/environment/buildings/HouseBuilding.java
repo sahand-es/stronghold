@@ -38,4 +38,11 @@ public class HouseBuilding extends Building {
     public void setPeopleCapacity(int peopleCapacity) {
         this.peopleCapacity = peopleCapacity;
     }
+
+    @Override
+    public void die(){
+        government.subtractPopulationCapacity(this.peopleCapacity);
+        government.removeBuilding(this);
+        this.getBlock().setEnvironment(null);
+    }
 }
