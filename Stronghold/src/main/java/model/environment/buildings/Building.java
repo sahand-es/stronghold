@@ -8,6 +8,7 @@ import model.resourecs.Armour;
 import model.resourecs.ResourcesName;
 import model.society.Government;
 import model.units.enums.UnitName;
+import model.units.Person;
 import utility.DataManager;
 
 import java.util.ArrayList;
@@ -225,5 +226,15 @@ public class Building extends Environment {
                 ", category=" + category +
                 ", price=" + price +
                 "}\n";
+    }
+
+    public boolean canPassBuilding(Person person){
+        if(person.getName().equals(UnitName.ASSASSIN))
+            return true;
+
+        if(this.category.equals(BuildingCategory.CASTLE))
+            return false;
+
+        return true;
     }
 }

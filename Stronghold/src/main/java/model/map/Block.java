@@ -1,7 +1,9 @@
 package model.map;
 
 import model.environment.Environment;
+import model.environment.buildings.Building;
 import model.units.Person;
+import model.units.enums.UnitName;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -70,9 +72,38 @@ public class Block {
     public void setTexture(Texture texture) {
         this.texture = texture;
     }
+
+    private boolean haveLadder(Person person){
+        int x,y;
+        ArrayList<Person> units;
+        for (Direction direction : Direction.values()) {
+            x = this.x + direction.deltaX;
+            y = this.y + direction.deltaY;
+            if (getMap().isValidXY(x,y)) {
+                units = getMap().getBlockByXY(x, y).getUnits();
+                for (Person unit : units) {
+                    if((unit.getName().equals(UnitName.LADDERMAN) && person.canClimbLadder())
+                    || unit.getName().equals(UnitName.SIEGE_TOWER))
+                        return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+
+
     public boolean canPassThisBlock(Person person) {
-//        TODO: sang derakht bazi_textura wall
-        return true;
+        if(this.environment == null)
+            return this.texture.canPass();
+        else {
+            if(environment instanceof Building){
+                return (this.haveLadder(person) || ((Building) environment).canPassBuilding(person));
+            }else {
+                return false;
+            }
+        }
     }
 
 //    TODO: from texture
@@ -113,7 +144,7 @@ public class Block {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Block block = (Block) o;
-        return x == block.x && y == block.y;
+        return x == block.x && y == block.y && Objects.equals(map, block.map);
     }
 
     @Override
