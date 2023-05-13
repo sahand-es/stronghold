@@ -38,7 +38,7 @@ public class GameControl {
         building = Building.getBuildingByBuildingName(BuildingName.getBuildingNameByName(type));
         if (!currentGovernment.getResource().checkPay(building.getPrice()))
             return GameMessages.NOT_ENOUGH_RESOURCE;
-        if (!map.getBlockByXY(x, y).canBuildOnThis())
+        if (!map.getBlockByXY(x, y).canBuildOnThis(BuildingName.getBuildingNameByName(type)))
             return GameMessages.CANNOT_BUILD_HERE;
 
         new Building(BuildingName.getBuildingNameByName(type), currentGovernment, map.getBlockByXY(x, y));

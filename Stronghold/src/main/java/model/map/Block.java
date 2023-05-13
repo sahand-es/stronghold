@@ -2,6 +2,7 @@ package model.map;
 
 import model.environment.Environment;
 import model.environment.buildings.Building;
+import model.environment.buildings.enums.BuildingName;
 import model.units.Person;
 import model.units.enums.UnitName;
 
@@ -107,7 +108,44 @@ public class Block {
     }
 
 //    TODO: from texture
-    public boolean canBuildOnThis() {
+    public boolean canBuildOnThis(BuildingName buildingName) {
+        if (this.environment != null)
+            return false;
+
+        if (!this.texture.canPass() || texture.equals(Texture.WATER))
+            return false;
+
+        switch (buildingName){
+            case IRON_MINE:
+                if(!texture.equals(Texture.IRON))
+                    return false;
+                break;
+
+            case PITCH_RIG:
+                if(!texture.equals(Texture.PITCH))
+                    return false;
+                break;
+
+            case QUARRY:
+                if (!texture.equals(Texture.ROCK))
+                    return false;
+                break;
+
+            case WHEAT_FARMER:
+                if (texture.equals(Texture.SAND))
+                    return false;
+                break;
+
+            case HOPS_FARMER:
+                return !texture.equals(Texture.SAND);
+
+            default:
+                break;
+
+        }
+
+
+
         return true;
     }
     public Block findClosestBlock(int range, Block block) {
