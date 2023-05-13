@@ -340,7 +340,7 @@ public class GameControl {
     }
 
     private void extractControl() {
-        for (Building building : game.getAllBuildings()) {
+        for (Building building : currentGovernment.getBuildings()) {
             if (building instanceof ResourceExtractorBuilding) {
                 ((ResourceExtractorBuilding) building).extract();
             }
