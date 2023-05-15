@@ -49,8 +49,8 @@ public class ResourceHolder {
 
             new ResourceHolder(name, price, howMany);
         }
-        new Weapon(ResourcesName.BOW);
-        new Armour(ResourcesName.LEATHER);
+        Weapon.ALL_RESOURCE_HOLDERS.get(0);
+        Armour.ALL_RESOURCE_HOLDERS.get(0);
     }
 
     protected ResourceHolder(String name, HashMap<ResourcesName, Integer> price, int howManyFor1Price) {

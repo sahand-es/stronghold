@@ -47,8 +47,7 @@ public class Block {
 
     public void removeUnit(Person person) {
         for (Person unit : units) {
-            if (unit.equals(person))
-            {
+            if (unit.equals(person)) {
                 units.remove(person);
                 break;
             }
@@ -80,17 +79,17 @@ public class Block {
         this.texture = texture;
     }
 
-    private boolean haveLadder(Person person){
-        int x,y;
+    private boolean haveLadder(Person person) {
+        int x, y;
         ArrayList<Person> units;
         for (Direction direction : Direction.values()) {
             x = this.x + direction.deltaX;
             y = this.y + direction.deltaY;
-            if (getMap().isValidXY(x,y)) {
+            if (getMap().isValidXY(x, y)) {
                 units = getMap().getBlockByXY(x, y).getUnits();
                 for (Person unit : units) {
-                    if((unit.getName().equals(UnitName.LADDERMAN) && person.canClimbLadder())
-                    || unit.getName().equals(UnitName.SIEGE_TOWER))
+                    if ((unit.getName().equals(UnitName.LADDERMAN) && person.canClimbLadder())
+                            || unit.getName().equals(UnitName.SIEGE_TOWER))
                         return true;
                 }
             }
@@ -100,12 +99,12 @@ public class Block {
     }
 
     public boolean canPassThisBlock(Person person) {
-        if(this.environment == null)
+        if (this.environment == null)
             return this.texture.canPass();
         else {
-            if(environment instanceof Building){
+            if (environment instanceof Building) {
                 return (this.haveLadder(person) || ((Building) environment).canPassBuilding(person));
-            }else {
+            } else {
                 return false;
             }
         }
@@ -143,14 +142,14 @@ public class Block {
         if (!this.texture.canPass() || texture.equals(Texture.WATER))
             return false;
 
-        switch (buildingName){
+        switch (buildingName) {
             case IRON_MINE:
-                if(!texture.equals(Texture.IRON))
+                if (!texture.equals(Texture.IRON))
                     return false;
                 break;
 
             case PITCH_RIG:
-                if(!texture.equals(Texture.PITCH))
+                if (!texture.equals(Texture.PITCH))
                     return false;
                 break;
 
@@ -173,9 +172,9 @@ public class Block {
         }
 
 
-
         return true;
     }
+
     public Block findClosestBlock(int range, Block block) {
         int xCorner = this.x - range, yCorner = this.y - range;
         Block closestBlock = null;
@@ -184,7 +183,7 @@ public class Block {
             for (int x = xCorner; x < 2 * range + 1 + xCorner; x++) {
                 if (map.isValidXY(x, y)) {
                     Block blockToCheck = getMap().getBlockByXY(x, y);
-                    if (distance > block.distanceTo(blockToCheck)){
+                    if (distance > block.distanceTo(blockToCheck)) {
                         closestBlock = blockToCheck;
                         distance = block.distanceTo(blockToCheck);
                     }
@@ -199,22 +198,23 @@ public class Block {
         int delY = this.y - block.getY();
         return Math.sqrt(Math.pow(delX, 2) + Math.pow(delY, 2));
     }
+
     public String showDetails() {
-        String output  = "" + this.texture;
-        if(environment != null) {
+        String output = "" + this.texture;
+        if (environment != null) {
             if (environment instanceof Building) {
                 output += "\nBuilding: " + ((Building) environment).getName();
-            } else if (environment instanceof Rock){
+            } else if (environment instanceof Rock) {
                 output += "\nRock";
             } else {
                 output += "\nTree";
             }
 
-            if(units.size() != 0) {
-                output += "\nUnits:";
-                for (Person unit : units) {
-                    output += "\n" + unit.getName();
-                }
+        }
+        if (units.size() != 0) {
+            output += "\nUnits:";
+            for (Person unit : units) {
+                output += "\n" + unit.getName();
             }
         }
         return output;
@@ -235,6 +235,7 @@ public class Block {
             chars.add('#');
         return chars;
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -251,7 +252,7 @@ public class Block {
                 '}';
     }
 
-    public void clearBlock(){
+    public void clearBlock() {
         for (Person unit : units) {
             unit.die();
         }
