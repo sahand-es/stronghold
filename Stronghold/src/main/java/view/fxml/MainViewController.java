@@ -9,4 +9,7 @@ public class MainViewController {
 
     public void goToProfileMenu(MouseEvent mouseEvent) {
     }
+
+    public void logout(MouseEvent mouseEvent) {
+    }
 }
