@@ -14,6 +14,8 @@
 
     <Button text="Start new game" onMouseClicked="#start Game"/>
     <Button text="Profile menu" onMouseClicked="#goToProfileMenu" />
+    <Button text="Logout" onMouseClicked="#logout" />
+    <Button text="exit" onMouseClicked="#exit" />
 
 
 
