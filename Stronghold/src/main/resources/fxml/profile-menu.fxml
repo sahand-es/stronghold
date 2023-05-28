@@ -19,4 +19,5 @@
     <ImageView fx:id="leftImage" fitHeight="120.0" fitWidth="125.0" layoutX="1052.0" layoutY="271.0" pickOnBounds="true" preserveRatio="true" />
     <ImageView fx:id="middleImage" fitHeight="120.0" fitWidth="125.0" layoutX="1186.0" layoutY="271.0" pickOnBounds="true" preserveRatio="true" />
     <ImageView fx:id="rightImage" fitHeight="120.0" fitWidth="125.0" layoutX="1323.0" layoutY="271.0" pickOnBounds="true" preserveRatio="true" />
+    <Label fx:id="usernameLabel" alignment="CENTER" layoutX="550.0" layoutY="405.0" prefHeight="107.0" prefWidth="381.0" styleClass="label3" text="username" />
 </AnchorPane>
