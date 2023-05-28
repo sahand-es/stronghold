@@ -12,7 +12,7 @@
             stylesheets="@../css/style.css"
             prefHeight="400.0" prefWidth="600.0">
 
-    <Button text="Start new game" onMouseClicked="#start Game"/>
+    <Button text="Start new game" onMouseClicked="#startGame"/>
     <Button text="Profile menu" onMouseClicked="#goToProfileMenu" />
     <Button text="Logout" onMouseClicked="#logout" />
     <Button text="exit" onMouseClicked="#exit" />
