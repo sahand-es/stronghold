@@ -6,12 +6,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="fxml.ProfileMenu"
-            prefHeight="400.0" prefWidth="600.0">
-
-
-
+<AnchorPane prefHeight="900" prefWidth="1500" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.fxml.ProfileViewController">
+    <Button layoutX="549.0" layoutY="691.0" mnemonicParsing="false" onMouseClicked="#logout" prefHeight="53.0" prefWidth="115.0" text="Logout" />
+    <Button layoutX="549.0" layoutY="759.0" mnemonicParsing="false" onMouseClicked="#deleteAccount" prefHeight="53.0" prefWidth="168.0" text="Delete account" />
 
 </AnchorPane>
