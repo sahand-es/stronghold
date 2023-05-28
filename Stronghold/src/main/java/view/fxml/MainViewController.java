@@ -12,4 +12,8 @@ public class MainViewController {
 
     public void logout(MouseEvent mouseEvent) {
     }
+
+
+    public void exit(MouseEvent mouseEvent) {
+    }
 }
