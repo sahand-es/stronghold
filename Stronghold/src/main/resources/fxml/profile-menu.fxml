@@ -6,6 +6,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import javafx.scene.image.ImageView?>
 <AnchorPane prefHeight="900" prefWidth="1500" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.fxml.ProfileViewController">
     <Button layoutX="549.0" layoutY="691.0" mnemonicParsing="false" onMouseClicked="#logout" prefHeight="53.0" prefWidth="115.0" text="Logout" />
@@ -14,4 +15,8 @@
     <TextField fx:id="newUsername" layoutX="549.0" layoutY="512.0" prefHeight="47.0" prefWidth="381.0" promptText="new username" />
     <TextField fx:id="newPassword" layoutX="549.0" layoutY="635.0" prefHeight="47.0" prefWidth="381.0" promptText="new password" />
     <Button mnemonicParsing="false" onMouseClicked="#backToMainMenu" text="Back" />
+    <ImageView fx:id="mainPicture" fitHeight="240.0" fitWidth="250.0" layoutX="615.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true" styleClass="image-view" />
+    <ImageView fx:id="leftImage" fitHeight="120.0" fitWidth="125.0" layoutX="1052.0" layoutY="271.0" pickOnBounds="true" preserveRatio="true" />
+    <ImageView fx:id="middleImage" fitHeight="120.0" fitWidth="125.0" layoutX="1186.0" layoutY="271.0" pickOnBounds="true" preserveRatio="true" />
+    <ImageView fx:id="rightImage" fitHeight="120.0" fitWidth="125.0" layoutX="1323.0" layoutY="271.0" pickOnBounds="true" preserveRatio="true" />
 </AnchorPane>
