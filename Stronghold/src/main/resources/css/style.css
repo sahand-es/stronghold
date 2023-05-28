@@ -121,3 +121,70 @@
 .menu-button .menu {
     -fx-text-alignment: center;
 }
+.color-picker {
+    -fx-background-radius: 9;
+    -fx-text-alignment: center;
+    -fx-background-color: radial-gradient(center 0px 0px, radius 100%, #683f0b, #6f402a);
+}
+
+.color-picker .label {
+    -fx-text-alignment: center;
+    -fx-font-family: "Times New Roman", sans-serif;
+    -fx-font-size: 20;
+    -fx-text-fill: rgb(216, 190, 158);
+}
+
+.color-picker .color-box {
+    -fx-background-radius: 5;
+    -fx-pref-width: 232;
+    -fx-background-color: radial-gradient(center 0px 0px, radius 100%, rgba(104, 63, 11, 0.44), rgba(111, 64, 42, 0.44));
+}
+
+.progress-bar {
+    -fx-background-radius: 10;
+    -fx-box-border: linear-gradient(rgb(216, 190, 158), rgb(218, 194, 164));
+    -fx-padding: 0.416667em;
+    -fx-pref-height: 35;
+    -fx-pref-width: 140;
+    -fx-border-radius: 30;
+    -fx-background-insets: 0, 1, 2;
+}
+
+.green-bar {
+    -fx-accent: green;
+}
+
+.yellow-bar {
+    -fx-accent: yellow;
+}
+
+.orange-bar {
+    -fx-accent: orange;
+}
+
+.red-bar {
+    -fx-accent: red;
+}
+
+.brown-bar {
+    -fx-accent: rgb(104, 63, 11)
+}
+.black-bar {
+    -fx-accent: black
+}
+
+
+.label3 {
+    -fx-font-family: "Times New Roman", sans-serif;
+    -fx-font-size: 70;
+    -fx-text-fill: black;
+}.label4 {
+     -fx-font-family: "Times New Roman", sans-serif;
+     -fx-font-size: 20;
+     -fx-text-fill: black;
+ }
+
+.image-view {
+    -fx-border-radius: 50;
+    -fx-alignment: center;
+}
