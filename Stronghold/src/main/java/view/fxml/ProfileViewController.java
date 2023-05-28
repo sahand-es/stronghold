@@ -14,4 +14,7 @@ public class ProfileViewController {
 
     public void deleteAccount(MouseEvent mouseEvent) {
     }
+
+    public void backToMainMenu(MouseEvent mouseEvent) {
+    }
 }
