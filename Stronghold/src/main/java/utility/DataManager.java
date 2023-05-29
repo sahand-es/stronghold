@@ -15,13 +15,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DataManager {
-    public static final String USERS_DATABASE_PATH = "src/main/resources/json/users.json";
-    public static final String LOGGED_IN_DATABASE_PATH = "src/main/resources/json/loggedInUser.json";
-    public static final String RESOURCES_PATH = "src/main/resources/csv/ResourceAndFood.csv";
-    public static final String WEAPONS_PATH = "src/main/resources/csv/WeaponAndArmour.csv";
-    public static final String UNITS_PATH = "src/main/resources/csv/Units.csv";
-    public static final String BUILDINGS_PATH = "src/main/resources/csv/Buildings.csv";
-    public static final String GAMES_PATH = "src/main/resources/json/Games.json";
+    public static final String USERS_DATABASE_PATH = "src/main/resources/users.json";
+    public static final String LOGGED_IN_DATABASE_PATH = "src/main/resources/loggedInUser.json";
+    public static final String RESOURCES_PATH = "src/main/resources/ResourceAndFood.csv";
+    public static final String WEAPONS_PATH = "src/main/resources/WeaponAndArmour.csv";
+    public static final String UNITS_PATH = "src/main/resources/Units.csv";
+    public static final String BUILDINGS_PATH = "src/main/resources/Buildings.csv";
+    public static final String GAMES_PATH = "src/main/resources/Games.json";
 
     public static ArrayList<User> loadUsers() {
         try {
