@@ -1,3 +1,4 @@
 
 *.class
 Stronghold/target/classes/*
+*.json
