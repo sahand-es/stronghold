@@ -200,7 +200,7 @@ public class Block {
     }
 
     public String showDetails() {
-        String output = "" + this.texture;
+        String output = this.toString() + "\n" + this.texture;
         if (environment != null) {
             if (environment instanceof Building) {
                 output += "\nBuilding: " + ((Building) environment).getName();
@@ -246,10 +246,9 @@ public class Block {
 
     @Override
     public String toString() {
-        return "{" +
-                "x=" + x +
-                ", y=" + y +
-                '}';
+        return "x=" + x +
+                ", y=" + y
+                ;
     }
 
     public void clearBlock() {
