@@ -1,6 +1,5 @@
 package controller;
 
-import model.Application;
 import model.User;
 import utility.DataManager;
 import view.Captcha;

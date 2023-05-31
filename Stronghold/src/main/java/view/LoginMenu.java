@@ -2,14 +2,11 @@ package view;
 
 import controller.LoginControl;
 
-import model.Application;
-import model.User;
+import model.Database;
 import utility.CheckFunctions;
-import utility.DataManager;
 import utility.RandomGenerators;
 import view.enums.AllMenus;
 import view.enums.commands.LoginCommands;
-import view.enums.commands.SignUpCommands;
 import view.enums.messages.LoginMessages;
 
 import java.util.Scanner;
@@ -40,18 +37,18 @@ public class LoginMenu
             } else if ((matcher = LoginCommands.getMatcher(command,LoginCommands.FORGOT_PASSWORD)) != null) {
                 forgotPassword(matcher ,scanner);
             } else if (LoginCommands.getMatcher(command,LoginCommands.SIGNUP) != null) {
-                Application.setCurrentMenu(AllMenus.SIGNUP_MENU);
+                Database.setCurrentMenu(AllMenus.SIGNUP_MENU);
             } else {
                 System.out.println("My liege, that's an invalid command!");
             }
 
-            switch (Application.getCurrentMenu()){
+            switch (Database.getCurrentMenu()){
                 case SIGNUP_MENU:
                     System.out.println("You're now in SignUp Menu!");
                     SignUpMenu.run();
                     break;
                 case MAIN_MENU:
-                    System.out.println("You're now in Main Menu!");
+                    System.out.println("You're now in view.Main Menu!");
                     return;
                 default:
                     break;
@@ -124,7 +121,7 @@ public class LoginMenu
                 break;
             case SUCCESSFUL:
                 System.out.println("Welcome back my liege!");
-                Application.setCurrentMenu(AllMenus.MAIN_MENU);
+                Database.setCurrentMenu(AllMenus.MAIN_MENU);
                 break;
             default:
                 break;

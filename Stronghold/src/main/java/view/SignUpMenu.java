@@ -1,14 +1,13 @@
 package view;
 
 import controller.SignUpControl;
-import model.Application;
+import model.Database;
 import utility.CheckFunctions;
 import utility.SecurityQuestions;
 import view.enums.AllMenus;
 import view.enums.commands.SignUpCommands;
 import view.enums.messages.SignUpMessages;
 
-import javax.management.StringValueExp;
 import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -36,7 +35,7 @@ public class SignUpMenu {
             }
             else if ( SignUpCommands.getMatcher(command, SignUpCommands.BACK) != null) {
                 System.out.println("You're now in Login Menu!");
-                Application.setCurrentMenu(AllMenus.LOGIN_MENU);
+                Database.setCurrentMenu(AllMenus.LOGIN_MENU);
                 return;
             }
             else if ( SignUpCommands.getMatcher(command, SignUpCommands.SHOW_MENU) != null) {
@@ -50,7 +49,7 @@ public class SignUpMenu {
                 System.out.println("My liege, that's an invalid command!");
             }
 
-            switch (Application.getCurrentMenu()){
+            switch (Database.getCurrentMenu()){
                 case LOGIN_MENU:
                     System.out.println("You're in Login Menu!");
                     return;
@@ -262,7 +261,7 @@ public class SignUpMenu {
                         break;
                     case SUCCESS:
                         System.out.println("Your account has been successfully created!");
-                        Application.setCurrentMenu(AllMenus.LOGIN_MENU);
+                        Database.setCurrentMenu(AllMenus.LOGIN_MENU);
                         break;
                     case FAILED:
                         System.out.println("SignUp Failed!");

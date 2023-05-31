@@ -1,13 +1,9 @@
 package view;
 
 import controller.TradeControl;
-import model.Application;
-import model.map.Block;
+import model.Database;
 import view.enums.AllMenus;
-import view.enums.commands.MapMenuCommands;
-import view.enums.commands.SignUpCommands;
 import view.enums.commands.TradeCommands;
-import view.enums.messages.SignUpMessages;
 import view.enums.messages.TradeMessages;
 
 import java.util.HashMap;
@@ -32,7 +28,7 @@ public class TradeMenu {
 
             if (TradeCommands.getMatcher(command, TradeCommands.BACK) != null) {
                 System.out.println("You're now in Game Menu!");
-                Application.setCurrentMenu(AllMenus.GAME_MENU);
+                Database.setCurrentMenu(AllMenus.GAME_MENU);
                 return;
             } else if (TradeCommands.getMatcher(command, TradeCommands.SHOW_MENU) != null) {
                 System.out.println("You're in Trade Menu!");
@@ -184,7 +180,7 @@ public class TradeMenu {
 
             case SUCCESS:
                 System.out.println("Trade request sent!");
-                Application.setCurrentMenu(AllMenus.LOGIN_MENU);
+                Database.setCurrentMenu(AllMenus.LOGIN_MENU);
                 break;
             default:
                 break;

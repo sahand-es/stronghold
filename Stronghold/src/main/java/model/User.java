@@ -3,8 +3,6 @@ package model;
 import utility.*;
 import utility.SHA;
 
-import java.security.NoSuchAlgorithmException;
-
 public class User {
     private String username;
     private String password;
@@ -26,7 +24,7 @@ public class User {
         this.securityAnswer = securityAnswer;
         this.slogan = slogan;
         setPassword(password);
-        Application.addUser(this);
+        Database.addUser(this);
     }
 
     public String getUsername() {

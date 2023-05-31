@@ -1,6 +1,6 @@
 package controller;
 
-import model.Application;
+import model.Database;
 import model.User;
 import utility.*;
 import utility.DataManager;
@@ -9,14 +9,13 @@ import view.Captcha;
 import view.LoginMenu;
 import view.enums.commands.*;
 import view.enums.messages.*;
-import view.enums.messages.SignUpMessages;
 
 public class LoginControl {
 
     private static User currentUser;
     public static LoginMessages checkLogin(String username, String password, Boolean stay){
 
-        User user = Application.getUserByUsername(username);
+        User user = Database.getUserByUsername(username);
         if (user == null)
             return LoginMessages.USER_NOT_FOUND;
 
@@ -28,16 +27,16 @@ public class LoginControl {
             return LoginMessages.FAILED;
         }
 
-        Application.setCurrentUser(user);
+        Database.setCurrentUser(user);
         if(stay){
-            DataManager.saveLoggedIn(Application.getCurrentUser());
+            DataManager.saveLoggedIn(Database.getCurrentUser());
         }
         return LoginMessages.SUCCESSFUL;
     }
 
     public static LoginMessages checkForgotPassword(String username){
 
-        User user = Application.getUserByUsername(username);
+        User user = Database.getUserByUsername(username);
 
         if (user == null)
             return LoginMessages.USER_NOT_FOUND;

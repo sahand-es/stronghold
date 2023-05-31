@@ -1,12 +1,11 @@
 package controller;
 
-import model.Application;
+import model.Database;
 import model.User;
 import utility.CheckFunctions;
 import view.Captcha;
 import view.ProfileMenu;
 import view.enums.messages.ProfileMessages;
-import view.enums.messages.SignUpMessages;
 
 public class ProfileControl
 {
@@ -19,8 +18,8 @@ public class ProfileControl
             return ProfileMessages.USER_EXIST;
         }
 
-        User currentUser = Application.getCurrentUser();
-        User userInArray = Application.getUserByUsername(currentUser.getUsername());
+        User currentUser = Database.getCurrentUser();
+        User userInArray = Database.getUserByUsername(currentUser.getUsername());
         currentUser.setUsername(username);
         userInArray.setUsername(username);
         return ProfileMessages.SUCCESS;
@@ -31,15 +30,15 @@ public class ProfileControl
             return ProfileMessages.INVALID_NICK_FORMAT;
         }
 
-        User currentUser = Application.getCurrentUser();
-        User userInArray = Application.getUserByUsername(currentUser.getUsername());
+        User currentUser = Database.getCurrentUser();
+        User userInArray = Database.getUserByUsername(currentUser.getUsername());
         currentUser.setNickname(nickname);
         userInArray.setNickname(nickname);
         return ProfileMessages.SUCCESS;
     }
 
     public static ProfileMessages changePassword(String oldPassword, String newPassword){
-        User currentUser = Application.getCurrentUser();
+        User currentUser = Database.getCurrentUser();
         if (!currentUser.checkPassword(oldPassword)){
             return ProfileMessages.WRONG_PASSWORD;
         }
@@ -61,7 +60,7 @@ public class ProfileControl
             return ProfileMessages.FAILED;
         }
 
-        User userInArray = Application.getUserByUsername(currentUser.getUsername());
+        User userInArray = Database.getUserByUsername(currentUser.getUsername());
         currentUser.setPassword(newPassword);
         userInArray.setPassword(newPassword);
 
@@ -75,16 +74,16 @@ public class ProfileControl
         if (CheckFunctions.checkEmailExits(email)){
             return ProfileMessages.EXISTING_EMAIL;
         }
-        User currentUser = Application.getCurrentUser();
-        User userInArray = Application.getUserByUsername(currentUser.getUsername());
+        User currentUser = Database.getCurrentUser();
+        User userInArray = Database.getUserByUsername(currentUser.getUsername());
         currentUser.setEmail(email);
         userInArray.setEmail(email);
 
         return ProfileMessages.SUCCESS;
     }
     public static ProfileMessages changeSlogan(String slogan){
-        User currentUser = Application.getCurrentUser();
-        User userInArray = Application.getUserByUsername(currentUser.getUsername());
+        User currentUser = Database.getCurrentUser();
+        User userInArray = Database.getUserByUsername(currentUser.getUsername());
         currentUser.setSlogan(slogan);
         userInArray.setSlogan(slogan);
 
@@ -92,8 +91,8 @@ public class ProfileControl
     }
 
     public static ProfileMessages removeSlogan(){
-        User currentUser = Application.getCurrentUser();
-        User userInArray = Application.getUserByUsername(currentUser.getUsername());
+        User currentUser = Database.getCurrentUser();
+        User userInArray = Database.getUserByUsername(currentUser.getUsername());
         currentUser.setSlogan(null);
         userInArray.setSlogan(null);
 

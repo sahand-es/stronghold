@@ -4,12 +4,10 @@ import model.map.Map;
 import utility.DataManager;
 import view.enums.AllMenus;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 
 
-public class Application {
+public class Database {
 
     private static ArrayList<User> users ;
     private static User currentUser;
@@ -66,7 +64,7 @@ public class Application {
     }
 
     public static void setCurrentUser(User currentUser) {
-        Application.currentUser = currentUser;
+        Database.currentUser = currentUser;
     }
 
     public static AllMenus getCurrentMenu() {
@@ -74,7 +72,7 @@ public class Application {
     }
 
     public static void setCurrentMenu(AllMenus currentMenu) {
-        Application.currentMenu = currentMenu;
+        Database.currentMenu = currentMenu;
     }
 
     public static Map getCurrentMap() {
@@ -82,7 +80,7 @@ public class Application {
     }
 
     public static void setCurrentMap(Map currentMap) {
-        Application.currentMap = currentMap;
+        Database.currentMap = currentMap;
     }
 
     public static Game getCurrentGame() {
@@ -90,6 +88,6 @@ public class Application {
     }
 
     public static void setCurrentGame(Game currentGame) {
-        Application.currentGame = currentGame;
+        Database.currentGame = currentGame;
     }
 }

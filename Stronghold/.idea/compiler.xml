@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
+    <option name="USE_RELEASE_OPTION" value="false" />
     <annotationProcessing>
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -10,7 +11,13 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="Stronghold" target="11" />
+      <module name="Stronghold" target="13" />
     </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="GENERATE_NO_WARNINGS" value="true" />
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Stronghold" options="" />
+    </option>
   </component>
 </project>

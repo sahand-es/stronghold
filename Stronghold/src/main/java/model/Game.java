@@ -31,7 +31,7 @@ public class Game {
 //  Todo: change init with
             map.initGovernments(governments);
 
-            Application.addGame(this);
+            Database.addGame(this);
     }
 
     public Map getMap() {

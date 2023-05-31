@@ -1,6 +1,6 @@
 package utility;
 
-import model.Application;
+import model.Database;
 import view.enums.commands.SignUpCommands;
 import view.enums.messages.SignUpMessages;
 
@@ -18,7 +18,7 @@ public class CheckFunctions
     }
 
     public static boolean checkUsernameExits(String username) {
-        return Application.getUserByUsername(username) != null;
+        return Database.getUserByUsername(username) != null;
     }
 
     public static boolean checkPasswordFormat(String password) {
@@ -49,7 +49,7 @@ public class CheckFunctions
     }
     public static boolean checkEmailExits(String email)
     {
-        return Application.getUserByEmail(email) != null;
+        return Database.getUserByEmail(email) != null;
     }
 
     public static boolean checkEmailFormat(String email) {

@@ -1,13 +1,12 @@
 package view;
 
 import controller.GameControl;
-import model.Application;
+import model.Database;
 import view.enums.AllMenus;
 import view.enums.commands.GameCommands;
 import view.enums.commands.MainMenuCommands;
 import view.enums.messages.GameMessages;
 
-import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -33,24 +32,24 @@ public class GameMenu {
 
 
     public static void run() {
-        Application.setCurrentMenu(AllMenus.GAME_MENU);
+        Database.setCurrentMenu(AllMenus.GAME_MENU);
         java.util.Scanner scanner = new java.util.Scanner(System.in);
-        GameControl.setGame(Application.getCurrentGame());
+        GameControl.setGame(Database.getCurrentGame());
         String command;
 
         while (true){
             command = scanner.nextLine();
             Matcher matcher;
             if(GameCommands.getMatcher(command,GameCommands.BACK) != null){
-                System.out.println("You're now in Main Menu!");
-                Application.setCurrentMenu(AllMenus.MAIN_MENU);
+                System.out.println("You're now in view.Main Menu!");
+                Database.setCurrentMenu(AllMenus.MAIN_MENU);
                 return;
             }
             else if(GameCommands.getMatcher(command,GameCommands.SHOW_MENU) != null){
                 System.out.println("You're now in Game Menu!");
             }
             else if(GameCommands.getMatcher(command,GameCommands.TRADE) != null){
-                Application.setCurrentMenu(AllMenus.TRADE_MENU);
+                Database.setCurrentMenu(AllMenus.TRADE_MENU);
             }
             else if(GameCommands.getMatcher(command,GameCommands.SHOW_POPULARITY_FACTORS) != null){
                 System.out.println("Food rate: " + GameControl.getCurrentGovernment().getFoodRate());
@@ -151,7 +150,7 @@ public class GameMenu {
             }
             else if(GameCommands.getMatcher(command,GameCommands.NEXT_TURN) != null){
                 GameControl.nextTurn();
-                System.out.println(Application.getCurrentGame().getCurrentGovernment());
+                System.out.println(Database.getCurrentGame().getCurrentGovernment());
             }
             else if(MainMenuCommands.getMatcher(command,MainMenuCommands.SHOW_MAP) != null){
                 checkShowMAp(command);
@@ -160,7 +159,7 @@ public class GameMenu {
                 System.out.println("My liege, that's an invalid command!");
 
 
-            switch (Application.getCurrentMenu()){
+            switch (Database.getCurrentMenu()){
                 case TRADE_MENU:
                     System.out.println("You're now in Trade Menu!");
                     TradeMenu.run();
@@ -304,7 +303,7 @@ public class GameMenu {
         System.out.println(message.message());
 
         if (message.equals(GameMessages.MARKET_MENU)){
-            Application.setCurrentMenu(AllMenus.MARKET_MENU);
+            Database.setCurrentMenu(AllMenus.MARKET_MENU);
             GameControl.setSelectedBuilding(null);
         }
     }
@@ -857,7 +856,7 @@ public class GameMenu {
 
         setX(Integer.parseInt(x));
         setY(Integer.parseInt(y));
-        Application.setCurrentMenu(AllMenus.MAP_MENU);
+        Database.setCurrentMenu(AllMenus.MAP_MENU);
 
     }
 }

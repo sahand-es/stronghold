@@ -1,6 +1,6 @@
 package controller;
 
-import model.Application;
+import model.Database;
 import model.resourecs.ResourcesName;
 import model.society.Government;
 
@@ -60,7 +60,7 @@ public class MarketControl
     }
 
     public static boolean checkBuy(String name,int amount){
-        Government government = Application.getCurrentGame().getCurrentGovernment();
+        Government government = Database.getCurrentGame().getCurrentGovernment();
 
         if(!ResourcesName.isValidName(name))
             return false;
@@ -80,7 +80,7 @@ public class MarketControl
     }
 
     public static boolean checkSell(String name,int amount){
-        Government government = Application.getCurrentGame().getCurrentGovernment();
+        Government government = Database.getCurrentGame().getCurrentGovernment();
 
         if(!ResourcesName.isValidName(name))
             return false;

@@ -1,12 +1,11 @@
 package view;
 
-import model.Application;
+import model.Database;
 import model.Game;
 import model.map.Map;
 import utility.DataManager;
 import view.enums.AllMenus;
 import view.enums.commands.MainMenuCommands;
-import view.enums.commands.ProfileCommands;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -34,16 +33,16 @@ public class MainMenu
     }
 
     public static void run() throws InterruptedException {
-        System.out.println("You're now in Main Menu!");
+        System.out.println("You're now in view.Main Menu!");
         java.util.Scanner scanner = new java.util.Scanner(System.in);
         String command;
 
-        Application.setCurrentMenu(AllMenus.MAIN_MENU);
+        Database.setCurrentMenu(AllMenus.MAIN_MENU);
 
         while(true){
 
-            if(Application.getCurrentUser() == null){
-                Application.setCurrentMenu(AllMenus.LOGIN_MENU);
+            if(Database.getCurrentUser() == null){
+                Database.setCurrentMenu(AllMenus.LOGIN_MENU);
                 System.out.println("There is no logged in user!");
             }
 
@@ -55,11 +54,11 @@ public class MainMenu
                 }
                 else if(MainMenuCommands.getMatcher(command,MainMenuCommands.LOGOUT) != null){
                     System.out.println("user logged out successfully!");
-                    Application.setCurrentUser(null);
+                    Database.setCurrentUser(null);
                     DataManager.saveLoggedIn(null);
                 }
                 else if(MainMenuCommands.getMatcher(command,MainMenuCommands.PROFILE_MENU) != null){
-                    Application.setCurrentMenu(AllMenus.PROFILE_MENU);
+                    Database.setCurrentMenu(AllMenus.PROFILE_MENU);
                 }
                 else if((matcher = (MainMenuCommands.getMatcher(command,MainMenuCommands.START_GAME))) != null){
 
@@ -73,16 +72,16 @@ public class MainMenu
                         Map map = new Map(height,width);
                         Game game = new Game(map , numberOfGovernments);
 
-                        Application.setCurrentMap(map);
-                        Application.setCurrentGame(game);
-                        Application.setCurrentMenu(AllMenus.GAME_MENU);
+                        Database.setCurrentMap(map);
+                        Database.setCurrentGame(game);
+                        Database.setCurrentMenu(AllMenus.GAME_MENU);
                     }
                 }
                 else if(MainMenuCommands.getMatcher(command,MainMenuCommands.SHOW_MAP) != null){
                    checkShowMAp(command);
                 }
                 else if(MainMenuCommands.getMatcher(command,MainMenuCommands.SHOW_MENU) != null){
-                    System.out.println("You're in Main Menu!");
+                    System.out.println("You're in view.Main Menu!");
                 }
                 else
                     System.out.println("My liege, that's an invalid command!");
@@ -90,7 +89,7 @@ public class MainMenu
             }
 
 
-            switch (Application.getCurrentMenu()){
+            switch (Database.getCurrentMenu()){
                 case LOGIN_MENU:
                     System.out.println("You're now in Login Menu!");
                     LoginMenu.run();
@@ -146,7 +145,7 @@ public class MainMenu
 
         setX(Integer.parseInt(x));
         setY(Integer.parseInt(y));
-        Application.setCurrentMenu(AllMenus.MAP_MENU);
+        Database.setCurrentMenu(AllMenus.MAP_MENU);
 
     }
 

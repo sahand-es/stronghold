@@ -1,11 +1,10 @@
 package view;
 
 import controller.MarketControl;
-import model.Application;
+import model.Database;
 import view.enums.AllMenus;
 import view.enums.commands.MarketCommands;
 
-import java.sql.SQLOutput;
 import java.util.regex.Matcher;
 
 public class MarketMenu {
@@ -21,7 +20,7 @@ public class MarketMenu {
 
             if ( MarketCommands.getMatcher(command, MarketCommands.BACK)!= null) {
                 System.out.println("You're now in Game Menu!");
-                Application.setCurrentMenu(AllMenus.GAME_MENU);
+                Database.setCurrentMenu(AllMenus.GAME_MENU);
                 return;
             } else if ((matcher = MarketCommands.getMatcher(command, MarketCommands.BUY)) != null) {
                 checkBuy(matcher);

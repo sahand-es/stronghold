@@ -3,7 +3,7 @@ package utility;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import model.Application;
+import model.Database;
 import model.Game;
 import model.User;
 import model.map.Map;
@@ -45,7 +45,7 @@ public class DataManager {
         try {
             fileWriter = new FileWriter(USERS_DATABASE_PATH);
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
-            String json = gson.toJson(Application.getUsers());
+            String json = gson.toJson(Database.getUsers());
             fileWriter.write(json);
             fileWriter.close();
         } catch (IOException e) {

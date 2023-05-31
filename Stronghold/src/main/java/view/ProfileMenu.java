@@ -1,11 +1,10 @@
 package view;
 
 import controller.ProfileControl;
-import model.Application;
+import model.Database;
 import model.User;
 import utility.CheckFunctions;
 import view.enums.AllMenus;
-import view.enums.commands.LoginCommands;
 import view.enums.commands.ProfileCommands;
 import view.enums.messages.ProfileMessages;
 
@@ -14,7 +13,7 @@ import java.util.regex.Pattern;
 
 public class ProfileMenu
 {
-    private static User currentUser = Application.getCurrentUser();
+    private static User currentUser = Database.getCurrentUser();
     public static void run() {
         java.util.Scanner scanner = new java.util.Scanner(System.in);
         String command;
@@ -24,7 +23,7 @@ public class ProfileMenu
             command = scanner.nextLine();
 
             if (ProfileCommands.getMatcher(command,ProfileCommands.BACK) != null) {
-                Application.setCurrentMenu(AllMenus.MAIN_MENU);
+                Database.setCurrentMenu(AllMenus.MAIN_MENU);
             }
             else if ( ProfileCommands.getMatcher(command,ProfileCommands.SHOW_MENU) != null) {
                 System.out.println("You're in Profile Menu!");
@@ -49,13 +48,13 @@ public class ProfileMenu
                 System.out.println("Slogan removed successfully!");
             }
             else if (ProfileCommands.getMatcher(command,ProfileCommands.DISPLAY_HIGH_SCORE) != null) {
-                System.out.println("Your High-Score is :" + Application.getCurrentUser().getHighScore());
+                System.out.println("Your High-Score is :" + Database.getCurrentUser().getHighScore());
             }
             else if (ProfileCommands.getMatcher(command,ProfileCommands.DISPLAY_RANK) != null) {
-                System.out.println("Your Rank is :" + Application.getCurrentUser().getRank());
+                System.out.println("Your Rank is :" + Database.getCurrentUser().getRank());
             }
             else if (ProfileCommands.getMatcher(command,ProfileCommands.DISPLAY_SLOGAN) != null) {
-                String slogan = Application.getCurrentUser().getSlogan();
+                String slogan = Database.getCurrentUser().getSlogan();
                 if (slogan != null){
                     System.out.println("Your Slogan is :" + slogan);
                 }
@@ -63,25 +62,25 @@ public class ProfileMenu
                     System.out.println("Slogan is empty!");
             }
             else if (ProfileCommands.getMatcher(command,ProfileCommands.DISPLAY_ALL) != null) {
-                System.out.println("Your Username is :" + Application.getCurrentUser().getUsername());
-                System.out.println("Your Nickname is :" + Application.getCurrentUser().getNickname());
-                System.out.println("Your Email is :" + Application.getCurrentUser().getEmail());
-                String slogan = Application.getCurrentUser().getSlogan();
+                System.out.println("Your Username is :" + Database.getCurrentUser().getUsername());
+                System.out.println("Your Nickname is :" + Database.getCurrentUser().getNickname());
+                System.out.println("Your Email is :" + Database.getCurrentUser().getEmail());
+                String slogan = Database.getCurrentUser().getSlogan();
                 if (slogan != null){
                     System.out.println("Your Slogan is :" + slogan);
                 }
                 else
                     System.out.println("Slogan is empty!");
-                System.out.println("Your High-Score is :" + Application.getCurrentUser().getHighScore());
-                System.out.println("Your Rank is :" + Application.getCurrentUser().getRank());
+                System.out.println("Your High-Score is :" + Database.getCurrentUser().getHighScore());
+                System.out.println("Your Rank is :" + Database.getCurrentUser().getRank());
             }
             else {
                 System.out.println("My liege, that's an invalid command!");
             }
 
-            switch (Application.getCurrentMenu()){
+            switch (Database.getCurrentMenu()){
                 case MAIN_MENU:
-                    System.out.println("You're now in Main Menu!");
+                    System.out.println("You're now in view.Main Menu!");
                     return;
                 default:
                     break;
@@ -233,7 +232,7 @@ public class ProfileMenu
     }
 
     private static void checkRemoveSlogan(){
-        Application.getCurrentUser().setSlogan(null);
+        Database.getCurrentUser().setSlogan(null);
     }
 
     private static void displayAll(){

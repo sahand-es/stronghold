@@ -1,3 +1,5 @@
+package view;
+
 import view.MainMenu;
 import view.SignUpMenu;
 

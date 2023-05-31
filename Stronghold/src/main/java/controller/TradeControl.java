@@ -1,16 +1,13 @@
 package controller;
 
-import model.Application;
+import model.Database;
 import model.Game;
-import model.resourecs.Resource;
 import model.resourecs.ResourcesName;
 import model.society.Government;
 import model.society.Trade;
-import utility.CheckFunctions;
 import view.enums.messages.TradeMessages;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class TradeControl
 {
@@ -39,14 +36,14 @@ public class TradeControl
 
         Trade trade = new Trade(government,resource,amount,price,tradeMessage);
 
-        Application.getCurrentGame().addTrade(trade);
+        Database.getCurrentGame().addTrade(trade);
         government.addTrade(trade);
 
         return TradeMessages.SUCCESS;
     }
 
     public static TradeMessages acceptTrade(int id,String message) {
-        Game game = Application.getCurrentGame();
+        Game game = Database.getCurrentGame();
         Trade trade = game.getTradeById(id);
         if (trade == null)
             return TradeMessages.TRADE_ID_DOES_NOT_EXIST;
@@ -79,12 +76,12 @@ public class TradeControl
     }
 
     public static String showAllTrades(){
-        Game game = Application.getCurrentGame();
+        Game game = Database.getCurrentGame();
         return "all trades:" + displayTrades(game.getAllTrades());
     }
 
     public static String showTradeHistory(){
-        Game game = Application.getCurrentGame();
+        Game game = Database.getCurrentGame();
         return "trades history:" + displayTrades(game.getCurrentGovernment().getTradesHistory());
     }
 

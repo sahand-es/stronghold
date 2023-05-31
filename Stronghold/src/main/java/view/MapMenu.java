@@ -1,13 +1,9 @@
 package view;
 
-import model.Application;
+import model.Database;
 import model.map.Block;
 import model.map.Map;
-import model.map.Texture;
-import utility.CheckFunctions;
-import utility.DataManager;
 import view.enums.AllMenus;
-import view.enums.commands.LoginCommands;
 import view.enums.commands.MainMenuCommands;
 import view.enums.commands.MapMenuCommands;
 
@@ -49,7 +45,7 @@ public class MapMenu {
     public static void run(int x , int y){
         setMapX(x);
         setMapY(y);
-        setMap(Application.getCurrentGame().getMap());
+        setMap(Database.getCurrentGame().getMap());
 
         //map.setTexture(5,5, Texture.WATER);
         java.util.Scanner scanner = new java.util.Scanner(System.in);
@@ -77,7 +73,7 @@ public class MapMenu {
 
             if(MapMenuCommands.getMatcher(command, MapMenuCommands.EXIT) != null){
                 System.out.println("You're in Game Menu!");
-                Application.setCurrentMenu(AllMenus.GAME_MENU);
+                Database.setCurrentMenu(AllMenus.GAME_MENU);
                 return;
             }
             else if(MapMenuCommands.getMatcher(command,MapMenuCommands.MAP) != null){
@@ -93,7 +89,7 @@ public class MapMenu {
                 System.out.println("My liege, that's an invalid command!");
 
 
-            switch (Application.getCurrentMenu()){
+            switch (Database.getCurrentMenu()){
                 case GAME_MENU:
                     return;
                 default:
