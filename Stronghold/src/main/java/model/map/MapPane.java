@@ -26,8 +26,10 @@ public class MapPane extends Pane {
     Map map;
     Group allTiles;
     Text detailsText = new Text();
-    private int x;
-    private int y;
+    private double scale = 1;
+    private final double MAX_SCALE = 2.2;
+    private final double MIN_SCALE = 0.8;
+
 
     public MapPane(Map map) {
         this.map = map;
@@ -90,16 +92,20 @@ public class MapPane extends Pane {
             @Override
             public void handle(ScrollEvent scrollEvent) {
                 ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(100));
-                    scaleTransition.setNode(mapPane.allTiles);
-                if (scrollEvent.getDeltaY() > 0) {
-                    scaleTransition.setToX(1.5);
-                    scaleTransition.setToY(1.5);
+                scaleTransition.setNode(mapPane.allTiles);
+                if (scrollEvent.getDeltaY() < 0)
+                    scale -= 0.05;
+                else
+                    scale += 0.05;
+                if (scale <= MIN_SCALE) {
+                    scale = MIN_SCALE;
+                } else if (scale >= MAX_SCALE) {
+                    scale = MAX_SCALE;
                 }
-                else {
-                    scaleTransition.setToX(0.8);
-                    scaleTransition.setToY(0.8);
-                }
-                    scaleTransition.play();
+
+                scaleTransition.setToX(scale);
+                scaleTransition.setToY(scale);
+                scaleTransition.play();
             }
         });
     }
