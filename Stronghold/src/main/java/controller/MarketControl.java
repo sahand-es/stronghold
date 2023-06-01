@@ -1,7 +1,7 @@
 package controller;
 
 import model.Database;
-import model.resourecs.ResourcesName;
+import model.resource.ResourcesName;
 import model.society.Government;
 
 import java.util.HashMap;

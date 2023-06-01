@@ -2,7 +2,7 @@ package controller;
 
 import model.Database;
 import model.Game;
-import model.resourecs.ResourcesName;
+import model.resource.ResourcesName;
 import model.society.Government;
 import model.society.Trade;
 import view.enums.messages.TradeMessages;

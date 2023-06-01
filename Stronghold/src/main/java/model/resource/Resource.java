@@ -1,4 +1,4 @@
-package model.resourecs;
+package model.resource;
 
 import java.util.HashMap;
 

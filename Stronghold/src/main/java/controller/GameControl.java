@@ -10,7 +10,7 @@ import model.map.Block;
 import model.map.Direction;
 import model.map.Map;
 import model.map.Texture;
-import model.resourecs.ResourcesName;
+import model.resource.ResourcesName;
 import model.society.Government;
 import model.units.Person;
 import model.units.Soldier;

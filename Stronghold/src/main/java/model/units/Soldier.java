@@ -1,16 +1,11 @@
 package model.units;
 
-import model.Game;
 import model.map.Block;
-import model.resourecs.Armour;
-import model.resourecs.ResourcesName;
-import model.resourecs.Weapon;
+import model.resource.ResourcesName;
 import model.society.Government;
 import model.units.enums.SoldierUnitState;
 import model.units.enums.UnitName;
-import utility.DataManager;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;

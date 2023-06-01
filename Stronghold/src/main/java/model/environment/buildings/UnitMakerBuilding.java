@@ -3,7 +3,7 @@ package model.environment.buildings;
 import model.environment.buildings.enums.BuildingCategory;
 import model.environment.buildings.enums.BuildingName;
 import model.map.Block;
-import model.resourecs.ResourcesName;
+import model.resource.ResourcesName;
 import model.society.Government;
 import model.units.Soldier;
 import model.units.enums.UnitName;

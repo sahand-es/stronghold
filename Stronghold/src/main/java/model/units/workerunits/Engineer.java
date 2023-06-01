@@ -2,9 +2,7 @@ package model.units.workerunits;
 
 import model.map.Block;
 import model.map.Direction;
-import model.map.Map;
 import model.map.Texture;
-import model.resourecs.ResourcesName;
 import model.society.Government;
 import model.units.WorkerUnit;
 import model.units.enums.UnitName;

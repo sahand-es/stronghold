@@ -4,8 +4,8 @@ import model.Game;
 import model.environment.buildings.Building;
 import model.environment.buildings.Castle;
 import model.environment.buildings.enums.BuildingName;
-import model.resourecs.Resource;
-import model.resourecs.ResourcesName;
+import model.resource.Resource;
+import model.resource.ResourcesName;
 import model.society.enums.Colors;
 import model.units.Person;
 

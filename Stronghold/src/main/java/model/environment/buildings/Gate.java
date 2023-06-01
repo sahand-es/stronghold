@@ -4,7 +4,7 @@ import model.map.Block;
 import model.map.Direction;
 import model.environment.buildings.enums.BuildingCategory;
 import model.environment.buildings.enums.BuildingName;
-import model.resourecs.ResourcesName;
+import model.resource.ResourcesName;
 import model.society.Government;
 import model.units.Person;
 import model.units.enums.UnitName;

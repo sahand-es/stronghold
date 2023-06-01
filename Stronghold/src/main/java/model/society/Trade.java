@@ -1,6 +1,6 @@
 package model.society;
 
-import model.resourecs.ResourcesName;
+import model.resource.ResourcesName;
 
 import java.util.HashMap;
 

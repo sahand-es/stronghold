@@ -1,15 +1,9 @@
 import model.Game;
-import model.environment.buildings.Building;
-import model.environment.buildings.enums.BuildingName;
 import model.map.Map;
-import model.map.Texture;
-import model.resourecs.ResourcesName;
+import model.resource.ResourcesName;
 import model.society.Government;
 import model.society.enums.Colors;
-import model.units.Person;
-import model.units.enums.UnitName;
 import org.junit.jupiter.api.Test;
-import utility.DataManager;
 
 import java.util.HashMap;
 

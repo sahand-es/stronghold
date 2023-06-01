@@ -1,6 +1,5 @@
-package model.resourecs;
+package model.resource;
 
-import model.units.enums.UnitName;
 import utility.DataManager;
 
 import java.util.ArrayList;
