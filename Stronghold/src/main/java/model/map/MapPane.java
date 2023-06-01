@@ -25,6 +25,8 @@ public class MapPane extends Pane {
     private static double HEIGHT;
     Map map;
     Group allTiles;
+    Group allPersons;
+    Group allBuildings;
     Text detailsText = new Text();
     private double scale = 1;
     private final double MAX_SCALE = 2.2;
