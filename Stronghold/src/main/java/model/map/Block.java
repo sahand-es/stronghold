@@ -98,8 +98,8 @@ public class Block {
             if (getMap().isValidXY(x, y)) {
                 units = getMap().getBlockByXY(x, y).getUnits();
                 for (Person unit : units) {
-                    if ((unit.getName().equals(UnitName.LADDERMAN) && person.canClimbLadder())
-                            || unit.getName().equals(UnitName.SIEGE_TOWER))
+                    if ((unit.getUnitName().equals(UnitName.LADDERMAN) && person.canClimbLadder())
+                            || unit.getUnitName().equals(UnitName.SIEGE_TOWER))
                         return true;
                 }
             }
@@ -224,7 +224,7 @@ public class Block {
         if (units.size() != 0) {
             output += "\nUnits:";
             for (Person unit : units) {
-                output += "\n" + unit.getName();
+                output += "\n" + unit.getUnitName();
             }
         }
         return output;

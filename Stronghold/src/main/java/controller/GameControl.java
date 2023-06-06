@@ -219,7 +219,7 @@ public class GameControl {
         person = new Person(UnitName.getUnitByName(type));
         if (!currentGovernment.getResource().checkPay(person.getPrice(), count))
             return GameMessages.NOT_ENOUGH_RESOURCE;
-        if (!UnitName.canThisBuildingMakeIt(selectedBuilding.getName(), person.getName()))
+        if (!UnitName.canThisBuildingMakeIt(selectedBuilding.getName(), person.getUnitName()))
             return GameMessages.CANNOT_MAKE_THIS_UNIT_IN_THIS_BUILDING;
 
         UnitName unitName = UnitName.getUnitByName(type);
@@ -232,6 +232,7 @@ public class GameControl {
         }
 
         GameViewController.addUnit(person);
+
         return GameMessages.SUCCESS;
     }
 
@@ -308,7 +309,7 @@ public class GameControl {
         if (selectedUnit == null)
             return GameMessages.UNIT_NOT_SELECTED.message();
 
-        String output = selectedUnit.getName() + ":\n" +
+        String output = selectedUnit.getUnitName() + ":\n" +
                 "Government: " + selectedUnit.getGovernment().getColor().name() + "\n" +
                 "Hp: " + selectedUnit.getHp() + "\n" +
                 "Block: " + selectedUnit.getBlock() + "\n";

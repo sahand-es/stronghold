@@ -39,7 +39,7 @@ public class Gate extends HouseBuilding{
 
     @Override
     public boolean canPassBuilding(Person person){
-        if(person.getName().equals(UnitName.ASSASSIN))
+        if(person.getUnitName().equals(UnitName.ASSASSIN))
             return true;
 
         if (person.getGovernment().equals(this.government))

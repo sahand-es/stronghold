@@ -204,7 +204,7 @@ public class Person {
 
     protected Person getPersonByName(String name) {
         for (Person unit : allUnits) {
-            if (unit.getName().equals(UnitName.getUnitByName(name)))
+            if (unit.getUnitName().equals(UnitName.getUnitByName(name)))
                 return unit;
         }
         return null;
@@ -212,7 +212,7 @@ public class Person {
 
     protected Person getPersonByUnitName(UnitName name) {
         for (Person unit : allUnits) {
-            if (unit.getName().equals(name))
+            if (unit.getUnitName().equals(name))
                 return unit;
         }
         return null;
@@ -243,7 +243,7 @@ public class Person {
         return defencePower;
     }
 
-    public UnitName getName() {
+    public UnitName getUnitName() {
         return name;
     }
 
@@ -363,15 +363,13 @@ public class Person {
             blockIter = route.get(blockIter);
         }
 
-        Stack<Block> s = new Stack();  //create a stack
+        Stack<Block> s = new Stack();
 
-        //while the queue is not empty
-        while (!moveQueue.isEmpty()) {  //add the elements of the queue onto a stack
+        while (!moveQueue.isEmpty()) {
             s.push(moveQueue.poll());
         }
 
-        //while the stack is not empty
-        while (!s.isEmpty()) { //add the elements in the stack back to the queue
+        while (!s.isEmpty()) {
             moveQueue.add(s.pop());
         }
     }
@@ -394,17 +392,10 @@ public class Person {
 
     @Override
     public String toString() {
-        return this.getName() + "{" +
+        return this.getUnitName() + "{" +
                 "hp=" + hp +
                 ", block=" + block +
                 ", government=" + government +
                 '}';
     }
-
-
-    public static void main(String[] args) {
-        System.out.println(allUnits);
-    }
-
 }
-

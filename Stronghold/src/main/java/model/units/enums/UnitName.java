@@ -111,6 +111,9 @@ public enum UnitName {
                 return null;
         }
     }
+    public boolean isSoldier() {
+        return this.kind.equalsIgnoreCase("soldier");
+    }
 
     public String getImagePath() {
         return "file:src/main/resources/images/soldiers/" + imagePath;

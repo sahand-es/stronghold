@@ -233,7 +233,7 @@ public class Building extends Environment {
     }
 
     public boolean canPassBuilding(Person person){
-        if(person.getName().equals(UnitName.ASSASSIN))
+        if(person.getUnitName().equals(UnitName.ASSASSIN))
             return true;
 
         if(this.category.equals(BuildingCategory.CASTLE))

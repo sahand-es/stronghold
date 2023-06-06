@@ -1,6 +1,7 @@
 package model.map;
 
 import javafx.animation.FadeTransition;
+import javafx.animation.FillTransition;
 import javafx.animation.ScaleTransition;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -17,14 +18,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
-import model.Game;
-import model.society.Government;
-import model.society.enums.Colors;
-import model.units.Person;
-import model.units.enums.UnitName;
-import view.shape.PersonNode;
-
-import javax.swing.*;
 
 public class MapPane extends Pane {
     private static double WIDTH;
@@ -53,11 +46,9 @@ public class MapPane extends Pane {
             setTileHover(tile);
             setTileDetailShow(tile);
 
-
             allTiles.getChildren().add(tile);
         }
         this.getChildren().add(allTiles);
-//        this.getChildren().add(allPersons);
         setDragMove();
     }
 
@@ -67,7 +58,6 @@ public class MapPane extends Pane {
         mapPane.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                // record a delta distance for the drag and drop operation.
                 dragDelta.x = mapPane.getLayoutX() - mouseEvent.getSceneX();
                 dragDelta.y = mapPane.getLayoutY() - mouseEvent.getSceneY();
                 if (mouseEvent.isPrimaryButtonDown())

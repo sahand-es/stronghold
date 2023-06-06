@@ -42,7 +42,7 @@ public class Bridge extends Building {
 
     @Override
     public boolean canPassBuilding(Person person){
-        if(person.getName().equals(UnitName.ASSASSIN))
+        if(person.getUnitName().equals(UnitName.ASSASSIN))
             return true;
 
         return isOpen;
