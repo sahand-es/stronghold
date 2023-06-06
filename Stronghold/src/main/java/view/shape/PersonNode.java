@@ -14,10 +14,10 @@ import model.units.Person;
 
 
 public class PersonNode extends Rectangle {
-    Person person;
+    private final Person person;
 
     public PersonNode(Person person) {
-        super(35, 45);
+        super(25, 30);
         this.person = person;
         this.setFill(new ImagePattern(new Image(person.getName().getImagePath())));
 
@@ -26,10 +26,14 @@ public class PersonNode extends Rectangle {
 
     private void setUpDownAnimation() {
         TranslateTransition tt = new TranslateTransition(Duration.millis(500), this);
-        tt.setByY(1);
+        tt.setByY(0.2);
         tt.setCycleCount(Animation.INDEFINITE);
         tt.setAutoReverse(true);
 
         tt.play();
+    }
+
+    public Person getPerson() {
+        return person;
     }
 }

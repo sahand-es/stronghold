@@ -3,8 +3,8 @@ package model.map;
 import javafx.scene.shape.Polygon;
 
 public class MapTile extends Polygon {
-    protected static final double TILE_WIDTH = 50;
-    protected static final double TILE_HEIGHT = 25;
+    public static final double TILE_WIDTH = 50;
+    public static final double TILE_HEIGHT = 25;
     private Block block;
 
     public MapTile() {

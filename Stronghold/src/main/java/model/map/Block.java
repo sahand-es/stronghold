@@ -22,6 +22,8 @@ public class Block {
     private Environment environment;
     private ArrayList<Person> units;
 
+    private MapTile tile;
+
     protected Block(int x, int y, Texture texture, Map map) {
         this.x = x;
         this.y = y;
@@ -77,6 +79,14 @@ public class Block {
 
     public void setTexture(Texture texture) {
         this.texture = texture;
+    }
+
+    public MapTile getTile() {
+        return tile;
+    }
+
+    public void setTile(MapTile tile) {
+        this.tile = tile;
     }
 
     private boolean haveLadder(Person person) {

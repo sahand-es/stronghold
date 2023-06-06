@@ -17,6 +17,12 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
+import model.Game;
+import model.society.Government;
+import model.society.enums.Colors;
+import model.units.Person;
+import model.units.enums.UnitName;
+import view.shape.PersonNode;
 
 import javax.swing.*;
 
@@ -26,7 +32,6 @@ public class MapPane extends Pane {
     Map map;
     Group allTiles;
     Group allPersons;
-    Group allBuildings;
     Text detailsText = new Text();
     private double scale = 1;
     private final double MAX_SCALE = 2.2;
@@ -52,6 +57,7 @@ public class MapPane extends Pane {
             allTiles.getChildren().add(tile);
         }
         this.getChildren().add(allTiles);
+//        this.getChildren().add(allPersons);
         setDragMove();
     }
 
@@ -94,7 +100,7 @@ public class MapPane extends Pane {
             @Override
             public void handle(ScrollEvent scrollEvent) {
                 ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(100));
-                scaleTransition.setNode(mapPane.allTiles);
+                scaleTransition.setNode(mapPane);
                 if (scrollEvent.getDeltaY() < 0)
                     scale -= 0.05;
                 else
@@ -114,8 +120,8 @@ public class MapPane extends Pane {
 
     private void showDetailsText(MapTile tile) {
         detailsText.setText(tile.getBlock().showDetails());
-        detailsText.setTranslateX(tile.getTranslateX() + 25);
-        detailsText.setTranslateY(tile.getTranslateY() - 18);
+        detailsText.setLayoutX(tile.getLayoutX() + 25);
+        detailsText.setLayoutY(tile.getLayoutY() - 18);
 
         this.getChildren().add(detailsText);
     }
@@ -128,9 +134,10 @@ public class MapPane extends Pane {
         MapTile tile = new MapTile();
 
         tile.setBlock(map.getBlockByXY(x, y));
-        tile.setTranslateX(MapTile.TILE_WIDTH / 2 * (x - y));
-        tile.setTranslateY(MapTile.TILE_WIDTH / 4 * (x + y));
+        tile.setLayoutX(MapTile.TILE_WIDTH / 2 * (x - y));
+        tile.setLayoutY(MapTile.TILE_WIDTH / 4 * (x + y));
         tile.setFill(new ImagePattern(new Image(tile.getBlock().getTexture().getImagePath())));
+        map.getBlockByXY(x, y).setTile(tile);
 
         return tile;
     }

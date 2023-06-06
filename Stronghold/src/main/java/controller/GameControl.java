@@ -19,6 +19,7 @@ import model.units.enums.UnitName;
 import model.units.workerunits.Engineer;
 import model.units.workerunits.Ladderman;
 import model.units.workerunits.Tunneler;
+import view.GameViewController;
 import view.enums.messages.GameMessages;
 
 import java.util.HashMap;
@@ -32,6 +33,7 @@ public class GameControl {
     private static Government currentGovernment;
 
     public GameControl(Game game) {
+        // TODO: 6/7/2023 add gameViewController init 
         setGame(game);
         currentGovernment = game.getCurrentGovernment();
     }
@@ -226,8 +228,10 @@ public class GameControl {
         currentGovernment.getResource().pay(person.getPrice(),count);
 
         for (int i = 0; i < count; i++) {
-            personConstructorCaller(unitName, block);
+            person = personConstructorCaller(unitName, block);
         }
+
+        GameViewController.addUnit(person);
         return GameMessages.SUCCESS;
     }
 
@@ -245,35 +249,39 @@ public class GameControl {
         UnitName unitName = UnitName.getUnitByName(type);
 
         for (int i = 0; i < count; i++) {
-            personConstructorCaller(unitName, block);
+            person = personConstructorCaller(unitName, block);
         }
+
+        GameViewController.addUnit(person);
 
         return GameMessages.SUCCESS;
     }
 
-    private static void personConstructorCaller(UnitName unitName, Block block) {
+    private static Person personConstructorCaller(UnitName unitName, Block block) {
+        Person person;
         switch (unitName.kind) {
             case "Soldier": {
-                new Soldier(unitName, block, currentGovernment);
+                person = new Soldier(unitName, block, currentGovernment);
                 break;
             }
             case "Tunneler": {
-                new Tunneler(unitName, block, currentGovernment);
+                person = new Tunneler(unitName, block, currentGovernment);
                 break;
             }
             case "Engineer": {
-                new Engineer(unitName, block, currentGovernment);
+                person = new Engineer(unitName, block, currentGovernment);
                 break;
             }
             case "Ladderman": {
-                new Ladderman(unitName, block, currentGovernment);
+                person = new Ladderman(unitName, block, currentGovernment);
                 break;
             }
             default: {
-                new Person(unitName, block, currentGovernment);
+                person = new Person(unitName, block, currentGovernment);
                 break;
             }
         }
+        return person;
     }
 
     public static GameMessages selectBuilding(int x, int y) {
