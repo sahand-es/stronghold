@@ -4,81 +4,83 @@ import org.jetbrains.annotations.NotNull;
 
 public enum BuildingName {
     // Gate:
-    SMALL_STONE_GATEHOUSE("Small Stone Gatehouse", "Gate"),
-    LARGE_STONE_GATEHOUSE("Large Stone Gatehouse", "Gate"),
+    SMALL_STONE_GATEHOUSE("Small Stone Gatehouse", "Gate", "small-stone-gatehouse.png"),
+    LARGE_STONE_GATEHOUSE("Large Stone Gatehouse", "Gate", "large-stone-gatehouse.png"),
 
     // Bridge:
-    DRAWBRIDGE("Drawbridge", "Bridge"),
+    DRAWBRIDGE("Drawbridge", "Bridge","drawbridge.png"),
 
     // Defencive:
-    LOOKOUT_TOWER("Lookout Tower", "Defencive"),
-    PERIMETER_TOWER("Perimeter Tower", "Defencive"),
-    DEFENCE_TURRET("Defence Turret", "Defencive"),
-    SQUARE_TOWER("Square Tower", "Defencive"),
-    ROUND_TOWER("Round Tower", "Defencive"),
-    CAGED_WAR_DOGS("Caged War Dogs", "Defencive"),
+    LOOKOUT_TOWER("Lookout Tower", "Defencive", "lookout-tower.png"),
+    PERIMETER_TOWER("Perimeter Tower", "Defencive", "perimeter-tower.png"),
+    DEFENCE_TURRET("Defence Turret", "Defencive", "defence-turret.png"),
+    SQUARE_TOWER("Square Tower", "Defencive", "square-tower.png"),
+    ROUND_TOWER("Round Tower", "Defencive", "round-tower.png"),
+    CAGED_WAR_DOGS("Caged War Dogs", "Defencive", "caged-war-dogs.png"),
 
     // Storage:
-    ARMOURY("Armoury", "Storage"),
-    GRANARY("Granary", "Storage"),
-    STOCKPILE("Stockpile", "Storage"),
+    ARMOURY("Armoury", "Storage", "armoury.png"),
+    GRANARY("Granary", "Storage", "granary.gif"),
+    STOCKPILE("Stockpile", "Storage", "stockpile.gif"),
 
     // Unit Maker:
-    BARRACKS("Barracks", "Unit Maker"),
-    MERCENARY_POST("Mercenary Post", "Unit Maker"),
-    ENGINEER_GUILD("Engineer Guild", "Unit Maker"),
-    TUNNELER_GUILD("Tunneler Guild", "Unit Maker"),
-    SIEGE_TENT("Siege Tent", "Unit Maker"),
+    BARRACKS("Barracks", "Unit Maker", "barracks.png"),
+    MERCENARY_POST("Mercenary Post", "Unit Maker", "mercenary-post.png"),
+    ENGINEER_GUILD("Engineer Guild", "Unit Maker", "engineer-guild.gif"),
+    TUNNELER_GUILD("Tunneler Guild", "Unit Maker", "tunnelers-guild.gif"),
+    SIEGE_TENT("Siege Tent", "Unit Maker", "siege-tent.png"),
 
     // Trap:
-    KILLING_PIT("Killing Pit", "Trap"),
-    PITCH_DITCH("Pitch Ditch", "Trap"),
+    KILLING_PIT("Killing Pit", "Trap", "killing-pit.png"),
+    PITCH_DITCH("Pitch Ditch", "Trap", "pitch-ditch.png"),
 
     // Resource Maker:
-    OIL_SMELTER("Oil Smelter", "Extractor"),
-    BAKERY("Bakery", "Extractor"),
-    BREWER("Brewer", "Extractor"),
-    MILL("Mill", "Extractor"),
-    ARMOURER("Armourer", "Extractor"),
-    BLACKSMITH("Blacksmith", "Extractor"),
-    FLETCHER("Fletcher", "Extractor"),
-    POLETURNER("Poleturner", "Extractor"),
+    OIL_SMELTER("Oil Smelter", "Extractor", "oil-smelter.gif"),
+    BAKERY("Bakery", "Extractor", "brewer.png"),
+    BREWER("Brewer", "Extractor", "brewer.png"),
+    MILL("Mill", "Extractor", "windmill.gif"),
+    ARMOURER("Armourer", "Extractor","armourer.gif"),
+    BLACKSMITH("Blacksmith", "Extractor", "blacksmith.gif"),
+    FLETCHER("Fletcher", "Extractor", "fletcher.gif"),
+    POLETURNER("Poleturner", "Extractor", "poleturner.gif"),
 
     // Extractor:
-    APPLE_ORCHARD("Apple Orchard", "Extractor"),
-    DAIRY_FARMER("Dairy Farmer", "Extractor"),
-    HOPS_FARMER("Hops Farmer", "Extractor"),
-    HUNTERS_POST("Hunter Post", "Extractor"),
-    WHEAT_FARMER("Wheat Farmer", "Extractor"),
-    IRON_MINE("Iron Mine", "Extractor"),
-    PITCH_RIG("Pitch Rig", "Extractor"),
-    QUARRY("Quarry", "Extractor"),
-    WOODCUTTER("Woodcutter", "Extractor"),
-    STABLE("Stable", "Extractor"),
+    APPLE_ORCHARD("Apple Orchard", "Extractor", "apple-orchard.gif"),
+    DAIRY_FARMER("Dairy Farmer", "Extractor", "dairy-farmer.gif"),
+    HOPS_FARMER("Hops Farmer", "Extractor", "hops-farmer.gif"),
+    HUNTERS_POST("Hunter Post", "Extractor", "hunters-post.gif"),
+    WHEAT_FARMER("Wheat Farmer", "Extractor", "wheat-farmer.gif"),
+    IRON_MINE("Iron Mine", "Extractor", "iron-mine.gif"),
+    PITCH_RIG("Pitch Rig", "Extractor", "pitch-rig.gif"),
+    QUARRY("Quarry", "Extractor", "quarry.gif"),
+    WOODCUTTER("Woodcutter", "Extractor", "wood-cutter.png"),
+    STABLE("Stable", "Extractor", "stable.png"),
 
     // Church:
-    CHURCH("Church", "Church"),
-    CATHEDRAL("Cathedral", "Church"),
+    CHURCH("Church", "Church", "church.png"),
+    CATHEDRAL("Cathedral", "Church", "cathedral.png"),
 
     // Other:
-    INN("Inn", "Inn"),
-    MARKET("Market", "Shop"),
-    HOVEL("Hovel", "House"),
-    TUNNEL_ENTRANCE("Tunnel Entrance", "Building"),
-    OX_TETHER("Ox Tether", "Building"),
-    SHORT_WALL("Short Wall", "Building"),
-    TALL_WALL("Tall Wall", "Building"),
-    STAIR("Stair", "Building"),
-    CASTLE("Castle", "Castle"),
+    INN("Inn", "Inn", "inn.png"),
+    MARKET("Market", "Shop", "market.png"),
+    HOVEL("Hovel", "House", "hovel.gif"),
+    TUNNEL_ENTRANCE("Tunnel Entrance", "Building", "killing-pit.png"),
+    OX_TETHER("Ox Tether", "Building", "ox-tether.gif"),
+    SHORT_WALL("Short Wall", "Building", "wall.png"),
+    TALL_WALL("Tall Wall", "Building", "wall.png"),
+    STAIR("Stair", "Building", "wall.png"),
+    CASTLE("Castle", "Castle", "castle.png"),
 
 
     ;
     private final String name;
     public final String kind;
+    private final String imagePath;
 
-    BuildingName(String name, String kind) {
+    BuildingName(String name, String kind, String imagePath) {
         this.name = name;
         this.kind = kind;
+        this.imagePath = imagePath;
     }
 
     public String getName() {
@@ -99,5 +101,9 @@ public enum BuildingName {
                 return true;
         }
         return false;
+    }
+
+    public String getImagePath() {
+        return "file:src/main/resources/images/buildings/" + imagePath;
     }
 }
