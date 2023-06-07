@@ -152,7 +152,7 @@ public class MapPane extends Pane {
         tile.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                if (mouseEvent.getButton().equals(MouseButton.SECONDARY)) {
+                {
                     showDetailsText(tile);
                 }
             }

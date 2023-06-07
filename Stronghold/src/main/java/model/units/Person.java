@@ -284,16 +284,18 @@ public class Person {
         return true;
     }
 
-    public void move() {
+    public Queue<Block> move() {
+        Queue<Block> movedBlocks = new LinkedList<>();
         if (!moveQueue.isEmpty()) {
             Block lastBlock = block;
             int blocksMoved = 0;
             while (!moveQueue.isEmpty() && blocksMoved < speed) {
                 lastBlock = moveQueue.peek();
+                movedBlocks.add(lastBlock);
                 if (lastBlock.getEnvironment() != null)
                     if (lastBlock.getEnvironment() instanceof Traps) {
                         die();
-                        return;
+                        return movedBlocks;
                     }
 
                 moveQueue.remove();
@@ -309,6 +311,8 @@ public class Person {
             whichPatrolBlock = whichPatrolBlock.equals(patrolBlocks[0]) ? patrolBlocks[1] : patrolBlocks[0];
             findPath(whichPatrolBlock);
         }
+
+        return movedBlocks;
     }
 
     public boolean canGoThere(Block destination) {

@@ -89,7 +89,7 @@ public class PersonNode extends Rectangle {
 
     private void setUpDownAnimation() {
         TranslateTransition tt = new TranslateTransition(Duration.millis(500), this);
-        tt.setByY(0.2);
+        tt.setByY(0.1f);
         tt.setCycleCount(Animation.INDEFINITE);
         tt.setAutoReverse(true);
 
