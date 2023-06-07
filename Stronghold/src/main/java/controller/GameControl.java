@@ -514,7 +514,7 @@ public class GameControl {
 
     private static void moveAllUnits() {
         for (Person unit : game.getAllUnits()) {
-            unit.move();
+            GameViewController.moveUnit(unit, unit.move());
         }
     }
 
