@@ -51,7 +51,6 @@ public class MoveAnimation extends Transition {
             personNode.setLayoutY(personNode.getLayoutY() + changeInY);
         }
         if (!(Math.abs(delY) >= 1) && !(Math.abs(delX) >= 1)) {
-            System.out.println("hi");
             this.stop();
         }
     }
