@@ -38,6 +38,8 @@ public class MarketViewController extends Application {
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
         scrollPane.setPannable(true);
 
+
+
         scrollPane.setContent(new ResourceNode(ResourcesName.APPLE,5,3,100 , 20).getStackPane());
 
     }

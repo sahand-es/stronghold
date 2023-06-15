@@ -8,8 +8,8 @@ import java.util.HashMap;
 
 public class MarketControl
 {
-    static HashMap<ResourcesName,Integer> buyPrice;
-    static HashMap<ResourcesName,Integer> sellPrice;
+    public static HashMap<ResourcesName,Integer> buyPrice;
+    public static HashMap<ResourcesName,Integer> sellPrice;
 
     static {
         buyPrice = new HashMap<>();
