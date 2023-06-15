@@ -7,7 +7,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import model.resource.ResourcesName;
+import view.shape.ResourceNode;
 
+import java.awt.*;
 import java.net.URL;
 
 public class MarketViewController extends Application {
@@ -34,5 +37,8 @@ public class MarketViewController extends Application {
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
         scrollPane.setPannable(true);
+
+        scrollPane.setContent(new ResourceNode(ResourcesName.APPLE,5,3).getStackPane());
+
     }
 }
