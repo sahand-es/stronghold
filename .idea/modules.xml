@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Stronghold/Stronghold.iml" filepath="$PROJECT_DIR$/Stronghold/Stronghold.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/project-group-33.iml" filepath="$PROJECT_DIR$/.idea/project-group-33.iml" />
     </modules>
   </component>
