@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import model.resource.ResourcesName;
 import view.shape.ResourceNode;
@@ -46,6 +47,15 @@ public class MarketViewController extends Application {
 
         Scene scene = new Scene(borderPane);
         stage.setScene(scene);
+        stage.setFullScreen(true);
+        stage.setResizable(false);
+
+
+        int width = (int) Screen.getPrimary().getBounds().getWidth();
+        int height = (int) Screen.getPrimary().getBounds().getHeight();
+
+        System.out.println(width + " , " + height);
+
         stage.show();
     }
 
