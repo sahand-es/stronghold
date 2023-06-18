@@ -1,12 +1,17 @@
 package view;
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -41,8 +46,46 @@ public class MarketViewController extends Application {
         borderPane.setLeft(left);
 
         Label right = new Label();
-        right.setPrefWidth(width / 2 -265);
+        right.setPrefWidth( width / 2 -265);
         borderPane.setRight(right);
+
+
+        Label label = new Label("Market Menu");
+        label.setAlignment(Pos.CENTER);
+        label.setStyle("-fx-font: 50 sys ; -fx-font-weight: bold");
+        label.setPrefHeight(100);
+
+        Label l = new Label();
+        l.setPrefWidth(width/2 - 150);
+
+        HBox hBox = new HBox();
+        hBox.getChildren().addAll(l,label);
+        borderPane.setTop(hBox);
+
+
+        Button back = new Button("Back");
+        back.setStyle("-fx-font: 20 sys ;-fx-background-color: #e6af29 ; -fx-border-color: #262115");
+        back.setPrefSize(300,70);
+        back.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                //TODO
+                System.out.println("back");
+            }
+        });
+
+        Label l1 = new Label();
+        l1.setPrefWidth(width/2 - 150);
+        l1.setPrefHeight(100);
+
+        HBox hBox1 = new HBox();
+        hBox1.getChildren().addAll(l1,back);
+        borderPane.setBottom(hBox1);
+
+
+
+
+
 
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
@@ -63,19 +106,7 @@ public class MarketViewController extends Application {
         stage.setScene(scene);
         stage.setFullScreen(true);
         stage.setResizable(false);
-
-
-
-
-        System.out.println(width + " , " + height);
-
         stage.show();
     }
 
-    @FXML
-    public void initialize(){
-
-
-
-    }
 }
