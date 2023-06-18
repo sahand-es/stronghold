@@ -25,16 +25,10 @@ public class MarketViewController extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        borderPane = FXMLLoader.load(new URL(
-                MarketViewController.class.getResource("/fxml/market-menu.fxml").toExternalForm()
-        ));
-        Scene scene = new Scene(borderPane);
-        stage.setScene(scene);
-        stage.show();
-    }
+        borderPane = new BorderPane();
+        scrollPane = new ScrollPane();
+        borderPane.setCenter(scrollPane);
 
-    @FXML
-    public void initialize(){
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
         scrollPane.setPannable(true);
@@ -48,6 +42,16 @@ public class MarketViewController extends Application {
         vBox.getChildren().add(new ResourceNode(ResourcesName.BREAD,5,3,100 , 30).getStackPane());
 
         scrollPane.setContent(vBox);
+
+
+        Scene scene = new Scene(borderPane);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    public void initialize(){
+
 
 
     }
