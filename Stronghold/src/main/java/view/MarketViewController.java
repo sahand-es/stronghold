@@ -1,29 +1,21 @@
 package view;
 
-import controller.MarketControl;
 import javafx.application.Application;
 import javafx.event.EventHandler;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import model.resource.ResourcesName;
 import view.shape.ResourceNode;
-
-import java.awt.*;
-import java.net.URL;
-import java.util.HashMap;
 
 
 public class MarketViewController extends Application {
@@ -44,8 +36,10 @@ public class MarketViewController extends Application {
         height = (int) Screen.getPrimary().getBounds().getHeight();
 
         borderPane = new BorderPane();
-        borderPane.setPrefSize(width,height);
+        borderPane.setPrefSize(width, height);
 
+
+        setBackground();
 
         makeLeft();
         makeRight();
@@ -61,17 +55,28 @@ public class MarketViewController extends Application {
     }
 
 
+    private void setBackground(){
+        Image image = new Image(
+                MarketViewController.class.getResource("/images/backgrounds/background.jpg").toExternalForm()
+        );
+        BackgroundImage backgroundFill = new BackgroundImage(
+                image,BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.DEFAULT,BackgroundSize.DEFAULT
+        );
+        Background background = new Background(backgroundFill);
+        borderPane.setBackground(background);
+    }
 
-    private void makeLeft(){
+    private void makeLeft() {
         Label left = new Label();
 
         left.setPrefWidth(width / 2 - 250);
         borderPane.setLeft(left);
     }
 
-    private void makeRight(){
+    private void makeRight() {
         Label right = new Label();
-        right.setPrefWidth( width / 2 -265);
+        right.setPrefWidth(width / 2 - 265);
         borderPane.setRight(right);
     }
 
@@ -88,10 +93,10 @@ public class MarketViewController extends Application {
         borderPane.setTop(hBox);
     }
 
-    private void makeBottom(){
+    private void makeBottom() {
         Button back = new Button("Back");
         back.setStyle("-fx-font: 20 sys ;-fx-background-color: #e6af29 ; -fx-border-color: #262115");
-        back.setPrefSize(300,70);
+        back.setPrefSize(300, 70);
         back.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -106,26 +111,24 @@ public class MarketViewController extends Application {
 
         HBox hBox1 = new HBox();
         hBox1.setAlignment(Pos.CENTER);
-        hBox1.getChildren().addAll(l1,back);
+        hBox1.getChildren().addAll(l1, back);
         borderPane.setBottom(hBox1);
     }
 
-    private void makeScrollPane(){
+    private void makeScrollPane() {
         scrollPane = new ScrollPane();
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
         scrollPane.setPannable(true);
-
 
         VBox vBox = new VBox();
         vBox.setSpacing(10);
 
 
 
-
         int buyPrice;
         int sellPrice;
-        int gold =100; //TODO get from government
+        int gold = 100; //TODO get from government
         int amount;
 
         buyPrice = 5;
@@ -133,7 +136,7 @@ public class MarketViewController extends Application {
         for (ResourcesName resource : ResourcesName.foods) {
             amount = 20; //TODO
             vBox.getChildren().add(
-                    new ResourceNode(resource,buyPrice,sellPrice,gold,amount).getStackPane()
+                    new ResourceNode(resource, buyPrice, sellPrice, gold, amount).getStackPane()
             );
         }
 
@@ -143,7 +146,7 @@ public class MarketViewController extends Application {
         for (ResourcesName resource : ResourcesName.Materials) {
             amount = 20; //TODO
             vBox.getChildren().add(
-                    new ResourceNode(resource,buyPrice,sellPrice,gold,amount).getStackPane()
+                    new ResourceNode(resource, buyPrice, sellPrice, gold, amount).getStackPane()
             );
         }
 
@@ -152,11 +155,9 @@ public class MarketViewController extends Application {
         for (ResourcesName resource : ResourcesName.weapons) {
             amount = 20; //TODO
             vBox.getChildren().add(
-                    new ResourceNode(resource,buyPrice,sellPrice,gold,amount).getStackPane()
+                    new ResourceNode(resource, buyPrice, sellPrice, gold, amount).getStackPane()
             );
         }
-
-
 
 
         scrollPane.setContent(vBox);
