@@ -1,7 +1,9 @@
 package view.shape;
 
+import controller.MarketControl;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -63,8 +65,14 @@ public class ResourceNode {
         buyButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                System.out.println("buy " + resourcesName.name());
-                ResourceNode.getResourceNodeByButton(buyButton).buy();
+                if (MarketControl.checkBuy(resourcesName.name(),1)) {
+                    ResourceNode.getResourceNodeByButton(buyButton).buy();
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Buy Failed");
+                    alert.setHeaderText("You can't buy this item");
+                    alert.show();
+                }
             }
         });
 
@@ -74,8 +82,14 @@ public class ResourceNode {
         sellButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                System.out.println("sell " + resourcesName.name());
-                ResourceNode.getResourceNodeByButton(buyButton).sell();
+                if (MarketControl.checkSell(resourcesName.name(),1)) {
+                    ResourceNode.getResourceNodeByButton(buyButton).sell();
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Sell Failed");
+                    alert.setHeaderText("You can't sell this item");
+                    alert.show();
+                }
             }
         });
 

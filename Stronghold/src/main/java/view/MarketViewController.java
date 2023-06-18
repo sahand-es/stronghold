@@ -14,6 +14,9 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import model.Database;
+import model.Game;
+import model.map.Map;
 import model.resource.ResourcesName;
 import view.shape.ResourceNode;
 
@@ -27,6 +30,13 @@ public class MarketViewController extends Application {
     private int height;
 
     public static void main(String[] args) {
+        //TODO connect to adder Menus.
+        Map map = new Map(100,100);
+        Game game = new Game(map , 1);
+
+        Database.setCurrentMap(map);
+        Database.setCurrentGame(game);
+
         launch();
     }
 
@@ -128,13 +138,13 @@ public class MarketViewController extends Application {
 
         int buyPrice;
         int sellPrice;
-        int gold = 100; //TODO get from government
+        int gold = Database.getCurrentGame().getCurrentGovernment().getResource().getGold();
         int amount;
 
         buyPrice = 5;
         sellPrice = 3;
         for (ResourcesName resource : ResourcesName.foods) {
-            amount = 20; //TODO
+            amount = 20; Database.getCurrentGame().getCurrentGovernment().getResource().getAmount(resource);
             vBox.getChildren().add(
                     new ResourceNode(resource, buyPrice, sellPrice, gold, amount).getStackPane()
             );
@@ -144,7 +154,7 @@ public class MarketViewController extends Application {
         buyPrice = 15;
         sellPrice = 10;
         for (ResourcesName resource : ResourcesName.Materials) {
-            amount = 20; //TODO
+            amount = Database.getCurrentGame().getCurrentGovernment().getResource().getAmount(resource);
             vBox.getChildren().add(
                     new ResourceNode(resource, buyPrice, sellPrice, gold, amount).getStackPane()
             );
@@ -153,7 +163,7 @@ public class MarketViewController extends Application {
         buyPrice = 20;
         sellPrice = 15;
         for (ResourcesName resource : ResourcesName.weapons) {
-            amount = 20; //TODO
+            amount = Database.getCurrentGame().getCurrentGovernment().getResource().getAmount(resource);
             vBox.getChildren().add(
                     new ResourceNode(resource, buyPrice, sellPrice, gold, amount).getStackPane()
             );
