@@ -21,10 +21,15 @@ import view.shape.ResourceNode;
 import java.awt.*;
 import java.net.URL;
 
+
+
 public class MarketViewController extends Application {
     public ScrollPane scrollPane;
 
     private BorderPane borderPane;
+
+    private int width;
+    private int height;
 
     public static void main(String[] args) {
         launch();
@@ -32,24 +37,40 @@ public class MarketViewController extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        int width = (int) Screen.getPrimary().getBounds().getWidth();
-        int height = (int) Screen.getPrimary().getBounds().getHeight();
-
+        width = (int) Screen.getPrimary().getBounds().getWidth();
+        height = (int) Screen.getPrimary().getBounds().getHeight();
 
         borderPane = new BorderPane();
         borderPane.setPrefSize(width,height);
-        scrollPane = new ScrollPane();
-        borderPane.setCenter(scrollPane);
 
+        makeLeft();
+        makeRight();
+        makeTop();
+        makeBottom();
+        makeScrollPane();
+
+        Scene scene = new Scene(borderPane);
+        stage.setScene(scene);
+        stage.setFullScreen(true);
+        stage.setResizable(false);
+        stage.show();
+    }
+
+
+
+    private void makeLeft(){
         Label left = new Label();
         left.setPrefWidth(width / 2 - 250);
         borderPane.setLeft(left);
+    }
 
+    private void makeRight(){
         Label right = new Label();
         right.setPrefWidth( width / 2 -265);
         borderPane.setRight(right);
+    }
 
-
+    private void makeTop() {
         Label label = new Label("Market Menu");
         label.setAlignment(Pos.CENTER);
         label.setStyle("-fx-font: 50 sys ; -fx-font-weight: bold");
@@ -61,8 +82,9 @@ public class MarketViewController extends Application {
         HBox hBox = new HBox();
         hBox.getChildren().addAll(l,label);
         borderPane.setTop(hBox);
+    }
 
-
+    private void makeBottom(){
         Button back = new Button("Back");
         back.setStyle("-fx-font: 20 sys ;-fx-background-color: #e6af29 ; -fx-border-color: #262115");
         back.setPrefSize(300,70);
@@ -81,12 +103,10 @@ public class MarketViewController extends Application {
         HBox hBox1 = new HBox();
         hBox1.getChildren().addAll(l1,back);
         borderPane.setBottom(hBox1);
+    }
 
-
-
-
-
-
+    private void makeScrollPane(){
+        scrollPane = new ScrollPane();
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
         scrollPane.setPannable(true);
@@ -101,12 +121,7 @@ public class MarketViewController extends Application {
 
         scrollPane.setContent(vBox);
 
-
-        Scene scene = new Scene(borderPane);
-        stage.setScene(scene);
-        stage.setFullScreen(true);
-        stage.setResizable(false);
-        stage.show();
+        borderPane.setCenter(scrollPane);
     }
 
 }
