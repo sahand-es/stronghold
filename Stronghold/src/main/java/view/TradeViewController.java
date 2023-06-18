@@ -16,6 +16,7 @@ import view.shape.ResourceNode;
 public class TradeViewController extends Application {
 
     private BorderPane borderPane;
+    private VBox vBox;
 
     private int width;
     private int height;
@@ -35,6 +36,8 @@ public class TradeViewController extends Application {
         setBackground();
         makeTop();
         makeBottom();
+        makeButtons();
+
 
 
 
@@ -90,5 +93,50 @@ public class TradeViewController extends Application {
         hBox.setAlignment(Pos.CENTER);
         hBox.getChildren().addAll( back,l);
         borderPane.setBottom(hBox);
+    }
+
+    private void makeButtons(){
+        vBox = new VBox();
+        vBox.setAlignment(Pos.CENTER);
+
+        HBox hBox = new HBox();
+
+        Button newTradeButton = new Button("New Trade");
+        newTradeButton.setStyle("-fx-font: 15 sys ;-fx-background-color: #e6af29 ; -fx-border-color: #262115");
+        newTradeButton.setPrefSize(200,20);
+        newTradeButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                //TODO
+                System.out.println("new Trade");
+            }
+        });
+
+        Button tradeListButton = new Button("Trade List");
+        tradeListButton.setStyle("-fx-font: 15 sys ;-fx-background-color: #e6af29 ; -fx-border-color: #262115");
+        tradeListButton.setPrefSize(200,20);
+        tradeListButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                //TODO
+                System.out.println("Trade List");
+            }
+        });
+
+        Button tradeHistoryButton = new Button("Trade History");
+        tradeHistoryButton.setStyle("-fx-font: 15 sys ;-fx-background-color: #e6af29 ; -fx-border-color: #262115");
+        tradeHistoryButton.setPrefSize(200,20);
+        tradeHistoryButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                //TODO
+                System.out.println("Trade History");
+            }
+        });
+
+        hBox.setAlignment(Pos.CENTER);
+        hBox.getChildren().addAll(newTradeButton,tradeListButton,tradeHistoryButton);
+        vBox.getChildren().add(hBox);
+        borderPane.setCenter(vBox);
     }
 }
