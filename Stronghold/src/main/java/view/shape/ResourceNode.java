@@ -113,14 +113,21 @@ public class ResourceNode {
         gold -= buyPrice;
         resourceValue += 1;
         resourceLabel.setText(String.valueOf(resourceValue));
-        goldLabel.setText(String.valueOf(gold));
+        for (ResourceNode resourceNode : allResourceNodes) {
+            resourceNode.goldLabel.setText(String.valueOf(gold));
+        }
     }
 
     private void sell(){
         gold += sellPrice;
         resourceValue -= 1;
         resourceLabel.setText(String.valueOf(resourceValue));
-        goldLabel.setText(String.valueOf(gold));
+
+        for (ResourceNode resourceNode : allResourceNodes) {
+            resourceNode.goldLabel.setText(String.valueOf(gold));
+        }
+
+
     }
 
     private static ResourceNode getResourceNodeByButton(Button button){

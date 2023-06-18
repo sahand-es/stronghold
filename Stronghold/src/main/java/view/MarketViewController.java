@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.resource.ResourcesName;
 import view.shape.ResourceNode;
@@ -39,8 +40,15 @@ public class MarketViewController extends Application {
         scrollPane.setPannable(true);
 
 
+        VBox vBox = new VBox();
+        vBox.setSpacing(10);
+        vBox.getChildren().add(new ResourceNode(ResourcesName.APPLE,5,3,100 , 20).getStackPane());
+        vBox.getChildren().add(new ResourceNode(ResourcesName.MEAT,4,2,100 , 10).getStackPane());
+        vBox.getChildren().add(new ResourceNode(ResourcesName.CHEESE,6,3,100 , 20).getStackPane());
+        vBox.getChildren().add(new ResourceNode(ResourcesName.BREAD,5,3,100 , 30).getStackPane());
 
-        scrollPane.setContent(new ResourceNode(ResourcesName.APPLE,5,3,100 , 20).getStackPane());
+        scrollPane.setContent(vBox);
+
 
     }
 }
