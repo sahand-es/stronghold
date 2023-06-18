@@ -47,8 +47,6 @@ public class ResourceNode {
         Rectangle rectangle = new Rectangle(500,100);
         rectangle.setFill(Color.DARKGOLDENROD);
 
-
-
         Rectangle resourceImage = new Rectangle(90,90);
         resourceImage.setFill(new ImagePattern(
                 new Image(ResourceNode.class.getResource("/images/resources/"+resourcesName.name().toLowerCase()+".png").toExternalForm())
@@ -70,9 +68,6 @@ public class ResourceNode {
             }
         });
 
-
-
-
         sellButton = new Button("sell " + sellPrice);
         sellButton.setPrefSize(200,45);
         sellButton.setStyle("-fx-font: 15 sys ;-fx-background-color: #e6af29 ; -fx-border-color: #262115");
@@ -93,7 +88,6 @@ public class ResourceNode {
 
         resourceLabel = new Label(String.valueOf(resourceValue));
         resourceLabel.setStyle("-fx-font: 20 sys");
-
 
         HBox hBox = new HBox();
         hBox.setSpacing(10);
@@ -137,6 +131,10 @@ public class ResourceNode {
 
         }
         return null;
+    }
+
+    public static void clearAllResourceNodes(){
+        allResourceNodes = new ArrayList<>();
     }
 
     public StackPane getStackPane() {

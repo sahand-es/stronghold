@@ -1,5 +1,6 @@
 package view;
 
+import controller.MarketControl;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -8,11 +9,13 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import model.resource.ResourcesName;
@@ -20,7 +23,7 @@ import view.shape.ResourceNode;
 
 import java.awt.*;
 import java.net.URL;
-
+import java.util.HashMap;
 
 
 public class MarketViewController extends Application {
@@ -43,6 +46,7 @@ public class MarketViewController extends Application {
         borderPane = new BorderPane();
         borderPane.setPrefSize(width,height);
 
+
         makeLeft();
         makeRight();
         makeTop();
@@ -60,6 +64,7 @@ public class MarketViewController extends Application {
 
     private void makeLeft(){
         Label left = new Label();
+
         left.setPrefWidth(width / 2 - 250);
         borderPane.setLeft(left);
     }
@@ -76,11 +81,10 @@ public class MarketViewController extends Application {
         label.setStyle("-fx-font: 50 sys ; -fx-font-weight: bold");
         label.setPrefHeight(100);
 
-        Label l = new Label();
-        l.setPrefWidth(width/2 - 150);
 
         HBox hBox = new HBox();
-        hBox.getChildren().addAll(l,label);
+        hBox.setAlignment(Pos.CENTER);
+        hBox.getChildren().add(label);
         borderPane.setTop(hBox);
     }
 
@@ -92,15 +96,16 @@ public class MarketViewController extends Application {
             @Override
             public void handle(MouseEvent event) {
                 //TODO
-                System.out.println("back");
+                ResourceNode.clearAllResourceNodes();
             }
         });
 
         Label l1 = new Label();
-        l1.setPrefWidth(width/2 - 150);
+        l1.setPrefWidth(0);
         l1.setPrefHeight(100);
 
         HBox hBox1 = new HBox();
+        hBox1.setAlignment(Pos.CENTER);
         hBox1.getChildren().addAll(l1,back);
         borderPane.setBottom(hBox1);
     }
@@ -114,10 +119,45 @@ public class MarketViewController extends Application {
 
         VBox vBox = new VBox();
         vBox.setSpacing(10);
-        vBox.getChildren().add(new ResourceNode(ResourcesName.APPLE,5,3,100 , 20).getStackPane());
-        vBox.getChildren().add(new ResourceNode(ResourcesName.MEAT,4,2,100 , 10).getStackPane());
-        vBox.getChildren().add(new ResourceNode(ResourcesName.CHEESE,6,3,100 , 20).getStackPane());
-        vBox.getChildren().add(new ResourceNode(ResourcesName.BREAD,5,3,100 , 30).getStackPane());
+
+
+
+
+        int buyPrice;
+        int sellPrice;
+        int gold =100; //TODO get from government
+        int amount;
+
+        buyPrice = 5;
+        sellPrice = 3;
+        for (ResourcesName resource : ResourcesName.foods) {
+            amount = 20; //TODO
+            vBox.getChildren().add(
+                    new ResourceNode(resource,buyPrice,sellPrice,gold,amount).getStackPane()
+            );
+        }
+
+
+        buyPrice = 15;
+        sellPrice = 10;
+        for (ResourcesName resource : ResourcesName.Materials) {
+            amount = 20; //TODO
+            vBox.getChildren().add(
+                    new ResourceNode(resource,buyPrice,sellPrice,gold,amount).getStackPane()
+            );
+        }
+
+        buyPrice = 20;
+        sellPrice = 15;
+        for (ResourcesName resource : ResourcesName.weapons) {
+            amount = 20; //TODO
+            vBox.getChildren().add(
+                    new ResourceNode(resource,buyPrice,sellPrice,gold,amount).getStackPane()
+            );
+        }
+
+
+
 
         scrollPane.setContent(vBox);
 

@@ -98,10 +98,11 @@ public class MarketControl
         return true;
     }
 
-    public static void main(String[] args) {
-        System.out.println(showPrice());
+    public static HashMap<ResourcesName, Integer> getBuyPrice() {
+        return buyPrice;
     }
 
-
-
+    public static HashMap<ResourcesName, Integer> getSellPrice() {
+        return sellPrice;
+    }
 }
