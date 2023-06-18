@@ -6,7 +6,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -52,7 +51,7 @@ public class ResourceNode {
 
         Rectangle resourceImage = new Rectangle(90,90);
         resourceImage.setFill(new ImagePattern(
-                new Image(ResourceNode.class.getResource("/images/resources/coin.png").toExternalForm())
+                new Image(ResourceNode.class.getResource("/images/resources/"+resourcesName.name().toLowerCase()+".png").toExternalForm())
                 ));
 
         Rectangle coinImage = new Rectangle(90,90);
