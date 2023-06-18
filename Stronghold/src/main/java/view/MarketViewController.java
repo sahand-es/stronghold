@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
@@ -26,9 +27,22 @@ public class MarketViewController extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        int width = (int) Screen.getPrimary().getBounds().getWidth();
+        int height = (int) Screen.getPrimary().getBounds().getHeight();
+
+
         borderPane = new BorderPane();
+        borderPane.setPrefSize(width,height);
         scrollPane = new ScrollPane();
         borderPane.setCenter(scrollPane);
+
+        Label left = new Label();
+        left.setPrefWidth(width / 2 - 250);
+        borderPane.setLeft(left);
+
+        Label right = new Label();
+        right.setPrefWidth(width / 2 -265);
+        borderPane.setRight(right);
 
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
@@ -51,8 +65,7 @@ public class MarketViewController extends Application {
         stage.setResizable(false);
 
 
-        int width = (int) Screen.getPrimary().getBounds().getWidth();
-        int height = (int) Screen.getPrimary().getBounds().getHeight();
+
 
         System.out.println(width + " , " + height);
 
