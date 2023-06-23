@@ -42,8 +42,10 @@ public class PersonNode extends Rectangle {
         }
 
         setDetailBox();
+        setOnRightClick(this);
+    }
 
-        PersonNode personNode = this;
+    private void setOnRightClick(PersonNode personNode) {
         personNode.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
@@ -73,7 +75,6 @@ public class PersonNode extends Rectangle {
 
         if (person instanceof Soldier){
              Soldier soldier = (Soldier) person;
-            damage.setText("Damage:     " + soldier.getDamage());
             soldierState.setImage(new Image(soldier.getSoldierUnitState().getImagePath()));
         }
 
@@ -81,7 +82,7 @@ public class PersonNode extends Rectangle {
     }
 
     private void showDetailsBox() {
-        pb.setProgress((double) person.getHp() / 100);
+        pb.setProgress((double) person.getHp() / person.getInitialHp());
 
         GameViewController.addNode(detailBox);
     }

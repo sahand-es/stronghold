@@ -402,4 +402,8 @@ public class Person {
                 ", government=" + government +
                 '}';
     }
+
+    public int getInitialHp() {
+        return getPersonByUnitName(this.name).hp;
+    }
 }

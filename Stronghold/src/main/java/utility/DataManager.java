@@ -26,6 +26,7 @@ public class DataManager {
     public static final String BUILDINGS_PATH = "src/main/resources/csv/Buildings.csv";
     //fxml:
     public static final String SOLDIER_DETAIL_BOX = "/fxml/soldier-detail-box.fxml";
+    public static final String BUILDING_DETAIL_BOX = "/fxml/building-detail-box.fxml";
 
     public static ArrayList<User> loadUsers() {
         try {

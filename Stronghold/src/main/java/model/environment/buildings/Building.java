@@ -178,7 +178,9 @@ public class Building extends Environment {
                        BuildingCategory category,
                        BuildingName name,
                        HashMap<ResourcesName, Integer> price) {
-        this.hp = hp;
+        if (hp != 0)
+            this.hp = hp;
+        else this.hp = Integer.MAX_VALUE;
         this.category = category;
         this.name = name;
         this.price = price;
@@ -240,6 +242,14 @@ public class Building extends Environment {
             return false;
 
         return true;
+    }
+
+    public int getHp() {
+        return hp;
+    }
+
+    public int getInitialHp() {
+        return getBuildingByBuildingName(this.getName()).hp;
     }
 
     public void repair() {
