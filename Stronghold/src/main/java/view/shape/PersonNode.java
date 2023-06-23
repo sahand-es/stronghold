@@ -29,7 +29,7 @@ public class PersonNode extends Rectangle {
     private ProgressBar pb;
 
     public PersonNode(Person person) {
-        super(25, 30);
+        super(20, 25);
         this.person = person;
         this.setFill(new ImagePattern(new Image(person.getUnitName().getImagePath())));
 

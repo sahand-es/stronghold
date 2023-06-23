@@ -15,6 +15,7 @@ public class BuildingNode extends Rectangle {
         super(MapTile.TILE_WIDTH, (MapTile.TILE_HEIGHT * 2));
         this.building = building;
 
+        // TODO: 6/8/2023 towers background 
         Image image = new Image(building.getName().getImagePath());
 
         double scale = image.getHeight()/image.getWidth();
