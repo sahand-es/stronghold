@@ -9,11 +9,14 @@ import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import model.resource.ResourcesName;
+
+import java.util.ArrayList;
 
 
 public class MakeNewTradePanel {
@@ -23,7 +26,7 @@ public class MakeNewTradePanel {
 
     private int price;
 
-    private StackPane stackPane;
+    VBox vBox;
 
     public MakeNewTradePanel() {
         resource = ResourcesName.STONE;
@@ -139,17 +142,49 @@ public class MakeNewTradePanel {
 
         hBox.getChildren().add(acceptButton);
 
-        stackPane = new StackPane();
+        StackPane stackPane = new StackPane();
         stackPane.getChildren().addAll(rectangle,hBox);
 
 
+        TilePane tilePane = new TilePane();
+        tilePane.setAlignment(Pos.CENTER);
+        tilePane.setPrefRows(3);
+        tilePane.setMaxWidth(600);
 
+        ArrayList<ResourcesName> resources = new ArrayList<>();
+        resources.addAll(ResourcesName.foods);
+        resources.addAll(ResourcesName.Materials);
+        resources.addAll(ResourcesName.weapons);
 
+        for (ResourcesName resource1 : resources) {
+            Rectangle image = new Rectangle(85,85);
+            image.setFill(new ImagePattern(
+                    new Image(ResourceNode.class.getResource(
+                            "/images/resources/" + resource1.name().toLowerCase() + ".png").toExternalForm()
+                    )
+            ));
+            image.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    resource = resource1;
+                    resourceImage.setFill(new ImagePattern(
+                            new Image(ResourceNode.class.getResource(
+                                    "/images/resources/" + resource.name().toLowerCase() + ".png").toExternalForm()
+                            )
+                    ));
+                }
+            });
+            tilePane.getChildren().add(image);
+        }
 
+        vBox = new VBox();
+        vBox.setAlignment(Pos.CENTER);
+        vBox.setSpacing(10);
+        vBox.getChildren().addAll(stackPane,tilePane);
 
     }
 
-    public StackPane getStackPane() {
-        return stackPane;
+    public VBox getvBox() {
+        return vBox;
     }
 }

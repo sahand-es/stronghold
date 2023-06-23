@@ -42,7 +42,7 @@ public class TradeViewController extends Application {
         makeBottom();
         makeButtons();
 
-        vBox.getChildren().add(new MakeNewTradePanel().getStackPane());
+        vBox.getChildren().add(new MakeNewTradePanel().getvBox());
 
 
 
