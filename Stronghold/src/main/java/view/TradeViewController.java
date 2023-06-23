@@ -9,9 +9,13 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import view.shape.MakeNewTradePanel;
 import view.shape.ResourceNode;
+
 
 public class TradeViewController extends Application {
 
@@ -37,6 +41,8 @@ public class TradeViewController extends Application {
         makeTop();
         makeBottom();
         makeButtons();
+
+        vBox.getChildren().add(new MakeNewTradePanel().getStackPane());
 
 
 
