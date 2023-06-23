@@ -41,7 +41,7 @@ public class BuildingNode extends Rectangle {
 
 
         try {
-            detailBox = FXMLLoader.load((this.getClass().getResource(DataManager.SOLDIER_DETAIL_BOX)));
+            detailBox = FXMLLoader.load((this.getClass().getResource(DataManager.BUILDING_DETAIL_BOX)));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -76,7 +76,7 @@ public class BuildingNode extends Rectangle {
         Text kind = (Text) detailBox.getChildren().get(2);
         kind.setText(building.getName().getName());
         Text type = (Text) detailBox.getChildren().get(3);
-        type.setText("Type:    " + building.getClass().getSimpleName());
+        type.setText("Type:    " + building.getName().kind);
         Text damage = (Text) detailBox.getChildren().get(1);
         damage.setText(building.getBlock().toString());
         HBox hBox = (HBox) detailBox.getChildren().get(4);

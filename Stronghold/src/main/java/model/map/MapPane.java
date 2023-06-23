@@ -1,23 +1,23 @@
 package model.map;
 
 import javafx.animation.FadeTransition;
-import javafx.animation.FillTransition;
 import javafx.animation.ScaleTransition;
 import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
-import javafx.geometry.Bounds;
 import javafx.scene.Cursor;
 import javafx.scene.Group;
-import javafx.scene.Scene;
+import javafx.scene.Node;
 import javafx.scene.image.Image;
-import javafx.scene.input.*;
-import javafx.scene.layout.HBox;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
+
+import java.util.ArrayList;
 
 public class MapPane extends Pane {
     private static double WIDTH;
@@ -29,6 +29,8 @@ public class MapPane extends Pane {
     private double scale = 1;
     private final double MAX_SCALE = 2.2;
     private final double MIN_SCALE = 0.8;
+    private ArrayList<MapTile> selected;
+    private Rectangle selectRect;
 
 
     public MapPane(Map map) {
@@ -37,6 +39,7 @@ public class MapPane extends Pane {
         HEIGHT = map.getHeight();
         int tilesCount = (int) (WIDTH * HEIGHT);
         allTiles = new Group();
+        selected = new ArrayList<>();
 
         for (int i = 0; i < tilesCount; i++) {
             int x = (int) (i / WIDTH);
@@ -49,7 +52,21 @@ public class MapPane extends Pane {
             allTiles.getChildren().add(tile);
         }
         this.getChildren().add(allTiles);
+
+        setSelectRect();
         setDragMove();
+    }
+
+    private void setSelectRect() {
+        selectRect = new Rectangle(10, 10);
+        selectRect.setFill(Color.LIGHTBLUE);
+        selectRect.setStroke(Color.DEEPSKYBLUE);
+        selectRect.setOpacity(0.15);
+    }
+
+    private void resetSelection() {
+        setSelectRect();
+        handleSelection();
     }
 
     private void setDragMove() {
@@ -60,20 +77,34 @@ public class MapPane extends Pane {
             public void handle(MouseEvent mouseEvent) {
                 dragDelta.x = mapPane.getLayoutX() - mouseEvent.getSceneX();
                 dragDelta.y = mapPane.getLayoutY() - mouseEvent.getSceneY();
-                if (mouseEvent.isPrimaryButtonDown())
+                if (mouseEvent.isPrimaryButtonDown()) {
                     mapPane.setCursor(Cursor.MOVE);
+                }
+                if (mouseEvent.isControlDown() && mouseEvent.isPrimaryButtonDown()) {
+                    mapPane.getChildren().add(selectRect);
+                    selectRect.setX(mouseEvent.getX());
+                    selectRect.setY(mouseEvent.getY());
+                }
             }
         });
         mapPane.setOnMouseReleased(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
+                if (mouseEvent.isControlDown()) {
+                    mapPane.getChildren().remove(selectRect);
+                    handleSelection();
+                }
                 mapPane.setCursor(Cursor.HAND);
             }
         });
         mapPane.setOnMouseDragged(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                if (mouseEvent.isPrimaryButtonDown()) {
+                if (mouseEvent.isControlDown() && mouseEvent.isPrimaryButtonDown()) {
+                    selectRect.setWidth((mouseEvent.getSceneX() + dragDelta.x - mapPane.getLayoutX()) / scale);
+                    selectRect.setHeight((mouseEvent.getSceneY() + dragDelta.y - mapPane.getLayoutY()) / scale);
+                }
+                else if (mouseEvent.isPrimaryButtonDown()) {
                     mapPane.setLayoutX(mouseEvent.getSceneX() + dragDelta.x);
                     mapPane.setLayoutY(mouseEvent.getSceneY() + dragDelta.y);
                 }
@@ -116,6 +147,21 @@ public class MapPane extends Pane {
         this.getChildren().add(detailsText);
     }
 
+    private void showSelectedBlocksDetails() {
+        StringBuilder output = new StringBuilder();
+
+        if (selected.isEmpty())
+            return;
+
+        for (MapTile tile : selected) {
+            output.append( tile.getBlock().showDetails() + "\n------------\n");
+        }
+        detailsText.setText(output.toString());
+        detailsText.setLayoutX(selected.get(0).getLayoutX() + 25);
+        detailsText.setLayoutY(selected.get(0).getLayoutY() - 18);
+        this.getChildren().add(detailsText);
+    }
+
     private void hideDetailsText(MapTile tile) {
         this.getChildren().remove(detailsText);
     }
@@ -153,7 +199,12 @@ public class MapPane extends Pane {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 {
-                    showDetailsText(tile);
+                    if (mouseEvent.isControlDown() && mouseEvent.isSecondaryButtonDown()) {
+                        showSelectedBlocksDetails();
+                    } else if (mouseEvent.isSecondaryButtonDown()) {
+                        resetSelection();
+                        showDetailsText(tile);
+                    }
                 }
             }
         });
@@ -165,7 +216,23 @@ public class MapPane extends Pane {
             }
         });
     }
+
+    private void handleSelection() {
+        for (Node node : allTiles.getChildren()) {
+            MapTile tile = (MapTile) node;
+            if (selectRect.getBoundsInParent().intersects(tile.getBoundsInParent())) {
+                tile.setStroke(Color.WHITE);
+                tile.setStrokeWidth(0.6);
+                if (!this.selected.contains(tile))
+                    this.selected.add(tile);
+            } else {
+                tile.setStroke(Color.TRANSPARENT);
+                this.selected.remove(tile);
+            }
+        }
+    }
 }
+
 
 class Delta {
     double x, y;

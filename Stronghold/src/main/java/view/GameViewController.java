@@ -97,7 +97,7 @@ public class GameViewController {
     public static void addBuilding(Building building) {
         BuildingNode bn = new BuildingNode(building);
         bn.setLayoutX(building.getBlock().getTile().getLayoutX());
-        bn.setLayoutY(building.getBlock().getTile().getLayoutY() -  bn.getHeight());
+        bn.setLayoutY(building.getBlock().getTile().getLayoutY() -  bn.getHeight()/2);
         allBuildings.getChildren().add(bn);
     }
 

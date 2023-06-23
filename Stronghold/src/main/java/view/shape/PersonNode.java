@@ -27,6 +27,7 @@ public class PersonNode extends Rectangle {
     private final Person person;
     private VBox detailBox;
     private ProgressBar pb;
+    private Text isAttacking;
 
     public PersonNode(Person person) {
         super(20, 25);
@@ -70,12 +71,17 @@ public class PersonNode extends Rectangle {
         Text speed = (Text) detailBox.getChildren().get(2);
         speed.setText("Speed:    " + person.getSpeed());
         Text damage = (Text) detailBox.getChildren().get(3);
-        HBox hBox = (HBox) detailBox.getChildren().get(4);
+        isAttacking = (Text) detailBox.getChildren().get(4);
+        HBox hBox = (HBox) detailBox.getChildren().get(5);
         ImageView soldierState = (ImageView) hBox.getChildren().get(0);
 
-        if (person instanceof Soldier){
-             Soldier soldier = (Soldier) person;
+        if (person instanceof Soldier) {
+            Soldier soldier = (Soldier) person;
+            damage.setText("Damage: " + soldier.getDamage());
             soldierState.setImage(new Image(soldier.getSoldierUnitState().getImagePath()));
+            if (!soldier.getAttackQueue().isEmpty())
+                isAttacking.setText("Attacking: " + soldier.getAttackQueue().toString());
+            else isAttacking.setText("Attacking: nobody");
         }
 
         pb.setProgress(1);
@@ -83,6 +89,12 @@ public class PersonNode extends Rectangle {
 
     private void showDetailsBox() {
         pb.setProgress((double) person.getHp() / person.getInitialHp());
+        if (person instanceof Soldier) {
+            Soldier soldier = (Soldier) person;
+            if (!soldier.getAttackQueue().isEmpty())
+                isAttacking.setText("Attacking: " + soldier.getAttackQueue().toString());
+            else isAttacking.setText("Attacking: nobody");
+        }
 
         GameViewController.addNode(detailBox);
     }
