@@ -15,6 +15,7 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import view.shape.MakeNewTradePanel;
 import view.shape.ResourceNode;
+import view.shape.TradeListNode;
 
 
 public class TradeViewController extends Application {
@@ -42,7 +43,7 @@ public class TradeViewController extends Application {
         makeBottom();
         makeButtons();
 
-        vBox.getChildren().add(new MakeNewTradePanel().getvBox());
+        vBox.getChildren().add(new TradeListNode().getStackPane());
 
 
 
@@ -115,6 +116,9 @@ public class TradeViewController extends Application {
             public void handle(MouseEvent event) {
                 //TODO
                 System.out.println("new Trade");
+                vBox.getChildren().remove(1);
+                vBox.getChildren().add(new MakeNewTradePanel().getvBox());
+
             }
         });
 
