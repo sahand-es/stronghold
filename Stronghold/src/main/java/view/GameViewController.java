@@ -5,23 +5,17 @@ import javafx.animation.Animation.*;
 import javafx.animation.PathTransition;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Line;
-import javafx.scene.shape.LineTo;
-import javafx.scene.shape.MoveTo;
-import javafx.scene.shape.Path;
-import javafx.util.Duration;
+import model.environment.Environment;
+import model.environment.buildings.Building;
 import model.map.Block;
 import model.map.MapPane;
 import model.map.MapTile;
 import model.units.Person;
 import view.animation.MoveAnimation;
+import view.shape.BuildingNode;
 import view.shape.PersonNode;
 
 import java.util.Queue;
@@ -30,12 +24,14 @@ public class GameViewController {
     private static Pane mainPane;
     private static MapPane mapPane;
     private static Group allPersons;
+    private static Group allBuildings;
 
     public static void setMapPane(MapPane mapPane, Pane mainPane) {
         GameViewController.mapPane = mapPane;
         GameViewController.mainPane = mainPane;
         allPersons = new Group();
-        mapPane.getChildren().add(allPersons);
+        allBuildings = new Group();
+        mapPane.getChildren().addAll(allBuildings, allPersons);
     }
 
     public static void addNode(Node node) {
@@ -98,48 +94,12 @@ public class GameViewController {
         });
     }
 
-
-    private static PathTransition newPathTransitionTo(PersonNode personNode, double toX, double toY, Queue<Block> movedQueue) {
-        final MapTile[] toBlock = {movedQueue.poll().getTile()};
-
-        double fromX = personNode.getLayoutBounds().getWidth() / 2;
-        double fromY = personNode.getLayoutBounds().getHeight() / 2;
-
-        double finalToX = toX - personNode.getLayoutBounds().getWidth();
-        double finalToY = toY - personNode.getLayoutBounds().getHeight() / 2;
-
-        toX -= personNode.getLayoutX() - personNode.getLayoutBounds().getWidth() / 2;
-        toY -= personNode.getLayoutY() - personNode.getLayoutBounds().getHeight() / 2;
-
-
-        Path path = new Path();
-        path.getElements().add(new MoveTo(fromX, fromY));
-        path.getElements().add(new LineTo(toX, toY));
-
-
-        PathTransition transition = new PathTransition();
-        transition.setPath(path);
-        transition.setNode(personNode);
-        transition.setDuration(Duration.seconds(2));
-
- transition.setOnFinished(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                personNode.setLayoutX(finalToX);
-                personNode.setLayoutX(finalToY);
-                if (movedQueue.isEmpty())
-                    return;
-                else {
-                    toBlock[0] = movedQueue.poll().getTile();
-                    PathTransition pt = newPathTransitionTo(personNode,
-                            GameViewController.getLayoutXForPerson(toBlock[0]),
-                            GameViewController.getLayoutYForPerson(toBlock[0]), movedQueue);
-                    pt.play();
-                }
-            }
-        });
-
-        return transition;
+    public static void addBuilding(Building building) {
+        BuildingNode bn = new BuildingNode(building);
+        bn.setLayoutX(building.getBlock().getTile().getLayoutX());
+        bn.setLayoutY(building.getBlock().getTile().getLayoutY() -  bn.getHeight());
+        allBuildings.getChildren().add(bn);
     }
+
 }
 
