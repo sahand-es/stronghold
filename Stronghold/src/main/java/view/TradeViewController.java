@@ -9,12 +9,10 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import view.shape.MakeNewTradePanel;
-import view.shape.ResourceNode;
+import view.shape.TradeHistoryNode;
 import view.shape.TradeListNode;
 
 
@@ -22,6 +20,8 @@ public class TradeViewController extends Application {
 
     private BorderPane borderPane;
     private VBox vBox;
+
+    private BorderPane innerBorderPane;
 
     private int width;
     private int height;
@@ -43,7 +43,7 @@ public class TradeViewController extends Application {
         makeBottom();
         makeButtons();
 
-        vBox.getChildren().add(new TradeListNode().getStackPane());
+        innerBorderPane.setCenter(new TradeHistoryNode().getStackPane());
 
 
 
@@ -116,9 +116,7 @@ public class TradeViewController extends Application {
             public void handle(MouseEvent event) {
                 //TODO
                 System.out.println("new Trade");
-                vBox.getChildren().remove(1);
-                vBox.getChildren().add(new MakeNewTradePanel().getvBox());
-
+                innerBorderPane.setCenter(new MakeNewTradePanel().getvBox());
             }
         });
 
@@ -147,6 +145,11 @@ public class TradeViewController extends Application {
         hBox.setAlignment(Pos.CENTER);
         hBox.getChildren().addAll(newTradeButton,tradeListButton,tradeHistoryButton);
         vBox.getChildren().add(hBox);
+
+        innerBorderPane = new BorderPane();
+        innerBorderPane.setPrefSize(600,600);
+        vBox.getChildren().add(innerBorderPane);
+
         borderPane.setCenter(vBox);
     }
 }
