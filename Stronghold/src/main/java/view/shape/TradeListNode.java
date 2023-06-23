@@ -8,19 +8,28 @@ import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import model.society.Trade;
+import view.TradeViewController;
+
+import java.util.ArrayList;
 
 public class TradeListNode {
-    Trade trade;
+    private Trade trade;
+    private TradeViewController tradeViewController;
+    Button acceptButton;
+    VBox vBox;
 
-    StackPane stackPane;
+    private StackPane stackPane;
 
-    public TradeListNode() {
+    private ArrayList<TradeListNode> allTrades = new ArrayList<>();
 
+    public TradeListNode(TradeViewController tradeViewController) {
 
+        this.tradeViewController = tradeViewController;
 
         Rectangle rectangle = new Rectangle(600, 100);
         rectangle.setFill(Color.DARKGOLDENROD);
@@ -60,14 +69,13 @@ public class TradeListNode {
 
         hBox.getChildren().add(priceLabel);
 
-        Button acceptButton = new Button("accept");
+        acceptButton = new Button("accept");
         acceptButton.setPrefSize(100,50);
         acceptButton.setStyle("-fx-font: 15 sys ;-fx-background-color: #e6af29 ; -fx-border-color: #262115");
         acceptButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                System.out.println("make new trade");
-                //todo
+                tradeViewController.setNewTradePanel();
             }
         });
 
@@ -76,6 +84,12 @@ public class TradeListNode {
         stackPane = new StackPane();
         stackPane.getChildren().addAll(rectangle,hBox);
 
+        allTrades.add(this);
+    }
+
+
+    public Button getAcceptButton() {
+        return acceptButton;
     }
 
     public StackPane getStackPane() {

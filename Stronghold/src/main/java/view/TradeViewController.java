@@ -19,10 +19,7 @@ import view.shape.TradeListNode;
 public class TradeViewController extends Application {
 
     private BorderPane borderPane;
-    private VBox vBox;
-
     private BorderPane innerBorderPane;
-
     private int width;
     private int height;
 
@@ -43,7 +40,13 @@ public class TradeViewController extends Application {
         makeBottom();
         makeButtons();
 
-        innerBorderPane.setCenter(new TradeHistoryNode().getStackPane());
+        VBox vBox = new VBox();
+        TradeListNode tradeListNode = new TradeListNode(this);
+
+        vBox.getChildren().add(tradeListNode.getStackPane());
+
+        innerBorderPane.setCenter(vBox);
+
 
 
 
@@ -103,7 +106,7 @@ public class TradeViewController extends Application {
     }
 
     private void makeButtons(){
-        vBox = new VBox();
+        VBox vBox = new VBox();
         vBox.setAlignment(Pos.CENTER);
 
         HBox hBox = new HBox();
@@ -116,7 +119,7 @@ public class TradeViewController extends Application {
             public void handle(MouseEvent event) {
                 //TODO
                 System.out.println("new Trade");
-                innerBorderPane.setCenter(new MakeNewTradePanel().getvBox());
+                setNewTradePanel();
             }
         });
 
@@ -151,5 +154,9 @@ public class TradeViewController extends Application {
         vBox.getChildren().add(innerBorderPane);
 
         borderPane.setCenter(vBox);
+    }
+
+    public void setNewTradePanel(){
+        innerBorderPane.setCenter(new MakeNewTradePanel().getvBox());
     }
 }
