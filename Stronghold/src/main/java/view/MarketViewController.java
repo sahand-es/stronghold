@@ -26,6 +26,8 @@ public class MarketViewController extends Application {
 
     private BorderPane borderPane;
 
+    public static Stage stage;
+
     private int width;
     private int height;
 
@@ -61,6 +63,7 @@ public class MarketViewController extends Application {
         stage.setScene(scene);
         stage.setFullScreen(true);
         stage.setResizable(false);
+        MarketViewController.stage = stage;
         stage.show();
     }
 
@@ -110,7 +113,11 @@ public class MarketViewController extends Application {
         tradeMenu.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                //TODO
+                try {
+                    new TradeViewController().start(MarketViewController.stage);
+                } catch (Exception e) {
+                    //TODO
+                }
             }
         });
 
@@ -144,7 +151,6 @@ public class MarketViewController extends Application {
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
         scrollPane.setPannable(true);
-
         VBox vBox = new VBox();
         vBox.setSpacing(10);
 

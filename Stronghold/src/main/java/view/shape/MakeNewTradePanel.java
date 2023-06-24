@@ -1,6 +1,7 @@
 package view.shape;
 
 
+import controller.TradeControl;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -16,6 +17,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import model.resource.ResourcesName;
 import view.TradeViewController;
+import view.enums.messages.TradeMessages;
 
 import java.util.ArrayList;
 
@@ -133,15 +135,27 @@ public class MakeNewTradePanel {
         hBox.getChildren().add(priceButtons);
 
 
-        Button acceptButton = new Button("accept");
+        Button acceptButton = new Button("make new trade");
         acceptButton.setPrefSize(100,50);
         acceptButton.setStyle("-fx-font: 15 sys ;-fx-background-color: #e6af29 ; -fx-border-color: #262115");
         acceptButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                System.out.println("make new trade");
-                tradeViewController.makePopUp("hello mf");
-                //todo
+                TradeMessages message = TradeControl.makeTrade(resource.name(),amount,price," ");
+                switch (message){
+                    case SUCCESS:
+                        tradeViewController.makePopUp("trade created successfully");
+                        break;
+
+                    case NOT_ENOUGH_RESOURCES:
+                        tradeViewController.makePopUp("you dont have enough resources");
+                        break;
+
+                    default:
+                        tradeViewController.makePopUp("you cant make this trade");
+                }
+
+
             }
         });
 

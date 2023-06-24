@@ -1,18 +1,20 @@
 package model.society.enums;
 
+import javafx.scene.paint.Color;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public enum Colors {
 
-    BLACK_COLOR("black"),
-    RED_COLOR("red"),
-    GREEN_COLOR("green"),
-    YELLOW_COLOR("yellow"),
-    BLUE_COLOR("blue"),
-    PURPLE_COLOR("purple"),
-    CYAN_COLOR("cyan"),
-    WHITE_COLOR("white")
+    BLACK_COLOR("black",Color.BLACK),
+    RED_COLOR("red",Color.RED),
+    GREEN_COLOR("green",Color.GREEN),
+    YELLOW_COLOR("yellow",Color.YELLOW),
+    BLUE_COLOR("blue",Color.BLUE),
+    PURPLE_COLOR("purple",Color.PURPLE),
+    CYAN_COLOR("cyan",Color.CYAN),
+    WHITE_COLOR("white",Color.WHITE)
     ;
     // Reset
     public static final String RESET = "\033[0m";  // Text Reset
@@ -92,12 +94,18 @@ public enum Colors {
 
     private String colorName;
 
-    Colors(String name){
+    private Color color;
+
+    Colors(String name, Color color){
         colorName = name;
+        this.color = color;
     }
 
     public String getColorName(){
         return colorName;
     }
 
+    public Color getColor() {
+        return color;
+    }
 }

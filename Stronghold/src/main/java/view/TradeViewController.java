@@ -14,12 +14,13 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-import model.environment.buildings.Castle;
+import model.Database;
+import model.society.Trade;
 import view.shape.MakeNewTradePanel;
 import view.shape.TradeHistoryNode;
 import view.shape.TradeListNode;
 
-
+import java.util.ArrayList;
 
 
 public class TradeViewController extends Application {
@@ -47,11 +48,7 @@ public class TradeViewController extends Application {
         makeBottom();
         makeButtons();
 
-        showTradeList();
-
-
-
-
+        setNewTradePanel();
 
         Scene scene = new Scene(borderPane);
         stage.setScene(scene);
@@ -92,7 +89,11 @@ public class TradeViewController extends Application {
         back.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                //TODO
+                try {
+                    new MarketViewController().start(MarketViewController.stage);
+                } catch (Exception e) {
+                    //TODO
+                }
 
             }
         });
@@ -166,14 +167,15 @@ public class TradeViewController extends Application {
         VBox vBox = new VBox();
         vBox.setAlignment(Pos.CENTER);
         vBox.setSpacing(20);
-        vBox.getChildren().add(new TradeListNode(this).getStackPane());
-        vBox.getChildren().add(new TradeListNode(this).getStackPane());
-        vBox.getChildren().add(new TradeListNode(this).getStackPane());
-        vBox.getChildren().add(new TradeListNode(this).getStackPane());
-        vBox.getChildren().add(new TradeListNode(this).getStackPane());
-        vBox.getChildren().add(new TradeListNode(this).getStackPane());
-        vBox.getChildren().add(new TradeListNode(this).getStackPane());
-        vBox.getChildren().add(new TradeListNode(this).getStackPane());
+
+        ArrayList<Trade> trades = Database.getCurrentGame().getAllTrades();
+
+        if (trades.size() == 0)
+            vBox.getChildren().add(showEmptyList());
+
+        for (int i = trades.size() - 1 ; i >= 0 ; i--){
+            vBox.getChildren().add(new TradeListNode(trades.get(i),this).getStackPane());
+        }
 
         makeScrollPane(vBox);
         innerBorderPane.setCenter(theVBox);
@@ -186,14 +188,16 @@ public class TradeViewController extends Application {
         VBox vBox = new VBox();
         vBox.setAlignment(Pos.CENTER);
         vBox.setSpacing(20);
-        vBox.getChildren().add(new TradeHistoryNode().getStackPane());
-        vBox.getChildren().add(new TradeHistoryNode().getStackPane());
-        vBox.getChildren().add(new TradeHistoryNode().getStackPane());
-        vBox.getChildren().add(new TradeHistoryNode().getStackPane());
-        vBox.getChildren().add(new TradeHistoryNode().getStackPane());
-        vBox.getChildren().add(new TradeHistoryNode().getStackPane());
-        vBox.getChildren().add(new TradeHistoryNode().getStackPane());
-        vBox.getChildren().add(new TradeHistoryNode().getStackPane());
+
+        ArrayList<Trade> trades = Database.getCurrentGame().getCurrentGovernment().getTradesHistory();
+
+        if (trades.size() == 0)
+            vBox.getChildren().add(showEmptyList());
+
+        for (int i = trades.size() - 1 ; i >= 0 ; i--){
+            vBox.getChildren().add(new TradeHistoryNode(trades.get(i)).getStackPane());
+        }
+
 
         makeScrollPane(vBox);
         innerBorderPane.setCenter(theVBox);
@@ -219,7 +223,7 @@ public class TradeViewController extends Application {
     }
 
     public void makePopUp(String text){
-        Rectangle rectangle = new Rectangle(500,50);
+        Rectangle rectangle = new Rectangle(600,50);
         rectangle.setFill(Color.DARKGOLDENROD);
 
         HBox hBox = new HBox();
@@ -246,5 +250,23 @@ public class TradeViewController extends Application {
         StackPane stackPane = new StackPane();
         stackPane.getChildren().addAll(rectangle,hBox);
         theVBox.getChildren().set(0,stackPane);
+    }
+
+    private StackPane showEmptyList(){
+        Rectangle rectangle = new Rectangle(600,50);
+        rectangle.setFill(Color.DARKGOLDENROD);
+
+        HBox hBox = new HBox();
+        hBox.setAlignment(Pos.CENTER);
+        hBox.setSpacing(10);
+
+        Label message = new Label("There is no trade to show");
+        message.setAlignment(Pos.CENTER);
+        message.setStyle("-fx-font: 20 sys");
+
+        StackPane stackPane = new StackPane();
+        stackPane.getChildren().addAll(rectangle,message);
+
+        return stackPane;
     }
 }
