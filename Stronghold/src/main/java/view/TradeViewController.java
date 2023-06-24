@@ -9,16 +9,22 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import model.environment.buildings.Castle;
 import view.shape.MakeNewTradePanel;
 import view.shape.TradeHistoryNode;
 import view.shape.TradeListNode;
 
 
+
+
 public class TradeViewController extends Application {
 
     private BorderPane borderPane;
+    private VBox theVBox;
     private BorderPane innerBorderPane;
     private int width;
     private int height;
@@ -157,6 +163,42 @@ public class TradeViewController extends Application {
     }
 
     public void setNewTradePanel(){
-        innerBorderPane.setCenter(new MakeNewTradePanel().getvBox());
+        theVBox = new VBox();
+        theVBox.setAlignment(Pos.CENTER);
+        Label label = new Label();
+        label.setPrefSize(0,0);
+        theVBox.getChildren().add(label);
+        theVBox.getChildren().add(new MakeNewTradePanel(this).getvBox());
+        innerBorderPane.setCenter(theVBox);
+    }
+
+    public void makePopUp(String text){
+        Rectangle rectangle = new Rectangle(500,50);
+        rectangle.setFill(Color.DARKGOLDENROD);
+
+        HBox hBox = new HBox();
+        hBox.setAlignment(Pos.CENTER);
+        hBox.setSpacing(10);
+
+        Label message = new Label(text);
+        message.setStyle("-fx-font: 20 sys");
+
+        Button button = new Button("ok");
+        button.setPrefSize(90,30);
+        button.setStyle("-fx-font: 20 sys ;-fx-background-color: #e6af29 ; -fx-border-color: #262115");
+        button.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                Label label = new Label();
+                label.setPrefSize(0,0);
+                theVBox.getChildren().set(0,label);
+            }
+        });
+
+        hBox.getChildren().addAll(message,button);
+
+        StackPane stackPane = new StackPane();
+        stackPane.getChildren().addAll(rectangle,hBox);
+        theVBox.getChildren().set(0,stackPane);
     }
 }

@@ -15,6 +15,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import model.resource.ResourcesName;
+import view.TradeViewController;
 
 import java.util.ArrayList;
 
@@ -26,9 +27,12 @@ public class MakeNewTradePanel {
 
     private int price;
 
+    private TradeViewController tradeViewController;
+
     VBox vBox;
 
-    public MakeNewTradePanel() {
+    public MakeNewTradePanel(TradeViewController tradeViewController) {
+        this.tradeViewController = tradeViewController;
         resource = ResourcesName.STONE;
         amount = 0;
         price = 0;
@@ -136,6 +140,7 @@ public class MakeNewTradePanel {
             @Override
             public void handle(MouseEvent event) {
                 System.out.println("make new trade");
+                tradeViewController.makePopUp("hello mf");
                 //todo
             }
         });
