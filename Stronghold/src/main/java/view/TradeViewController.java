@@ -6,6 +6,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
@@ -46,12 +47,7 @@ public class TradeViewController extends Application {
         makeBottom();
         makeButtons();
 
-        VBox vBox = new VBox();
-        TradeListNode tradeListNode = new TradeListNode(this);
-
-        vBox.getChildren().add(tradeListNode.getStackPane());
-
-        innerBorderPane.setCenter(vBox);
+        showTradeList();
 
 
 
@@ -123,8 +119,6 @@ public class TradeViewController extends Application {
         newTradeButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                //TODO
-                System.out.println("new Trade");
                 setNewTradePanel();
             }
         });
@@ -135,8 +129,7 @@ public class TradeViewController extends Application {
         tradeListButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                //TODO
-                System.out.println("Trade List");
+                showTradeList();
             }
         });
 
@@ -146,8 +139,7 @@ public class TradeViewController extends Application {
         tradeHistoryButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                //TODO
-                System.out.println("Trade History");
+                showTradHistory();
             }
         });
 
@@ -169,6 +161,68 @@ public class TradeViewController extends Application {
         label.setPrefSize(0,0);
         theVBox.getChildren().add(label);
         theVBox.getChildren().add(new MakeNewTradePanel(this).getvBox());
+        innerBorderPane.setCenter(theVBox);
+    }
+
+    public void showTradeList(){
+        theVBox = new VBox();
+        theVBox.setAlignment(Pos.CENTER);
+        Label label = new Label();
+        label.setPrefSize(0,0);
+        theVBox.getChildren().add(label);
+
+
+        VBox vBox = new VBox();
+        vBox.setAlignment(Pos.CENTER);
+        vBox.setSpacing(20);
+        vBox.getChildren().add(new TradeListNode(this).getStackPane());
+        vBox.getChildren().add(new TradeListNode(this).getStackPane());
+        vBox.getChildren().add(new TradeListNode(this).getStackPane());
+        vBox.getChildren().add(new TradeListNode(this).getStackPane());
+        vBox.getChildren().add(new TradeListNode(this).getStackPane());
+        vBox.getChildren().add(new TradeListNode(this).getStackPane());
+        vBox.getChildren().add(new TradeListNode(this).getStackPane());
+        vBox.getChildren().add(new TradeListNode(this).getStackPane());
+
+        ScrollPane scrollPane = new ScrollPane();
+        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
+        scrollPane.setPannable(true);
+        scrollPane.setPrefWidth(615);
+        scrollPane.setMaxWidth(615);
+        scrollPane.setContent(vBox);
+        theVBox.getChildren().add(scrollPane);
+        innerBorderPane.setCenter(theVBox);
+    }
+
+    private void showTradHistory(){
+        theVBox = new VBox();
+        theVBox.setAlignment(Pos.CENTER);
+        Label label = new Label();
+        label.setPrefSize(0,0);
+        theVBox.getChildren().add(label);
+
+
+        VBox vBox = new VBox();
+        vBox.setAlignment(Pos.CENTER);
+        vBox.setSpacing(20);
+        vBox.getChildren().add(new TradeHistoryNode().getStackPane());
+        vBox.getChildren().add(new TradeHistoryNode().getStackPane());
+        vBox.getChildren().add(new TradeHistoryNode().getStackPane());
+        vBox.getChildren().add(new TradeHistoryNode().getStackPane());
+        vBox.getChildren().add(new TradeHistoryNode().getStackPane());
+        vBox.getChildren().add(new TradeHistoryNode().getStackPane());
+        vBox.getChildren().add(new TradeHistoryNode().getStackPane());
+        vBox.getChildren().add(new TradeHistoryNode().getStackPane());
+
+        ScrollPane scrollPane = new ScrollPane();
+        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
+        scrollPane.setPannable(true);
+        scrollPane.setPrefWidth(615);
+        scrollPane.setMaxWidth(615);
+        scrollPane.setContent(vBox);
+        theVBox.getChildren().add(scrollPane);
         innerBorderPane.setCenter(theVBox);
     }
 
