@@ -155,22 +155,13 @@ public class TradeViewController extends Application {
     }
 
     public void setNewTradePanel(){
-        theVBox = new VBox();
-        theVBox.setAlignment(Pos.CENTER);
-        Label label = new Label();
-        label.setPrefSize(0,0);
-        theVBox.getChildren().add(label);
+        initializeTheVBox();
         theVBox.getChildren().add(new MakeNewTradePanel(this).getvBox());
         innerBorderPane.setCenter(theVBox);
     }
 
     public void showTradeList(){
-        theVBox = new VBox();
-        theVBox.setAlignment(Pos.CENTER);
-        Label label = new Label();
-        label.setPrefSize(0,0);
-        theVBox.getChildren().add(label);
-
+        initializeTheVBox();
 
         VBox vBox = new VBox();
         vBox.setAlignment(Pos.CENTER);
@@ -184,23 +175,12 @@ public class TradeViewController extends Application {
         vBox.getChildren().add(new TradeListNode(this).getStackPane());
         vBox.getChildren().add(new TradeListNode(this).getStackPane());
 
-        ScrollPane scrollPane = new ScrollPane();
-        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
-        scrollPane.setPannable(true);
-        scrollPane.setPrefWidth(615);
-        scrollPane.setMaxWidth(615);
-        scrollPane.setContent(vBox);
-        theVBox.getChildren().add(scrollPane);
+        makeScrollPane(vBox);
         innerBorderPane.setCenter(theVBox);
     }
 
     private void showTradHistory(){
-        theVBox = new VBox();
-        theVBox.setAlignment(Pos.CENTER);
-        Label label = new Label();
-        label.setPrefSize(0,0);
-        theVBox.getChildren().add(label);
+        initializeTheVBox();
 
 
         VBox vBox = new VBox();
@@ -215,6 +195,19 @@ public class TradeViewController extends Application {
         vBox.getChildren().add(new TradeHistoryNode().getStackPane());
         vBox.getChildren().add(new TradeHistoryNode().getStackPane());
 
+        makeScrollPane(vBox);
+        innerBorderPane.setCenter(theVBox);
+    }
+
+    private void initializeTheVBox(){
+        theVBox = new VBox();
+        theVBox.setAlignment(Pos.CENTER);
+        Label label = new Label();
+        label.setPrefSize(0,0);
+        theVBox.getChildren().add(label);
+    }
+
+    private void makeScrollPane(VBox vBox){
         ScrollPane scrollPane = new ScrollPane();
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
@@ -223,7 +216,6 @@ public class TradeViewController extends Application {
         scrollPane.setMaxWidth(615);
         scrollPane.setContent(vBox);
         theVBox.getChildren().add(scrollPane);
-        innerBorderPane.setCenter(theVBox);
     }
 
     public void makePopUp(String text){
