@@ -104,6 +104,16 @@ public class MarketViewController extends Application {
     }
 
     private void makeBottom() {
+        Button tradeMenu = new Button("Trade Menu");
+        tradeMenu.setStyle("-fx-font: 20 sys ;-fx-background-color: #e6af29 ; -fx-border-color: #262115");
+        tradeMenu.setPrefSize(300,70);
+        tradeMenu.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                //TODO
+            }
+        });
+
         Button back = new Button("Back");
         back.setStyle("-fx-font: 20 sys ;-fx-background-color: #e6af29 ; -fx-border-color: #262115");
         back.setPrefSize(300, 70);
@@ -117,11 +127,15 @@ public class MarketViewController extends Application {
 
         Label l1 = new Label();
         l1.setPrefWidth(0);
-        l1.setPrefHeight(100);
+        l1.setPrefHeight(200);
+
+        VBox vBox = new VBox();
+        vBox.setAlignment(Pos.CENTER);
+        vBox.getChildren().addAll(tradeMenu,back);
 
         HBox hBox1 = new HBox();
         hBox1.setAlignment(Pos.CENTER);
-        hBox1.getChildren().addAll(l1, back);
+        hBox1.getChildren().addAll(l1,vBox);
         borderPane.setBottom(hBox1);
     }
 

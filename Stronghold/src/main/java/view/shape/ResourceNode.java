@@ -121,6 +121,7 @@ public class ResourceNode {
         resourceValue += 1;
         resourceLabel.setText(String.valueOf(resourceValue));
         for (ResourceNode resourceNode : allResourceNodes) {
+            resourceNode.setGold(gold);
             resourceNode.goldLabel.setText(String.valueOf(gold));
         }
     }
@@ -131,6 +132,7 @@ public class ResourceNode {
         resourceLabel.setText(String.valueOf(resourceValue));
 
         for (ResourceNode resourceNode : allResourceNodes) {
+            resourceNode.setGold(gold);
             resourceNode.goldLabel.setText(String.valueOf(gold));
         }
 
@@ -155,4 +157,7 @@ public class ResourceNode {
         return stackPane;
     }
 
+    public void setGold(int gold) {
+        this.gold = gold;
+    }
 }
