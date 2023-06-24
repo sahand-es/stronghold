@@ -73,7 +73,7 @@ public class MarketViewController extends Application {
 
     private void setBackground(){
         Image image = new Image(
-                MarketViewController.class.getResource("/images/backgrounds/background.jpg").toExternalForm()
+                MarketViewController.class.getResource("/images/backgrounds/market-menu-background.jpg").toExternalForm()
         );
         BackgroundImage backgroundFill = new BackgroundImage(
                 image,BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT,
