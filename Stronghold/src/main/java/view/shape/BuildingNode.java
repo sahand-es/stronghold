@@ -1,5 +1,6 @@
 package view.shape;
 
+import controller.GameControl;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ProgressBar;
@@ -59,6 +60,9 @@ public class BuildingNode extends Rectangle {
             public void handle(MouseEvent mouseEvent) {
                 if (mouseEvent.getButton().equals(MouseButton.SECONDARY)) {
                     showDetailsBox();
+                }
+                if (mouseEvent.isPrimaryButtonDown()) {
+                    GameControl.selectBuildingByClick(building);
                 }
             }
         });

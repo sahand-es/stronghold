@@ -93,6 +93,9 @@ public class GameViewController {
             }
         });
     }
+    public static void selectUnit() {
+
+    }
 
     public static void addBuilding(Building building) {
         BuildingNode bn = new BuildingNode(building);

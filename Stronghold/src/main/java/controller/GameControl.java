@@ -132,6 +132,8 @@ public class GameControl {
         buildingConstructorCaller(buildingName, block);
         currentGovernment.getResource().pay(building.getPrice());
 
+        GameViewController.addBuilding(building);
+
         return GameMessages.SUCCESS;
     }
 
@@ -147,6 +149,8 @@ public class GameControl {
         Block block = map.getBlockByXY(x, y);
 
         buildingConstructorCaller(buildingName, block);
+
+        GameViewController.addBuilding(building);
 
         return GameMessages.SUCCESS;
     }
@@ -349,6 +353,12 @@ public class GameControl {
 
         selectedUnit = block.selectUnit(currentGovernment, selectedCount);
         return GameMessages.SUCCESS;
+    }
+    public static void selectUnitByClick(Person person) {
+        selectedUnit = person;
+    }
+    public static void selectBuildingByClick(Building building) {
+        selectedBuilding = building;
     }
 
     private static void deSelectUnit() {

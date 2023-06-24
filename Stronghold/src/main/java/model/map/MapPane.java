@@ -58,7 +58,7 @@ public class MapPane extends Pane {
     }
 
     private void setSelectRect() {
-        selectRect = new Rectangle(10, 10);
+        selectRect = new Rectangle(0.01, 0.01);
         selectRect.setFill(Color.LIGHTBLUE);
         selectRect.setStroke(Color.DEEPSKYBLUE);
         selectRect.setOpacity(0.15);
@@ -84,6 +84,7 @@ public class MapPane extends Pane {
                     mapPane.getChildren().add(selectRect);
                     selectRect.setX(mouseEvent.getX());
                     selectRect.setY(mouseEvent.getY());
+                    mapPane.setCursor(Cursor.NONE);
                 }
             }
         });

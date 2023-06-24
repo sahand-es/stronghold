@@ -1,5 +1,6 @@
 package view.shape;
 
+import controller.GameControl;
 import javafx.animation.Animation;
 import javafx.animation.TranslateTransition;
 import javafx.event.EventHandler;
@@ -52,6 +53,9 @@ public class PersonNode extends Rectangle {
             public void handle(MouseEvent mouseEvent) {
                 if (mouseEvent.getButton().equals(MouseButton.SECONDARY)) {
                     showDetailsBox();
+                }
+                if (mouseEvent.isPrimaryButtonDown()) {
+                    GameControl.selectUnitByClick(person);
                 }
             }
         });
