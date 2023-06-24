@@ -46,7 +46,7 @@ public class MarketViewController extends Application {
     }
 
     @Override
-    public void start(Stage stage) {
+    public void start(Stage stage) throws Exception {
         width = (int) Screen.getPrimary().getBounds().getWidth();
         height = (int) Screen.getPrimary().getBounds().getHeight();
 

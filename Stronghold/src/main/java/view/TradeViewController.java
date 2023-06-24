@@ -31,12 +31,8 @@ public class TradeViewController extends Application {
     private int width;
     private int height;
 
-    public static void main(String[] args) {
-        launch();
-    }
-
     @Override
-    public void start(Stage stage) {
+    public void start(Stage stage) throws Exception {
         width = (int) Screen.getPrimary().getBounds().getWidth();
         height = (int) Screen.getPrimary().getBounds().getHeight();
 
