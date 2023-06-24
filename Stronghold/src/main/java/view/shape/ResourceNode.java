@@ -16,6 +16,7 @@ import javafx.scene.paint.ImagePattern;
 import model.resource.ResourcesName;
 
 import javafx.scene.shape.Rectangle;
+import view.MarketViewController;
 
 import java.util.ArrayList;
 
@@ -37,14 +38,17 @@ public class ResourceNode {
 
     private Button sellButton;
 
+    private MarketViewController marketViewController;
+
     private StackPane stackPane;
 
-    public ResourceNode(ResourcesName resourcesName, int buyPrice, int sellPrice , int gold , int resourceValue) {
+    public ResourceNode(ResourcesName resourcesName, int buyPrice, int sellPrice , int gold , int resourceValue,MarketViewController marketViewController) {
         this.resourcesName = resourcesName;
         this.buyPrice = buyPrice;
         this.sellPrice = sellPrice;
         this.gold = gold;
         this.resourceValue = resourceValue;
+        this.marketViewController = marketViewController;
 
         Rectangle rectangle = new Rectangle(500,100);
         rectangle.setFill(Color.DARKGOLDENROD);
@@ -68,10 +72,7 @@ public class ResourceNode {
                 if (MarketControl.checkBuy(resourcesName.name(),1)) {
                     ResourceNode.getResourceNodeByButton(buyButton).buy();
                 } else {
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Buy Failed");
-                    alert.setHeaderText("You can't buy this item");
-                    alert.show();
+                    marketViewController.makePopUp("Yoc cant buy this item");
                 }
             }
         });
@@ -86,9 +87,7 @@ public class ResourceNode {
                     ResourceNode.getResourceNodeByButton(buyButton).sell();
                 } else {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Sell Failed");
-                    alert.setHeaderText("You can't sell this item");
-                    alert.show();
+                    marketViewController.makePopUp("Yoc cant sell this item");
                 }
             }
         });

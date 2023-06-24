@@ -12,6 +12,7 @@ import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import model.Database;
@@ -22,9 +23,11 @@ import view.shape.ResourceNode;
 
 
 public class MarketViewController extends Application {
-    public ScrollPane scrollPane;
+    private ScrollPane scrollPane;
 
     private BorderPane borderPane;
+
+    private VBox theVBox;
 
     public static Stage stage;
 
@@ -43,7 +46,7 @@ public class MarketViewController extends Application {
     }
 
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) {
         width = (int) Screen.getPrimary().getBounds().getWidth();
         height = (int) Screen.getPrimary().getBounds().getHeight();
 
@@ -147,6 +150,8 @@ public class MarketViewController extends Application {
     }
 
     private void makeScrollPane() {
+        initializeTheVBox();
+
         scrollPane = new ScrollPane();
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
@@ -166,7 +171,7 @@ public class MarketViewController extends Application {
         for (ResourcesName resource : ResourcesName.foods) {
             amount = 20; Database.getCurrentGame().getCurrentGovernment().getResource().getAmount(resource);
             vBox.getChildren().add(
-                    new ResourceNode(resource, buyPrice, sellPrice, gold, amount).getStackPane()
+                    new ResourceNode(resource, buyPrice, sellPrice, gold, amount,this).getStackPane()
             );
         }
 
@@ -176,7 +181,7 @@ public class MarketViewController extends Application {
         for (ResourcesName resource : ResourcesName.Materials) {
             amount = Database.getCurrentGame().getCurrentGovernment().getResource().getAmount(resource);
             vBox.getChildren().add(
-                    new ResourceNode(resource, buyPrice, sellPrice, gold, amount).getStackPane()
+                    new ResourceNode(resource, buyPrice, sellPrice, gold, amount,this).getStackPane()
             );
         }
 
@@ -185,14 +190,52 @@ public class MarketViewController extends Application {
         for (ResourcesName resource : ResourcesName.weapons) {
             amount = Database.getCurrentGame().getCurrentGovernment().getResource().getAmount(resource);
             vBox.getChildren().add(
-                    new ResourceNode(resource, buyPrice, sellPrice, gold, amount).getStackPane()
+                    new ResourceNode(resource, buyPrice, sellPrice, gold, amount,this).getStackPane()
             );
         }
 
 
         scrollPane.setContent(vBox);
+        theVBox.getChildren().add(scrollPane);
 
-        borderPane.setCenter(scrollPane);
+        borderPane.setCenter(theVBox);
+    }
+
+    private void initializeTheVBox(){
+        theVBox = new VBox();
+        theVBox.setAlignment(Pos.CENTER);
+        Label label = new Label();
+        label.setPrefSize(0,0);
+        theVBox.getChildren().add(label);
+    }
+    public void makePopUp(String text){
+        Rectangle rectangle = new Rectangle(515,50);
+        rectangle.setFill(Color.DARKGOLDENROD);
+
+        HBox hBox = new HBox();
+        hBox.setAlignment(Pos.CENTER);
+        hBox.setSpacing(10);
+
+        Label message = new Label(text);
+        message.setStyle("-fx-font: 20 sys");
+
+        Button button = new Button("ok");
+        button.setPrefSize(90,30);
+        button.setStyle("-fx-font: 20 sys ;-fx-background-color: #e6af29 ; -fx-border-color: #262115");
+        button.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                Label label = new Label();
+                label.setPrefSize(0,0);
+                theVBox.getChildren().set(0,label);
+            }
+        });
+
+        hBox.getChildren().addAll(message,button);
+
+        StackPane stackPane = new StackPane();
+        stackPane.getChildren().addAll(rectangle,hBox);
+        theVBox.getChildren().set(0,stackPane);
     }
 
 }
