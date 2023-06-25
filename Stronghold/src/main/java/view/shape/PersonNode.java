@@ -1,5 +1,6 @@
 package view.shape;
 
+import controller.GameControl;
 import javafx.animation.Animation;
 import javafx.animation.TranslateTransition;
 import javafx.event.EventHandler;
@@ -27,9 +28,10 @@ public class PersonNode extends Rectangle {
     private final Person person;
     private VBox detailBox;
     private ProgressBar pb;
+    private Text isAttacking;
 
     public PersonNode(Person person) {
-        super(25, 30);
+        super(20, 25);
         this.person = person;
         this.setFill(new ImagePattern(new Image(person.getUnitName().getImagePath())));
 
@@ -42,13 +44,18 @@ public class PersonNode extends Rectangle {
         }
 
         setDetailBox();
+        setOnRightClick(this);
+    }
 
-        PersonNode personNode = this;
+    private void setOnRightClick(PersonNode personNode) {
         personNode.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 if (mouseEvent.getButton().equals(MouseButton.SECONDARY)) {
                     showDetailsBox();
+                }
+                if (mouseEvent.isPrimaryButtonDown()) {
+                    GameControl.selectUnitByClick(person);
                 }
             }
         });
@@ -68,20 +75,30 @@ public class PersonNode extends Rectangle {
         Text speed = (Text) detailBox.getChildren().get(2);
         speed.setText("Speed:    " + person.getSpeed());
         Text damage = (Text) detailBox.getChildren().get(3);
-        HBox hBox = (HBox) detailBox.getChildren().get(4);
+        isAttacking = (Text) detailBox.getChildren().get(4);
+        HBox hBox = (HBox) detailBox.getChildren().get(5);
         ImageView soldierState = (ImageView) hBox.getChildren().get(0);
 
-        if (person instanceof Soldier){
-             Soldier soldier = (Soldier) person;
-            damage.setText("Damage:     " + soldier.getDamage());
+        if (person instanceof Soldier) {
+            Soldier soldier = (Soldier) person;
+            damage.setText("Damage: " + soldier.getDamage());
             soldierState.setImage(new Image(soldier.getSoldierUnitState().getImagePath()));
+            if (!soldier.getAttackQueue().isEmpty())
+                isAttacking.setText("Attacking: " + soldier.getAttackQueue().toString());
+            else isAttacking.setText("Attacking: nobody");
         }
 
         pb.setProgress(1);
     }
 
     private void showDetailsBox() {
-        pb.setProgress((double) person.getHp() / 100);
+        pb.setProgress((double) person.getHp() / person.getInitialHp());
+        if (person instanceof Soldier) {
+            Soldier soldier = (Soldier) person;
+            if (!soldier.getAttackQueue().isEmpty())
+                isAttacking.setText("Attacking: " + soldier.getAttackQueue().toString());
+            else isAttacking.setText("Attacking: nobody");
+        }
 
         GameViewController.addNode(detailBox);
     }

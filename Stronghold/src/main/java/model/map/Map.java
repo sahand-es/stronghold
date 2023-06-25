@@ -104,7 +104,6 @@ public class Map {
                         char c = blockToPrint.getBlockDetailForShowMap().get(i1 % blockToPrint.getBlockDetailForShowMap().size());
                         output.append(c);
                     }
-//                    output.append("#".repeat(blockWidth));
                     output.append(Colors.RESET);
                 }
                 output.append("|\n");
