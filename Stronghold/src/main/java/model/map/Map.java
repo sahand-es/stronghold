@@ -9,6 +9,7 @@ import utility.*;
 
 import java.util.ArrayList;
 
+// TODO: 6/26/2023 change it to square 
 public class Map {
     Block[][] grid;
 
