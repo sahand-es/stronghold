@@ -34,7 +34,6 @@ public class BuildingNode extends Rectangle {
         Image image = new Image(building.getName().getImagePath());
 
         double scale = image.getHeight()/image.getWidth();
-        System.out.println(scale);
         this.setHeight(MapTile.TILE_WIDTH * scale);
 
 
@@ -50,8 +49,19 @@ public class BuildingNode extends Rectangle {
 
         setDetailBox();
         setOnRightClick(this);
+    }
 
-//        this.setFill(Color.BLACK);
+    public BuildingNode(Building building, int overload) {
+        super(MapTile.TILE_WIDTH*2, (MapTile.TILE_HEIGHT * 4));
+        this.building = building;
+
+        Image image = new Image(building.getName().getImagePath());
+
+//        double scale = image.getHeight()/image.getWidth();
+//        this.setHeight(MapTile.TILE_WIDTH * scale);
+
+
+        this.setFill(new ImagePattern(image));
     }
 
     private void setOnRightClick(BuildingNode buildingNode) {

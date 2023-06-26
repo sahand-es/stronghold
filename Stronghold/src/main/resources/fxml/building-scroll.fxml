@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.HBox?>
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="160.0"
+            prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="view.fxmlcontroller.BuildingScroll">
+    <content>
+        <HBox prefHeight="120.0" prefWidth="1074.0" fx:id="hBox" spacing="20" alignment="CENTER">
+        </HBox>
+    </content>
+</ScrollPane>

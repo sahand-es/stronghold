@@ -11,12 +11,12 @@ public enum BuildingName {
     DRAWBRIDGE("Drawbridge", "Bridge","drawbridge.png"),
 
     // Defencive:
-    LOOKOUT_TOWER("Lookout Tower", "Defencive", "lookout-tower.png"),
     PERIMETER_TOWER("Perimeter Tower", "Defencive", "perimeter-tower.png"),
     DEFENCE_TURRET("Defence Turret", "Defencive", "defence-turret.png"),
     SQUARE_TOWER("Square Tower", "Defencive", "square-tower.png"),
     ROUND_TOWER("Round Tower", "Defencive", "round-tower.png"),
     CAGED_WAR_DOGS("Caged War Dogs", "Defencive", "caged-war-dogs.png"),
+    LOOKOUT_TOWER("Lookout Tower", "Defencive", "lookout-tower.png"),
 
     // Storage:
     ARMOURY("Armoury", "Storage", "armoury.png"),
@@ -27,7 +27,6 @@ public enum BuildingName {
     BARRACKS("Barracks", "Unit Maker", "barracks.png"),
     MERCENARY_POST("Mercenary Post", "Unit Maker", "mercenary-post.png"),
     ENGINEER_GUILD("Engineer Guild", "Unit Maker", "engineer-guild.gif"),
-    TUNNELER_GUILD("Tunneler Guild", "Unit Maker", "tunnelers-guild.gif"),
     SIEGE_TENT("Siege Tent", "Unit Maker", "siege-tent.png"),
 
     // Trap:

@@ -203,6 +203,15 @@ public class Building extends Environment {
         block.setEnvironment(this);
         government.addBuilding(this);
     }
+    public Building(BuildingName name) {
+        Building buildingToClone = getBuildingByBuildingName(name);
+        if (buildingToClone == null)
+            System.out.println(name);
+        this.hp = buildingToClone.hp;
+        this.category = buildingToClone.category;
+        this.name = buildingToClone.name;
+        this.price = buildingToClone.price;
+    }
 
     public static Building getBuildingByBuildingName(BuildingName name) {
         for (Building building : allBuildings) {
