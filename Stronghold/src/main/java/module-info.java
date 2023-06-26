@@ -11,4 +11,6 @@ module Stronghold {
     opens model;
     exports view.shape;
     opens view.shape;
+    exports view;
+    opens view;
 }

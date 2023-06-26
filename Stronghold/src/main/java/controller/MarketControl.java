@@ -8,8 +8,8 @@ import java.util.HashMap;
 
 public class MarketControl
 {
-    static HashMap<ResourcesName,Integer> buyPrice;
-    static HashMap<ResourcesName,Integer> sellPrice;
+    public static HashMap<ResourcesName,Integer> buyPrice;
+    public static HashMap<ResourcesName,Integer> sellPrice;
 
     static {
         buyPrice = new HashMap<>();
@@ -98,10 +98,11 @@ public class MarketControl
         return true;
     }
 
-    public static void main(String[] args) {
-        System.out.println(showPrice());
+    public static HashMap<ResourcesName, Integer> getBuyPrice() {
+        return buyPrice;
     }
 
-
-
+    public static HashMap<ResourcesName, Integer> getSellPrice() {
+        return sellPrice;
+    }
 }

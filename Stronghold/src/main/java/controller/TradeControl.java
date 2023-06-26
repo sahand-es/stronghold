@@ -28,7 +28,7 @@ public class TradeControl
         }
 
         ResourcesName resource = ResourcesName.getResourceByName(type);
-        Government government = GameControl.getCurrentGovernment();
+        Government government = Database.getCurrentGame().getCurrentGovernment();
 
         if (government.checkEnoughForTrade(resource,amount)){
             return TradeMessages.NOT_ENOUGH_RESOURCES;
@@ -48,6 +48,11 @@ public class TradeControl
         if (trade == null)
             return TradeMessages.TRADE_ID_DOES_NOT_EXIST;
 
+        return acceptTrade(trade,message);
+    }
+
+    public static TradeMessages acceptTrade(Trade trade,String message) {
+        Game game = Database.getCurrentGame();
         if (!(game.getCurrentGovernment()).getResource().checkPay(trade.getPrice()))
             return TradeMessages.NOT_ENOUGH_RESOURCES;
 
@@ -63,6 +68,7 @@ public class TradeControl
 
         return TradeMessages.SUCCESS;
     }
+
 
     public static String displayTrades(ArrayList<Trade> trades){
         String output = "";
