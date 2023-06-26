@@ -9,8 +9,12 @@ module Stronghold {
 
     exports model;
     opens model;
+    exports model.map;
+    opens model.map;
     exports view.shape;
     opens view.shape;
+    exports view.fxmlcontroller;
+    opens view.fxmlcontroller;
     exports view;
     opens view;
 }

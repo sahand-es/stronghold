@@ -47,6 +47,9 @@ public class GameControl {
         map.setTexture(x,y, Texture.getTextureByString(texture));
         return GameMessages.SUCCESS;
     }
+    public static void setTexture(Texture texture) {
+        GameViewController.setTexture(texture);
+    }
 
     public static GameMessages clearBlock(int x, int y) {
         if (!map.isValidXY(x, y))

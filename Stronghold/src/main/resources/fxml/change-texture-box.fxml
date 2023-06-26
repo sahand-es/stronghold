@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import model.map.*?>
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="243.0"
+            prefWidth="240.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="view.fxmlcontroller.ChangeTextureBox">
+    <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="416.0" prefWidth="200.0">
+            <children>
+                <VBox layoutX="59.0" layoutY="48.0" prefHeight="419.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0"
+                      AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"
+                      fx:id="fatherOfHs">
+                    <children>
+                        <HBox prefHeight="50.0" prefWidth="200.0" fx:id="firstRow" spacing="30">
+                            <children>
+                                <MapTile/>
+                                <MapTile/>
+                                <MapTile/>
+                            </children>
+                        </HBox>
+                        <HBox prefHeight="50.0" prefWidth="150.0" spacing="30">
+                            <Text text="test" textAlignment="CENTER" wrappingWidth="50"/>
+                            <Text text="test" textAlignment="CENTER" wrappingWidth="50"/>
+                            <Text text="test" textAlignment="CENTER" wrappingWidth="50"/>
+                        </HBox>
+                        <HBox prefHeight="50.0" prefWidth="200.0" fx:id="secondRow" spacing="30">
+                            <children>
+                                <MapTile/>
+                                <MapTile/>
+                                <MapTile/>
+                            </children>
+                        </HBox>
+                        <HBox prefHeight="50.0" prefWidth="200.0" spacing="30">
+                            <Text text="test" textAlignment="CENTER" wrappingWidth="50"/>
+                            <Text text="test" textAlignment="CENTER" wrappingWidth="50"/>
+                            <Text text="test" textAlignment="CENTER" wrappingWidth="50"/>
+                        </HBox>
+                        <HBox prefHeight="50.0" prefWidth="200.0" fx:id="thirdRow" spacing="30">
+                            <children>
+                                <MapTile/>
+                                <MapTile/>
+                                <MapTile/>
+                            </children>
+                        </HBox>
+                        <HBox prefHeight="50.0" prefWidth="200.0" spacing="30">
+                            <Text text="test" textAlignment="CENTER" wrappingWidth="50"/>
+                            <Text text="test" textAlignment="CENTER" wrappingWidth="50"/>
+                            <Text text="test" textAlignment="CENTER" wrappingWidth="50"/>
+                        </HBox>
+                        <HBox prefHeight="50.0" prefWidth="200.0" fx:id="forthRow" spacing="30">
+                            <children>
+                                <MapTile/>
+                                <MapTile/>
+                                <MapTile/>
+                            </children>
+                        </HBox>
+                        <HBox prefHeight="50.0" prefWidth="200.0" spacing="30">
+                            <Text text="test" textAlignment="CENTER" wrappingWidth="50"/>
+                            <Text text="test" textAlignment="CENTER" wrappingWidth="50"/>
+                            <Text text="test" textAlignment="CENTER" wrappingWidth="50"/>
+                        </HBox>
+                        <HBox prefHeight="50.0" prefWidth="200.0" spacing="30">
+                            <children>
+                                <MapTile/>
+                                <MapTile/>
+                            </children>
+                        </HBox>
+                        <HBox prefHeight="50.0" prefWidth="200.0" spacing="30">
+                            <Text text="test" textAlignment="CENTER" wrappingWidth="50"/>
+                            <Text text="test" textAlignment="CENTER" wrappingWidth="50"/>
+                        </HBox>
+                    </children>
+                </VBox>
+            </children>
+        </AnchorPane>
+    </content>
+</ScrollPane>

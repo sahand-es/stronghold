@@ -13,6 +13,7 @@ import model.environment.buildings.Building;
 import model.map.Block;
 import model.map.MapPane;
 import model.map.MapTile;
+import model.map.Texture;
 import model.units.Person;
 import view.animation.MoveAnimation;
 import view.shape.BuildingNode;
@@ -104,5 +105,9 @@ public class GameViewController {
         allBuildings.getChildren().add(bn);
     }
 
+    public static void setTexture(Texture texture) {
+        mapPane.setTexture(texture);
+        // TODO: 6/26/2023 minimap change
+    }
 }
 

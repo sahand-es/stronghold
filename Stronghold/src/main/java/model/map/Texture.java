@@ -26,7 +26,7 @@ public enum Texture
     private final boolean canPass;
     private final String imagePath;
 
-    Texture(String name, String color, boolean canPass, String imagePath) {
+    Texture(String color,String name, boolean canPass, String imagePath) {
         this.name = name;
         this.color = color;
         this.canPass = canPass;

@@ -57,6 +57,15 @@ public class MapPane extends Pane {
         setDragMove();
     }
 
+    public void setTexture(Texture texture) {
+        for (MapTile tile : selected) {
+            map.setTexture(tile.getBlock().getX(), tile.getBlock().getY(), texture);
+            tile.setFill(new ImagePattern(new Image(tile.getBlock().getTexture().getImagePath())));
+        }
+    }
+
+//    public void setTex
+
     private void setSelectRect() {
         selectRect = new Rectangle(0.01, 0.01);
         selectRect.setFill(Color.LIGHTBLUE);
@@ -205,6 +214,9 @@ public class MapPane extends Pane {
                     } else if (mouseEvent.isSecondaryButtonDown()) {
                         resetSelection();
                         showDetailsText(tile);
+                    } else if (mouseEvent.isPrimaryButtonDown() ) {
+                        selected = new ArrayList<>();
+                        selected.add(tile);
                     }
                 }
             }
@@ -222,8 +234,7 @@ public class MapPane extends Pane {
         for (Node node : allTiles.getChildren()) {
             MapTile tile = (MapTile) node;
             if (selectRect.getBoundsInParent().intersects(tile.getBoundsInParent())) {
-                tile.setStroke(Color.WHITE);
-                tile.setStrokeWidth(0.6);
+                select(tile);
                 if (!this.selected.contains(tile))
                     this.selected.add(tile);
             } else {
@@ -231,6 +242,11 @@ public class MapPane extends Pane {
                 this.selected.remove(tile);
             }
         }
+    }
+
+    private void select(MapTile tile) {
+        tile.setStroke(Color.WHITE);
+        tile.setStrokeWidth(0.6);
     }
 }
 
