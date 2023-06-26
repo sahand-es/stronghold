@@ -1,6 +1,7 @@
 package view.fxmlcontroller;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -21,6 +22,7 @@ public class BuildingScroll {
             buildingVBox.setPrefWidth(100);
             buildingVBox.getChildren().add(new BuildingNode(new Building(name),0));
             buildingVBox.setSpacing(8);
+            buildingVBox.setAlignment(Pos.CENTER);
             Text text = new Text(name.getName());
 
             text.setTextAlignment(TextAlignment.CENTER);

@@ -52,13 +52,13 @@ public class BuildingNode extends Rectangle {
     }
 
     public BuildingNode(Building building, int overload) {
-        super(MapTile.TILE_WIDTH*2, (MapTile.TILE_HEIGHT * 4));
+        super(MapTile.TILE_WIDTH, (MapTile.TILE_HEIGHT) * 4);
         this.building = building;
 
         Image image = new Image(building.getName().getImagePath());
 
-//        double scale = image.getHeight()/image.getWidth();
-//        this.setHeight(MapTile.TILE_WIDTH * scale);
+        double scale = image.getHeight()/image.getWidth();
+        this.setWidth(this.getHeight() / scale);
 
 
         this.setFill(new ImagePattern(image));
