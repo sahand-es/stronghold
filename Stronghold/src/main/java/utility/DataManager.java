@@ -16,17 +16,18 @@ import java.util.List;
 
 public class DataManager {
     //json:
-    public static final String USERS_DATABASE_PATH = "src/main/resources/json/users.json";
-    public static final String LOGGED_IN_DATABASE_PATH = "src/main/resources/json/loggedInUser.json";
-    public static final String GAMES_PATH = "src/main/resources/json/Games.json";
+    public static final String USERS_DATABASE_PATH = "src/main/resources/json/users.json" ;
+    public static final String LOGGED_IN_DATABASE_PATH = "src/main/resources/json/loggedInUser.json" ;
+    public static final String GAMES_PATH = "src/main/resources/json/Games.json" ;
     //csv:
-    public static final String RESOURCES_PATH = "src/main/resources/csv/ResourceAndFood.csv";
-    public static final String WEAPONS_PATH = "src/main/resources/csv/WeaponAndArmour.csv";
-    public static final String UNITS_PATH = "src/main/resources/csv/Units.csv";
-    public static final String BUILDINGS_PATH = "src/main/resources/csv/Buildings.csv";
+    public static final String RESOURCES_PATH = "src/main/resources/csv/ResourceAndFood.csv" ;
+    public static final String WEAPONS_PATH = "src/main/resources/csv/WeaponAndArmour.csv" ;
+    public static final String UNITS_PATH = "src/main/resources/csv/Units.csv" ;
+    public static final String BUILDINGS_PATH = "src/main/resources/csv/Buildings.csv" ;
     //fxml:
-    public static final String SOLDIER_DETAIL_BOX = "/fxml/soldier-detail-box.fxml";
-    public static final String BUILDING_DETAIL_BOX = "/fxml/building-detail-box.fxml";
+    public static final String SOLDIER_DETAIL_BOX = "/fxml/soldier-detail-box.fxml" ;
+    public static final String BUILDING_DETAIL_BOX = "/fxml/building-detail-box.fxml" ;
+    public static final String CHANGE_TEXTURE_BOX = "/fxml/change-texture-box.fxml";
 
     public static ArrayList<User> loadUsers() {
         try {
@@ -59,7 +60,6 @@ public class DataManager {
     }
 
     /**
-     *
      * @param filePath file path from src
      * @return arraylist of string[] which first element contains attributes
      */
@@ -92,7 +92,7 @@ public class DataManager {
     public static void saveGames(Map map) {
         try {
             FileWriter fileWriter = new FileWriter(GAMES_PATH);
-            Gson gson = new  GsonBuilder().setPrettyPrinting().create();
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
             String json = gson.toJson(map);
             fileWriter.write(json);
             fileWriter.close();
@@ -126,11 +126,11 @@ public class DataManager {
             }.getType());
 
             return user;
-        }
-        catch (Exception ignored) {
+        } catch (Exception ignored) {
             return null;
         }
     }
+
     public static void saveLoggedIn(User user) {
         FileWriter fileWriter;
         try {
@@ -144,7 +144,7 @@ public class DataManager {
         }
     }
 
-    public static void saver(){
+    public static void saver() {
         saveUsers();
         saveLoggedIn(null);
     }

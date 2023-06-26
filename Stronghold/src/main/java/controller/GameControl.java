@@ -37,16 +37,18 @@ public class GameControl {
         setGame(game);
         currentGovernment = game.getCurrentGovernment();
     }
-// map:
+
+    // map:
     public static GameMessages setTexture(int x, int y, String texture) {
         if (!map.isValidXY(x, y))
             return GameMessages.INVALID_XY;
         if (!Texture.isValid(texture))
             return GameMessages.INVALID_TEXTURE;
 
-        map.setTexture(x,y, Texture.getTextureByString(texture));
+        map.setTexture(x, y, Texture.getTextureByString(texture));
         return GameMessages.SUCCESS;
     }
+
     public static void setTexture(Texture texture) {
         GameViewController.setTexture(texture);
     }
@@ -56,7 +58,7 @@ public class GameControl {
             return GameMessages.INVALID_XY;
 
 
-        map.getBlockByXY(x,y).clearBlock();
+        map.getBlockByXY(x, y).clearBlock();
         return GameMessages.SUCCESS;
     }
 
@@ -68,7 +70,7 @@ public class GameControl {
         if (!Texture.isValid(texture))
             return GameMessages.INVALID_TEXTURE;
 
-        map.setGroupTexture(x1,y1,x2,y2, Texture.getTextureByString(texture));
+        map.setGroupTexture(x1, y1, x2, y2, Texture.getTextureByString(texture));
         return GameMessages.SUCCESS;
     }
 
@@ -87,6 +89,7 @@ public class GameControl {
 
         return GameMessages.SUCCESS;
     }
+
     public static void setGame(Game theGame) {
         game = theGame;
         map = game.getMap();
@@ -140,7 +143,7 @@ public class GameControl {
         return GameMessages.SUCCESS;
     }
 
-    public static  GameMessages dropBuilding(int x, int y, String type) {
+    public static GameMessages dropBuilding(int x, int y, String type) {
         Building building = null;
         if (!map.isValidXY(x, y))
             return GameMessages.INVALID_XY;
@@ -232,7 +235,7 @@ public class GameControl {
         UnitName unitName = UnitName.getUnitByName(type);
         Block block = selectedBuilding.getBlock();
 
-        currentGovernment.getResource().pay(person.getPrice(),count);
+        currentGovernment.getResource().pay(person.getPrice(), count);
 
         for (int i = 0; i < count; i++) {
             person = personConstructorCaller(unitName, block);
@@ -243,7 +246,7 @@ public class GameControl {
         return GameMessages.SUCCESS;
     }
 
-    public static GameMessages dropUnit(int x,int y,String type, int count) {
+    public static GameMessages dropUnit(int x, int y, String type, int count) {
         Person person = null;
         if (!map.isValidXY(x, y))
             return GameMessages.INVALID_XY;
@@ -258,9 +261,9 @@ public class GameControl {
 
         for (int i = 0; i < count; i++) {
             person = personConstructorCaller(unitName, block);
+            GameViewController.addUnit(person);
         }
 
-        GameViewController.addUnit(person);
 
         return GameMessages.SUCCESS;
     }
@@ -319,7 +322,7 @@ public class GameControl {
         String output = selectedUnit.getUnitName() + ":\n" +
                 "Government: " + selectedUnit.getGovernment().getColor().name() + "\n" +
                 "Hp: " + selectedUnit.getHp() + "\n" +
-                "Block: " + selectedUnit.getBlock() + "\n";
+                "Block: " + selectedUnit.getBlock() + "\n" ;
 
         return output;
     }
@@ -357,9 +360,11 @@ public class GameControl {
         selectedUnit = block.selectUnit(currentGovernment, selectedCount);
         return GameMessages.SUCCESS;
     }
+
     public static void selectUnitByClick(Person person) {
         selectedUnit = person;
     }
+
     public static void selectBuildingByClick(Building building) {
         selectedBuilding = building;
     }
@@ -418,7 +423,7 @@ public class GameControl {
         if (!(selectedUnit instanceof Soldier))
             return GameMessages.CAN_NOT_ATTACK_WITH_THIS_UNIT_TYPE;
         Soldier soldier = (Soldier) selectedUnit;
-        Block block = map.getBlockByXY(x,y);
+        Block block = map.getBlockByXY(x, y);
         if (block.getEnemy(selectedUnit) == null)
             return GameMessages.NO_ENEMY_TO_ATTACK;
         if (!soldier.setAttackQueue(block.getEnemy(selectedUnit))) {
@@ -449,7 +454,7 @@ public class GameControl {
         if (!(selectedUnit instanceof Tunneler))
             return GameMessages.SELECTED_UNIT_IS_NOT_TUNNELER;
         Tunneler tunneler = (Tunneler) selectedUnit;
-        if (!tunneler.canDigThere(map.getBlockByXY(x,y)))
+        if (!tunneler.canDigThere(map.getBlockByXY(x, y)))
             return GameMessages.CAN_NOT_DIG_THERE;
 
         tunneler.setTunnelQueue(map.getBlockByXY(x, y));
@@ -509,7 +514,7 @@ public class GameControl {
     }
 
     private static void giveFood() {
-        if(currentGovernment.getResource().getFoodAmount() < currentGovernment.foodUsage()) {
+        if (currentGovernment.getResource().getFoodAmount() < currentGovernment.foodUsage()) {
             currentGovernment.setFoodRate(-2);
         } else {
             currentGovernment.getResource().payFood(currentGovernment.foodUsage());
@@ -517,8 +522,8 @@ public class GameControl {
         }
     }
 
-    private static void getTax(){
-        if(currentGovernment.getResource().getGold() < -1 * currentGovernment.calcTax()){
+    private static void getTax() {
+        if (currentGovernment.getResource().getGold() < -1 * currentGovernment.calcTax()) {
             currentGovernment.setTaxRate(0);
         } else {
             currentGovernment.getResource().addGold(currentGovernment.calcTax());
@@ -550,8 +555,7 @@ public class GameControl {
                 if (!((Soldier) opponnet).isReadyToAttack()) {
                     opponnet.die();
                     soldier.freeAttackQueue();
-                }
-                else {
+                } else {
                     while (true) {
                         opponnet.takeDamage(soldier.getDamage());
                         soldier.takeDamage(((Soldier) opponnet).getDamage());

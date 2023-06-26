@@ -92,7 +92,7 @@ public class BuildingNode extends Rectangle {
     private void showDetailsBox() {
         pb.setProgress((double) building.getHp() / building.getInitialHp());
 
-        GameViewController.addNode(detailBox);
+        GameViewController.addNode(detailBox,0, 0);
     }
 
 

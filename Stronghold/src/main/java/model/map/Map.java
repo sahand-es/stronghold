@@ -6,6 +6,7 @@ import model.environment.buildings.enums.BuildingName;
 import model.society.Government;
 import model.society.enums.Colors;
 import utility.*;
+import view.GameViewController;
 
 import java.util.ArrayList;
 
@@ -31,9 +32,11 @@ public class Map {
     public void initGovernments(ArrayList<Government> governments) {
         for (Government government : governments) {
             int randX = RandomGenerators.randomNumber(2, width - 2), randY = RandomGenerators.randomNumber(2, height - 2);
+            GameViewController.addBuilding(
             new Castle(BuildingName.CASTLE, government,
-                    getBlockByXY(randX, randY));
-            new StorageBuilding(BuildingName.STOCKPILE, government, getBlockByXY(randX + 1, randY));
+                    getBlockByXY(randX, randY)));
+            GameViewController.addBuilding(
+            new StorageBuilding(BuildingName.STOCKPILE, government, getBlockByXY(randX + 1, randY)));
             // TODO: 6/1/2023 delete: 
 //            System.out.println(government.getColor() + ": " + "X=" + randX + " Y=" + randY);
         }

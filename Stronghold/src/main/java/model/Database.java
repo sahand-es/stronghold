@@ -1,5 +1,6 @@
 package model;
 
+import javafx.stage.Screen;
 import model.map.Map;
 import utility.DataManager;
 import view.enums.AllMenus;
@@ -9,6 +10,8 @@ import java.util.ArrayList;
 
 public class Database {
 
+    public static double centerX = Screen.getPrimary().getVisualBounds().getWidth() / 2;
+    public static double centerY = Screen.getPrimary().getVisualBounds().getHeight() / 2;
     private static ArrayList<User> users ;
     private static User currentUser;
     private static AllMenus currentMenu;

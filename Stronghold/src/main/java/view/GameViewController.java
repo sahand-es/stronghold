@@ -5,9 +5,16 @@ import javafx.animation.Animation.*;
 import javafx.animation.PathTransition;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
+import model.Database;
 import model.environment.Environment;
 import model.environment.buildings.Building;
 import model.map.Block;
@@ -15,29 +22,58 @@ import model.map.MapPane;
 import model.map.MapTile;
 import model.map.Texture;
 import model.units.Person;
+import utility.DataManager;
 import view.animation.MoveAnimation;
 import view.shape.BuildingNode;
 import view.shape.PersonNode;
 
+import java.awt.*;
+import java.io.IOException;
+import java.util.Objects;
 import java.util.Queue;
 
 public class GameViewController {
+    private static Scene scene;
     private static Pane mainPane;
     private static MapPane mapPane;
+    private static ScrollPane mapTextureOptions;
     private static Group allPersons;
     private static Group allBuildings;
 
-    public static void setMapPane(MapPane mapPane, Pane mainPane) {
+    public static void setMapPane(MapPane mapPane, Pane mainPane, Scene scene) throws IOException {
         GameViewController.mapPane = mapPane;
         GameViewController.mainPane = mainPane;
+        GameViewController.scene = scene;
+        mapTextureOptions = FXMLLoader.load(Objects.requireNonNull(MapPane.class.getResource(DataManager.CHANGE_TEXTURE_BOX)));
         allPersons = new Group();
         allBuildings = new Group();
+        setKeys();
+
         mapPane.getChildren().addAll(allBuildings, allPersons);
     }
 
-    public static void addNode(Node node) {
-        if (!mainPane.getChildren().contains(node))
+    private static void setKeys() {
+
+        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent keyEvent) {
+                System.out.println("nigga");
+                if (keyEvent.getCode().equals(KeyCode.T)) {
+                    addNode(mapTextureOptions, Database.centerX - mapTextureOptions.getPrefWidth()/2,
+                            Database.centerY - mapTextureOptions.getPrefHeight()/2);
+                } else {
+                    mainPane.getChildren().remove(mapTextureOptions);
+                }
+            }
+        });
+    }
+
+    public static void addNode(Node node, double x, double y) {
+        if (!mainPane.getChildren().contains(node)) {
             mainPane.getChildren().add(node);
+            node.setLayoutX(x);
+            node.setLayoutY(y);
+        }
     }
 
     public static void removeNode(Node node) {
@@ -56,7 +92,7 @@ public class GameViewController {
     }
     public static double getLayoutYForPerson(MapTile tile) {
         return tile.getLayoutY() -
-                MapTile.TILE_HEIGHT * 0.3 + tile.getBlock().getUnits().size() * 2;
+                MapTile.TILE_HEIGHT * 0.3 + tile.getBlock().getUnits().size() * 1.5;
     }
 
     public static PersonNode getPersonNodeByPerson(Person person) {

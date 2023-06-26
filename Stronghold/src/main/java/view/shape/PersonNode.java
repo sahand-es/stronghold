@@ -100,7 +100,7 @@ public class PersonNode extends Rectangle {
             else isAttacking.setText("Attacking: nobody");
         }
 
-        GameViewController.addNode(detailBox);
+        GameViewController.addNode(detailBox, 0 ,0);
     }
 
 

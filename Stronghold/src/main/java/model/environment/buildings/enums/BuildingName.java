@@ -21,7 +21,7 @@ public enum BuildingName {
     // Storage:
     ARMOURY("Armoury", "Storage", "armoury.png"),
     GRANARY("Granary", "Storage", "granary.gif"),
-    STOCKPILE("Stockpile", "Storage", "stockpile.gif"),
+    STOCKPILE("Stockpile", "Storage", "stockpile.png"),
 
     // Unit Maker:
     BARRACKS("Barracks", "Unit Maker", "barracks.png"),
