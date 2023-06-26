@@ -1,4 +1,4 @@
-package view.shape;
+package view.shape.trade;
 
 
 import controller.TradeControl;
@@ -18,6 +18,7 @@ import javafx.scene.shape.Rectangle;
 import model.resource.ResourcesName;
 import view.TradeViewController;
 import view.enums.messages.TradeMessages;
+import view.shape.ResourceNode;
 
 import java.util.ArrayList;
 

@@ -53,7 +53,6 @@ public class GameViewController {
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent keyEvent) {
-                System.out.println("nigga");
                 if (keyEvent.getCode().equals(KeyCode.T)) {
                     addNode(mapTextureOptions, Database.centerX - mapTextureOptions.getPrefWidth()/2,
                             Database.centerY - mapTextureOptions.getPrefHeight()/2);

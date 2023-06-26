@@ -16,9 +16,9 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import model.Database;
 import model.society.Trade;
-import view.shape.MakeNewTradePanel;
-import view.shape.TradeHistoryNode;
-import view.shape.TradeListNode;
+import view.shape.trade.MakeNewTradePanel;
+import view.shape.trade.TradeHistoryNode;
+import view.shape.trade.TradeListNode;
 
 import java.util.ArrayList;
 
