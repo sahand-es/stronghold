@@ -1,4 +1,4 @@
-package model.map;
+package view.shape.map;
 
 import javafx.animation.FadeTransition;
 import javafx.animation.ScaleTransition;
@@ -16,6 +16,8 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
+import model.map.Map;
+import model.map.Texture;
 
 import java.util.ArrayList;
 

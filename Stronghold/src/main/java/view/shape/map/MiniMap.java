@@ -1,4 +1,4 @@
-package model.map;
+package view.shape.map;
 
 
 import javafx.scene.Group;
@@ -6,6 +6,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
+import model.map.Map;
 
 public class MiniMap extends Pane {
 

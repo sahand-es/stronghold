@@ -17,4 +17,6 @@ module Stronghold {
     opens view.fxmlcontroller;
     exports view;
     opens view;
+    exports view.shape.map;
+    opens view.shape.map;
 }

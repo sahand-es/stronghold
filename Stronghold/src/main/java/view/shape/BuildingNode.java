@@ -14,7 +14,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import model.environment.buildings.Building;
-import model.map.MapTile;
+import view.shape.map.MapTile;
 import utility.DataManager;
 import view.GameViewController;
 

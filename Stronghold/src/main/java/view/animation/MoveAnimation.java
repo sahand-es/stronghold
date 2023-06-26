@@ -3,8 +3,7 @@ package view.animation;
 import javafx.animation.Transition;
 import javafx.util.Duration;
 import model.map.Block;
-import model.map.MapTile;
-import model.units.Person;
+import view.shape.map.MapTile;
 import view.GameViewController;
 import view.shape.PersonNode;
 

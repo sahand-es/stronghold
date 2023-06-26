@@ -1,8 +1,6 @@
 package view;
 
-import javafx.animation.Animation;
 import javafx.animation.Animation.*;
-import javafx.animation.PathTransition;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
@@ -15,11 +13,10 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import model.Database;
-import model.environment.Environment;
 import model.environment.buildings.Building;
 import model.map.Block;
-import model.map.MapPane;
-import model.map.MapTile;
+import view.shape.map.MapPane;
+import view.shape.map.MapTile;
 import model.map.Texture;
 import model.units.Person;
 import utility.DataManager;
@@ -27,7 +24,6 @@ import view.animation.MoveAnimation;
 import view.shape.BuildingNode;
 import view.shape.PersonNode;
 
-import java.awt.*;
 import java.io.IOException;
 import java.util.Objects;
 import java.util.Queue;

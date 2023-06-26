@@ -8,6 +8,7 @@ import model.environment.buildings.enums.BuildingName;
 import model.society.Government;
 import model.units.Person;
 import model.units.enums.UnitName;
+import view.shape.map.MapTile;
 
 import java.util.ArrayList;
 import java.util.Objects;

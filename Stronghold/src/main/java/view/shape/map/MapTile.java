@@ -1,6 +1,7 @@
-package model.map;
+package view.shape.map;
 
 import javafx.scene.shape.Polygon;
+import model.map.Block;
 
 public class MapTile extends Polygon {
     public static final double TILE_WIDTH = 50;

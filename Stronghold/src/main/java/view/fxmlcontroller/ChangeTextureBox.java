@@ -10,7 +10,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.text.Text;
-import model.map.MapTile;
+import view.shape.map.MapTile;
 import model.map.Texture;
 
 import java.util.ArrayList;
