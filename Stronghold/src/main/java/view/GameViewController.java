@@ -140,5 +140,9 @@ public class GameViewController {
         mapPane.setTexture(texture);
         // TODO: 6/26/2023 minimap change
     }
+
+    public static MapPane getMapPane() {
+        return mapPane;
+    }
 }
 

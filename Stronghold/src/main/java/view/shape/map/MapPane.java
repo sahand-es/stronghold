@@ -250,6 +250,10 @@ public class MapPane extends Pane {
         tile.setStroke(Color.WHITE);
         tile.setStrokeWidth(0.6);
     }
+
+    public Group getAllTiles() {
+        return allTiles;
+    }
 }
 
 

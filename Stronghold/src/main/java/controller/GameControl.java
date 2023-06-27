@@ -135,7 +135,7 @@ public class GameControl {
         BuildingName buildingName = BuildingName.getBuildingNameByName(type);
         Block block = map.getBlockByXY(x, y);
 
-        buildingConstructorCaller(buildingName, block);
+        building = buildingConstructorCaller(buildingName, block);
         currentGovernment.getResource().pay(building.getPrice());
 
         GameViewController.addBuilding(building);
@@ -154,66 +154,53 @@ public class GameControl {
         BuildingName buildingName = BuildingName.getBuildingNameByName(type);
         Block block = map.getBlockByXY(x, y);
 
-        buildingConstructorCaller(buildingName, block);
+        building = buildingConstructorCaller(buildingName, block);
 
         GameViewController.addBuilding(building);
 
         return GameMessages.SUCCESS;
     }
 
-    private static void buildingConstructorCaller(BuildingName buildingName, Block block) {
+    private static Building buildingConstructorCaller(BuildingName buildingName, Block block) {
         switch (buildingName.kind) {
             case "Gate": {
-                new Gate(buildingName, currentGovernment, block);
-                break;
+                return new Gate(buildingName, currentGovernment, block);
             }
             case "Bridge": {
-                new Bridge(buildingName, currentGovernment, block);
-                break;
+                return new Bridge(buildingName, currentGovernment, block);
             }
             case "Defencive": {
-                new DefensiveBuilding(buildingName, currentGovernment, block);
-                break;
+                return new DefensiveBuilding(buildingName, currentGovernment, block);
             }
             case "Storage": {
-                new StorageBuilding(buildingName, currentGovernment, block);
-                break;
+                return new StorageBuilding(buildingName, currentGovernment, block);
             }
             case "Unit Maker": {
-                new UnitMakerBuilding(buildingName, currentGovernment, block);
-                break;
+                return new UnitMakerBuilding(buildingName, currentGovernment, block);
             }
             case "Trap": {
-                new Traps(buildingName, currentGovernment, block);
-                break;
+                return new Traps(buildingName, currentGovernment, block);
             }
             case "Extractor": {
-                new ResourceExtractorBuilding(buildingName, currentGovernment, block);
-                break;
+                return new ResourceExtractorBuilding(buildingName, currentGovernment, block);
             }
             case "Church": {
-                new Church(buildingName, currentGovernment, block);
-                break;
+                return new Church(buildingName, currentGovernment, block);
             }
             case "Inn": {
-                new Inn(buildingName, currentGovernment, block);
-                break;
+                return new Inn(buildingName, currentGovernment, block);
             }
             case "Shop": {
-                new Shop(buildingName, currentGovernment, block);
-                break;
+                return new Shop(buildingName, currentGovernment, block);
             }
             case "House": {
-                new HouseBuilding(buildingName, currentGovernment, block);
-                break;
+                return new HouseBuilding(buildingName, currentGovernment, block);
             }
             case "Castle": {
-                new Castle(buildingName, currentGovernment, block);
-                break;
+                return new Castle(buildingName, currentGovernment, block);
             }
             default: {
-                new Building(buildingName, currentGovernment, block);
-                break;
+                return new Building(buildingName, currentGovernment, block);
             }
         }
     }

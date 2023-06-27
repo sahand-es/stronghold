@@ -105,5 +105,7 @@ public class BuildingNode extends Rectangle {
         GameViewController.addNode(detailBox,0, 0);
     }
 
-
+    public Building getBuilding() {
+        return building;
+    }
 }

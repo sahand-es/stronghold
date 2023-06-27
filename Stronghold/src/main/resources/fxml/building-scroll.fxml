@@ -1,12 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.layout.HBox?>
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="160.0"
-            prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="view.fxmlcontroller.BuildingScroll">
-    <content>
-        <HBox prefHeight="120.0" prefWidth="1074.0" fx:id="hBox" spacing="20" alignment="CENTER">
-        </HBox>
-    </content>
-</ScrollPane>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="211.0"
+         prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1"
+         xmlns="http://javafx.com/javafx/8" fx:controller="view.fxmlcontroller.BuildingScroll" fx:id="tabs">
+    <tabs>
+        <Tab text="Extractor">
+            <content>
+                <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                            prefHeight="160.0" prefWidth="600.0">
+                    <content>
+                        <HBox fx:id="hBox1" alignment="CENTER" prefHeight="120.0" prefWidth="300.0" spacing="20"/>
+                    </content>
+                </ScrollPane>
+            </content>
+        </Tab>
+        <Tab text="Unit Maker">
+            <content>
+                <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                            prefHeight="160.0" prefWidth="600.0">
+                    <content>
+                        <HBox fx:id="hBox" alignment="CENTER" prefHeight="120.0" prefWidth="300.0" spacing="20"/>
+                    </content>
+                </ScrollPane>
+            </content>
+        </Tab>
+        <Tab text="Storage">
+            <content>
+                <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                            prefHeight="160.0" prefWidth="600.0">
+                    <content>
+                        <HBox fx:id="hBox11" alignment="CENTER" prefHeight="120.0" prefWidth="300.0" spacing="20"/>
+                    </content>
+                </ScrollPane>
+            </content>
+        </Tab>
+        <Tab text="Defencive">
+            <content>
+                <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                            prefHeight="160.0" prefWidth="600.0">
+                    <content>
+                        <HBox fx:id="hBox111" alignment="CENTER" prefHeight="120.0" prefWidth="300.0" spacing="20"/>
+                    </content>
+                </ScrollPane>
+            </content>
+        </Tab>
+        <Tab text="Other">
+            <content>
+                <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                            prefHeight="160.0" prefWidth="600.0">
+                    <content>
+                        <HBox fx:id="hBox1111" alignment="CENTER" prefHeight="120.0" prefWidth="300.0" spacing="20"/>
+                    </content>
+                </ScrollPane>
+            </content>
+        </Tab>
+    </tabs>
+</TabPane>
