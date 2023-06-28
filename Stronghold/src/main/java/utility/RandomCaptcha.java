@@ -1,6 +1,8 @@
 package utility;
 
 
+import javafx.scene.image.ImageView;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -21,7 +23,7 @@ public class RandomCaptcha {
             BASE_COLOR.darker().darker(),
             BASE_COLOR.darker().darker().darker(),
     };
-    public static String generate() {
+    public static String generate(){
 
         BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
         Graphics2D graphics = image.createGraphics();
@@ -75,17 +77,19 @@ public class RandomCaptcha {
             graphics.drawLine(x1, y1, x2, y2);
         }
 
+        String outString = captchaText.toString();
+
+        String path = "src/main/resources/captcha/captcha.png";
         // Save the image to a file
         try {
-           ImageIO.write(image, "png", new File("src/main/resources/captcha/captcha.png"));
-            System.out.println("CAPTCHA image generated successfully.");
+           ImageIO.write(image, "png", new File(path));
         } catch (IOException e) {
             System.out.println("Error while saving CAPTCHA image: " + e.getMessage());
         }
 
         graphics.dispose();
 
-        String outString = captchaText.toString();
         return outString;
     }
+
 }

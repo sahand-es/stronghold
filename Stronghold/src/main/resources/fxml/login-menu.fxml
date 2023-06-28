@@ -75,9 +75,9 @@
                   <Font name="Arial Bold" size="13.0" />
                </font>
             </Button>
-            <Label fx:id="messageLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="296.0" layoutY="98.0" prefHeight="18.0" prefWidth="258.0" textFill="#e11818">
+            <Label fx:id="messageLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="271.0" layoutY="95.0" prefHeight="30.0" prefWidth="309.0" textFill="#e11818">
                <font>
-                  <Font name="Arial Bold" size="11.0" />
+                  <Font name="Arial Bold" size="14.0" />
                </font>
             </Label>
             <Hyperlink fx:id="forgotPass" alignment="CENTER" contentDisplay="CENTER" layoutX="346.0" layoutY="416.0" onMouseClicked="#forgotPassword" prefHeight="25.0" prefWidth="157.0" text="Forgot my password" textFill="WHITE">
@@ -86,11 +86,6 @@
                </font>
             </Hyperlink>
             <ImageView fx:id="captchaImageViewer" fitHeight="54.0" fitWidth="200.0" layoutX="325.0" layoutY="229.0" pickOnBounds="true" preserveRatio="true" />
-            <PasswordField fx:id="captcha" alignment="CENTER" layoutX="346.0" layoutY="324.0" promptText="captcha">
-               <font>
-                  <Font name="American Typewriter" size="13.0" />
-               </font>
-            </PasswordField>
             <CheckBox fx:id="stayLoggedCheckBox" layoutX="374.0" layoutY="377.0" mnemonicParsing="false" text="Stay Logged in" textFill="WHITE">
                <font>
                   <Font name="American Typewriter" size="13.0" />
@@ -101,6 +96,11 @@
                   <Font name="American Typewriter" size="14.0" />
                </font>
             </Hyperlink>
+            <TextField fx:id="captchaField" alignment="CENTER" layoutX="351.0" layoutY="328.0" promptText="Captcha">
+               <font>
+                  <Font name="American Typewriter" size="13.0" />
+               </font>
+            </TextField>
          </children>
       </AnchorPane>
    </center>
