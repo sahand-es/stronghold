@@ -144,4 +144,12 @@ public class Game {
     public void removeGovernment(Government government) {
         governments.remove(government);
     }
+
+    public boolean isMoveDone() {
+        for (Person unit : allUnits) {
+            if (unit.isMoving())
+                return false;
+        }
+        return true;
+    }
 }

@@ -110,12 +110,19 @@ public class Soldier extends Person {
        setAttackQueue(attackQueue.peek());
        return moveQueue.size() <= getSpeed();
     }
+    public boolean isReadyToAttackAfterMove() {
+       if (attackQueue.isEmpty())
+           return false;
+        // TODO: 6/29/2023 check this: 
+       setAttackQueue(attackQueue.peek());
+       return moveQueue.isEmpty();
+    }
 
     public boolean isReadyToAttackBuilding() {
         if (buildingAttackQueue.isEmpty())
             return false;
         setAttackQueueBuilding(buildingAttackQueue.peek());
-        return moveQueue.size() <= getSpeed();
+        return moveQueue.isEmpty();
     }
     public int getDamage() {
         return damage + government.getFearRate();

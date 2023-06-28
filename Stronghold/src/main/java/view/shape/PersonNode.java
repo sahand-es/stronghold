@@ -31,6 +31,7 @@ public class PersonNode extends Rectangle {
     private Text isAttacking;
     private ImageView soldierState;
 
+
     public PersonNode(Person person) {
         super(23, 28);
         this.person = person;

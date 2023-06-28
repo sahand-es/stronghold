@@ -152,14 +152,17 @@ public class GameViewController {
 
         MoveAnimation ma = new MoveAnimation(pn, toTile);
         ma.play();
+        person.setMoving(true);
         ma.statusProperty().addListener(new ChangeListener<Status>() {
 
             @Override
             public void changed(ObservableValue<? extends Status> observableValue,
                                 Status oldValue, Status newValue) {
                 if (newValue == Status.STOPPED) {
-                    if (movedQueue.isEmpty())
+                    if (movedQueue.isEmpty()) {
+                        person.setMoving(false);
                         return;
+                    }
                     ma.changeDestination(movedQueue.poll().getTile());
                     ma.play();
                 }

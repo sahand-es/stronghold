@@ -32,6 +32,8 @@ public class Person {
     protected boolean canDigMoat;
     protected static final ArrayList<Person> allUnits = new ArrayList<>();
 
+    protected boolean isMoving = false;
+
     static {
         ArrayList<String[]> resourceCsv = DataManager.getArrayListFromCSV(DataManager.UNITS_PATH);
         String[] attributeNames = resourceCsv.get(0);
@@ -175,6 +177,7 @@ public class Person {
         this.price = personToClone.price;
         this.canClimbLadder = personToClone.canClimbLadder;
         this.canDigMoat = personToClone.canDigMoat;
+
     }
 
     public Person(UnitName name) {
@@ -200,7 +203,16 @@ public class Person {
         this.canClimbLadder = personToClone.canClimbLadder;
         this.canDigMoat = personToClone.canDigMoat;
         this.setBlock(block);
+        isMoving = false;
         setGovernment(government);
+    }
+
+    public boolean isMoving() {
+        return isMoving;
+    }
+
+    public void setMoving(boolean moving) {
+        isMoving = moving;
     }
 
     protected Person getPersonByName(String name) {

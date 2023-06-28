@@ -27,7 +27,7 @@ public class MoveAnimation extends Transition {
         delY = GameViewController.getLayoutYForPerson(toTile) - personNode.getLayoutY();
 
         this.setCycleDuration(Duration.millis(6000));
-        speed = personNode.getPerson().getSpeed() * 0.025;
+        speed = personNode.getPerson().getSpeed() * 0.028;
     }
 
     public void changeDestination(MapTile mapTile) {

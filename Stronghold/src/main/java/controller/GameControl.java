@@ -1,5 +1,10 @@
 package controller;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.util.Duration;
 import model.Game;
 import model.environment.Rock;
 import model.environment.TreeClass;
@@ -309,7 +314,7 @@ public class GameControl {
         String output = selectedUnit.getUnitName() + ":\n" +
                 "Government: " + selectedUnit.getGovernment().getColor().name() + "\n" +
                 "Hp: " + selectedUnit.getHp() + "\n" +
-                "Block: " + selectedUnit.getBlock() + "\n" ;
+                "Block: " + selectedUnit.getBlock() + "\n";
 
         return output;
     }
@@ -445,8 +450,6 @@ public class GameControl {
         }
 
 
-
-
         return GameMessages.SUCCESS;
     }
 
@@ -567,6 +570,7 @@ public class GameControl {
             buildingToAttack.takeDamage(soldier.getDamage() * 3);
             GameViewController.setFire(buildingToAttack);
 
+
             if (buildingToAttack.getHp() > 0) {
                 soldier.setAttackQueueBuilding(buildingToAttack);
             } else {
@@ -578,14 +582,14 @@ public class GameControl {
 
     private static void attackFunction(Soldier soldier) {
         Person opponnet;
-        if (soldier.isReadyToAttack()) {
+        if (soldier.isReadyToAttackAfterMove()) {
             opponnet = soldier.getOpponent();
             if (!(opponnet instanceof Soldier)) {
                 opponnet.die();
                 soldier.freeAttackQueue();
             }
             if (opponnet instanceof Soldier) {
-                if (!((Soldier) opponnet).isReadyToAttack()) {
+                if (!((Soldier) opponnet).isReadyToAttackAfterMove()) {
                     opponnet.die();
                     soldier.freeAttackQueue();
                 } else {
@@ -656,14 +660,37 @@ public class GameControl {
         getTax();
         extractControl();
         if (game.goToNextTurn()) {
-            attackControl();
             moveAllUnits();
-            digAllTunnels();
-            doAttacks();
+            attackControl();
+            setTimeline();
         }
+
         currentGovernment = game.getCurrentGovernment();
         deSelectBuilding();
         deSelectUnit();
+    }
+
+    private static void setTimeline() {
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.05), e -> {
+            if (game.isMoveDone()) {
+                doAttacks();
+                digAllTunnels();
+            }
+        }));
+
+        timeline.setOnFinished(
+                new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent actionEvent) {
+                        if (game.isMoveDone())
+                            return;
+                        else {
+                            timeline.playFromStart();
+                        }
+                    }
+                }
+        );
+        timeline.play();
     }
 
     public static Government getCurrentGovernment() {
