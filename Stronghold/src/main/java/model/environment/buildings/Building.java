@@ -9,6 +9,7 @@ import model.society.Government;
 import model.units.Person;
 import model.units.enums.UnitName;
 import utility.DataManager;
+import view.GameViewController;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -277,6 +278,7 @@ public class Building extends Environment {
 
 
     public void die(){
+        GameViewController.removeBuilding(this);
         this.hp = 0;
         government.removeBuilding(this);
         this.getBlock().setEnvironment(null);

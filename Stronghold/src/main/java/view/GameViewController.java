@@ -1,6 +1,6 @@
 package view;
 
-import javafx.animation.Animation.*;
+import javafx.animation.Animation.Status;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
@@ -16,16 +16,16 @@ import javafx.scene.layout.Pane;
 import model.Database;
 import model.environment.buildings.Building;
 import model.map.Block;
-import view.fxmlcontroller.BuildingScroll;
-import view.shape.Fire;
-import view.shape.map.MapPane;
-import view.shape.map.MapTile;
 import model.map.Texture;
 import model.units.Person;
 import utility.DataManager;
 import view.animation.MoveAnimation;
+import view.fxmlcontroller.BuildingScroll;
 import view.shape.BuildingNode;
+import view.shape.Fire;
 import view.shape.PersonNode;
+import view.shape.map.MapPane;
+import view.shape.map.MapTile;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -59,8 +59,8 @@ public class GameViewController {
             @Override
             public void handle(KeyEvent keyEvent) {
                 if (keyEvent.getCode().equals(KeyCode.T)) {
-                    addNode(mapTextureOptions, Database.centerX - mapTextureOptions.getPrefWidth()/2,
-                            Database.centerY - mapTextureOptions.getPrefHeight()/2);
+                    addNode(mapTextureOptions, Database.centerX - mapTextureOptions.getPrefWidth() / 2,
+                            Database.centerY - mapTextureOptions.getPrefHeight() / 2);
                 } else {
                     mainPane.getChildren().remove(mapTextureOptions);
                 }
@@ -91,6 +91,7 @@ public class GameViewController {
     public static double getLayoutXForPerson(MapTile tile) {
         return tile.getLayoutX() + MapTile.TILE_WIDTH * 0.1 + tile.getBlock().getUnits().size() * 3;
     }
+
     public static double getLayoutYForPerson(MapTile tile) {
         return tile.getLayoutY() -
                 MapTile.TILE_HEIGHT * 0.3 + tile.getBlock().getUnits().size() * 1.5;
@@ -106,6 +107,7 @@ public class GameViewController {
         }
         return null;
     }
+
     public static BuildingNode getBuildingNodeByBuilding(Building building) {
         for (Node child : allBuildings.getChildren()) {
             if (!(child instanceof BuildingNode))
@@ -132,7 +134,7 @@ public class GameViewController {
             @Override
             public void changed(ObservableValue<? extends Status> observableValue,
                                 Status oldValue, Status newValue) {
-                if(newValue==Status.STOPPED){
+                if (newValue == Status.STOPPED) {
                     if (movedQueue.isEmpty())
                         return;
                     ma.changeDestination(movedQueue.poll().getTile());
@@ -141,6 +143,7 @@ public class GameViewController {
             }
         });
     }
+
     public static void selectUnit() {
 
     }
@@ -148,15 +151,23 @@ public class GameViewController {
     public static void addBuilding(Building building) {
         BuildingNode bn = new BuildingNode(building);
         bn.setLayoutX(building.getBlock().getTile().getLayoutX());
-        bn.setLayoutY(building.getBlock().getTile().getLayoutY() -  bn.getHeight()/2);
+        bn.setLayoutY(building.getBlock().getTile().getLayoutY() - bn.getHeight() / 2);
         allBuildings.getChildren().add(bn);
+    }
+
+    public static void removeBuilding(Building building) {
+        allBuildings.getChildren().remove(getBuildingNodeByBuilding(building));
+    }
+
+    public static void removePerson(Person person) {
+        allPersons.getChildren().remove(getPersonNodeByPerson(person));
     }
 
     public static void setFire(Building building) {
         BuildingNode bn = getBuildingNodeByBuilding(building);
 
         Fire fire = new Fire();
-        fire.setLayoutX(bn.getLayoutX() - MapTile.TILE_WIDTH/4);
+        fire.setLayoutX(bn.getLayoutX() - MapTile.TILE_WIDTH / 4);
         fire.setLayoutY(bn.getLayoutY() - MapTile.TILE_HEIGHT);
 
         allBuildings.getChildren().add(fire);

@@ -562,7 +562,7 @@ public class GameControl {
         Building buildingToAttack;
         if (soldier.isReadyToAttackBuilding()) {
             buildingToAttack = soldier.getOpponentBuilding();
-            buildingToAttack.takeDamage(soldier.getDamage());
+            buildingToAttack.takeDamage(soldier.getDamage() * 3);
             GameViewController.setFire(buildingToAttack);
 
             if (buildingToAttack.getHp() > 0) {
