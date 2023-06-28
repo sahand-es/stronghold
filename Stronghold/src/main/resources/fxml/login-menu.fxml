@@ -14,9 +14,9 @@
 
 <BorderPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.LoginMenuGUI">
    <left>
-      <AnchorPane prefHeight="400.0" prefWidth="150.0" style="-fx-background-color: #263f73;" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="600.0" prefWidth="141.0" style="-fx-background-color: #263f73;" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" layoutX="15.0" layoutY="42.0" text="StrongHold" textAlignment="CENTER" textFill="WHITE">
+            <Label alignment="CENTER" layoutX="12.0" layoutY="39.0" text="StrongHold" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="AppleMyungjo Regular" size="24.0" />
                </font>
@@ -24,22 +24,22 @@
                   <Bloom threshold="0.5" />
                </effect>
             </Label>
-            <Label layoutX="20.0" layoutY="308.0" text="Armin GeramiRad" textFill="WHITE">
+            <Label layoutX="15.0" layoutY="521.0" text="Armin GeramiRad" textFill="WHITE">
                <font>
                   <Font name="American Typewriter" size="13.0" />
                </font>
             </Label>
-            <Label layoutX="35.0" layoutY="350.0" text="Spring 2023" textFill="WHITE">
+            <Label layoutX="30.0" layoutY="563.0" text="Spring 2023" textFill="WHITE">
                <font>
                   <Font name="American Typewriter" size="13.0" />
                </font>
             </Label>
-            <Label layoutX="10.0" layoutY="325.0" text="Sahand Esmaeilzade" textFill="WHITE">
+            <Label layoutX="5.0" layoutY="538.0" text="Sahand Esmaeilzade" textFill="WHITE">
                <font>
                   <Font name="American Typewriter" size="13.0" />
                </font>
             </Label>
-            <Label layoutX="18.0" layoutY="291.0" text="Yousef MirYousefy" textFill="WHITE">
+            <Label layoutX="13.0" layoutY="504.0" text="Yousef MirYousefy" textFill="WHITE">
                <font>
                   <Font name="American Typewriter" size="13.0" />
                </font>
