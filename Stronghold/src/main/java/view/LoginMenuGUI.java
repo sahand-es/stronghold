@@ -120,7 +120,7 @@ public class LoginMenuGUI extends Application {
         URL url = LoginMenuGUI.class.getResource("/fxml/login-menu.fxml");
         assert url != null;
         BorderPane borderPane = FXMLLoader.load(url);
-        Scene scene = new Scene(borderPane,800,400);
+        Scene scene = new Scene(borderPane,1000,600);
         primaryStage.setScene(scene);
 
         primaryStage.show();
