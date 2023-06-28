@@ -161,7 +161,7 @@ public class Government {
         return resource.getPeople() + units.size();
     }
 
-    private static int calcPopularityOfTaxRate(int taxRate) {
+    public static int calcPopularityOfTaxRate(int taxRate) {
         int output;
         output = -2 * taxRate;
         if (taxRate <= 0)

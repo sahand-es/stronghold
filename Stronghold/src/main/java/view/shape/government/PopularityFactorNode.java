@@ -1,21 +1,14 @@
 package view.shape.government;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
-import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
-import model.Game;
-import model.map.Map;
-import model.society.Government;
-import model.society.enums.Colors;
 
-public class PopularityFactors {
+public class PopularityFactorNode {
 
 
 
@@ -26,8 +19,11 @@ public class PopularityFactors {
     int minRate;
     String rateName;
 
+    Slider slider;
+    Label popularityChange;
 
-    public PopularityFactors(String rateName,int minRate , int maxRate, int rate) {
+
+    public PopularityFactorNode(String rateName, int minRate , int maxRate, int rate) {
         this.rateName = rateName;
         this.maxRate = maxRate;
         this.minRate = minRate;
@@ -45,12 +41,12 @@ public class PopularityFactors {
 
 
 
-        Label popularityChange = new Label(rateName + " : " + rate);
+        popularityChange = new Label(rateName + " : " + rate);
         popularityChange.setPrefWidth(100);
         popularityChange.setStyle("-fx-font: 15 sys");
         popularityChange.setAlignment(Pos.TOP_CENTER);
 
-        Slider slider = new Slider(minRate,maxRate,rate);
+        slider = new Slider(minRate,maxRate,rate);
         slider.setShowTickMarks(true);
         slider.setShowTickLabels(true);
         slider.setMajorTickUnit(1);
@@ -60,31 +56,22 @@ public class PopularityFactors {
         slider.setValue(rate);
 
 
-
-        slider.valueProperty().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                setFace((int)slider.getValue());
-                popularityChange.setText(rateName + " : " + (int) slider.getValue());
-            }
-        });
-
         hBox.getChildren().addAll(faceImage,popularityChange,slider);
 
     }
 
-    private void setFace(int rate){
+    protected void setFace(int rate){
         if (rate > 0){
             faceImage.setFill(new ImagePattern(
-                    new Image(PopularityFactors.class.getResource("/images/faces/green.jpg").toExternalForm())
+                    new Image(PopularityFactorNode.class.getResource("/images/faces/green.jpg").toExternalForm())
             ));
         } else if (rate < 0){
             faceImage.setFill(new ImagePattern(
-                    new Image(PopularityFactors.class.getResource("/images/faces/red.jpg").toExternalForm())
+                    new Image(PopularityFactorNode.class.getResource("/images/faces/red.jpg").toExternalForm())
             ));
         } else {
             faceImage.setFill(new ImagePattern(
-                    new Image(PopularityFactors.class.getResource("/images/faces/yellow.jpg").toExternalForm())
+                    new Image(PopularityFactorNode.class.getResource("/images/faces/yellow.jpg").toExternalForm())
             ));
         }
     }
