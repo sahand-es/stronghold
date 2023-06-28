@@ -420,6 +420,31 @@ public class GameControl {
         return GameMessages.SUCCESS;
     }
 
+    public static GameMessages attackSelectedBuilding() {
+        if (selectedUnit == null)
+            return GameMessages.UNIT_NOT_SELECTED;
+        if (!(selectedUnit instanceof Soldier))
+            return GameMessages.CAN_NOT_ATTACK_WITH_THIS_UNIT_TYPE;
+        if (selectedBuilding == null) {
+            return GameMessages.BUILDING_NOT_SELECTED;
+        }
+        if (selectedBuilding.getGovernment().equals(currentGovernment))
+            return GameMessages.CAN_NOT_ATTACK_YOUR_BUILDING;
+        if (selectedBuilding.getHp() == Integer.MAX_VALUE)
+            return GameMessages.CAN_NOT_ATTACK_THIS_BUILDING;
+
+        Soldier soldier = (Soldier) selectedUnit;
+
+        if (!soldier.setAttackQueueBuilding(selectedBuilding)) {
+            return GameMessages.CAN_NOT_GO_THERE_TO_ATTACK;
+        }
+
+
+
+
+        return GameMessages.SUCCESS;
+    }
+
     public static GameMessages pourOil(String direction) {
         if (selectedUnit == null)
             return GameMessages.UNIT_NOT_SELECTED;
@@ -530,10 +555,25 @@ public class GameControl {
         }
     }
 
+    private static void attackBuildingFunction(Soldier soldier) {
+        Building buildingToAttack;
+        if (soldier.isReadyToAttackBuilding()) {
+            buildingToAttack = soldier.getOpponentBuilding();
+            buildingToAttack.takeDamage(soldier.getDamage());
+
+            if (buildingToAttack.getHp() > 0) {
+                soldier.setAttackQueueBuilding(buildingToAttack);
+            } else {
+                soldier.freeAttackQueue();
+            }
+        }
+
+    }
+
     private static void attackFunction(Soldier soldier) {
         Person opponnet;
         if (soldier.isReadyToAttack()) {
-            opponnet = soldier.getOpponnet();
+            opponnet = soldier.getOpponent();
             if (!(opponnet instanceof Soldier)) {
                 opponnet.die();
                 soldier.freeAttackQueue();

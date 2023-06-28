@@ -73,7 +73,7 @@ public class PersonNode extends Rectangle {
         Text kind = (Text) detailBox.getChildren().get(1);
         kind.setText(person.getUnitName().getName());
         Text speed = (Text) detailBox.getChildren().get(2);
-        speed.setText("Speed:    " + person.getSpeed());
+        speed.setText("Speed: " + person.getSpeed()  + "\tGovernment: " + person.getGovernment().toString());
         Text damage = (Text) detailBox.getChildren().get(3);
         isAttacking = (Text) detailBox.getChildren().get(4);
         HBox hBox = (HBox) detailBox.getChildren().get(5);
@@ -97,6 +97,8 @@ public class PersonNode extends Rectangle {
             Soldier soldier = (Soldier) person;
             if (!soldier.getAttackQueue().isEmpty())
                 isAttacking.setText("Attacking: " + soldier.getAttackQueue().toString());
+            else if (!soldier.getBuildingAttackQueue().isEmpty())
+                isAttacking.setText("Attacking: " + soldier.getBuildingAttackQueue().toString());
             else isAttacking.setText("Attacking: nobody");
         }
 

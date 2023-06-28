@@ -265,7 +265,19 @@ public class Building extends Environment {
         hp = getBuildingByBuildingName(name).hp;
     }
 
+    public void takeDamage(int damage) {
+        if (hp == Integer.MAX_VALUE)
+            return;
+        if (damage <= hp) {
+            hp -= damage;
+        } else hp = 0;
+        if (hp <= 0)
+            die();
+    }
+
+
     public void die(){
+        this.hp = 0;
         government.removeBuilding(this);
         this.getBlock().setEnvironment(null);
     }

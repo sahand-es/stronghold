@@ -269,4 +269,8 @@ public class Block {
         if (environment instanceof Building)
             ((Building) environment).die();
     }
+
+    public void removeBuilding(Building building) {
+        environment = null;
+    }
 }

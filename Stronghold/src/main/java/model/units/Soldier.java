@@ -1,5 +1,6 @@
 package model.units;
 
+import model.environment.buildings.Building;
 import model.map.Block;
 import model.resource.ResourcesName;
 import model.society.Government;
@@ -15,6 +16,7 @@ public class Soldier extends Person {
     private final int damage;
     private final int attackRange;
     Queue<Person> attackQueue = new LinkedList<>();
+    Queue<Building> buildingAttackQueue = new LinkedList<>();
 
     SoldierUnitState soldierUnitState = SoldierUnitState.STANDING;
 
@@ -32,6 +34,10 @@ public class Soldier extends Person {
 
     public Queue<Person> getAttackQueue() {
         return attackQueue;
+    }
+
+    public Queue<Building> getBuildingAttackQueue() {
+        return buildingAttackQueue;
     }
 
     public Soldier(UnitName name) {
@@ -74,18 +80,42 @@ public class Soldier extends Person {
         return true;
     }
 
-    public Person getOpponnet() {
+    public boolean setAttackQueueBuilding(Building buildingToAttack) {
+        buildingAttackQueue = new LinkedList<>();
+        Block enemyBlock = buildingToAttack.getBlock();
+        Block closestBlock = enemyBlock.findClosestBlock(attackRange, block);
+
+        if (!canGoThere(closestBlock))
+            return false;
+
+        buildingAttackQueue.add(buildingToAttack);
+
+        findPath(closestBlock);
+        freeAttackQueue();
+        return true;
+    }
+
+    public Person getOpponent() {
         return attackQueue.peek();
     }
+    public Building getOpponentBuilding() {return buildingAttackQueue.peek();}
 
     public void freeAttackQueue() {
         attackQueue = new LinkedList<>();
+        buildingAttackQueue = new LinkedList<>();
     }
     public boolean isReadyToAttack() {
        if (attackQueue.isEmpty())
            return false;
        setAttackQueue(attackQueue.peek());
        return moveQueue.size() <= getSpeed();
+    }
+
+    public boolean isReadyToAttackBuilding() {
+        if (buildingAttackQueue.isEmpty())
+            return false;
+        setAttackQueueBuilding(buildingAttackQueue.peek());
+        return moveQueue.size() <= getSpeed();
     }
     public int getDamage() {
         return damage + government.getFearRate();
