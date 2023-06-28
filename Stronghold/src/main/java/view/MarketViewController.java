@@ -2,7 +2,6 @@ package view;
 
 import javafx.application.Application;
 import javafx.event.EventHandler;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -19,7 +18,7 @@ import model.Database;
 import model.Game;
 import model.map.Map;
 import model.resource.ResourcesName;
-import view.shape.ResourceNode;
+import view.shape.trade.ResourceNode;
 
 
 public class MarketViewController extends Application {

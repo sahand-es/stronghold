@@ -84,7 +84,7 @@ public class Government {
 
     public void setTaxRate(int taxRate) {
         this.taxRate = taxRate;
-        popularity += this.calcPopularityOfTaxRate();
+        popularity += calcPopularityOfTaxRate(taxRate);
     }
 
     public int getFearRate() {
@@ -161,10 +161,10 @@ public class Government {
         return resource.getPeople() + units.size();
     }
 
-    private int calcPopularityOfTaxRate() {
+    private static int calcPopularityOfTaxRate(int taxRate) {
         int output;
-        output = -2 * this.taxRate;
-        if (this.taxRate <= 0)
+        output = -2 * taxRate;
+        if (taxRate <= 0)
             output++;
         return output;
     }

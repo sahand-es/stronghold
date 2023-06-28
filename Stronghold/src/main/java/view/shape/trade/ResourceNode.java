@@ -1,4 +1,4 @@
-package view.shape;
+package view.shape.trade;
 
 import controller.MarketControl;
 import javafx.event.EventHandler;
