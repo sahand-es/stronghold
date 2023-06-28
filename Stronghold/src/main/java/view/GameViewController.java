@@ -26,6 +26,7 @@ import view.shape.Fire;
 import view.shape.PersonNode;
 import view.shape.map.MapPane;
 import view.shape.map.MapTile;
+import view.shape.map.MiniMap;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -35,15 +36,17 @@ public class GameViewController {
     private static Scene scene;
     private static Pane mainPane;
     private static MapPane mapPane;
+    private static MiniMap miniMap;
     private static ScrollPane mapTextureOptions;
     private static TabPane buildingScroll;
     private static Group allPersons;
     private static Group allBuildings;
 
-    public static void setMapPane(MapPane mapPane, Pane mainPane, Scene scene) throws IOException {
+    public static void setMapPane(MapPane mapPane, Pane mainPane, Scene scene, MiniMap miniMap) throws IOException {
         GameViewController.mapPane = mapPane;
         GameViewController.mainPane = mainPane;
         GameViewController.scene = scene;
+        GameViewController.miniMap = miniMap;
         mapTextureOptions = FXMLLoader.load(Objects.requireNonNull(MapPane.class.getResource(DataManager.CHANGE_TEXTURE_BOX)));
         buildingScroll = FXMLLoader.load(Objects.requireNonNull(BuildingScroll.class.getResource("/fxml/building-scroll.fxml")));
         allPersons = new Group();
@@ -175,6 +178,7 @@ public class GameViewController {
 
     public static void setTexture(Texture texture) {
         mapPane.setTexture(texture);
+        miniMap.setTexture(texture, mapPane.getSelectedTiles());
         // TODO: 6/26/2023 minimap change
     }
 

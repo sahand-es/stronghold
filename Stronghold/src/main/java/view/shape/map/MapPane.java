@@ -254,6 +254,10 @@ public class MapPane extends Pane {
     public Group getAllTiles() {
         return allTiles;
     }
+
+    public ArrayList<MapTile> getSelectedTiles() {
+        return selected;
+    }
 }
 
 
