@@ -1,4 +1,4 @@
-package view.shape.government;
+package view.shape.government.popularity;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;

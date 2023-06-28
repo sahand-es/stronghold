@@ -1,4 +1,4 @@
-package view.shape.government;
+package view.shape.government.popularity;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
