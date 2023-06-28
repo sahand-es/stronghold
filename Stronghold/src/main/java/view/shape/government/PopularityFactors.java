@@ -26,6 +26,9 @@ public class PopularityFactors {
     int minRate;
     String rateName;
 
+    Slider slider;
+    Label popularityChange;
+
 
     public PopularityFactors(String rateName,int minRate , int maxRate, int rate) {
         this.rateName = rateName;
@@ -45,12 +48,12 @@ public class PopularityFactors {
 
 
 
-        Label popularityChange = new Label(rateName + " : " + rate);
+        popularityChange = new Label(rateName + " : " + rate);
         popularityChange.setPrefWidth(100);
         popularityChange.setStyle("-fx-font: 15 sys");
         popularityChange.setAlignment(Pos.TOP_CENTER);
 
-        Slider slider = new Slider(minRate,maxRate,rate);
+        slider = new Slider(minRate,maxRate,rate);
         slider.setShowTickMarks(true);
         slider.setShowTickLabels(true);
         slider.setMajorTickUnit(1);
@@ -60,20 +63,11 @@ public class PopularityFactors {
         slider.setValue(rate);
 
 
-
-        slider.valueProperty().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                setFace((int)slider.getValue());
-                popularityChange.setText(rateName + " : " + (int) slider.getValue());
-            }
-        });
-
         hBox.getChildren().addAll(faceImage,popularityChange,slider);
 
     }
 
-    private void setFace(int rate){
+    protected void setFace(int rate){
         if (rate > 0){
             faceImage.setFill(new ImagePattern(
                     new Image(PopularityFactors.class.getResource("/images/faces/green.jpg").toExternalForm())

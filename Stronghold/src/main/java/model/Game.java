@@ -29,7 +29,7 @@ public class Game {
             governments.add(new Government(Colors.colorsArr.get(i), this));
         }
 //  Todo: change init with
-            map.initGovernments(governments);
+            //map.initGovernments(governments);
 
             Database.addGame(this);
     }
