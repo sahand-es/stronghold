@@ -88,10 +88,10 @@ public class Soldier extends Person {
         if (!canGoThere(closestBlock))
             return false;
 
+        freeAttackQueue();
         buildingAttackQueue.add(buildingToAttack);
 
         findPath(closestBlock);
-        freeAttackQueue();
         return true;
     }
 

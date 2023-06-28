@@ -13,6 +13,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import model.environment.buildings.Building;
 import view.shape.map.MapTile;
 import utility.DataManager;
@@ -88,7 +89,8 @@ public class BuildingNode extends Rectangle {
     private void setDetailBox() {
         pb = (ProgressBar) detailBox.getChildren().get(0);
         Text kind = (Text) detailBox.getChildren().get(2);
-        kind.setText(building.getName().getName());
+        kind.setTextAlignment(TextAlignment.CENTER);
+        kind.setText(building.getName().getName()  + "\n\nGovernment: " + building.getGovernment());
         Text type = (Text) detailBox.getChildren().get(3);
         type.setText("Type:    " + building.getName().kind);
         Text damage = (Text) detailBox.getChildren().get(1);
