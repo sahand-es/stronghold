@@ -1,5 +1,6 @@
 package view;
 
+import controller.GameControl;
 import javafx.animation.Animation.Status;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -39,6 +40,7 @@ public class GameViewController {
     private static MiniMap miniMap;
     private static ScrollPane mapTextureOptions;
     private static TabPane buildingScroll;
+    private static Pane personControl;
     private static Group allPersons;
     private static Group allBuildings;
 
@@ -61,13 +63,30 @@ public class GameViewController {
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent keyEvent) {
+
                 if (keyEvent.getCode().equals(KeyCode.T)) {
                     addNode(mapTextureOptions, Database.centerX - mapTextureOptions.getPrefWidth() / 2,
                             Database.centerY - mapTextureOptions.getPrefHeight() / 2);
                 } else if (keyEvent.getCode().equals(KeyCode.R)) {
                     mapPane.reset();
+                } else if (keyEvent.getCode().equals(KeyCode.V)) {
+                    if (Database.getCopyBuilding() != null) {
+                        Block block = mapPane.getSelectedTiles().get(0).getBlock();
+                        GameControl.dropBuilding(block.getX(), block.getY(), Database.getCopyBuilding());
+                    }
+                } else if (keyEvent.getCode().equals(KeyCode.M)) {
+                    removeNode(personControl);
+                    try {
+                        personControl = FXMLLoader.load(this.getClass().getResource("/fxml/soldier-control-box.fxml"));
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+
+                    addNode(personControl, Database.centerX - personControl.getPrefWidth() / 2,
+                            Database.centerY - personControl.getPrefHeight() / 2);
                 } else {
                     mainPane.getChildren().remove(mapTextureOptions);
+                    mainPane.getChildren().remove(personControl);
                 }
             }
         });
@@ -80,7 +99,6 @@ public class GameViewController {
             node.setLayoutY(y);
         }
     }
-
 
     public static void removeNode(Node node) {
         mainPane.getChildren().remove(node);

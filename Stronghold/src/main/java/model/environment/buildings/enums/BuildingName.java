@@ -34,14 +34,14 @@ public enum BuildingName {
     PITCH_DITCH("Pitch Ditch", "Trap", "pitch-ditch.png"),
 
     // Resource Maker:
+    POLETURNER("Poleturner", "Extractor", "poleturner.gif"),
+    ARMOURER("Armourer", "Extractor","armourer.gif"),
+    BLACKSMITH("Blacksmith", "Extractor", "blacksmith.gif"),
+    FLETCHER("Fletcher", "Extractor", "fletcher.gif"),
     OIL_SMELTER("Oil Smelter", "Extractor", "oil-smelter.gif"),
     BAKERY("Bakery", "Extractor", "brewer.png"),
     BREWER("Brewer", "Extractor", "brewer.png"),
     MILL("Mill", "Extractor", "windmill.gif"),
-    ARMOURER("Armourer", "Extractor","armourer.gif"),
-    BLACKSMITH("Blacksmith", "Extractor", "blacksmith.gif"),
-    FLETCHER("Fletcher", "Extractor", "fletcher.gif"),
-    POLETURNER("Poleturner", "Extractor", "poleturner.gif"),
 
     // Extractor:
     APPLE_ORCHARD("Apple Orchard", "Extractor", "apple-orchard.gif"),

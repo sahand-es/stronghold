@@ -236,12 +236,8 @@ public class Building extends Environment {
 
     @Override
     public String toString() {
-        return this.name + "{" +
-                "class=" + this.getClass().getSimpleName() +
-                ", hp=" + hp +
-                ", category=" + category +
-                ", price=" + price +
-                "}\n";
+        return this.name.getName() + " Government~" + government.toString() + " " + getBlock().toString();
+
     }
 
     public boolean canPassBuilding(Person person){

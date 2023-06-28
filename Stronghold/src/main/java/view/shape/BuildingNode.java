@@ -6,14 +6,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.input.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
+import model.Database;
 import model.environment.buildings.Building;
 import view.shape.map.MapTile;
 import utility.DataManager;
@@ -69,11 +69,20 @@ public class BuildingNode extends Rectangle {
         buildingNode.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                if (mouseEvent.getButton().equals(MouseButton.SECONDARY)) {
+                if (mouseEvent.isSecondaryButtonDown()) {
                     showDetailsBox();
                 }
                 if (mouseEvent.isPrimaryButtonDown()) {
                     GameControl.selectBuildingByClick(building);
+                }
+                if (mouseEvent.isSecondaryButtonDown() && mouseEvent.isControlDown()) {
+                    ImagePattern ip = (ImagePattern) buildingNode.getFill();
+                    Image image = ip.getImage();
+                    Clipboard clipboard = Clipboard.getSystemClipboard();
+                    ClipboardContent content = new ClipboardContent();
+                    content.putImage(image);
+                    clipboard.setContent(content);
+                    Database.setCopyBuilding(building.getName().getName());
                 }
             }
         });

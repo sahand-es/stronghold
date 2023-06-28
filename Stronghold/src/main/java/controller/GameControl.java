@@ -351,6 +351,8 @@ public class GameControl {
     public static void selectUnitByClick(Person person) {
         // TODO: 6/28/2023 delete:
         System.out.println("person selected: " + person.toString());
+        if (!person.getGovernment().equals(currentGovernment))
+            return;
         selectedUnit = person;
     }
 
@@ -670,5 +672,13 @@ public class GameControl {
 
     public static void setSelectedBuilding(Building selectedBuilding) {
         GameControl.selectedBuilding = selectedBuilding;
+    }
+
+    public static Person getSelectedUnit() {
+        return selectedUnit;
+    }
+
+    public static Building getSelectedBuilding() {
+        return selectedBuilding;
     }
 }

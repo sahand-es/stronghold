@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="463.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.fxmlcontroller.SoldierControlBox">
+   <children>
+      <Text fx:id="name" layoutX="100.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="141.7392578125" />
+      <ImageView id="soldier-image" fx:id="soldierImage" fitHeight="77.0" fitWidth="73.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+      <Text fx:id="selectedBlock" layoutX="53.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Selected block:" wrappingWidth="317.7392578125" />
+      <Button fx:id="attackBtn" layoutX="81.0" layoutY="260.0" mnemonicParsing="false" onMouseClicked="#attack" prefWidth="80" text="Attack" />
+      <Button fx:id="moveBtn" layoutX="291.0" layoutY="260.0" mnemonicParsing="false" onMouseClicked="#move" prefWidth="80" text="Move" />
+      <Text fx:id="selectedBuilding" layoutX="53.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Selected building:" wrappingWidth="317.7392578125" />
+      <Button fx:id="attackBuildingBtn" layoutX="171.0" layoutY="260.0" mnemonicParsing="false" onMouseClicked="#attackBuilding" prefWidth="110" text="Attack building" />
+      <Group fx:id="states" layoutX="210.0" layoutY="322.0">
+         <children>
+            <ImageView id="soldier-image" fx:id="soldierImage1" fitHeight="45.0" fitWidth="43.0" layoutX="60.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView id="soldier-image" fx:id="soldierImage11" fitHeight="45.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView id="soldier-image" fx:id="soldierImage111" fitHeight="45.0" fitWidth="43.0" layoutX="-60.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </Group>
+   </children>
+</Pane>

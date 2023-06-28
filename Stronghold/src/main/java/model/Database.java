@@ -19,6 +19,8 @@ public class Database {
     private static Game currentGame;
     private static ArrayList<Game> games;
 
+    private static String copyBuilding;
+
     static {
         users = DataManager.loadUsers();
         if (users == null){
@@ -28,6 +30,14 @@ public class Database {
         currentUser = DataManager.loadLoggedInUser();
     }
     private static ArrayList<Map> allMaps;
+
+    public static String getCopyBuilding() {
+        return copyBuilding;
+    }
+
+    public static void setCopyBuilding(String copyBuilding) {
+        Database.copyBuilding = copyBuilding;
+    }
 
     public static ArrayList<User> getUsers() {
         return users;
