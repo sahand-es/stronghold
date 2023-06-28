@@ -13,6 +13,7 @@ import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import model.Database;
 import model.User;
+import utility.RandomCaptcha;
 
 import java.net.URL;
 import java.util.Objects;
@@ -32,6 +33,7 @@ public class LoginMenuGUI extends Application {
     private ImageView captchaImageViewer;
     @FXML
     private CheckBox stayLoggedCheckBox;
+    private String captcha;
 
     @FXML
     public void initialize() {
@@ -46,6 +48,15 @@ public class LoginMenuGUI extends Application {
 
         Background background = new Background(backgroundFill);
         pane.setBackground(background);
+
+        //load captcha
+        captcha = RandomCaptcha.generate();
+
+        Image captchaImage = new Image(
+                MarketViewController.class.getResource(
+                        "/captcha/captcha.png").toExternalForm()
+        );
+        captchaImageViewer.setImage(captchaImage);
 
         //add listeners
         username.textProperty().addListener((observable, oldText, newText) -> {
@@ -119,7 +130,13 @@ public class LoginMenuGUI extends Application {
         //todo change menu to forgot menu
     }
 
-    public void resetCaptcha(ActionEvent actionEvent) {
+    public void resetCaptcha() {
+        captcha = RandomCaptcha.generate();
+        Image captchaImage = new Image(
+                MarketViewController.class.getResource(
+                        "/captcha/captcha.png").toExternalForm()
+        );
+        captchaImageViewer.setImage(captchaImage);
     }
 
     @Override

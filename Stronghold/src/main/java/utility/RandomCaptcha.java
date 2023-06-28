@@ -21,7 +21,7 @@ public class RandomCaptcha {
             BASE_COLOR.darker().darker(),
             BASE_COLOR.darker().darker().darker(),
     };
-    public static String generate(String[] args) {
+    public static String generate() {
 
         BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
         Graphics2D graphics = image.createGraphics();
