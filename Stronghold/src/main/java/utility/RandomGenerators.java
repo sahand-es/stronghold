@@ -2,9 +2,9 @@ package utility;
 import java.util.Random;
 
 import org.passay.*;
+import view.Captcha;
 
-public class RandomGenerators
-{
+public class RandomGenerators {
     /**
      *
      * @return random password that includes at least 1 of each [A-Z][a-z][0-9][!@#$&*%_~.] with length between 6-12
@@ -51,12 +51,13 @@ public class RandomGenerators
      * @return random 4-8 length number string
      */
     //this part is used only in CLI mode
-    public static String randomCaptcha()
-    {
+    public static String randomCaptcha() {
         CharacterRule DCR = new CharacterRule(EnglishCharacterData.Digit, 1);
 
         return new PasswordGenerator().generatePassword(randomNumber(4,8), DCR);
     }
+
+
 
     /**
      *
