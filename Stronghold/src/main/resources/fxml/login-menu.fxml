@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="400.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.LoginMenuGUI">
+<BorderPane fx:id="dorood" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.LoginMenuGUI">
    <left>
       <AnchorPane prefHeight="400.0" prefWidth="150.0" style="-fx-background-color: #263f73;" BorderPane.alignment="CENTER">
          <children>
@@ -46,39 +46,39 @@
       </AnchorPane>
    </left>
    <center>
-      <AnchorPane prefHeight="400.0" prefWidth="332.0" BorderPane.alignment="CENTER">
+      <AnchorPane fx:id="salam" prefHeight="400.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" layoutX="90.0" layoutY="51.0" text="Login Menu">
+            <Label alignment="CENTER" layoutX="246.0" layoutY="45.0" text="Login Menu" textFill="WHITE">
                <font>
-                  <Font name="American Typewriter" size="20.0" />
+                  <Font name="Arial Bold Italic" size="28.0" />
                </font>
             </Label>
-            <TextField fx:id="username" alignment="CENTER" layoutX="67.0" layoutY="132.0" promptText="Username">
+            <TextField fx:id="username" alignment="CENTER" layoutX="245.0" layoutY="127.0" promptText="Username">
                <font>
                   <Font name="American Typewriter" size="13.0" />
                </font>
             </TextField>
-            <PasswordField fx:id="password" alignment="CENTER" layoutX="67.0" layoutY="191.0" promptText="Password">
+            <PasswordField fx:id="password" alignment="CENTER" layoutX="245.0" layoutY="186.0" promptText="Password">
                <font>
                   <Font name="American Typewriter" size="13.0" />
                </font>
             </PasswordField>
-            <Button fx:id="loginButton" alignment="CENTER" layoutX="52.0" layoutY="281.0" mnemonicParsing="false" onMouseClicked="#login" prefHeight="31.0" prefWidth="189.0" style="-fx-background-color: #263f73;" text="Login" textFill="WHITE">
+            <Button fx:id="loginButton" alignment="CENTER" layoutX="230.0" layoutY="276.0" mnemonicParsing="false" onMouseClicked="#login" prefHeight="31.0" prefWidth="189.0" style="-fx-background-color: #263f73;" text="Login" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="13.0" />
                </font>
             </Button>
-            <Button fx:id="signUpButton" alignment="CENTER" layoutX="52.0" layoutY="329.0" mnemonicParsing="false" onMouseClicked="#signUp" prefHeight="31.0" prefWidth="189.0" style="-fx-background-color: #263f73;" text="Sign Up" textFill="WHITE">
+            <Button fx:id="signUpButton" alignment="CENTER" layoutX="230.0" layoutY="324.0" mnemonicParsing="false" onMouseClicked="#signUp" prefHeight="31.0" prefWidth="189.0" style="-fx-background-color: #263f73;" text="Sign Up" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="13.0" />
                </font>
             </Button>
-            <Label fx:id="messageLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="18.0" layoutY="94.0" prefHeight="18.0" prefWidth="258.0" textFill="#263f73">
+            <Label fx:id="messageLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="196.0" layoutY="89.0" prefHeight="18.0" prefWidth="258.0" textFill="#e11818">
                <font>
-                  <Font name="American Typewriter" size="11.0" />
+                  <Font name="Arial Bold" size="11.0" />
                </font>
             </Label>
-            <Hyperlink fx:id="forgotPass" alignment="CENTER" contentDisplay="CENTER" layoutX="85.0" layoutY="236.0" onMouseClicked="#forgotPassword" prefHeight="24.0" prefWidth="124.0" text="Forgot my password">
+            <Hyperlink fx:id="forgotPass" alignment="CENTER" contentDisplay="CENTER" layoutX="263.0" layoutY="231.0" onMouseClicked="#forgotPassword" prefHeight="24.0" prefWidth="124.0" text="Forgot my password" textFill="WHITE">
                <font>
                   <Font name="American Typewriter" size="11.0" />
                </font>
