@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -12,14 +13,16 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import model.Database;
+import model.User;
 
 import java.net.URL;
+import java.util.Objects;
 
 public class LoginMenuGUI extends Application {
 
 
     @FXML
-    private AnchorPane salam;
+    private AnchorPane pane;
     @FXML
     private TextField username;
     @FXML
@@ -30,11 +33,16 @@ public class LoginMenuGUI extends Application {
     @FXML
     public void initialize() {
         Image image = new Image(
-                MarketViewController.class.getResource("/images/backgrounds/login-menu-background.jpg").toExternalForm()
+                MarketViewController.class.getResource(
+                        "/images/backgrounds/login-menu-background.jpg").toExternalForm()
         );
-        BackgroundImage backgroundFill = new BackgroundImage(image,BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT,BackgroundPosition.CENTER,BackgroundSize.DEFAULT);
+
+        BackgroundImage backgroundFill = new BackgroundImage(image,BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,BackgroundPosition.CENTER,BackgroundSize.DEFAULT);
+
         Background background = new Background(backgroundFill);
-        salam.setBackground(background);
+        pane.setBackground(background);
+
         username.textProperty().addListener((observable, oldText, newText) -> {
             if (Database.getUserByUsername(newText) == null) {
                 messageLabel.setText("Username doesn't exist!");
@@ -59,13 +67,51 @@ public class LoginMenuGUI extends Application {
         });
     }
 
-    public void login(MouseEvent mouseEvent) {
+    public void login() {
+        if (username.getText().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error!");
+            alert.setHeaderText("Login Error");
+            alert.setContentText("Your username field is empty");
+            alert.showAndWait();
+        }
+        else if (password.getText().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error!");
+            alert.setHeaderText("Login Error");
+            alert.setContentText("Your password field is empty");
+            alert.showAndWait();
+        }
+        else if (messageLabel.getText() != null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error!");
+            alert.setHeaderText("Login Error");
+            alert.setContentText("One of the fields are invalid");
+            alert.showAndWait();
+        }
+        else if (!Objects.requireNonNull(Database.getUserByUsername(username.getText())).checkPassword(
+                password.getText())) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error!");
+            alert.setHeaderText("Login Error");
+            alert.setContentText("Incorrect password, naaghola!");
+            alert.showAndWait();
+        }
+        //todo check captcha
+        else {
+            User user = Database.getUserByUsername(username.getText());
+            Database.setCurrentUser(user);
+
+            //todo go to main menu
+        }
     }
 
-    public void signUp(MouseEvent mouseEvent) {
+    public void signUp() {
+        //todo change menu to signup
     }
 
-    public void forgotPassword(MouseEvent mouseEvent) {
+    public void forgotPassword() {
+        //todo change menu to forgot menu
     }
 
 
@@ -76,8 +122,6 @@ public class LoginMenuGUI extends Application {
         BorderPane borderPane = FXMLLoader.load(url);
         Scene scene = new Scene(borderPane,800,400);
         primaryStage.setScene(scene);
-
-        //setBackground(primaryStage);
 
         primaryStage.show();
     }
