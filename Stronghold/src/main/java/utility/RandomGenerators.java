@@ -50,6 +50,7 @@ public class RandomGenerators
     /**
      * @return random 4-8 length number string
      */
+    //this part is used only in CLI mode
     public static String randomCaptcha()
     {
         CharacterRule DCR = new CharacterRule(EnglishCharacterData.Digit, 1);

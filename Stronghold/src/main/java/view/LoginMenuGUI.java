@@ -1,14 +1,13 @@
 package view;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
@@ -29,6 +28,10 @@ public class LoginMenuGUI extends Application {
     private PasswordField password;
     @FXML
     private Label messageLabel;
+    @FXML
+    private ImageView captchaImageViewer;
+    @FXML
+    private CheckBox stayLoggedCheckBox;
 
     @FXML
     public void initialize() {
@@ -116,6 +119,8 @@ public class LoginMenuGUI extends Application {
         //todo change menu to forgot menu
     }
 
+    public void resetCaptcha(ActionEvent actionEvent) {
+    }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -132,4 +137,6 @@ public class LoginMenuGUI extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+
+
 }
