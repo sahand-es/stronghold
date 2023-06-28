@@ -91,12 +91,12 @@
                   <Font name="American Typewriter" size="13.0" />
                </font>
             </PasswordField>
-            <CheckBox layoutX="374.0" layoutY="377.0" mnemonicParsing="false" text="Stay Logged in" textFill="WHITE">
+            <CheckBox fx:id="stayLoggedCheckBox" layoutX="374.0" layoutY="377.0" mnemonicParsing="false" text="Stay Logged in" textFill="WHITE">
                <font>
                   <Font name="American Typewriter" size="13.0" />
                </font>
             </CheckBox>
-            <Hyperlink fx:id="forgotPass1" alignment="CENTER" contentDisplay="CENTER" layoutX="351.0" layoutY="288.0" onMouseClicked="#forgotPassword" prefHeight="25.0" prefWidth="157.0" text="Reset Captcha" textFill="WHITE">
+            <Hyperlink fx:id="reset" alignment="CENTER" contentDisplay="CENTER" layoutX="351.0" layoutY="288.0" onAction="#resetCaptcha" onMouseClicked="#forgotPassword" prefHeight="25.0" prefWidth="157.0" text="Reset Captcha" textFill="WHITE">
                <font>
                   <Font name="American Typewriter" size="14.0" />
                </font>

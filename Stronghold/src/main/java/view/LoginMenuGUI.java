@@ -32,6 +32,7 @@ public class LoginMenuGUI extends Application {
 
     @FXML
     public void initialize() {
+        //load background
         Image image = new Image(
                 MarketViewController.class.getResource(
                         "/images/backgrounds/login-menu-background.jpg").toExternalForm()
@@ -43,6 +44,7 @@ public class LoginMenuGUI extends Application {
         Background background = new Background(backgroundFill);
         pane.setBackground(background);
 
+        //add listeners
         username.textProperty().addListener((observable, oldText, newText) -> {
             if (Database.getUserByUsername(newText) == null) {
                 messageLabel.setText("Username doesn't exist!");
