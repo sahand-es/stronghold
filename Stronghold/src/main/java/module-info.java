@@ -21,4 +21,6 @@ module Stronghold {
     opens view.shape.map;
     exports view.shape.trade;
     opens view.shape.trade;
+    exports view.shape.government;
+    opens view.shape.government;
 }

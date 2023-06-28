@@ -16,7 +16,6 @@ import javafx.scene.shape.Rectangle;
 import model.society.Trade;
 import view.TradeViewController;
 import view.enums.messages.TradeMessages;
-import view.shape.ResourceNode;
 
 import java.util.ArrayList;
 
