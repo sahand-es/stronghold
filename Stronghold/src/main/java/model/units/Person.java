@@ -10,6 +10,7 @@ import model.resource.Weapon;
 import model.society.Government;
 import model.units.enums.UnitName;
 import utility.DataManager;
+import view.GameViewController;
 
 import java.util.*;
 
@@ -389,6 +390,7 @@ public class Person {
     }
 
     public void die() {
+        GameViewController.removePerson(this);
         this.hp = 0;
         this.block.removeUnit(this);
         this.government.removeUnit(this);

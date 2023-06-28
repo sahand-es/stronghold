@@ -91,19 +91,22 @@ public class BuildingScroll {
                             MapPane mapPane = GameViewController.getMapPane();
                             for (Node node : mapPane.getAllTiles().getChildren()) {
                                 MapTile tile = (MapTile) node;
-//                                bnToMove.setX(mapPane.getLayoutX());
-//                                bnToMove.setY(mapPane.getLayoutY());
 
                                 double x = tile.getLayoutX();
                                 double y = tile.getLayoutY();
+                                double scaleX = tile.getScaleX();
+                                double scaleY = tile.getScaleY();
                                 tile.setLayoutX(x + mapPane.getLayoutX());
                                 tile.setLayoutY(y + mapPane.getLayoutY());
-//                                Bounds bound2 = tile.getBoundsInParent();
+                                tile.setScaleX(mapPane.getScale());
+                                tile.setScaleY(mapPane.getScale());
                                 if (bnToMove.getBoundsInParent().intersects(tile.getBoundsInParent())) {
                                     intersectedTiles.add(tile);
                                 }
                                 tile.setLayoutX(x);
                                 tile.setLayoutY(y);
+                                tile.setScaleX(scaleX);
+                                tile.setScaleY(scaleY);
                             }
 
                             if (intersectedTiles.isEmpty()) return;

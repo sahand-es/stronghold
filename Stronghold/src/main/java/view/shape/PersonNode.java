@@ -32,7 +32,7 @@ public class PersonNode extends Rectangle {
     private ImageView soldierState;
 
     public PersonNode(Person person) {
-        super(20, 25);
+        super(23, 28);
         this.person = person;
         this.setFill(new ImagePattern(new Image(person.getUnitName().getImagePath())));
 

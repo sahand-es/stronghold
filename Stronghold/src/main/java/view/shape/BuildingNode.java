@@ -53,7 +53,7 @@ public class BuildingNode extends Rectangle {
     }
 
     public BuildingNode(Building building, int overload) {
-        super(MapTile.TILE_WIDTH, (MapTile.TILE_HEIGHT) * 4);
+        super(MapTile.TILE_WIDTH, (MapTile.TILE_HEIGHT) * 2);
         this.building = building;
 
         Image image = new Image(building.getName().getImagePath());
