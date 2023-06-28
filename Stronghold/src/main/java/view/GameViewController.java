@@ -64,6 +64,8 @@ public class GameViewController {
                 if (keyEvent.getCode().equals(KeyCode.T)) {
                     addNode(mapTextureOptions, Database.centerX - mapTextureOptions.getPrefWidth() / 2,
                             Database.centerY - mapTextureOptions.getPrefHeight() / 2);
+                } else if (keyEvent.getCode().equals(KeyCode.R)) {
+                    mapPane.reset();
                 } else {
                     mainPane.getChildren().remove(mapTextureOptions);
                 }

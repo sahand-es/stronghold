@@ -29,8 +29,8 @@ public class MapPane extends Pane {
     Group allPersons;
     Text detailsText = new Text();
     private double scale = 1;
-    private final double MAX_SCALE = 2.2;
-    private final double MIN_SCALE = 0.8;
+    private final double MAX_SCALE = 1.5;
+    private final double MIN_SCALE = 0.5;
     private ArrayList<MapTile> selected;
     private Rectangle selectRect;
 
@@ -257,6 +257,21 @@ public class MapPane extends Pane {
 
     public ArrayList<MapTile> getSelectedTiles() {
         return selected;
+    }
+
+    public double getScale() {
+        return scale;
+    }
+
+    public void reset() {
+        scale = 1;
+        ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(100));
+        scaleTransition.setNode(this);
+        scaleTransition.setToX(scale);
+        scaleTransition.setToY(scale);
+        scaleTransition.play();
+        this.setLayoutX(500);
+        this.setLayoutY(-500);
     }
 }
 
