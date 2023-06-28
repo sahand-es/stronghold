@@ -9,12 +9,15 @@ import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TabPane;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import model.Database;
 import model.environment.buildings.Building;
 import model.map.Block;
+import view.fxmlcontroller.BuildingScroll;
+import view.shape.Fire;
 import view.shape.map.MapPane;
 import view.shape.map.MapTile;
 import model.map.Texture;
@@ -33,6 +36,7 @@ public class GameViewController {
     private static Pane mainPane;
     private static MapPane mapPane;
     private static ScrollPane mapTextureOptions;
+    private static TabPane buildingScroll;
     private static Group allPersons;
     private static Group allBuildings;
 
@@ -41,6 +45,7 @@ public class GameViewController {
         GameViewController.mainPane = mainPane;
         GameViewController.scene = scene;
         mapTextureOptions = FXMLLoader.load(Objects.requireNonNull(MapPane.class.getResource(DataManager.CHANGE_TEXTURE_BOX)));
+        buildingScroll = FXMLLoader.load(Objects.requireNonNull(BuildingScroll.class.getResource("/fxml/building-scroll.fxml")));
         allPersons = new Group();
         allBuildings = new Group();
         setKeys();
@@ -71,6 +76,7 @@ public class GameViewController {
         }
     }
 
+
     public static void removeNode(Node node) {
         mainPane.getChildren().remove(node);
     }
@@ -97,6 +103,16 @@ public class GameViewController {
             PersonNode pn = (PersonNode) child;
             if (pn.getPerson().equals(person))
                 return pn;
+        }
+        return null;
+    }
+    public static BuildingNode getBuildingNodeByBuilding(Building building) {
+        for (Node child : allBuildings.getChildren()) {
+            if (!(child instanceof BuildingNode))
+                return null;
+            BuildingNode bn = (BuildingNode) child;
+            if (bn.getBuilding().equals(building))
+                return bn;
         }
         return null;
     }
@@ -134,6 +150,16 @@ public class GameViewController {
         bn.setLayoutX(building.getBlock().getTile().getLayoutX());
         bn.setLayoutY(building.getBlock().getTile().getLayoutY() -  bn.getHeight()/2);
         allBuildings.getChildren().add(bn);
+    }
+
+    public static void setFire(Building building) {
+        BuildingNode bn = getBuildingNodeByBuilding(building);
+
+        Fire fire = new Fire();
+        fire.setLayoutX(bn.getLayoutX() - MapTile.TILE_WIDTH/4);
+        fire.setLayoutY(bn.getLayoutY() - MapTile.TILE_HEIGHT);
+
+        allBuildings.getChildren().add(fire);
     }
 
     public static void setTexture(Texture texture) {

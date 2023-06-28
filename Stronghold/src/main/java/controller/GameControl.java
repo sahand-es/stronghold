@@ -560,6 +560,7 @@ public class GameControl {
         if (soldier.isReadyToAttackBuilding()) {
             buildingToAttack = soldier.getOpponentBuilding();
             buildingToAttack.takeDamage(soldier.getDamage());
+            GameViewController.setFire(buildingToAttack);
 
             if (buildingToAttack.getHp() > 0) {
                 soldier.setAttackQueueBuilding(buildingToAttack);
@@ -639,6 +640,7 @@ public class GameControl {
             if (unit instanceof Soldier) {
                 Soldier soldier = (Soldier) unit;
                 attackFunction(soldier);
+                attackBuildingFunction(soldier);
             }
         }
     }

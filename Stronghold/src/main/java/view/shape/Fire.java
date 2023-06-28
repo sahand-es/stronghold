@@ -40,5 +40,6 @@ public class Fire extends Group {
                 fireTile.setLayoutY(-3);
             }
         }
+
     }
 }
