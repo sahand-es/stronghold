@@ -29,6 +29,7 @@ public class PersonNode extends Rectangle {
     private VBox detailBox;
     private ProgressBar pb;
     private Text isAttacking;
+    private ImageView soldierState;
 
     public PersonNode(Person person) {
         super(20, 25);
@@ -73,11 +74,11 @@ public class PersonNode extends Rectangle {
         Text kind = (Text) detailBox.getChildren().get(1);
         kind.setText(person.getUnitName().getName());
         Text speed = (Text) detailBox.getChildren().get(2);
-        speed.setText("Speed: " + person.getSpeed()  + "\tGovernment: " + person.getGovernment().toString());
+        speed.setText("Speed: " + person.getSpeed()  + "\n\nGovernment: " + person.getGovernment().toString());
         Text damage = (Text) detailBox.getChildren().get(3);
         isAttacking = (Text) detailBox.getChildren().get(4);
         HBox hBox = (HBox) detailBox.getChildren().get(5);
-        ImageView soldierState = (ImageView) hBox.getChildren().get(0);
+        soldierState = (ImageView) hBox.getChildren().get(0);
 
         if (person instanceof Soldier) {
             Soldier soldier = (Soldier) person;
@@ -95,6 +96,7 @@ public class PersonNode extends Rectangle {
         pb.setProgress((double) person.getHp() / person.getInitialHp());
         if (person instanceof Soldier) {
             Soldier soldier = (Soldier) person;
+            soldierState.setImage(new Image(soldier.getSoldierUnitState().getImagePath()));
             if (!soldier.getAttackQueue().isEmpty())
                 isAttacking.setText("Attacking: " + soldier.getAttackQueue().toString());
             else if (!soldier.getBuildingAttackQueue().isEmpty())

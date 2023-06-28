@@ -349,10 +349,13 @@ public class GameControl {
     }
 
     public static void selectUnitByClick(Person person) {
+        // TODO: 6/28/2023 delete:
+        System.out.println("person selected: " + person.toString());
         selectedUnit = person;
     }
 
     public static void selectBuildingByClick(Building building) {
+        System.out.println("building selected: " + building.toString());
         selectedBuilding = building;
     }
 
