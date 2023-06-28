@@ -1,21 +1,14 @@
 package view.shape.government;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
-import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
-import model.Game;
-import model.map.Map;
-import model.society.Government;
-import model.society.enums.Colors;
 
-public class PopularityFactors {
+public class PopularityFactorNode {
 
 
 
@@ -30,7 +23,7 @@ public class PopularityFactors {
     Label popularityChange;
 
 
-    public PopularityFactors(String rateName,int minRate , int maxRate, int rate) {
+    public PopularityFactorNode(String rateName, int minRate , int maxRate, int rate) {
         this.rateName = rateName;
         this.maxRate = maxRate;
         this.minRate = minRate;
@@ -70,15 +63,15 @@ public class PopularityFactors {
     protected void setFace(int rate){
         if (rate > 0){
             faceImage.setFill(new ImagePattern(
-                    new Image(PopularityFactors.class.getResource("/images/faces/green.jpg").toExternalForm())
+                    new Image(PopularityFactorNode.class.getResource("/images/faces/green.jpg").toExternalForm())
             ));
         } else if (rate < 0){
             faceImage.setFill(new ImagePattern(
-                    new Image(PopularityFactors.class.getResource("/images/faces/red.jpg").toExternalForm())
+                    new Image(PopularityFactorNode.class.getResource("/images/faces/red.jpg").toExternalForm())
             ));
         } else {
             faceImage.setFill(new ImagePattern(
-                    new Image(PopularityFactors.class.getResource("/images/faces/yellow.jpg").toExternalForm())
+                    new Image(PopularityFactorNode.class.getResource("/images/faces/yellow.jpg").toExternalForm())
             ));
         }
     }

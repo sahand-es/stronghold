@@ -4,9 +4,9 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import model.society.Government;
 
-public class FoodRate extends PopularityFactors{
+public class FoodRateNode extends PopularityFactorNode {
     Government government;
-    public FoodRate(Government government) {
+    public FoodRateNode(Government government) {
         super("Food Rate", -2, 2, 4 * government.getFoodRate());
         this.government = government;
         slider.valueProperty().addListener(new ChangeListener<Number>() {
