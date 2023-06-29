@@ -677,10 +677,13 @@ public class GameControl {
         }
 
 
+        // TODO: 6/29/2023 delete:
+        System.out.println(currentGovernment.getResource());
         randomSickness();
         currentGovernment = game.getCurrentGovernment();
         deSelectBuilding();
         deSelectUnit();
+
     }
 
     private static void randomSickness() {
