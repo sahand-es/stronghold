@@ -7,18 +7,23 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
+import model.Database;
 import model.society.Government;
+import view.shape.government.ControlPanel;
 
 public class PopularityDisplay {
     HBox hBox;
     Government government;
+    ControlPanel controlPanel;
 
-    public PopularityDisplay(Government government) {
-        this.government = government;
+    public PopularityDisplay(ControlPanel controlPanel) {
+        this.controlPanel = controlPanel;
+        this.government = Database.getCurrentGame().getCurrentGovernment();
         hBox = new HBox();
         hBox.setStyle("-fx-background-color: DARKGOLDENROD");
         hBox.setSpacing(40);
         hBox.setPrefSize(600,160);
+        hBox.setMaxSize(600,160);
 
 
         VBox vBox1 = new VBox();
@@ -36,9 +41,9 @@ public class PopularityDisplay {
         vBox1.getChildren().addAll(popularityLabel,popularityIcon);
 
         VBox vBox2 = new VBox();
-        vBox2.getChildren().add(new FoodRateNode(government).gethBox());
-        vBox2.getChildren().add(new TaxRateNode(government).gethBox());
-        vBox2.getChildren().add(new FearRateNode(government).gethBox());
+        vBox2.getChildren().add(new FoodRateNode(government,controlPanel).gethBox());
+        vBox2.getChildren().add(new TaxRateNode(government,controlPanel).gethBox());
+        vBox2.getChildren().add(new FearRateNode(government,controlPanel).gethBox());
 
         hBox.getChildren().addAll(vBox1,vBox2);
     }

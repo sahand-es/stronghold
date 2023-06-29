@@ -7,6 +7,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
+import view.shape.government.ControlPanel;
 
 public class PopularityFactorNode {
 
@@ -17,17 +18,18 @@ public class PopularityFactorNode {
     int rate;
     int maxRate;
     int minRate;
-    String rateName;
 
     Slider slider;
     Label popularityChange;
 
+    ControlPanel controlPanel;
 
-    public PopularityFactorNode(String rateName, int minRate , int maxRate, int rate) {
-        this.rateName = rateName;
+
+    public PopularityFactorNode(String string, int minRate , int maxRate, int rate , ControlPanel controlPanel) {
         this.maxRate = maxRate;
         this.minRate = minRate;
         this.rate = rate;
+        this.controlPanel = controlPanel;
 
 
         hBox = new HBox();
@@ -41,7 +43,7 @@ public class PopularityFactorNode {
 
 
 
-        popularityChange = new Label(rateName + " : " + rate);
+        popularityChange = new Label(string);
         popularityChange.setPrefWidth(100);
         popularityChange.setStyle("-fx-font: 15 sys");
         popularityChange.setAlignment(Pos.TOP_CENTER);
