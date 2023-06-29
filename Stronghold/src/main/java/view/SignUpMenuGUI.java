@@ -121,11 +121,68 @@ public class SignUpMenuGUI extends Application {
     }
 
     public void back() {
-
+        //todo go back to signup menu
     }
 
-    public void signup() {
-
+    public void nextStep() {
+        if (username.getText().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error!");
+            alert.setHeaderText("Login Error");
+            alert.setContentText("Your username field is empty");
+            alert.showAndWait();
+            resetCaptcha();
+            captchaField.setText(null);
+        }
+        else if (password.getText().isEmpty() && !randomPassCheck.isSelected()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error!");
+            alert.setHeaderText("Login Error");
+            alert.setContentText("Your password field is empty");
+            alert.showAndWait();
+            resetCaptcha();
+            captchaField.setText(null);
+        }
+        else if (nickname.getText().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error!");
+            alert.setHeaderText("Login Error");
+            alert.setContentText("Your nickname field is empty");
+            alert.showAndWait();
+            resetCaptcha();
+            captchaField.setText(null);
+        }
+        else if (captchaField.getText().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error!");
+            alert.setHeaderText("Login Error");
+            alert.setContentText("Your captcha field is empty");
+            alert.showAndWait();
+            resetCaptcha();
+            captchaField.setText(null);
+        }
+        else if (userLabel.getText() != null || passwordLabel.getText() != null || emailLabel.getText() != null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error!");
+            alert.setHeaderText("Login Error");
+            alert.setContentText("One of the fields are invalid");
+            alert.showAndWait();
+            resetCaptcha();
+            captchaField.setText(null);
+        }
+        else if (!captchaField.getText().equals(captcha)) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error!");
+            alert.setHeaderText("Login Error");
+            alert.setContentText("Captcha invalid");
+            alert.showAndWait();
+            resetCaptcha();
+            captchaField.setText(null);
+        }
+        else {
+            //get
+            //todo go to main menu
+        }
     }
 
     public void resetCaptcha() {
@@ -141,7 +198,7 @@ public class SignUpMenuGUI extends Application {
         BorderPane borderPane = FXMLLoader.load(url);
         Scene scene = new Scene(borderPane,1000,600);
         primaryStage.setScene(scene);
-
+        primaryStage.setFullScreen(true);
         primaryStage.show();
     }
 
