@@ -429,10 +429,33 @@ public class SignUpMenuGUI extends Application {
                 emailLabel.setVisible(false);
                 slogan.setVisible(true);
                 randomSloganCheck.setVisible(true);
-                signButton.setVisible(true);
+                signButton.setVisible(false);
                 nextButton.setVisible(false);
                 answerField.setVisible(false);
                 answerChoice.setVisible(false);
+                break;
+            case 6:
+                captchaField.setVisible(false);
+                resetCaptchaHyperLink.setVisible(false);
+                captchaImageViewer.setVisible(false);
+                username.setVisible(false);
+                userLabel.setVisible(false);
+                passwordPassField.setVisible(false);
+                passwordConfirmPassField.setVisible(false);
+                passwordTextField.setVisible(false);
+                passwordConfirmTextField.setVisible(false);
+                randomPassCheck.setVisible(false);
+                showPassCheck.setVisible(false);
+                nickname.setVisible(false);
+                nicknameLabel.setVisible(false);
+                email.setVisible(false);
+                emailLabel.setVisible(false);
+                slogan.setVisible(false);
+                randomSloganCheck.setVisible(false);
+                signButton.setVisible(true);
+                nextButton.setVisible(false);
+                answerField.setVisible(true);
+                answerChoice.setVisible(true);
                 break;
         }
     }
