@@ -93,7 +93,7 @@ public class RandomCaptcha {
         }
 
         graphics.dispose();
-        
+
         return image;
     }
 

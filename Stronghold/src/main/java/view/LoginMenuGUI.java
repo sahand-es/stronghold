@@ -24,6 +24,8 @@ public class LoginMenuGUI extends Application {
     @FXML
     private TextField username;
     @FXML
+    private TextField captchaField;
+    @FXML
     private PasswordField password;
     @FXML
     private Label messageLabel;
@@ -59,6 +61,9 @@ public class LoginMenuGUI extends Application {
                 if(password.getText().isEmpty()){
                     messageLabel.setText("Fill password field!");
                 }
+                else if(captchaField.getText().isEmpty()){
+                    messageLabel.setText("Fill captcha field!");
+                }
                 else
                     messageLabel.setText(null);
             }
@@ -69,6 +74,22 @@ public class LoginMenuGUI extends Application {
             }
             else if (Database.getUserByUsername(username.getText()) == null) {
                 messageLabel.setText("Username doesn't exist!");
+            }
+            else if(captchaField.getText().isEmpty()){
+                messageLabel.setText("Fill captcha field!");
+            }
+            else
+                messageLabel.setText(null);
+        });
+        captchaField.textProperty().addListener((observable, oldText, newText) -> {
+            if(username.getText().isEmpty()){
+                messageLabel.setText("Fill username field!");
+            }
+            else if (Database.getUserByUsername(username.getText()) == null) {
+                messageLabel.setText("Username doesn't exist!");
+            }
+            else if(password.getText().isEmpty()){
+                messageLabel.setText("Fill password field!");
             }
             else
                 messageLabel.setText(null);
@@ -82,6 +103,8 @@ public class LoginMenuGUI extends Application {
             alert.setHeaderText("Login Error");
             alert.setContentText("Your username field is empty");
             alert.showAndWait();
+            resetCaptcha();
+            captchaField.setText(null);
         }
         else if (password.getText().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -89,6 +112,8 @@ public class LoginMenuGUI extends Application {
             alert.setHeaderText("Login Error");
             alert.setContentText("Your password field is empty");
             alert.showAndWait();
+            resetCaptcha();
+            captchaField.setText(null);
         }
         else if (messageLabel.getText() != null) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -96,6 +121,17 @@ public class LoginMenuGUI extends Application {
             alert.setHeaderText("Login Error");
             alert.setContentText("One of the fields are invalid");
             alert.showAndWait();
+            resetCaptcha();
+            captchaField.setText(null);
+        }
+        else if (!captchaField.getText().equals(captcha)) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error!");
+            alert.setHeaderText("Login Error");
+            alert.setContentText("Captcha invalid");
+            alert.showAndWait();
+            resetCaptcha();
+            captchaField.setText(null);
         }
         else if (!Objects.requireNonNull(Database.getUserByUsername(username.getText())).checkPassword(
                 password.getText())) {
@@ -104,8 +140,9 @@ public class LoginMenuGUI extends Application {
             alert.setHeaderText("Login Error");
             alert.setContentText("Incorrect password, naaghola!");
             alert.showAndWait();
+            resetCaptcha();
+            captchaField.setText(null);
         }
-        //todo check captcha
         else {
             User user = Database.getUserByUsername(username.getText());
             Database.setCurrentUser(user);
