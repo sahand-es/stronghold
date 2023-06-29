@@ -683,7 +683,7 @@ public class GameControl {
         currentGovernment = game.getCurrentGovernment();
         deSelectBuilding();
         deSelectUnit();
-
+        GameViewController.updateControlPanel();
     }
 
     private static void randomSickness() {

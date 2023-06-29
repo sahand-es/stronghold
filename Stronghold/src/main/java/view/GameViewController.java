@@ -74,6 +74,10 @@ public class GameViewController {
         mapPane.getChildren().addAll(allBuildings, allPersons);
     }
 
+    public static void updateControlPanel() {
+        controlPanel.update();
+    }
+
     public static Scene getScene() {
         return scene;
     }
