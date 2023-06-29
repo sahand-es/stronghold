@@ -16,6 +16,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import model.Database;
 import model.environment.buildings.Building;
+import model.environment.buildings.ResourceExtractorBuilding;
 import model.environment.buildings.UnitMakerBuilding;
 import model.map.Block;
 import model.map.Texture;
@@ -48,6 +49,7 @@ public class GameViewController {
     private static Pane personControl;
     private static ScrollPane dropUnitBox;
     private static Pane createUnitBox;
+    private static Pane extractorRateSetBox;
     private static Group allPersons;
     private static Group allBuildings;
 
@@ -99,6 +101,7 @@ public class GameViewController {
                             Database.centerY - personControl.getPrefHeight() / 2);
                 } else if (keyEvent.getCode().equals(KeyCode.B)) {
                     removeNode(createUnitBox);
+                    removeNode(extractorRateSetBox);
                     if (GameControl.getSelectedBuilding() instanceof UnitMakerBuilding) {
                         try {
                             createUnitBox = FXMLLoader.load(CreateUnitBox.class.getResource("/fxml/unit-maker-building-control-box.fxml"));
@@ -107,6 +110,15 @@ public class GameViewController {
                         }
                         addNode(createUnitBox, Database.centerX - createUnitBox.getPrefWidth() / 2,
                                 Database.centerY - createUnitBox.getPrefHeight() / 2);
+                    }
+                    if (GameControl.getSelectedBuilding() instanceof ResourceExtractorBuilding) {
+                        try {
+                            extractorRateSetBox = FXMLLoader.load(CreateUnitBox.class.getResource("/fxml/extractor-building-control-box.fxml"));
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                        addNode(extractorRateSetBox, Database.centerX - extractorRateSetBox.getPrefWidth() / 2,
+                                Database.centerY - extractorRateSetBox.getPrefHeight() / 2);
                     }
                 } else {
                     mainPane.getChildren().remove(mapTextureOptions);

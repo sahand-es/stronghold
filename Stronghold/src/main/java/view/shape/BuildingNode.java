@@ -27,6 +27,7 @@ public class BuildingNode extends Rectangle {
     Building building;
     private VBox detailBox;
     private ProgressBar pb;
+    Text type;
 
     public BuildingNode(Building building) {
         super(MapTile.TILE_WIDTH, (MapTile.TILE_HEIGHT * 2));
@@ -101,13 +102,13 @@ public class BuildingNode extends Rectangle {
         Text kind = (Text) detailBox.getChildren().get(2);
         kind.setTextAlignment(TextAlignment.CENTER);
         kind.setText(building.getName().getName()  + "\n\nGovernment: " + building.getGovernment());
-        Text type = (Text) detailBox.getChildren().get(3);
+        type = (Text) detailBox.getChildren().get(3);
         type.setText("Type:    " + building.getName().kind);
         Text damage = (Text) detailBox.getChildren().get(1);
         damage.setText(building.getBlock().toString());
 
         if (building instanceof ResourceExtractorBuilding) {
-            type.setText("Type:    " + building.getName().kind + "\n\n\t" + ((ResourceExtractorBuilding) building).getRate());
+            type.setText("Type:    " + building.getName().kind + "\n\n\t\tRate:" + ((ResourceExtractorBuilding) building).getRate());
         }
         HBox hBox = (HBox) detailBox.getChildren().get(4);
         ImageView soldierState = (ImageView) hBox.getChildren().get(0);
@@ -117,6 +118,10 @@ public class BuildingNode extends Rectangle {
 
     private void showDetailsBox() {
         pb.setProgress((double) building.getHp() / building.getInitialHp());
+
+        if (building instanceof ResourceExtractorBuilding) {
+            type.setText("Type:    " + building.getName().kind + "\n\n\t\tRate:" + ((ResourceExtractorBuilding) building).getRate());
+        }
 
         GameViewController.addNode(detailBox,0, 0);
     }

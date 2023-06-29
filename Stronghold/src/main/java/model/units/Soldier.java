@@ -130,14 +130,7 @@ public class Soldier extends Person {
 
     @Override
     public String toString() {
-        return this.name + "{" +
-                "hp=" + hp +
-                ", speed=" + speed +
-                ", defencePower=" + defencePower +
-                ", attackRange=" + attackRange +
-                ", damage=" + damage +
-                ", price=" + price +
-                "}\n";
+        return this.name + " Block: " + this.getBlock() + " Government: " + government;
     }
 }
 

@@ -17,17 +17,21 @@ public class ResourceHolder {
     }
 
     static {
-        ArrayList<String[]> resourceCsv = DataManager.getArrayListFromCSV(DataManager.RESOURCES_PATH);
+        ArrayList<String[]> resourceCsv = DataManager.getArrayListFromCSV(DataManager.WEAPONS_PATH);
         String[] attributeNames = resourceCsv.get(0);
 
         for (int i = 1; i < resourceCsv.size(); i++) {
             String[] attributes = resourceCsv.get(i);
+            String type = null;
             String name = null;
             HashMap<ResourcesName, Integer> price = new HashMap<>();
+            int damage = 0, attackRange = 0;
+            int speedBoost = 0, defenceBoost = 0;
             int howMany = 0;
             for (int j = 0; j < attributeNames.length; j++) {
                 switch (attributeNames[j]) {
                     case "Type": {
+                        type = attributes[j];
                     }
                     case "Name": {
                         name = attributes[j];
@@ -40,16 +44,44 @@ public class ResourceHolder {
                         break;
                     }
                     case "Count": {
-                        howMany = Integer.parseInt(attributes[j]);
+                        if (!attributes[j].equals("null")) {
+                            howMany = Integer.parseInt(attributes[j]);
+                        }
+                        break;
+                    }
+                    case "Attack Range": {
+                        if (!attributes[j].equals("null")) {
+                            attackRange = Integer.parseInt(attributes[j]);
+                        }
+                        break;
+                    }
+                    case "Damage": {
+                        if (!attributes[j].equals("null")) {
+                            damage = Integer.parseInt(attributes[j]);
+                        }
+                        break;
+                    }
+                    case "Speed Boost": {
+                        if (!attributes[j].equals("null"))
+                            speedBoost = Integer.parseInt(attributes[j]);
+                        break;
+                    }
+                    case "Defence Boost": {
+                        if (!attributes[j].equals("null"))
+                            defenceBoost = Integer.parseInt(attributes[j]);
                         break;
                     }
                 }
             }
 
-            new ResourceHolder(name, price, howMany);
+            switch (type) {
+                case "Initial", "Food" -> {
+                    new ResourceHolder(name, price, howMany);
+                }
+                case "Weapon" -> new Weapon(name, price, howMany, damage, attackRange);
+                case "Armour" -> new Armour(name, price, howMany, speedBoost, defenceBoost);
+            }
         }
-        Weapon weapon = new Weapon(ResourcesName.BOW);
-        Armour  armour = new Armour(ResourcesName.LEATHER);
     }
 
     protected ResourceHolder(String name, HashMap<ResourcesName, Integer> price, int howManyFor1Price) {
