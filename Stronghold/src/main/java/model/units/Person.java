@@ -410,11 +410,7 @@ public class Person {
 
     @Override
     public String toString() {
-        return this.getUnitName() + "{" +
-                "hp=" + hp +
-                ", block=" + block +
-                ", government=" + government +
-                '}';
+        return this.name + " Block: " + this.getBlock() + " Government: " + government;
     }
 
     public int getInitialHp() {
