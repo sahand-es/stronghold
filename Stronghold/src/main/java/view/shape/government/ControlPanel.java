@@ -90,6 +90,7 @@ public class ControlPanel {
     public void update(){
         scribesReport.updateValues();
         resourceDisplay.updateValues();
+        popularityDisplay = new PopularityDisplay(this);
     }
 
     public HBox gethBox() {
