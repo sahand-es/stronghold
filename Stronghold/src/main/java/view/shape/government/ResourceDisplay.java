@@ -32,6 +32,8 @@ public class ResourceDisplay {
 
         hBox = new HBox();
         hBox.setAlignment(Pos.CENTER);
+        hBox.setPrefSize(600,160);
+        hBox.setMaxSize(600,160);
 
         VBox vBox = new VBox();
         vBox.setAlignment(Pos.CENTER);
@@ -51,7 +53,7 @@ public class ResourceDisplay {
         scrollPane = new ScrollPane();
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-        scrollPane.setPrefHeight(160);
+        scrollPane.setPrefSize(500,160);
 
 
         tilePane = new TilePane();
@@ -79,7 +81,6 @@ public class ResourceDisplay {
         scrollPane.setContent(tilePane);
 
         hBox.getChildren().addAll(vBox,scrollPane);
-
     }
 
     public void updateValues(){
@@ -91,13 +92,6 @@ public class ResourceDisplay {
         }
     }
 
-    public TilePane getTilePane() {
-        return tilePane;
-    }
-
-    public ScrollPane getScrollPane() {
-        return scrollPane;
-    }
 
     public HBox gethBox() {
         return hBox;

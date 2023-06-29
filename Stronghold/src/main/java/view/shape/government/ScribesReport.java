@@ -1,8 +1,10 @@
 package view.shape.government;
 
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
@@ -22,17 +24,25 @@ public class ScribesReport {
     Label populationLabel;
 
     Government government;
-    public ScribesReport() {
+    ControlPanel controlPanel;
+    public ScribesReport(ControlPanel controlPanel) {
+        this.controlPanel = controlPanel;
         government = Database.getCurrentGame().getCurrentGovernment();
 
         vBox = new VBox();
         vBox.setAlignment(Pos.CENTER);
         vBox.setStyle("-fx-background-color: DARKGOLDENROD");
-        vBox.setSpacing(10);
         vBox.setPrefHeight(160);
+        vBox.setMaxHeight(160);
 
         popularityImage = new Rectangle(80,80);
         setPopularityImage(government.getPopularity());
+        popularityImage.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                controlPanel.setPopularityDisplay();
+            }
+        });
 
         vBox.getChildren().add(popularityImage);
 
@@ -44,6 +54,12 @@ public class ScribesReport {
         HBox hBox = new HBox();
         hBox.setSpacing(10);
         hBox.setAlignment(Pos.CENTER);
+        hBox.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                controlPanel.setResourceDisplay();
+            }
+        });
 
         Rectangle coinImage = new Rectangle(35,35);
         coinImage.setFill(new ImagePattern(
