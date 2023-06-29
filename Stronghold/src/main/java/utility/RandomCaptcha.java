@@ -93,9 +93,7 @@ public class RandomCaptcha {
         }
 
         graphics.dispose();
-
-        System.out.println(captchaText);
-
+        
         return image;
     }
 
