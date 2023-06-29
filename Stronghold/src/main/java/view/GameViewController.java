@@ -74,6 +74,8 @@ public class GameViewController {
                         Block block = mapPane.getSelectedTiles().get(0).getBlock();
                         GameControl.dropBuilding(block.getX(), block.getY(), Database.getCopyBuilding());
                     }
+                } else if (keyEvent.getCode().equals(KeyCode.N)) {
+                    GameControl.nextTurn();
                 } else if (keyEvent.getCode().equals(KeyCode.M)) {
                     removeNode(personControl);
                     try {

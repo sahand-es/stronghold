@@ -70,12 +70,12 @@ public class GUITest extends Application {
         GameControl.dropUnit(6, 8, UnitName.TUNNELER.getName(), 1);
 
 
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(8), e -> {
-            System.out.println(game.getCurrentGovernment());
-            GameControl.nextTurn();
-        }));
-        timeline.setCycleCount(Animation.INDEFINITE);
-        timeline.play();
+//        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(8), e -> {
+//            System.out.println(game.getCurrentGovernment());
+//            GameControl.nextTurn();
+//        }));
+//        timeline.setCycleCount(Animation.INDEFINITE);
+//        timeline.play();
 
 //
 
