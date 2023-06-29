@@ -22,6 +22,7 @@ import model.units.Person;
 import utility.DataManager;
 import view.animation.MoveAnimation;
 import view.fxmlcontroller.BuildingScroll;
+import view.fxmlcontroller.DropUnitBox;
 import view.shape.BuildingNode;
 import view.shape.Fire;
 import view.shape.PersonNode;
@@ -33,6 +34,7 @@ import java.io.IOException;
 import java.util.Objects;
 import java.util.Queue;
 
+// TODO: 6/29/2023 add current government. 
 public class GameViewController {
     private static Scene scene;
     private static Pane mainPane;
@@ -41,6 +43,7 @@ public class GameViewController {
     private static ScrollPane mapTextureOptions;
     private static TabPane buildingScroll;
     private static Pane personControl;
+    private static ScrollPane dropUnitBox;
     private static Group allPersons;
     private static Group allBuildings;
 
@@ -51,6 +54,7 @@ public class GameViewController {
         GameViewController.miniMap = miniMap;
         mapTextureOptions = FXMLLoader.load(Objects.requireNonNull(MapPane.class.getResource(DataManager.CHANGE_TEXTURE_BOX)));
         buildingScroll = FXMLLoader.load(Objects.requireNonNull(BuildingScroll.class.getResource(DataManager.BUILDING_SCROLL_BOX)));
+        dropUnitBox = FXMLLoader.load(Objects.requireNonNull(DropUnitBox.class.getResource("/fxml/drop-unit-box.fxml")));
         allPersons = new Group();
         allBuildings = new Group();
         setKeys();
@@ -66,7 +70,10 @@ public class GameViewController {
 
                 if (keyEvent.getCode().equals(KeyCode.T)) {
                     addNode(mapTextureOptions, Database.centerX - mapTextureOptions.getPrefWidth() / 2,
-                            Database.centerY - mapTextureOptions.getPrefHeight() / 2);
+                            Database.centerY - mapTextureOptions.getPrefHeight() / 2 - 100);
+                } else if (keyEvent.getCode().equals(KeyCode.U)) {
+                    addNode(dropUnitBox, Database.centerX - dropUnitBox.getPrefWidth()/2,
+                            Database.centerY - dropUnitBox.getPrefHeight()/2 - 100);
                 } else if (keyEvent.getCode().equals(KeyCode.R)) {
                     mapPane.reset();
                 } else if (keyEvent.getCode().equals(KeyCode.V)) {
@@ -89,6 +96,7 @@ public class GameViewController {
                 } else {
                     mainPane.getChildren().remove(mapTextureOptions);
                     mainPane.getChildren().remove(personControl);
+                    mainPane.getChildren().remove(dropUnitBox);
                 }
             }
         });
@@ -118,8 +126,8 @@ public class GameViewController {
     }
 
     public static double getLayoutYForPerson(MapTile tile) {
-        return tile.getLayoutY() -
-                MapTile.TILE_HEIGHT * 0.3 + tile.getBlock().getUnits().size() * 1.5;
+        return tile.getLayoutY() +
+                MapTile.TILE_HEIGHT * 0.1 + tile.getBlock().getUnits().size() * 1.5;
     }
 
     public static PersonNode getPersonNodeByPerson(Person person) {

@@ -5,9 +5,11 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -61,13 +63,13 @@ public class GUITest extends Application {
         Government g2 = game.getGovernments().get(1);
 
         GameControl.setGame(game);
-        GameControl.dropUnit(15, 15, UnitName.SLAVE.getName(), 1);
-
-        GameControl.dropBuilding(3, 3, "church");
-        GameControl.nextTurn();
-        GameControl.dropUnit(6, 6, UnitName.ARABIAN_BOW.getName(), 1);
-        GameControl.dropUnit(6, 6, UnitName.KNIGHT.getName(), 1);
-        GameControl.dropUnit(6, 8, UnitName.TUNNELER.getName(), 1);
+//        GameControl.dropUnit(15, 15, UnitName.SLAVE.getName(), 1);
+//
+//        GameControl.dropBuilding(3, 3, "church");
+//        GameControl.nextTurn();
+//        GameControl.dropUnit(6, 6, UnitName.ARABIAN_BOW.getName(), 1);
+//        GameControl.dropUnit(6, 6, UnitName.KNIGHT.getName(), 1);
+//        GameControl.dropUnit(6, 8, UnitName.TUNNELER.getName(), 1);
 
 
 //        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(8), e -> {
