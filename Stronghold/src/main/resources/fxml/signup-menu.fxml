@@ -123,7 +123,7 @@
                   <Font name="American Typewriter" size="18.0" />
                </font>
             </CheckBox>
-            <Button fx:id="signButton" alignment="CENTER" layoutX="562.0" layoutY="749.0" mnemonicParsing="false" onAction="#nextStep" prefHeight="52.0" prefWidth="228.0" style="-fx-background-color: #263f73;" text="Sign Up" textFill="WHITE">
+            <Button fx:id="signButton" alignment="CENTER" layoutX="562.0" layoutY="749.0" mnemonicParsing="false" onAction="#signUp" prefHeight="52.0" prefWidth="228.0" style="-fx-background-color: #263f73;" text="Sign Up" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="18.0" />
                </font>

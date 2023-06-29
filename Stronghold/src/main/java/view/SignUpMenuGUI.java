@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -301,7 +302,22 @@ public class SignUpMenuGUI extends Application {
                     messageLabel.setText(null);
                     nextButton.setVisible(true);
                 });
-
+                break;
+            case 6:
+                answerField.textProperty().addListener((observable, oldText, newText) -> {
+                    if (answerField.getText().isEmpty()){
+                        messageLabel.setText("The Answer is empty!");
+                        signButton.setVisible(false);
+                    }
+                    else if (newText.equals("")) {
+                        messageLabel.setText("Answer field is empty!");
+                        signButton.setVisible(false);
+                    }
+                    else{
+                        messageLabel.setText(null);
+                        signButton.setVisible(true);
+                    }
+                });
                 break;
         }
     }
@@ -496,7 +512,7 @@ public class SignUpMenuGUI extends Application {
         signUpLevel--;
         if(signUpLevel == -1){
             signUpLevel++;
-            //todo go back to signup menu
+            //todo go back to login menu
         }
         visibilityUpdate();
         listenerUpdate();
@@ -515,6 +531,12 @@ public class SignUpMenuGUI extends Application {
         captchaImageViewer.setImage(captchaImage);
         listenerUpdate();
     }
+
+    public void signUp(ActionEvent actionEvent) {
+        //todo new user
+        //todo go to login menu
+    }
+
 
     @Override
     public void start(Stage primaryStage) throws Exception {
