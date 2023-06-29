@@ -4,14 +4,15 @@ import controller.GameControl;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Bounds;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import model.environment.buildings.Building;
@@ -32,6 +33,8 @@ public class BuildingScroll {
 
     @FXML
     private void initialize() {
+        tabs.setBackground(new Background(new BackgroundFill(Color.DARKGOLDENROD,
+                new CornerRadii(10), new Insets(0))));
         Set<String> kinds = new HashSet<>();
         for (Tab tab : tabs.getTabs()) {
             kinds.add(tab.getText());
@@ -39,6 +42,10 @@ public class BuildingScroll {
         for (Tab tab : tabs.getTabs()) {
             ScrollPane scrollPane = (ScrollPane) tab.getContent();
             HBox hBoxTab = (HBox) scrollPane.getContent();
+            hBoxTab.setBackground(new Background(new BackgroundFill(Color.DARKGOLDENROD,
+                    new CornerRadii(0), new Insets(0))));
+            scrollPane.setBackground(new Background(new BackgroundFill(Color.DARKGOLDENROD,
+                    new CornerRadii(0), new Insets(0))));
 
             for (BuildingName name : BuildingName.values()) {
                 if (kinds.contains(name.kind) && name.kind.equalsIgnoreCase(tab.getText())) {
