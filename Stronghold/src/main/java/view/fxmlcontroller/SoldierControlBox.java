@@ -39,7 +39,7 @@ public class SoldierControlBox {
 
     @FXML
     private void initialize() {
-        pane.setBackground(new Background(new BackgroundFill(Color.BLANCHEDALMOND,
+        pane.setBackground(new Background(new BackgroundFill(Color.DARKGOLDENROD,
                 new CornerRadii(10), new Insets(0))));
         if (GameControl.getSelectedUnit() == null) {
             return;
