@@ -11,6 +11,7 @@ import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import model.Database;
 import model.User;
+import utility.DataManager;
 import utility.RandomCaptcha;
 import java.net.URL;
 import java.util.Objects;
@@ -146,7 +147,9 @@ public class LoginMenuGUI extends Application {
         else {
             User user = Database.getUserByUsername(username.getText());
             Database.setCurrentUser(user);
-
+            if(stayLoggedCheckBox.isSelected()){
+                DataManager.saveLoggedIn(Database.getCurrentUser());
+            }
             //todo go to main menu
         }
     }
