@@ -28,7 +28,6 @@ public class MarketViewController extends Application {
 
     private VBox theVBox;
 
-    public static Stage stage;
 
     private int width;
     private int height;
@@ -65,7 +64,6 @@ public class MarketViewController extends Application {
         stage.setScene(scene);
         stage.setFullScreen(true);
         stage.setResizable(false);
-        MarketViewController.stage = stage;
         stage.show();
     }
 
@@ -116,9 +114,9 @@ public class MarketViewController extends Application {
             @Override
             public void handle(MouseEvent event) {
                 try {
-                    new TradeViewController().start(MarketViewController.stage);
+                    new TradeViewController().start(Database.stage);
                 } catch (Exception e) {
-                    //TODO
+                    throw new RuntimeException(e);
                 }
             }
         });
@@ -129,8 +127,12 @@ public class MarketViewController extends Application {
         back.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                //TODO
                 ResourceNode.clearAllResourceNodes();
+                try {
+                    new GameMenuApplication().start(Database.stage);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 

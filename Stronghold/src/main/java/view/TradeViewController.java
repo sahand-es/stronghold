@@ -86,9 +86,9 @@ public class TradeViewController extends Application {
             @Override
             public void handle(MouseEvent event) {
                 try {
-                    new MarketViewController().start(MarketViewController.stage);
+                    new MarketViewController().start(Database.stage);
                 } catch (Exception e) {
-                    //TODO
+                    throw new RuntimeException(e);
                 }
 
             }

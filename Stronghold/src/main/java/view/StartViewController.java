@@ -14,9 +14,9 @@ import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import model.Database;
 
 public class StartViewController extends Application {
-    public static Stage stage;
     private BorderPane borderPane;
 
     public static void main(String[] args) {
@@ -30,10 +30,6 @@ public class StartViewController extends Application {
         borderPane = new BorderPane();
         borderPane.setPrefSize(width,height);
         borderPane.setStyle("-fx-background-color: #000000");
-
-
-
-
 
         Label label = new Label("StrongHold");
         label.setAlignment(Pos.CENTER);
@@ -51,9 +47,9 @@ public class StartViewController extends Application {
             @Override
             public void handle(KeyEvent event) {
                 try {
-                    new MainMenuViewController().start(StartViewController.stage);
+                    new MainMenuViewController().start(Database.stage);
                 } catch (Exception e) {
-                    //TODO
+                    throw new RuntimeException(e);
                 }
             }
         });
@@ -79,7 +75,7 @@ public class StartViewController extends Application {
         stage.setScene(scene);
         stage.setFullScreen(true);
         stage.setResizable(false);
-        StartViewController.stage = stage;
+        Database.stage = stage;
         stage.show();
     }
 

@@ -277,7 +277,7 @@ public class MainMenuViewController extends Application {
         GameControl.setGame(game);
 
         try {
-            new GameMenuApplication().start(StartViewController.stage);
+            new GameMenuApplication().start(Database.stage);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

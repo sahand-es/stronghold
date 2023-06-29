@@ -1,15 +1,20 @@
 package view.shape.government;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.TabPane;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import model.Database;
 import model.society.Government;
 import utility.DataManager;
+import view.MainMenuViewController;
+import view.MarketViewController;
+import view.StartViewController;
 import view.fxmlcontroller.BuildingScroll;
 import view.shape.government.popularity.PopularityDisplay;
 import view.shape.map.MiniMap;
@@ -51,18 +56,43 @@ public class ControlPanel {
         vBox.setStyle("-fx-background-color: DARKGOLDENROD");
 
         Button optionButton = new Button("O");
-        //optionButton.setPrefSize(20,20);
-        optionButton.setStyle("-fx-font: 15 sys ;-fx-background-color: #e6af29 ; -fx-border-color: #262115");
+        //exitButton.setPrefSize(20,20);
+        optionButton.setStyle("-fx-font: 12 sys ;-fx-background-color: #e6af29 ; -fx-border-color: #262115");
         vBox.getChildren().add(optionButton);
+        optionButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                try {
+                    new MarketViewController().start(Database.stage);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+
+        Button exitButton = new Button("E");
+        //exitButton.setPrefSize(20,20);
+        exitButton.setStyle("-fx-font: 12 sys ;-fx-background-color: #e6af29 ; -fx-border-color: #262115");
+        vBox.getChildren().add(exitButton);
+        exitButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                try {
+                    new MainMenuViewController().start(Database.stage);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
 
         Button undoButton = new Button("U");
         //undoButton.setPrefSize(18,18);
-        undoButton.setStyle("-fx-font: 15 sys ;-fx-background-color: #e6af29 ; -fx-border-color: #262115");
+        undoButton.setStyle("-fx-font: 12 sys ;-fx-background-color: #e6af29 ; -fx-border-color: #262115");
         vBox.getChildren().add(undoButton);
 
         Button deleteButton = new Button("D");
         //deleteButton.setPrefSize(18,18);
-        deleteButton.setStyle("-fx-font: 15 sys ;-fx-background-color: #e6af29 ; -fx-border-color: #262115");
+        deleteButton.setStyle("-fx-font: 12 sys ;-fx-background-color: #e6af29 ; -fx-border-color: #262115");
         vBox.getChildren().add(deleteButton);
 
         hBox.getChildren().add(vBox); //index = 1

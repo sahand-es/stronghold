@@ -1,6 +1,7 @@
 package model;
 
 import javafx.stage.Screen;
+import javafx.stage.Stage;
 import model.map.Map;
 import utility.DataManager;
 import view.enums.AllMenus;
@@ -18,6 +19,8 @@ public class Database {
     private static Map currentMap;
     private static Game currentGame;
     private static ArrayList<Game> games;
+
+    public static Stage stage;
 
     private static String copyBuilding;
 
