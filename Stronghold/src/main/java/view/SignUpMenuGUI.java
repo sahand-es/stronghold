@@ -305,6 +305,7 @@ public class SignUpMenuGUI extends Application {
                 nickname.setVisible(false);
                 nicknameLabel.setVisible(false);
                 email.setVisible(false);
+                emailLabel.setVisible(false);
                 slogan.setVisible(false);
                 randomSloganCheck.setVisible(false);
                 signButton.setVisible(false);
@@ -325,6 +326,7 @@ public class SignUpMenuGUI extends Application {
                 nickname.setVisible(false);
                 nicknameLabel.setVisible(false);
                 email.setVisible(false);
+                emailLabel.setVisible(false);
                 slogan.setVisible(false);
                 randomSloganCheck.setVisible(false);
                 signButton.setVisible(false);
@@ -345,6 +347,7 @@ public class SignUpMenuGUI extends Application {
                 nickname.setVisible(false);
                 nicknameLabel.setVisible(false);
                 email.setVisible(false);
+                emailLabel.setVisible(false);
                 slogan.setVisible(false);
                 randomSloganCheck.setVisible(false);
                 signButton.setVisible(false);
@@ -365,6 +368,7 @@ public class SignUpMenuGUI extends Application {
                 nickname.setVisible(true);
                 nicknameLabel.setVisible(true);
                 email.setVisible(false);
+                emailLabel.setVisible(false);
                 slogan.setVisible(false);
                 randomSloganCheck.setVisible(false);
                 signButton.setVisible(false);
@@ -385,6 +389,7 @@ public class SignUpMenuGUI extends Application {
                 nickname.setVisible(false);
                 nicknameLabel.setVisible(false);
                 email.setVisible(true);
+                emailLabel.setVisible(true);
                 slogan.setVisible(false);
                 randomSloganCheck.setVisible(false);
                 signButton.setVisible(false);
@@ -405,6 +410,7 @@ public class SignUpMenuGUI extends Application {
                 nickname.setVisible(false);
                 nicknameLabel.setVisible(false);
                 email.setVisible(false);
+                emailLabel.setVisible(false);
                 slogan.setVisible(true);
                 randomSloganCheck.setVisible(true);
                 signButton.setVisible(true);
