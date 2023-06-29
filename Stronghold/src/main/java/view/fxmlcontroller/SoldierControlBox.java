@@ -87,16 +87,16 @@ public class SoldierControlBox {
     }
 
     public void attackBuilding(MouseEvent mouseEvent) {
-        GameControl.attackSelectedBuilding();
+        System.out.println(GameControl.attackSelectedBuilding().message());
     }
 
     public void move(MouseEvent mouseEvent) {
         Block block = GameViewController.getMapPane().getSelectedTiles().get(0).getBlock();
-        GameControl.moveUnit(block.getX(), block.getY());
+        System.out.println(GameControl.moveUnit(block.getX(), block.getY()).message());
     }
 
     public void attack(MouseEvent mouseEvent) {
         Block block = GameViewController.getMapPane().getSelectedTiles().get(0).getBlock();
-        GameControl.attack(block.getX(), block.getY());
+        System.out.println(GameControl.attack(block.getX(), block.getY()).message());
     }
 }

@@ -106,6 +106,8 @@ public enum UnitName {
             case CHURCH:
             case CATHEDRAL:
                 return church;
+            case SIEGE_TENT:
+                return siegeBuilds;
 
             default:
                 return null;

@@ -16,13 +16,16 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import model.Database;
 import model.environment.buildings.Building;
+import model.environment.buildings.UnitMakerBuilding;
 import model.map.Block;
 import model.map.Texture;
 import model.units.Person;
 import utility.DataManager;
 import view.animation.MoveAnimation;
 import view.fxmlcontroller.BuildingScroll;
+import view.fxmlcontroller.CreateUnitBox;
 import view.fxmlcontroller.DropUnitBox;
+import view.fxmlcontroller.SoldierControlBox;
 import view.shape.BuildingNode;
 import view.shape.Fire;
 import view.shape.PersonNode;
@@ -44,6 +47,7 @@ public class GameViewController {
     private static TabPane buildingScroll;
     private static Pane personControl;
     private static ScrollPane dropUnitBox;
+    private static Pane createUnitBox;
     private static Group allPersons;
     private static Group allBuildings;
 
@@ -72,8 +76,8 @@ public class GameViewController {
                     addNode(mapTextureOptions, Database.centerX - mapTextureOptions.getPrefWidth() / 2,
                             Database.centerY - mapTextureOptions.getPrefHeight() / 2 - 100);
                 } else if (keyEvent.getCode().equals(KeyCode.U)) {
-                    addNode(dropUnitBox, Database.centerX - dropUnitBox.getPrefWidth()/2,
-                            Database.centerY - dropUnitBox.getPrefHeight()/2 - 100);
+                    addNode(dropUnitBox, Database.centerX - dropUnitBox.getPrefWidth() / 2,
+                            Database.centerY - dropUnitBox.getPrefHeight() / 2 - 100);
                 } else if (keyEvent.getCode().equals(KeyCode.R)) {
                     mapPane.reset();
                 } else if (keyEvent.getCode().equals(KeyCode.V)) {
@@ -86,17 +90,29 @@ public class GameViewController {
                 } else if (keyEvent.getCode().equals(KeyCode.M)) {
                     removeNode(personControl);
                     try {
-                        personControl = FXMLLoader.load(this.getClass().getResource(DataManager.SOLDIER_CONTROL_BOX));
+                        personControl = FXMLLoader.load(SoldierControlBox.class.getResource(DataManager.SOLDIER_CONTROL_BOX));
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
 
                     addNode(personControl, Database.centerX - personControl.getPrefWidth() / 2,
                             Database.centerY - personControl.getPrefHeight() / 2);
+                } else if (keyEvent.getCode().equals(KeyCode.B)) {
+                    removeNode(createUnitBox);
+                    if (GameControl.getSelectedBuilding() instanceof UnitMakerBuilding) {
+                        try {
+                            createUnitBox = FXMLLoader.load(CreateUnitBox.class.getResource("/fxml/unit-maker-building-control-box.fxml"));
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                        addNode(createUnitBox, Database.centerX - createUnitBox.getPrefWidth() / 2,
+                                Database.centerY - createUnitBox.getPrefHeight() / 2);
+                    }
                 } else {
                     mainPane.getChildren().remove(mapTextureOptions);
                     mainPane.getChildren().remove(personControl);
                     mainPane.getChildren().remove(dropUnitBox);
+                    mainPane.getChildren().remove(createUnitBox);
                 }
             }
         });
