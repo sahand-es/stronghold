@@ -40,8 +40,8 @@ public class LoginMenuGUI extends Application {
     public void initialize() {
         //load background
         Image image = new Image(
-                MarketViewController.class.getResource(
-                        "/images/backgrounds/login-menu-background.jpg").toExternalForm()
+                Objects.requireNonNull(MarketViewController.class.getResource(
+                        "/images/backgrounds/login-menu-background.jpg")).toExternalForm()
         );
         BackgroundImage backgroundFill = new BackgroundImage(image,BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT,BackgroundPosition.CENTER,BackgroundSize.DEFAULT);
