@@ -122,12 +122,12 @@
                   <Font name="American Typewriter" size="13.0" />
                </font>
             </TextArea>
-            <CheckBox layoutX="368.0" layoutY="340.0" mnemonicParsing="false" onAction="#randomSloganSetter" text="Random Slogan" textFill="WHITE">
+            <CheckBox fx:id="randomSloganCheck" layoutX="368.0" layoutY="340.0" mnemonicParsing="false" onAction="#randomSloganSetter" text="Random Slogan" textFill="WHITE">
                <font>
                   <Font name="American Typewriter" size="13.0" />
                </font>
             </CheckBox>
-            <CheckBox layoutX="364.0" layoutY="161.0" mnemonicParsing="false" onAction="#randomPassSetter" text="Random Password" textFill="WHITE">
+            <CheckBox fx:id="randomPassCheck" layoutX="364.0" layoutY="161.0" mnemonicParsing="false" onAction="#randomPassSetter" text="Random Password" textFill="WHITE">
                <font>
                   <Font name="American Typewriter" size="13.0" />
                </font>

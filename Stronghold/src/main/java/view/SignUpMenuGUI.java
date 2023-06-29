@@ -45,6 +45,10 @@ public class SignUpMenuGUI extends Application {
     private Label emailLabel;
     @FXML
     private ImageView captchaImageViewer;
+    @FXML
+    private CheckBox randomSloganCheck;
+    @FXML
+    private CheckBox randomPassCheck;
     private static String captcha;
 
 
@@ -76,19 +80,19 @@ public class SignUpMenuGUI extends Application {
 
         });
         password.textProperty().addListener((observable, oldText, newText) -> {
-            if(newText.length() < 6)
+            if(newText.length() < 6 && !randomPassCheck.isSelected())
                 passwordLabel.setText("Your Password must be more than 5 characters!");
-            else if(CheckFunctions.checkPasswordFormat(newText))
+            else if(CheckFunctions.checkPasswordFormat(newText) && !randomPassCheck.isSelected())
                 passwordLabel.setText("This Password format is invalid!");
             else
                 passwordLabel.setText(null);
         });
         confirmPassword.textProperty().addListener((observable, oldText, newText) -> {
-            if(password.getText().isEmpty()) {
+            if(password.getText().isEmpty() && !randomPassCheck.isSelected()) {
                 passwordLabel.setText("The Password field is empty!");
             }
             else{
-                if (!newText.equals(password.getText()))
+                if (!newText.equals(password.getText()) && !randomPassCheck.isSelected())
                     passwordLabel.setText("The given passwords don't match!");
                 else
                     passwordLabel.setText(null);
@@ -107,19 +111,27 @@ public class SignUpMenuGUI extends Application {
 
     }
 
-    public void randomSloganSetter(ActionEvent actionEvent) {
+    public void randomSloganSetter() {
+        slogan.setVisible(!randomSloganCheck.isSelected());
     }
 
-    public void randomPassSetter(ActionEvent actionEvent) {
+    public void randomPassSetter() {
+        password.setVisible(!randomPassCheck.isSelected());
+        confirmPassword.setVisible(!randomPassCheck.isSelected());
+        password.setText("");
+        confirmPassword.setText("");
     }
 
-    public void back(ActionEvent actionEvent) {
+    public void back() {
+
     }
 
-    public void signup(ActionEvent actionEvent) {
+    public void signup() {
+
     }
 
-    public void resetCaptcha(ActionEvent actionEvent) {
+    public void resetCaptcha() {
+        
     }
 
     @Override
