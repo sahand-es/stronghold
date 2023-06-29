@@ -2,7 +2,6 @@ package view;
 
 import javafx.application.Application;
 import javafx.embed.swing.SwingFXUtils;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -14,7 +13,6 @@ import javafx.stage.Stage;
 import model.Database;
 import utility.CheckFunctions;
 import utility.RandomCaptcha;
-import view.enums.messages.SignUpMessages;
 
 import java.net.URL;
 import java.util.Objects;
@@ -131,7 +129,9 @@ public class SignUpMenuGUI extends Application {
     }
 
     public void resetCaptcha() {
-        
+        captcha = RandomCaptcha.generateString();
+        Image captchaImage = SwingFXUtils.toFXImage(RandomCaptcha.generateImage(captcha), null);
+        captchaImageViewer.setImage(captchaImage);
     }
 
     @Override
