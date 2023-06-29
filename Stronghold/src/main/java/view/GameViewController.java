@@ -6,6 +6,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -13,8 +14,11 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TabPane;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import model.Database;
 import model.environment.buildings.Building;
@@ -57,18 +61,24 @@ public class GameViewController {
     private static Group allPersons;
     private static Group allBuildings;
 
-    public static void setMapPane(MapPane mapPane, Pane mainPane, Scene scene, ControlPanel controlPanel) throws IOException {
-        GameViewController.mapPane = mapPane;
-        GameViewController.mainPane = mainPane;
-        GameViewController.scene = scene;
-        GameViewController.controlPanel = controlPanel;
+    public static void setGameViewController() throws IOException {
+
+        GameViewController.mainPane = new Pane();
+        mainPane.setBackground(new Background(new BackgroundFill(Color.BLANCHEDALMOND, new CornerRadii(0), new Insets(0))));
+        mapPane = new MapPane(Database.getCurrentGame().getMap());
+        controlPanel = new ControlPanel();
         miniMap = controlPanel.getMiniMap();
+
         mapTextureOptions = FXMLLoader.load(Objects.requireNonNull(MapPane.class.getResource(DataManager.CHANGE_TEXTURE_BOX)));
         buildingScroll = FXMLLoader.load(Objects.requireNonNull(BuildingScroll.class.getResource(DataManager.BUILDING_SCROLL_BOX)));
         dropUnitBox = FXMLLoader.load(Objects.requireNonNull(DropUnitBox.class.getResource("/fxml/drop-unit-box.fxml")));
         allPersons = new Group();
         allBuildings = new Group();
-        addNode(controlPanel.gethBox(),0, Screen.getPrimary().getBounds().getHeight() - controlPanel.gethBox().getMaxHeight() - 80);
+
+        scene = new Scene(mainPane);
+
+        mainPane.getChildren().add(mapPane);
+        addNode(controlPanel.gethBox(),0, Screen.getPrimary().getBounds().getHeight() - controlPanel.gethBox().getMaxHeight());
         setKeys();
 
         mapPane.getChildren().addAll(allBuildings, allPersons);

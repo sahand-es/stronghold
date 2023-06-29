@@ -28,6 +28,7 @@ import utility.RandomGenerators;
 import view.GameViewController;
 import view.enums.messages.GameMessages;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 
@@ -97,6 +98,11 @@ public class GameControl {
     }
 
     public static void setGame(Game theGame) {
+        try {
+            GameViewController.setGameViewController();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         game = theGame;
         map = game.getMap();
         currentGovernment = game.getCurrentGovernment();
@@ -676,9 +682,6 @@ public class GameControl {
             tileNextRound();
         }
 
-
-        // TODO: 6/29/2023 delete:
-        System.out.println(currentGovernment.getResource());
         randomSickness();
         currentGovernment = game.getCurrentGovernment();
         deSelectBuilding();
