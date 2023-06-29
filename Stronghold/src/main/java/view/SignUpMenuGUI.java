@@ -37,11 +37,17 @@ public class SignUpMenuGUI extends Application {
     private Label userLabel;
     //level 2
     @FXML
-    private PasswordField password;
+    private PasswordField passwordPassField;
     @FXML
-    private PasswordField confirmPassword;
+    private PasswordField passwordConfirmPassField;
+    @FXML
+    private TextField passwordTextField;
+    @FXML
+    private TextField passwordConfirmTextField;
     @FXML
     private CheckBox randomPassCheck;
+    @FXML
+    private CheckBox showPassCheck;
     //level 3
     @FXML
     private TextField nickname;
@@ -124,7 +130,8 @@ public class SignUpMenuGUI extends Application {
                 });
                 break;
             case 2:
-                password.textProperty().addListener((observable, oldText, newText) -> {
+                passwordPassField.textProperty().addListener((observable, oldText, newText) -> {
+                    passwordTextField.setText(newText);
                     if(newText.length() < 6 && !randomPassCheck.isSelected()){
                         messageLabel.setText("Your Password must be more than 5 characters!");
                         nextButton.setVisible(false);
@@ -137,25 +144,101 @@ public class SignUpMenuGUI extends Application {
                         messageLabel.setText("This Password format is invalid!");
                         nextButton.setVisible(false);
                     }
+                    else if (passwordConfirmPassField.getText().isEmpty()) {
+                        messageLabel.setText("Confirm Password field is empty!");
+                        nextButton.setVisible(false);
+                    }
                     else{
                         messageLabel.setText(null);
                         nextButton.setVisible(true);
                     }
 
                 });
-                confirmPassword.textProperty().addListener((observable, oldText, newText) -> {
-                    if(password.getText().isEmpty() && !randomPassCheck.isSelected()) {
+                passwordConfirmPassField.textProperty().addListener((observable, oldText, newText) -> {
+                    passwordConfirmTextField.setText(newText);
+                    if(passwordPassField.getText().isEmpty() && !randomPassCheck.isSelected()) {
                         messageLabel.setText("The Password field is empty!");
+                        nextButton.setVisible(false);
+                    }
+                    else{
+                        if (!newText.equals(passwordPassField.getText()) && !randomPassCheck.isSelected()){
+                            messageLabel.setText("The given passwords don't match!");
+                            nextButton.setVisible(false);
+                        }
+                        else{
+                            messageLabel.setText(null);
+                            nextButton.setVisible(true);
+                        }
+
+                    }
+                });
+                passwordTextField.textProperty().addListener((observable, oldText, newText) -> {
+                    passwordPassField.setText(newText);
+                    if(newText.length() < 6 && !randomPassCheck.isSelected()){
+                        messageLabel.setText("Your Password must be more than 5 characters!");
+                        nextButton.setVisible(false);
+                    }
+                    else if (newText.equals("")) {
+                        messageLabel.setText("Password field is empty!");
+                        nextButton.setVisible(false);
+                    }
+                    else if(CheckFunctions.checkPasswordFormat(newText) && !randomPassCheck.isSelected()){
+                        messageLabel.setText("This Password format is invalid!");
+                        nextButton.setVisible(false);
+                    }
+                    else if (passwordConfirmTextField.getText().isEmpty()) {
+                        messageLabel.setText("Confirm Password field is empty!");
+                        nextButton.setVisible(false);
+                    }
+                    else if (!newText.equals(passwordConfirmTextField.getText()) && !randomPassCheck.isSelected()){
+                        messageLabel.setText("The given passwords don't match!");
+                        nextButton.setVisible(false);
+                    }
+                    else{
+                        messageLabel.setText(null);
+                        nextButton.setVisible(true);
+                    }
+
+                });
+                passwordConfirmTextField.textProperty().addListener((observable, oldText, newText) -> {
+                    passwordConfirmPassField.setText(newText);
+                    if (!newText.equals(passwordPassField.getText()) && !randomPassCheck.isSelected()){
+                        messageLabel.setText("The given passwords don't match!");
+                        nextButton.setVisible(false);
+                    }
+                    else if(newText.length() < 6 && !randomPassCheck.isSelected()){
+                        messageLabel.setText("Your Password must be more than 5 characters!");
+                        nextButton.setVisible(false);
                     }
                     else if (newText.equals("")) {
                         messageLabel.setText("Confirm Password field is empty!");
                         nextButton.setVisible(false);
                     }
+                    else if(CheckFunctions.checkPasswordFormat(newText) && !randomPassCheck.isSelected()){
+                        messageLabel.setText("This Password format is invalid!");
+                        nextButton.setVisible(false);
+                    }
                     else{
-                        if (!newText.equals(password.getText()) && !randomPassCheck.isSelected())
-                            messageLabel.setText("The given passwords don't match!");
-                        else
-                            messageLabel.setText(null);
+                        messageLabel.setText(null);
+                        nextButton.setVisible(true);
+                    }
+
+
+                });
+                showPassCheck.selectedProperty().addListener((observable, oldValue, newValue) -> {
+                    passwordTextField.setVisible(!(!newValue || randomPassCheck.isSelected()));
+                    passwordPassField.setVisible(!(newValue || randomPassCheck.isSelected()));
+                    passwordConfirmTextField.setVisible(!(!newValue || randomPassCheck.isSelected()));
+                    passwordConfirmPassField.setVisible(!(newValue || randomPassCheck.isSelected()));
+                    if (newValue) {
+                        passwordTextField.setText(passwordPassField.getText());
+
+                        passwordConfirmTextField.setText(passwordConfirmPassField.getText());
+                    }
+                    else {
+                        passwordPassField.setText(passwordTextField.getText());
+
+                        passwordConfirmPassField.setText(passwordConfirmTextField.getText());
                     }
                 });
                 break;
@@ -202,9 +285,12 @@ public class SignUpMenuGUI extends Application {
                 captchaImageViewer.setVisible(true);
                 username.setVisible(false);
                 userLabel.setVisible(false);
-                password.setVisible(false);
-                confirmPassword.setVisible(false);
+                passwordPassField.setVisible(false);
+                passwordConfirmPassField.setVisible(false);
+                passwordTextField.setVisible(false);
+                passwordConfirmTextField.setVisible(false);
                 randomPassCheck.setVisible(false);
+                showPassCheck.setVisible(false);
                 nickname.setVisible(false);
                 email.setVisible(false);
                 slogan.setVisible(false);
@@ -218,9 +304,12 @@ public class SignUpMenuGUI extends Application {
                 captchaImageViewer.setVisible(false);
                 username.setVisible(true);
                 userLabel.setVisible(true);
-                password.setVisible(false);
-                confirmPassword.setVisible(false);
+                passwordPassField.setVisible(false);
+                passwordConfirmPassField.setVisible(false);
+                passwordTextField.setVisible(false);
+                passwordConfirmTextField.setVisible(false);
                 randomPassCheck.setVisible(false);
+                showPassCheck.setVisible(false);
                 nickname.setVisible(false);
                 email.setVisible(false);
                 slogan.setVisible(false);
@@ -234,9 +323,12 @@ public class SignUpMenuGUI extends Application {
                 captchaImageViewer.setVisible(false);
                 username.setVisible(false);
                 userLabel.setVisible(false);
-                password.setVisible(true);
-                confirmPassword.setVisible(true);
+                passwordPassField.setVisible(true);
+                passwordConfirmPassField.setVisible(true);
+                passwordTextField.setVisible(false);
+                passwordConfirmTextField.setVisible(false);
                 randomPassCheck.setVisible(true);
+                showPassCheck.setVisible(true);
                 nickname.setVisible(false);
                 email.setVisible(false);
                 slogan.setVisible(false);
@@ -250,9 +342,12 @@ public class SignUpMenuGUI extends Application {
                 captchaImageViewer.setVisible(false);
                 username.setVisible(false);
                 userLabel.setVisible(false);
-                password.setVisible(false);
-                confirmPassword.setVisible(false);
+                passwordPassField.setVisible(false);
+                passwordConfirmPassField.setVisible(false);
+                passwordTextField.setVisible(false);
+                passwordConfirmTextField.setVisible(false);
                 randomPassCheck.setVisible(false);
+                showPassCheck.setVisible(false);
                 nickname.setVisible(true);
                 email.setVisible(false);
                 slogan.setVisible(false);
@@ -266,9 +361,12 @@ public class SignUpMenuGUI extends Application {
                 captchaImageViewer.setVisible(false);
                 username.setVisible(false);
                 userLabel.setVisible(false);
-                password.setVisible(false);
-                confirmPassword.setVisible(false);
+                passwordPassField.setVisible(false);
+                passwordConfirmPassField.setVisible(false);
+                passwordTextField.setVisible(false);
+                passwordConfirmTextField.setVisible(false);
                 randomPassCheck.setVisible(false);
+                showPassCheck.setVisible(false);
                 nickname.setVisible(false);
                 email.setVisible(true);
                 slogan.setVisible(false);
@@ -282,9 +380,12 @@ public class SignUpMenuGUI extends Application {
                 captchaImageViewer.setVisible(false);
                 username.setVisible(false);
                 userLabel.setVisible(false);
-                password.setVisible(false);
-                confirmPassword.setVisible(false);
+                passwordPassField.setVisible(false);
+                passwordConfirmPassField.setVisible(false);
+                passwordTextField.setVisible(false);
+                passwordConfirmTextField.setVisible(false);
                 randomPassCheck.setVisible(false);
+                showPassCheck.setVisible(false);
                 nickname.setVisible(false);
                 email.setVisible(false);
                 slogan.setVisible(true);
@@ -299,10 +400,18 @@ public class SignUpMenuGUI extends Application {
     }
 
     public void randomPassSetter() {
-        password.setVisible(!randomPassCheck.isSelected());
-        confirmPassword.setVisible(!randomPassCheck.isSelected());
-        password.setText("");
-        confirmPassword.setText("");
+        passwordPassField.setVisible(!randomPassCheck.isSelected());
+        passwordConfirmPassField.setVisible(!randomPassCheck.isSelected());
+        passwordPassField.setText("");
+        passwordConfirmPassField.setText("");
+
+        passwordTextField.setVisible(!randomPassCheck.isSelected());
+        passwordConfirmTextField.setVisible(!randomPassCheck.isSelected());
+        passwordTextField.setText("");
+        passwordConfirmTextField.setText("");
+        
+        messageLabel.setText(null);
+        nextButton.setVisible(true);
     }
 
     public void back() {

@@ -61,7 +61,7 @@
                   <Font name="American Typewriter" size="36.0" />
                </font>
             </TextField>
-            <PasswordField fx:id="password" alignment="CENTER" layoutX="570.0" layoutY="300.0" prefHeight="58.0" prefWidth="245.0" promptText="Password">
+            <PasswordField fx:id="passwordPassField" alignment="CENTER" layoutX="575.0" layoutY="253.0" prefHeight="58.0" prefWidth="245.0" promptText="Password">
                <font>
                   <Font name="American Typewriter" size="24.0" />
                </font>
@@ -87,7 +87,7 @@
                   <Font name="American Typewriter" size="24.0" />
                </font>
             </TextField>
-            <PasswordField fx:id="confirmPassword" alignment="CENTER" layoutX="571.0" layoutY="368.0" prefHeight="59.0" prefWidth="244.0" promptText="Confirm Password">
+            <PasswordField fx:id="passwordConfirmPassField" alignment="CENTER" layoutX="576.0" layoutY="338.0" prefHeight="59.0" prefWidth="244.0" promptText="Confirm Password">
                <font>
                   <Font name="American Typewriter" size="24.0" />
                </font>
@@ -117,7 +117,7 @@
                   <Font name="American Typewriter" size="18.0" />
                </font>
             </CheckBox>
-            <CheckBox fx:id="randomPassCheck" layoutX="593.0" layoutY="438.0" mnemonicParsing="false" onAction="#randomPassSetter" text="Random Password" textFill="WHITE">
+            <CheckBox fx:id="randomPassCheck" layoutX="609.0" layoutY="451.0" mnemonicParsing="false" onAction="#randomPassSetter" text="Random Password" textFill="WHITE">
                <font>
                   <Font name="American Typewriter" size="18.0" />
                </font>
@@ -132,6 +132,21 @@
                   <Font name="American Typewriter" size="28.0" />
                </font>
             </Label>
+            <CheckBox fx:id="showPassCheck" layoutX="610.0" layoutY="417.0" mnemonicParsing="false" text="Show Password" textFill="WHITE">
+               <font>
+                  <Font name="American Typewriter" size="18.0" />
+               </font>
+            </CheckBox>
+            <TextField fx:id="passwordTextField" alignment="CENTER" layoutX="576.0" layoutY="254.0" prefHeight="56.0" prefWidth="244.0" promptText="Password">
+               <font>
+                  <Font name="American Typewriter" size="24.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="passwordConfirmTextField" alignment="CENTER" layoutX="575.0" layoutY="339.0" prefHeight="58.0" prefWidth="244.0" promptText="Confirm Password">
+               <font>
+                  <Font name="American Typewriter" size="24.0" />
+               </font>
+            </TextField>
          </children>
       </AnchorPane>
    </center>
