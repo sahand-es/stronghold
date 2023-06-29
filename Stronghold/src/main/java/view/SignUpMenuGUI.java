@@ -22,36 +22,48 @@ public class SignUpMenuGUI extends Application {
     @FXML
     private AnchorPane pane;
     @FXML
-    private TextField username;
-    @FXML
-    private TextField nickname;
-    @FXML
-    private TextArea slogan;
-    @FXML
-    private TextField email;
+    private Label messageLabel;
+    //level 0
     @FXML
     private TextField captchaField;
+    @FXML
+    private Hyperlink resetCaptchaHyperLink;
+    @FXML
+    private ImageView captchaImageViewer;
+    //level 1
+    @FXML
+    private TextField username;
+    //level 2
     @FXML
     private PasswordField password;
     @FXML
     private PasswordField confirmPassword;
     @FXML
-    private Label userLabel;
+    private CheckBox randomPassCheck;
+    //level 3
     @FXML
-    private Label passwordLabel;
+    private TextField nickname;
+    //level 4
     @FXML
-    private Label emailLabel;
+    private TextField email;
+    //level 5
     @FXML
-    private ImageView captchaImageViewer;
+    private TextArea slogan;
     @FXML
     private CheckBox randomSloganCheck;
+    //level 6
     @FXML
-    private CheckBox randomPassCheck;
+    private Button signButton;
+    @FXML
+    private Button nextButton;
     private static String captcha;
+    private static int signUpLevel = 0;
 
 
     @FXML
     public void initialize() {
+        //hide every object
+        visibilityUpdate();
         //load background
         Image image = new Image(
                 Objects.requireNonNull(MarketViewController.class.getResource(
@@ -70,45 +82,139 @@ public class SignUpMenuGUI extends Application {
         //add listeners
         username.textProperty().addListener((observable, oldText, newText) -> {
             if (Database.getUserByUsername(newText) != null)
-                userLabel.setText("This Username already exist!");
+                messageLabel.setText("This Username already exist!");
             else if (CheckFunctions.checkUsernameFormat(newText))
-                userLabel.setText("This Username format is invalid!");
+                messageLabel.setText("This Username format is invalid!");
             else
-                userLabel.setText(null);
+                messageLabel.setText(null);
 
         });
         password.textProperty().addListener((observable, oldText, newText) -> {
             if(newText.length() < 6 && !randomPassCheck.isSelected())
-                passwordLabel.setText("Your Password must be more than 5 characters!");
+                messageLabel.setText("Your Password must be more than 5 characters!");
             else if(CheckFunctions.checkPasswordFormat(newText) && !randomPassCheck.isSelected())
-                passwordLabel.setText("This Password format is invalid!");
+                messageLabel.setText("This Password format is invalid!");
             else
-                passwordLabel.setText(null);
+                messageLabel.setText(null);
         });
         confirmPassword.textProperty().addListener((observable, oldText, newText) -> {
             if(password.getText().isEmpty() && !randomPassCheck.isSelected()) {
-                passwordLabel.setText("The Password field is empty!");
+                messageLabel.setText("The Password field is empty!");
             }
             else{
                 if (!newText.equals(password.getText()) && !randomPassCheck.isSelected())
-                    passwordLabel.setText("The given passwords don't match!");
+                    messageLabel.setText("The given passwords don't match!");
                 else
-                    passwordLabel.setText(null);
+                    messageLabel.setText(null);
             }
         });
         email.textProperty().addListener((observable, oldText, newText) -> {
             if (CheckFunctions.checkEmailFormat(newText)){
-                emailLabel.setText("The Email format is invalid!");
+                messageLabel.setText("The Email format is invalid!");
             }
             if (CheckFunctions.checkEmailExits(newText)){
-                emailLabel.setText("This Email already exist!");
+                messageLabel.setText("This Email already exist!");
             }
             else
-                emailLabel.setText(null);
+                messageLabel.setText(null);
         });
 
     }
 
+    private void visibilityUpdate(){
+        switch (signUpLevel){
+            case 0:
+                captchaField.setVisible(true);
+                resetCaptchaHyperLink.setVisible(true);
+                captchaImageViewer.setVisible(true);
+                username.setVisible(false);
+                password.setVisible(false);
+                confirmPassword.setVisible(false);
+                randomPassCheck.setVisible(false);
+                nickname.setVisible(false);
+                email.setVisible(false);
+                slogan.setVisible(false);
+                randomSloganCheck.setVisible(false);
+                signButton.setVisible(false);
+                nextButton.setVisible(true);
+                break;
+            case 1:
+                captchaField.setVisible(false);
+                resetCaptchaHyperLink.setVisible(false);
+                captchaImageViewer.setVisible(false);
+                username.setVisible(true);
+                password.setVisible(false);
+                confirmPassword.setVisible(false);
+                randomPassCheck.setVisible(false);
+                nickname.setVisible(false);
+                email.setVisible(false);
+                slogan.setVisible(false);
+                randomSloganCheck.setVisible(false);
+                signButton.setVisible(false);
+                nextButton.setVisible(true);
+                break;
+            case 2:
+                captchaField.setVisible(false);
+                resetCaptchaHyperLink.setVisible(false);
+                captchaImageViewer.setVisible(false);
+                username.setVisible(false);
+                password.setVisible(true);
+                confirmPassword.setVisible(true);
+                randomPassCheck.setVisible(true);
+                nickname.setVisible(false);
+                email.setVisible(false);
+                slogan.setVisible(false);
+                randomSloganCheck.setVisible(false);
+                signButton.setVisible(false);
+                nextButton.setVisible(true);
+                break;
+            case 3:
+                captchaField.setVisible(false);
+                resetCaptchaHyperLink.setVisible(false);
+                captchaImageViewer.setVisible(false);
+                username.setVisible(false);
+                password.setVisible(false);
+                confirmPassword.setVisible(false);
+                randomPassCheck.setVisible(false);
+                nickname.setVisible(true);
+                email.setVisible(false);
+                slogan.setVisible(false);
+                randomSloganCheck.setVisible(false);
+                signButton.setVisible(false);
+                nextButton.setVisible(true);
+                break;
+            case 4:
+                captchaField.setVisible(false);
+                resetCaptchaHyperLink.setVisible(false);
+                captchaImageViewer.setVisible(false);
+                username.setVisible(false);
+                password.setVisible(false);
+                confirmPassword.setVisible(false);
+                randomPassCheck.setVisible(false);
+                nickname.setVisible(false);
+                email.setVisible(true);
+                slogan.setVisible(false);
+                randomSloganCheck.setVisible(false);
+                signButton.setVisible(false);
+                nextButton.setVisible(true);
+                break;
+            case 5:
+                captchaField.setVisible(false);
+                resetCaptchaHyperLink.setVisible(false);
+                captchaImageViewer.setVisible(false);
+                username.setVisible(false);
+                password.setVisible(false);
+                confirmPassword.setVisible(false);
+                randomPassCheck.setVisible(false);
+                nickname.setVisible(false);
+                email.setVisible(false);
+                slogan.setVisible(true);
+                randomSloganCheck.setVisible(true);
+                signButton.setVisible(true);
+                nextButton.setVisible(false);
+                break;
+        }
+    }
     public void randomSloganSetter() {
         slogan.setVisible(!randomSloganCheck.isSelected());
     }
@@ -121,10 +227,17 @@ public class SignUpMenuGUI extends Application {
     }
 
     public void back() {
-        //todo go back to signup menu
+        signUpLevel--;
+        if(signUpLevel == -1){
+            signUpLevel++;
+            //todo go back to signup menu
+        }
+        visibilityUpdate();
     }
 
     public void nextStep() {
+        signUpLevel++;
+        visibilityUpdate();
         if (username.getText().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error!");
@@ -161,15 +274,6 @@ public class SignUpMenuGUI extends Application {
             resetCaptcha();
             captchaField.setText(null);
         }
-        else if (userLabel.getText() != null || passwordLabel.getText() != null || emailLabel.getText() != null) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error!");
-            alert.setHeaderText("Login Error");
-            alert.setContentText("One of the fields are invalid");
-            alert.showAndWait();
-            resetCaptcha();
-            captchaField.setText(null);
-        }
         else if (!captchaField.getText().equals(captcha)) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error!");
@@ -180,7 +284,6 @@ public class SignUpMenuGUI extends Application {
             captchaField.setText(null);
         }
         else {
-            //get
             //todo go to main menu
         }
     }
