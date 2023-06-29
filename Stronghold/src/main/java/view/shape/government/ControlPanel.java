@@ -1,15 +1,14 @@
 package view.shape.government;
 
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.TabPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import model.Database;
 import model.society.Government;
-import utility.DataManager;
 import view.fxmlcontroller.BuildingScroll;
 import view.shape.government.popularity.PopularityDisplay;
 import view.shape.map.MiniMap;
@@ -33,6 +32,9 @@ public class ControlPanel {
         hBox = new HBox();
         hBox.setAlignment(Pos.CENTER);
         hBox.setPrefHeight(160);
+        hBox.setMaxHeight(MiniMap.WIDTH);
+        hBox.setBackground(new Background(new BackgroundFill(Color.DARKGOLDENROD,
+                new CornerRadii(0), new Insets(0))));
 
         try {
             buildingScroll = FXMLLoader.load(Objects.requireNonNull(
@@ -65,7 +67,7 @@ public class ControlPanel {
 
         hBox.getChildren().add(vBox); //index = 1
 
-        miniMap = new MiniMap(Database.getCurrentMap());
+        miniMap = new MiniMap(Database.getCurrentGame().getMap());
         hBox.getChildren().add(miniMap); //index = 2
 
         resourceDisplay = new ResourceDisplay();
@@ -92,5 +94,9 @@ public class ControlPanel {
 
     public HBox gethBox() {
         return hBox;
+    }
+
+    public MiniMap getMiniMap() {
+        return miniMap;
     }
 }

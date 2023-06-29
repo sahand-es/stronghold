@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class MiniMap extends Pane {
 
-    private static double WIDTH = 160;
+    public static double WIDTH = 160;
     private static double HEIGHT = 220;
     Map map;
     Group allMiniTiles;
