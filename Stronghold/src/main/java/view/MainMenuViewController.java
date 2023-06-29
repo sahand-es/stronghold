@@ -1,5 +1,6 @@
 package view;
 
+import controller.GameControl;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -12,7 +13,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-
+import model.Database;
+import model.GUITest;
+import model.Game;
+import model.map.Map;
 
 
 public class MainMenuViewController extends Application {
@@ -21,12 +25,9 @@ public class MainMenuViewController extends Application {
     private int width;
     private int height;
 
-    private Label heightLabel;
-    private TextField heightTextField;
-    private Label heightMessage;
-    private Label widthLabel;
-    private TextField widthTextField;
-    private Label widthMessage;
+    private Label sizeLabel;
+    private TextField sizeTextField;
+    private Label sizeMessage;
 
     private Label numberOfPlayersLabel;
     private TextField numberOfPlayersTextField;
@@ -155,41 +156,24 @@ public class MainMenuViewController extends Application {
         l.setPrefHeight(100);
         vBox.getChildren().add(l);
 
-        heightLabel = new Label("           height: ");
-        heightLabel.setStyle("-fx-font: 25 sys");
 
-        heightTextField = new TextField();
-        heightTextField.setStyle("-fx-background-color: #909090; -fx-font: 20 sys");
+
+        sizeLabel = new Label("             size: ");
+        sizeLabel.setStyle("-fx-font: 25 sys");
+
+        sizeTextField = new TextField();
+        sizeTextField.setStyle("-fx-background-color: #909090; -fx-font: 20 sys");
 
         HBox hBox1 = new HBox();
         hBox1.setAlignment(Pos.CENTER);
-        hBox1.getChildren().addAll(heightLabel,heightTextField);
+        hBox1.getChildren().addAll(sizeLabel, sizeTextField);
 
-        heightMessage = new Label();
-        heightMessage.setStyle("-fx-font: 15 sys; -fx-text-fill: #ff0000");
+        sizeMessage = new Label();
+        sizeMessage.setStyle("-fx-font: 15 sys; -fx-text-fill: #ff0000");
 
         VBox vBox1 = new VBox();
         vBox1.setAlignment(Pos.CENTER);
-        vBox1.getChildren().addAll(hBox1,heightMessage);
-
-        vBox.getChildren().add(vBox1);
-
-        widthLabel = new Label("            width: ");
-        widthLabel.setStyle("-fx-font: 25 sys");
-
-        widthTextField = new TextField();
-        widthTextField.setStyle("-fx-background-color: #909090; -fx-font: 20 sys");
-
-        hBox1 = new HBox();
-        hBox1.setAlignment(Pos.CENTER);
-        hBox1.getChildren().addAll(widthLabel,widthTextField);
-
-        widthMessage = new Label();
-        widthMessage.setStyle("-fx-font: 15 sys; -fx-text-fill: #ff0000");
-
-        vBox1 = new VBox();
-        vBox1.setAlignment(Pos.CENTER);
-        vBox1.getChildren().addAll(hBox1,widthMessage);
+        vBox1.getChildren().addAll(hBox1, sizeMessage);
 
         vBox.getChildren().add(vBox1);
 
@@ -244,47 +228,35 @@ public class MainMenuViewController extends Application {
         borderPane.setCenter(vBox);
     }
 
-    private void checkStartGame() {
-        int h ,w ,n;
-        String text = heightTextField.getText();
+    private void checkStartGame(){
+        int s ,n;
+
+
+
+        String text = sizeTextField.getText();
 
         if (text == null || text.equals("")){
-            heightMessage.setText("you must enter the height");
+            sizeMessage.setText("you must enter the size");
             return;
         }
 
         if (!text.matches("\\d+")){
-            heightMessage.setText("height must be an integer");
+            sizeMessage.setText("size must be an integer");
             return;
         }
 
-        h = Integer.parseInt(text);
-        heightMessage.setText("");
-
-        text = widthTextField.getText();
-
-        if (text == null || text.equals("")){
-            widthMessage.setText("you must enter the width");
-            return;
-        }
-
-        if (!text.matches("\\d+")){
-            widthMessage.setText("width must be an integer");
-            return;
-        }
-
-        w = Integer.parseInt(text);
-        widthMessage.setText("");
+        s = Integer.parseInt(text);
+        sizeMessage.setText("");
 
         text = numberOfPlayersTextField.getText();
 
         if (text == null || text.equals("")){
-            numberOfPlayersMessage.setText("you must enter the height");
+            numberOfPlayersMessage.setText("you must enter the number of players");
             return;
         }
 
         if (!text.matches("\\d+")){
-            numberOfPlayersMessage.setText("height must be an integer");
+            numberOfPlayersMessage.setText("number of players must be an integer");
             return;
         }
 
@@ -297,6 +269,18 @@ public class MainMenuViewController extends Application {
         numberOfPlayersMessage.setText("");
 
         //TODO start the game
+        Map map = new Map(s,s);
+        Game game = new Game(map , n);
+
+        Database.setCurrentMap(map);
+        Database.setCurrentGame(game);
+        GameControl.setGame(game);
+        try {
+            new GUITest().start(StartViewController.stage); //todo
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
 
