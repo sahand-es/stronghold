@@ -107,6 +107,7 @@ public class SignUpMenuGUI extends Application {
 
         //add choices
         answerChoice.setItems(answerChoiceList);
+        answerChoice.setValue(answerChoiceList.get(0));
 
     }
 
@@ -295,6 +296,13 @@ public class SignUpMenuGUI extends Application {
                     }
                 });
                 break;
+            case 5:
+                slogan.textProperty().addListener((observable, oldText, newText) -> {
+                    messageLabel.setText(null);
+                    nextButton.setVisible(true);
+                });
+
+                break;
         }
     }
 
@@ -465,6 +473,8 @@ public class SignUpMenuGUI extends Application {
     }
     public void randomSloganSetter() {
         slogan.setVisible(!randomSloganCheck.isSelected());
+        slogan.setText(null);
+        nextButton.setVisible(true);
     }
 
     public void randomPassSetter() {
