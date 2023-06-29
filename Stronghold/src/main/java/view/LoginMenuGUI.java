@@ -1,27 +1,19 @@
 package view;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.image.WritableImage;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import model.Database;
 import model.User;
 import utility.RandomCaptcha;
-import utility.RandomGenerators;
-
-import javax.swing.*;
-import java.awt.image.BufferedImage;
 import java.net.URL;
 import java.util.Objects;
-
 import javafx.embed.swing.SwingFXUtils;
 
 public class LoginMenuGUI extends Application {
