@@ -281,8 +281,12 @@ public class SignUpMenuGUI extends Application {
                         messageLabel.setText("The Email format is invalid!");
                         nextButton.setVisible(false);
                     }
-                    if (CheckFunctions.checkEmailExits(newText)){
+                    else if (CheckFunctions.checkEmailExits(newText)){
                         messageLabel.setText("This Email already exist!");
+                        nextButton.setVisible(false);
+                    }
+                    else if (newText.equals("")) {
+                        messageLabel.setText("Email field is empty!");
                         nextButton.setVisible(false);
                     }
                     else{
