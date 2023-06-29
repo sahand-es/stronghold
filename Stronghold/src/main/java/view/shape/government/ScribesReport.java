@@ -17,6 +17,7 @@ public class ScribesReport {
     VBox vBox;
 
     Rectangle popularityImage;
+    Rectangle governmentColor;
     Label popularityLabel;
 
     Label goldLabel;
@@ -46,12 +47,21 @@ public class ScribesReport {
 
         vBox.getChildren().add(popularityImage);
 
+        HBox hBox = new HBox();
+        hBox.setAlignment(Pos.CENTER);
+        hBox.setSpacing(5);
+
+        governmentColor = new Rectangle(18,18);
+        governmentColor.setFill(government.getColor().getColor());
+
         popularityLabel = new Label(String.valueOf(government.getPopularity()));
         popularityLabel.setStyle("-fx-font: 15 sys;");
 
-        vBox.getChildren().add(popularityLabel);
+        hBox.getChildren().addAll(governmentColor,popularityLabel);
 
-        HBox hBox = new HBox();
+        vBox.getChildren().add(hBox);
+
+        hBox = new HBox();
         hBox.setSpacing(10);
         hBox.setAlignment(Pos.CENTER);
         hBox.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -95,7 +105,9 @@ public class ScribesReport {
     }
 
     public void updateValues(){
+        government = Database.getCurrentGame().getCurrentGovernment();
         setPopularityImage(government.getPopularity());
+        governmentColor.setFill(government.getColor().getColor());
         popularityLabel.setText(String.valueOf(government.getPopularity()));
         goldLabel.setText(String.valueOf(government.getResource().getGold()));
         populationLabel.setText(government.getPopulation() + "/" + government.getPopulationCapacity());
