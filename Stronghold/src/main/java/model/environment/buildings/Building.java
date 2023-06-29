@@ -259,7 +259,7 @@ public class Building extends Environment {
     }
 
     public void repair() {
-        hp = getBuildingByBuildingName(name).hp;
+        hp = getInitialHp();
     }
 
     public void takeDamage(int damage) {

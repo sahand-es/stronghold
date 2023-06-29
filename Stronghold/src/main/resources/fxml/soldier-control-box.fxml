@@ -24,5 +24,6 @@
             <ImageView id="soldier-image" fx:id="soldierImage111" fitHeight="45.0" fitWidth="43.0" layoutX="-60.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Group>
+      <Button layoutX="181.0" layoutY="260.0" mnemonicParsing="false" text="Repair" fx:id="repairBtn" onMouseClicked="#repair"/>
    </children>
 </Pane>

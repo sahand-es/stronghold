@@ -59,7 +59,9 @@ public enum GameMessages {
     INVALID_TEXTURE("Invalid texture!"),
 
 
-    CAN_NOT_ATTACK_YOUR_BUILDING("Friendly building!"), CAN_NOT_ATTACK_THIS_BUILDING("Indestructible building!");
+    CAN_NOT_ATTACK_YOUR_BUILDING("Friendly building!"),
+    CAN_NOT_ATTACK_THIS_BUILDING("Indestructible building!"),
+    CAN_NOT_REPAIR_OPPONENT_BUILDING("Can not repair enemy building!");
     final String message;
 
     GameMessages(String message){

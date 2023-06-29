@@ -24,7 +24,9 @@ import model.map.Block;
 import model.units.Person;
 import model.units.Soldier;
 import model.units.enums.SoldierUnitState;
+import model.units.workerunits.Engineer;
 import view.GameViewController;
+import view.enums.messages.GameMessages;
 
 public class SoldierControlBox {
     public ImageView soldierImage;
@@ -36,12 +38,14 @@ public class SoldierControlBox {
     public Button attackBuildingBtn;
     public Pane pane;
     public Text name;
+    public Button repairBtn;
 
     @FXML
     private void initialize() {
         pane.setBackground(new Background(new BackgroundFill(Color.DARKGOLDENROD,
                 new CornerRadii(10), new Insets(0))));
         if (GameControl.getSelectedUnit() == null) {
+            pane.getChildren().remove(repairBtn);
             return;
         }
         else if (GameControl.getSelectedUnit() instanceof Soldier) {
@@ -61,7 +65,7 @@ public class SoldierControlBox {
                 });
                 i++;
             }
-
+            pane.getChildren().remove(repairBtn);
             setTexts();
         }
         else {
@@ -69,6 +73,9 @@ public class SoldierControlBox {
             soldierImage.setImage(new Image(person.getUnitName().getImagePath()));
             setTexts();
             pane.getChildren().removeAll(attackBtn, attackBuildingBtn);
+            if (!(person instanceof Engineer)) {
+                pane.getChildren().remove(repairBtn);
+            }
         }
     }
 
@@ -98,5 +105,9 @@ public class SoldierControlBox {
     public void attack(MouseEvent mouseEvent) {
         Block block = GameViewController.getMapPane().getSelectedTiles().get(0).getBlock();
         System.out.println(GameControl.attack(block.getX(), block.getY()).message());
+    }
+
+    public void repair(MouseEvent mouseEvent) {
+        System.out.println(GameControl.repair());
     }
 }

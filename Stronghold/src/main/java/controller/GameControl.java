@@ -322,14 +322,20 @@ public class GameControl {
 //ToDo: selected building change menu.
 
     public static GameMessages repair() {
+        if (!(selectedUnit instanceof Engineer))
+            return GameMessages.SELECTED_UNIT_IS_NOT_ENGINEER;
         if (selectedBuilding == null)
             return GameMessages.BUILDING_NOT_SELECTED;
         if (!selectedBuilding.getCategory().equals(BuildingCategory.CASTLE) && !selectedBuilding.getPrice().containsKey(ResourcesName.STONE))
             return GameMessages.CANNOT_REPAIR_THIS_BUILDING_TYPE;
+        if (!selectedBuilding.getGovernment().equals(selectedUnit.getGovernment()))
+            return GameMessages.CAN_NOT_REPAIR_OPPONENT_BUILDING;
         HashMap<ResourcesName, Integer> stonePrice = new HashMap<>();
-        stonePrice.put(ResourcesName.STONE, selectedBuilding.getPrice().get(ResourcesName.STONE) / 2);
-        if (!currentGovernment.getResource().checkPay(stonePrice))
-            return GameMessages.NOT_ENOUGH_ROCK;
+        if (selectedBuilding.getPrice().containsKey(ResourcesName.STONE)) {
+            stonePrice.put(ResourcesName.STONE, selectedBuilding.getPrice().get(ResourcesName.STONE) / 2);
+            if (!currentGovernment.getResource().checkPay(stonePrice))
+                return GameMessages.NOT_ENOUGH_ROCK;
+        }
 
 
         selectedBuilding.repair();

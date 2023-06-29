@@ -15,6 +15,7 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import model.Database;
 import model.environment.buildings.Building;
+import model.environment.buildings.ResourceExtractorBuilding;
 import view.shape.map.MapTile;
 import utility.DataManager;
 import view.GameViewController;
@@ -104,6 +105,10 @@ public class BuildingNode extends Rectangle {
         type.setText("Type:    " + building.getName().kind);
         Text damage = (Text) detailBox.getChildren().get(1);
         damage.setText(building.getBlock().toString());
+
+        if (building instanceof ResourceExtractorBuilding) {
+            type.setText("Type:    " + building.getName().kind + "\n\n\t" + ((ResourceExtractorBuilding) building).getRate());
+        }
         HBox hBox = (HBox) detailBox.getChildren().get(4);
         ImageView soldierState = (ImageView) hBox.getChildren().get(0);
 

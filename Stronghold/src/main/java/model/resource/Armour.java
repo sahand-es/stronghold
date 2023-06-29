@@ -60,6 +60,8 @@ public class Armour extends ResourceHolder {
         super(name, price, howManyFor1Price);
         this.speedBoost = speedBoost;
         this.defenceBoost = defenceBoost;
+
+        ALL_RESOURCE_HOLDERS.add(this);
     }
 
     @Override

@@ -48,8 +48,8 @@ public class ResourceHolder {
 
             new ResourceHolder(name, price, howMany);
         }
-        Weapon.ALL_RESOURCE_HOLDERS.get(0);
-        Armour.ALL_RESOURCE_HOLDERS.get(0);
+        Weapon weapon = new Weapon(ResourcesName.BOW);
+        Armour  armour = new Armour(ResourcesName.LEATHER);
     }
 
     protected ResourceHolder(String name, HashMap<ResourcesName, Integer> price, int howManyFor1Price) {
@@ -108,6 +108,7 @@ public class ResourceHolder {
     }
 
     static ResourceHolder getResourceByResourcesName(ResourcesName resourceName) {
+
         for (ResourceHolder resourceHolder : ALL_RESOURCE_HOLDERS) {
             if (resourceHolder.getKind().equals(resourceName))
                 return resourceHolder;
