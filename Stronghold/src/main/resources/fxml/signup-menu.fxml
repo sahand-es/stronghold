@@ -108,7 +108,7 @@
                   <Font name="American Typewriter" size="36.0" />
                </font>
             </TextField>
-            <TextArea fx:id="slogan" layoutX="513.0" layoutY="255.0" prefHeight="147.0" prefWidth="346.0" promptText="Slogan">
+            <TextArea fx:id="slogan" layoutX="513.0" layoutY="340.0" prefHeight="62.0" prefWidth="359.0" promptText="Slogan">
                <font>
                   <Font name="American Typewriter" size="14.0" />
                </font>
@@ -164,6 +164,11 @@
                   <Font name="American Typewriter" size="28.0" />
                </font>
             </Label>
+            <TextArea fx:id="famousChart" layoutX="514.0" layoutY="114.0" prefHeight="185.0" prefWidth="359.0" promptText="Slogan">
+               <font>
+                  <Font name="American Typewriter" size="14.0" />
+               </font>
+            </TextArea>
          </children>
       </AnchorPane>
    </center>

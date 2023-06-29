@@ -66,6 +66,8 @@ public class SignUpMenuGUI extends Application {
     private TextArea slogan;
     @FXML
     private CheckBox randomSloganCheck;
+    @FXML
+    private TextArea famousChart;
     //level 6
     @FXML
     private ChoiceBox answerChoice;
@@ -109,6 +111,8 @@ public class SignUpMenuGUI extends Application {
         //add choices
         answerChoice.setItems(answerChoiceList);
         answerChoice.setValue(answerChoiceList.get(0));
+
+        //todo add famous slogan
 
     }
 
@@ -342,6 +346,7 @@ public class SignUpMenuGUI extends Application {
                 emailLabel.setVisible(false);
                 slogan.setVisible(false);
                 randomSloganCheck.setVisible(false);
+                famousChart.setVisible(false);
                 signButton.setVisible(false);
                 nextButton.setVisible(false);
                 answerField.setVisible(false);
@@ -365,6 +370,7 @@ public class SignUpMenuGUI extends Application {
                 emailLabel.setVisible(false);
                 slogan.setVisible(false);
                 randomSloganCheck.setVisible(false);
+                famousChart.setVisible(false);
                 signButton.setVisible(false);
                 nextButton.setVisible(false);
                 answerField.setVisible(false);
@@ -388,6 +394,7 @@ public class SignUpMenuGUI extends Application {
                 emailLabel.setVisible(false);
                 slogan.setVisible(false);
                 randomSloganCheck.setVisible(false);
+                famousChart.setVisible(false);
                 signButton.setVisible(false);
                 nextButton.setVisible(false);
                 answerField.setVisible(false);
@@ -411,6 +418,7 @@ public class SignUpMenuGUI extends Application {
                 emailLabel.setVisible(false);
                 slogan.setVisible(false);
                 randomSloganCheck.setVisible(false);
+                famousChart.setVisible(false);
                 signButton.setVisible(false);
                 nextButton.setVisible(false);
                 answerField.setVisible(false);
@@ -434,6 +442,7 @@ public class SignUpMenuGUI extends Application {
                 emailLabel.setVisible(true);
                 slogan.setVisible(false);
                 randomSloganCheck.setVisible(false);
+                famousChart.setVisible(false);
                 signButton.setVisible(false);
                 nextButton.setVisible(false);
                 answerField.setVisible(false);
@@ -457,6 +466,7 @@ public class SignUpMenuGUI extends Application {
                 emailLabel.setVisible(false);
                 slogan.setVisible(true);
                 randomSloganCheck.setVisible(true);
+                famousChart.setVisible(true);
                 signButton.setVisible(false);
                 nextButton.setVisible(false);
                 answerField.setVisible(false);
@@ -480,6 +490,7 @@ public class SignUpMenuGUI extends Application {
                 emailLabel.setVisible(false);
                 slogan.setVisible(false);
                 randomSloganCheck.setVisible(false);
+                famousChart.setVisible(false);
                 signButton.setVisible(false);
                 nextButton.setVisible(false);
                 answerField.setVisible(true);
