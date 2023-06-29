@@ -134,6 +134,7 @@ public class GameViewController {
     }
 
     public static BuildingNode getBuildingNodeByBuilding(Building building) {
+        // TODO: 6/29/2023 check null
         for (Node child : allBuildings.getChildren()) {
             if (!(child instanceof BuildingNode))
                 return null;

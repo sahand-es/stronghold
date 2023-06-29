@@ -60,4 +60,9 @@ public enum Texture
     public String getImagePath() {
         return  "file:src/main/resources/images/tiles/textures/" + imagePath;
     }
+    public String getSickImagePath() {
+        String sickPath = imagePath;
+        sickPath = sickPath.replace(".png", "-sick.png");
+        return  "file:src/main/resources/images/tiles/textures/" + sickPath;
+    }
 }
