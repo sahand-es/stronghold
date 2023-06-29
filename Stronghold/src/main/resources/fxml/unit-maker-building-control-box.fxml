@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import javafx.scene.image.*?>
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
-
-<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="320.0" prefWidth="453.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.fxmlcontroller.CreateUnitBox">
+<?import javafx.scene.text.Text?>
+<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+      prefHeight="320.0" prefWidth="453.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="view.fxmlcontroller.CreateUnitBox">
     <children>
-        <ScrollPane fx:id="scPane" layoutX="27.0" layoutY="72.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="396.0">
+        <ScrollPane fx:id="scPane" layoutX="27.0" layoutY="72.0" maxHeight="-Infinity" maxWidth="-Infinity"
+                    minHeight="-Infinity" minWidth="-Infinity" prefHeight="110.0" prefWidth="396.0">
             <content>
-                <HBox fx:id="hBox" prefHeight="63.0" prefWidth="845.0" spacing="20" />
+                <HBox fx:id="hBox" maxHeight="100" prefWidth="845.0" spacing="20"/>
             </content>
         </ScrollPane>
-        <Button layoutX="189.0" layoutY="210.0" mnemonicParsing="false" onMouseClicked="#createUnit" text="create" />
-      <ImageView fitHeight="65.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true" fx:id="buildingImage" layoutX="15"/>
-      <Text layoutX="89.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" fx:id="nameText"/>
+        <Button layoutX="189.0" layoutY="210.0" mnemonicParsing="false" onMouseClicked="#createUnit" text="create"/>
+        <ImageView fitHeight="65.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true" fx:id="buildingImage"
+                   layoutX="15"/>
+        <Text layoutX="89.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" fx:id="nameText"/>
     </children>
 </Pane>
