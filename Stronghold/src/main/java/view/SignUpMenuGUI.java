@@ -51,15 +51,24 @@ public class SignUpMenuGUI extends Application {
     //level 3
     @FXML
     private TextField nickname;
+    @FXML
+    private Label nicknameLabel;
     //level 4
     @FXML
     private TextField email;
+    @FXML
+    private Label emailLabel;
     //level 5
     @FXML
     private TextArea slogan;
     @FXML
     private CheckBox randomSloganCheck;
     //level 6
+    @FXML
+    private ChoiceBox sloganChoice;
+    @FXML
+    private TextField answerField;
+    //level 7
     @FXML
     private Button signButton;
     @FXML
@@ -70,6 +79,8 @@ public class SignUpMenuGUI extends Application {
 
     @FXML
     public void initialize() {
+        answerField.setVisible(false);
+        sloganChoice.setVisible(false);
         //hide every object
         visibilityUpdate();
         //load background
@@ -292,6 +303,7 @@ public class SignUpMenuGUI extends Application {
                 randomPassCheck.setVisible(false);
                 showPassCheck.setVisible(false);
                 nickname.setVisible(false);
+                nicknameLabel.setVisible(false);
                 email.setVisible(false);
                 slogan.setVisible(false);
                 randomSloganCheck.setVisible(false);
@@ -311,6 +323,7 @@ public class SignUpMenuGUI extends Application {
                 randomPassCheck.setVisible(false);
                 showPassCheck.setVisible(false);
                 nickname.setVisible(false);
+                nicknameLabel.setVisible(false);
                 email.setVisible(false);
                 slogan.setVisible(false);
                 randomSloganCheck.setVisible(false);
@@ -330,6 +343,7 @@ public class SignUpMenuGUI extends Application {
                 randomPassCheck.setVisible(true);
                 showPassCheck.setVisible(true);
                 nickname.setVisible(false);
+                nicknameLabel.setVisible(false);
                 email.setVisible(false);
                 slogan.setVisible(false);
                 randomSloganCheck.setVisible(false);
@@ -349,6 +363,7 @@ public class SignUpMenuGUI extends Application {
                 randomPassCheck.setVisible(false);
                 showPassCheck.setVisible(false);
                 nickname.setVisible(true);
+                nicknameLabel.setVisible(true);
                 email.setVisible(false);
                 slogan.setVisible(false);
                 randomSloganCheck.setVisible(false);
@@ -368,6 +383,7 @@ public class SignUpMenuGUI extends Application {
                 randomPassCheck.setVisible(false);
                 showPassCheck.setVisible(false);
                 nickname.setVisible(false);
+                nicknameLabel.setVisible(false);
                 email.setVisible(true);
                 slogan.setVisible(false);
                 randomSloganCheck.setVisible(false);
@@ -387,6 +403,7 @@ public class SignUpMenuGUI extends Application {
                 randomPassCheck.setVisible(false);
                 showPassCheck.setVisible(false);
                 nickname.setVisible(false);
+                nicknameLabel.setVisible(false);
                 email.setVisible(false);
                 slogan.setVisible(true);
                 randomSloganCheck.setVisible(true);
@@ -409,7 +426,7 @@ public class SignUpMenuGUI extends Application {
         passwordConfirmTextField.setVisible(!randomPassCheck.isSelected());
         passwordTextField.setText("");
         passwordConfirmTextField.setText("");
-        
+
         messageLabel.setText(null);
         nextButton.setVisible(true);
     }
