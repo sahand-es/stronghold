@@ -65,7 +65,7 @@ public class SignUpMenuGUI extends Application {
     private CheckBox randomSloganCheck;
     //level 6
     @FXML
-    private ChoiceBox sloganChoice;
+    private ChoiceBox answerChoice;
     @FXML
     private TextField answerField;
     //level 7
@@ -79,8 +79,6 @@ public class SignUpMenuGUI extends Application {
 
     @FXML
     public void initialize() {
-        answerField.setVisible(false);
-        sloganChoice.setVisible(false);
         //hide every object
         visibilityUpdate();
         //load background
@@ -310,6 +308,8 @@ public class SignUpMenuGUI extends Application {
                 randomSloganCheck.setVisible(false);
                 signButton.setVisible(false);
                 nextButton.setVisible(false);
+                answerField.setVisible(false);
+                answerChoice.setVisible(false);
                 break;
             case 1:
                 captchaField.setVisible(false);
@@ -331,6 +331,8 @@ public class SignUpMenuGUI extends Application {
                 randomSloganCheck.setVisible(false);
                 signButton.setVisible(false);
                 nextButton.setVisible(false);
+                answerField.setVisible(false);
+                answerChoice.setVisible(false);
                 break;
             case 2:
                 captchaField.setVisible(false);
@@ -352,6 +354,8 @@ public class SignUpMenuGUI extends Application {
                 randomSloganCheck.setVisible(false);
                 signButton.setVisible(false);
                 nextButton.setVisible(false);
+                answerField.setVisible(false);
+                answerChoice.setVisible(false);
                 break;
             case 3:
                 captchaField.setVisible(false);
@@ -373,6 +377,8 @@ public class SignUpMenuGUI extends Application {
                 randomSloganCheck.setVisible(false);
                 signButton.setVisible(false);
                 nextButton.setVisible(false);
+                answerField.setVisible(false);
+                answerChoice.setVisible(false);
                 break;
             case 4:
                 captchaField.setVisible(false);
@@ -394,6 +400,8 @@ public class SignUpMenuGUI extends Application {
                 randomSloganCheck.setVisible(false);
                 signButton.setVisible(false);
                 nextButton.setVisible(false);
+                answerField.setVisible(false);
+                answerChoice.setVisible(false);
                 break;
             case 5:
                 captchaField.setVisible(false);
@@ -415,6 +423,8 @@ public class SignUpMenuGUI extends Application {
                 randomSloganCheck.setVisible(true);
                 signButton.setVisible(true);
                 nextButton.setVisible(false);
+                answerField.setVisible(false);
+                answerChoice.setVisible(false);
                 break;
         }
     }
