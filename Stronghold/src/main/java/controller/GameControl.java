@@ -24,6 +24,7 @@ import model.units.enums.UnitName;
 import model.units.workerunits.Engineer;
 import model.units.workerunits.Ladderman;
 import model.units.workerunits.Tunneler;
+import utility.RandomGenerators;
 import view.GameViewController;
 import view.enums.messages.GameMessages;
 
@@ -666,11 +667,32 @@ public class GameControl {
             moveAllUnits();
             attackControl();
             setTimeline();
+            tileNextRound();
         }
 
+
+        randomSickness();
         currentGovernment = game.getCurrentGovernment();
         deSelectBuilding();
         deSelectUnit();
+    }
+
+    private static void randomSickness() {
+        if (RandomGenerators.randomTrue(8)) {
+            GameViewController.makeItSick(map.getBlockByXY(
+                            RandomGenerators.randomNumber(0, map.getWidth() - 1),
+                            RandomGenerators.randomNumber(0, map.getHeight()) - 1)
+                    .getTile());
+            currentGovernment.setPopularity(currentGovernment.getPopularity() - 2);
+        }
+    }
+
+    private static void tileNextRound() {
+        for (int y = 0; y < map.getHeight(); y++) {
+            for (int x = 0; x < map.getWidth(); x++) {
+                map.getBlockByXY(x, y).getTile().nextRound();
+            }
+        }
     }
 
     private static void setTimeline() {

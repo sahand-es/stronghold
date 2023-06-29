@@ -15,6 +15,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.util.Duration;
 import model.map.Map;
 import model.map.Texture;
@@ -152,7 +153,12 @@ public class MapPane extends Pane {
     }
 
     private void showDetailsText(MapTile tile) {
-        detailsText.setText(tile.getBlock().showDetails());
+        StringBuilder output = new StringBuilder(tile.getBlock().showDetails());
+        if (tile.isSick()) {
+            output.append("\nSick :(");
+        }
+        detailsText.setTextAlignment(TextAlignment.CENTER);
+        detailsText.setText(output.toString());
         detailsText.setLayoutX(tile.getLayoutX() + 25);
         detailsText.setLayoutY(tile.getLayoutY() - 18);
 
@@ -165,8 +171,14 @@ public class MapPane extends Pane {
         if (selected.isEmpty())
             return;
 
+        detailsText.setTextAlignment(TextAlignment.CENTER);
+
         for (MapTile tile : selected) {
-            output.append( tile.getBlock().showDetails() + "\n------------\n");
+            output.append( tile.getBlock().showDetails());
+            if (tile.isSick()) {
+                output.append("\nSick :(");
+            }
+            output.append("\n------------\n");
         }
         detailsText.setText(output.toString());
         detailsText.setLayoutX(selected.get(0).getLayoutX() + 25);

@@ -205,7 +205,15 @@ public class GameViewController {
     public static void setTexture(Texture texture) {
         mapPane.setTexture(texture);
         miniMap.setTexture(texture, mapPane.getSelectedTiles());
-        // TODO: 6/26/2023 minimap change
+    }
+
+    public static void makeItSick(MapTile tile) {
+        tile.makeItSick();
+        miniMap.makeItSick(tile);
+    }
+
+    public static void cureIt(MapTile tile) {
+        miniMap.cureIt(tile);
     }
 
     public static MapPane getMapPane() {

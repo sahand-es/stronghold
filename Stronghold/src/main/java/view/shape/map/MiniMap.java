@@ -21,13 +21,13 @@ public class MiniMap extends Pane {
     public MiniMap(Map map) {
 
         this.map = map;
-        double size = WIDTH/map.getWidth();
+        double size = WIDTH / map.getWidth();
         allMiniTiles = new Group();
 
         for (int x = 0; x < map.getHeight(); x++) {
             for (int y = 0; y < map.getWidth(); y++) {
                 Rectangle miniMapTile = new Rectangle(size, size);
-                Image image = new Image(map.getBlockByXY(x,y).getTexture().getImagePath());
+                Image image = new Image(map.getBlockByXY(x, y).getTexture().getImagePath());
                 miniMapTile.setFill(new ImagePattern(image));
 
                 miniMapTile.setLayoutX(x * size);
@@ -45,5 +45,19 @@ public class MiniMap extends Pane {
             Rectangle miniMapTile = (Rectangle) allMiniTiles.getChildren().get(x * map.getWidth() + y);
             miniMapTile.setFill(selectedTile.getFill());
         }
+    }
+
+    public void makeItSick(MapTile tile) {
+        int x = tile.getBlock().getX();
+        int y = tile.getBlock().getY();
+        Rectangle miniMapTile = (Rectangle) allMiniTiles.getChildren().get(x * map.getWidth() + y);
+        miniMapTile.setFill(new ImagePattern(new Image(tile.getBlock().getTexture().getSickImagePath())));
+    }
+
+    public void cureIt(MapTile tile) {
+        int x = tile.getBlock().getX();
+        int y = tile.getBlock().getY();
+        Rectangle miniMapTile = (Rectangle) allMiniTiles.getChildren().get(x * map.getWidth() + y);
+        miniMapTile.setFill(new ImagePattern(new Image(tile.getBlock().getTexture().getImagePath())));
     }
 }
