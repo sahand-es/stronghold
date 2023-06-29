@@ -13,7 +13,9 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TabPane;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.Screen;
 import model.Database;
 import model.environment.buildings.Building;
 import model.environment.buildings.ResourceExtractorBuilding;
@@ -30,6 +32,7 @@ import view.fxmlcontroller.SoldierControlBox;
 import view.shape.BuildingNode;
 import view.shape.Fire;
 import view.shape.PersonNode;
+import view.shape.government.ControlPanel;
 import view.shape.map.MapPane;
 import view.shape.map.MapTile;
 import view.shape.map.MiniMap;
@@ -46,6 +49,7 @@ public class GameViewController {
     private static MiniMap miniMap;
     private static ScrollPane mapTextureOptions;
     private static TabPane buildingScroll;
+    private static ControlPanel controlPanel;
     private static Pane personControl;
     private static ScrollPane dropUnitBox;
     private static Pane createUnitBox;
@@ -53,19 +57,29 @@ public class GameViewController {
     private static Group allPersons;
     private static Group allBuildings;
 
-    public static void setMapPane(MapPane mapPane, Pane mainPane, Scene scene, MiniMap miniMap) throws IOException {
+    public static void setMapPane(MapPane mapPane, Pane mainPane, Scene scene, ControlPanel controlPanel) throws IOException {
         GameViewController.mapPane = mapPane;
         GameViewController.mainPane = mainPane;
         GameViewController.scene = scene;
-        GameViewController.miniMap = miniMap;
+        GameViewController.controlPanel = controlPanel;
+        miniMap = controlPanel.getMiniMap();
         mapTextureOptions = FXMLLoader.load(Objects.requireNonNull(MapPane.class.getResource(DataManager.CHANGE_TEXTURE_BOX)));
         buildingScroll = FXMLLoader.load(Objects.requireNonNull(BuildingScroll.class.getResource(DataManager.BUILDING_SCROLL_BOX)));
         dropUnitBox = FXMLLoader.load(Objects.requireNonNull(DropUnitBox.class.getResource("/fxml/drop-unit-box.fxml")));
         allPersons = new Group();
         allBuildings = new Group();
+        addNode(controlPanel.gethBox(),0, Screen.getPrimary().getBounds().getHeight() - controlPanel.gethBox().getMaxHeight() - 80);
         setKeys();
 
         mapPane.getChildren().addAll(allBuildings, allPersons);
+    }
+
+    public static void updateControlPanel() {
+        controlPanel.update();
+    }
+
+    public static Scene getScene() {
+        return scene;
     }
 
     private static void setKeys() {

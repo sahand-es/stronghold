@@ -67,7 +67,7 @@ public class ControlPanel {
 
         hBox.getChildren().add(vBox); //index = 1
 
-        miniMap = new MiniMap(Database.getCurrentMap());
+        miniMap = new MiniMap(Database.getCurrentGame().getMap());
         hBox.getChildren().add(miniMap); //index = 2
 
         resourceDisplay = new ResourceDisplay();
@@ -95,5 +95,9 @@ public class ControlPanel {
 
     public HBox gethBox() {
         return hBox;
+    }
+
+    public MiniMap getMiniMap() {
+        return miniMap;
     }
 }
