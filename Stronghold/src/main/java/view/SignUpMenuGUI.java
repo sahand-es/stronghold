@@ -480,7 +480,7 @@ public class SignUpMenuGUI extends Application {
                 emailLabel.setVisible(false);
                 slogan.setVisible(false);
                 randomSloganCheck.setVisible(false);
-                signButton.setVisible(true);
+                signButton.setVisible(false);
                 nextButton.setVisible(false);
                 answerField.setVisible(true);
                 answerChoice.setVisible(true);
@@ -532,8 +532,9 @@ public class SignUpMenuGUI extends Application {
         listenerUpdate();
     }
 
-    public void signUp(ActionEvent actionEvent) {
+    public void signUp() {
         //todo new user
+        //todo give success alert with info
         //todo go to login menu
     }
 
