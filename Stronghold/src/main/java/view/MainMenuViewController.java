@@ -275,8 +275,9 @@ public class MainMenuViewController extends Application {
         Database.setCurrentMap(map);
         Database.setCurrentGame(game);
         GameControl.setGame(game);
+
         try {
-            new GUITest().start(StartViewController.stage); //todo
+            new GameMenuApplication().start(StartViewController.stage);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

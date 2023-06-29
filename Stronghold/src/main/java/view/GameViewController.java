@@ -149,6 +149,7 @@ public class GameViewController {
                     mainPane.getChildren().remove(personControl);
                     mainPane.getChildren().remove(dropUnitBox);
                     mainPane.getChildren().remove(createUnitBox);
+                    mainPane.getChildren().remove(extractorRateSetBox);
                 }
             }
         });
