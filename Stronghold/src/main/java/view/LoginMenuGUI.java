@@ -116,6 +116,15 @@ public class LoginMenuGUI extends Application {
             resetCaptcha();
             captchaField.setText(null);
         }
+        else if (captchaField.getText().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error!");
+            alert.setHeaderText("Login Error");
+            alert.setContentText("Your captcha field is empty");
+            alert.showAndWait();
+            resetCaptcha();
+            captchaField.setText(null);
+        }
         else if (messageLabel.getText() != null) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error!");
