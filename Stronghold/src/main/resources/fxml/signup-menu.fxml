@@ -65,12 +65,12 @@
                   <Font name="American Typewriter" size="13.0" />
                </font>
             </PasswordField>
-            <Button alignment="CENTER" layoutX="332.0" layoutY="542.0" mnemonicParsing="false" onAction="#back" onMouseClicked="#login" prefHeight="31.0" prefWidth="189.0" style="-fx-background-color: #263f73;" text="Back" textFill="WHITE">
+            <Button alignment="CENTER" layoutX="332.0" layoutY="542.0" mnemonicParsing="false" onAction="#back" prefHeight="31.0" prefWidth="189.0" style="-fx-background-color: #263f73;" text="Back" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="13.0" />
                </font>
             </Button>
-            <Button fx:id="signUpButton" alignment="CENTER" layoutX="332.0" layoutY="501.0" mnemonicParsing="false" onAction="#signup" onMouseClicked="#signUp" prefHeight="31.0" prefWidth="189.0" style="-fx-background-color: #263f73;" text="Sign Up" textFill="WHITE">
+            <Button fx:id="signUpButton" alignment="CENTER" layoutX="332.0" layoutY="501.0" mnemonicParsing="false" onAction="#signup" prefHeight="31.0" prefWidth="189.0" style="-fx-background-color: #263f73;" text="Sign Up" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="13.0" />
                </font>
@@ -81,7 +81,7 @@
                </font>
             </Label>
             <ImageView fx:id="captchaImageViewer" fitHeight="54.0" fitWidth="200.0" layoutX="327.0" layoutY="380.0" pickOnBounds="true" preserveRatio="true" />
-            <Hyperlink alignment="CENTER" contentDisplay="CENTER" layoutX="353.0" layoutY="434.0" onAction="#resetCaptcha" onMouseClicked="#forgotPassword" prefHeight="25.0" prefWidth="157.0" text="Reset Captcha" textFill="WHITE">
+            <Hyperlink alignment="CENTER" contentDisplay="CENTER" layoutX="353.0" layoutY="434.0" onAction="#resetCaptcha" prefHeight="25.0" prefWidth="157.0" text="Reset Captcha" textFill="WHITE">
                <font>
                   <Font name="American Typewriter" size="14.0" />
                </font>
