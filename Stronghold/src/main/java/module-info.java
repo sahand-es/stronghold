@@ -2,6 +2,7 @@ module Stronghold {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.media;
+    requires javafx.swing;
     requires com.google.gson;
     requires org.jetbrains.annotations;
     requires passay;

@@ -2,6 +2,7 @@ package model;
 
 import model.map.Map;
 import utility.DataManager;
+import utility.RandomCaptcha;
 import view.enums.AllMenus;
 
 import java.util.ArrayList;

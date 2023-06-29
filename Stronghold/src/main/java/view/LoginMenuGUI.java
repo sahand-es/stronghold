@@ -8,15 +8,21 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import model.Database;
 import model.User;
 import utility.RandomCaptcha;
+import utility.RandomGenerators;
 
+import javax.swing.*;
+import java.awt.image.BufferedImage;
 import java.net.URL;
 import java.util.Objects;
+
+import javafx.embed.swing.SwingFXUtils;
 
 public class LoginMenuGUI extends Application {
 
@@ -33,7 +39,7 @@ public class LoginMenuGUI extends Application {
     private ImageView captchaImageViewer;
     @FXML
     private CheckBox stayLoggedCheckBox;
-    private String captcha;
+    private static String captcha;
 
     @FXML
     public void initialize() {
@@ -42,20 +48,14 @@ public class LoginMenuGUI extends Application {
                 MarketViewController.class.getResource(
                         "/images/backgrounds/login-menu-background.jpg").toExternalForm()
         );
-
         BackgroundImage backgroundFill = new BackgroundImage(image,BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT,BackgroundPosition.CENTER,BackgroundSize.DEFAULT);
-
         Background background = new Background(backgroundFill);
         pane.setBackground(background);
 
         //load captcha
-        captcha = RandomCaptcha.generate();
-
-        Image captchaImage = new Image(
-                MarketViewController.class.getResource(
-                        "/captcha/captcha.png").toExternalForm()
-        );
+        captcha = RandomCaptcha.generateString();
+        Image captchaImage = SwingFXUtils.toFXImage(RandomCaptcha.generateImage(captcha), null);
         captchaImageViewer.setImage(captchaImage);
 
         //add listeners
@@ -131,11 +131,8 @@ public class LoginMenuGUI extends Application {
     }
 
     public void resetCaptcha() {
-        captcha = RandomCaptcha.generate();
-        Image captchaImage = new Image(
-                MarketViewController.class.getResource(
-                        "/captcha/captcha.png").toExternalForm()
-        );
+        captcha = RandomCaptcha.generateString();
+        Image captchaImage = SwingFXUtils.toFXImage(RandomCaptcha.generateImage(captcha), null);
         captchaImageViewer.setImage(captchaImage);
     }
 

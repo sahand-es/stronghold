@@ -5,6 +5,7 @@ import org.passay.*;
 import view.Captcha;
 
 public class RandomGenerators {
+
     /**
      *
      * @return random password that includes at least 1 of each [A-Z][a-z][0-9][!@#$&*%_~.] with length between 6-12

@@ -1,8 +1,6 @@
 package utility;
 
 
-import javafx.scene.image.ImageView;
-
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -23,7 +21,23 @@ public class RandomCaptcha {
             BASE_COLOR.darker().darker(),
             BASE_COLOR.darker().darker().darker(),
     };
-    public static String generate(){
+
+    private static final Random random = new Random();
+
+    public static String generateString() {
+        // Generate random text
+        StringBuilder captchaText = new StringBuilder();
+
+        for (int i = 0; i < CAPTCHA_LENGTH; i++) {
+            int index = random.nextInt(CHARACTERS.length());
+            char randomChar = CHARACTERS.charAt(index);
+            captchaText.append(randomChar);
+        }
+        String outString = captchaText.toString();
+        return outString;
+    }
+
+    public static BufferedImage generateImage(String captchaText){
 
         BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
         Graphics2D graphics = image.createGraphics();
@@ -31,15 +45,6 @@ public class RandomCaptcha {
         // Set background color
         graphics.setColor(Color.WHITE);
         graphics.fillRect(0, 0, WIDTH, HEIGHT);
-
-        // Generate random text
-        StringBuilder captchaText = new StringBuilder();
-        Random random = new Random();
-        for (int i = 0; i < CAPTCHA_LENGTH; i++) {
-            int index = random.nextInt(CHARACTERS.length());
-            char randomChar = CHARACTERS.charAt(index);
-            captchaText.append(randomChar);
-        }
 
 
         // Draw text on the image with random colors, positions, and rotations
@@ -77,7 +82,7 @@ public class RandomCaptcha {
             graphics.drawLine(x1, y1, x2, y2);
         }
 
-        String outString = captchaText.toString();
+
 
         String path = "src/main/resources/captcha/captcha.png";
         // Save the image to a file
@@ -89,7 +94,9 @@ public class RandomCaptcha {
 
         graphics.dispose();
 
-        return outString;
+        System.out.println(captchaText);
+
+        return image;
     }
 
 }
