@@ -1,6 +1,8 @@
 package view;
 
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -76,6 +78,10 @@ public class SignUpMenuGUI extends Application {
     private static String captcha;
     private static int signUpLevel = 0;
 
+    ObservableList<String> answerChoiceList = FXCollections.observableArrayList("What was your first job?",
+            "What was your first pet’s name?",
+            "What is your social security number?");
+
 
     @FXML
     public void initialize() {
@@ -99,6 +105,8 @@ public class SignUpMenuGUI extends Application {
         //add listeners
         listenerUpdate();
 
+        //add choices
+        answerChoice.setItems(answerChoiceList);
 
     }
 
