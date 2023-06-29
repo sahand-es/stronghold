@@ -379,6 +379,9 @@ public class GameControl {
             return GameMessages.CANNOT_GO_THERE;
 
         selectedUnit.stopPatroling();
+        if (selectedUnit instanceof Soldier) {
+            ((Soldier) selectedUnit).freeAttackQueue();
+        }
         return GameMessages.SUCCESS;
     }
 

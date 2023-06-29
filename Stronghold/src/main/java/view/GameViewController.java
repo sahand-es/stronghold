@@ -50,7 +50,7 @@ public class GameViewController {
         GameViewController.scene = scene;
         GameViewController.miniMap = miniMap;
         mapTextureOptions = FXMLLoader.load(Objects.requireNonNull(MapPane.class.getResource(DataManager.CHANGE_TEXTURE_BOX)));
-        buildingScroll = FXMLLoader.load(Objects.requireNonNull(BuildingScroll.class.getResource("/fxml/building-scroll.fxml")));
+        buildingScroll = FXMLLoader.load(Objects.requireNonNull(BuildingScroll.class.getResource(DataManager.BUILDING_SCROLL_BOX)));
         allPersons = new Group();
         allBuildings = new Group();
         setKeys();
@@ -77,7 +77,7 @@ public class GameViewController {
                 } else if (keyEvent.getCode().equals(KeyCode.M)) {
                     removeNode(personControl);
                     try {
-                        personControl = FXMLLoader.load(this.getClass().getResource("/fxml/soldier-control-box.fxml"));
+                        personControl = FXMLLoader.load(this.getClass().getResource(DataManager.SOLDIER_CONTROL_BOX));
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
