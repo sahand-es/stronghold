@@ -4,13 +4,13 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<TabPane fx:id="tabs" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="211.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.fxmlcontroller.BuildingScroll">
+<TabPane fx:id="tabs" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="160.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.fxmlcontroller.BuildingScroll">
     <tabs>
         <Tab text="Extractor">
             <content>
                 <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="160.0" prefWidth="600.0">
                     <content>
-                        <HBox fx:id="hBox1" alignment="CENTER" prefHeight="146.0" prefWidth="600.0" spacing="20" />
+                        <HBox fx:id="hBox1" alignment="CENTER" prefHeight="140.0" prefWidth="600.0" spacing="20" />
                     </content>
                 </ScrollPane>
             </content>
@@ -19,7 +19,7 @@
             <content>
                 <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="160.0" prefWidth="600.0">
                     <content>
-                        <HBox fx:id="hBox" alignment="CENTER" prefHeight="139.0" prefWidth="600.0" spacing="20" />
+                        <HBox fx:id="hBox" alignment="CENTER" prefHeight="140.0" prefWidth="600.0" spacing="20" />
                     </content>
                 </ScrollPane>
             </content>
@@ -28,7 +28,7 @@
             <content>
                 <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="160.0" prefWidth="600.0">
                     <content>
-                        <HBox fx:id="hBox11" alignment="CENTER" prefHeight="148.0" prefWidth="599.0" spacing="20" />
+                        <HBox fx:id="hBox11" alignment="CENTER" prefHeight="140.0" prefWidth="599.0" spacing="20" />
                     </content>
                 </ScrollPane>
             </content>
@@ -37,7 +37,7 @@
             <content>
                 <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="160.0" prefWidth="600.0">
                     <content>
-                        <HBox fx:id="hBox111" alignment="CENTER" prefHeight="142.0" prefWidth="599.0" spacing="20" />
+                        <HBox fx:id="hBox111" alignment="CENTER" prefHeight="140.0" prefWidth="599.0" spacing="20" />
                     </content>
                 </ScrollPane>
             </content>
@@ -46,7 +46,7 @@
             <content>
                 <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="160.0" prefWidth="600.0">
                     <content>
-                        <HBox fx:id="hBox1111" alignment="CENTER" prefHeight="144.0" prefWidth="598.0" spacing="20" />
+                        <HBox fx:id="hBox1111" alignment="CENTER" prefHeight="140.0" prefWidth="598.0" spacing="20" />
                     </content>
                 </ScrollPane>
             </content>

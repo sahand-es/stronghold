@@ -33,6 +33,7 @@ public class ControlPanel {
         hBox = new HBox();
         hBox.setAlignment(Pos.CENTER);
         hBox.setPrefHeight(160);
+        hBox.setMaxHeight(160);
 
         try {
             buildingScroll = FXMLLoader.load(Objects.requireNonNull(
@@ -46,6 +47,7 @@ public class ControlPanel {
         VBox vBox = new VBox();
         vBox.setAlignment(Pos.CENTER);
         vBox.setSpacing(10);
+        vBox.setMaxHeight(160);
         vBox.setStyle("-fx-background-color: DARKGOLDENROD");
 
         Button optionButton = new Button("O");
