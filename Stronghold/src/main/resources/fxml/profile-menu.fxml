@@ -139,6 +139,11 @@
                </font>
             </Hyperlink>
             <ImageView fx:id="avatarView" fitHeight="118.0" fitWidth="142.0" layoutX="1101.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="messageLabel" alignment="CENTER" layoutX="436.0" layoutY="596.0" prefHeight="29.0" prefWidth="393.0" textFill="#d71323">
+               <font>
+                  <Font name="American Typewriter" size="20.0" />
+               </font>
+            </Label>
          </children></AnchorPane>
    </center>
 </BorderPane>

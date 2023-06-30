@@ -81,6 +81,7 @@ public class SignUpMenuGUI extends Application {
     private Button signButton;
     @FXML
     private Button nextButton;
+
     private static String captcha;
     private static int signUpLevel = 0;
 
