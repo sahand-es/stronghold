@@ -13,8 +13,7 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class LoginMenu
-{
+public class LoginMenu {
     private static int wrongAttempts ;
     public static void run() throws InterruptedException {
 

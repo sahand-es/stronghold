@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ProfileMenuGUI">
+   <left>
+      <VBox prefHeight="900.0" prefWidth="133.0" style="-fx-background-color: #263f73;" BorderPane.alignment="CENTER">
+         <children>
+            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#profileMenu" prefHeight="53.0" prefWidth="134.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Profile" textFill="WHITE">
+               <font>
+                  <Font name="American Typewriter" size="18.0" />
+               </font>
+            </Button>
+            <Button layoutX="10.0" layoutY="63.0" mnemonicParsing="false" onMouseClicked="#avatarMenu" prefHeight="53.0" prefWidth="134.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Avatar" textFill="WHITE">
+               <font>
+                  <Font name="American Typewriter" size="18.0" />
+               </font>
+            </Button>
+            <Button layoutX="10.0" layoutY="116.0" mnemonicParsing="false" onMouseClicked="#scoreBoard" prefHeight="53.0" prefWidth="134.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Scoreboard" textFill="WHITE">
+               <font>
+                  <Font name="American Typewriter" size="18.0" />
+               </font>
+            </Button>
+            <Button layoutX="10.0" layoutY="169.0" mnemonicParsing="false" onMouseClicked="#goToMainMenu" prefHeight="53.0" prefWidth="134.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Main Menu" textFill="WHITE">
+               <font>
+                  <Font name="American Typewriter" size="18.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+   </left>
+   <center>
+      <AnchorPane fx:id="anchorPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="passChangeButton" alignment="CENTER" contentDisplay="CENTER" layoutX="417.0" layoutY="366.0" mnemonicParsing="false" onAction="#changePass" prefHeight="44.0" prefWidth="203.0" style="-fx-background-color: #263f73;" text="Change" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="American Typewriter" size="24.0" />
+               </font>
+            </Button>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="555.0" layoutY="23.0" prefHeight="43.0" prefWidth="319.0" text="Profile Menu" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="American Typewriter" size="36.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="181.0" layoutY="147.0" prefHeight="43.0" prefWidth="219.0" text="Username:" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="American Typewriter" size="26.0" />
+               </font>
+            </Label>
+            <TextField fx:id="userLabel" alignment="CENTER" layoutX="418.0" layoutY="147.0" prefHeight="44.0" prefWidth="211.0" promptText="Username">
+               <font>
+                  <Font name="American Typewriter" size="24.0" />
+               </font>
+            </TextField>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="179.0" layoutY="218.0" prefHeight="43.0" prefWidth="219.0" text="Nickname:" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="American Typewriter" size="26.0" />
+               </font>
+            </Label>
+            <TextField fx:id="nickNameLabel" alignment="CENTER" layoutX="419.0" layoutY="219.0" prefHeight="44.0" prefWidth="211.0" promptText="Nickname">
+               <font>
+                  <Font name="American Typewriter" size="24.0" />
+               </font>
+            </TextField>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="175.0" layoutY="291.0" prefHeight="43.0" prefWidth="219.0" text="Email:" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="American Typewriter" size="26.0" />
+               </font>
+            </Label>
+            <TextField fx:id="emailLabel" alignment="CENTER" layoutX="420.0" layoutY="289.0" prefHeight="44.0" prefWidth="411.0" promptText="Email">
+               <font>
+                  <Font name="American Typewriter" size="24.0" />
+               </font>
+            </TextField>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="180.0" layoutY="366.0" prefHeight="43.0" prefWidth="219.0" text="Password:" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="American Typewriter" size="26.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="183.0" layoutY="480.0" prefHeight="43.0" prefWidth="219.0" text="Slogan:" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="American Typewriter" size="26.0" />
+               </font>
+            </Label>
+            <TextArea fx:id="sloganLabel" layoutX="418.0" layoutY="461.0" prefHeight="90.0" prefWidth="382.0" promptText="Slogan">
+               <font>
+                  <Font name="American Typewriter" size="24.0" />
+               </font>
+            </TextArea>
+            <Button fx:id="sloganChangeButton" alignment="CENTER" contentDisplay="CENTER" layoutX="863.0" layoutY="481.0" mnemonicParsing="false" onAction="#changeSlogan" prefHeight="44.0" prefWidth="203.0" style="-fx-background-color: #263f73;" text="Change" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="American Typewriter" size="24.0" />
+               </font>
+            </Button>
+            <Button fx:id="saveButton" alignment="CENTER" contentDisplay="CENTER" layoutX="546.0" layoutY="816.0" mnemonicParsing="false" onAction="#save" prefHeight="44.0" prefWidth="203.0" style="-fx-background-color: #263f73;" text="Save" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="American Typewriter" size="24.0" />
+               </font>
+            </Button>
+            <PasswordField fx:id="oldPass" alignment="CENTER" layoutX="212.0" layoutY="650.0" promptText="Old Password">
+               <font>
+                  <Font name="American Typewriter" size="18.0" />
+               </font>
+            </PasswordField>
+            <PasswordField fx:id="newPass" alignment="CENTER" layoutX="487.0" layoutY="649.0" promptText="New Password">
+               <font>
+                  <Font name="American Typewriter" size="18.0" />
+               </font>
+            </PasswordField>
+            <PasswordField fx:id="confirmPass" alignment="CENTER" layoutX="770.0" layoutY="648.0" promptText="Cofirm Password">
+               <font>
+                  <Font name="American Typewriter" size="18.0" />
+               </font>
+            </PasswordField>
+            <TextArea fx:id="newSloganField" layoutX="447.0" layoutY="701.0" prefHeight="87.0" prefWidth="382.0" promptText="New Slogan">
+               <font>
+                  <Font name="American Typewriter" size="24.0" />
+               </font>
+            </TextArea>
+            <ImageView fx:id="captchaView" fitHeight="83.0" fitWidth="213.0" layoutX="1058.0" layoutY="633.0" pickOnBounds="true" preserveRatio="true" />
+            <TextField fx:id="captchaField" alignment="CENTER" layoutX="1090.0" layoutY="757.0" prefHeight="39.0" prefWidth="158.0" promptText="Captcha">
+               <font>
+                  <Font name="American Typewriter" size="18.0" />
+               </font>
+            </TextField>
+            <Hyperlink fx:id="resetHyper" layoutX="1112.0" layoutY="720.0" onAction="#resetCaptcha" text="Reset Captcha" textFill="WHITE">
+               <font>
+                  <Font name="American Typewriter" size="15.0" />
+               </font>
+            </Hyperlink>
+            <ImageView fx:id="avatarView" fitHeight="118.0" fitWidth="142.0" layoutX="1101.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="messageLabel" alignment="CENTER" layoutX="436.0" layoutY="596.0" prefHeight="29.0" prefWidth="393.0" textFill="#d71323">
+               <font>
+                  <Font name="American Typewriter" size="20.0" />
+               </font>
+            </Label>
+         </children></AnchorPane>
+   </center>
+</BorderPane>

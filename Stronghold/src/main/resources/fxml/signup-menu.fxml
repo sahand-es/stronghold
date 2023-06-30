@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Bloom?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="900.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.SignUpMenuGUI">
+   <left>
+      <AnchorPane prefHeight="600.0" prefWidth="141.0" style="-fx-background-color: #263f73;" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" layoutX="12.0" layoutY="39.0" text="StrongHold" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="AppleMyungjo Regular" size="24.0" />
+               </font>
+               <effect>
+                  <Bloom threshold="0.5" />
+               </effect>
+            </Label>
+            <Label layoutX="17.0" layoutY="826.0" text="Armin GeramiRad" textFill="WHITE">
+               <font>
+                  <Font name="American Typewriter" size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="32.0" layoutY="868.0" text="Spring 2023" textFill="WHITE">
+               <font>
+                  <Font name="American Typewriter" size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="7.0" layoutY="843.0" text="Sahand Esmaeilzade" textFill="WHITE">
+               <font>
+                  <Font name="American Typewriter" size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="15.0" layoutY="809.0" text="Yousef MirYousefy" textFill="WHITE">
+               <font>
+                  <Font name="American Typewriter" size="13.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </left>
+   <center>
+      <AnchorPane fx:id="pane" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" layoutX="599.0" layoutY="27.0" text="SignUp Menu" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold Italic" size="28.0" />
+               </font>
+            </Label>
+            <TextField fx:id="username" alignment="CENTER" layoutX="547.0" layoutY="349.0" prefHeight="67.0" prefWidth="285.0" promptText="Username">
+               <font>
+                  <Font name="American Typewriter" size="36.0" />
+               </font>
+            </TextField>
+            <PasswordField fx:id="passwordPassField" alignment="CENTER" layoutX="575.0" layoutY="253.0" prefHeight="58.0" prefWidth="245.0" promptText="Password">
+               <font>
+                  <Font name="American Typewriter" size="24.0" />
+               </font>
+            </PasswordField>
+            <Button alignment="CENTER" layoutX="562.0" layoutY="807.0" mnemonicParsing="false" onAction="#back" prefHeight="51.0" prefWidth="228.0" style="-fx-background-color: #263f73;" text="Back" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="nextButton" alignment="CENTER" layoutX="561.0" layoutY="749.0" mnemonicParsing="false" onAction="#nextStep" prefHeight="48.0" prefWidth="229.0" style="-fx-background-color: #263f73;" text="Next Step" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="20.0" />
+               </font>
+            </Button>
+            <ImageView fx:id="captchaImageViewer" fitHeight="110.0" fitWidth="305.0" layoutX="526.0" layoutY="299.0" pickOnBounds="true" preserveRatio="true" />
+            <Hyperlink fx:id="resetCaptchaHyperLink" alignment="CENTER" contentDisplay="CENTER" layoutX="604.0" layoutY="417.0" onAction="#resetCaptcha" prefHeight="25.0" prefWidth="157.0" text="Reset Captcha" textFill="WHITE">
+               <font>
+                  <Font name="American Typewriter" size="16.0" />
+               </font>
+            </Hyperlink>
+            <TextField fx:id="captchaField" alignment="CENTER" layoutX="591.0" layoutY="455.0" prefHeight="26.0" prefWidth="181.0" promptText="Captcha">
+               <font>
+                  <Font name="American Typewriter" size="24.0" />
+               </font>
+            </TextField>
+            <PasswordField fx:id="passwordConfirmPassField" alignment="CENTER" layoutX="576.0" layoutY="338.0" prefHeight="59.0" prefWidth="244.0" promptText="Confirm Password">
+               <font>
+                  <Font name="American Typewriter" size="24.0" />
+               </font>
+            </PasswordField>
+            <Label fx:id="messageLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="371.0" layoutY="108.0" prefHeight="31.0" prefWidth="628.0" textFill="#e11818">
+               <font>
+                  <Font name="Arial Bold" size="24.0" />
+               </font>
+            </Label>
+            <TextField fx:id="email" alignment="CENTER" layoutX="504.0" layoutY="361.0" prefHeight="44.0" prefWidth="366.0" promptText="Email">
+               <font>
+                  <Font name="American Typewriter" size="24.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="nickname" alignment="CENTER" layoutX="546.0" layoutY="349.0" prefHeight="59.0" prefWidth="285.0" promptText="Nickname">
+               <font>
+                  <Font name="American Typewriter" size="36.0" />
+               </font>
+            </TextField>
+            <TextArea fx:id="slogan" layoutX="513.0" layoutY="340.0" prefHeight="62.0" prefWidth="359.0" promptText="Slogan">
+               <font>
+                  <Font name="American Typewriter" size="14.0" />
+               </font>
+            </TextArea>
+            <CheckBox fx:id="randomSloganCheck" layoutX="614.0" layoutY="414.0" mnemonicParsing="false" onAction="#randomSloganSetter" text="Random Slogan" textFill="WHITE">
+               <font>
+                  <Font name="American Typewriter" size="18.0" />
+               </font>
+            </CheckBox>
+            <CheckBox fx:id="randomPassCheck" layoutX="609.0" layoutY="451.0" mnemonicParsing="false" onAction="#randomPassSetter" text="Random Password" textFill="WHITE">
+               <font>
+                  <Font name="American Typewriter" size="18.0" />
+               </font>
+            </CheckBox>
+            <Button fx:id="signButton" alignment="CENTER" layoutX="562.0" layoutY="749.0" mnemonicParsing="false" onAction="#signUp" prefHeight="52.0" prefWidth="228.0" style="-fx-background-color: #263f73;" text="Sign Up" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="18.0" />
+               </font>
+            </Button>
+            <Label fx:id="userLabel" alignment="CENTER" layoutX="611.0" layoutY="281.0" text="Username:" textFill="WHITE">
+               <font>
+                  <Font name="American Typewriter" size="28.0" />
+               </font>
+            </Label>
+            <CheckBox fx:id="showPassCheck" layoutX="610.0" layoutY="417.0" mnemonicParsing="false" text="Show Password" textFill="WHITE">
+               <font>
+                  <Font name="American Typewriter" size="18.0" />
+               </font>
+            </CheckBox>
+            <TextField fx:id="passwordTextField" alignment="CENTER" layoutX="576.0" layoutY="254.0" prefHeight="56.0" prefWidth="244.0" promptText="Password">
+               <font>
+                  <Font name="American Typewriter" size="24.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="passwordConfirmTextField" alignment="CENTER" layoutX="575.0" layoutY="339.0" prefHeight="58.0" prefWidth="244.0" promptText="Confirm Password">
+               <font>
+                  <Font name="American Typewriter" size="24.0" />
+               </font>
+            </TextField>
+            <ChoiceBox fx:id="answerChoice" layoutX="371.0" layoutY="322.0" prefHeight="53.0" prefWidth="657.0" />
+            <TextField fx:id="answerField" alignment="CENTER" layoutX="371.0" layoutY="401.0" prefHeight="48.0" prefWidth="654.0" promptText="Answer">
+               <font>
+                  <Font name="American Typewriter" size="24.0" />
+               </font>
+            </TextField>
+            <Label fx:id="nicknameLabel" alignment="CENTER" layoutX="621.0" layoutY="291.0" text="Nickname:" textFill="WHITE">
+               <font>
+                  <Font name="American Typewriter" size="28.0" />
+               </font>
+            </Label>
+            <Label fx:id="emailLabel" alignment="CENTER" layoutX="621.0" layoutY="291.0" text="Email:" textFill="WHITE">
+               <font>
+                  <Font name="American Typewriter" size="28.0" />
+               </font>
+            </Label>
+            <TextArea fx:id="famousChart" layoutX="514.0" layoutY="114.0" prefHeight="185.0" prefWidth="359.0" promptText="Slogan">
+               <font>
+                  <Font name="American Typewriter" size="14.0" />
+               </font>
+            </TextArea>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

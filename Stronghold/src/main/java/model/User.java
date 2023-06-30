@@ -16,6 +16,8 @@ public class User {
     private int highScore;
     private final String securityAnswer;
 
+    private String avatarPath;
+
     public User(String username, String password, String nickname, String email, int securityQuestionNumber, String securityAnswer,String slogan) {
         this.username = username;
         this.nickname = nickname;
@@ -23,6 +25,7 @@ public class User {
         this.securityQuestionNumber = securityQuestionNumber;
         this.securityAnswer = securityAnswer;
         this.slogan = slogan;
+        this.avatarPath = RandomGenerators.randomAvatar();
         setPassword(password);
         Database.addUser(this);
     }
@@ -41,6 +44,10 @@ public class User {
 
     public String getSlogan() {
         return slogan;
+    }
+
+    public String getAvatarPath() {
+        return avatarPath;
     }
 
     public int getHighScore() {
@@ -76,6 +83,11 @@ public class User {
         DataManager.saver();
     }
 
+    public void setAvatarPath(String avatarPath) {
+        this.avatarPath = avatarPath;
+        DataManager.saver();
+    }
+
     public void setHighScore(int highScore) {
         this.highScore = highScore;
         DataManager.saver();
@@ -101,4 +113,10 @@ public class User {
         this.rank = rank;
         DataManager.saver();
     }
+
+
+    public int getScore() {
+        return score;
+    }
+
 }

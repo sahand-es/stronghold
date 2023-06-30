@@ -1,80 +1,41 @@
 [
   {
-    "username": "bluh",
-    "password": "e0de5e0d7c08bd4decf7df3053f80edb0cc34c06cee39f771ab85c3db2b9adcf",
-    "nickname": "duh",
-    "email": "asdfa@dsaf.com",
-    "securityQuestionNumber": 2,
+    "username": "Armin",
+    "password": "1761edfb1cd6eadd8c8ab217ab17460cb44400a6a367a4b33b64d36689910489",
+    "nickname": "a",
+    "email": "a@a.a",
+    "slogan": "",
+    "securityQuestionNumber": 0,
     "rank": 0,
     "score": 0,
-    "highScore": 0,
-    "securityAnswer": "bluh"
+    "highScore": 100,
+    "securityAnswer": "teaching",
+    "avatarPath": "/images/avatars/6.png"
   },
   {
-    "username": "bluhasdf",
-    "password": "e0de5e0d7c08bd4decf7df3053f80edb0cc34c06cee39f771ab85c3db2b9adcf",
-    "nickname": "nibba",
-    "email": "asdfa@dsakf.com",
-    "securityQuestionNumber": 1,
-    "rank": 0,
-    "score": 0,
-    "highScore": 0,
-    "securityAnswer": "bluh"
-  },
-  {
-    "username": "bluh",
-    "password": "e0de5e0d7c08bd4decf7df3053f80edb0cc34c06cee39f771ab85c3db2b9adcf",
-    "nickname": "duh",
-    "email": "newemail",
-    "securityQuestionNumber": 2,
-    "rank": 0,
-    "score": 0,
-    "highScore": 0,
-    "securityAnswer": "bluh"
-  },
-  {
-    "username": "bluhasdf",
-    "password": "e0de5e0d7c08bd4decf7df3053f80edb0cc34c06cee39f771ab85c3db2b9adcf",
-    "nickname": "nibba",
-    "email": "asdfa@dsakf.com",
-    "securityQuestionNumber": 1,
-    "rank": 0,
-    "score": 0,
-    "highScore": 0,
-    "securityAnswer": "bluh"
-  },
-  {
-    "username": "bluh",
-    "password": "5da7dd57905dca05ed787d6f1be93bc0e4d279bee43553c2e08874f38fda93b",
-    "nickname": "duh",
-    "email": "asdfa@dsaf.com",
-    "securityQuestionNumber": 2,
-    "rank": 0,
-    "score": 0,
-    "highScore": 0,
-    "securityAnswer": "bluh"
-  },
-  {
-    "username": "bluhasdf",
-    "password": "e0de5e0d7c08bd4decf7df3053f80edb0cc34c06cee39f771ab85c3db2b9adcf",
-    "nickname": "nibba",
-    "email": "asdfa@dsakf.com",
-    "securityQuestionNumber": 1,
-    "rank": 0,
-    "score": 0,
-    "highScore": 0,
-    "securityAnswer": "bluh"
-  },
-  {
-    "username": "ezmi_king",
-    "password": "4e96a77aa416443b2ea48870d0f09701b7f7b0b097d2a038af56101e39103da0",
-    "nickname": "king",
-    "email": "ali@gmail.com",
-    "slogan": "be name khoda",
+    "username": "Sousef",
+    "password": "1cdb37951ab1f9a6d27bc4a8f35aaeaa8d55a8e768669e23e4947d3033a52d7b",
+    "nickname": "sousis",
+    "email": "s@s.s",
+    "slogan": "Mustache Magic with Mammad - Let the Fun Begin!",
     "securityQuestionNumber": 0,
     "rank": 0,
     "score": 0,
     "highScore": 0,
-    "securityAnswer": "bokon"
+    "securityAnswer": "being Sousef",
+    "avatarPath": "/images/avatars/5.png"
+  },
+  {
+    "username": "jesus",
+    "password": "1e0b2ce36a01fbb3664e460fd0d0c3aeaff6d5efdf8e71fcf2c2e73cf68e63c9",
+    "nickname": "khesoos",
+    "email": "holy@bible.god",
+    "slogan": "Experience the Mustache Magic at Yousef\u0027s Big Funny Castles!",
+    "securityQuestionNumber": 0,
+    "rank": 0,
+    "score": 0,
+    "highScore": 500,
+    "securityAnswer": "prophet",
+    "avatarPath": "/images/avatars/8.png"
   }
 ]

@@ -2,15 +2,15 @@ package utility;
 import java.util.Random;
 
 import org.passay.*;
+import view.Captcha;
 
-public class RandomGenerators
-{
+public class RandomGenerators {
+
     /**
      *
      * @return random password that includes at least 1 of each [A-Z][a-z][0-9][!@#$&*%_~.] with length between 6-12
      */
-    public static String randomPassword()
-    {
+    public static String randomPassword() {
         LengthRule lengthRule = new LengthRule(6, 12);
         CharacterRule LCR = new CharacterRule(EnglishCharacterData.LowerCase, 1);
         CharacterRule UCR = new CharacterRule(EnglishCharacterData.UpperCase, 1);
@@ -26,8 +26,7 @@ public class RandomGenerators
      *
      * @return random slogan
      */
-    public static String randomSlogan()
-    {
+    public static String randomSlogan() {
         String[] slogans =
                 {
                         "Mustache Magic with Mammad - Let the Fun Begin!",
@@ -46,16 +45,21 @@ public class RandomGenerators
 
         return slogans[randomNumber(0, slogans.length - 1)];
     }
+    public static String randomAvatar() {
+        return "/images/avatars/" + randomNumber(1, 9) + ".png";
+    }
 
     /**
      * @return random 4-8 length number string
      */
-    public static String randomCaptcha()
-    {
+    //this part is used only in CLI mode
+    public static String randomCaptcha() {
         CharacterRule DCR = new CharacterRule(EnglishCharacterData.Digit, 1);
 
         return new PasswordGenerator().generatePassword(randomNumber(4,8), DCR);
     }
+
+
 
     /**
      *
