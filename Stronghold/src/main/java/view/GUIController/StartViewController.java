@@ -20,6 +20,7 @@ import utility.DataManager;
 import java.io.IOException;
 import java.net.ConnectException;
 import java.net.Socket;
+import java.util.HashMap;
 
 public class StartViewController extends Application {
     private BorderPane borderPane;
@@ -49,9 +50,6 @@ public class StartViewController extends Application {
         vBox.setAlignment(Pos.CENTER);
         vBox.getChildren().add(label1);
         borderPane.setBottom(vBox);
-
-
-
 
         FadeTransition fadeTransition = new FadeTransition();
         fadeTransition.setDuration(Duration.millis(2000));
@@ -85,14 +83,13 @@ public class StartViewController extends Application {
             label1.setOnKeyPressed(new EventHandler<KeyEvent>() {
                 @Override
                 public void handle(KeyEvent event) {
-
                     User user = DataManager.loadLoggedInUser();
 
                     try {
                         if (user == null){
                             new LoginMenuGUI().start(App.stage);
                         } else {
-                            Database.setCurrentUser(user);
+                            App.setCurrentUser(user);
                             new MainMenuViewController().start(App.stage);
                         }
                     } catch (Exception e) {
