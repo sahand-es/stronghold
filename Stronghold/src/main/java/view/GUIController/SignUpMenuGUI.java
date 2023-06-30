@@ -12,6 +12,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import model.App;
 import model.Database;
 import model.User;
 import utility.CheckFunctions;
@@ -528,7 +529,7 @@ public class SignUpMenuGUI extends Application {
         if(signUpLevel == -1){
             signUpLevel++;
             try {
-                new LoginMenuGUI().start(Database.stage);
+                new LoginMenuGUI().start(App.stage);
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
@@ -602,7 +603,7 @@ public class SignUpMenuGUI extends Application {
         alert.showAndWait();
 
         try {
-            new LoginMenuGUI().start(Database.stage);
+            new LoginMenuGUI().start(App.stage);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

@@ -9,6 +9,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import model.App;
 import model.Database;
 import model.User;
 import utility.DataManager;
@@ -161,7 +162,7 @@ public class LoginMenuGUI extends Application {
             }
 
             try {
-                new MainMenuViewController().start(Database.stage);
+                new MainMenuViewController().start(App.stage);
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
@@ -170,7 +171,7 @@ public class LoginMenuGUI extends Application {
 
     public void signUp() {
         try {
-            new SignUpMenuGUI().start(Database.stage);
+            new SignUpMenuGUI().start(App.stage);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

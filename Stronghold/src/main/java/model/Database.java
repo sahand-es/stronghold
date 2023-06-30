@@ -24,7 +24,7 @@ public class Database {
     private static Game currentGame;
     private static ArrayList<Game> games;
 
-    public static Stage stage;
+
 
     private static String copyBuilding;
 

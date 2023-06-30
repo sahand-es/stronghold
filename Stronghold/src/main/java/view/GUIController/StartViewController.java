@@ -12,6 +12,7 @@ import javafx.scene.layout.*;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import model.App;
 import model.Database;
 import model.User;
 import utility.DataManager;
@@ -51,14 +52,14 @@ public class StartViewController extends Application {
 
                 if (user == null){
                     try {
-                        new LoginMenuGUI().start(Database.stage);
+                        new LoginMenuGUI().start(App.stage);
                     } catch (Exception e) {
                         throw new RuntimeException(e);
                     }
                 } else {
                     Database.setCurrentUser(user);
                     try {
-                        new MainMenuViewController().start(Database.stage);
+                        new MainMenuViewController().start(App.stage);
                     } catch (Exception e) {
                         throw new RuntimeException(e);
                     }
@@ -87,7 +88,7 @@ public class StartViewController extends Application {
         stage.setScene(scene);
         stage.setFullScreen(true);
         stage.setResizable(false);
-        Database.stage = stage;
+        App.stage = stage;
         stage.show();
     }
 

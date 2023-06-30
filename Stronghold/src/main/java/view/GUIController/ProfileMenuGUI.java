@@ -12,6 +12,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import model.App;
 import model.Database;
 import model.User;
 import utility.CheckFunctions;
@@ -148,7 +149,7 @@ public class ProfileMenuGUI extends Application {
     }
 
     public void goToMainMenu(MouseEvent mouseEvent) throws Exception {
-        new MainMenuViewController().start(Database.stage);
+        new MainMenuViewController().start(App.stage);
     }
 
     public void changePass() {

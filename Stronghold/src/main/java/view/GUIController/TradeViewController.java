@@ -14,6 +14,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import model.App;
 import model.Database;
 import model.society.Trade;
 import view.shape.trade.MakeNewTradePanel;
@@ -86,7 +87,7 @@ public class TradeViewController extends Application {
             @Override
             public void handle(MouseEvent event) {
                 try {
-                    new MarketViewController().start(Database.stage);
+                    new MarketViewController().start(App.stage);
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
