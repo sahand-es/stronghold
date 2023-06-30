@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import org.apache.commons.lang3.time.DurationFormatUtils;
 import utility.DataManager;
@@ -47,6 +48,11 @@ public class MessageNode {
     }
 
     private void setAvatar() {
+        double radius = avatar.getFitHeight()/2;
+        Circle clip = new Circle(radius);
+        clip.setCenterY(avatar.getY() + radius);
+        clip.setCenterX(avatar.getX() + radius);
+        avatar.setClip(clip);
         avatar.setImage(new Image(message.getUserAvatarPath()));
     }
 

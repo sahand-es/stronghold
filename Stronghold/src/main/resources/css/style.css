@@ -1,0 +1,14 @@
+.text-font {
+    -fx-font-family: "Times New Roman", sans-serif;
+    -fx-font-size: 20;
+}
+.avatar {
+    -fx-background-radius: 50%;
+    -fx-border-radius: 50%;
+    -fx-border-color: black;
+}
+.message-background {
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-background-color: #b8860b;
+}

@@ -16,6 +16,7 @@ public class Message {
     private final String id;
     private String sendingTime;
     private String reactionPath;
+    // TODO: 6/30/2023 change it with username
     private String userAvatarPath = "file:src/main/resources/images/avatars/1.png";;
     private MessageStatus status;
 
@@ -23,7 +24,7 @@ public class Message {
         sendingTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm"));
         this.username = username;
         this.message = message;
-        this.status = MessageStatus.SENT;
+        this.status = MessageStatus.SEEN;
         id = SHA.shaString(message + String.valueOf(RandomGenerators.randomPassword()));
     }
     public String toJson() {
