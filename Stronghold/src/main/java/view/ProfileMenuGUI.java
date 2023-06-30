@@ -132,8 +132,9 @@ public class ProfileMenuGUI extends Application {
         passChangeButton.setVisible(false);
         sloganChangeButton.setVisible(false);
 
-        if (changingPass){
-            newPass.textProperty().addListener((observable, oldText, newText) -> {
+
+        newPass.textProperty().addListener((observable, oldText, newText) -> {
+            if (changingPass){
                 if(newText.length() < 6 ){
                     messageLabel.setText("Your Password must be more than 5 characters!");
                     saveButton.setVisible(false);
@@ -154,9 +155,10 @@ public class ProfileMenuGUI extends Application {
                     messageLabel.setText(null);
                     saveButton.setVisible(true);
                 }
-
-            });
-            confirmPass.textProperty().addListener((observable, oldText, newText) -> {
+            }
+        });
+        confirmPass.textProperty().addListener((observable, oldText, newText) -> {
+            if (changingPass){
                 if(newPass.getText().isEmpty() || oldPass.getText().isEmpty() || captchaField.getText().isEmpty()) {
                     messageLabel.setText("One field is empty!");
                     saveButton.setVisible(false);
@@ -172,8 +174,10 @@ public class ProfileMenuGUI extends Application {
                     }
 
                 }
-            });
-            captchaField.textProperty().addListener((observable, oldText, newText) -> {
+            }
+        });
+        captchaField.textProperty().addListener((observable, oldText, newText) -> {
+            if (changingPass){
                 if (!newText.equals(captcha)){
                     messageLabel.setText("The captcha is invalid!");
                     saveButton.setVisible(false);
@@ -186,12 +190,39 @@ public class ProfileMenuGUI extends Application {
                     messageLabel.setText(null);
                     saveButton.setVisible(true);
                 }
-            });
-        }
+            }
+        });
+
 
     }
 
-    public void changeSlogan(ActionEvent actionEvent) {
+    public void changeSlogan() {
+        changingSlogan = true;
+
+        newSloganField.setVisible(true);
+        newSloganField.setText(currentUser.getSlogan());
+
+        captchaView.setVisible(true);
+        captchaField.setVisible(true);
+        resetHyper.setVisible(true);
+
+        passChangeButton.setVisible(false);
+        sloganChangeButton.setVisible(false);
+
+
+        captchaField.textProperty().addListener((observable, oldText, newText) -> {
+            if(changingSlogan){
+                if (!newText.equals(captcha)){
+                    messageLabel.setText("The captcha is invalid!");
+                    saveButton.setVisible(false);
+                }
+                else{
+                    messageLabel.setText(null);
+                    saveButton.setVisible(true);
+                }
+            }
+        });
+
     }
 
     public void save() {
@@ -215,15 +246,40 @@ public class ProfileMenuGUI extends Application {
             }
 
             changingPass = false;
-            
+
             oldPass.setText(null);
             newPass.setText(null);
             confirmPass.setText(null);
+            captchaField.setText(null);
+            resetCaptcha();
+        }
+        else {
+            String newSlogan = newSloganField.getText();
+            currentUser.setSlogan(newSlogan);
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Successful!");
+            alert.setHeaderText("Change Info");
+            alert.setContentText("Slogan was changed successfully");
+            alert.showAndWait();
+
+            if (currentUser.getSlogan() != null)
+                sloganLabel.setText(currentUser.getSlogan());
+            else
+                sloganLabel.setText("Slogan is Empty!");
+            sloganLabel.setEditable(false);
+
+            changingSlogan = false;
+
+            newSloganField.setText(null);
+            captchaField.setText(null);
+            resetCaptcha();
         }
 
         oldPass.setVisible(false);
         newPass.setVisible(false);
         confirmPass.setVisible(false);
+
+        newSloganField.setVisible(false);
 
         captchaView.setVisible(false);
         captchaField.setVisible(false);
