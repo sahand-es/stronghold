@@ -10,15 +10,18 @@ public class Message {
     private final String username;
     private String message;
     private final String id;
+    private final long sendingTime;
+    private String reactionPath;
+    private String userAvatarPath;
 
     public Message(String message, String username) {
         this.username = username;
         this.message = message;
+        this.sendingTime = System.currentTimeMillis();
         id = SHA.shaString(message + String.valueOf(RandomGenerators.randomPassword()));
     }
     public String toJson() {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
-
         return gson.toJson(this);
     }
 
@@ -34,11 +37,19 @@ public class Message {
         return message;
     }
 
+    public long getSendingTime() {
+        return sendingTime;
+    }
+
     public boolean isThisMessageId(String id) {
         return id.equals(this.id);
     }
 
     public void editMessage(String message) {
         this.message = message;
+    }
+
+    public void setReactionPath(String reactionPath) {
+        this.reactionPath = reactionPath;
     }
 }
