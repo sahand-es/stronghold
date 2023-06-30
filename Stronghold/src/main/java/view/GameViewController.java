@@ -21,6 +21,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import model.Database;
+import model.Game;
 import model.environment.buildings.Building;
 import model.environment.buildings.ResourceExtractorBuilding;
 import model.environment.buildings.UnitMakerBuilding;
@@ -80,6 +81,9 @@ public class GameViewController {
         mainPane.getChildren().add(mapPane);
         addNode(controlPanel.gethBox(),0, Screen.getPrimary().getBounds().getHeight() - controlPanel.gethBox().getMaxHeight());
         setKeys();
+        for (Building building : Database.getCurrentGame().getAllBuildings()) {
+            addBuilding(building);
+        }
 
         mapPane.getChildren().addAll(allBuildings, allPersons);
     }
