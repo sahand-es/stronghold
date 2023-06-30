@@ -34,7 +34,7 @@ public class ControlPanel {
     private Government government;
 
     public ControlPanel() {
-        government = Database.getCurrentGame().getCurrentGovernment();
+        government = GameControl.getCurrentGovernment();
 
         hBox = new HBox();
         hBox.setAlignment(Pos.CENTER);

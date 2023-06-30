@@ -1,5 +1,6 @@
 package view.shape.government;
 
+import controller.GameControl;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;

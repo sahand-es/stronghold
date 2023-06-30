@@ -60,7 +60,7 @@ public class MarketControl
     }
 
     public static boolean checkBuy(String name,int amount){
-        Government government = Database.getCurrentGame().getCurrentGovernment();
+        Government government = GameControl.getCurrentGovernment();
 
         if(!ResourcesName.isValidName(name))
             return false;
@@ -80,7 +80,7 @@ public class MarketControl
     }
 
     public static boolean checkSell(String name,int amount){
-        Government government = Database.getCurrentGame().getCurrentGovernment();
+        Government government = GameControl.getCurrentGovernment();
 
         if(!ResourcesName.isValidName(name))
             return false;

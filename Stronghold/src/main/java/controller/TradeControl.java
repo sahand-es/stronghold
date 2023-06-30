@@ -28,7 +28,7 @@ public class TradeControl
         }
 
         ResourcesName resource = ResourcesName.getResourceByName(type);
-        Government government = Database.getCurrentGame().getCurrentGovernment();
+        Government government = GameControl.getCurrentGovernment();
 
         if (government.checkEnoughForTrade(resource,amount)){
             return TradeMessages.NOT_ENOUGH_RESOURCES;

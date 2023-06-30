@@ -1,5 +1,6 @@
 package view;
 
+import controller.GameControl;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -170,7 +171,7 @@ public class MarketViewController extends Application {
         buyPrice = 5;
         sellPrice = 3;
         for (ResourcesName resource : ResourcesName.foods) {
-            amount = 20; Database.getCurrentGame().getCurrentGovernment().getResource().getAmount(resource);
+            amount = 20; GameControl.getCurrentGovernment().getResource().getAmount(resource);
             vBox.getChildren().add(
                     new ResourceNode(resource, buyPrice, sellPrice, gold, amount,this).getStackPane()
             );
@@ -180,7 +181,7 @@ public class MarketViewController extends Application {
         buyPrice = 15;
         sellPrice = 10;
         for (ResourcesName resource : ResourcesName.Materials) {
-            amount = Database.getCurrentGame().getCurrentGovernment().getResource().getAmount(resource);
+            amount = GameControl.getCurrentGovernment().getResource().getAmount(resource);
             vBox.getChildren().add(
                     new ResourceNode(resource, buyPrice, sellPrice, gold, amount,this).getStackPane()
             );
@@ -189,7 +190,7 @@ public class MarketViewController extends Application {
         buyPrice = 20;
         sellPrice = 15;
         for (ResourcesName resource : ResourcesName.weapons) {
-            amount = Database.getCurrentGame().getCurrentGovernment().getResource().getAmount(resource);
+            amount = GameControl.getCurrentGovernment().getResource().getAmount(resource);
             vBox.getChildren().add(
                     new ResourceNode(resource, buyPrice, sellPrice, gold, amount,this).getStackPane()
             );

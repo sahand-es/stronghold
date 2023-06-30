@@ -1,5 +1,6 @@
 package view.shape.government;
 
+import controller.GameControl;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
@@ -105,7 +106,7 @@ public class ScribesReport {
     }
 
     public void updateValues(){
-        government = Database.getCurrentGame().getCurrentGovernment();
+        government = GameControl.getCurrentGovernment();
         setPopularityImage(government.getPopularity());
         governmentColor.setFill(government.getColor().getColor());
         popularityLabel.setText(String.valueOf(government.getPopularity()));
