@@ -50,5 +50,31 @@
     "highScore": 0,
     "securityAnswer": "bikar",
     "avatarPath": "/images/avatars/Barracks.png"
+  },
+  {
+    "username": "sahand",
+    "password": "e0de5e0d7c08bd4decf7df3053f80edb0cc34c06cee39f771ab85c3db2b9adcf",
+    "nickname": "sahand",
+    "email": "844sahand@gmail.com",
+    "slogan": "Mustache and the Sharif University Gang: Join the Fun Castle!",
+    "securityQuestionNumber": 0,
+    "rank": 0,
+    "score": 0,
+    "highScore": 0,
+    "securityAnswer": "bokon",
+    "avatarPath": "/images/avatars/6.png"
+  },
+  {
+    "username": "sahand",
+    "password": "e0de5e0d7c08bd4decf7df3053f80edb0cc34c06cee39f771ab85c3db2b9adcf",
+    "nickname": "sahand",
+    "email": "844sahand@gmail.com",
+    "slogan": "Experience the Magic of Armin: Big Fun Mustache Castles at Sharif University!",
+    "securityQuestionNumber": 0,
+    "rank": 0,
+    "score": 0,
+    "highScore": 0,
+    "securityAnswer": "bokon",
+    "avatarPath": "/images/avatars/6.png"
   }
 ]

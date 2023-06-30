@@ -10,6 +10,9 @@
         <module name="Stronghold" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Stronghold" target="14" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="GENERATE_NO_WARNINGS" value="true" />

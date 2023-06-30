@@ -8,6 +8,8 @@ module Stronghold {
     requires passay;
     requires java.desktop;
 
+    opens model.chat;
+
     exports model;
     opens model;
     exports model.map;
