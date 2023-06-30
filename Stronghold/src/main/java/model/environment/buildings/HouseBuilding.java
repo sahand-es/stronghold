@@ -41,8 +41,7 @@ public class HouseBuilding extends Building {
 
     @Override
     public void die(){
+        super.die();
         government.subtractPopulationCapacity(this.peopleCapacity);
-        government.removeBuilding(this);
-        this.getBlock().setEnvironment(null);
     }
 }

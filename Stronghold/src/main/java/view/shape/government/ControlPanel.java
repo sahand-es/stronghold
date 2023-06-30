@@ -1,5 +1,6 @@
 package view.shape.government;
 
+import controller.GameControl;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -91,6 +92,16 @@ public class ControlPanel {
         vBox.getChildren().add(undoButton);
 
         Button deleteButton = new Button("D");
+        deleteButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                if (GameControl.getSelectedBuilding() != null) {
+                    if (GameControl.getSelectedBuilding().getGovernment().equals(GameControl.getCurrentGovernment())) {
+                        GameControl.getSelectedBuilding().die();
+                    }
+                }
+            }
+        });
         //deleteButton.setPrefSize(18,18);
         deleteButton.setStyle("-fx-font: 12 sys ;-fx-background-color: #e6af29 ; -fx-border-color: #262115");
         vBox.getChildren().add(deleteButton);

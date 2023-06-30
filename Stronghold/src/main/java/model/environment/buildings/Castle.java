@@ -1,5 +1,6 @@
 package model.environment.buildings;
 
+import model.Database;
 import model.environment.buildings.enums.BuildingCategory;
 import model.environment.buildings.enums.BuildingName;
 import model.map.Block;
@@ -22,8 +23,11 @@ public class Castle extends Building {
 
     @Override
     public void die(){
-        government.removeBuilding(this);
-        this.getBlock().setEnvironment(null);
+        super.die();
         government.lose();
+        if (government.getGame().getGovernments().size() == 1) {
+        // TODO: 6/30/2023  end game
+
+        }
     }
 }

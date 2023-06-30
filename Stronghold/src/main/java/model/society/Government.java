@@ -331,4 +331,8 @@ public class Government {
     public int hashCode() {
         return Objects.hash(color);
     }
+
+    public Game getGame() {
+        return game;
+    }
 }

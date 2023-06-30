@@ -35,9 +35,8 @@ public class StorageBuilding extends Building {
 
     @Override
     public void die(){
+        super.die();
         government.addCapacity(name,-1 * this.capacity);
-        government.removeBuilding(this);
-        this.getBlock().setEnvironment(null);
     }
 
 
