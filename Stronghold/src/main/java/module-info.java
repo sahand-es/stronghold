@@ -25,4 +25,6 @@ module Stronghold {
     opens view.shape.government;
     exports view.shape.government.popularity;
     opens view.shape.government.popularity;
+    exports view.shape.profile;
+    opens view.shape.profile;
 }
