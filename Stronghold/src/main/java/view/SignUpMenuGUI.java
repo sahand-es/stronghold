@@ -596,7 +596,7 @@ public class SignUpMenuGUI extends Application {
                 Password + "\nEmail: " + Email + "\nSlogan: " + Slogan;
         alert.setContentText("Your account was made successfully" + context);
         alert.showAndWait();
-        
+
         //todo go to login menu
     }
 
