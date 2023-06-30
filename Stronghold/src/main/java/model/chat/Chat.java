@@ -36,6 +36,10 @@ public class Chat {
         return false;
     }
 
+    public boolean isThisChatId(String id) {
+        return id.equals(this.id);
+    }
+
     public String toJson() {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         return gson.toJson(this);
