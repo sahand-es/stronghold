@@ -15,14 +15,18 @@ public class App {
     private static DataInputStream dataInputStream;
     private static DataOutputStream dataOutputStream;
 
-    static {
-        try {
-            socket = new Socket("localhost",8000);
-            dataOutputStream = new DataOutputStream (socket.getOutputStream());
-            dataInputStream = new DataInputStream (socket.getInputStream());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    public static void setSocket(Socket socket) throws IOException {
+        App.socket = socket;
 
+        dataInputStream = new DataInputStream(socket.getInputStream());
+        dataOutputStream = new DataOutputStream(socket.getOutputStream());
+    }
+
+    public static void writeToServer(String data) throws IOException {
+        dataOutputStream.writeUTF(data);
+    }
+
+    public static String readFromServer() throws IOException {
+        return dataInputStream.readUTF();
     }
 }
