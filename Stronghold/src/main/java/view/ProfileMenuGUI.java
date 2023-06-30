@@ -18,6 +18,7 @@ import model.Database;
 import model.User;
 import utility.CheckFunctions;
 import utility.RandomCaptcha;
+import view.shape.profile.RankScroll;
 
 import java.io.File;
 import java.io.IOException;
@@ -145,7 +146,8 @@ public class ProfileMenuGUI extends Application {
         }
     }
 
-    public void scoreBoard(MouseEvent mouseEvent) {
+    public void scoreBoard() {
+        borderPane.setCenter(new RankScroll().getScrollPane());
     }
 
     public void goToMainMenu(MouseEvent mouseEvent) {
