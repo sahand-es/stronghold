@@ -27,6 +27,8 @@ public class Chat {
     }
 
     public boolean haveAccess(String username) {
+        if (chatType == ChatType.PUBLIC)
+            return true;
         for (String user : users) {
             if (user.equals(username))
                 return true;
@@ -41,15 +43,5 @@ public class Chat {
 
     public static Chat fromJson(String json) {
         return new Gson().fromJson(json, new TypeToken<Chat>(){}.getType());
-    }
-
-    @Override
-    public String toString() {
-        return "Chat{" +
-                "messages=" + messages +
-                ", users=" + users +
-                ", id='" + id + '\'' +
-                ", chatType=" + chatType +
-                '}';
     }
 }
