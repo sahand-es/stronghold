@@ -69,13 +69,17 @@ public class Government {
         this.popularity = popularity;
     }
 
+    public void updatePopularityRate(){
+        popularity += 4 * foodRate;
+        popularity += calcPopularityOfTaxRate(taxRate);
+        popularity += fearRate;
+    }
     public int getFoodRate() {
         return foodRate;
     }
 
     public void setFoodRate(int foodRate) {
         this.foodRate = foodRate;
-        popularity += 4 * foodRate;
     }
 
     public int getTaxRate() {
@@ -84,7 +88,6 @@ public class Government {
 
     public void setTaxRate(int taxRate) {
         this.taxRate = taxRate;
-        popularity += calcPopularityOfTaxRate(taxRate);
     }
 
     public int getFearRate() {
@@ -93,7 +96,6 @@ public class Government {
 
     public void setFearRate(int fearRate) {
         this.fearRate = fearRate;
-        popularity += fearRate;
     }
 
 

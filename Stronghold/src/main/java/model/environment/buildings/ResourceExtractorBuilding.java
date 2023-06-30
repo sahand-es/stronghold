@@ -54,8 +54,7 @@ public class ResourceExtractorBuilding extends Building {
         HashMap<ResourcesName,Integer> extractPrice;
         HashMap<ResourcesName,Integer> product;
         for (ResourcesName resource : extractedResources) {
-            if (government.getCapacity(resource) < government.getResource().getAmount(resource))
-                rate = 0;
+            //if (government.getCapacity(resource) < government.getResource().getAmount(resource)) rate = 0;
 
             extractPrice = ResourceHolder.getResourcePrice(resource);
             product = new HashMap<>();

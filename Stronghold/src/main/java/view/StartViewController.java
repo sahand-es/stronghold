@@ -57,7 +57,7 @@ public class StartViewController extends Application {
 
 
         FadeTransition fadeTransition = new FadeTransition();
-        fadeTransition.setDuration(Duration.millis(7000));
+        fadeTransition.setDuration(Duration.millis(2000));
         fadeTransition.setFromValue(0.0);
         fadeTransition.setToValue(1.0);
         fadeTransition.setNode(label);

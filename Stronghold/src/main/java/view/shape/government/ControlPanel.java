@@ -90,6 +90,12 @@ public class ControlPanel {
         //undoButton.setPrefSize(18,18);
         undoButton.setStyle("-fx-font: 12 sys ;-fx-background-color: #e6af29 ; -fx-border-color: #262115");
         vBox.getChildren().add(undoButton);
+        undoButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                update();
+            }
+        });
 
         Button deleteButton = new Button("D");
         deleteButton.setOnMouseClicked(new EventHandler<MouseEvent>() {

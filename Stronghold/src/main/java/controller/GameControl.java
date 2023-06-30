@@ -542,27 +542,39 @@ public class GameControl {
     }
 
     private static void extractControl() {
-        for (Building building : currentGovernment.getBuildings()) {
-            if (building instanceof ResourceExtractorBuilding) {
-                ((ResourceExtractorBuilding) building).extract();
+        for (Government government : game.getGovernments()) {
+            for (Building building : government.getBuildings()) {
+                if (building instanceof ResourceExtractorBuilding) {
+                    ((ResourceExtractorBuilding) building).extract();
+                }
             }
         }
     }
 
     private static void giveFood() {
-        if (currentGovernment.getResource().getFoodAmount() < currentGovernment.foodUsage()) {
-            currentGovernment.setFoodRate(-2);
-        } else {
-            currentGovernment.getResource().payFood(currentGovernment.foodUsage());
-            currentGovernment.addPopularity(currentGovernment.getResource().getFoodDiversity());
+        for (Government government : game.getGovernments()) {
+            if (government.getResource().getFoodAmount() < government.foodUsage()) {
+                currentGovernment.setFoodRate(-2);
+            } else {
+                government.getResource().payFood(government.foodUsage());
+                government.addPopularity(government.getResource().getFoodDiversity());
+            }
         }
     }
 
     private static void getTax() {
-        if (currentGovernment.getResource().getGold() < -1 * currentGovernment.calcTax()) {
-            currentGovernment.setTaxRate(0);
-        } else {
-            currentGovernment.getResource().addGold(currentGovernment.calcTax());
+        for (Government government : game.getGovernments()) {
+            if (government.getResource().getGold() < -1 * government.calcTax()) {
+                government.setTaxRate(0);
+            } else {
+                government.getResource().addGold(government.calcTax());
+            }
+        }
+    }
+
+    private static void updatePopularity(){
+        for (Government government : game.getGovernments()) {
+            government.updatePopularityRate();
         }
     }
 
@@ -672,10 +684,12 @@ public class GameControl {
 
 
     public static void nextTurn() {
-        giveFood();
-        getTax();
-        extractControl();
+
         if (game.goToNextTurn()) {
+            giveFood();
+            getTax();
+            extractControl();
+            updatePopularity();
             moveAllUnits();
             attackControl();
             setTimeline();
