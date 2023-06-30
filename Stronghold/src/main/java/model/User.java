@@ -16,6 +16,8 @@ public class User {
     private int highScore;
     private final String securityAnswer;
 
+    private String avatarPath;
+
     public User(String username, String password, String nickname, String email, int securityQuestionNumber, String securityAnswer,String slogan) {
         this.username = username;
         this.nickname = nickname;
@@ -23,6 +25,7 @@ public class User {
         this.securityQuestionNumber = securityQuestionNumber;
         this.securityAnswer = securityAnswer;
         this.slogan = slogan;
+        this.avatarPath = ;
         setPassword(password);
         Database.addUser(this);
     }

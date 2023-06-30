@@ -5,19 +5,26 @@ import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.Database;
 import model.User;
 import utility.CheckFunctions;
 import utility.RandomCaptcha;
 
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Objects;
 
 public class ProfileMenuGUI extends Application {
@@ -58,6 +65,7 @@ public class ProfileMenuGUI extends Application {
     @FXML
     private Label messageLabel;
     private String captcha;
+    private Stage thisStage;
 
     private Boolean changingPass = false;
     private Boolean changingSlogan = false;
@@ -106,10 +114,30 @@ public class ProfileMenuGUI extends Application {
     }
 
 
-    public void profileMenu(MouseEvent mouseEvent) {
+    public void profileMenu() {
+        borderPane.setCenter(anchorPane);
     }
 
-    public void avatarMenu(MouseEvent mouseEvent) {
+    public void avatarMenu() throws IOException {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Select Profile Image");
+        File selectedFile = fileChooser.showOpenDialog(thisStage);
+        if (selectedFile != null) {
+            //copy file
+            String profileImagePath = selectedFile.getAbsolutePath();
+            String resourcesPath = "src/main/resources/images/avatars/";
+            Path source = Paths.get(profileImagePath);
+            Path destination = Paths.get(resourcesPath + source.getFileName());
+            if (!Files.exists(destination)){
+                Files.copy(source, destination);
+            }
+
+            //set image and initialize checkboxes
+            Image profileImage = new Image(selectedFile.toURI().toString());
+            String imagePath = "/images/" + source.getFileName();
+            //currentUser.setImage(imagePath);
+            avatarView.setImage(profileImage);
+        }
     }
 
     public void scoreBoard(MouseEvent mouseEvent) {
@@ -303,6 +331,7 @@ public class ProfileMenuGUI extends Application {
         primaryStage.setScene(scene);
         primaryStage.setFullScreen(true);
         primaryStage.show();
+        thisStage = primaryStage;
     }
 
 
