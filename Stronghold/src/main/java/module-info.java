@@ -7,9 +7,10 @@ module Stronghold {
     requires org.jetbrains.annotations;
     requires passay;
     requires java.desktop;
+    requires org.apache.commons.lang3;
 
+    exports model.chat;
     opens model.chat;
-
     exports model;
     opens model;
     exports model.map;

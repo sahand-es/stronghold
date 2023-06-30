@@ -23,21 +23,6 @@ public class GUITest extends Application {
         stage.setMaximized(true);
         stage.setFullScreen(true);
 
-
-        Map map = new Map(50, 50);
-        MapPane mapPane = new MapPane(map);
-
-
-
-        Scene scene;
-
-        Game game = new Game(map, 2);
-        Government g1 = game.getGovernments().get(0);
-        Government g2 = game.getGovernments().get(1);
-        Database.setCurrentGame(game);
-
-        GameControl.setGame(game);
-
         stage.setScene(GameViewController.getScene());
         stage.show();
     }

@@ -6,18 +6,24 @@ import com.google.gson.reflect.TypeToken;
 import utility.RandomGenerators;
 import utility.SHA;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Message {
     private final String username;
     private String message;
     private final String id;
-    private final long sendingTime;
+    private String sendingTime;
     private String reactionPath;
-    private String userAvatarPath;
+    private String userAvatarPath = "file:src/main/resources/images/avatars/1.png";;
+    private MessageStatus status;
 
     public Message(String message, String username) {
+        sendingTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm"));
         this.username = username;
         this.message = message;
-        this.sendingTime = System.currentTimeMillis();
+        this.status = MessageStatus.SENT;
         id = SHA.shaString(message + String.valueOf(RandomGenerators.randomPassword()));
     }
     public String toJson() {
@@ -37,8 +43,24 @@ public class Message {
         return message;
     }
 
-    public long getSendingTime() {
+    public String getReactionPath() {
+        return reactionPath;
+    }
+
+    public String getUserAvatarPath() {
+        return userAvatarPath;
+    }
+
+    public String getSendingTime() {
         return sendingTime;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public MessageStatus getStatus() {
+        return status;
     }
 
     public boolean isThisMessageId(String id) {
