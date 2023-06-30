@@ -17,6 +17,7 @@ import model.Database;
 import model.GUITest;
 import model.Game;
 import model.map.Map;
+import utility.DataManager;
 
 
 public class MainMenuViewController extends Application {
@@ -111,7 +112,11 @@ public class MainMenuViewController extends Application {
         profileMenuButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                //TODO
+                try {
+                    new ProfileMenuGUI().start(Database.stage);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -124,7 +129,12 @@ public class MainMenuViewController extends Application {
         logoutButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                //TODO
+                try {
+                    DataManager.saveLoggedIn(null);
+                    new LoginMenuGUI().start(Database.stage);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -268,7 +278,6 @@ public class MainMenuViewController extends Application {
 
         numberOfPlayersMessage.setText("");
 
-        //TODO start the game
         Map map = new Map(s,s);
         Game game = new Game(map , n);
 

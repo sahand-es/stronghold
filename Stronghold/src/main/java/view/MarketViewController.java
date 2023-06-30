@@ -33,16 +33,6 @@ public class MarketViewController extends Application {
     private int width;
     private int height;
 
-    public static void main(String[] args) {
-        //TODO connect to other Menus.
-        Map map = new Map(100,100);
-        Game game = new Game(map , 1);
-
-        Database.setCurrentMap(map);
-        Database.setCurrentGame(game);
-
-        launch();
-    }
 
     @Override
     public void start(Stage stage) throws Exception {

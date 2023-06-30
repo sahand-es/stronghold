@@ -71,9 +71,7 @@ public class ProfileMenuGUI extends Application {
     private Boolean changingPass = false;
     private Boolean changingSlogan = false;
 
-    //todo get current User
-    //private User currentUser = Database.getCurrentUser();
-    private User currentUser = Database.getUserByUsername("jesus");
+    private User currentUser = Database.getCurrentUser();
 
     @FXML
     public void initialize() {
@@ -150,7 +148,8 @@ public class ProfileMenuGUI extends Application {
         borderPane.setCenter(new RankScroll().getScrollPane());
     }
 
-    public void goToMainMenu(MouseEvent mouseEvent) {
+    public void goToMainMenu(MouseEvent mouseEvent) throws Exception {
+        new MainMenuViewController().start(Database.stage);
     }
 
     public void changePass() {

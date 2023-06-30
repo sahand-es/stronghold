@@ -116,7 +116,7 @@ public class SignUpMenuGUI extends Application {
         answerChoice.setItems(answerChoiceList);
         answerChoice.setValue(answerChoiceList.get(0));
 
-        //todo add famous slogan
+
         famousChart.setText("Most Used Slogans:\n" + Database.top5FamousSlogan());
         famousChart.setEditable(false);
     }
@@ -528,7 +528,11 @@ public class SignUpMenuGUI extends Application {
         signUpLevel--;
         if(signUpLevel == -1){
             signUpLevel++;
-            //todo go back to login menu
+            try {
+                new LoginMenuGUI().start(Database.stage);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         }
         visibilityUpdate();
         listenerUpdate();
@@ -598,7 +602,11 @@ public class SignUpMenuGUI extends Application {
         alert.setContentText("Your account was made successfully" + context);
         alert.showAndWait();
 
-        //todo go to login menu
+        try {
+            new LoginMenuGUI().start(Database.stage);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
 

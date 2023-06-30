@@ -15,6 +15,8 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.Database;
+import model.User;
+import utility.DataManager;
 
 public class StartViewController extends Application {
     private BorderPane borderPane;
@@ -46,10 +48,22 @@ public class StartViewController extends Application {
         label1.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
-                try {
-                    new MainMenuViewController().start(Database.stage);
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
+
+                User user = DataManager.loadLoggedInUser();
+
+                if (user == null){
+                    try {
+                        new LoginMenuGUI().start(Database.stage);
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                } else {
+                    Database.setCurrentUser(user);
+                    try {
+                        new MainMenuViewController().start(Database.stage);
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
                 }
             }
         });

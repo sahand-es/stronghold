@@ -159,16 +159,25 @@ public class LoginMenuGUI extends Application {
             if(stayLoggedCheckBox.isSelected()){
                 DataManager.saveLoggedIn(Database.getCurrentUser());
             }
-            //todo go to main menu
+
+            try {
+                new MainMenuViewController().start(Database.stage);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 
     public void signUp() {
-        //todo change menu to signup
+        try {
+            new SignUpMenuGUI().start(Database.stage);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void forgotPassword() {
-        //todo change menu to forgot menu
+
     }
 
     public void resetCaptcha() {

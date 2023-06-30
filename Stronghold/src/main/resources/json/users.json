@@ -37,5 +37,18 @@
     "highScore": 500,
     "securityAnswer": "prophet",
     "avatarPath": "/images/avatars/8.png"
+  },
+  {
+    "username": "test233",
+    "password": "35f27c4f26635b3c41171a874de1e03f3a9ecaabbfb8c7f1c9e04811231b2728",
+    "nickname": "nigger",
+    "email": "niga@niger.nig",
+    "slogan": "Embrace Fun with You: hahah",
+    "securityQuestionNumber": 0,
+    "rank": 0,
+    "score": 0,
+    "highScore": 0,
+    "securityAnswer": "bikar",
+    "avatarPath": "/images/avatars/Barracks.png"
   }
 ]
