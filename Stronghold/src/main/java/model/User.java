@@ -25,7 +25,7 @@ public class User {
         this.securityQuestionNumber = securityQuestionNumber;
         this.securityAnswer = securityAnswer;
         this.slogan = slogan;
-        this.avatarPath = ;
+        this.avatarPath = RandomGenerators.randomAvatar();
         setPassword(password);
         Database.addUser(this);
     }
@@ -44,6 +44,10 @@ public class User {
 
     public String getSlogan() {
         return slogan;
+    }
+
+    public String getAvatarPath() {
+        return avatarPath;
     }
 
     public int getHighScore() {
@@ -76,6 +80,11 @@ public class User {
 
     public void setSlogan(String slogan) {
         this.slogan = slogan;
+        DataManager.saver();
+    }
+
+    public void setAvatarPath(String avatarPath) {
+        this.avatarPath = avatarPath;
         DataManager.saver();
     }
 

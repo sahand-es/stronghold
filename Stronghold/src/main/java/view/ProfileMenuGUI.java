@@ -72,7 +72,7 @@ public class ProfileMenuGUI extends Application {
 
     //todo get current User
     //private User currentUser = Database.getCurrentUser();
-    private User currentUser = Database.getUserByUsername("Armin");
+    private User currentUser = Database.getUserByUsername("jesus");
 
     @FXML
     public void initialize() {
@@ -111,6 +111,11 @@ public class ProfileMenuGUI extends Application {
         captcha = RandomCaptcha.generateString();
         Image captchaImage = SwingFXUtils.toFXImage(RandomCaptcha.generateImage(captcha), null);
         captchaView.setImage(captchaImage);
+
+        //load avatar
+        String path = String.valueOf(LoginMenu.class.getResource(currentUser.getAvatarPath()));
+        Image avatar = new Image(path);
+        avatarView.setImage(avatar);
     }
 
 
@@ -134,8 +139,8 @@ public class ProfileMenuGUI extends Application {
 
             //set image and initialize checkboxes
             Image profileImage = new Image(selectedFile.toURI().toString());
-            String imagePath = "/images/" + source.getFileName();
-            //currentUser.setImage(imagePath);
+            String imagePath = "/images/avatars/" + source.getFileName();
+            currentUser.setAvatarPath(imagePath);
             avatarView.setImage(profileImage);
         }
     }

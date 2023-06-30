@@ -92,8 +92,12 @@ public class Database {
             if (count >= 5) {
                 break;
             }
-            count++;
-            output += count + " :" + entry.getKey() + "    count: " + entry.getValue() + "\n";
+
+            if(entry.getKey() != ""){
+                output += count + " :" + entry.getKey() + "    count: " + entry.getValue() + "\n";
+                count++;
+            }
+
         }
 
         return output;
