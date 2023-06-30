@@ -44,6 +44,7 @@ public class Database {
 
     public static void addUser(User user) {
         users.add(user);
+        DataManager.saveUsers();
     }
 
     public static User getUserByUsername(String username) {

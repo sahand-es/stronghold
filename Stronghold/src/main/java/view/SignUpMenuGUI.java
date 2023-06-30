@@ -14,10 +14,13 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import model.Database;
+import model.User;
 import utility.CheckFunctions;
 import utility.RandomCaptcha;
+import utility.RandomGenerators;
 
 import java.net.URL;
+import java.util.HashMap;
 import java.util.Objects;
 
 public class SignUpMenuGUI extends Application {
@@ -469,7 +472,7 @@ public class SignUpMenuGUI extends Application {
                 randomSloganCheck.setVisible(true);
                 famousChart.setVisible(true);
                 signButton.setVisible(false);
-                nextButton.setVisible(false);
+                nextButton.setVisible(true);
                 answerField.setVisible(false);
                 answerChoice.setVisible(false);
                 break;
@@ -544,9 +547,56 @@ public class SignUpMenuGUI extends Application {
         listenerUpdate();
     }
 
+    //made fore phase3 the new User must be deleted
+    public HashMap<String,String> extract(){
+        HashMap<String,String> output = new HashMap<>();
+        String Username = username.getText();
+        String Password = randomPassCheck.isSelected() ? RandomGenerators.randomPassword() : passwordPassField.getText();
+        String Nickname = nickname.getText();
+        String Email = email.getText();
+        String Slogan = randomSloganCheck.isSelected() ? RandomGenerators.randomSlogan() : slogan.getText();
+        int questionNUmber;
+        String Answer = answerField.getText();
+
+        Object value = answerChoice.getValue();
+        if (value.equals("What was your first job?")) {
+            questionNUmber = 0;
+        } else if (value.equals("What was your first pet’s name?")) {
+            questionNUmber = 1;
+        } else{
+            questionNUmber = 2;
+        }
+
+        output.put("username", Username);
+        output.put("password", Password);
+        output.put("nickname", Nickname);
+        output.put("email",Email);
+        output.put("slogan",Slogan);
+        output.put("questionNUmber", String.valueOf(questionNUmber));
+        output.put("answer",Answer);
+        return output;
+    }
+
     public void signUp() {
-        //todo new user
-        //todo give success alert with info
+        HashMap<String,String> userData = extract();
+        String Username = userData.get("username");
+        String Password = userData.get("password");
+        String Nickname = userData.get("nickname");
+        String Email = userData.get("email");
+        String Slogan = userData.get("slogan");
+        int questionNUmber = Integer.parseInt(userData.get("questionNUmber"));
+        String Answer = userData.get("answer");
+
+        new User(Username,Password,Nickname,Email,questionNUmber,Answer,Slogan);
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Successful!");
+        alert.setHeaderText("SignUp Info");
+        String context = "\nUsername: " + Username + "\nPassword: " +
+                Password + "\nEmail: " + Email + "\nSlogan: " + Slogan;
+        alert.setContentText("Your account was made successfully" + context);
+        alert.showAndWait();
+        
         //todo go to login menu
     }
 
