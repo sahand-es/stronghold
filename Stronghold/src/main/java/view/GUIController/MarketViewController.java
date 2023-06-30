@@ -118,7 +118,7 @@ public class MarketViewController extends Application {
             public void handle(MouseEvent event) {
                 ResourceNode.clearAllResourceNodes();
                 try {
-                    new GameMenuApplication().start(Database.stage);
+                    new GameMenuGUI().start(Database.stage);
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
