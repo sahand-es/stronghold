@@ -113,4 +113,10 @@ public class User {
         this.rank = rank;
         DataManager.saver();
     }
+
+
+    public int getScore() {
+        return score;
+    }
+
 }

@@ -18,4 +18,6 @@ module Stronghold {
     opens view.fxmlcontroller;
     exports view;
     opens view;
+    exports view.shape.profile;
+    opens view.shape.profile;
 }
