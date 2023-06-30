@@ -177,10 +177,4 @@ public class ResourceHolder {
                 ", howManyFor1Price=" + howManyFor1Price +
                 "}\n";
     }
-
-    public static void main(String[] args) {
-        Weapon weapon;
-        Armour armour;
-        System.out.println(ALL_RESOURCE_HOLDERS);
-    }
 }
