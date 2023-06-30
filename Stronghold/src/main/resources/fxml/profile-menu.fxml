@@ -42,7 +42,7 @@
    <center>
       <AnchorPane fx:id="anchorPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="passChangeButton" alignment="CENTER" contentDisplay="CENTER" layoutX="730.0" layoutY="365.0" mnemonicParsing="false" onAction="#changePass" prefHeight="44.0" prefWidth="203.0" style="-fx-background-color: #263f73;" text="Change" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="passChangeButton" alignment="CENTER" contentDisplay="CENTER" layoutX="417.0" layoutY="366.0" mnemonicParsing="false" onAction="#changePass" prefHeight="44.0" prefWidth="203.0" style="-fx-background-color: #263f73;" text="Change" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="American Typewriter" size="24.0" />
                </font>
@@ -87,11 +87,6 @@
                   <Font name="American Typewriter" size="26.0" />
                </font>
             </Label>
-            <TextField fx:id="passLabel" alignment="CENTER" layoutX="418.0" layoutY="364.0" prefHeight="44.0" prefWidth="211.0" promptText="Password">
-               <font>
-                  <Font name="American Typewriter" size="24.0" />
-               </font>
-            </TextField>
             <Label alignment="CENTER" contentDisplay="CENTER" layoutX="183.0" layoutY="480.0" prefHeight="43.0" prefWidth="219.0" text="Slogan:" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="American Typewriter" size="26.0" />

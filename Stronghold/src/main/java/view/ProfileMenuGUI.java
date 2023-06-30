@@ -36,8 +36,6 @@ public class ProfileMenuGUI extends Application {
     @FXML
     private TextField emailLabel;
     @FXML
-    private TextField passLabel;
-    @FXML
     private TextArea sloganLabel;
     @FXML
     private TextArea newSloganField;
@@ -56,10 +54,31 @@ public class ProfileMenuGUI extends Application {
     @FXML
     private Hyperlink resetHyper;
 
+    private String captcha;
 
 
     @FXML
     public void initialize() {
+        //load backGround image
+        Image image = new Image(
+                Objects.requireNonNull(MarketViewController.class.getResource(
+                        "/images/backgrounds/profile-menu-background.jpg")).toExternalForm()
+        );
+        BackgroundImage backgroundFill = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,BackgroundSize.DEFAULT);
+        Background background = new Background(backgroundFill);
+        anchorPane.setBackground(background);
+
+        saveButton.setVisible(false);
+        oldPass.setVisible(false);
+        newPass.setVisible(false);
+        confirmPass.setVisible(false);
+        newSloganField.setVisible(false);
+        captchaView.setVisible(false);
+        captchaField.setVisible(false);
+        resetHyper.setVisible(false);
+
+
 
     }
 
