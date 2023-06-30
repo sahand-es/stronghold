@@ -1,4 +1,4 @@
-package view;
+package view.GUIController;
 
 import controller.GameControl;
 import javafx.application.Application;
@@ -14,7 +14,6 @@ import javafx.scene.layout.*;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import model.Database;
-import model.GUITest;
 import model.Game;
 import model.map.Map;
 import utility.DataManager;

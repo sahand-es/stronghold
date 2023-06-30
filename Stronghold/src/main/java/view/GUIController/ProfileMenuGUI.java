@@ -1,11 +1,9 @@
-package view;
+package view.GUIController;
 
 import javafx.application.Application;
 import javafx.embed.swing.SwingFXUtils;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -18,6 +16,7 @@ import model.Database;
 import model.User;
 import utility.CheckFunctions;
 import utility.RandomCaptcha;
+import view.LoginMenu;
 import view.shape.profile.RankScroll;
 
 import java.io.File;

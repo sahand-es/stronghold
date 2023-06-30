@@ -1,4 +1,4 @@
-package view;
+package view.GUIController;
 
 import controller.GameControl;
 import javafx.application.Application;
@@ -16,8 +16,6 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import model.Database;
-import model.Game;
-import model.map.Map;
 import model.resource.ResourcesName;
 import view.shape.trade.ResourceNode;
 

@@ -1,4 +1,4 @@
-package view;
+package view.GUIController;
 
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
@@ -7,10 +7,8 @@ import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Duration;

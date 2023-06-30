@@ -14,7 +14,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import model.society.Trade;
-import view.TradeViewController;
+import view.GUIController.TradeViewController;
 import view.enums.messages.TradeMessages;
 
 import java.util.ArrayList;

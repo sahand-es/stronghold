@@ -8,7 +8,7 @@
 
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="view.MarketViewController"
+            fx:controller="view.GUIController.MarketViewController"
             prefHeight="800.0" prefWidth="1200.0">
 
     <center>

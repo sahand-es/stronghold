@@ -28,4 +28,6 @@ module Stronghold {
     opens view.shape.government.popularity;
     exports view.shape.profile;
     opens view.shape.profile;
+    exports view.GUIController;
+    opens view.GUIController;
 }

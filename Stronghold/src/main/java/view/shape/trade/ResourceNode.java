@@ -16,7 +16,7 @@ import javafx.scene.paint.ImagePattern;
 import model.resource.ResourcesName;
 
 import javafx.scene.shape.Rectangle;
-import view.MarketViewController;
+import view.GUIController.MarketViewController;
 
 import java.util.ArrayList;
 

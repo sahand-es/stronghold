@@ -1,7 +1,8 @@
-package view;
+package view.GUIController;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+import view.GameViewController;
 
 public class GameMenuApplication extends Application {
     @Override
