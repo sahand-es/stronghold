@@ -6,7 +6,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
@@ -21,6 +23,40 @@ public class ProfileMenuGUI extends Application {
     private BorderPane borderPane;
     @FXML
     private AnchorPane anchorPane;
+    @FXML
+    private Button passChangeButton;
+    @FXML
+    private Button sloganChangeButton;
+    @FXML
+    private Button saveButton;
+    @FXML
+    private TextField userLabel;
+    @FXML
+    private TextField nickNameLabel;
+    @FXML
+    private TextField emailLabel;
+    @FXML
+    private TextField passLabel;
+    @FXML
+    private TextArea sloganLabel;
+    @FXML
+    private TextArea newSloganField;
+    @FXML
+    private PasswordField oldPass;
+    @FXML
+    private PasswordField newPass;
+    @FXML
+    private PasswordField confirmPass;
+    @FXML
+    private TextField captchaField;
+    @FXML
+    private ImageView captchaView;
+    @FXML
+    private ImageView avatarView;
+    @FXML
+    private Hyperlink resetHyper;
+
+
 
     @FXML
     public void initialize() {

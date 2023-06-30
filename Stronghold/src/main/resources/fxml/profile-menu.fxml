@@ -47,12 +47,12 @@
                   <Font name="American Typewriter" size="24.0" />
                </font>
             </Button>
-            <Label fx:id="mainLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="555.0" layoutY="23.0" prefHeight="43.0" prefWidth="319.0" text="Profile Menu" textAlignment="CENTER" textFill="WHITE">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="555.0" layoutY="23.0" prefHeight="43.0" prefWidth="319.0" text="Profile Menu" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="American Typewriter" size="36.0" />
                </font>
             </Label>
-            <Label fx:id="mainLabel1" alignment="CENTER" contentDisplay="CENTER" layoutX="181.0" layoutY="147.0" prefHeight="43.0" prefWidth="219.0" text="Username:" textAlignment="CENTER" textFill="WHITE">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="181.0" layoutY="147.0" prefHeight="43.0" prefWidth="219.0" text="Username:" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="American Typewriter" size="26.0" />
                </font>
@@ -62,7 +62,7 @@
                   <Font name="American Typewriter" size="24.0" />
                </font>
             </TextField>
-            <Label fx:id="mainLabel11" alignment="CENTER" contentDisplay="CENTER" layoutX="179.0" layoutY="218.0" prefHeight="43.0" prefWidth="219.0" text="Nickname:" textAlignment="CENTER" textFill="WHITE">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="179.0" layoutY="218.0" prefHeight="43.0" prefWidth="219.0" text="Nickname:" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="American Typewriter" size="26.0" />
                </font>
@@ -72,7 +72,7 @@
                   <Font name="American Typewriter" size="24.0" />
                </font>
             </TextField>
-            <Label fx:id="mainLabel111" alignment="CENTER" contentDisplay="CENTER" layoutX="175.0" layoutY="291.0" prefHeight="43.0" prefWidth="219.0" text="Email:" textAlignment="CENTER" textFill="WHITE">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="175.0" layoutY="291.0" prefHeight="43.0" prefWidth="219.0" text="Email:" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="American Typewriter" size="26.0" />
                </font>
@@ -82,7 +82,7 @@
                   <Font name="American Typewriter" size="24.0" />
                </font>
             </TextField>
-            <Label fx:id="mainLabel1111" alignment="CENTER" contentDisplay="CENTER" layoutX="180.0" layoutY="366.0" prefHeight="43.0" prefWidth="219.0" text="Password:" textAlignment="CENTER" textFill="WHITE">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="180.0" layoutY="366.0" prefHeight="43.0" prefWidth="219.0" text="Password:" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="American Typewriter" size="26.0" />
                </font>
@@ -92,7 +92,7 @@
                   <Font name="American Typewriter" size="24.0" />
                </font>
             </TextField>
-            <Label fx:id="mainLabel11111" alignment="CENTER" contentDisplay="CENTER" layoutX="183.0" layoutY="480.0" prefHeight="43.0" prefWidth="219.0" text="Slogan:" textAlignment="CENTER" textFill="WHITE">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="183.0" layoutY="480.0" prefHeight="43.0" prefWidth="219.0" text="Slogan:" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="American Typewriter" size="26.0" />
                </font>
