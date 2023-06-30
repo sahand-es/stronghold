@@ -113,7 +113,8 @@ public class SignUpMenuGUI extends Application {
         answerChoice.setValue(answerChoiceList.get(0));
 
         //todo add famous slogan
-
+        famousChart.setText("Most Used Slogans:\n" + Database.top5FamousSlogan());
+        famousChart.setEditable(false);
     }
 
     private void listenerUpdate(){

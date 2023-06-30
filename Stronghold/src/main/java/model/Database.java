@@ -6,6 +6,9 @@ import utility.RandomCaptcha;
 import view.enums.AllMenus;
 
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
 
 
 public class Database {
@@ -59,6 +62,41 @@ public class Database {
         }
         return null;
     }
+    public static String top5FamousSlogan() {
+        String output = new String();
+
+        HashMap<String, Integer> stringCount = new HashMap<>();
+
+        ArrayList<String> slogans = new ArrayList<>();
+        for (User user:users) {
+            if (user.getSlogan() != null){
+                slogans.add(user.getSlogan());
+            }
+        }
+
+
+        // Count the occurrences of each lowercase string
+        for (String str : slogans) {
+            String lowercaseStr = str.toLowerCase();
+            stringCount.put(lowercaseStr, stringCount.getOrDefault(lowercaseStr, 0) + 1);
+        }
+
+        // Sort the strings based on their count in descending order
+        List<HashMap.Entry<String, Integer>> sortedStrings = new ArrayList<>(stringCount.entrySet());
+        sortedStrings.sort(HashMap.Entry.comparingByValue(Comparator.reverseOrder()));
+
+        // Print the top 5 most used strings
+        int count = 0;
+        for (HashMap.Entry<String, Integer> entry : sortedStrings) {
+            if (count >= 5) {
+                break;
+            }
+            count++;
+            output += count + " :" + entry.getKey() + "    count: " + entry.getValue() + "\n";
+        }
+
+        return output;
+    }
 
     public static User getCurrentUser() {
         return currentUser;
@@ -91,4 +129,5 @@ public class Database {
     public static void setCurrentGame(Game currentGame) {
         Database.currentGame = currentGame;
     }
+
 }
