@@ -1,5 +1,6 @@
 package model.network;
 
+import controller.ConnectionController;
 import model.User;
 
 import java.io.DataInputStream;
@@ -15,6 +16,7 @@ public class Connection extends Thread {
     DataOutputStream dataOutputStream;
 
     private User user;
+    private ConnectionController controller;
     private static ArrayList<Connection> allConnections = new ArrayList<>();
 
 
@@ -23,6 +25,7 @@ public class Connection extends Thread {
             this.socket = socket;
             dataInputStream = new DataInputStream(socket.getInputStream());
             dataOutputStream = new DataOutputStream(socket.getOutputStream());
+            controller = new ConnectionController(this);
             addConnection(this);
             this.handel();
         } catch (IOException e){
@@ -35,8 +38,12 @@ public class Connection extends Thread {
         while (true) {
             String data = dataInputStream.readUTF();
             System.out.println(data);
-            handelInput(data);
+            controller.handel(data);
         }
+    }
+
+    public void write(String string) throws IOException {
+        dataOutputStream.writeUTF(string);
     }
 
     private static synchronized void addConnection(Connection connection){
@@ -45,9 +52,5 @@ public class Connection extends Thread {
 
     private static synchronized void removeConnection(Connection connection){
         allConnections.remove(connection);
-    }
-
-    private void handelInput(String data) {
-
     }
 }
