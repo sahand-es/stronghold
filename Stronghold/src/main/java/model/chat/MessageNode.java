@@ -6,7 +6,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
-import org.apache.commons.lang3.time.DurationFormatUtils;
 import utility.DataManager;
 
 import java.io.IOException;
@@ -21,9 +20,13 @@ public class MessageNode {
     private ImageView seen;
     private Message message;
 
-    public MessageNode(Message message) throws IOException {
+    public MessageNode(Message message) {
         this.message = message;
-        pane = FXMLLoader.load(this.getClass().getResource(DataManager.MESSAGE_NODE));
+        try {
+            pane = FXMLLoader.load(this.getClass().getResource(DataManager.MESSAGE_NODE));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         avatar = (ImageView) pane.getChildren().get(0);
         text = (Text) pane.getChildren().get(1);
         sentTime = (Text) pane.getChildren().get(2);
@@ -61,7 +64,7 @@ public class MessageNode {
     }
 
     private void setSentTime() {
-        sentTime.setText(message.getSendingTime());
+        sentTime.setText(message.getSendingTimeString());
     }
 
     private void setReaction() {

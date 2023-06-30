@@ -6,7 +6,6 @@ import com.google.gson.reflect.TypeToken;
 import utility.RandomGenerators;
 import utility.SHA;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -14,14 +13,16 @@ public class Message {
     private final String username;
     private String message;
     private final String id;
-    private String sendingTime;
+    private final String sendingTimeString;
+    private long sendingTimeMillis;
     private String reactionPath;
     // TODO: 6/30/2023 change it with username
     private String userAvatarPath = "file:src/main/resources/images/avatars/1.png";;
     private MessageStatus status;
 
     public Message(String message, String username) {
-        sendingTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm"));
+        sendingTimeString = LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm"));
+        sendingTimeMillis = System.currentTimeMillis();
         this.username = username;
         this.message = message;
         this.status = MessageStatus.SEEN;
@@ -44,6 +45,10 @@ public class Message {
         return message;
     }
 
+    public long getSendingTimeMillis() {
+        return sendingTimeMillis;
+    }
+
     public String getReactionPath() {
         return reactionPath;
     }
@@ -52,8 +57,8 @@ public class Message {
         return userAvatarPath;
     }
 
-    public String getSendingTime() {
-        return sendingTime;
+    public String getSendingTimeString() {
+        return sendingTimeString;
     }
 
     public String getId() {

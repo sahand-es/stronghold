@@ -31,6 +31,7 @@ public class DataManager {
     public static final String BUILDING_SCROLL_BOX = "/fxml/building-scroll.fxml";
     public static final String SOLDIER_CONTROL_BOX = "/fxml/soldier-control-box.fxml";
     public static final String MESSAGE_NODE = "/fxml/message-node.fxml";
+    public static final String CHAT_NODE = "/fxml/chat-node.fxml";
 
     public static ArrayList<User> loadUsers() {
         try {
