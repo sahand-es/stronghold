@@ -1,14 +1,60 @@
 .text-font {
     -fx-font-family: "Times New Roman", sans-serif;
-    -fx-font-size: 20;
+    -fx-font-size: 18;
 }
+
 .avatar {
     -fx-background-radius: 50%;
     -fx-border-radius: 50%;
-    -fx-border-color: black;
+    -fx-alignment: baseline-center;
 }
+
 .message-background {
     -fx-background-radius: 20;
     -fx-border-radius: 20;
-    -fx-background-color: #b8860b;
+    /*-fx-background-color: #b8860b;*/
+    -fx-background-color: #495e78;
+}
+
+.chat-kind-label {
+    -fx-font-family: "Times New Roman", sans-serif;
+    -fx-font-size: 25;
+}
+
+.chat-background {
+    /*-fx-background-color: rgba(216, 164, 67, 0.96);*/
+    -fx-background-color: #909eb9;
+}
+.send-message-box {
+    -fx-border-radius: 20;
+    -fx-background-radius: 10;
+    -fx-background-color: rgb(200, 212, 234);
+}
+
+.text-area .scroll-pane {
+    -fx-background-color: transparent;
+}
+.text-area .scroll-pane .viewport{
+    -fx-background-color: transparent;
+}
+.text-area .scroll-pane .content{
+    -fx-background-color: transparent;
+}
+
+.scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane .viewport{
+    -fx-background-color: transparent;
+}
+
+.scroll-pane .content{
+    -fx-background-color: transparent;
+}
+
+.send-button {
+    -fx-border-radius: 20;
+    -fx-background-radius: 20;
+    -fx-background-color: rgb(200, 212, 234);
 }
