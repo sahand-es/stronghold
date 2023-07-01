@@ -71,7 +71,7 @@ public class ProfileMenuGUI extends Application {
     private Boolean changingPass = false;
     private Boolean changingSlogan = false;
 
-    private User currentUser = Database.getCurrentUser();
+    private User currentUser = App.getCurrentUser();
 
     @FXML
     public void initialize() {

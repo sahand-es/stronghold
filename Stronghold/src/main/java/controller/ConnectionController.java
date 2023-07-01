@@ -45,6 +45,14 @@ public class ConnectionController {
                 getUserCommand(data);
                 break;
 
+            case "getUserByEmail":
+                getUserByEmailCommand(data);
+                break;
+
+            case "signup":
+                signup(data);
+                break;
+
             default:
                 System.out.println("invalid command");
         }
@@ -61,5 +69,24 @@ public class ConnectionController {
         User user = Database.getUserByUsername(username);
         String dataStr = new Gson().toJson(user);
         connection.write(dataStr);
+    }
+
+    private void getUserByEmailCommand (HashMap<String,String> data) throws IOException {
+        String email = data.get("email");
+        User user = Database.getUserByEmail(email);
+        String dataStr = new Gson().toJson(user);
+        connection.write(dataStr);
+    }
+
+    private void signup(HashMap<String,String> data){
+        String Username = data.get("username");
+        String Password = data.get("password");
+        String Nickname = data.get("nickname");
+        String Email = data.get("email");
+        String Slogan = data.get("slogan");
+        int questionNUmber = Integer.parseInt(data.get("questionNumber"));
+        String Answer = data.get("answer");
+
+        new User(Username,Password,Nickname,Email,questionNUmber,Answer,Slogan);
     }
 }

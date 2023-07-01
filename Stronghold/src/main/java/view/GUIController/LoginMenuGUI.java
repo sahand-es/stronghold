@@ -81,7 +81,7 @@ public class LoginMenuGUI extends Application {
             else if (getUserFromServer(username.getText()) == null) {
                 messageLabel.setText("Username doesn't exist!");
             }
-            else if(captchaField.getText().isEmpty()){
+            else if(captchaField.getText().isEmpty()){ //TODO null?
                 messageLabel.setText("Fill captcha field!");
             }
             else
@@ -198,7 +198,7 @@ public class LoginMenuGUI extends Application {
         captchaImageViewer.setImage(captchaImage);
     }
 
-    private User getUserFromServer(String username){
+    public static User getUserFromServer(String username){
         HashMap<String,String> data = new HashMap<>();
         data.put("menu","login");
         data.put("command","getUser");
