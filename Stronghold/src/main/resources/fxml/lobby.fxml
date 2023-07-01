@@ -10,28 +10,33 @@
 
 <AnchorPane fx:id="anchorPane" prefHeight="900.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.GUIController.LobbyGUI">
    <children>
-      <Label alignment="CENTER" layoutX="725.0" layoutY="66.0" prefHeight="17.0" prefWidth="186.0" text="Lobby">
+      <Label alignment="CENTER" layoutX="725.0" layoutY="66.0" prefHeight="17.0" prefWidth="186.0" text="Lobby" textFill="WHITE">
          <font>
             <Font name="American Typewriter" size="36.0" />
          </font>
       </Label>
-      <ScrollPane layoutX="430.0" layoutY="142.0" prefHeight="468.0" prefWidth="776.0">
+      <ScrollPane layoutX="97.0" layoutY="142.0" prefHeight="468.0" prefWidth="1310.0">
          <content>
-            <VBox fx:id="VBox" prefHeight="465.0" prefWidth="758.0" />
+            <VBox fx:id="VBox" prefHeight="465.0" prefWidth="1308.0" />
          </content>
       </ScrollPane>
-      <Button layoutX="736.0" layoutY="730.0" mnemonicParsing="false" onAction="#createGame" text="Create Game">
+      <Button layoutX="737.0" layoutY="687.0" mnemonicParsing="false" onAction="#createGame" text="Create Game">
          <font>
             <Font name="American Typewriter" size="24.0" />
          </font>
       </Button>
-      <ChoiceBox fx:id="playerNumberChoice" layoutX="890.0" layoutY="672.0" prefHeight="22.0" prefWidth="67.0" />
-      <Label alignment="CENTER" layoutX="614.0" layoutY="671.0" prefHeight="28.0" prefWidth="247.0" text="Number of players:">
+      <ChoiceBox fx:id="playerNumberChoice" layoutX="891.0" layoutY="629.0" prefHeight="22.0" prefWidth="67.0" />
+      <Label alignment="CENTER" layoutX="615.0" layoutY="628.0" prefHeight="28.0" prefWidth="247.0" text="Number of players:" textFill="WHITE">
          <font>
             <Font name="American Typewriter" size="24.0" />
          </font>
       </Label>
       <Button layoutX="735.0" layoutY="797.0" mnemonicParsing="false" onAction="#back" prefHeight="44.0" prefWidth="180.0" text="Back">
+         <font>
+            <Font name="American Typewriter" size="24.0" />
+         </font>
+      </Button>
+      <Button layoutX="737.0" layoutY="742.0" mnemonicParsing="false" onAction="#refresh" prefHeight="44.0" prefWidth="177.0" text="Refresh">
          <font>
             <Font name="American Typewriter" size="24.0" />
          </font>
