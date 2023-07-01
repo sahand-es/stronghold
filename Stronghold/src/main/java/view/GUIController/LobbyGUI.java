@@ -48,6 +48,10 @@ public class LobbyGUI extends Application {
         anchorPane.setBackground(background);
 
 
+        HBox newSession = new GameSessionNode().getMainNode();
+        gameSessionMainNodes.add(newSession);
+        VBox.getChildren().add(newSession);
+
 
     }
 
