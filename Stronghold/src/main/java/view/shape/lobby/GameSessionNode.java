@@ -1,13 +1,11 @@
 package view.shape.lobby;
 
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
-import model.Game;
 import model.Session;
 import utility.RandomGenerators;
 
@@ -19,8 +17,9 @@ public class GameSessionNode {
     private Button join;
     private Button leave;
     private Button start;
+    private Label errorMessage;
 
-    //todo constructor must get game and the user that wants the node to be made
+
     public GameSessionNode(Session session, String currentUserUsername) {
         this.session = session;
         mainNode = new HBox();
@@ -70,6 +69,10 @@ public class GameSessionNode {
         mainNode.getChildren().add(start);
         start.setVisible(session.getUsers().contains(currentUserUsername));
 
+        errorMessage = new Label();
+        errorMessage.setStyle("-fx-font: 20 sys");
+        errorMessage.setTextFill(Color.RED);
+        
     }
 
     public HBox getMainNode() {
