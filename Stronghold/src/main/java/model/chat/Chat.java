@@ -79,4 +79,11 @@ public class Chat {
     public String getName() {
         return name;
     }
+
+    @Override
+    public String toString() {
+        if (chatType != ChatType.PUBLIC)
+            return chatType + ":\t" + name;
+        return chatType.name();
+    }
 }

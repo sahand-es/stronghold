@@ -25,10 +25,14 @@ public class ChatNode extends Pane{
     private VBox usersBox;
 
 
-    public ChatNode(Chat chat) throws IOException {
+    public ChatNode(Chat chat) {
         this.chat = chat;
 
-        pane = FXMLLoader.load(this.getClass().getResource(DataManager.CHAT_NODE));
+        try {
+            pane = FXMLLoader.load(this.getClass().getResource(DataManager.CHAT_NODE));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         this.getChildren().add(pane);
         chatScroll = (ScrollPane) pane.getChildren().get(0);
         messages = (VBox) chatScroll.getContent();
@@ -67,7 +71,7 @@ public class ChatNode extends Pane{
 
     private void setLabel() {
         if (chat.getChatType() != ChatType.PUBLIC)
-            label.setText(chat.getChatType().name() + ":\t" + chat.getName().toUpperCase(Locale.ROOT));
+            label.setText(chat.getChatType().name() + ": " + chat.getName().toUpperCase(Locale.ROOT));
         else {
             label.setText("PUBLIC");
         }
