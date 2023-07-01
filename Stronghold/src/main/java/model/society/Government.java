@@ -37,6 +37,7 @@ public class Government {
     private Game game;
 
     private Castle castle;
+    private String username;
 
 
     public Government(Colors color, Game game) {
@@ -336,5 +337,13 @@ public class Government {
 
     public Game getGame() {
         return game;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }
