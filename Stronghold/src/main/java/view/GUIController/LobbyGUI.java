@@ -11,9 +11,13 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import model.Database;
 import model.Session;
+import model.User;
+import utility.RandomGenerators;
 import view.shape.lobby.GameSessionNode;
 
+import java.net.DatagramPacket;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -22,20 +26,22 @@ public class LobbyGUI extends Application {
     @FXML
     private AnchorPane anchorPane;
     @FXML
-    private VBox VBox;
+    private VBox vBox;
     @FXML
     private ChoiceBox playerNumberChoice;
 
     private ArrayList<HBox> gameSessionMainNodes = new ArrayList<>();
 
-    private ArrayList<Session> sessions;
+    private ArrayList<Session> sessions = new ArrayList<>();
+
+    //todo check with network for current User
+    private User currentUser = Database.getUserByUsername("Sousef");
 
 
     ObservableList<String> numberList = FXCollections.observableArrayList("2","3","4","5","6","7","8");
 
     @FXML
     public void initialize() {
-        //todo ongoing sessions must be added to gameSessionMainNodes ArrayList inorder to be shown in lobby
 
         playerNumberChoice.setItems(numberList);
         playerNumberChoice.setValue(numberList.get(0));
@@ -51,26 +57,44 @@ public class LobbyGUI extends Application {
         anchorPane.setBackground(background);
 
 
-        HBox newSession = new GameSessionNode().getMainNode();
-        gameSessionMainNodes.add(newSession);
-        VBox.getChildren().add(newSession);
-
-
+        refresh();
     }
 
     public void createGame() {
-        //todo check whether if the user is joined in another match
-        //todo make a new Game
-        //todo make a new GameSession node via this line of code:
+        for (Session session:sessions) {
+            if (session.getUsers().contains(currentUser.getUsername())){
+                System.out.println("kir");
+                //todo give error
+                return;
+            }
+        }
 
-        HBox newSession = new GameSessionNode().getMainNode();
-        gameSessionMainNodes.add(newSession);
-        VBox.getChildren().add(newSession);
+        Session session = new Session(RandomGenerators.randomSessionId(),
+                Integer.parseInt(playerNumberChoice.getValue().toString()), currentUser.getUsername());
+
+        //todo used sessions
+        sessions.add(session);
+        refresh();
 
     }
 
     public void refresh() {
-        //todo remove all the nodes from ArrayList and make them all over again the process of making a new node will refresh all its details
+        //remove all the nodes from ArrayList
+        for (HBox node : gameSessionMainNodes) {
+            vBox.getChildren().remove(node);
+        }
+        gameSessionMainNodes.clear();
+
+        //todo used sessions
+        //make them all over again the process of making a new node will refresh all its details
+        for (Session session : sessions) {
+            if (session.getUsers().size() != 0 &&
+                    session.getUsers().size() < session.getNumberOfPlayers() && !session.isStarted()){
+                HBox newSessionNode = new GameSessionNode(session, currentUser.getUsername()).getMainNode();
+                gameSessionMainNodes.add(newSessionNode);
+                vBox.getChildren().add(newSessionNode);
+            }
+        }
 
     }
 

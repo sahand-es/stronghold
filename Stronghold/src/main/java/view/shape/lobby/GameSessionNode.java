@@ -8,10 +8,11 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import model.Game;
+import model.Session;
 import utility.RandomGenerators;
 
 public class GameSessionNode {
-    private Game game;
+    private Session session;
     private HBox mainNode;
     private TextArea usersArea;
     private Label joinedNumberLabel;
@@ -20,9 +21,9 @@ public class GameSessionNode {
     private Button start;
 
     //todo constructor must get game and the user that wants the node to be made
-    public GameSessionNode() {
-        //this.game = game;
-        mainNode  = new HBox();
+    public GameSessionNode(Session session, String currentUserUsername) {
+        this.session = session;
+        mainNode = new HBox();
         mainNode.setAlignment(Pos.CENTER);
         mainNode.setSpacing(100);
         mainNode.setPrefSize(1300,100);
@@ -38,32 +39,37 @@ public class GameSessionNode {
         usersArea.setEditable(false);
         usersArea.setPrefSize(300,100);
         usersArea.setStyle("-fx-font: 20 sys");
-        //todo get usernames from game(from constructor)
-        usersArea.setText("Test mikonim \nbebinim\nche\nkhabare\nshayad\njaleb shod yeho khoshemoon oomad");
+
+        String usernames = session.getUsers().toString();
+        usersArea.setText(usernames);
         mainNode.getChildren().add(usersArea);
 
-        //todo set players count by game(from constructor)
-        joinedNumberLabel = new Label("Players count: 1/5");
+
+        joinedNumberLabel = new Label("Players count: " + session.getUsers().size()
+                + " / " + session.getNumberOfPlayers());
         joinedNumberLabel.setPrefSize(150,70);
         joinedNumberLabel.setStyle("-fx-font: 18 sys");
         joinedNumberLabel.setTextFill(Color.WHITE);
         mainNode.getChildren().add(joinedNumberLabel);
 
 
-        //todo it must be checked if the user is joined in this match or not to set the button visibility
         join = new Button("Join");
         join.setStyle("-fx-font: 20 sys");
         mainNode.getChildren().add(join);
+        join.setVisible(!session.getUsers().contains(currentUserUsername));
 
-        //todo it must be checked if the user is joined in this match or not to set the button visibility
+
         leave = new Button("Leave");
         leave.setStyle("-fx-font: 20 sys");
         mainNode.getChildren().add(leave);
+        leave.setVisible(session.getUsers().contains(currentUserUsername));
 
-        //todo it must be checked if the user is joined in this match or not to set the button visibility
+
         start = new Button("Start");
         start.setStyle("-fx-font: 20 sys");
         mainNode.getChildren().add(start);
+        start.setVisible(session.getUsers().contains(currentUserUsername));
+
     }
 
     public HBox getMainNode() {
@@ -90,7 +96,7 @@ public class GameSessionNode {
         return start;
     }
 
-    public Game getGame() {
-        return game;
+    public Session getSession() {
+        return session;
     }
 }
