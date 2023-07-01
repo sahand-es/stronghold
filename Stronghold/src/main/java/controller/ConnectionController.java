@@ -22,9 +22,9 @@ public class ConnectionController {
         this.connection = connection;
     }
 
-    public void handel(String input) throws IOException{
+    public void handle(String input) throws IOException{
         try {
-            HashMap<String,String> data = new Gson().fromJson(input, HashMap.class);
+            HashMap<String,String> data = new Gson().fromJson(input, new TypeToken<HashMap<String,String>>(){}.getType());
             String command = data.get("command");
 
             switch (command){
@@ -97,12 +97,9 @@ public class ConnectionController {
 
     private void makeMessage(HashMap<String, String> data) {
         //TODO
-        String username = data.get("username");
-        String massage = data.get("message");
-        String chatId = data.get("chatId");
-        Message newMessage = new Message(massage , username);
-        Chat chat = Database.getChatById(chatId);
-        if (chat != null) chat.addMessage(newMessage);
+        Message message = Message.fromJson(data.get("message"));
+        Chat chat = Database.getChatById(message.getId());
+        if (chat != null) chat.addMessage(message);
     }
 
     private void sendUserChats(HashMap<String, String> data) throws IOException {

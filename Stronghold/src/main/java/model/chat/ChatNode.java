@@ -1,10 +1,12 @@
 package model.chat;
 
 import com.google.gson.Gson;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
@@ -38,11 +40,9 @@ public class ChatNode extends Pane{
         }
         this.getChildren().add(pane);
         chatScroll = (ScrollPane) pane.getChildren().get(0);
-        messages = (VBox) chatScroll.getContent();
         typedMessaged = (TextArea) pane.getChildren().get(1);
         sendBtn = (Button) pane.getChildren().get(2);
         label = (Label) pane.getChildren().get(3);
-        usersBox = (VBox) ((TitledPane) pane.getChildren().get(4)).getContent();
 
         set();
     }
@@ -55,6 +55,7 @@ public class ChatNode extends Pane{
     }
 
     private void setUsersBox() {
+        usersBox = (VBox) ((TitledPane) pane.getChildren().get(4)).getContent();
         usersBox.setAlignment(Pos.CENTER);
         usersBox.setSpacing(10);
         for (String user : chat.getUsers()) {
@@ -65,6 +66,11 @@ public class ChatNode extends Pane{
     }
 
     private void setMessages() {
+        messages = (VBox) chatScroll.getContent();
+        if (!messages.getChildren().isEmpty()) {
+            messages.getChildren().clear();
+            System.out.println(messages);
+        }
         messages.setAlignment(Pos.BASELINE_CENTER);
         for (Message message : chat.getMessages()) {
             MessageNode messageNode = new MessageNode(message);
@@ -81,7 +87,13 @@ public class ChatNode extends Pane{
     }
 
     private void setSendBtn() {
-        // TODO: 6/30/2023 new message and fart
+        sendBtn.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                if (!typedMessaged.getText().isEmpty())
+                    makeNewMessage(typedMessaged.getText());
+            }
+        });
     }
 
     public void update() {
@@ -98,19 +110,21 @@ public class ChatNode extends Pane{
         return pane;
     }
 
-    private void makeNewMessage(String message) {
-        //TODO
+    private void makeNewMessage(String messageText) {
+        Message message = new Message(messageText, App.getCurrentUser().getUsername());
+        message.setUserAvatarPath(App.getCurrentUser().getAvatarPathSahand());
+
         HashMap<String, String> data = new HashMap<>();
-        data.put("command", "makeMessage");
-        data.put("username", App.getCurrentUser().getUsername());
-        data.put("message",message);
-        data.put("chatId",chat.getId());
+        data.put("message",message.toJson());
         String dataStr = new Gson().toJson(data);
         try {
             App.writeToServer(dataStr);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+
+        chat.addMessage(message);
+        update();
     }
 
     private void editMessage(String message,String messageId) {

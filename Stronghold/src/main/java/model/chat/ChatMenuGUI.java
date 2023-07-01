@@ -15,7 +15,6 @@ import javafx.scene.layout.*;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import model.App;
-import model.Database;
 import view.GUIController.MainMenuViewController;
 
 import java.io.IOException;
@@ -48,7 +47,7 @@ public class ChatMenuGUI extends Application {
 
         pane.setPrefSize(width, height);
         setBackground();
-        initialize();
+        set();
 
         Scene scene = new Scene(pane);
         stage.setScene(scene);
@@ -57,24 +56,8 @@ public class ChatMenuGUI extends Application {
         stage.show();
     }
 
-    private void initialize() {
+    private void set() {
         ArrayList<Chat> userChats = getUserChatsFromServer();
-
-        //////
-        Message message = new Message("Fuck all niggas", "kir");
-        Message message2 = new Message("Fuck all iranians", "bokon");
-
-        Chat chat = new Chat(ChatType.PUBLIC,"nigga" );
-        Chat chat2 = new Chat(ChatType.PRIVATE,"nigga" );
-        chat.addMessage(message);
-        chat.addMessage(message2);
-        chat.addUser(message.getUsername());
-        chat.addUser(message2.getUsername());
-        chat.addUser("nigga");
-        ArrayList<Chat> chats = new ArrayList<>();
-        chats.add(chat);
-        chats.add(chat2);
-        ///////
         setAllChats(userChats);
     }
 
@@ -86,7 +69,7 @@ public class ChatMenuGUI extends Application {
         try {
             App.writeToServer(dataStr);
             dataStr = App.readFromServer();
-            ArrayList<Chat> output = new ArrayList<>(); //TODO convert chat arr form json
+            ArrayList<Chat> output = Chat.fromJsonArrayList(dataStr);
             return output;
         } catch (Exception e){
             throw new RuntimeException (e);
@@ -101,7 +84,6 @@ public class ChatMenuGUI extends Application {
         vBox.setPrefWidth(chatScroll.getPrefWidth());
         vBox.setLayoutX(App.centerX - vBox.getPrefWidth()/2);
 
-        // TODO: 7/1/2023 get chats from user.
         for (Chat chat : chats) {
             HBox hBox = new HBox();
             hBox.setAlignment(Pos.CENTER);

@@ -28,6 +28,11 @@ public class Message {
         this.status = MessageStatus.SENT;
         id = SHA.shaString(message + String.valueOf(RandomGenerators.randomPassword()));
     }
+
+    public void setUserAvatarPath(String userAvatarPath) {
+        this.userAvatarPath = userAvatarPath;
+    }
+
     public String toJson() {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         return gson.toJson(this);

@@ -50,6 +50,10 @@ public class User {
         return avatarPath;
     }
 
+    public String getAvatarPathSahand() {
+        return "file:src/main/resources" + avatarPath;
+    }
+
     public int getHighScore() {
         return highScore;
     }

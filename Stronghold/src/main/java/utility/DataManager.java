@@ -160,12 +160,23 @@ DataManager {
         try {
             Gson gson = new Gson();
             String text = new String(Files.readAllBytes(Paths.get(CHATS_DATABASE_PATH)));
-            ArrayList<Chat> chats = gson.fromJson(text, new TypeToken<List<Chat>>() {
-            }.getType());
+            ArrayList<Chat> chats = Chat.fromJsonArrayList(text);
 
             return chats;
         } catch (Exception ignored) {
             return null;
+        }
+    }
+    public static void saveChats() {
+        FileWriter fileWriter;
+        try {
+            fileWriter = new FileWriter(CHATS_DATABASE_PATH);
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            String json = Chat.toJson(Database.getAllChats());
+            fileWriter.write(json);
+            fileWriter.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 }

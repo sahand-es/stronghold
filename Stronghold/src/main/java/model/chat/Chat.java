@@ -7,6 +7,7 @@ import utility.SHA;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 public class Chat {
     private ArrayList<Message> messages;
@@ -73,6 +74,15 @@ public class Chat {
 
     public static Chat fromJson(String json) {
         return new Gson().fromJson(json, new TypeToken<Chat>() {
+        }.getType());
+    }
+
+    public static String toJson(ArrayList<Chat> chats) {
+        return new GsonBuilder().setPrettyPrinting().create().toJson(chats);
+    }
+
+    public static ArrayList<Chat> fromJsonArrayList(String json) {
+        return new Gson().fromJson(json, new TypeToken<List<Chat>>() {
         }.getType());
     }
 

@@ -38,7 +38,7 @@ public class Connection extends Thread {
         while (true) {
             String data = dataInputStream.readUTF();
             System.out.println(data);
-            controller.handel(data);
+            controller.handle(data);
         }
     }
 
