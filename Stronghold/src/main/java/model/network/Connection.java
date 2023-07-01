@@ -21,12 +21,22 @@ public class Connection extends Thread {
 
 
     public Connection(Socket socket) {
+
+        this.socket = socket;
         try {
-            this.socket = socket;
             dataInputStream = new DataInputStream(socket.getInputStream());
             dataOutputStream = new DataOutputStream(socket.getOutputStream());
-            controller = new ConnectionController(this);
-            addConnection(this);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        controller = new ConnectionController(this);
+        addConnection(this);
+    }
+
+    @Override
+    public void run() {
+        try {
             this.handel();
         } catch (IOException e){
             removeConnection(this);
