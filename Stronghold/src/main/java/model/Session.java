@@ -8,6 +8,14 @@ public class Session {
     private int numberOfPlayers;
     private boolean isStarted;
 
+    public Session(String sessionId, int numberOfPlayers, String adminUsername) {
+        this.sessionId = sessionId;
+        this.users = new ArrayList<>();
+        users.add(adminUsername);
+        this.numberOfPlayers = numberOfPlayers;
+        this.isStarted = false;
+    }
+
     public String getSessionId() {
         return sessionId;
     }

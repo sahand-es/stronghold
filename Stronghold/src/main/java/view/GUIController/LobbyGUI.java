@@ -11,6 +11,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import model.Session;
 import view.shape.lobby.GameSessionNode;
 
 import java.net.URL;
@@ -26,6 +27,8 @@ public class LobbyGUI extends Application {
     private ChoiceBox playerNumberChoice;
 
     private ArrayList<HBox> gameSessionMainNodes = new ArrayList<>();
+
+    private ArrayList<Session> sessions;
 
 
     ObservableList<String> numberList = FXCollections.observableArrayList("2","3","4","5","6","7","8");
