@@ -2,12 +2,11 @@ package model.chat;
 
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import utility.DataManager;
 
 import java.io.IOException;
@@ -22,6 +21,7 @@ public class ChatNode {
     private TextArea typedMessaged;
     private Button sendBtn;
     private Label label;
+    private VBox usersBox;
 
 
     public ChatNode(Chat chat) throws IOException {
@@ -33,6 +33,7 @@ public class ChatNode {
         typedMessaged = (TextArea) pane.getChildren().get(1);
         sendBtn = (Button) pane.getChildren().get(2);
         label = (Label) pane.getChildren().get(3);
+        usersBox = (VBox) ((TitledPane) pane.getChildren().get(4)).getContent();
 
         set();
     }
@@ -41,6 +42,17 @@ public class ChatNode {
         setMessages();
         setLabel();
         setSendBtn();
+        setUsersBox();
+    }
+
+    private void setUsersBox() {
+        usersBox.setAlignment(Pos.CENTER);
+        usersBox.setSpacing(10);
+        for (String user : chat.getUsers()) {
+            Text text = new Text(user);
+            text.setStyle("-fx-font-family: \"Times New Roman\", sans-serif; -fx-font-size: 18;");
+            usersBox.getChildren().add(text);
+        }
     }
 
     private void setMessages() {
