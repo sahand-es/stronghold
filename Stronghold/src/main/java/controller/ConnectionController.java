@@ -26,12 +26,63 @@ public class ConnectionController {
                     handelLogin(data);
                     break;
 
+                case "profile":
+                    handelProfile(data);
+                    break;
+
                 default:
                     System.out.println("invalid menu");
             }
         } catch (JsonSyntaxException e) {
             System.out.println("invalid data");
         }
+    }
+
+    private void handelProfile(HashMap<String, String> data) throws IOException {
+        String command = data.get("command");
+        switch (command){
+            case "setAvatarPath":
+                setAvatarPath(data);
+                break;
+
+            case "setPassword":
+                setPassword(data);
+                break;
+
+            case "setSlogan":
+                setSlogan(data);
+                break;
+
+            case "getAllUsers":
+                sendAllUsers();
+                break;
+
+            default:
+                System.out.println("invalid command in profile menu");
+        }
+    }
+
+    private void sendAllUsers() throws IOException {
+        for (User user : Database.getUsers()) {
+            connection.write(new Gson().toJson(user));
+        }
+        connection.write("EOF");
+    }
+
+    private void setSlogan(HashMap<String, String> data) {
+        String slogan = data.get("slogan");
+        connection.getUser().setSlogan(slogan);
+    }
+
+    private void setPassword(HashMap<String, String> data) {
+        String password = data.get("password");
+        connection.getUser().setPassword(password);
+    }
+
+    private void setAvatarPath(HashMap<String, String> data) {
+        String imagePath = data.get("imagePath");
+        System.out.println("image path : " + imagePath);
+        connection.getUser().setAvatarPath(imagePath);
     }
 
     private void handelLogin(HashMap<String,String> data) throws IOException {

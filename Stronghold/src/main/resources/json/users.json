@@ -53,15 +53,26 @@
   },
   {
     "username": "test",
-    "password": "c4e6700d91615d0c955abe0f9971c4eef6b6c1b4679f085d6bd8a5c6a7f6a87",
+    "password": "31364f4f166c50b353c664f1ba25a0444e58e10887e1d3beca47dc2876ddb022",
     "nickname": "testy",
     "email": "test@test.test",
-    "slogan": "test me if you can",
     "securityQuestionNumber": 0,
     "rank": 0,
     "score": 0,
     "highScore": 0,
     "securityAnswer": "tester",
     "avatarPath": "/images/avatars/3.png"
+  },
+  {
+    "username": "test1",
+    "password": "622bdddda27b06ef004431ae6f33fa6c5ef9c9f7d933186d59af71589bc07a51",
+    "nickname": "testtt",
+    "email": "tttt@titititit.tt",
+    "slogan": "Test slogan",
+    "securityQuestionNumber": 0,
+    "rank": 0,
+    "score": 0,
+    "highScore": 0,
+    "securityAnswer": "tester"
   }
 ]

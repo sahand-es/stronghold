@@ -11,7 +11,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import model.App;
-import model.Database;
 import model.User;
 import utility.DataManager;
 import utility.RandomCaptcha;
@@ -169,7 +168,7 @@ public class LoginMenuGUI extends Application {
             App.writeToServer(dataStr);
 
             if(stayLoggedCheckBox.isSelected()){
-                DataManager.saveLoggedIn(Database.getCurrentUser());
+                DataManager.saveLoggedIn(App.getCurrentUser());
             }
 
             try {

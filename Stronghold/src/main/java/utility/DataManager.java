@@ -14,7 +14,8 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DataManager {
+public class
+DataManager {
     //json:
     public static final String USERS_DATABASE_PATH = "src/main/resources/json/users.json" ;
     public static final String LOGGED_IN_DATABASE_PATH = "src/main/resources/json/loggedInUser.json" ;

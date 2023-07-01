@@ -1,10 +1,17 @@
 package model.network;
 
+import com.google.gson.Gson;
+import model.App;
+import model.User;
+import view.shape.profile.RankScroll;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ConnectException;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class ClientTest {
@@ -17,10 +24,26 @@ public class ClientTest {
         dataOutputStream = new DataOutputStream (socket.getOutputStream());
         dataInputStream = new DataInputStream (socket.getInputStream());
 
-        while (true){
-            String message = scanner.nextLine();
-            dataOutputStream.writeUTF(message);
-            System.out.println(dataInputStream.readUTF());
+        HashMap<String,String> data = new HashMap<>();
+        data.put("menu","profile");
+        data.put("command","getAllUsers");
+        String dataStr = new Gson().toJson(data);
+        try {
+            dataOutputStream.writeUTF(dataStr);
+            dataStr = dataInputStream.readUTF();
+            ArrayList<User> users = new ArrayList<>();
+            while (!dataStr.equals("EOF")){
+                User user = new Gson().fromJson(dataStr, User.class);
+                users.add(user);
+                dataStr = dataInputStream.readUTF();
+            }
+
+
+            for (Object user : users) {
+                System.out.println(user.toString());
+            }
+        } catch (Exception e){
+
         }
     }
 

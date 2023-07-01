@@ -1,5 +1,6 @@
 package view.GUIController;
 
+import com.google.gson.Gson;
 import javafx.application.Application;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
@@ -13,7 +14,6 @@ import javafx.scene.layout.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.App;
-import model.Database;
 import model.User;
 import utility.CheckFunctions;
 import utility.RandomCaptcha;
@@ -26,6 +26,7 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.HashMap;
 import java.util.Objects;
 
 public class ProfileMenuGUI extends Application {
@@ -140,7 +141,21 @@ public class ProfileMenuGUI extends Application {
             Image profileImage = new Image(selectedFile.toURI().toString());
             String imagePath = "/images/avatars/" + source.getFileName();
             currentUser.setAvatarPath(imagePath);
+            setAvatarPathOnServer(imagePath);
             avatarView.setImage(profileImage);
+        }
+    }
+
+    private void setAvatarPathOnServer(String imagePath){
+        HashMap<String,String> data = new HashMap<>();
+        data.put("menu","profile");
+        data.put("command","setAvatarPath");
+        data.put("imagePath",imagePath);
+        String dataStr = new Gson().toJson(data);
+        try {
+            App.writeToServer(dataStr);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -263,6 +278,7 @@ public class ProfileMenuGUI extends Application {
         if (!newPass.getText().isEmpty()){
             String newPassword = newPass.getText();
             currentUser.setPassword(newPassword);
+            setPasswordOnServer(newPassword);
 
             if(currentUser.checkPassword(oldPass.getText())){
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -290,6 +306,7 @@ public class ProfileMenuGUI extends Application {
         else {
             String newSlogan = newSloganField.getText();
             currentUser.setSlogan(newSlogan);
+            setSloganOnServer(newSlogan);
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Successful!");
             alert.setHeaderText("Change Info");
@@ -320,6 +337,32 @@ public class ProfileMenuGUI extends Application {
         resetHyper.setVisible(false);
         sloganChangeButton.setVisible(true);
         passChangeButton.setVisible(true);
+    }
+
+    private void setSloganOnServer(String slogan) {
+        HashMap<String,String> data = new HashMap<>();
+        data.put("menu","profile");
+        data.put("command","setSlogan");
+        data.put("slogan",slogan);
+        String dataStr = new Gson().toJson(data);
+        try {
+            App.writeToServer(dataStr);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void setPasswordOnServer(String password) {
+        HashMap<String,String> data = new HashMap<>();
+        data.put("menu","profile");
+        data.put("command","setPassword");
+        data.put("password",password);
+        String dataStr = new Gson().toJson(data);
+        try {
+            App.writeToServer(dataStr);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void resetCaptcha() {
