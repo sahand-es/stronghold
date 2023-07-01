@@ -60,6 +60,9 @@ public class RandomGenerators {
     }
 
 
+    public static String randomSessionId() {
+        return String.valueOf(randomNumber(10000,99999));
+    }
 
     /**
      *
@@ -76,8 +79,7 @@ public class RandomGenerators {
      * @param percentage 0-100 % for probability of true
      * @return boolean false or true
      */
-    public static boolean randomTrue(int percentage)
-    {
+    public static boolean randomTrue(int percentage) {
         int rand = randomNumber(0, 100);
         return rand <= percentage;
     }
