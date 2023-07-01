@@ -76,10 +76,15 @@ public class ChatNode extends Pane {
             messageNode.getTextArea().setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent mouseEvent) {
+                    if (messageNode.getMessage().isDeleted())
+                        return;
                     if (messageNode.getMessage().getUsername().equals(App.getCurrentUser().getUsername()))
                         messageNode.getTextArea().setEditable(true);
                     if (mouseEvent.isControlDown()) {
                         editMessage(messageNode.getMessage(), messageNode.getTextArea().getText());
+                    }
+                    if (mouseEvent.isAltDown() && messageNode.getMessage().getUsername().equals(App.getCurrentUser().getUsername())) {
+                        removeMessage(messageNode.getMessage() );
                     }
                 }
             });
@@ -141,6 +146,21 @@ public class ChatNode extends Pane {
         message.editMessage(editedMessage);
         HashMap<String, String> data = new HashMap<>();
         data.put("command", "editMessage");
+        data.put("message", message.toJson());
+        String dataStr = new Gson().toJson(data);
+        try {
+            App.writeToServer(dataStr);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        update();
+    }
+
+    private void removeMessage(Message message) {
+        message.delete();
+        message.editMessage("This message was deleted.\t\tgod bless whatsapp programmers xD");
+        HashMap<String, String> data = new HashMap<>();
+        data.put("command", "deleteMessage");
         data.put("message", message.toJson());
         String dataStr = new Gson().toJson(data);
         try {

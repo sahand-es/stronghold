@@ -21,6 +21,8 @@ public class Message {
     private MessageStatus status;
     private final String chatId;
 
+    private boolean isDeleted;
+
     public Message(String message, String username, String chatId) {
         this.chatId = chatId;
         sendingTimeString = LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm"));
@@ -28,11 +30,20 @@ public class Message {
         this.username = username;
         this.message = message;
         this.status = MessageStatus.SENT;
+        isDeleted = false;
         id = SHA.shaString(message + String.valueOf(RandomGenerators.randomPassword()));
     }
 
     public void setUserAvatarPath(String userAvatarPath) {
         this.userAvatarPath = userAvatarPath;
+    }
+
+    public boolean isDeleted() {
+        return isDeleted;
+    }
+
+    public void delete() {
+        isDeleted = false;
     }
 
     public String toJson() {
