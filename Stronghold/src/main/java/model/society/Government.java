@@ -51,6 +51,7 @@ public class Government {
         foodRate = 0;
         popularity = 50;
         resource = new Resource();
+        //todo add username to constructor
     }
 
 
