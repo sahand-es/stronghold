@@ -1,33 +1,7 @@
 [
   {
-    "messages": [
-      {
-        "username": "kir",
-        "message": "Fuck all niggas",
-        "id": "5189d4a3fcfc585a8c842a856e5bc699bfa782786900e81a38dddbe26ca9995e",
-        "sendingTimeString": "19:33",
-        "sendingTimeMillis": 1688227431535,
-        "userAvatarPath": "file:src/main/resources/images/avatars/1.png",
-        "status": "SENT",
-        "chatId": "25105857712b8724b21fae3c5ac3af7ec55553fcafb651efb5e35a4c235296e4",
-        "isDeleted": false
-      },
-      {
-        "username": "bokon",
-        "message": "Fuck all iranians",
-        "id": "3194aa9a85ac4f84ab4d79aeaf0d6d448c81babaf2585eed8e26ff40e44f16a3",
-        "sendingTimeString": "19:33",
-        "sendingTimeMillis": 1688227431573,
-        "userAvatarPath": "file:src/main/resources/images/avatars/1.png",
-        "status": "SENT",
-        "chatId": "25105857712b8724b21fae3c5ac3af7ec55553fcafb651efb5e35a4c235296e4",
-        "isDeleted": false
-      }
-    ],
-    "users": [
-      "kir",
-      "bokon"
-    ],
+    "messages": [],
+    "users": [],
     "id": "25105857712b8724b21fae3c5ac3af7ec55553fcafb651efb5e35a4c235296e4",
     "chatType": "PUBLIC",
     "name": "nigga"
@@ -35,11 +9,12 @@
   {
     "messages": [],
     "users": [
-      "sahand"
+      "sahand",
+      "sahand2"
     ],
     "id": "9cf7126f8ef47df1b6282f058877b46aaf9a62d93d0d0e8f1df15244acf4da0",
     "chatType": "ROOM",
-    "name": "test"
+    "name": "testRoom"
   },
   {
     "messages": [],

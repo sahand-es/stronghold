@@ -33,5 +33,6 @@
               </Group>
          </children>
       </VBox>
+      <Button mnemonicParsing="false" styleClass="send-button" text="back" />
     </children>
 </Pane>

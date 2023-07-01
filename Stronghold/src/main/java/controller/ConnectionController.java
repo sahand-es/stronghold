@@ -7,6 +7,7 @@ import com.google.gson.reflect.TypeToken;
 import model.Database;
 import model.User;
 import model.chat.Chat;
+import model.chat.ChatType;
 import model.chat.Message;
 import model.network.Connection;
 import utility.DataManager;
@@ -87,6 +88,9 @@ public class ConnectionController {
                 case "createPv":
                     createPv(data);
                     break;
+                case "joinRoom":
+                    joinRoom(data);
+                    break;
 
 
                 default:
@@ -94,6 +98,21 @@ public class ConnectionController {
             }
         } catch (JsonSyntaxException e) {
             System.out.println("invalid data");
+        }
+    }
+
+    private void joinRoom(HashMap<String, String> data) throws IOException {
+        String roomId = data.get("roomId");
+
+        Chat chat = Database.getChatById(roomId);
+        if (chat.getChatType() == null)
+            connection.write("Invalid chat id!");
+        if (chat.getChatType() != ChatType.ROOM)
+            connection.write("Can not join any other chat than rooms!");
+        else {
+            chat.addUser(connection.getUser().getUsername());
+            DataManager.saveChats();
+            connection.write("Joined room:" + chat.getName());
         }
     }
 

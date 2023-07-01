@@ -45,6 +45,18 @@ public class ChatMenuGUI extends Application {
         chatScroll = (ScrollPane) ((VBox)pane.getChildren().get(0)).getChildren().get(0);
         joinGroup = (Group) ((VBox)pane.getChildren().get(0)).getChildren().get(1);
 
+        Button backBtn = (Button) pane.getChildren().get(1);
+        backBtn.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                try {
+                    new MainMenuViewController().start(App.stage);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+
 
         pane.setPrefSize(width, height);
         setBackground();
@@ -60,6 +72,14 @@ public class ChatMenuGUI extends Application {
     private void set() {
         ArrayList<Chat> userChats = getUserChatsFromServer();
         setAllChats(userChats);
+
+        Button joinButton = (Button) joinGroup.getChildren().get(1);
+        joinButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                joinRoom();
+            }
+        });
 
         Button refreshBtn = (Button) joinGroup.getChildren().get(2);
         refreshBtn.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -83,6 +103,22 @@ public class ChatMenuGUI extends Application {
                 createPv();
             }
         });
+    }
+
+    private void joinRoom() {
+        TextArea chatId = (TextArea) joinGroup.getChildren().get(0);
+
+        HashMap<String,String> data = new HashMap<>();
+        data.put("command","joinRoom");
+        data.put("roomId",chatId.getText());
+        String dataStr = new Gson().toJson(data);
+
+        try {
+            App.writeToServer(dataStr);
+            System.out.println(App.readFromServer());
+        } catch (Exception e){
+            throw new RuntimeException (e);
+        }
     }
 
     private void createPv() {
