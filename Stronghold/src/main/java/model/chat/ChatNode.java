@@ -127,14 +127,11 @@ public class ChatNode extends Pane{
         update();
     }
 
-    private void editMessage(String message,String messageId) {
-        //TODO
+    private void editMessage(Message message, String editedMessage) {
+        message.editMessage(editedMessage);
         HashMap<String, String> data = new HashMap<>();
         data.put("command", "editMessage");
-        data.put("username", App.getCurrentUser().getUsername());
-        data.put("message",message);
-        data.put("messageId",messageId); //TODO Id of selected message
-        data.put("chatId",chat.getId());
+        data.put("message", message.toJson());
         String dataStr = new Gson().toJson(data);
         try {
             App.writeToServer(dataStr);
