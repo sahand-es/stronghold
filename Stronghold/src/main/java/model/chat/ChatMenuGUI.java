@@ -18,6 +18,7 @@ import model.App;
 import model.Database;
 import view.GUIController.MainMenuViewController;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -30,16 +31,16 @@ public class ChatMenuGUI extends Application {
     private Pane pane;
     private Group joinGroup;
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) {
         width = Screen.getPrimary().getBounds().getWidth();
         height = Screen.getPrimary().getBounds().getHeight();
 
 
-
-
-
-
-        pane = FXMLLoader.load(this.getClass().getResource("/fxml/chats-scroll.fxml"));
+        try {
+            pane = FXMLLoader.load(this.getClass().getResource("/fxml/chats-scroll.fxml"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         chatScroll = (ScrollPane) ((VBox)pane.getChildren().get(0)).getChildren().get(0);
         allChatsVBox = (VBox) chatScroll.getContent();
         joinGroup = (Group) ((VBox)pane.getChildren().get(0)).getChildren().get(1);
@@ -59,8 +60,6 @@ public class ChatMenuGUI extends Application {
     private void initialize() {
         ArrayList<Chat> userChats = getUserChatsFromServer();
 
-
-
         //////
         Message message = new Message("Fuck all niggas", "kir");
         Message message2 = new Message("Fuck all iranians", "bokon");
@@ -76,7 +75,7 @@ public class ChatMenuGUI extends Application {
         chats.add(chat);
         chats.add(chat2);
         ///////
-        setAllChats(chats);
+        setAllChats(userChats);
     }
 
     private ArrayList<Chat> getUserChatsFromServer() {

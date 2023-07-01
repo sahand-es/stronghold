@@ -35,6 +35,7 @@ public class Database {
         }
         games = DataManager.loadGames();
         currentUser = DataManager.loadLoggedInUser();
+        allChats = DataManager.loadChats();
     }
     private static ArrayList<Map> allMaps;
 

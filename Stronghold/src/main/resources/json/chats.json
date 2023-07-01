@@ -1,0 +1,32 @@
+[
+  {
+    "messages": [
+      {
+        "username": "kir",
+        "message": "Fuck all niggas",
+        "id": "71edfed5a0530f1adb084b9e53d5044279d57668c78706f74a8696f2394a006d",
+        "sendingTimeString": "18:17",
+        "sendingTimeMillis": 1688222871004,
+        "userAvatarPath": "file:src/main/resources/images/avatars/1.png",
+        "status": "SENT"
+      },
+      {
+        "username": "bokon",
+        "message": "Fuck all iranians",
+        "id": "e835d28f523aa7ad2fad04f88418755896e41f6cf7db525774a426e379938d83",
+        "sendingTimeString": "18:17",
+        "sendingTimeMillis": 1688222871046,
+        "userAvatarPath": "file:src/main/resources/images/avatars/1.png",
+        "status": "SENT"
+      }
+    ],
+    "users": [
+      "kir",
+      "bokon",
+      "nigga"
+    ],
+    "id": "45569cf76540da7c05283eaf4aaaeebf59aee8f2626902ad064b6a736bda7a67",
+    "chatType": "PUBLIC",
+    "name": "nigga"
+  }
+]

@@ -1,7 +1,9 @@
 package controller;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
+import com.google.gson.reflect.TypeToken;
 import model.Database;
 import model.User;
 import model.chat.Chat;
@@ -11,6 +13,7 @@ import model.network.Connection;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class ConnectionController {
     Connection connection;
@@ -110,7 +113,9 @@ public class ConnectionController {
                 output.add(chat);
         }
 
-        String dataStr = new String("convert"); //TODO send Json
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String dataStr = gson.toJson(output, new TypeToken<List<Chat>>(){}.getType());
+
         connection.write(dataStr);
     }
 
