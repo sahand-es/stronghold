@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 import model.Database;
+import model.Session;
 import model.User;
 import model.chat.Chat;
 import model.chat.ChatType;
@@ -92,6 +93,26 @@ public class ConnectionController {
                     joinRoom(data);
                     break;
 
+                case "getAllSessions":
+                    sendSessions();
+                    break;
+
+                case "createGame":
+                    createGame(data);
+                    break;
+
+                case "joinSession":
+                    joinSession(data);
+                    break;
+
+                case "leaveSession":
+                    leaveSession(data);
+                    break;
+
+                case "startSession":
+                    startSession(data);
+                    break;
+
 
                 default:
                     System.out.println("invalid menu");
@@ -99,6 +120,55 @@ public class ConnectionController {
         } catch (JsonSyntaxException e) {
             System.out.println("invalid data");
         }
+    }
+
+    private void startSession(HashMap<String, String> data) {
+        String id = data.get("id");
+        Session session = Database.getSessionById(id);
+        if (session != null) {
+            session.setStarted(true);
+        }
+    }
+
+
+    private void leaveSession(HashMap<String, String> data) {
+        String id = data.get("id");
+        String username = data.get("username");
+
+        Session session = Database.getSessionById(id);
+        if (session != null){
+            session.getUsers().remove(username);
+            if (session.getUsers().size() ==  0){
+                Database.removeSession(session);
+            }
+        }
+    }
+
+    private void joinSession(HashMap<String, String> data) {
+        String id = data.get("id");
+        String username = data.get("username");
+
+        Session session = Database.getSessionById(id);
+        if (session != null && session.getNumberOfPlayers() > session.getUsers().size()){
+            session.getUsers().add(username);
+        }
+    }
+
+    private void createGame(HashMap<String, String> data) {
+        String id = data.get("id");
+        int number = Integer.parseInt(data.get("numberOfPlayers"));
+        String username = data.get("username");
+
+        Database.addSession(new Session(id,number,username));
+    }
+
+    private void sendSessions() throws IOException {
+        ArrayList<Session> output = Database.getAllSessions();
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String dataStr = gson.toJson(output, new TypeToken<List<Chat>>() {
+        }.getType());
+
+        connection.write(dataStr);
     }
 
     private void joinRoom(HashMap<String, String> data) throws IOException {

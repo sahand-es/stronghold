@@ -2,6 +2,7 @@ package model.network;
 
 import com.google.gson.Gson;
 import model.App;
+import model.Session;
 import model.User;
 import view.shape.profile.RankScroll;
 
@@ -25,23 +26,13 @@ public class ClientTest {
         dataInputStream = new DataInputStream (socket.getInputStream());
 
         HashMap<String,String> data = new HashMap<>();
-        data.put("menu","profile");
-        data.put("command","getAllUsers");
+        data.put("command","getAllSessions");
         String dataStr = new Gson().toJson(data);
         try {
             dataOutputStream.writeUTF(dataStr);
             dataStr = dataInputStream.readUTF();
-            ArrayList<User> users = new ArrayList<>();
-            while (!dataStr.equals("EOF")){
-                User user = new Gson().fromJson(dataStr, User.class);
-                users.add(user);
-                dataStr = dataInputStream.readUTF();
-            }
+            ArrayList<Session> out = Session.fromJsonArrayList(dataStr);
 
-
-            for (Object user : users) {
-                System.out.println(user.toString());
-            }
         } catch (Exception e){
 
         }

@@ -23,6 +23,7 @@ public class Database {
     private static ArrayList<Game> games;
 
     private static ArrayList<Chat> allChats; //todo add json
+    private static ArrayList<Session> allSessions;
 
 
 
@@ -36,6 +37,10 @@ public class Database {
         games = DataManager.loadGames();
         currentUser = DataManager.loadLoggedInUser();
         allChats = DataManager.loadChats();
+        allSessions = new ArrayList<>();
+        allSessions.add(new Session("id1",2,"ali"));
+        allSessions.add(new Session("id2",5,"mamad"));
+        allSessions.add(new Session("id3",8,"pedarat"));
     }
     private static ArrayList<Map> allMaps;
 
@@ -165,6 +170,26 @@ public class Database {
         for (Chat chat : allChats) {
             if (chat.getId().equals(id))
                 return chat;
+        }
+        return null;
+    }
+
+    public static ArrayList<Session> getAllSessions() {
+        return allSessions;
+    }
+
+    public static void addSession(Session session){
+        allSessions.add(session);
+    }
+
+    public static void removeSession(Session session){
+        allSessions.remove(session);
+    }
+
+    public static Session getSessionById(String id){
+        for (Session session : allSessions) {
+            if (session.getSessionId().equals(id))
+                return session;
         }
         return null;
     }

@@ -8,6 +8,7 @@ module Stronghold {
     requires passay;
     requires java.desktop;
     requires org.apache.commons.lang3;
+    requires javafx.base;
 
     exports model.chat;
     opens model.chat;

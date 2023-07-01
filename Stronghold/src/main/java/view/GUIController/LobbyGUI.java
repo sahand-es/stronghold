@@ -1,5 +1,6 @@
 package view.GUIController;
 
+import com.google.gson.Gson;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,15 +12,19 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import model.App;
 import model.Database;
 import model.Session;
 import model.User;
 import utility.RandomGenerators;
+import view.MainMenu;
 import view.shape.lobby.GameSessionNode;
 
+import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Objects;
 
 public class LobbyGUI extends Application {
@@ -34,8 +39,7 @@ public class LobbyGUI extends Application {
 
     private ArrayList<Session> sessions = new ArrayList<>();
 
-    //todo check with network for current User
-    private User currentUser = Database.getUserByUsername("Sousef");
+    private User currentUser = App.getCurrentUser();
 
 
     ObservableList<String> numberList = FXCollections.observableArrayList("2","3","4","5","6","7","8");
@@ -69,13 +73,20 @@ public class LobbyGUI extends Application {
             }
         }
 
-        Session session = new Session(RandomGenerators.randomSessionId(),
-                Integer.parseInt(playerNumberChoice.getValue().toString()), currentUser.getUsername());
+        HashMap<String,String> data = new HashMap<>();
+        data.put("command","createGame");
+        data.put("id",RandomGenerators.randomSessionId());
+        data.put("numberOfPlayers",playerNumberChoice.getValue().toString());
+        data.put("username",currentUser.getUsername());
+        String dataStr = new Gson().toJson(data);
+        try {
+            App.writeToServer(dataStr);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
-        //todo used sessions
-        sessions.add(session);
+
         refresh();
-
     }
 
     public void refresh() {
@@ -85,7 +96,7 @@ public class LobbyGUI extends Application {
         }
         gameSessionMainNodes.clear();
 
-        //todo used sessions
+        sessions = getSessionsFromServer();
         //make them all over again the process of making a new node will refresh all its details
         for (Session session : sessions) {
             if (session.getUsers().size() != 0 &&
@@ -98,8 +109,26 @@ public class LobbyGUI extends Application {
 
     }
 
+    private ArrayList<Session> getSessionsFromServer() {
+        HashMap<String,String> data = new HashMap<>();
+        data.put("command","getAllSessions");
+        String dataStr = new Gson().toJson(data);
+        try {
+            App.writeToServer(dataStr);
+            dataStr = App.readFromServer();
+            ArrayList<Session> out = Session.fromJsonArrayList(dataStr);
+            return out;
+        } catch (Exception e){
+            return new ArrayList<>();
+        }
+    }
+
     public void back() {
-        //todo go to previous menu
+        try {
+            new MainMenuViewController().start(App.stage);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
 

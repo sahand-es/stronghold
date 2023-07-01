@@ -1,6 +1,10 @@
 package model;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class Session {
     private String sessionId;
@@ -34,5 +38,15 @@ public class Session {
 
     public void setStarted(boolean started) {
         isStarted = started;
+    }
+
+    public static ArrayList<Session> fromJsonArrayList(String json) {
+        return new Gson().fromJson(json, new TypeToken<List<Session>>() {
+        }.getType());
+    }
+
+    @Override
+    public String toString() {
+        return sessionId + " " + users.size() +"/" + numberOfPlayers + " " + isStarted;
     }
 }

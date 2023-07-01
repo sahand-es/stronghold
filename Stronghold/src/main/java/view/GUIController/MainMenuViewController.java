@@ -55,7 +55,6 @@ public class MainMenuViewController extends Application {
         Scene scene = new Scene(borderPane);
         stage.setScene(scene);
         stage.setFullScreen(true);
-        stage.setResizable(false);
         stage.show();
     }
 
@@ -89,7 +88,11 @@ public class MainMenuViewController extends Application {
         startNewGameButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                startNewGamePage();
+                try {
+                    new LobbyGUI().start(App.stage);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
