@@ -5,14 +5,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.HBox;
-import javafx.scene.paint.Color;
 import model.Game;
-import model.User;
 import utility.RandomGenerators;
 
-import java.awt.geom.Area;
-
-public class gameSessionNode {
+public class GameSessionNode {
     private Game game;
     private HBox mainNode;
     private TextArea usersArea;
@@ -21,7 +17,7 @@ public class gameSessionNode {
     private Button leave;
     private Button start;
 
-    public gameSessionNode(Game game) {
+    public GameSessionNode(Game game) {
         this.game = game;
         mainNode  = new HBox();
         mainNode.setAlignment(Pos.CENTER);
