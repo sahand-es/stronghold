@@ -586,7 +586,6 @@ public class SignUpMenuGUI extends Application {
 
     public void signUp() {
         HashMap<String,String> userData = extract();
-        userData.put("menu","login");
         userData.put("command","signup");
 
         String Username = userData.get("username");
@@ -615,7 +614,6 @@ public class SignUpMenuGUI extends Application {
 
     public static User getUserByEmailFromServer(String email){
         HashMap<String,String> data = new HashMap<>();
-        data.put("menu","login");
         data.put("command","getUserByEmail");
         data.put("email",email);
         String dataStr = new Gson().toJson(data);

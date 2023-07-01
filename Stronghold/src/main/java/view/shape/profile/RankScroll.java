@@ -47,7 +47,6 @@ public class RankScroll {
 
     public static ArrayList<User> getUsersFromServer() {
         HashMap<String,String> data = new HashMap<>();
-        data.put("menu","profile");
         data.put("command","getAllUsers");
         String dataStr = new Gson().toJson(data);
         try {

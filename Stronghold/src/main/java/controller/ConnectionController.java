@@ -19,15 +19,39 @@ public class ConnectionController {
     public void handel(String input) throws IOException{
         try {
             HashMap<String,String> data = new Gson().fromJson(input, HashMap.class);
-            String menu = data.get("menu");
+            String command = data.get("command");
 
-            switch (menu){
-                case "login":
-                    handelLogin(data);
+            switch (command){
+                case "setUser":
+                    setUserCommand(data);
                     break;
 
-                case "profile":
-                    handelProfile(data);
+                case "getUser":
+                    getUserCommand(data);
+                    break;
+
+                case "getUserByEmail":
+                    getUserByEmailCommand(data);
+                    break;
+
+                case "signup":
+                    signup(data);
+                    break;
+
+                case "setAvatarPath":
+                    setAvatarPath(data);
+                    break;
+
+                case "setPassword":
+                    setPassword(data);
+                    break;
+
+                case "setSlogan":
+                    setSlogan(data);
+                    break;
+
+                case "getAllUsers":
+                    sendAllUsers();
                     break;
 
                 default:
@@ -35,30 +59,6 @@ public class ConnectionController {
             }
         } catch (JsonSyntaxException e) {
             System.out.println("invalid data");
-        }
-    }
-
-    private void handelProfile(HashMap<String, String> data) throws IOException {
-        String command = data.get("command");
-        switch (command){
-            case "setAvatarPath":
-                setAvatarPath(data);
-                break;
-
-            case "setPassword":
-                setPassword(data);
-                break;
-
-            case "setSlogan":
-                setSlogan(data);
-                break;
-
-            case "getAllUsers":
-                sendAllUsers();
-                break;
-
-            default:
-                System.out.println("invalid command in profile menu");
         }
     }
 
@@ -85,29 +85,6 @@ public class ConnectionController {
         connection.getUser().setAvatarPath(imagePath);
     }
 
-    private void handelLogin(HashMap<String,String> data) throws IOException {
-        String command = data.get("command");
-        switch (command){
-            case "setUser":
-                setUserCommand(data);
-                break;
-
-            case "getUser":
-                getUserCommand(data);
-                break;
-
-            case "getUserByEmail":
-                getUserByEmailCommand(data);
-                break;
-
-            case "signup":
-                signup(data);
-                break;
-
-            default:
-                System.out.println("invalid command");
-        }
-    }
 
     private void setUserCommand(HashMap<String, String> data) {
         String username = data.get("user");

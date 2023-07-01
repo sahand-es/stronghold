@@ -199,7 +199,6 @@ public class LoginMenuGUI extends Application {
 
     public static User getUserFromServer(String username){
         HashMap<String,String> data = new HashMap<>();
-        data.put("menu","login");
         data.put("command","getUser");
         data.put("user",username);
         String dataStr = new Gson().toJson(data);

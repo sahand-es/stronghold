@@ -148,7 +148,6 @@ public class ProfileMenuGUI extends Application {
 
     private void setAvatarPathOnServer(String imagePath){
         HashMap<String,String> data = new HashMap<>();
-        data.put("menu","profile");
         data.put("command","setAvatarPath");
         data.put("imagePath",imagePath);
         String dataStr = new Gson().toJson(data);
@@ -341,7 +340,6 @@ public class ProfileMenuGUI extends Application {
 
     private void setSloganOnServer(String slogan) {
         HashMap<String,String> data = new HashMap<>();
-        data.put("menu","profile");
         data.put("command","setSlogan");
         data.put("slogan",slogan);
         String dataStr = new Gson().toJson(data);
@@ -354,7 +352,6 @@ public class ProfileMenuGUI extends Application {
 
     private void setPasswordOnServer(String password) {
         HashMap<String,String> data = new HashMap<>();
-        data.put("menu","profile");
         data.put("command","setPassword");
         data.put("password",password);
         String dataStr = new Gson().toJson(data);

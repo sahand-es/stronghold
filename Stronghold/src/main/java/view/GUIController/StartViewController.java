@@ -92,7 +92,6 @@ public class StartViewController extends Application {
                         } else {
                             App.setCurrentUser(user);
                             HashMap<String,String> data = new HashMap<>();
-                            data.put("menu","login");
                             data.put("command","setUser");
                             data.put("user",user.getUsername());
                             String dataStr = new Gson().toJson(data);
