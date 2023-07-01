@@ -64,7 +64,6 @@
 }
 .titled-pane
 {
-    -fx-skin: "com.sun.javafx.scene.control.skin.TitledPaneSkin";
     -fx-text-fill: -fx-text-base-color;
 }
 .titled-pane:focused
@@ -109,8 +108,7 @@
 .titled-pane > *.content
 {
     -fx-background-color:
-            -fx-box-border,
-            rive(-fx-color,50%) 99%, -fx-box-border);
+            -fx-box-border;
     -fx-background-insets: 1, 1 1 1 1;
     -fx-padding: 0.167em;
 }

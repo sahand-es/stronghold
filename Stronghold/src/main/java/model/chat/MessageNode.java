@@ -10,7 +10,7 @@ import utility.DataManager;
 
 import java.io.IOException;
 
-public class MessageNode {
+public class MessageNode extends Pane{
     private Pane pane;
     private Text text;
     private Text sentTime;
@@ -27,6 +27,7 @@ public class MessageNode {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        this.getChildren().add(pane);
         avatar = (ImageView) pane.getChildren().get(0);
         text = (Text) pane.getChildren().get(1);
         sentTime = (Text) pane.getChildren().get(2);
@@ -81,4 +82,8 @@ public class MessageNode {
         username.setText(message.getUsername());
     }
 
+    private void update() {
+        setReaction();
+        setText();
+    }
 }

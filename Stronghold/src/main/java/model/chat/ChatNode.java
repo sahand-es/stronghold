@@ -2,6 +2,7 @@ package model.chat;
 
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
@@ -12,7 +13,7 @@ import utility.DataManager;
 import java.io.IOException;
 import java.util.Locale;
 
-public class ChatNode {
+public class ChatNode extends Pane{
     private Pane pane;
 
     private Chat chat;
@@ -28,6 +29,7 @@ public class ChatNode {
         this.chat = chat;
 
         pane = FXMLLoader.load(this.getClass().getResource(DataManager.CHAT_NODE));
+        this.getChildren().add(pane);
         chatScroll = (ScrollPane) pane.getChildren().get(0);
         messages = (VBox) chatScroll.getContent();
         typedMessaged = (TextArea) pane.getChildren().get(1);
@@ -59,7 +61,7 @@ public class ChatNode {
         messages.setAlignment(Pos.BASELINE_CENTER);
         for (Message message : chat.getMessages()) {
             MessageNode messageNode = new MessageNode(message);
-            messages.getChildren().add(messageNode.getPane());
+            messages.getChildren().add(messageNode);
         }
     }
 
@@ -78,6 +80,11 @@ public class ChatNode {
     public void update() {
         setUsersBox();
         setMessages();
+        for (Node child : messages.getChildren()) {
+            if (child instanceof ChatNode) {
+                ((ChatNode) child).update();
+            }
+        }
     }
 
     public Pane getPane() {
