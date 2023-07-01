@@ -93,8 +93,16 @@ public class ChatNode extends Pane {
     }
 
     private void setLabel() {
-        if (chat.getChatType() != ChatType.PUBLIC)
+        if (chat.getChatType() == ChatType.ROOM) {
             label.setText(chat.getChatType().name() + ": " + chat.getName().toUpperCase(Locale.ROOT));
+        } else if (chat.getChatType().equals(ChatType.PRIVATE)) {
+            for (String username : chat.getUsers()) {
+                if (!username.equals(App.getCurrentUser().getUsername())) {
+                    label.setText(chat.getChatType().name() + ": " + username.toUpperCase(Locale.ROOT));
+                    break;
+                }
+            }
+        }
         else {
             label.setText("PUBLIC");
         }

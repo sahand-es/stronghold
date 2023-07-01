@@ -75,6 +75,34 @@ public class ChatMenuGUI extends Application {
                 createRoom();
             }
         });
+
+        Button createPvBtn = (Button) joinGroup.getChildren().get(6);
+        createPvBtn.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                createPv();
+            }
+        });
+    }
+
+    private void createPv() {
+        TextArea username = (TextArea) joinGroup.getChildren().get(5);
+        if (username.equals(App.getCurrentUser().getUsername()))
+            return;
+        Chat chat = new Chat(ChatType.PRIVATE, username.getText());
+        chat.addUser(App.getCurrentUser().getUsername());
+
+        HashMap<String,String> data = new HashMap<>();
+        data.put("command","createPv");
+        data.put("chat",chat.toJson());
+        data.put("username",username.getText());
+        String dataStr = new Gson().toJson(data);
+        try {
+            App.writeToServer(dataStr);
+            System.out.println(App.readFromServer());
+        } catch (Exception e){
+            throw new RuntimeException (e);
+        }
     }
 
     private void createRoom() {

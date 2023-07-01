@@ -84,6 +84,9 @@ public class ConnectionController {
                 case "createRoom":
                     createRoom(data);
                     break;
+                case "createPv":
+                    createPv(data);
+                    break;
 
 
                 default:
@@ -91,6 +94,18 @@ public class ConnectionController {
             }
         } catch (JsonSyntaxException e) {
             System.out.println("invalid data");
+        }
+    }
+
+    private void createPv(HashMap<String, String> data) throws IOException {
+        Chat chat = Chat.fromJson(data.get("chat"));
+        String username = data.get("username");
+        if (Database.getUserByUsername(username) != null) {
+            chat.addUser(username);
+            Database.addChat(chat);
+            connection.write("PV with " + username + " created!");
+        } else {
+            connection.write("Invalid username!");
         }
     }
 
