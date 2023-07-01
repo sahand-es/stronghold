@@ -19,8 +19,10 @@ public class Message {
     // TODO: 6/30/2023 change it with username
     private String userAvatarPath = "file:src/main/resources/images/avatars/1.png";
     private MessageStatus status;
+    private final String chatId;
 
-    public Message(String message, String username) {
+    public Message(String message, String username, String chatId) {
+        this.chatId = chatId;
         sendingTimeString = LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm"));
         sendingTimeMillis = System.currentTimeMillis();
         this.username = username;
@@ -40,6 +42,10 @@ public class Message {
 
     public static Message fromJson(String json) {
         return new Gson().fromJson(json, new TypeToken<Message>(){}.getType());
+    }
+
+    public String getChatId() {
+        return chatId;
     }
 
     public String getUsername() {

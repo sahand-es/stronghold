@@ -98,7 +98,7 @@ public class ConnectionController {
     private void makeMessage(HashMap<String, String> data) {
         //TODO
         Message message = Message.fromJson(data.get("message"));
-        Chat chat = Database.getChatById(message.getId());
+        Chat chat = Database.getChatById(message.getChatId());
         if (chat != null) chat.addMessage(message);
     }
 
