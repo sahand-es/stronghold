@@ -9,6 +9,7 @@ import javafx.scene.control.TabPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import model.App;
 import model.Database;
 import model.society.Government;
 import view.GUIController.MainMenuViewController;
@@ -61,7 +62,7 @@ public class ControlPanel {
             @Override
             public void handle(MouseEvent event) {
                 try {
-                    new MarketViewController().start(Database.stage);
+                    new MarketViewController().start(App.stage);
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
@@ -76,7 +77,7 @@ public class ControlPanel {
             @Override
             public void handle(MouseEvent event) {
                 try {
-                    new MainMenuViewController().start(Database.stage);
+                    new MainMenuViewController().start(App.stage);
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }

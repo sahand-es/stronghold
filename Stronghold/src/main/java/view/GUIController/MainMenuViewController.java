@@ -13,6 +13,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import model.App;
 import model.Database;
 import model.Game;
 import model.map.Map;
@@ -112,7 +113,7 @@ public class MainMenuViewController extends Application {
             @Override
             public void handle(MouseEvent event) {
                 try {
-                    new ProfileMenuGUI().start(Database.stage);
+                    new ProfileMenuGUI().start(App.stage);
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
@@ -130,7 +131,7 @@ public class MainMenuViewController extends Application {
             public void handle(MouseEvent event) {
                 try {
                     DataManager.saveLoggedIn(null);
-                    new LoginMenuGUI().start(Database.stage);
+                    new LoginMenuGUI().start(App.stage);
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
@@ -285,7 +286,7 @@ public class MainMenuViewController extends Application {
         GameControl.setGame(game);
 
         try {
-            new GameMenuGUI().start(Database.stage);
+            new GameMenuGUI().start(App.stage);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

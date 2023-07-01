@@ -1,5 +1,6 @@
 package view.GUIController;
 
+import com.google.gson.Gson;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -12,12 +13,14 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import model.App;
 import model.Database;
 import model.User;
 import utility.CheckFunctions;
 import utility.RandomCaptcha;
 import utility.RandomGenerators;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Objects;
@@ -136,7 +139,7 @@ public class SignUpMenuGUI extends Application {
                 break;
             case 1:
                 username.textProperty().addListener((observable, oldText, newText) -> {
-                    if (Database.getUserByUsername(newText) != null){
+                    if (LoginMenuGUI.getUserFromServer(newText) != null){
                         messageLabel.setText("This Username already exist!");
                         nextButton.setVisible(false);
                     }
@@ -291,7 +294,7 @@ public class SignUpMenuGUI extends Application {
                         messageLabel.setText("The Email format is invalid!");
                         nextButton.setVisible(false);
                     }
-                    else if (CheckFunctions.checkEmailExits(newText)){
+                    else if (getUserByEmailFromServer(newText) != null){
                         messageLabel.setText("This Email already exist!");
                         nextButton.setVisible(false);
                     }
@@ -528,7 +531,7 @@ public class SignUpMenuGUI extends Application {
         if(signUpLevel == -1){
             signUpLevel++;
             try {
-                new LoginMenuGUI().start(Database.stage);
+                new LoginMenuGUI().start(App.stage);
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
@@ -576,37 +579,57 @@ public class SignUpMenuGUI extends Application {
         output.put("nickname", Nickname);
         output.put("email",Email);
         output.put("slogan",Slogan);
-        output.put("questionNUmber", String.valueOf(questionNUmber));
+        output.put("questionNumber", String.valueOf(questionNUmber));
         output.put("answer",Answer);
         return output;
     }
 
     public void signUp() {
         HashMap<String,String> userData = extract();
+        userData.put("menu","login");
+        userData.put("command","signup");
+
         String Username = userData.get("username");
         String Password = userData.get("password");
-        String Nickname = userData.get("nickname");
         String Email = userData.get("email");
         String Slogan = userData.get("slogan");
-        int questionNUmber = Integer.parseInt(userData.get("questionNUmber"));
-        String Answer = userData.get("answer");
 
-        new User(Username,Password,Nickname,Email,questionNUmber,Answer,Slogan);
-
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Successful!");
-        alert.setHeaderText("SignUp Info");
-        String context = "\nUsername: " + Username + "\nPassword: " +
-                Password + "\nEmail: " + Email + "\nSlogan: " + Slogan;
-        alert.setContentText("Your account was made successfully" + context);
-        alert.showAndWait();
-
+        String dataStr = new Gson().toJson(userData);
         try {
-            new LoginMenuGUI().start(Database.stage);
-        } catch (Exception e) {
+            App.writeToServer(dataStr);
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Successful!");
+            alert.setHeaderText("SignUp Info");
+            String context = "\nUsername: " + Username + "\nPassword: " +
+                    Password + "\nEmail: " + Email + "\nSlogan: " + Slogan;
+            alert.setContentText("Your account was made successfully" + context);
+            alert.showAndWait();
+
+            new LoginMenuGUI().start(App.stage);
+
+        }  catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
+
+
+    public static User getUserByEmailFromServer(String email){
+        HashMap<String,String> data = new HashMap<>();
+        data.put("menu","login");
+        data.put("command","getUserByEmail");
+        data.put("email",email);
+        String dataStr = new Gson().toJson(data);
+        try {
+            App.writeToServer(dataStr);
+            dataStr = App.readFromServer();
+            User user = new Gson().fromJson(dataStr,User.class);
+            return user;
+        } catch (Exception e){
+            return null;
+        }
+    }
+
+
 
 
     @Override
