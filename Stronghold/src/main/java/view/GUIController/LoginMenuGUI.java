@@ -1,5 +1,6 @@
 package view.GUIController;
 
+import com.google.gson.Gson;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,7 +15,10 @@ import model.Database;
 import model.User;
 import utility.DataManager;
 import utility.RandomCaptcha;
+
+import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.Objects;
 import javafx.embed.swing.SwingFXUtils;
 
@@ -56,7 +60,7 @@ public class LoginMenuGUI extends Application {
 
         //add listeners
         username.textProperty().addListener((observable, oldText, newText) -> {
-            if (Database.getUserByUsername(newText) == null) {
+            if (getUserFromServer(newText) == null) {
                 messageLabel.setText("Username doesn't exist!");
             }
             else{
@@ -74,7 +78,7 @@ public class LoginMenuGUI extends Application {
             if(username.getText().isEmpty()){
                 messageLabel.setText("Fill username field!");
             }
-            else if (Database.getUserByUsername(username.getText()) == null) {
+            else if (getUserFromServer(username.getText()) == null) {
                 messageLabel.setText("Username doesn't exist!");
             }
             else if(captchaField.getText().isEmpty()){
@@ -87,7 +91,7 @@ public class LoginMenuGUI extends Application {
             if(username.getText().isEmpty()){
                 messageLabel.setText("Fill username field!");
             }
-            else if (Database.getUserByUsername(username.getText()) == null) {
+            else if (getUserFromServer(username.getText()) == null) {
                 messageLabel.setText("Username doesn't exist!");
             }
             else if(password.getText().isEmpty()){
@@ -98,7 +102,7 @@ public class LoginMenuGUI extends Application {
         });
     }
 
-    public void login() {
+    public void login() throws IOException {
         if (username.getText().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error!");
@@ -144,7 +148,7 @@ public class LoginMenuGUI extends Application {
             resetCaptcha();
             captchaField.setText(null);
         }
-        else if (!Objects.requireNonNull(Database.getUserByUsername(username.getText())).checkPassword(
+        else if (!Objects.requireNonNull(getUserFromServer(username.getText())).checkPassword(
                 password.getText())) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error!");
@@ -155,8 +159,15 @@ public class LoginMenuGUI extends Application {
             captchaField.setText(null);
         }
         else {
-            User user = Database.getUserByUsername(username.getText());
-            Database.setCurrentUser(user);
+            User user = getUserFromServer(username.getText());
+            App.setCurrentUser(user);
+            HashMap<String,String> data = new HashMap<>();
+            data.put("menu","login");
+            data.put("command","setUser");
+            data.put("user",user.getUsername());
+            String dataStr = new Gson().toJson(data);
+            App.writeToServer(dataStr);
+
             if(stayLoggedCheckBox.isSelected()){
                 DataManager.saveLoggedIn(Database.getCurrentUser());
             }
@@ -185,6 +196,22 @@ public class LoginMenuGUI extends Application {
         captcha = RandomCaptcha.generateString();
         Image captchaImage = SwingFXUtils.toFXImage(RandomCaptcha.generateImage(captcha), null);
         captchaImageViewer.setImage(captchaImage);
+    }
+
+    private User getUserFromServer(String username){
+        HashMap<String,String> data = new HashMap<>();
+        data.put("menu","login");
+        data.put("command","getUser");
+        data.put("user",username);
+        String dataStr = new Gson().toJson(data);
+        try {
+            App.writeToServer(dataStr);
+            dataStr = App.readFromServer();
+            User user = new Gson().fromJson(dataStr,User.class);
+            return user;
+        } catch (Exception e){
+            return null;
+        }
     }
 
     @Override

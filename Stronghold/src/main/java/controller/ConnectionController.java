@@ -41,6 +41,10 @@ public class ConnectionController {
                 setUserCommand(data);
                 break;
 
+            case "getUser":
+                getUserCommand(data);
+                break;
+
             default:
                 System.out.println("invalid command");
         }
@@ -50,5 +54,12 @@ public class ConnectionController {
         String username = data.get("user");
         User user = Database.getUserByUsername(username);
         connection.setUser(user);
+    }
+
+    private void getUserCommand(HashMap<String,String> data) throws IOException {
+        String username = data.get("user");
+        User user = Database.getUserByUsername(username);
+        String dataStr = new Gson().toJson(user);
+        connection.write(dataStr);
     }
 }

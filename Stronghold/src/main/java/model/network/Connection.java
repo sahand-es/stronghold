@@ -59,6 +59,7 @@ public class Connection extends Thread {
     }
 
     public void setUser(User user) {
+        System.out.println("connection set for : " + user.getUsername());
         this.user = user;
     }
 }
