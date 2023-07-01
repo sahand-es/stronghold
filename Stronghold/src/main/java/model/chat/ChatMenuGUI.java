@@ -13,6 +13,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import model.App;
 import model.Database;
 import view.GUIController.MainMenuViewController;
 
@@ -76,7 +77,7 @@ public class ChatMenuGUI extends Application {
         VBox vBox = (VBox) pane.getChildren().get(0);
         vBox.setAlignment(Pos.CENTER);
         vBox.setPrefWidth(chatScroll.getPrefWidth());
-        vBox.setLayoutX(Database.centerX - vBox.getPrefWidth()/2);
+        vBox.setLayoutX(App.centerX - vBox.getPrefWidth()/2);
 
         // TODO: 7/1/2023 get chats from user.
         for (Chat chat : chats) {
