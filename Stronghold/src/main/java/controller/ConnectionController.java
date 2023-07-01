@@ -9,6 +9,7 @@ import model.User;
 import model.chat.Chat;
 import model.chat.Message;
 import model.network.Connection;
+import utility.DataManager;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -77,6 +78,12 @@ public class ConnectionController {
                 case "deleteMessage":
                     deleteMessage(data);
                     break;
+                case "seen":
+                    setSeen(data);
+                    break;
+                case "createRoom":
+                    createRoom(data);
+                    break;
 
 
                 default:
@@ -87,6 +94,22 @@ public class ConnectionController {
         }
     }
 
+    private void createRoom(HashMap<String, String> data) {
+        Chat chat = Chat.fromJson(data.get("chat"));
+        Database.addChat(chat);
+    }
+
+    private void setSeen(HashMap<String, String> data) {
+        String chatId = data.get("chatId");
+        Chat chat = Database.getChatById(chatId);
+        if (chat != null) {
+            for (Message message : chat.getMessages()) {
+                message.seen();
+            }
+        }
+        DataManager.saveChats();
+    }
+
     private void deleteMessage(HashMap<String, String> data) {
         Message message = Message.fromJson(data.get("message"));
         Chat chat = Database.getChatById(message.getChatId());
@@ -95,6 +118,8 @@ public class ConnectionController {
             messageS.setMessage(message.getMessage());
             messageS.delete();
         }
+        DataManager.saveChats();
+
     }
 
     private void editMessage(HashMap<String, String> data) {
@@ -104,12 +129,14 @@ public class ConnectionController {
             Message messageS = chat.getMessageById(message.getId());
             messageS.setMessage(message.getMessage());
         }
+        DataManager.saveChats();
     }
 
     private void makeMessage(HashMap<String, String> data) {
         Message message = Message.fromJson(data.get("message"));
         Chat chat = Database.getChatById(message.getChatId());
         if (chat != null) chat.addMessage(message);
+        DataManager.saveChats();
     }
 
     private void sendUserChats(HashMap<String, String> data) throws IOException {

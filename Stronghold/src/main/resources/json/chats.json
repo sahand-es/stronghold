@@ -9,7 +9,8 @@
         "sendingTimeMillis": 1688227431535,
         "userAvatarPath": "file:src/main/resources/images/avatars/1.png",
         "status": "SENT",
-        "chatId": "25105857712b8724b21fae3c5ac3af7ec55553fcafb651efb5e35a4c235296e4"
+        "chatId": "25105857712b8724b21fae3c5ac3af7ec55553fcafb651efb5e35a4c235296e4",
+        "isDeleted": false
       },
       {
         "username": "bokon",
@@ -19,7 +20,8 @@
         "sendingTimeMillis": 1688227431573,
         "userAvatarPath": "file:src/main/resources/images/avatars/1.png",
         "status": "SENT",
-        "chatId": "25105857712b8724b21fae3c5ac3af7ec55553fcafb651efb5e35a4c235296e4"
+        "chatId": "25105857712b8724b21fae3c5ac3af7ec55553fcafb651efb5e35a4c235296e4",
+        "isDeleted": false
       }
     ],
     "users": [
@@ -29,5 +31,14 @@
     "id": "25105857712b8724b21fae3c5ac3af7ec55553fcafb651efb5e35a4c235296e4",
     "chatType": "PUBLIC",
     "name": "nigga"
+  },
+  {
+    "messages": [],
+    "users": [
+      "sahand"
+    ],
+    "id": "9cf7126f8ef47df1b6282f058877b46aaf9a62d93d0d0e8f1df15244acf4da0",
+    "chatType": "ROOM",
+    "name": "test"
   }
 ]

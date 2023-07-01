@@ -7,8 +7,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
@@ -41,7 +43,6 @@ public class ChatMenuGUI extends Application {
             throw new RuntimeException(e);
         }
         chatScroll = (ScrollPane) ((VBox)pane.getChildren().get(0)).getChildren().get(0);
-        allChatsVBox = (VBox) chatScroll.getContent();
         joinGroup = (Group) ((VBox)pane.getChildren().get(0)).getChildren().get(1);
 
 
@@ -59,6 +60,38 @@ public class ChatMenuGUI extends Application {
     private void set() {
         ArrayList<Chat> userChats = getUserChatsFromServer();
         setAllChats(userChats);
+
+        Button refreshBtn = (Button) joinGroup.getChildren().get(2);
+        refreshBtn.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                set();
+            }
+        });
+        Button createRoomBtn = (Button) joinGroup.getChildren().get(4);
+        createRoomBtn.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                createRoom();
+            }
+        });
+    }
+
+    private void createRoom() {
+        TextArea roomName = (TextArea) joinGroup.getChildren().get(3);
+        Chat chat = new Chat(ChatType.ROOM, roomName.getText());
+        chat.addUser(App.getCurrentUser().getUsername());
+
+        HashMap<String,String> data = new HashMap<>();
+        data.put("command","createRoom");
+        data.put("chat",chat.toJson());
+        String dataStr = new Gson().toJson(data);
+        try {
+            App.writeToServer(dataStr);
+        } catch (Exception e){
+            throw new RuntimeException (e);
+        }
+
     }
 
     private ArrayList<Chat> getUserChatsFromServer() {
@@ -76,9 +109,24 @@ public class ChatMenuGUI extends Application {
         }
     }
 
+    private void sendSeen(String chatId) {
+        HashMap<String,String> data = new HashMap<>();
+        data.put("command","seen");
+        data.put("chatId", chatId);
+        String dataStr = new Gson().toJson(data);
+        try {
+            App.writeToServer(dataStr);
+        } catch (Exception e){
+            throw new RuntimeException (e);
+        }
+    }
+
 
 
     private void setAllChats(ArrayList<Chat> chats) {
+        allChatsVBox = (VBox) chatScroll.getContent();
+        if (!allChatsVBox.getChildren().isEmpty())
+            allChatsVBox.getChildren().clear();
         VBox vBox = (VBox) pane.getChildren().get(0);
         vBox.setAlignment(Pos.CENTER);
         vBox.setPrefWidth(chatScroll.getPrefWidth());
@@ -96,6 +144,7 @@ public class ChatMenuGUI extends Application {
                 @Override
                 public void handle(MouseEvent mouseEvent) {
                     ChatNode chatNode = new ChatNode(chat);
+                    sendSeen(chat.getId());
                     Scene scene = new Scene(chatNode);
                     Stage stage = new Stage();
                     stage.setScene(scene);

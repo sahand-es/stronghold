@@ -34,6 +34,10 @@ public class Message {
         id = SHA.shaString(message + String.valueOf(RandomGenerators.randomPassword()));
     }
 
+    public void seen() {
+        status = MessageStatus.SEEN;
+    }
+
     public void setUserAvatarPath(String userAvatarPath) {
         this.userAvatarPath = userAvatarPath;
     }

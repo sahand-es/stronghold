@@ -64,6 +64,11 @@ public class Database {
         DataManager.saveUsers();
     }
 
+    public static void addChat(Chat chat) {
+        allChats.add(chat);
+        DataManager.saveChats();
+    }
+
     public static User getUserByUsername(String username) {
         if (users == null)
             return null;
