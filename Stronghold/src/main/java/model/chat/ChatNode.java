@@ -75,6 +75,11 @@ public class ChatNode {
         // TODO: 6/30/2023 new message and fart
     }
 
+    public void update() {
+        setUsersBox();
+        setMessages();
+    }
+
     public Pane getPane() {
         return pane;
     }
