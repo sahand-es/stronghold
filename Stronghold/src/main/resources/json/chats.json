@@ -4,28 +4,29 @@
       {
         "username": "kir",
         "message": "Fuck all niggas",
-        "id": "71edfed5a0530f1adb084b9e53d5044279d57668c78706f74a8696f2394a006d",
-        "sendingTimeString": "18:17",
-        "sendingTimeMillis": 1688222871004,
+        "id": "5189d4a3fcfc585a8c842a856e5bc699bfa782786900e81a38dddbe26ca9995e",
+        "sendingTimeString": "19:33",
+        "sendingTimeMillis": 1688227431535,
         "userAvatarPath": "file:src/main/resources/images/avatars/1.png",
-        "status": "SENT"
+        "status": "SENT",
+        "chatId": "25105857712b8724b21fae3c5ac3af7ec55553fcafb651efb5e35a4c235296e4"
       },
       {
         "username": "bokon",
         "message": "Fuck all iranians",
-        "id": "e835d28f523aa7ad2fad04f88418755896e41f6cf7db525774a426e379938d83",
-        "sendingTimeString": "18:17",
-        "sendingTimeMillis": 1688222871046,
+        "id": "3194aa9a85ac4f84ab4d79aeaf0d6d448c81babaf2585eed8e26ff40e44f16a3",
+        "sendingTimeString": "19:33",
+        "sendingTimeMillis": 1688227431573,
         "userAvatarPath": "file:src/main/resources/images/avatars/1.png",
-        "status": "SENT"
+        "status": "SENT",
+        "chatId": "25105857712b8724b21fae3c5ac3af7ec55553fcafb651efb5e35a4c235296e4"
       }
     ],
     "users": [
       "kir",
-      "bokon",
-      "nigga"
+      "bokon"
     ],
-    "id": "45569cf76540da7c05283eaf4aaaeebf59aee8f2626902ad064b6a736bda7a67",
+    "id": "25105857712b8724b21fae3c5ac3af7ec55553fcafb651efb5e35a4c235296e4",
     "chatType": "PUBLIC",
     "name": "nigga"
   }

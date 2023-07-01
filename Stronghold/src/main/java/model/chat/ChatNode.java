@@ -8,7 +8,6 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import model.App;
@@ -111,10 +110,11 @@ public class ChatNode extends Pane{
     }
 
     private void makeNewMessage(String messageText) {
-        Message message = new Message(messageText, App.getCurrentUser().getUsername());
+        Message message = new Message(messageText, App.getCurrentUser().getUsername(), chat.getId());
         message.setUserAvatarPath(App.getCurrentUser().getAvatarPathSahand());
 
         HashMap<String, String> data = new HashMap<>();
+        data.put("command","makeMessage");
         data.put("message",message.toJson());
         String dataStr = new Gson().toJson(data);
         try {

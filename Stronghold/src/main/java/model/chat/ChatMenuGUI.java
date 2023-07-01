@@ -99,6 +99,7 @@ public class ChatMenuGUI extends Application {
                     Scene scene = new Scene(chatNode);
                     Stage stage = new Stage();
                     stage.setScene(scene);
+                    stage.setResizable(false);
                     stage.show();
                 }
             });
