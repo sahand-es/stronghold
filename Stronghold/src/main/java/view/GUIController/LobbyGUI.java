@@ -56,11 +56,7 @@ public class LobbyGUI extends Application {
         Background background = new Background(backgroundFill);
         anchorPane.setBackground(background);
 
-        Session session = new Session(RandomGenerators.randomSessionId(), 4, "ali");
 
-        //todo used sessions
-        sessions.add(session);
-        refresh();
 
         refresh();
     }

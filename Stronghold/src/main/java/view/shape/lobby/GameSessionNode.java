@@ -33,7 +33,7 @@ public class GameSessionNode {
         mainNode.setPrefSize(1400,100);
         mainNode.setStyle("-fx-background-color: #263f73");
 
-        Label idLabel = new Label("Session Id: " + RandomGenerators.randomSessionId());
+        Label idLabel = new Label("Session Id: " + session.getSessionId());
         idLabel.setPrefSize(150,100);
         idLabel.setStyle("-fx-font: 14 sys");
         idLabel.setTextFill(Color.WHITE);
