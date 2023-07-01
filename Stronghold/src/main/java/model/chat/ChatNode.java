@@ -115,6 +115,7 @@ public class ChatNode extends Pane{
         message.setUserAvatarPath(App.getCurrentUser().getAvatarPathSahand());
 
         HashMap<String, String> data = new HashMap<>();
+        data.put("command","makeMessage");
         data.put("message",message.toJson());
         String dataStr = new Gson().toJson(data);
         try {
