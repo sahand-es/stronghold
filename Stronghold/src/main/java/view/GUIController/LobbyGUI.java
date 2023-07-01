@@ -1,10 +1,12 @@
 package view.GUIController;
 
 import com.google.gson.Gson;
+import javafx.animation.FadeTransition;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -12,6 +14,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import model.App;
 import model.Database;
 import model.Session;
@@ -63,6 +66,21 @@ public class LobbyGUI extends Application {
 
 
         refresh();
+
+        FadeTransition fd = new FadeTransition();
+        fd.setNode(anchorPane);
+        fd.setFromValue(1.0);
+        fd.setToValue(1.0);
+        fd.setDuration(Duration.millis(500));
+        fd.setOnFinished(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                refresh();
+                fd.play();
+            }
+        });
+        fd.play();
+
     }
 
     public void createGame() {
