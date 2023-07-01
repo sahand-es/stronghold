@@ -23,6 +23,7 @@ public class Game {
 
 
     public Game(Map map, int governmentCount) {
+        //todo game constructor must change
         this.map = map;
 
         for (int i = 0; i < governmentCount; i++) {
