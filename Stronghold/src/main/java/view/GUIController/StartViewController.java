@@ -1,5 +1,6 @@
 package view.GUIController;
 
+import com.google.gson.Gson;
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -14,6 +15,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.App;
 import model.Database;
+import model.Game;
 import model.User;
 import utility.DataManager;
 
@@ -65,6 +67,7 @@ public class StartViewController extends Application {
         fadeTransition.play();
 
 
+
         Scene scene = new Scene(borderPane);
         stage.setScene(scene);
         stage.setFullScreen(true);
@@ -77,8 +80,6 @@ public class StartViewController extends Application {
         try {
             Socket socket = new Socket(host,port);
             App.setSocket(socket);
-            App.writeToServer("hello");
-            System.out.println(App.readFromServer());
             label1.setText("Press any key to start the game");
             label1.setOnKeyPressed(new EventHandler<KeyEvent>() {
                 @Override
@@ -90,6 +91,14 @@ public class StartViewController extends Application {
                             new LoginMenuGUI().start(App.stage);
                         } else {
                             App.setCurrentUser(user);
+                            HashMap<String,String> data = new HashMap<>();
+                            data.put("menu","login");
+                            data.put("command","setUser");
+                            data.put("user",user.getUsername());
+                            String dataStr = new Gson().toJson(data);
+                            System.out.println(dataStr);
+                            App.writeToServer(dataStr);
+
                             new MainMenuViewController().start(App.stage);
                         }
                     } catch (Exception e) {
@@ -98,6 +107,7 @@ public class StartViewController extends Application {
                 }
             });
             label1.requestFocus();
+
 
         } catch (ConnectException e) {
             label1.setText("No server found!, press eny key to reconnect");

@@ -14,9 +14,6 @@ import java.util.List;
 
 
 public class Database {
-
-    public static double centerX = Screen.getPrimary().getVisualBounds().getWidth() / 2;
-    public static double centerY = Screen.getPrimary().getVisualBounds().getHeight() / 2;
     private static ArrayList<User> users ;
     private static User currentUser;
     private static AllMenus currentMenu;

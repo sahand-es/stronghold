@@ -20,6 +20,7 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Screen;
+import model.App;
 import model.Database;
 import model.Game;
 import model.environment.buildings.Building;
@@ -103,11 +104,11 @@ public class GameViewController {
             public void handle(KeyEvent keyEvent) {
 
                 if (keyEvent.getCode().equals(KeyCode.T)) {
-                    addNode(mapTextureOptions, Database.centerX - mapTextureOptions.getPrefWidth() / 2,
-                            Database.centerY - mapTextureOptions.getPrefHeight() / 2 - 100);
+                    addNode(mapTextureOptions, App.centerX - mapTextureOptions.getPrefWidth() / 2,
+                            App.centerY - mapTextureOptions.getPrefHeight() / 2 - 100);
                 } else if (keyEvent.getCode().equals(KeyCode.U)) {
-                    addNode(dropUnitBox, Database.centerX - dropUnitBox.getPrefWidth() / 2,
-                            Database.centerY - dropUnitBox.getPrefHeight() / 2 - 100);
+                    addNode(dropUnitBox, App.centerX - dropUnitBox.getPrefWidth() / 2,
+                            App.centerY - dropUnitBox.getPrefHeight() / 2 - 100);
                 } else if (keyEvent.getCode().equals(KeyCode.R)) {
                     mapPane.reset();
                 } else if (keyEvent.getCode().equals(KeyCode.V)) {
@@ -125,8 +126,8 @@ public class GameViewController {
                         throw new RuntimeException(e);
                     }
 
-                    addNode(personControl, Database.centerX - personControl.getPrefWidth() / 2,
-                            Database.centerY - personControl.getPrefHeight() / 2);
+                    addNode(personControl, App.centerX - personControl.getPrefWidth() / 2,
+                            App.centerY - personControl.getPrefHeight() / 2);
                 } else if (keyEvent.getCode().equals(KeyCode.B)) {
                     removeNode(createUnitBox);
                     removeNode(extractorRateSetBox);
@@ -136,8 +137,8 @@ public class GameViewController {
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }
-                        addNode(createUnitBox, Database.centerX - createUnitBox.getPrefWidth() / 2,
-                                Database.centerY - createUnitBox.getPrefHeight() / 2);
+                        addNode(createUnitBox, App.centerX - createUnitBox.getPrefWidth() / 2,
+                                App.centerY - createUnitBox.getPrefHeight() / 2);
                     }
                     if (GameControl.getSelectedBuilding() instanceof ResourceExtractorBuilding) {
                         try {
@@ -145,8 +146,8 @@ public class GameViewController {
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }
-                        addNode(extractorRateSetBox, Database.centerX - extractorRateSetBox.getPrefWidth() / 2,
-                                Database.centerY - extractorRateSetBox.getPrefHeight() / 2);
+                        addNode(extractorRateSetBox, App.centerX - extractorRateSetBox.getPrefWidth() / 2,
+                                App.centerY - extractorRateSetBox.getPrefHeight() / 2);
                     }
                 } else {
                     mainPane.getChildren().remove(mapTextureOptions);

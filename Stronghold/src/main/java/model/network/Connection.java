@@ -53,4 +53,12 @@ public class Connection extends Thread {
     private static synchronized void removeConnection(Connection connection){
         allConnections.remove(connection);
     }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

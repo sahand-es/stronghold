@@ -18,7 +18,7 @@ public class Server {
             }
         } catch (Exception e) {
             //TODO
-            System.out.println("exception");
+            System.out.println("exception :" + e);
         }
     }
 

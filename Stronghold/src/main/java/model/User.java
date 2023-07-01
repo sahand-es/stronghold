@@ -119,4 +119,11 @@ public class User {
         return score;
     }
 
+    @Override
+    public String toString() {
+        String s = username;
+        s += "\n" + nickname;
+        s += "\n" + email;
+        return s;
+    }
 }

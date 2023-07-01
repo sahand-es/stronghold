@@ -1,5 +1,6 @@
 package model;
 
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.io.DataInputStream;
@@ -11,11 +12,12 @@ public class App {
     public static Stage stage;
 
     private static Socket socket;
-
     private static DataInputStream dataInputStream;
     private static DataOutputStream dataOutputStream;
-
     private static User currentUser;
+
+    public static double centerX = Screen.getPrimary().getVisualBounds().getWidth() / 2;
+    public static double centerY = Screen.getPrimary().getVisualBounds().getHeight() / 2;
 
     public static void writeToServer(String data) throws IOException {
         dataOutputStream.writeUTF(data);
