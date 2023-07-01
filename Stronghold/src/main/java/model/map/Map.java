@@ -46,7 +46,9 @@ public class Map {
     }
 
     public Block getBlockByXY(int x, int y) {
-        return grid[y][x];
+        if (isValidXY(x, y))
+            return grid[y][x];
+        else throw new RuntimeException("invalid x y");
     }
 
     public void setTexture(int x, int y, Texture texture) {

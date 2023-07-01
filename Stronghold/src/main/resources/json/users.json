@@ -50,5 +50,44 @@
     "highScore": 0,
     "securityAnswer": "bikar",
     "avatarPath": "/images/avatars/Barracks.png"
+  },
+  {
+    "username": "sahand",
+    "password": "e0de5e0d7c08bd4decf7df3053f80edb0cc34c06cee39f771ab85c3db2b9adcf",
+    "nickname": "sahand",
+    "email": "844sahand@gmail.com",
+    "slogan": "Mustache and the Sharif University Gang: Join the Fun Castle!",
+    "securityQuestionNumber": 0,
+    "rank": 0,
+    "score": 0,
+    "highScore": 0,
+    "securityAnswer": "bokon",
+    "avatarPath": "/images/avatars/6.png"
+  },
+  {
+    "username": "sahand",
+    "password": "e0de5e0d7c08bd4decf7df3053f80edb0cc34c06cee39f771ab85c3db2b9adcf",
+    "nickname": "sahand",
+    "email": "844sahand@gmail.com",
+    "slogan": "Experience the Magic of Armin: Big Fun Mustache Castles at Sharif University!",
+    "securityQuestionNumber": 0,
+    "rank": 0,
+    "score": 0,
+    "highScore": 0,
+    "securityAnswer": "bokon",
+    "avatarPath": "/images/avatars/6.png"
+  },
+  {
+    "username": "test",
+    "password": "c4e6700d91615d0c955abe0f9971c4eef6b6c1b4679f085d6bd8a5c6a7f6a87",
+    "nickname": "testy",
+    "email": "test@test.test",
+    "slogan": "test me if u can",
+    "securityQuestionNumber": 0,
+    "rank": 0,
+    "score": 0,
+    "highScore": 0,
+    "securityAnswer": "tester",
+    "avatarPath": "/images/avatars/3.png"
   }
 ]

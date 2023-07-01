@@ -15,6 +15,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import model.App;
 import model.Database;
 import model.resource.ResourcesName;
 import view.shape.trade.ResourceNode;
@@ -103,7 +104,7 @@ public class MarketViewController extends Application {
             @Override
             public void handle(MouseEvent event) {
                 try {
-                    new TradeViewController().start(Database.stage);
+                    new TradeViewController().start(App.stage);
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
@@ -118,7 +119,7 @@ public class MarketViewController extends Application {
             public void handle(MouseEvent event) {
                 ResourceNode.clearAllResourceNodes();
                 try {
-                    new GameMenuGUI().start(Database.stage);
+                    new GameMenuGUI().start(App.stage);
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
