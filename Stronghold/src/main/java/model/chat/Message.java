@@ -19,15 +19,37 @@ public class Message {
     // TODO: 6/30/2023 change it with username
     private String userAvatarPath = "file:src/main/resources/images/avatars/1.png";
     private MessageStatus status;
+    private final String chatId;
 
-    public Message(String message, String username) {
+    private boolean isDeleted;
+
+    public Message(String message, String username, String chatId) {
+        this.chatId = chatId;
         sendingTimeString = LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm"));
         sendingTimeMillis = System.currentTimeMillis();
         this.username = username;
         this.message = message;
         this.status = MessageStatus.SENT;
+        isDeleted = false;
         id = SHA.shaString(message + String.valueOf(RandomGenerators.randomPassword()));
     }
+
+    public void seen() {
+        status = MessageStatus.SEEN;
+    }
+
+    public void setUserAvatarPath(String userAvatarPath) {
+        this.userAvatarPath = userAvatarPath;
+    }
+
+    public boolean isDeleted() {
+        return isDeleted;
+    }
+
+    public void delete() {
+        isDeleted = false;
+    }
+
     public String toJson() {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         return gson.toJson(this);
@@ -35,6 +57,10 @@ public class Message {
 
     public static Message fromJson(String json) {
         return new Gson().fromJson(json, new TypeToken<Message>(){}.getType());
+    }
+
+    public String getChatId() {
+        return chatId;
     }
 
     public String getUsername() {

@@ -11,9 +11,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<Pane  maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="783.0" prefWidth="908.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="783.0" prefWidth="908.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-      <VBox alignment="CENTER" prefHeight="790.0" prefWidth="908.0" spacing="100">
+      <VBox alignment="CENTER" prefHeight="790.0" prefWidth="908.0" spacing="20">
          <children>
               <ScrollPane prefHeight="540.0" prefWidth="369.0">
                   <content>
@@ -22,11 +22,17 @@
               </ScrollPane>
               <Group>
                  <children>
-                     <TextArea layoutX="307.0" layoutY="623.0" prefHeight="45.0" prefWidth="260.0" promptText="Room id" styleClass="send-message-box" />
-                     <Button layoutX="577.0" layoutY="623.0" mnemonicParsing="false" styleClass="send-button" text="Join" />
+                     <TextArea layoutX="307.0" layoutY="601.0" prefHeight="45.0" prefWidth="260.0" promptText="Room id" styleClass="send-message-box" />
+                     <Button layoutX="577.0" layoutY="601.0" mnemonicParsing="false" styleClass="send-button" text="Join" />
+                  <Button layoutX="425.0" layoutY="789.0" mnemonicParsing="false" styleClass="send-button" text="Refresh" />
+                  <TextArea layoutX="306.0" layoutY="667.0" prefHeight="45.0" prefWidth="260.0" promptText="Room name" styleClass="send-message-box" />
+                  <Button layoutX="576.0" layoutY="667.0" mnemonicParsing="false" styleClass="send-button" text="Create" />
+                  <TextArea layoutX="306.0" layoutY="731.0" prefHeight="45.0" prefWidth="260.0" promptText="username" styleClass="send-message-box" />
+                  <Button layoutX="576.0" layoutY="731.0" mnemonicParsing="false" styleClass="send-button" text="PV" />
                  </children>
               </Group>
          </children>
       </VBox>
+      <Button mnemonicParsing="false" styleClass="send-button" text="back" />
     </children>
 </Pane>

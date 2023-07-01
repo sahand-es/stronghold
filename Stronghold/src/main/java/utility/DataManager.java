@@ -6,6 +6,7 @@ import com.google.gson.reflect.TypeToken;
 import model.Database;
 import model.Game;
 import model.User;
+import model.chat.Chat;
 import model.map.Map;
 
 import java.io.*;
@@ -19,6 +20,7 @@ DataManager {
     //json:
     public static final String USERS_DATABASE_PATH = "src/main/resources/json/users.json" ;
     public static final String LOGGED_IN_DATABASE_PATH = "src/main/resources/json/loggedInUser.json" ;
+    public static final String CHATS_DATABASE_PATH = "src/main/resources/json/chats.json";
     public static final String GAMES_PATH = "src/main/resources/json/Games.json" ;
     //csv:
     public static final String RESOURCES_PATH = "src/main/resources/csv/ResourceAndFood.csv" ;
@@ -152,5 +154,29 @@ DataManager {
     public static void saver() {
         saveUsers();
         saveLoggedIn(null);
+    }
+
+    public static ArrayList<Chat> loadChats() {
+        try {
+            Gson gson = new Gson();
+            String text = new String(Files.readAllBytes(Paths.get(CHATS_DATABASE_PATH)));
+            ArrayList<Chat> chats = Chat.fromJsonArrayList(text);
+
+            return chats;
+        } catch (Exception ignored) {
+            return null;
+        }
+    }
+    public static void saveChats() {
+        FileWriter fileWriter;
+        try {
+            fileWriter = new FileWriter(CHATS_DATABASE_PATH);
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            String json = Chat.toJson(Database.getAllChats());
+            fileWriter.write(json);
+            fileWriter.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

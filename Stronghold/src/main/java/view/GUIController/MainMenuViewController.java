@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import model.App;
 import model.Database;
 import model.Game;
+import model.chat.ChatMenuGUI;
 import model.map.Map;
 import utility.DataManager;
 
@@ -37,6 +38,7 @@ public class MainMenuViewController extends Application {
     public static void main(String[] args) {
         launch();
     }
+
     @Override
     public void start(Stage stage) throws Exception {
         width = (int) Screen.getPrimary().getBounds().getWidth();
@@ -57,13 +59,13 @@ public class MainMenuViewController extends Application {
         stage.show();
     }
 
-    private void setBackground(){
+    private void setBackground() {
         Image image = new Image(
                 MainMenuViewController.class.getResource("/images/backgrounds/main-menu-background.jpg").toExternalForm()
         );
 
         BackgroundImage backgroundFill = new BackgroundImage(
-                image, BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT,
+                image, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
                 BackgroundPosition.CENTER, BackgroundSize.DEFAULT
         );
 
@@ -71,7 +73,7 @@ public class MainMenuViewController extends Application {
         borderPane.setBackground(background);
     }
 
-    private void mainMenuPage(){
+    private void mainMenuPage() {
         VBox vBox = new VBox();
         vBox.setAlignment(Pos.CENTER);
         vBox.setSpacing(20);
@@ -82,7 +84,7 @@ public class MainMenuViewController extends Application {
 
 
         Button startNewGameButton = new Button("Start New Game");
-        startNewGameButton.setPrefSize(500,80);
+        startNewGameButton.setPrefSize(500, 80);
         startNewGameButton.setStyle("-fx-font: 25 sys ;-fx-background-color: #808080 ; -fx-border-color: #262115");
         startNewGameButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -94,12 +96,12 @@ public class MainMenuViewController extends Application {
         vBox.getChildren().add(startNewGameButton);
 
         Button showMapsButton = new Button("Show Maps");
-        showMapsButton.setPrefSize(500,80);
+        showMapsButton.setPrefSize(500, 80);
         showMapsButton.setStyle("-fx-font: 25 sys ;-fx-background-color: #808080 ; -fx-border-color: #262115");
         showMapsButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                //TODO
+                new ChatMenuGUI().start(App.stage);
             }
         });
 
@@ -107,7 +109,7 @@ public class MainMenuViewController extends Application {
 
 
         Button profileMenuButton = new Button("Profile Menu");
-        profileMenuButton.setPrefSize(500,80);
+        profileMenuButton.setPrefSize(500, 80);
         profileMenuButton.setStyle("-fx-font: 25 sys ;-fx-background-color: #808080 ; -fx-border-color: #262115");
         profileMenuButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -124,7 +126,7 @@ public class MainMenuViewController extends Application {
 
 
         Button logoutButton = new Button("Logout");
-        logoutButton.setPrefSize(500,80);
+        logoutButton.setPrefSize(500, 80);
         logoutButton.setStyle("-fx-font: 25 sys ;-fx-background-color: #808080 ; -fx-border-color: #262115");
         logoutButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -142,7 +144,7 @@ public class MainMenuViewController extends Application {
 
 
         Button exitButton = new Button("Exit");
-        exitButton.setPrefSize(500,80);
+        exitButton.setPrefSize(500, 80);
         exitButton.setStyle("-fx-font: 25 sys ;-fx-background-color: #808080 ; -fx-border-color: #262115");
         exitButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -157,7 +159,7 @@ public class MainMenuViewController extends Application {
         borderPane.setCenter(vBox);
     }
 
-    private void startNewGamePage(){
+    private void startNewGamePage() {
         VBox vBox = new VBox();
         vBox.setSpacing(10);
         vBox.setAlignment(Pos.CENTER);
@@ -165,7 +167,6 @@ public class MainMenuViewController extends Application {
         Label l = new Label();
         l.setPrefHeight(100);
         vBox.getChildren().add(l);
-
 
 
         sizeLabel = new Label("             size: ");
@@ -195,14 +196,14 @@ public class MainMenuViewController extends Application {
 
         hBox1 = new HBox();
         hBox1.setAlignment(Pos.CENTER);
-        hBox1.getChildren().addAll(numberOfPlayersLabel,numberOfPlayersTextField);
+        hBox1.getChildren().addAll(numberOfPlayersLabel, numberOfPlayersTextField);
 
         numberOfPlayersMessage = new Label();
         numberOfPlayersMessage.setStyle("-fx-font: 15 sys; -fx-text-fill: #ff0000");
 
         vBox1 = new VBox();
         vBox1.setAlignment(Pos.CENTER);
-        vBox1.getChildren().addAll(hBox1,numberOfPlayersMessage);
+        vBox1.getChildren().addAll(hBox1, numberOfPlayersMessage);
 
         vBox.getChildren().add(vBox1);
 
@@ -212,7 +213,7 @@ public class MainMenuViewController extends Application {
         vBox.getChildren().add(l);
 
         Button startButton = new Button("Start The Game");
-        startButton.setPrefSize(400,70);
+        startButton.setPrefSize(400, 70);
         startButton.setStyle("-fx-font: 25 sys ;-fx-background-color: #808080 ; -fx-border-color: #262115");
         startButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -225,7 +226,7 @@ public class MainMenuViewController extends Application {
 
         Button backButton = new Button("Back");
         backButton.setStyle("-fx-font: 25 sys ;-fx-background-color: #808080 ; -fx-border-color: #262115");
-        backButton.setPrefSize(400,70);
+        backButton.setPrefSize(400, 70);
         backButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -238,19 +239,18 @@ public class MainMenuViewController extends Application {
         borderPane.setCenter(vBox);
     }
 
-    private void checkStartGame(){
-        int s ,n;
-
+    private void checkStartGame() {
+        int s, n;
 
 
         String text = sizeTextField.getText();
 
-        if (text == null || text.equals("")){
+        if (text == null || text.equals("")) {
             sizeMessage.setText("you must enter the size");
             return;
         }
 
-        if (!text.matches("\\d+")){
+        if (!text.matches("\\d+")) {
             sizeMessage.setText("size must be an integer");
             return;
         }
@@ -260,26 +260,26 @@ public class MainMenuViewController extends Application {
 
         text = numberOfPlayersTextField.getText();
 
-        if (text == null || text.equals("")){
+        if (text == null || text.equals("")) {
             numberOfPlayersMessage.setText("you must enter the number of players");
             return;
         }
 
-        if (!text.matches("\\d+")){
+        if (!text.matches("\\d+")) {
             numberOfPlayersMessage.setText("number of players must be an integer");
             return;
         }
 
         n = Integer.parseInt(text);
 
-        if (n >8){
+        if (n > 8) {
             numberOfPlayersMessage.setText("number of players must be 8 or less");
         }
 
         numberOfPlayersMessage.setText("");
 
-        Map map = new Map(s,s);
-        Game game = new Game(map , n);
+        Map map = new Map(s, s);
+        Game game = new Game(map, n);
 
         Database.setCurrentMap(map);
         Database.setCurrentGame(game);

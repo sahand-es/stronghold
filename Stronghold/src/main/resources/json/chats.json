@@ -1,0 +1,39 @@
+[
+  {
+    "messages": [],
+    "users": [],
+    "id": "25105857712b8724b21fae3c5ac3af7ec55553fcafb651efb5e35a4c235296e4",
+    "chatType": "PUBLIC",
+    "name": "nigga"
+  },
+  {
+    "messages": [],
+    "users": [
+      "sahand",
+      "sahand2"
+    ],
+    "id": "9cf7126f8ef47df1b6282f058877b46aaf9a62d93d0d0e8f1df15244acf4da0",
+    "chatType": "ROOM",
+    "name": "testRoom"
+  },
+  {
+    "messages": [],
+    "users": [
+      "sahand",
+      "test"
+    ],
+    "id": "3f04f89a1b38c68cddb6635ee3caaf0b1ee29f99110be46daf5c9c6189c02d61",
+    "chatType": "PRIVATE",
+    "name": "test"
+  },
+  {
+    "messages": [],
+    "users": [
+      "sahand",
+      "jesus"
+    ],
+    "id": "cb30358f355abd37dcc0a04a48e316c7f4f3cbfa0920fc032bd844101e842751",
+    "chatType": "PRIVATE",
+    "name": "jesus"
+  }
+]

@@ -1,16 +1,21 @@
 package controller;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
+import com.google.gson.reflect.TypeToken;
 import model.Database;
 import model.User;
 import model.chat.Chat;
+import model.chat.ChatType;
 import model.chat.Message;
 import model.network.Connection;
+import utility.DataManager;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class ConnectionController {
     Connection connection;
@@ -19,12 +24,13 @@ public class ConnectionController {
         this.connection = connection;
     }
 
-    public void handel(String input) throws IOException{
+    public void handle(String input) throws IOException {
         try {
-            HashMap<String,String> data = new Gson().fromJson(input, HashMap.class);
+            HashMap<String, String> data = new Gson().fromJson(input, new TypeToken<HashMap<String, String>>() {
+            }.getType());
             String command = data.get("command");
 
-            switch (command){
+            switch (command) {
                 case "setUser":
                     setUserCommand(data);
                     break;
@@ -70,6 +76,22 @@ public class ConnectionController {
                     editMessage(data);
                     break;
 
+                case "deleteMessage":
+                    deleteMessage(data);
+                    break;
+                case "seen":
+                    setSeen(data);
+                    break;
+                case "createRoom":
+                    createRoom(data);
+                    break;
+                case "createPv":
+                    createPv(data);
+                    break;
+                case "joinRoom":
+                    joinRoom(data);
+                    break;
+
 
                 default:
                     System.out.println("invalid menu");
@@ -79,27 +101,76 @@ public class ConnectionController {
         }
     }
 
-    private void editMessage(HashMap<String, String> data) {
-        //TODO
-        String username = data.get("username");
-        String massageStr = data.get("message");
-        String chatId = data.get("chatId");
-        String messageId = data.get("messageId");
-        Chat chat = Database.getChatById(chatId);
-        if (chat != null) {
-            Message message = chat.getMessageById(messageId);
-            message.setMessage(massageStr);
+    private void joinRoom(HashMap<String, String> data) throws IOException {
+        String roomId = data.get("roomId");
+
+        Chat chat = Database.getChatById(roomId);
+        if (chat.getChatType() == null)
+            connection.write("Invalid chat id!");
+        if (chat.getChatType() != ChatType.ROOM)
+            connection.write("Can not join any other chat than rooms!");
+        else {
+            chat.addUser(connection.getUser().getUsername());
+            DataManager.saveChats();
+            connection.write("Joined room:" + chat.getName());
         }
     }
 
-    private void makeMessage(HashMap<String, String> data) {
-        //TODO
+    private void createPv(HashMap<String, String> data) throws IOException {
+        Chat chat = Chat.fromJson(data.get("chat"));
         String username = data.get("username");
-        String massage = data.get("message");
+        if (Database.getUserByUsername(username) != null) {
+            chat.addUser(username);
+            Database.addChat(chat);
+            connection.write("PV with " + username + " created!");
+        } else {
+            connection.write("Invalid username!");
+        }
+    }
+
+    private void createRoom(HashMap<String, String> data) {
+        Chat chat = Chat.fromJson(data.get("chat"));
+        Database.addChat(chat);
+    }
+
+    private void setSeen(HashMap<String, String> data) {
         String chatId = data.get("chatId");
-        Message newMessage = new Message(massage , username);
         Chat chat = Database.getChatById(chatId);
-        if (chat != null) chat.addMessage(newMessage);
+        if (chat != null) {
+            for (Message message : chat.getMessages()) {
+                message.seen();
+            }
+        }
+        DataManager.saveChats();
+    }
+
+    private void deleteMessage(HashMap<String, String> data) {
+        Message message = Message.fromJson(data.get("message"));
+        Chat chat = Database.getChatById(message.getChatId());
+        if (chat != null) {
+            Message messageS = chat.getMessageById(message.getId());
+            messageS.setMessage(message.getMessage());
+            messageS.delete();
+        }
+        DataManager.saveChats();
+
+    }
+
+    private void editMessage(HashMap<String, String> data) {
+        Message message = Message.fromJson(data.get("message"));
+        Chat chat = Database.getChatById(message.getChatId());
+        if (chat != null) {
+            Message messageS = chat.getMessageById(message.getId());
+            messageS.setMessage(message.getMessage());
+        }
+        DataManager.saveChats();
+    }
+
+    private void makeMessage(HashMap<String, String> data) {
+        Message message = Message.fromJson(data.get("message"));
+        Chat chat = Database.getChatById(message.getChatId());
+        if (chat != null) chat.addMessage(message);
+        DataManager.saveChats();
     }
 
     private void sendUserChats(HashMap<String, String> data) throws IOException {
@@ -110,7 +181,10 @@ public class ConnectionController {
                 output.add(chat);
         }
 
-        String dataStr = new String("convert"); //TODO send Json
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String dataStr = gson.toJson(output, new TypeToken<List<Chat>>() {
+        }.getType());
+
         connection.write(dataStr);
     }
 
@@ -144,21 +218,21 @@ public class ConnectionController {
         connection.setUser(user);
     }
 
-    private void getUserCommand(HashMap<String,String> data) throws IOException {
+    private void getUserCommand(HashMap<String, String> data) throws IOException {
         String username = data.get("user");
         User user = Database.getUserByUsername(username);
         String dataStr = new Gson().toJson(user);
         connection.write(dataStr);
     }
 
-    private void getUserByEmailCommand (HashMap<String,String> data) throws IOException {
+    private void getUserByEmailCommand(HashMap<String, String> data) throws IOException {
         String email = data.get("email");
         User user = Database.getUserByEmail(email);
         String dataStr = new Gson().toJson(user);
         connection.write(dataStr);
     }
 
-    private void signup(HashMap<String,String> data){
+    private void signup(HashMap<String, String> data) {
         String Username = data.get("username");
         String Password = data.get("password");
         String Nickname = data.get("nickname");
@@ -167,6 +241,6 @@ public class ConnectionController {
         int questionNUmber = Integer.parseInt(data.get("questionNumber"));
         String Answer = data.get("answer");
 
-        new User(Username,Password,Nickname,Email,questionNUmber,Answer,Slogan);
+        new User(Username, Password, Nickname, Email, questionNUmber, Answer, Slogan);
     }
 }

@@ -1,6 +1,7 @@
 package model.chat;
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -8,11 +9,12 @@ import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import utility.DataManager;
 
+
 import java.io.IOException;
 
 public class MessageNode extends Pane{
     private Pane pane;
-    private Text text;
+    private TextArea textArea;
     private Text sentTime;
     private Text username;
     private ImageView reaction;
@@ -29,7 +31,7 @@ public class MessageNode extends Pane{
         }
         this.getChildren().add(pane);
         avatar = (ImageView) pane.getChildren().get(0);
-        text = (Text) pane.getChildren().get(1);
+        textArea = (TextArea) pane.getChildren().get(1);
         sentTime = (Text) pane.getChildren().get(2);
         seen = (ImageView) pane.getChildren().get(3);
         reaction = (ImageView) pane.getChildren().get(4);
@@ -40,6 +42,10 @@ public class MessageNode extends Pane{
 
     public Pane getPane() {
         return pane;
+    }
+
+    public TextArea getTextArea() {
+        return textArea;
     }
 
     private void set() {
@@ -61,7 +67,8 @@ public class MessageNode extends Pane{
     }
 
     private void setText() {
-        text.setText(message.getMessage());
+        textArea.setEditable(false);
+        textArea.setText(message.getMessage());
     }
 
     private void setSentTime() {
@@ -82,8 +89,13 @@ public class MessageNode extends Pane{
         username.setText(message.getUsername());
     }
 
-    private void update() {
+    public void update() {
+        // TODO: 7/1/2023 clear 
         setReaction();
         setText();
+    }
+
+    public Message getMessage() {
+        return message;
     }
 }

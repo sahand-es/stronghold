@@ -35,6 +35,7 @@ public class Database {
         }
         games = DataManager.loadGames();
         currentUser = DataManager.loadLoggedInUser();
+        allChats = DataManager.loadChats();
     }
     private static ArrayList<Map> allMaps;
 
@@ -61,6 +62,11 @@ public class Database {
     public static void addUser(User user) {
         users.add(user);
         DataManager.saveUsers();
+    }
+
+    public static void addChat(Chat chat) {
+        allChats.add(chat);
+        DataManager.saveChats();
     }
 
     public static User getUserByUsername(String username) {
