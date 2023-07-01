@@ -56,6 +56,11 @@ public class LobbyGUI extends Application {
         Background background = new Background(backgroundFill);
         anchorPane.setBackground(background);
 
+        Session session = new Session(RandomGenerators.randomSessionId(), 4, "ali");
+
+        //todo used sessions
+        sessions.add(session);
+        refresh();
 
         refresh();
     }
@@ -89,7 +94,7 @@ public class LobbyGUI extends Application {
         for (Session session : sessions) {
             if (session.getUsers().size() != 0 &&
                     session.getUsers().size() < session.getNumberOfPlayers() && !session.isStarted()){
-                HBox newSessionNode = new GameSessionNode(session, currentUser.getUsername()).getMainNode();
+                HBox newSessionNode = new GameSessionNode(session, currentUser.getUsername(), sessions).getMainNode();
                 gameSessionMainNodes.add(newSessionNode);
                 vBox.getChildren().add(newSessionNode);
             }

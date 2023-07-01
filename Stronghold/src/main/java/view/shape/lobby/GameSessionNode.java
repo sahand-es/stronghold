@@ -1,13 +1,18 @@
 package view.shape.lobby;
 
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import model.Session;
 import utility.RandomGenerators;
+import view.GUIController.LobbyGUI;
+
+import java.util.ArrayList;
 
 public class GameSessionNode {
     private Session session;
@@ -20,24 +25,24 @@ public class GameSessionNode {
     private Label errorMessage;
 
 
-    public GameSessionNode(Session session, String currentUserUsername) {
+    public GameSessionNode(Session session, String currentUserUsername, ArrayList<Session> sessions) {
         this.session = session;
         mainNode = new HBox();
         mainNode.setAlignment(Pos.CENTER);
-        mainNode.setSpacing(100);
-        mainNode.setPrefSize(1300,100);
+        mainNode.setSpacing(50);
+        mainNode.setPrefSize(1400,100);
         mainNode.setStyle("-fx-background-color: #263f73");
 
         Label idLabel = new Label("Session Id: " + RandomGenerators.randomSessionId());
         idLabel.setPrefSize(150,100);
-        idLabel.setStyle("-fx-font: 18 sys");
+        idLabel.setStyle("-fx-font: 14 sys");
         idLabel.setTextFill(Color.WHITE);
         mainNode.getChildren().add(idLabel);
 
         usersArea = new TextArea();
         usersArea.setEditable(false);
         usersArea.setPrefSize(300,100);
-        usersArea.setStyle("-fx-font: 20 sys");
+        usersArea.setStyle("-fx-font: 14 sys");
 
         String usernames = session.getUsers().toString();
         usersArea.setText(usernames);
@@ -46,33 +51,73 @@ public class GameSessionNode {
 
         joinedNumberLabel = new Label("Players count: " + session.getUsers().size()
                 + " / " + session.getNumberOfPlayers());
-        joinedNumberLabel.setPrefSize(150,70);
-        joinedNumberLabel.setStyle("-fx-font: 18 sys");
+        joinedNumberLabel.setPrefSize(120,70);
+        joinedNumberLabel.setStyle("-fx-font: 14 sys");
         joinedNumberLabel.setTextFill(Color.WHITE);
         mainNode.getChildren().add(joinedNumberLabel);
 
 
         join = new Button("Join");
-        join.setStyle("-fx-font: 20 sys");
+        join.setStyle("-fx-font: 14 sys");
         mainNode.getChildren().add(join);
         join.setVisible(!session.getUsers().contains(currentUserUsername));
 
+        join.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                for (Session s : sessions) {
+                    if(s.getUsers().contains(currentUserUsername)){
+                        errorMessage.setText("You're joined in another game!");
+                        return;
+                    }
+                }
+                session.getUsers().add(currentUserUsername);
+                join.setVisible(false);
+                leave.setVisible(true);
+                start.setVisible(true);
+            }
+        });
+
 
         leave = new Button("Leave");
-        leave.setStyle("-fx-font: 20 sys");
+        leave.setStyle("-fx-font: 14 sys");
         mainNode.getChildren().add(leave);
         leave.setVisible(session.getUsers().contains(currentUserUsername));
 
+        leave.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                session.getUsers().remove(currentUserUsername);
+                join.setVisible(true);
+                leave.setVisible(false);
+                start.setVisible(false);
+            }
+        });
 
         start = new Button("Start");
-        start.setStyle("-fx-font: 20 sys");
+        start.setStyle("-fx-font: 14 sys");
         mainNode.getChildren().add(start);
         start.setVisible(session.getUsers().contains(currentUserUsername));
+        start.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if (session.getUsers().get(0).equals(currentUserUsername)){
+                    //todo start game
+                    session.setStarted(true);
+                    sessions.remove(session);
+                }
+                else {
+                    errorMessage.setText("You're not admin");
+                }
+            }
+        });
 
         errorMessage = new Label();
-        errorMessage.setStyle("-fx-font: 20 sys");
+        errorMessage.setPrefSize(150,100);
+        errorMessage.setStyle("-fx-font: 14 sys");
         errorMessage.setTextFill(Color.RED);
-        
+        mainNode.getChildren().add(errorMessage);
+
     }
 
     public HBox getMainNode() {

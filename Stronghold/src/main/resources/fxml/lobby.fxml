@@ -15,9 +15,9 @@
             <Font name="American Typewriter" size="36.0" />
          </font>
       </Label>
-      <ScrollPane layoutX="97.0" layoutY="142.0" prefHeight="468.0" prefWidth="1310.0">
+      <ScrollPane layoutX="48.0" layoutY="142.0" prefHeight="468.0" prefWidth="1408.0">
          <content>
-            <VBox fx:id="vBox" prefHeight="465.0" prefWidth="1308.0" />
+            <VBox fx:id="vBox" prefHeight="465.0" prefWidth="1399.0" />
          </content>
       </ScrollPane>
       <Button layoutX="737.0" layoutY="687.0" mnemonicParsing="false" onAction="#createGame" text="Create Game">
