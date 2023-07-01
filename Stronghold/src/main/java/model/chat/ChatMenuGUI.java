@@ -1,5 +1,6 @@
 package model.chat;
 
+import com.google.gson.Gson;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +19,7 @@ import model.Database;
 import view.GUIController.MainMenuViewController;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class ChatMenuGUI extends Application {
@@ -55,6 +57,10 @@ public class ChatMenuGUI extends Application {
     }
 
     private void initialize() {
+        ArrayList<Chat> userChats = getUserChatsFromServer();
+
+
+
         //////
         Message message = new Message("Fuck all niggas", "kir");
         Message message2 = new Message("Fuck all iranians", "bokon");
@@ -72,6 +78,23 @@ public class ChatMenuGUI extends Application {
         ///////
         setAllChats(chats);
     }
+
+    private ArrayList<Chat> getUserChatsFromServer() {
+        HashMap<String,String> data = new HashMap<>();
+        data.put("command","getUserChats");
+        data.put("username",App.getCurrentUser().getUsername());
+        String dataStr = new Gson().toJson(data);
+        try {
+            App.writeToServer(dataStr);
+            dataStr = App.readFromServer();
+            ArrayList<Chat> output = new ArrayList<>(); //TODO convert chat arr form json
+            return output;
+        } catch (Exception e){
+            throw new RuntimeException (e);
+        }
+    }
+
+
 
     private void setAllChats(ArrayList<Chat> chats) {
         VBox vBox = (VBox) pane.getChildren().get(0);

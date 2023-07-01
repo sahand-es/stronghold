@@ -80,4 +80,8 @@ public class Message {
     public void setReactionPath(String reactionPath) {
         this.reactionPath = reactionPath;
     }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
 }

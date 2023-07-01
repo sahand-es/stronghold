@@ -1,5 +1,6 @@
 package model.chat;
 
+import com.google.gson.Gson;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -8,9 +9,11 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import model.App;
 import utility.DataManager;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Locale;
 
 public class ChatNode extends Pane{
@@ -94,4 +97,36 @@ public class ChatNode extends Pane{
     public Pane getPane() {
         return pane;
     }
+
+    private void makeNewMessage(String message) {
+        //TODO
+        HashMap<String, String> data = new HashMap<>();
+        data.put("command", "makeMessage");
+        data.put("username", App.getCurrentUser().getUsername());
+        data.put("message",message);
+        data.put("chatId",chat.getId());
+        String dataStr = new Gson().toJson(data);
+        try {
+            App.writeToServer(dataStr);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void editMessage(String message,String messageId) {
+        //TODO
+        HashMap<String, String> data = new HashMap<>();
+        data.put("command", "editMessage");
+        data.put("username", App.getCurrentUser().getUsername());
+        data.put("message",message);
+        data.put("messageId",messageId); //TODO Id of selected message
+        data.put("chatId",chat.getId());
+        String dataStr = new Gson().toJson(data);
+        try {
+            App.writeToServer(dataStr);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

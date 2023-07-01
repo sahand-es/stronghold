@@ -80,10 +80,22 @@ public class Chat {
         return name;
     }
 
+    public String getId() {
+        return id;
+    }
+
     @Override
     public String toString() {
         if (chatType != ChatType.PUBLIC)
             return chatType + ":\t" + name;
         return chatType.name();
+    }
+
+    public Message getMessageById(String id){
+        for (Message message : messages) {
+            if(message.getId().equals(id))
+                return message;
+        }
+        return null;
     }
 }

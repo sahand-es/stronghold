@@ -4,9 +4,12 @@ import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import model.Database;
 import model.User;
+import model.chat.Chat;
+import model.chat.Message;
 import model.network.Connection;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ConnectionController {
@@ -54,12 +57,61 @@ public class ConnectionController {
                     sendAllUsers();
                     break;
 
+
+                case "getUserChats":
+                    sendUserChats(data);
+                    break;
+
+                case "makeMessage":
+                    makeMessage(data);
+                    break;
+
+                case "editMessage":
+                    editMessage(data);
+                    break;
+
+
                 default:
                     System.out.println("invalid menu");
             }
         } catch (JsonSyntaxException e) {
             System.out.println("invalid data");
         }
+    }
+
+    private void editMessage(HashMap<String, String> data) {
+        //TODO
+        String username = data.get("username");
+        String massageStr = data.get("message");
+        String chatId = data.get("chatId");
+        String messageId = data.get("messageId");
+        Chat chat = Database.getChatById(chatId);
+        if (chat != null) {
+            Message message = chat.getMessageById(messageId);
+            message.setMessage(massageStr);
+        }
+    }
+
+    private void makeMessage(HashMap<String, String> data) {
+        //TODO
+        String username = data.get("username");
+        String massage = data.get("message");
+        String chatId = data.get("chatId");
+        Message newMessage = new Message(massage , username);
+        Chat chat = Database.getChatById(chatId);
+        if (chat != null) chat.addMessage(newMessage);
+    }
+
+    private void sendUserChats(HashMap<String, String> data) throws IOException {
+        String username = data.get("username");
+        ArrayList<Chat> output = new ArrayList<>();
+        for (Chat chat : Database.getAllChats()) {
+            if (chat.haveAccess(username))
+                output.add(chat);
+        }
+
+        String dataStr = new String("convert"); //TODO send Json
+        connection.write(dataStr);
     }
 
     private void sendAllUsers() throws IOException {

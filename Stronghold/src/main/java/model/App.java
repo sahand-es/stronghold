@@ -2,11 +2,13 @@ package model;
 
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import model.chat.Chat;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.ArrayList;
 
 public class App {
     public static Stage stage;
@@ -18,6 +20,8 @@ public class App {
 
     public static double centerX = Screen.getPrimary().getVisualBounds().getWidth() / 2;
     public static double centerY = Screen.getPrimary().getVisualBounds().getHeight() / 2;
+
+    private static ArrayList<Chat> chats;
 
     public static void writeToServer(String data) throws IOException {
         dataOutputStream.writeUTF(data);

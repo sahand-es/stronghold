@@ -2,6 +2,7 @@ package model;
 
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import model.chat.Chat;
 import model.map.Map;
 import utility.DataManager;
 import utility.RandomCaptcha;
@@ -20,6 +21,8 @@ public class Database {
     private static Map currentMap;
     private static Game currentGame;
     private static ArrayList<Game> games;
+
+    private static ArrayList<Chat> allChats; //todo add json
 
 
 
@@ -148,4 +151,15 @@ public class Database {
         Database.currentGame = currentGame;
     }
 
+    public static ArrayList<Chat> getAllChats() {
+        return allChats;
+    }
+
+    public static Chat getChatById(String id){
+        for (Chat chat : allChats) {
+            if (chat.getId().equals(id))
+                return chat;
+        }
+        return null;
+    }
 }
