@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Text?>
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="69.0"
-      prefWidth="378.0" styleClass="message-background" stylesheets="@../css/style.css"
-      xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="69.0" prefWidth="378.0" styleClass="message-background" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <ImageView id="avatar" fitHeight="38.0" fitWidth="39.0" layoutX="18.0" layoutY="11.0" pickOnBounds="true"
-                   preserveRatio="true" styleClass="avatar"/>
-        <Text id="message" layoutX="72.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-font"
-              text="Text" wrappingWidth="311.7392578125"/>
-        <Text id="sent time" layoutX="310.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text"/>
-        <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="347.0" layoutY="40.0" pickOnBounds="true"
-                   preserveRatio="true"/>
-        <ImageView fitHeight="45.0" fitWidth="46.0" layoutX="359.0" layoutY="-31.0" pickOnBounds="true"
-                   preserveRatio="true"/>
-        <Text layoutX="-11.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER"
-              wrappingWidth="97.7392578125"/>
+        <ImageView id="avatar" fitHeight="38.0" fitWidth="39.0" layoutX="18.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" styleClass="avatar" />
+      <TextArea layoutX="60.0" layoutY="15.0" prefHeight="31.0" prefWidth="259.0" style="-fx-background-color: transparent" styleClass="text-font">
+         <font>
+            <Font size="16.0" />
+         </font></TextArea>
+        <Text id="sent time" layoutX="310.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+        <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="347.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true" />
+        <ImageView fitHeight="45.0" fitWidth="46.0" layoutX="359.0" layoutY="-31.0" pickOnBounds="true" preserveRatio="true" />
+        <Text layoutX="-11.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="97.7392578125" />
     </children>
 </Pane>

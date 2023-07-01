@@ -84,14 +84,11 @@ public class ConnectionController {
 
     private void editMessage(HashMap<String, String> data) {
         //TODO
-        String username = data.get("username");
-        String massageStr = data.get("message");
-        String chatId = data.get("chatId");
-        String messageId = data.get("messageId");
-        Chat chat = Database.getChatById(chatId);
+        Message message = Message.fromJson(data.get("message"));
+        Chat chat = Database.getChatById(message.getChatId());
         if (chat != null) {
-            Message message = chat.getMessageById(messageId);
-            message.setMessage(massageStr);
+            Message messageS = chat.getMessageById(message.getId());
+            messageS.setMessage(message.getMessage());
         }
     }
 

@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Locale;
 
-public class ChatNode extends Pane{
+public class ChatNode extends Pane {
     private Pane pane;
 
     private Chat chat;
@@ -73,6 +73,16 @@ public class ChatNode extends Pane{
         messages.setAlignment(Pos.BASELINE_CENTER);
         for (Message message : chat.getMessages()) {
             MessageNode messageNode = new MessageNode(message);
+            messageNode.getTextArea().setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    if (messageNode.getMessage().getUsername().equals(App.getCurrentUser().getUsername()))
+                        messageNode.getTextArea().setEditable(true);
+                    if (mouseEvent.isControlDown()) {
+                        editMessage(messageNode.getMessage(), messageNode.getTextArea().getText());
+                    }
+                }
+            });
             messages.getChildren().add(messageNode);
         }
     }
@@ -114,8 +124,8 @@ public class ChatNode extends Pane{
         message.setUserAvatarPath(App.getCurrentUser().getAvatarPathSahand());
 
         HashMap<String, String> data = new HashMap<>();
-        data.put("command","makeMessage");
-        data.put("message",message.toJson());
+        data.put("command", "makeMessage");
+        data.put("message", message.toJson());
         String dataStr = new Gson().toJson(data);
         try {
             App.writeToServer(dataStr);
@@ -138,6 +148,7 @@ public class ChatNode extends Pane{
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+        update();
     }
 
 }
