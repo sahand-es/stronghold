@@ -63,7 +63,6 @@ public class LobbyGUI extends Application {
     public void createGame() {
         for (Session session:sessions) {
             if (session.getUsers().contains(currentUser.getUsername())){
-                System.out.println("kir");
                 //todo give error
                 return;
             }
@@ -103,6 +102,9 @@ public class LobbyGUI extends Application {
     }
 
 
+    public void chat() {
+        //todo connect chat
+    }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -119,6 +121,7 @@ public class LobbyGUI extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+
 
 
 }

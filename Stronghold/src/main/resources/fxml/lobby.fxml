@@ -31,12 +31,17 @@
             <Font name="American Typewriter" size="24.0" />
          </font>
       </Label>
-      <Button layoutX="735.0" layoutY="797.0" mnemonicParsing="false" onAction="#back" prefHeight="44.0" prefWidth="180.0" text="Back">
+      <Button layoutX="496.0" layoutY="758.0" mnemonicParsing="false" onAction="#back" prefHeight="44.0" prefWidth="180.0" text="Back">
          <font>
             <Font name="American Typewriter" size="24.0" />
          </font>
       </Button>
-      <Button layoutX="737.0" layoutY="742.0" mnemonicParsing="false" onAction="#refresh" prefHeight="44.0" prefWidth="177.0" text="Refresh">
+      <Button layoutX="737.0" layoutY="759.0" mnemonicParsing="false" onAction="#refresh" prefHeight="44.0" prefWidth="177.0" text="Refresh">
+         <font>
+            <Font name="American Typewriter" size="24.0" />
+         </font>
+      </Button>
+      <Button layoutX="979.0" layoutY="760.0" mnemonicParsing="false" onAction="#chat" prefHeight="44.0" prefWidth="180.0" text="Chat">
          <font>
             <Font name="American Typewriter" size="24.0" />
          </font>
