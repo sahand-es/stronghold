@@ -17,7 +17,19 @@
     "name": "testRoom"
   },
   {
-    "messages": [],
+    "messages": [
+      {
+        "username": "test",
+        "message": "This message was deleted.\t\tgod bless whatsapp programmers xD",
+        "id": "62e53d5e691c4c5427df0540404636bc656e49f37ad5cd1bf9a7fa1a8056d1fb",
+        "sendingTimeString": "10:04",
+        "sendingTimeMillis": 1688279689191,
+        "userAvatarPath": "file:src/main/resources/images/avatars/3.png",
+        "status": "SEEN",
+        "chatId": "3f04f89a1b38c68cddb6635ee3caaf0b1ee29f99110be46daf5c9c6189c02d61",
+        "isDeleted": false
+      }
+    ],
     "users": [
       "sahand",
       "test"
@@ -35,5 +47,47 @@
     "id": "cb30358f355abd37dcc0a04a48e316c7f4f3cbfa0920fc032bd844101e842751",
     "chatType": "PRIVATE",
     "name": "jesus"
+  },
+  {
+    "messages": [],
+    "users": [
+      "test",
+      "test"
+    ],
+    "id": "35dd0f9f8e263772dc7215438dc9a8bd58f5b00ad78352519781a0d276f30f0f",
+    "chatType": "ROOM",
+    "name": "session 36545"
+  },
+  {
+    "messages": [],
+    "users": [],
+    "id": "35dd0f9f8e263772dc7215438dc9a8bd58f5b00ad78352519781a0d276f30f0f",
+    "chatType": "ROOM",
+    "name": "session 79427"
+  },
+  {
+    "messages": [],
+    "users": [],
+    "id": "35dd0f9f8e263772dc7215438dc9a8bd58f5b00ad78352519781a0d276f30f0f",
+    "chatType": "ROOM",
+    "name": "session 37072"
+  },
+  {
+    "messages": [],
+    "users": [
+      "test"
+    ],
+    "id": "35dd0f9f8e263772dc7215438dc9a8bd58f5b00ad78352519781a0d276f30f0f",
+    "chatType": "ROOM",
+    "name": "session 97003"
+  },
+  {
+    "messages": [],
+    "users": [
+      "test"
+    ],
+    "id": "21f9ef943756cde304ea185ea8e78f86b8a452d53b5a42cba04f662a32dc3b22",
+    "chatType": "ROOM",
+    "name": "session 49365"
   }
 ]

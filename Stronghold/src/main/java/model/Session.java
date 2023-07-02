@@ -12,6 +12,8 @@ public class Session {
     private int numberOfPlayers;
     private boolean isStarted;
 
+    private String chatId;
+
     public Session(String sessionId, int numberOfPlayers, String adminUsername) {
         this.sessionId = sessionId;
         this.users = new ArrayList<>();
@@ -43,6 +45,14 @@ public class Session {
     public static ArrayList<Session> fromJsonArrayList(String json) {
         return new Gson().fromJson(json, new TypeToken<List<Session>>() {
         }.getType());
+    }
+
+    public String getChatId() {
+        return chatId;
+    }
+
+    public void setChatId(String chatId) {
+        this.chatId = chatId;
     }
 
     @Override

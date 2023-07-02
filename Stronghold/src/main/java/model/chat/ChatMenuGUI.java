@@ -1,6 +1,9 @@
 package model.chat;
 
 import com.google.gson.Gson;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -16,7 +19,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import model.App;
+import view.GUIController.LobbyGUI;
 import view.GUIController.MainMenuViewController;
 
 import java.io.IOException;
@@ -31,6 +36,8 @@ public class ChatMenuGUI extends Application {
     private VBox allChatsVBox;
     private Pane pane;
     private Group joinGroup;
+
+    private Timeline timeline;
     @Override
     public void start(Stage stage) {
         width = Screen.getPrimary().getBounds().getWidth();
@@ -50,7 +57,8 @@ public class ChatMenuGUI extends Application {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 try {
-                    new MainMenuViewController().start(App.stage);
+                    timeline.stop();
+                    new LobbyGUI().start(App.stage);
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
@@ -62,6 +70,10 @@ public class ChatMenuGUI extends Application {
         setBackground();
         set();
 
+        timeline = new Timeline(new KeyFrame(Duration.millis(1000),event -> {set();}));
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
+
         Scene scene = new Scene(pane);
         stage.setScene(scene);
         stage.setFullScreen(true);
@@ -70,6 +82,7 @@ public class ChatMenuGUI extends Application {
     }
 
     private void set() {
+        //TODO timeline
         ArrayList<Chat> userChats = getUserChatsFromServer();
         setAllChats(userChats);
 

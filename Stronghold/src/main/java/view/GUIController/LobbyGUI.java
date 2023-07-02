@@ -19,6 +19,7 @@ import model.App;
 import model.Database;
 import model.Session;
 import model.User;
+import model.chat.ChatMenuGUI;
 import utility.RandomGenerators;
 import view.MainMenu;
 import view.shape.lobby.GameSessionNode;
@@ -44,6 +45,8 @@ public class LobbyGUI extends Application {
 
     private User currentUser = App.getCurrentUser();
 
+    private FadeTransition fd;
+
 
     ObservableList<String> numberList = FXCollections.observableArrayList("2","3","4","5","6","7","8");
 
@@ -67,11 +70,11 @@ public class LobbyGUI extends Application {
 
         refresh();
 
-        FadeTransition fd = new FadeTransition();
+        fd = new FadeTransition();
         fd.setNode(anchorPane);
         fd.setFromValue(1.0);
         fd.setToValue(1.0);
-        fd.setDuration(Duration.millis(500));
+        fd.setDuration(Duration.millis(1000));
         fd.setOnFinished(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -143,6 +146,7 @@ public class LobbyGUI extends Application {
 
     public void back() {
         try {
+            fd.stop();
             new MainMenuViewController().start(App.stage);
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -151,7 +155,8 @@ public class LobbyGUI extends Application {
 
 
     public void chat() {
-        //todo connect chat
+        fd.stop();
+        new ChatMenuGUI().start(App.stage);
     }
 
     @Override

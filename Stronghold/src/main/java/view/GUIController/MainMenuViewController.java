@@ -60,7 +60,7 @@ public class MainMenuViewController extends Application {
 
     private void setBackground() {
         Image image = new Image(
-                MainMenuViewController.class.getResource("/images/backgrounds/main-menu-background.jpg").toExternalForm()
+                "file:src/main/resources/images/backgrounds/main-menu-background.jpg"
         );
 
         BackgroundImage backgroundFill = new BackgroundImage(
@@ -104,7 +104,7 @@ public class MainMenuViewController extends Application {
         showMapsButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                new ChatMenuGUI().start(App.stage);
+
             }
         });
 

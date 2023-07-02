@@ -138,6 +138,10 @@ public class ConnectionController {
         Session session = Database.getSessionById(id);
         if (session != null){
             session.getUsers().remove(username);
+            Chat chat = Database.getChatById(session.getChatId());
+            if (chat != null){
+                chat.removeUser(username);
+            }
             if (session.getUsers().size() ==  0){
                 Database.removeSession(session);
             }
@@ -151,6 +155,10 @@ public class ConnectionController {
         Session session = Database.getSessionById(id);
         if (session != null && session.getNumberOfPlayers() > session.getUsers().size()){
             session.getUsers().add(username);
+            Chat chat = Database.getChatById(session.getChatId());
+            if (chat != null){
+                chat.addUser(username);
+            }
         }
     }
 
@@ -159,7 +167,14 @@ public class ConnectionController {
         int number = Integer.parseInt(data.get("numberOfPlayers"));
         String username = data.get("username");
 
-        Database.addSession(new Session(id,number,username));
+
+        Session session = new Session(id,number,username);
+        Database.addSession(session);
+        Chat chat = new Chat(ChatType.ROOM,"session " + id);
+        chat.addUser(username);
+        Database.addChat(chat);
+        session.setChatId(chat.getId());
+
     }
 
     private void sendSessions() throws IOException {

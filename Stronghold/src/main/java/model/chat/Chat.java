@@ -49,6 +49,10 @@ public class Chat {
         users.add(username);
     }
 
+    public void removeUser(String username){
+        users.remove(username);
+    }
+
     public void addMessage(Message message) {
         messages.add(message);
     }
