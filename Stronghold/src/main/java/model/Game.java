@@ -21,6 +21,15 @@ public class Game {
     private final  ArrayList<Trade> allTrades = new ArrayList<>();
     private final ArrayList<Building> allBuildings = new ArrayList<>();
 
+    public ArrayList<String> getUsernames() {
+        ArrayList<String > usernames = new ArrayList<>();
+        for (Government government : governments) {
+            usernames.add(government.getUsername());
+        }
+
+        return usernames;
+    }
+
 
     public Game(Map map, Session session) {
         //todo game constructor must change

@@ -11,7 +11,6 @@ import model.chat.Chat;
 import model.chat.ChatType;
 import model.chat.Message;
 import model.network.Connection;
-import model.society.Government;
 import utility.DataManager;
 
 import java.io.IOException;
@@ -143,11 +142,10 @@ public class ConnectionController {
     }
 
     private void gameControl(HashMap<String, String> data) throws IOException {
-        ArrayList<String> usernames = new ArrayList<>();
-        for (Government government : Database.getCurrentGame().getGovernments()) {
-            usernames.add(government.getUsername());
-            connection.writeToAll(new Gson().toJson(data),usernames);
-        }
+        ArrayList<String> usernames = new Gson().fromJson(data.get("usernames"), new TypeToken<List<String>>() {
+        }.getType());
+        usernames.remove(connection.getUser().getUsername());
+        connection.writeToAll(new Gson().toJson(data), usernames);
     }
 
     private void startSession(HashMap<String, String> data) {
@@ -164,13 +162,13 @@ public class ConnectionController {
         String username = data.get("username");
 
         Session session = Database.getSessionById(id);
-        if (session != null){
+        if (session != null) {
             session.removeUser(username);
             Chat chat = Database.getChatById(session.getChatId());
-            if (chat != null){
+            if (chat != null) {
                 chat.removeUser(username);
             }
-            if (session.isEmpty()){
+            if (session.isEmpty()) {
                 Database.removeSession(session);
             }
         }
@@ -181,10 +179,10 @@ public class ConnectionController {
         String username = data.get("username");
 
         Session session = Database.getSessionById(id);
-        if (session != null && session.getNumberOfPlayers() > session.getUsers().size()){
+        if (session != null && session.getNumberOfPlayers() > session.getUsers().size()) {
             session.addUser(username);
             Chat chat = Database.getChatById(session.getChatId());
-            if (chat != null){
+            if (chat != null) {
                 chat.addUser(username);
             }
         }
@@ -196,9 +194,9 @@ public class ConnectionController {
         String username = data.get("username");
 
 
-        Session session = new Session(id,number,username);
+        Session session = new Session(id, number, username);
         Database.addSession(session);
-        Chat chat = new Chat(ChatType.ROOM,"session " + id);
+        Chat chat = new Chat(ChatType.ROOM, "session " + id);
         chat.addUser(username);
         Database.addChat(chat);
         session.setChatId(chat.getId());

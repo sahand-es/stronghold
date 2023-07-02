@@ -78,7 +78,8 @@ public class GameControl {
     private static String makeItHashMap(ArrayList<String> commandName, ArrayList<String> command) {
         HashMap<String, String> data = new HashMap<>();
         data.put("command", "game");
-        for (int i = 0; i < commandName.size(); i++) {
+        data.put("usernames", new Gson().toJson(game.getUsernames()));
+    for (int i = 0; i < commandName.size(); i++) {
             data.put(commandName.get(i), command.get(i));
         }
 
