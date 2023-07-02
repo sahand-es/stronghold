@@ -112,6 +112,8 @@ public class ConnectionController {
                 case "startSession":
                     startSession(data);
                     break;
+                case "game":
+                    gameControl(data);
 
 
                 default:
@@ -119,6 +121,12 @@ public class ConnectionController {
             }
         } catch (JsonSyntaxException e) {
             System.out.println("invalid data");
+        }
+    }
+
+    private void gameControl(HashMap<String, String> data) {
+        switch (data.get("subcommand")) {
+
         }
     }
 

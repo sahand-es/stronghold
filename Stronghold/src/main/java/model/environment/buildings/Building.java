@@ -9,6 +9,7 @@ import model.society.Government;
 import model.units.Person;
 import model.units.enums.UnitName;
 import utility.DataManager;
+import utility.SHA;
 import view.GameViewController;
 
 import java.util.ArrayList;
@@ -23,6 +24,8 @@ public class Building extends Environment {
     protected HashMap<ResourcesName, Integer> price;
 
     protected static ArrayList<Building> allBuildings = new ArrayList<>();
+
+    private String id;
 
     static {
         ArrayList<String[]> resourceCsv = DataManager.getArrayListFromCSV(DataManager.BUILDINGS_PATH);
@@ -201,9 +204,20 @@ public class Building extends Environment {
         this.price = buildingToClone.price;
         this.government = government;
         super.setBlock(block);
+        id = SHA.shaString(String.valueOf(System.currentTimeMillis()));
+
         block.setEnvironment(this);
         government.addBuilding(this);
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public Building(BuildingName name) {
         Building buildingToClone = getBuildingByBuildingName(name);
         if (buildingToClone == null)

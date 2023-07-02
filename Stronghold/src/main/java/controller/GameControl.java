@@ -39,8 +39,20 @@ public class GameControl {
     private static Building selectedBuilding = null;
     private static Government currentGovernment;
 
+    // TODO: 7/2/2023 set when server called create building 
+    private static String buildingId;
+    private static String personId;
+
+    public static void setBuildingId(String buildingId) {
+        GameControl.buildingId = buildingId;
+    }
+
+    public static void setPersonId(String personId) {
+        GameControl.personId = personId;
+    }
+
     public GameControl(Game game) {
-        // TODO: 6/7/2023 add gameViewController init 
+        // TODO: 6/7/2023 add gameViewController init
         setGame(game);
         currentGovernment = game.getCurrentGovernment();
     }
@@ -53,10 +65,12 @@ public class GameControl {
             return GameMessages.INVALID_TEXTURE;
 
         map.setTexture(x, y, Texture.getTextureByString(texture));
+
         return GameMessages.SUCCESS;
     }
 
     public static void setTexture(Texture texture) {
+        // TODO: 7/2/2023  
         GameViewController.setTexture(texture);
     }
 
@@ -156,6 +170,7 @@ public class GameControl {
     }
 
     public static GameMessages dropBuilding(int x, int y, String type) {
+        // TODO: 7/2/2023  
         Building building = null;
         if (!map.isValidXY(x, y))
             return GameMessages.INVALID_XY;
@@ -167,6 +182,8 @@ public class GameControl {
         Block block = map.getBlockByXY(x, y);
 
         building = buildingConstructorCaller(buildingName, block);
+        // TODO: 7/2/2023 if did not have access:
+        building.setId(buildingId);
 
         GameViewController.addBuilding(building);
 
@@ -218,6 +235,7 @@ public class GameControl {
     }
 
     public static GameMessages createUnit(String type, int count) {
+        // TODO: 7/2/2023  
         Person person = null;
         if (selectedBuilding == null)
             return GameMessages.BUILDING_NOT_SELECTED;
@@ -262,6 +280,8 @@ public class GameControl {
             person = personConstructorCaller(unitName, block);
             GameViewController.addUnit(person);
         }
+
+        // TODO: 7/2/2023 setid 
 
 
         return GameMessages.SUCCESS;
@@ -328,6 +348,7 @@ public class GameControl {
 //ToDo: selected building change menu.
 
     public static GameMessages repair() {
+        // TODO: 7/2/2023  
         if (!(selectedUnit instanceof Engineer))
             return GameMessages.SELECTED_UNIT_IS_NOT_ENGINEER;
         if (selectedBuilding == null)
@@ -384,6 +405,7 @@ public class GameControl {
     }
 
     public static GameMessages moveUnit(int x, int y) {
+        // TODO: 7/2/2023  
         if (selectedUnit == null)
             return GameMessages.UNIT_NOT_SELECTED;
         if (!map.isValidXY(x, y))
@@ -411,6 +433,7 @@ public class GameControl {
     }
 
     public static GameMessages setSoldierState(String state) {
+        // TODO: 7/2/2023  
         if (selectedUnit == null)
             return GameMessages.UNIT_NOT_SELECTED;
         if (!(selectedUnit instanceof Soldier))
@@ -429,6 +452,7 @@ public class GameControl {
     }
 
     public static GameMessages attack(int x, int y) {
+        // TODO: 7/2/2023  
         if (selectedUnit == null)
             return GameMessages.UNIT_NOT_SELECTED;
         if (!map.isValidXY(x, y))
@@ -447,6 +471,7 @@ public class GameControl {
     }
 
     public static GameMessages attackSelectedBuilding() {
+        // TODO: 7/2/2023  
         if (selectedUnit == null)
             return GameMessages.UNIT_NOT_SELECTED;
         if (!(selectedUnit instanceof Soldier))
@@ -704,7 +729,8 @@ public class GameControl {
     }
 
     private static void randomSickness() {
-        if (RandomGenerators.randomTrue(8)) {
+        // TODO: 7/2/2023 not 0 
+        if (RandomGenerators.randomTrue(0)) {
             GameViewController.makeItSick(map.getBlockByXY(
                             RandomGenerators.randomNumber(0, map.getWidth() - 1),
                             RandomGenerators.randomNumber(0, map.getHeight()) - 1)
@@ -750,6 +776,24 @@ public class GameControl {
 
     public static void setSelectedBuilding(Building selectedBuilding) {
         GameControl.selectedBuilding = selectedBuilding;
+    }
+    
+    public static void selectBuildingById(String id) {
+        for (Building building : game.getAllBuildings()) {
+            if (building.getId().equals(id)) {
+                selectedBuilding = building;
+                return;
+            }
+        }
+    }  
+    public static void selectUnitById(String id) {
+        for (Person unit : game.getAllUnits()) {
+            if (unit.getId().equals(id))
+            {
+                selectedUnit = unit;
+                return;
+            }
+        }
     }
 
     public static Person getSelectedUnit() {

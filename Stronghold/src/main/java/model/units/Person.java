@@ -10,6 +10,7 @@ import model.resource.Weapon;
 import model.society.Government;
 import model.units.enums.UnitName;
 import utility.DataManager;
+import utility.SHA;
 import view.GameViewController;
 
 import java.util.*;
@@ -33,6 +34,7 @@ public class Person {
     protected static final ArrayList<Person> allUnits = new ArrayList<>();
 
     protected boolean isMoving = false;
+    private String id;
 
     static {
         ArrayList<String[]> resourceCsv = DataManager.getArrayListFromCSV(DataManager.UNITS_PATH);
@@ -203,8 +205,17 @@ public class Person {
         this.canClimbLadder = personToClone.canClimbLadder;
         this.canDigMoat = personToClone.canDigMoat;
         this.setBlock(block);
+        id = SHA.shaString(String.valueOf(System.currentTimeMillis()));
         isMoving = false;
         setGovernment(government);
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public boolean isMoving() {

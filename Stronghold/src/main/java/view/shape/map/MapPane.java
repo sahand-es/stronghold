@@ -67,8 +67,6 @@ public class MapPane extends Pane {
         }
     }
 
-//    public void setTex
-
     private void setSelectRect() {
         selectRect = new Rectangle(0.01, 0.01);
         selectRect.setFill(Color.LIGHTBLUE);
