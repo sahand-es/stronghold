@@ -59,6 +59,10 @@ public class GameControl {
         currentGovernment = game.getCurrentGovernment();
     }
 
+    public boolean haveAccess(){
+        return App.getCurrentUser().getUsername().equals(currentGovernment.getUsername());
+    }
+
     // map:
     public static GameMessages setTexture(int x, int y, String texture) {
         if (!map.isValidXY(x, y))

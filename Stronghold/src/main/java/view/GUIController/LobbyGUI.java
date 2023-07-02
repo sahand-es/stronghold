@@ -1,7 +1,11 @@
 package view.GUIController;
 
 import com.google.gson.Gson;
+import controller.GameControl;
+import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,11 +19,9 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import model.App;
-import model.Database;
-import model.Session;
-import model.User;
+import model.*;
 import model.chat.ChatMenuGUI;
+import model.map.Map;
 import utility.RandomGenerators;
 import view.MainMenu;
 import view.shape.lobby.GameSessionNode;
@@ -43,9 +45,12 @@ public class LobbyGUI extends Application {
 
     private ArrayList<Session> sessions = new ArrayList<>();
 
+    private Session gameSession;
+
     private User currentUser = App.getCurrentUser();
 
-    private FadeTransition fd;
+
+    private Timeline timeline;
 
 
     ObservableList<String> numberList = FXCollections.observableArrayList("2","3","4","5","6","7","8");
@@ -67,23 +72,9 @@ public class LobbyGUI extends Application {
         anchorPane.setBackground(background);
 
 
-
-        refresh();
-
-        fd = new FadeTransition();
-        fd.setNode(anchorPane);
-        fd.setFromValue(1.0);
-        fd.setToValue(1.0);
-        fd.setDuration(Duration.millis(1000));
-        fd.setOnFinished(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                refresh();
-                fd.play();
-            }
-        });
-        fd.play();
-
+        timeline = new Timeline(new KeyFrame(Duration.millis(1000), event -> {refresh();}));
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
     }
 
     public void createGame() {
@@ -105,9 +96,6 @@ public class LobbyGUI extends Application {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-
-        refresh();
     }
 
     public void refresh() {
@@ -120,14 +108,46 @@ public class LobbyGUI extends Application {
         sessions = getSessionsFromServer();
         //make them all over again the process of making a new node will refresh all its details
         for (Session session : sessions) {
-            if (session.getUsers().size() != 0 &&
-                    session.getUsers().size() < session.getNumberOfPlayers() && !session.isStarted()){
+            if (session.isStarted() && session.getUsers().contains(currentUser.getUsername())){
+                //TODO start game
+                timeline.stop();
+
+                HashMap<String ,String> data = new HashMap<>();
+                data.put("command","startGame");
+                data.put("username",currentUser.getUsername());
+                data.put("id",session.getSessionId());
+                String dataStr = new Gson().toJson(data);
+                try {
+                    App.writeToServer(dataStr);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+
+                Map map = new Map(70, 70);
+                Game game = new Game(map, session);
+
+
+                System.out.println("mmm");
+
+                Database.setCurrentMap(map);
+                Database.setCurrentGame(game);
+                GameControl.setGame(game);
+
+                try {
+                    new GameMenuGUI().start(App.stage);
+                    return;
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+
+
+            }
+            if (session.getUsers().size() != 0  && !session.isStarted()){
                 HBox newSessionNode = new GameSessionNode(session, currentUser.getUsername(), sessions).getMainNode();
                 gameSessionMainNodes.add(newSessionNode);
                 vBox.getChildren().add(newSessionNode);
             }
         }
-
     }
 
     private ArrayList<Session> getSessionsFromServer() {
@@ -146,7 +166,7 @@ public class LobbyGUI extends Application {
 
     public void back() {
         try {
-            fd.stop();
+            timeline.stop();
             new MainMenuViewController().start(App.stage);
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -155,7 +175,7 @@ public class LobbyGUI extends Application {
 
 
     public void chat() {
-        fd.stop();
+        timeline.stop();
         new ChatMenuGUI().start(App.stage);
     }
 

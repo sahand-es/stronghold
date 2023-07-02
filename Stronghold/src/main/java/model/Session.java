@@ -12,6 +12,8 @@ public class Session {
     private int numberOfPlayers;
     private boolean isStarted;
 
+    private int size;
+
     private String chatId;
 
     public Session(String sessionId, int numberOfPlayers, String adminUsername) {
@@ -20,6 +22,7 @@ public class Session {
         users.add(adminUsername);
         this.numberOfPlayers = numberOfPlayers;
         this.isStarted = false;
+        size = 1;
     }
 
     public String getSessionId() {
@@ -28,6 +31,24 @@ public class Session {
 
     public ArrayList<String> getUsers() {
         return users;
+    }
+
+    public void addUser(String username){
+        users.add(username);
+        size ++;
+    }
+
+    public void removeUser(String username){
+        if (users.remove(username))
+            size --;
+    }
+
+    public boolean isEmpty(){
+        return size == 0;
+    }
+
+    public void decrementSize(){
+        size --;
     }
 
     public int getNumberOfPlayers() {
@@ -53,6 +74,10 @@ public class Session {
 
     public void setChatId(String chatId) {
         this.chatId = chatId;
+    }
+
+    public int getSize() {
+        return size;
     }
 
     @Override

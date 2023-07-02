@@ -112,15 +112,32 @@ public class ConnectionController {
                 case "startSession":
                     startSession(data);
                     break;
+
+                case "startGame":
+                    startGame(data);
+                    break;
+
                 case "game":
                     gameControl(data);
-
+                    break;
 
                 default:
                     System.out.println("invalid menu");
             }
         } catch (JsonSyntaxException e) {
             System.out.println("invalid data");
+        }
+    }
+
+    private void startGame(HashMap<String, String> data) {
+        String username = data.get("username");
+        String id = data.get("id");
+        Session session = Database.getSessionById(id);
+        if (session != null) {
+            session.decrementSize();
+            if (session.isEmpty())
+                Database.removeSession(session);
+
         }
     }
 
@@ -145,12 +162,12 @@ public class ConnectionController {
 
         Session session = Database.getSessionById(id);
         if (session != null){
-            session.getUsers().remove(username);
+            session.removeUser(username);
             Chat chat = Database.getChatById(session.getChatId());
             if (chat != null){
                 chat.removeUser(username);
             }
-            if (session.getUsers().size() ==  0){
+            if (session.isEmpty()){
                 Database.removeSession(session);
             }
         }
@@ -162,7 +179,7 @@ public class ConnectionController {
 
         Session session = Database.getSessionById(id);
         if (session != null && session.getNumberOfPlayers() > session.getUsers().size()){
-            session.getUsers().add(username);
+            session.addUser(username);
             Chat chat = Database.getChatById(session.getChatId());
             if (chat != null){
                 chat.addUser(username);
