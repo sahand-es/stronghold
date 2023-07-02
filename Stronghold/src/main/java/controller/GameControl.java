@@ -1,20 +1,20 @@
 package controller;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.util.Duration;
+import model.App;
 import model.Game;
 import model.environment.Rock;
 import model.environment.TreeClass;
 import model.environment.buildings.*;
 import model.environment.buildings.enums.BuildingCategory;
 import model.environment.buildings.enums.BuildingName;
-import model.map.Block;
-import model.map.Direction;
-import model.map.Map;
-import model.map.Texture;
+import model.map.*;
 import model.resource.ResourcesName;
 import model.society.Government;
 import model.units.Person;
@@ -27,8 +27,10 @@ import model.units.workerunits.Tunneler;
 import utility.RandomGenerators;
 import view.GameViewController;
 import view.enums.messages.GameMessages;
+import view.shape.map.MapTile;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 
@@ -69,8 +71,49 @@ public class GameControl {
         return GameMessages.SUCCESS;
     }
 
+    private static String makeItHashMap(ArrayList<String> commandName, ArrayList<String> command) {
+        HashMap<String, String> data = new HashMap<>();
+        data.put("command", "game");
+        for (int i = 0; i < commandName.size(); i++) {
+            data.put(commandName.get(i), command.get(i));
+        }
+
+        return new Gson().toJson(data, new TypeToken<HashMap<String, String>>() {
+        }.getType());
+    }
+
+    public static void setTexture(ArrayList<XY> xyArrayList, Texture texture) {
+        GameViewController.getMapPane().setSelected(xyArrayList);
+        GameViewController.setTexture(texture);
+    }
+
     public static void setTexture(Texture texture) {
-        // TODO: 7/2/2023  
+        // TODO: 7/2/2023
+
+        if (true) {
+            ArrayList<XY> xyArrayList = new ArrayList<>();
+            for (MapTile selectedTile : GameViewController.getMapPane().getSelectedTiles()) {
+                xyArrayList.add(new XY(selectedTile.getBlock().getX(), selectedTile.getBlock().getY()));
+            }
+
+
+            ArrayList<String> commands = new ArrayList<>();
+            ArrayList<String> data = new ArrayList<>();
+
+            commands.add("subcommand");
+            data.add("setTexture");
+            commands.add("xy");
+            data.add(XY.toJson(xyArrayList));
+            commands.add("texture");
+            data.add(texture.getName());
+
+            try {
+                App.writeToServer(makeItHashMap(commands, data));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
         GameViewController.setTexture(texture);
     }
 
@@ -187,6 +230,26 @@ public class GameControl {
 
         GameViewController.addBuilding(building);
 
+
+        if (true) {
+            ArrayList<String> commands = new ArrayList<>();
+            ArrayList<String> data = new ArrayList<>();
+            commands.add("subcommand");
+            data.add("dropBuilding");
+            commands.add("xy");
+            data.add(new XY(x, y).toJson());
+            commands.add("type");
+            data.add(type);
+            commands.add("buildingId");
+            data.add(building.getId());
+
+            try {
+                App.writeToServer(makeItHashMap(commands, data));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
         return GameMessages.SUCCESS;
     }
 
@@ -260,6 +323,23 @@ public class GameControl {
 
         GameViewController.addUnit(person);
 
+        if (true) {
+            ArrayList<String> commands = new ArrayList<>();
+            ArrayList<String> data = new ArrayList<>();
+            commands.add("subcommand");
+            data.add("createUnit");
+            commands.add("type");
+            data.add(type);
+            commands.add("unitId");
+            data.add(person.getId());
+
+            try {
+                App.writeToServer(makeItHashMap(commands, data));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
         return GameMessages.SUCCESS;
     }
 
@@ -283,6 +363,24 @@ public class GameControl {
 
         // TODO: 7/2/2023 setid 
 
+        if (true) {
+            ArrayList<String> commands = new ArrayList<>();
+            ArrayList<String> data = new ArrayList<>();
+            commands.add("subcommand");
+            data.add("dropUnit");
+            commands.add("xy");
+            data.add(new XY(x, y).toJson());
+            commands.add("type");
+            data.add(type);
+            commands.add("unitId");
+            data.add(person.getId());
+
+            try {
+                App.writeToServer(makeItHashMap(commands, data));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
 
         return GameMessages.SUCCESS;
     }
@@ -365,6 +463,19 @@ public class GameControl {
         }
 
 
+        if (true) {
+            ArrayList<String> commands = new ArrayList<>();
+            ArrayList<String> data = new ArrayList<>();
+            commands.add("subcommand");
+            data.add("repair");
+
+            try {
+                App.writeToServer(makeItHashMap(commands, data));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
         selectedBuilding.repair();
         return GameMessages.SUCCESS;
     }
@@ -393,11 +504,41 @@ public class GameControl {
         if (!person.getGovernment().equals(currentGovernment))
             return;
         selectedUnit = person;
+
+        if (true) {
+            ArrayList<String> commands = new ArrayList<>();
+            ArrayList<String> data = new ArrayList<>();
+            commands.add("subcommand");
+            data.add("selectUnit");
+            commands.add("personId");
+            data.add(person.getId());
+
+            try {
+                App.writeToServer(makeItHashMap(commands, data));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
     }
 
     public static void selectBuildingByClick(Building building) {
         System.out.println("building selected: " + building.toString());
         selectedBuilding = building;
+        if (true) {
+            ArrayList<String> commands = new ArrayList<>();
+            ArrayList<String> data = new ArrayList<>();
+            commands.add("subcommand");
+            data.add("selectUnit");
+            commands.add("personId");
+            data.add(building.getId());
+
+            try {
+                App.writeToServer(makeItHashMap(commands, data));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
     private static void deSelectUnit() {
@@ -416,6 +557,22 @@ public class GameControl {
         selectedUnit.stopPatroling();
         if (selectedUnit instanceof Soldier) {
             ((Soldier) selectedUnit).freeAttackQueue();
+        }
+
+        if (true) {
+            ArrayList<String> commands = new ArrayList<>();
+            ArrayList<String> data = new ArrayList<>();
+            commands.add("subcommand");
+            data.add("moveUnit");
+            commands.add("xy");
+            data.add(new XY(x, y).toJson());
+            commands.add("type");
+
+            try {
+                App.writeToServer(makeItHashMap(commands, data));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
         return GameMessages.SUCCESS;
     }
@@ -438,6 +595,21 @@ public class GameControl {
             return GameMessages.UNIT_NOT_SELECTED;
         if (!(selectedUnit instanceof Soldier))
             return GameMessages.THIS_UNIT_DOES_NOT_HAVE_STATE;
+
+        if (true) {
+            ArrayList<String> commands = new ArrayList<>();
+            ArrayList<String> data = new ArrayList<>();
+            commands.add("subcommand");
+            data.add("setState");
+            commands.add("state");
+            data.add(state);
+
+            try {
+                App.writeToServer(makeItHashMap(commands, data));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
 
         ((Soldier) selectedUnit).setSoldierUnitState(SoldierUnitState.getByType(state));
         return GameMessages.SUCCESS;
@@ -466,6 +638,20 @@ public class GameControl {
         if (!soldier.setAttackQueue(block.getEnemy(selectedUnit))) {
             return GameMessages.CAN_NOT_GO_THERE_TO_ATTACK;
         }
+        if (true) {
+            ArrayList<String> commands = new ArrayList<>();
+            ArrayList<String> data = new ArrayList<>();
+            commands.add("subcommand");
+            data.add("dropBuilding");
+            commands.add("xy");
+            data.add(new XY(x, y).toJson());
+
+            try {
+                App.writeToServer(makeItHashMap(commands, data));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
 
         return GameMessages.SUCCESS;
     }
@@ -488,6 +674,18 @@ public class GameControl {
 
         if (!soldier.setAttackQueueBuilding(selectedBuilding)) {
             return GameMessages.CAN_NOT_GO_THERE_TO_ATTACK;
+        }
+        if (true) {
+            ArrayList<String> commands = new ArrayList<>();
+            ArrayList<String> data = new ArrayList<>();
+            commands.add("subcommand");
+            data.add("attackSelectedBuilding");
+
+            try {
+                App.writeToServer(makeItHashMap(commands, data));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
 
 
@@ -597,7 +795,7 @@ public class GameControl {
         }
     }
 
-    private static void updatePopularity(){
+    private static void updatePopularity() {
         for (Government government : game.getGovernments()) {
             government.updatePopularityRate();
         }
@@ -777,7 +975,7 @@ public class GameControl {
     public static void setSelectedBuilding(Building selectedBuilding) {
         GameControl.selectedBuilding = selectedBuilding;
     }
-    
+
     public static void selectBuildingById(String id) {
         for (Building building : game.getAllBuildings()) {
             if (building.getId().equals(id)) {
@@ -785,11 +983,11 @@ public class GameControl {
                 return;
             }
         }
-    }  
+    }
+
     public static void selectUnitById(String id) {
         for (Person unit : game.getAllUnits()) {
-            if (unit.getId().equals(id))
-            {
+            if (unit.getId().equals(id)) {
                 selectedUnit = unit;
                 return;
             }

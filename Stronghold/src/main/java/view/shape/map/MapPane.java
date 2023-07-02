@@ -19,6 +19,7 @@ import javafx.scene.text.TextAlignment;
 import javafx.util.Duration;
 import model.map.Map;
 import model.map.Texture;
+import model.map.XY;
 
 import java.util.ArrayList;
 
@@ -114,8 +115,7 @@ public class MapPane extends Pane {
                 if (mouseEvent.isControlDown() && mouseEvent.isPrimaryButtonDown()) {
                     selectRect.setWidth((mouseEvent.getSceneX() + dragDelta.x - mapPane.getLayoutX()) / scale);
                     selectRect.setHeight((mouseEvent.getSceneY() + dragDelta.y - mapPane.getLayoutY()) / scale);
-                }
-                else if (mouseEvent.isPrimaryButtonDown()) {
+                } else if (mouseEvent.isPrimaryButtonDown()) {
                     mapPane.setLayoutX(mouseEvent.getSceneX() + dragDelta.x);
                     mapPane.setLayoutY(mouseEvent.getSceneY() + dragDelta.y);
                 }
@@ -172,7 +172,7 @@ public class MapPane extends Pane {
         detailsText.setTextAlignment(TextAlignment.CENTER);
 
         for (MapTile tile : selected) {
-            output.append( tile.getBlock().showDetails());
+            output.append(tile.getBlock().showDetails());
             if (tile.isSick()) {
                 output.append("\nSick :(");
             }
@@ -226,7 +226,7 @@ public class MapPane extends Pane {
                     } else if (mouseEvent.isSecondaryButtonDown()) {
                         resetSelection();
                         showDetailsText(tile);
-                    } else if (mouseEvent.isPrimaryButtonDown() ) {
+                    } else if (mouseEvent.isPrimaryButtonDown()) {
                         selected = new ArrayList<>();
                         selected.add(tile);
                     }
@@ -282,6 +282,13 @@ public class MapPane extends Pane {
         scaleTransition.play();
         this.setLayoutX(500);
         this.setLayoutY(-500);
+    }
+
+    public void setSelected(ArrayList<XY> xyArrayList) {
+        selected = new ArrayList<>();
+        for (XY xy : xyArrayList) {
+            selected.add(map.getBlockByXY(xy.x, xy.y).getTile());
+        }
     }
 }
 
