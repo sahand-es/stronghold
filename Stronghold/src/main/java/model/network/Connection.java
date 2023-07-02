@@ -57,11 +57,10 @@ public class Connection extends Thread {
     }
 
     public void writeToAll(String data,ArrayList<String> usernames) throws IOException {
-        if (user != null){
-            usernames.remove(user.getUsername());
-        }
 
         for (String username : usernames) {
+            if (username.equals(user.getUsername()))
+                continue;
             Connection connection = getConnectionByUsername(username);
             if (connection != null)
                 connection.write(data);

@@ -11,6 +11,7 @@ import model.chat.Chat;
 import model.chat.ChatType;
 import model.chat.Message;
 import model.network.Connection;
+import model.society.Government;
 import utility.DataManager;
 
 import java.io.IOException;
@@ -141,9 +142,11 @@ public class ConnectionController {
         }
     }
 
-    private void gameControl(HashMap<String, String> data) {
-        switch (data.get("subcommand")) {
-
+    private void gameControl(HashMap<String, String> data) throws IOException {
+        ArrayList<String> usernames = new ArrayList<>();
+        for (Government government : Database.getCurrentGame().getGovernments()) {
+            usernames.add(government.getUsername());
+            connection.writeToAll(new Gson().toJson(data),usernames);
         }
     }
 

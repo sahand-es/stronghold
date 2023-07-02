@@ -59,7 +59,7 @@ public class GameControl {
         currentGovernment = game.getCurrentGovernment();
     }
 
-    public boolean haveAccess(){
+    public static boolean  haveAccess() {
         return App.getCurrentUser().getUsername().equals(currentGovernment.getUsername());
     }
 
@@ -86,15 +86,17 @@ public class GameControl {
         }.getType());
     }
 
-    public static void setTexture(ArrayList<XY> xyArrayList, Texture texture) {
-        GameViewController.getMapPane().setSelected(xyArrayList);
+    public static void setTexture(String xyArrayListJson, Texture texture) {
+
+
+        GameViewController.getMapPane().setSelected(XY.fromJsonArrayList(xyArrayListJson));
         GameViewController.setTexture(texture);
     }
 
     public static void setTexture(Texture texture) {
         // TODO: 7/2/2023
 
-        if (true) {
+        if (haveAccess()) {
             ArrayList<XY> xyArrayList = new ArrayList<>();
             for (MapTile selectedTile : GameViewController.getMapPane().getSelectedTiles()) {
                 xyArrayList.add(new XY(selectedTile.getBlock().getX(), selectedTile.getBlock().getY()));
@@ -167,6 +169,7 @@ public class GameControl {
         game = theGame;
         map = game.getMap();
         currentGovernment = game.getCurrentGovernment();
+        nextTurn();
     }
 
 
@@ -230,12 +233,11 @@ public class GameControl {
 
         building = buildingConstructorCaller(buildingName, block);
         // TODO: 7/2/2023 if did not have access:
-        building.setId(buildingId);
 
         GameViewController.addBuilding(building);
 
 
-        if (true) {
+        if (haveAccess()) {
             ArrayList<String> commands = new ArrayList<>();
             ArrayList<String> data = new ArrayList<>();
             commands.add("subcommand");
@@ -252,6 +254,8 @@ public class GameControl {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
+        } else {
+            building.setId(buildingId);
         }
 
         return GameMessages.SUCCESS;
@@ -302,7 +306,6 @@ public class GameControl {
     }
 
     public static GameMessages createUnit(String type, int count) {
-        // TODO: 7/2/2023  
         Person person = null;
         if (selectedBuilding == null)
             return GameMessages.BUILDING_NOT_SELECTED;
@@ -327,7 +330,7 @@ public class GameControl {
 
         GameViewController.addUnit(person);
 
-        if (true) {
+        if (haveAccess()) {
             ArrayList<String> commands = new ArrayList<>();
             ArrayList<String> data = new ArrayList<>();
             commands.add("subcommand");
@@ -342,6 +345,8 @@ public class GameControl {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
+        } else {
+            person.setId(personId);
         }
 
         return GameMessages.SUCCESS;
@@ -365,9 +370,8 @@ public class GameControl {
             GameViewController.addUnit(person);
         }
 
-        // TODO: 7/2/2023 setid 
 
-        if (true) {
+        if (haveAccess()) {
             ArrayList<String> commands = new ArrayList<>();
             ArrayList<String> data = new ArrayList<>();
             commands.add("subcommand");
@@ -376,7 +380,7 @@ public class GameControl {
             data.add(new XY(x, y).toJson());
             commands.add("type");
             data.add(type);
-            commands.add("unitId");
+            commands.add("personId");
             data.add(person.getId());
 
             try {
@@ -384,6 +388,8 @@ public class GameControl {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
+        } else {
+            person.setId(personId);
         }
 
         return GameMessages.SUCCESS;
@@ -447,7 +453,6 @@ public class GameControl {
 
         return output;
     }
-//ToDo: selected building change menu.
 
     public static GameMessages repair() {
         // TODO: 7/2/2023  
@@ -467,7 +472,7 @@ public class GameControl {
         }
 
 
-        if (true) {
+        if (haveAccess()) {
             ArrayList<String> commands = new ArrayList<>();
             ArrayList<String> data = new ArrayList<>();
             commands.add("subcommand");
@@ -509,7 +514,7 @@ public class GameControl {
             return;
         selectedUnit = person;
 
-        if (true) {
+        if (haveAccess()) {
             ArrayList<String> commands = new ArrayList<>();
             ArrayList<String> data = new ArrayList<>();
             commands.add("subcommand");
@@ -529,12 +534,12 @@ public class GameControl {
     public static void selectBuildingByClick(Building building) {
         System.out.println("building selected: " + building.toString());
         selectedBuilding = building;
-        if (true) {
+        if (haveAccess()) {
             ArrayList<String> commands = new ArrayList<>();
             ArrayList<String> data = new ArrayList<>();
             commands.add("subcommand");
-            data.add("selectUnit");
-            commands.add("personId");
+            data.add("selectBuilding");
+            commands.add("buildingId");
             data.add(building.getId());
 
             try {
@@ -563,7 +568,7 @@ public class GameControl {
             ((Soldier) selectedUnit).freeAttackQueue();
         }
 
-        if (true) {
+        if (haveAccess()) {
             ArrayList<String> commands = new ArrayList<>();
             ArrayList<String> data = new ArrayList<>();
             commands.add("subcommand");
@@ -600,7 +605,7 @@ public class GameControl {
         if (!(selectedUnit instanceof Soldier))
             return GameMessages.THIS_UNIT_DOES_NOT_HAVE_STATE;
 
-        if (true) {
+        if (haveAccess()) {
             ArrayList<String> commands = new ArrayList<>();
             ArrayList<String> data = new ArrayList<>();
             commands.add("subcommand");
@@ -628,7 +633,6 @@ public class GameControl {
     }
 
     public static GameMessages attack(int x, int y) {
-        // TODO: 7/2/2023  
         if (selectedUnit == null)
             return GameMessages.UNIT_NOT_SELECTED;
         if (!map.isValidXY(x, y))
@@ -642,11 +646,11 @@ public class GameControl {
         if (!soldier.setAttackQueue(block.getEnemy(selectedUnit))) {
             return GameMessages.CAN_NOT_GO_THERE_TO_ATTACK;
         }
-        if (true) {
+        if (haveAccess()) {
             ArrayList<String> commands = new ArrayList<>();
             ArrayList<String> data = new ArrayList<>();
             commands.add("subcommand");
-            data.add("dropBuilding");
+            data.add("attack");
             commands.add("xy");
             data.add(new XY(x, y).toJson());
 
@@ -661,7 +665,6 @@ public class GameControl {
     }
 
     public static GameMessages attackSelectedBuilding() {
-        // TODO: 7/2/2023  
         if (selectedUnit == null)
             return GameMessages.UNIT_NOT_SELECTED;
         if (!(selectedUnit instanceof Soldier))
@@ -679,7 +682,7 @@ public class GameControl {
         if (!soldier.setAttackQueueBuilding(selectedBuilding)) {
             return GameMessages.CAN_NOT_GO_THERE_TO_ATTACK;
         }
-        if (true) {
+        if (haveAccess()) {
             ArrayList<String> commands = new ArrayList<>();
             ArrayList<String> data = new ArrayList<>();
             commands.add("subcommand");
@@ -912,6 +915,20 @@ public class GameControl {
 
     public static void nextTurn() {
 
+        boolean loop = false;
+
+        if (haveAccess()) {
+            ArrayList<String> commands = new ArrayList<>();
+            ArrayList<String> data = new ArrayList<>();
+            commands.add("subcommand");
+            data.add("nextTurn");
+            try {
+                App.writeToServer(makeItHashMap(commands, data));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
         if (game.goToNextTurn()) {
             giveFood();
             getTax();
@@ -928,6 +945,69 @@ public class GameControl {
         deSelectBuilding();
         deSelectUnit();
         GameViewController.updateControlPanel();
+
+
+        loop:
+        while (!haveAccess()) {
+            loop = true;
+            String dataStr;
+            try {
+                dataStr = App.readFromServer();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+            HashMap<String, String> data = new Gson().fromJson(dataStr, new TypeToken<HashMap<String, String>>() {
+            }.getType());
+
+            switch (data.get("subcommand")) {
+                case "setTexture" -> {
+                    setTexture(data.get("xy"), Texture.getTextureByString(data.get("texture")));
+                }
+                case "dropBuilding" -> {
+                    setBuildingId(data.get("buildingId"));
+                    XY coord = XY.fromJson(data.get("xy"));
+                    dropBuilding(coord.x, coord.y, data.get("type"));
+                }
+                case "dropUnit" -> {
+                    setPersonId(data.get("personId"));
+                    XY coord = XY.fromJson(data.get("xy"));
+                    dropUnit(coord.x, coord.y, data.get("type"), 1);
+                }
+                case "createUnit" -> {
+                    setPersonId(data.get("personId"));
+                    createUnit(data.get("type"), 1);
+                }
+                case "repair" -> {
+                    repair();
+                }
+                case "selectUnit" -> {
+                    selectUnitById(data.get("personId"));
+                }
+                case "selectBuilding" -> {
+                    selectBuildingById(data.get("buildingId"));
+                }
+                case "moveUnit" -> {
+                    XY coord = XY.fromJson(data.get("xy"));
+                    moveUnit(coord.x, coord.y);
+                }
+                case "setState" -> {
+                    setSoldierState(data.get("state"));
+                }
+                case "attack" -> {
+                    XY coord = XY.fromJson(data.get("xy"));
+                    attack(coord.x, coord.y);
+                }
+                case "attackSelectedBuilding" -> {
+                    attackSelectedBuilding();
+                }
+                case "nextTurn" -> {
+                    break loop;
+                }
+            }
+        }
+        if (loop)
+            nextTurn();
     }
 
     private static void randomSickness() {
