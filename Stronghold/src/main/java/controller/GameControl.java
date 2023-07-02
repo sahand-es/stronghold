@@ -5,6 +5,7 @@ import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.util.Duration;
+import model.App;
 import model.Game;
 import model.environment.Rock;
 import model.environment.TreeClass;
@@ -55,6 +56,10 @@ public class GameControl {
         // TODO: 6/7/2023 add gameViewController init
         setGame(game);
         currentGovernment = game.getCurrentGovernment();
+    }
+
+    public boolean haveAccess(){
+        return App.getCurrentUser().getUsername().equals(currentGovernment.getUsername());
     }
 
     // map:

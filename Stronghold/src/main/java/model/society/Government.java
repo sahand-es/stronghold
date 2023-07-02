@@ -40,7 +40,8 @@ public class Government {
     private String username;
 
 
-    public Government(Colors color, Game game) {
+    public Government(String username,Colors color, Game game) {
+        this.username = username;
         this.game = game;
         this.color = color;
         tradesHistory = new ArrayList<>();

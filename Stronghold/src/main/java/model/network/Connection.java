@@ -56,12 +56,32 @@ public class Connection extends Thread {
         dataOutputStream.writeUTF(string);
     }
 
+    public void writeToAll(String data,ArrayList<String> usernames) throws IOException {
+        if (user != null){
+            usernames.remove(user.getUsername());
+        }
+
+        for (String username : usernames) {
+            Connection connection = getConnectionByUsername(username);
+            if (connection != null)
+                connection.write(data);
+        }
+    }
+
     private static synchronized void addConnection(Connection connection){
         allConnections.add(connection);
     }
 
     private static synchronized void removeConnection(Connection connection){
         allConnections.remove(connection);
+    }
+
+    private static Connection getConnectionByUsername(String username){
+        for (Connection connection : allConnections) {
+            if (connection.user != null && connection.user.getUsername().equals(username))
+                return connection;
+        }
+        return null;
     }
 
     public User getUser() {

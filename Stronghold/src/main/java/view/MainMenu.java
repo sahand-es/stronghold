@@ -70,10 +70,10 @@ public class MainMenu
                         System.out.println("number of players is mor than 8. Please try again");;
                     } else {
                         Map map = new Map(height,width);
-                        Game game = new Game(map , numberOfGovernments);
+                        //Game game = new Game(map , numberOfGovernments);
 
                         Database.setCurrentMap(map);
-                        Database.setCurrentGame(game);
+                        //Database.setCurrentGame(game);
                         Database.setCurrentMenu(AllMenus.GAME_MENU);
                     }
                 }

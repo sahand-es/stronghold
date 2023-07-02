@@ -22,15 +22,16 @@ public class Game {
     private final ArrayList<Building> allBuildings = new ArrayList<>();
 
 
-    public Game(Map map, int governmentCount) {
+    public Game(Map map, Session session) {
         //todo game constructor must change
         this.map = map;
+        int governmentCount = session.getUsers().size();
 
         for (int i = 0; i < governmentCount; i++) {
-            governments.add(new Government(Colors.colorsArr.get(i), this));
+            governments.add(new Government(session.getUsers().get(i),Colors.colorsArr.get(i), this));
         }
 //  Todo: change init with
-            map.initGovernments(governments);
+            //map.initGovernments(governments);
 
             Database.addGame(this);
     }

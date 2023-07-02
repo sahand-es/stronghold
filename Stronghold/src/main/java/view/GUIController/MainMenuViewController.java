@@ -281,18 +281,7 @@ public class MainMenuViewController extends Application {
 
         numberOfPlayersMessage.setText("");
 
-        Map map = new Map(s, s);
-        Game game = new Game(map, n);
 
-        Database.setCurrentMap(map);
-        Database.setCurrentGame(game);
-        GameControl.setGame(game);
-
-        try {
-            new GameMenuGUI().start(App.stage);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
 
     }
 
