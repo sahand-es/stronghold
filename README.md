@@ -15,6 +15,25 @@ This is java implementation of Stronghold, a strategic multiplayer game, using M
 - Comprehensive test suite for the game logic ensuring reliability and stability.
 - Maven integration for efficient project management and build processes.
 
+## Controls Guide
+**Keyboard:**
+- **M**: Control Unit
+- **N**: Next Turn
+- **B**: Control Building
+- **T**: Change Texture
+- **R**: Reset Zoom and Map
+- **V**: Paste Copied Building
+
+**Mouse:**
+- **Control + Left Click Drag**: Multi-select on Map
+- **Control + Left Click**: Copy Building
+- **Control + Right Click**: Show Multi-selection Details
+- **Right Click**: Show Details of Whatever the Mouse is Over
+- **Left Click**: Select Whatever the Mouse is Over
+- **Left Click Drag**: Move Map
+
+![Gameplay](Stronghold/src/main/resources/images/Gameplay.png)
+
 ## Authors
 - **Sahand Esmaeilzadeh**
 - **Seyed Yousof Miryousefi**
