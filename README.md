@@ -1,13 +1,21 @@
-# پروژه‌ی برنامه‌سازی پیشرفته
-لطفا نام و نام‌خانوادگی و شماره‌ی دانشجووی اعضای گروه خود را این‌جا وارد کنید:
+# Stronghold: Java Implementation
 
-شماره‌ی تیم: `33`
+## Overview
+This is java implementation of Stronghold, a strategic multiplayer game, using Maven for project management. This project was developed as the project for the Advanced Programming course at Sharif University of Tehran.”. It is structured into three main phases, each focusing on a different aspect of the game's development.
 
-نام عضو اول: `سید یوسف میریوسفی `
-شماره دانشجویی عضو اول: `401110642 `
+## Phases
+1. **Game Logic**: Implemented using the MVC (Model-View-Controller) architecture to ensure a well-organized codebase and separation of concerns.
+2. **Game Graphics**: Developed with FXML to create a dynamic and responsive user interface.
+3. **Server & Multiplayer Features**: Includes server-side logic and multiplayer features such as real-time chat and synchronized gameplay.
 
-نام عضو دوم: `سهند اسماعیل‌زاده`
-شماره دانشجویی عضو دوم: `401110675`
+## Features
+- Strategic gameplay based on the classic Stronghold series.
+- Multiplayer support with real-time interaction between players.
+- Graphical user interface designed with FXML for an immersive experience.
+- Comprehensive test suite for the game logic ensuring reliability and stability.
+- Maven integration for efficient project management and build processes.
 
-نام عضو سوم: `آرمین گرامی راد`
-شماره دانشجویی عضو سوم: `401110631`
+## Authors
+- **Sahand Esmaeilzadeh**
+- **Seyed Yousof Miryousefi**
+- **Armin Gerami Rad**
