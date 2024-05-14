@@ -1,4 +1,4 @@
-# Stronghold: Java Implementation
+# Stronghold
 
 ## Overview
 This is java implementation of Stronghold, a strategic multiplayer game, using Maven for project management. This project was developed as the project for the Advanced Programming course at Sharif University of Tehran.”. It is structured into three main phases, each focusing on a different aspect of the game's development.
